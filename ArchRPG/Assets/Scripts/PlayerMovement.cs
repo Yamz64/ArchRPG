@@ -23,8 +23,8 @@ public class PlayerMovement : CharacterAnimationHandler
         else base.moving = false;
 
         if (rb.velocity.y > 0.0f) direction = 0;
-        else if (rb.velocity.x > 0.0f) direction = 1;
         else if (rb.velocity.y < 0.0f) direction = 2;
+        else if (rb.velocity.x > 0.0f) direction = 1;
         else if (rb.velocity.x < 0.0f) direction = 3;
 
         base.Animate(direction);
