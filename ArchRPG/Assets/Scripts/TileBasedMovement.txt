@@ -1,0 +1,102 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Tilemaps;
+
+public class PlayerMovement : MonoBehaviour
+{
+    public float move_speed;
+    private bool moving;
+
+    private Tilemap walls;
+    private Tilemap ground;
+
+    //Coroutine that handles movement by a certain distance
+    IEnumerator Move(Vector2 target_position)
+    {
+        moving = true;
+        Vector2 initial_pos = transform.position;
+        Vector2 increment = target_position/(60f/move_speed);
+        for(int i=0; i<60/move_speed; i++)
+        {
+            transform.Translate(increment.x, increment.y, 0.0f);
+            yield return new WaitForSeconds(1/(60f * move_speed));
+        }
+        transform.position = initial_pos + target_position;
+        moving = false;
+    }
+
+    //funciton checks if desired location is valid
+    bool Valid(Vector2 target_position)
+    {
+        Vector3Int test_pos = Vector3Int.zero;
+        if (target_position.x + transform.position.x < 0) test_pos.x = Mathf.CeilToInt(transform.position.x + target_position.x) - 1;
+        else test_pos.x = (int)(transform.position.x + target_position.x);
+        if (target_position.y + transform.position.y < 0) test_pos.y = Mathf.CeilToInt(transform.position.y + target_position.y) - 1;
+        else test_pos.y = (int)(transform.position.y + target_position.y);
+        Debug.Log(test_pos);
+
+        //is there a wall in the way
+        if(walls != null)
+        {
+            if (walls.GetTile(test_pos) != null) return false;
+        }
+
+        //is there no ground
+        if(ground != null)
+        {
+            if (ground.GetTile(test_pos) == null) return false;
+        }
+
+        //no invalid cases
+        return true;
+    }
+
+    private void Start()
+    {
+        moving = false;
+        walls = GameObject.FindGameObjectWithTag("Walls").GetComponent<Tilemap>();
+        ground = GameObject.FindGameObjectWithTag("Ground").GetComponent<Tilemap>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //handle moving in 8 cardinal directions
+        if (!moving)
+        {
+            //up
+            if (Input.GetAxisRaw("Vertical") > 0.0f)
+            {
+                //right
+                if (Input.GetAxisRaw("Horizontal") > 0.0f && Valid(new Vector2(1.0f, 1.0f)) && Valid(new Vector2(1.0f, 0.0f)) && Valid(new Vector2(0.0f, 1.0f)))
+                    StartCoroutine(Move(new Vector2(1.0f, 1.0f)));
+                //left
+                if (Input.GetAxisRaw("Horizontal") < 0.0f && Valid(new Vector2(-1.0f, 1.0f)) && Valid(new Vector2(-1.0f, 0.0f)) && Valid(new Vector2(0.0f, 1.0f)))
+                    StartCoroutine(Move(new Vector2(-1.0f, 1.0f)));
+                //neutral
+                if (Input.GetAxisRaw("Horizontal") == 0.0f && Valid(new Vector2(0.0f, 1.0f))) StartCoroutine(Move(new Vector2(0.0f, 1.0f)));
+            }
+            //down
+            else if (Input.GetAxisRaw("Vertical") < 0.0f)
+            {
+                //right
+                if (Input.GetAxisRaw("Horizontal") > 0.0f && Valid(new Vector2(1.0f, -1.0f)) && Valid(new Vector2(1.0f, 0.0f)) && Valid(new Vector2(0.0f, -1.0f)))
+                    StartCoroutine(Move(new Vector2(1.0f, -1.0f)));
+                //left
+                if (Input.GetAxisRaw("Horizontal") < 0.0f && Valid(new Vector2(-1.0f, -1.0f)) && Valid(new Vector2(-1.0f, 0.0f)) && Valid(new Vector2(0.0f, -1.0f)))
+                    StartCoroutine(Move(new Vector2(-1.0f, -1.0f)));
+                //neutral
+                if (Input.GetAxisRaw("Horizontal") == 0.0f && Valid(new Vector2(0.0f, -1.0f))) StartCoroutine(Move(new Vector2(0.0f, -1.0f)));
+            }
+            //neutral vertical
+            else
+            {
+                //right
+                if (Input.GetAxisRaw("Horizontal") > 0.0f && Valid(new Vector2(1.0f, 0.0f))) StartCoroutine(Move(new Vector2(1.0f, 0.0f)));
+                //left
+                if (Input.GetAxisRaw("Horizontal") < 0.0f && Valid(new Vector2(-1.0f, 0.0f))) StartCoroutine(Move(new Vector2(-1.0f, 0.0f)));
+            }
+        }
+    }
+}
