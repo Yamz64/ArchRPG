@@ -1,109 +1,64 @@
 fileFormatVersion: 2
-guid: 00c353ea45099f0499c383820694941c
+guid: f5c10f5399cb0bc43b0c470c8b947ce2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9185039355657243952
-    second: TestTiles_0
+      213: -6945095999202978293
+    second: TestTilesGround_0
   - first:
-      213: -804471427167591691
-    second: TestTiles_1
+      213: 815482792935830924
+    second: TestTilesGround_1
   - first:
-      213: -1786184230116508060
-    second: TestTiles_2
+      213: 5295621979969388219
+    second: TestTilesGround_2
   - first:
-      213: 8162042947993326546
-    second: TestTiles_3
+      213: 5499852843749843519
+    second: TestTilesGround_3
   - first:
-      213: -1187715476678314565
-    second: TestTiles_4
+      213: -3571629273518285162
+    second: TestTilesGround_4
   - first:
-      213: -1072019392603869768
-    second: TestTiles_5
+      213: -4298692378117221734
+    second: TestTilesGround_5
   - first:
-      213: 3537593948222098919
-    second: TestTiles_6
+      213: 6686674579887586019
+    second: TestTilesGround_6
   - first:
-      213: 6635711285763287986
-    second: TestTiles_7
+      213: -5437339539353963459
+    second: TestTilesGround_7
   - first:
-      213: -3130838254023652856
-    second: TestTiles_8
+      213: 7285554794687516105
+    second: TestTilesGround_8
   - first:
-      213: 3805134743952680685
-    second: TestTiles_0
+      213: -6135846607499797672
+    second: TestTilesGround_9
   - first:
-      213: -8025442067707417900
-    second: TestTiles_1
+      213: 1038418120332327426
+    second: TestTilesGround_10
   - first:
-      213: 2648873701477910910
-    second: TestTiles_2
+      213: -2557615816604204710
+    second: TestTilesGround_11
   - first:
-      213: -1659252258458536287
-    second: TestTiles_3
+      213: 5254696446807474284
+    second: TestTilesGround_12
   - first:
-      213: -4539981105094519197
-    second: TestTiles_4
+      213: -2120017898610109311
+    second: TestTilesGround_13
   - first:
-      213: 595593078854704847
-    second: TestTiles_5
+      213: 5646717185497785445
+    second: TestTilesGround_14
   - first:
-      213: 8886040798528137163
-    second: TestTiles_6
+      213: 227877143688683320
+    second: TestTilesGround_15
   - first:
-      213: 2952581663473320610
-    second: TestTiles_7
+      213: 1544631726855737599
+    second: TestTilesGround_16
   - first:
-      213: 3161274627436678969
-    second: TestTiles_8
+      213: 7050847955468931176
+    second: TestTilesGround_17
   - first:
-      213: 5540668031973657387
-    second: TestTiles_9
-  - first:
-      213: -3887384068622811116
-    second: TestTiles_9
-  - first:
-      213: 2328938420410193141
-    second: TestTiles_10
-  - first:
-      213: -8750781195812477777
-    second: TestTiles_10
-  - first:
-      213: 6841271800181818709
-    second: TestTiles_11
-  - first:
-      213: -7970554801354838981
-    second: TestTiles_11
-  - first:
-      213: 992722527391492195
-    second: TestTiles_12
-  - first:
-      213: 2999401783725310146
-    second: TestTiles_13
-  - first:
-      213: 6612405793781794968
-    second: TestTiles_14
-  - first:
-      213: 5094983991374248723
-    second: TestTiles_12
-  - first:
-      213: 4730600379938866216
-    second: TestTiles_13
-  - first:
-      213: 2660982494518695796
-    second: TestTiles_14
-  - first:
-      213: -8104660695373247494
-    second: TestTiles_15
-  - first:
-      213: -2439351578560270593
-    second: TestTiles_16
-  - first:
-      213: 3821558914350778451
-    second: TestTiles_17
-  - first:
-      213: -891259544060611663
-    second: TestTiles_18
+      213: 2944332795863268385
+    second: TestTilesGround_18
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -150,7 +105,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -203,7 +158,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TestTiles_0
+      name: TestTilesGround_0
       rect:
         serializedVersion: 2
         x: 0
@@ -217,14 +172,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de6ebcf93ed8ec430800000000000000
-      internalID: 3805134743952680685
+      spriteID: b0615844cff0e9f90800000000000000
+      internalID: -6945095999202978293
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestTiles_1
+      name: TestTilesGround_1
       rect:
         serializedVersion: 2
         x: 16
@@ -238,14 +193,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4daa2d4c5f6ef9090800000000000000
-      internalID: -8025442067707417900
+      spriteID: c853261974d215b00800000000000000
+      internalID: 815482792935830924
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestTiles_2
+      name: TestTilesGround_2
       rect:
         serializedVersion: 2
         x: 32
@@ -259,14 +214,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e79077fd890b2c420800000000000000
-      internalID: 2648873701477910910
+      spriteID: bbe73d42224dd7940800000000000000
+      internalID: 5295621979969388219
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestTiles_3
+      name: TestTilesGround_3
       rect:
         serializedVersion: 2
         x: 48
@@ -280,14 +235,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a670ddacd629f8e0800000000000000
-      internalID: -1659252258458536287
+      spriteID: f32a1ac9507635c40800000000000000
+      internalID: 5499852843749843519
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestTiles_4
+      name: TestTilesGround_4
       rect:
         serializedVersion: 2
         x: 64
@@ -301,14 +256,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3661bdf1d3fbef0c0800000000000000
-      internalID: -4539981105094519197
+      spriteID: 69e5e8a59160f6ec0800000000000000
+      internalID: -3571629273518285162
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestTiles_5
+      name: TestTilesGround_5
       rect:
         serializedVersion: 2
         x: 0
@@ -322,14 +277,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fced0d7efb8f34800800000000000000
-      internalID: 595593078854704847
+      spriteID: a92d4abbe0af754c0800000000000000
+      internalID: -4298692378117221734
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestTiles_6
+      name: TestTilesGround_6
       rect:
         serializedVersion: 2
         x: 16
@@ -343,14 +298,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc7e5e7a60f815b70800000000000000
-      internalID: 8886040798528137163
+      spriteID: 3ea75d65a17dbcc50800000000000000
+      internalID: 6686674579887586019
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestTiles_7
+      name: TestTilesGround_7
       rect:
         serializedVersion: 2
         x: 32
@@ -364,14 +319,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2a2c8a5216da9f820800000000000000
-      internalID: 2952581663473320610
+      spriteID: d34fe994f70ba84b0800000000000000
+      internalID: -5437339539353963459
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestTiles_8
+      name: TestTilesGround_8
       rect:
         serializedVersion: 2
         x: 48
@@ -385,14 +340,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 93f81d5468a1fdb20800000000000000
-      internalID: 3161274627436678969
+      spriteID: 9cd4ef83c7d7b1560800000000000000
+      internalID: 7285554794687516105
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestTiles_9
+      name: TestTilesGround_9
       rect:
         serializedVersion: 2
         x: 64
@@ -406,14 +361,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 410893c29cc3d0ac0800000000000000
-      internalID: -3887384068622811116
+      spriteID: 85b50b3050819daa0800000000000000
+      internalID: -6135846607499797672
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestTiles_10
+      name: TestTilesGround_10
       rect:
         serializedVersion: 2
         x: 0
@@ -427,14 +382,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa4ed64bddafe8680800000000000000
-      internalID: -8750781195812477777
+      spriteID: 20abcb657c3396e00800000000000000
+      internalID: 1038418120332327426
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestTiles_11
+      name: TestTilesGround_11
       rect:
         serializedVersion: 2
         x: 16
@@ -448,14 +403,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3ce57253a6e26190800000000000000
-      internalID: -7970554801354838981
+      spriteID: a51c26337f5818cd0800000000000000
+      internalID: -2557615816604204710
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestTiles_12
+      name: TestTilesGround_12
       rect:
         serializedVersion: 2
         x: 32
@@ -469,14 +424,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 31bf92e12f405b640800000000000000
-      internalID: 5094983991374248723
+      spriteID: c60877ae39e6ce840800000000000000
+      internalID: 5254696446807474284
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestTiles_13
+      name: TestTilesGround_13
       rect:
         serializedVersion: 2
         x: 48
@@ -490,14 +445,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82485945bf776a140800000000000000
-      internalID: 4730600379938866216
+      spriteID: 184dfdb14fe2492e0800000000000000
+      internalID: -2120017898610109311
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestTiles_14
+      name: TestTilesGround_14
       rect:
         serializedVersion: 2
         x: 64
@@ -511,14 +466,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 477d153fa75bde420800000000000000
-      internalID: 2660982494518695796
+      spriteID: 56460b4dc5b2d5e40800000000000000
+      internalID: 5646717185497785445
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestTiles_15
+      name: TestTilesGround_15
       rect:
         serializedVersion: 2
         x: 0
@@ -532,14 +487,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: afb0533b906768f80800000000000000
-      internalID: -8104660695373247494
+      spriteID: 83f9ef90e05992300800000000000000
+      internalID: 227877143688683320
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestTiles_16
+      name: TestTilesGround_16
       rect:
         serializedVersion: 2
         x: 16
@@ -553,14 +508,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ffe60add9aea52ed0800000000000000
-      internalID: -2439351578560270593
+      spriteID: ff0d80c2f52af6510800000000000000
+      internalID: 1544631726855737599
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestTiles_17
+      name: TestTilesGround_17
       rect:
         serializedVersion: 2
         x: 32
@@ -574,14 +529,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3580b1ac597e80530800000000000000
-      internalID: 3821558914350778451
+      spriteID: 860d307cbd4a9d160800000000000000
+      internalID: 7050847955468931176
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestTiles_18
+      name: TestTilesGround_18
       rect:
         serializedVersion: 2
         x: 48
@@ -595,8 +550,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1b33791ba2c91a3f0800000000000000
-      internalID: -891259544060611663
+      spriteID: 12c76fdf31f5cd820800000000000000
+      internalID: 2944332795863268385
       vertices: []
       indices: 
       edges: []
