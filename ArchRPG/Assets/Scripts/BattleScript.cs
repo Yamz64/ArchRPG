@@ -39,7 +39,7 @@ public class BattleScript : MonoBehaviour
 
     public battleState state;
 
-    public Text 
+    public Text dialogue;
 
     public GameObject playerPrefab;
     public GameObject enemyPrefab;
@@ -64,6 +64,7 @@ public class BattleScript : MonoBehaviour
         GameObject enemyGo = Instantiate(enemyPrefab, enemyStation);
         enemyUnit = enemyGo.GetComponent<unit>();
 
+        dialogue.text = "The " + enemyUnit.unitName + " appears.";
     }
 
 
