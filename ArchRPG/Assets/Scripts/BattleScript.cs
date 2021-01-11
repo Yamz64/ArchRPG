@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
+public enum battleState {  START, PLAYER, ENEMY, WIN, LOSE }
 
 public class BattleScript : MonoBehaviour
 {
@@ -33,15 +36,35 @@ public class BattleScript : MonoBehaviour
 	    Reorder characters if a speed stat has been changed/ability used
 	    Skip over characters whose health is < 0
      */
-    // Start is called before the first frame update
+
+    public battleState state;
+
+    public Text 
+
+    public GameObject playerPrefab;
+    public GameObject enemyPrefab;
+
+    public Transform playerStation;
+    public Transform enemyStation;
+
+    unit playerUnit;
+    unit enemyUnit;
+
     void Start()
     {
-        
+        state = battleState.START;
+        setupBattle();
     }
 
-    // Update is called once per frame
-    void Update()
+    void setupBattle()
     {
-        
+        GameObject playerGo = Instantiate(playerPrefab, playerStation);
+        playerUnit = playerGo.GetComponent<unit>();
+
+        GameObject enemyGo = Instantiate(enemyPrefab, enemyStation);
+        enemyUnit = enemyGo.GetComponent<unit>();
+
     }
+
+
 }
