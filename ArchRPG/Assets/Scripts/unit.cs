@@ -26,4 +26,17 @@ public class unit : MonoBehaviour
     {
         hpSlider.value = hp;
     }
+
+    public bool takeDamage(int dam)
+    {
+        currentHP -= dam;
+        if (currentHP <= 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

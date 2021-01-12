@@ -62,10 +62,10 @@ public class BattleScript : MonoBehaviour
     void Start()
     {
         state = battleState.START;
-        setupBattle();
+        StartCoroutine( setupBattle() );
     }
 
-    void setupBattle()
+    IEnumerator setupBattle()
     {
         GameObject playerGo = Instantiate(playerPrefab, playerStation);
         playerUnit = playerGo.GetComponent<unit>();
@@ -99,6 +99,73 @@ public class BattleScript : MonoBehaviour
 
         dialogue.text = "The " + enemyUnit.unitName + " appears.";
 
+        yield return new WaitForSeconds(2f);
+        state = battleState.PLAYER;
+        playerTurn();
+    }
+
+    void playerTurn()
+    {
+        dialogue.text = "Player's Turn";
+    }
+
+    IEnumerator playerAttack()
+    {
+        dialogue.text = "Player is attacking";
+        bool dead = enemyUnit.takeDamage(5);
+
+        enemyUnit.setHUD();
+
+        if (dead)
+        {
+            state = battleState.WIN;
+            battleEnd();
+        }
+        else
+        {
+            state = battleState.ENEMY;
+            StartCoroutine(enemyAttack());
+        }
+        yield return new WaitForSeconds(2f);
+    }
+
+    IEnumerator enemyAttack()
+    {
+        dialogue.text = enemyUnit.unitName + " is attacking";
+
+        yield return new WaitForSeconds(1f);
+
+        bool dead = playerUnit.takeDamage(3);
+        playerUnit.setHUD();
+
+        if (dead)
+        {
+            state = battleState.LOSE;
+            battleEnd();
+        }
+        else
+        {
+            state = battleState.PLAYER;
+            playerTurn();
+        }
+    }
+
+    void battleEnd()
+    {
+        if (state == battleState.WIN)
+        {
+            dialogue.text = "The " + enemyUnit.unitName + " has been defeated";
+        }
+        else if (state == battleState.LOSE)
+        {
+            dialogue.text = "You Died";
+        }
+    }
+
+    public void AttackButton()
+    {
+        if (state != battleState.PLAYER) return;
+        StartCoroutine(playerAttack());
     }
 
 
