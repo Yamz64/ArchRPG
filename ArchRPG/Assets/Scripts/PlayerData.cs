@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
+    public int GetInventorySize() { return inventory.Count; }
+
+    public Item GetItem(int i) { return inventory[i]; }
+
     public void UseItem(int index) {
         inventory[index].Use();
         RemoveItem(index);
