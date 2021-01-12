@@ -9,7 +9,6 @@ public class BattleScript : MonoBehaviour
 {
     /*
     Steps:
-
     Access party member data
     For each member:
 	    Add name into the order
@@ -37,45 +36,50 @@ public class BattleScript : MonoBehaviour
 	    Skip over characters whose health is < 0
      */
 
+    //Use to determine state of the battle (turns, win/loss, etc.)
     public battleState state;
 
+    //Main text to let player know state of battle
     public Text dialogue;
 
+    //GameObjects to use as basis for battle characters
     public GameObject playerPrefab;
-    public GameObject member1Prefab;
-    public GameObject member2Prefab;
-    public GameObject member3Prefab;
+    public GameObject member1Prefab;   public GameObject member2Prefab;    public GameObject member3Prefab;
     public GameObject enemyPrefab;
 
+    //Locations to spawn characters at
     public Transform playerStation;
-    public Transform member1Station;
-    public Transform member2Station;
-    public Transform member3Station;
+    public Transform member1Station;    public Transform member2Station;    public Transform member3Station;
     public Transform enemyStation;
 
+    //Units to use in battle
     unit playerUnit;
-    unit member1Unit;
-    unit member2Unit;
-    unit member3Unit;
+    unit member1Unit;    unit member2Unit;    unit member3Unit;
     unit enemyUnit;
 
+    //Start the battle
     void Start()
     {
         state = battleState.START;
         StartCoroutine( setupBattle() );
     }
 
+    //Create battle characters, set up HUD's, display text, and start player turn
     IEnumerator setupBattle()
     {
+        //Create player unit
         GameObject playerGo = Instantiate(playerPrefab, playerStation);
         playerUnit = playerGo.GetComponent<unit>();
 
+        //Create enemy unit
         GameObject enemyGo = Instantiate(enemyPrefab, enemyStation);
         enemyUnit = enemyGo.GetComponent<unit>();
 
+        //Set up HUD's
         playerUnit.setHUD();
         enemyUnit.setHUD();
 
+        //Create party member 2 if possible
         if (member1Prefab && member1Station)
         {
             GameObject member1Go = Instantiate(member1Prefab, member1Station);
@@ -83,6 +87,7 @@ public class BattleScript : MonoBehaviour
             member1Unit.setHUD();
         }
 
+        //Create party member 3 if possible
         if (member2Prefab && member2Station)
         {
             GameObject member2Go = Instantiate(member2Prefab, member2Station);
@@ -90,6 +95,7 @@ public class BattleScript : MonoBehaviour
             member2Unit.setHUD();
         }
 
+        //Create party member 4 if possible
         if (member3Prefab && member3Station)
         {
             GameObject member3Go = Instantiate(member3Prefab, member3Station);
@@ -97,30 +103,44 @@ public class BattleScript : MonoBehaviour
             member3Unit.setHUD();
         }
 
+        //Display text to player, showing an enemy has appeared
         dialogue.text = "The " + enemyUnit.unitName + " appears.";
 
+        //Start player turn
         yield return new WaitForSeconds(2f);
         state = battleState.PLAYER;
         playerTurn();
     }
 
-    void playerTurn()
+    IEnumerator unitDeath(unit bot)
     {
-        dialogue.text = "Player's Turn";
+        yield return new WaitForSeconds(2f);
+
+
     }
 
+    //Player turn, display relevant text
+    void playerTurn()    {  dialogue.text = "Player's Turn";   }
+
+    //Deal damage to enemy, check if it is dead, and act accordingly (win battle or enemy turn)
     IEnumerator playerAttack()
     {
         dialogue.text = "Player is attacking";
-        bool dead = enemyUnit.takeDamage(5);
 
-        enemyUnit.setHUD();
+        yield return new WaitForSeconds(1f);
 
+        bool dead = enemyUnit.takeDamage(2);
+        enemyUnit.setHP(enemyUnit.currentHP);
+
+        yield return new WaitForSeconds(1f);
+
+        //If enemy is dead, battle is won
         if (dead)
         {
             state = battleState.WIN;
             battleEnd();
         }
+        //If enemy lives, they attack
         else
         {
             state = battleState.ENEMY;
@@ -129,6 +149,34 @@ public class BattleScript : MonoBehaviour
         yield return new WaitForSeconds(2f);
     }
 
+    //Heal damage the player has taken
+    IEnumerator healPlayer(int hel)
+    {
+        dialogue.text = "Player is healing damage";
+
+        yield return new WaitForSeconds(1f);
+
+        playerUnit.healDamage(hel);
+        playerUnit.setHP(playerUnit.currentHP);
+
+        state = battleState.ENEMY;
+        StartCoroutine(enemyAttack());
+        yield return new WaitForSeconds(2f);
+    }
+
+    //Skip player turn to move to the enemy turn
+    IEnumerator skipTurn()
+    {
+        dialogue.text = "Player does nothing";
+
+        yield return new WaitForSeconds(1f);
+
+        state = battleState.ENEMY;
+        StartCoroutine(enemyAttack());
+        yield return new WaitForSeconds(1f);
+    }
+
+    //Deal damage to player, check if they're dead, and act accordingly (lose battle or player turn)
     IEnumerator enemyAttack()
     {
         dialogue.text = enemyUnit.unitName + " is attacking";
@@ -136,13 +184,17 @@ public class BattleScript : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         bool dead = playerUnit.takeDamage(3);
-        playerUnit.setHUD();
+        playerUnit.setHP(playerUnit.currentHP);
 
+        yield return new WaitForSeconds(1f);
+
+        //If player is dead, lose battle
         if (dead)
         {
             state = battleState.LOSE;
             battleEnd();
         }
+        //If player lives, they attack
         else
         {
             state = battleState.PLAYER;
@@ -150,6 +202,7 @@ public class BattleScript : MonoBehaviour
         }
     }
 
+    //Display relevant text based on who wins the battle
     void battleEnd()
     {
         if (state == battleState.WIN)
@@ -162,10 +215,24 @@ public class BattleScript : MonoBehaviour
         }
     }
 
+    //Player chooses to attack
     public void AttackButton()
     {
         if (state != battleState.PLAYER) return;
         StartCoroutine(playerAttack());
+    }
+
+    //Player chooses to heal themself
+    public void ItemButton()
+    {
+        if (state != battleState.PLAYER) return;
+        StartCoroutine(healPlayer(5));
+    }
+
+    public void SkipButton()
+    {
+        if (state != battleState.PLAYER) return;
+        StartCoroutine(skipTurn());
     }
 
 

@@ -528,6 +528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Conspiracy Guy
+  view: {fileID: 5863634073337913552}
   level: 0
   maxHP: 20
   currentHP: 20
@@ -546,7 +547,7 @@ GameObject:
   - component: {fileID: 5863634073337913553}
   - component: {fileID: 5863634073337913552}
   m_Layer: 5
-  m_Name: Image
+  m_Name: CharImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
