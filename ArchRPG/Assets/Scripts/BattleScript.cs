@@ -73,25 +73,32 @@ public class BattleScript : MonoBehaviour
         GameObject enemyGo = Instantiate(enemyPrefab, enemyStation);
         enemyUnit = enemyGo.GetComponent<unit>();
 
+        playerUnit.setHUD();
+        enemyUnit.setHUD();
+
         if (member1Prefab && member1Station)
         {
             GameObject member1Go = Instantiate(member1Prefab, member1Station);
             member1Unit = member1Go.GetComponent<unit>();
+            member1Unit.setHUD();
         }
 
         if (member2Prefab && member2Station)
         {
             GameObject member2Go = Instantiate(member2Prefab, member2Station);
             member2Unit = member2Go.GetComponent<unit>();
+            member2Unit.setHUD();
         }
 
         if (member3Prefab && member3Station)
         {
             GameObject member3Go = Instantiate(member3Prefab, member3Station);
             member3Unit = member3Go.GetComponent<unit>();
+            member3Unit.setHUD();
         }
 
         dialogue.text = "The " + enemyUnit.unitName + " appears.";
+
     }
 
 
