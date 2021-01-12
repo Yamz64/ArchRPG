@@ -18,8 +18,10 @@ public class Item
     {
         Debug.Log("The item has been used");
     }
+
     public string name;
     public string description;
+    public string image_file_path;
     public int amount;
     public int limit;
 }
@@ -30,6 +32,7 @@ public class HotDog : Item
     {
         name = "Hot Dog";
         description = "A tube of unidentified, but delicious meat!  Heals 50 HP when eaten!";
+        image_file_path = "ItemSprites/HotDog";
         amount = 1;
         limit = 30;
     }
