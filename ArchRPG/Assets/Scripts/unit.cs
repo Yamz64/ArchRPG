@@ -7,12 +7,14 @@ using UnityEngine.UI;
 public class unit : MonoBehaviour
 {
     public string unitName;     //Name of the unit
-    public Image view;          //Image of unit
     public int level;           //Level of the unit
     public int maxHP;           //Maximum HP possible
     public int currentHP;       //Current Hit points
+    public bool enemy;
 
+    public Image view;          //Image of unit
     public Text nameText;       //Text object to project name to
+    public Image nameTextBack;  //Background for the text
     public Text levelText;      //Text object to project level to
     public Slider hpSlider;     //Slider to project health to
 

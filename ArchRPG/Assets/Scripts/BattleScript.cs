@@ -114,9 +114,11 @@ public class BattleScript : MonoBehaviour
 
     IEnumerator unitDeath(unit bot)
     {
-        yield return new WaitForSeconds(2f);
-
-
+        yield return new WaitForSeconds(1f);
+        bot.view.CrossFadeAlpha(0, 2f, false);
+        bot.nameText.CrossFadeAlpha(0, 2f, false);
+        bot.nameTextBack.CrossFadeAlpha(0, 2f, false);
+        bot.levelText.CrossFadeAlpha(0, 2f, false);
     }
 
     //Player turn, display relevant text
@@ -129,7 +131,7 @@ public class BattleScript : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        bool dead = enemyUnit.takeDamage(2);
+        bool dead = enemyUnit.takeDamage(4);
         enemyUnit.setHP(enemyUnit.currentHP);
 
         yield return new WaitForSeconds(1f);
@@ -138,6 +140,7 @@ public class BattleScript : MonoBehaviour
         if (dead)
         {
             state = battleState.WIN;
+            StartCoroutine( unitDeath(enemyUnit) );
             battleEnd();
         }
         //If enemy lives, they attack
@@ -183,7 +186,7 @@ public class BattleScript : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        bool dead = playerUnit.takeDamage(3);
+        bool dead = playerUnit.takeDamage(4);
         playerUnit.setHP(playerUnit.currentHP);
 
         yield return new WaitForSeconds(1f);
@@ -192,6 +195,7 @@ public class BattleScript : MonoBehaviour
         if (dead)
         {
             state = battleState.LOSE;
+            StartCoroutine( unitDeath(playerUnit) );
             battleEnd();
         }
         //If player lives, they attack

@@ -129,11 +129,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Eldritch Gunner
-  view: {fileID: 1221372087546398390}
   level: 2
   maxHP: 10
   currentHP: 10
+  enemy: 0
+  view: {fileID: 1221372087546398390}
   nameText: {fileID: 3577170644928327419}
+  nameTextBack: {fileID: 4626299384211583858}
   levelText: {fileID: 4437435520957265185}
   hpSlider: {fileID: 8935614473393085139}
 --- !u!1 &1221372087546398392

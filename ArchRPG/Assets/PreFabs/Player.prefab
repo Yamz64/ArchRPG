@@ -528,11 +528,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Conspiracy Guy
-  view: {fileID: 5863634073337913552}
   level: 0
   maxHP: 20
   currentHP: 20
+  enemy: 0
+  view: {fileID: 5863634073337913552}
   nameText: {fileID: 4732438157363867254}
+  nameTextBack: {fileID: 4732438157545051297}
   levelText: {fileID: 1307254652008017318}
   hpSlider: {fileID: 8546998740103335671}
 --- !u!1 &5863634073337913566
