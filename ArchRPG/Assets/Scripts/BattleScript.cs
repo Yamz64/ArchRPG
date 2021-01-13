@@ -39,6 +39,55 @@ public class BattleScript : MonoBehaviour
     //Use to determine state of the battle (turns, win/loss, etc.)
     public battleState state;
 
+    //List of the positions of menus
+    [System.Serializable]
+    public struct MenuPositions
+    {
+        public List<Transform> positions;
+    }
+
+    //Current position (index) the cursor is at
+    public int cursor_position;
+    //Current menu being moved through
+    public int active_menu;
+    //
+    public bool menu_mode;
+
+    //A list of positions the cursor can go through
+    [SerializeField]
+    public List<MenuPositions> cursor_positions;
+
+    //
+    public int inventory_offset;
+
+    //Current item (index) being highlighted by cursor
+    public int highlighted_item;
+    //
+    private bool menu_input;
+    //
+    private bool item_select_menu;
+
+    //The animated cursor object
+    private GameObject cursor;
+    //The list of menu objects
+    private List<GameObject> menus;
+
+    //Function to open the menu at the given index
+    public void OpenMenu(int index)
+    {
+        cursor_position = 0;
+        active_menu = index;
+        menus[index].SetActive(true);
+    }
+
+    //Function to close the menu at the given index
+    public void CloseMenu(int index)
+    {
+        cursor_position = 0;
+        active_menu = index;
+        menus[index].SetActive(false);
+    }
+
     //Main text to let player know state of battle
     public Text dialogue;
 
