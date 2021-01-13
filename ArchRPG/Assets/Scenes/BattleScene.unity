@@ -174,8 +174,8 @@ MonoBehaviour:
   member3Prefab: {fileID: 5863634071550135657, guid: da6a1e09c149c9e46a62dc0e50c21407, type: 3}
   enemyPrefab: {fileID: 1221372087356533519, guid: c66ab2e1e3a1abf40a6e197396aa45ad, type: 3}
   playerStation: {fileID: 1489905312}
-  member1Station: {fileID: 0}
-  member2Station: {fileID: 0}
+  member1Station: {fileID: 698593766}
+  member2Station: {fileID: 375501834}
   member3Station: {fileID: 0}
   enemyStation: {fileID: 974848988}
 --- !u!1 &240098781

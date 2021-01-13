@@ -239,6 +239,4 @@ public class BattleScript : MonoBehaviour
         if (state != battleState.PLAYER) return;
         StartCoroutine(skipTurn());
     }
-
-
 }
