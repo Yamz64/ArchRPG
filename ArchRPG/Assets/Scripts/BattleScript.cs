@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum battleState {  START, PLAYER, ENEMY, WIN, LOSE }
+public enum battleState {  START, PLAYER, PARTY1, PARTY2, PARTY3, ENEMY, WIN, LOSE }
 
 public class BattleScript : MonoBehaviour
 {
@@ -112,6 +112,7 @@ public class BattleScript : MonoBehaviour
         playerTurn();
     }
 
+    //Fade out a unit from the screen when they die
     IEnumerator unitDeath(unit bot)
     {
         yield return new WaitForSeconds(1f);
