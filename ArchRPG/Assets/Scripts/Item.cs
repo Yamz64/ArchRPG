@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//base class handling all items
 public class Item
 {
     public void Add() {
@@ -26,6 +27,52 @@ public class Item
     public int limit;
 }
 
+//base class handling all weapons
+public class Weapon : Item
+{
+    public virtual void SetWeapon(CharacterStats c)
+    {
+        character = c;
+        c.SetATK(c.GetATK() + damage_buff);
+    }
+    public virtual void RemoveWeapon()
+    {
+        character.SetATK(character.GetATK() - damage_buff);
+    }
+    public CharacterStats character;
+    public int damage_buff;
+}
+
+//base class handling all armor
+public class Armor : Item
+{
+    public virtual void SetArmor(CharacterStats c)
+    {
+        character = c;
+        c.SetDEF(c.GetDEF() + defense_buff);
+    }
+    public virtual void RemoveArmor()
+    {
+        character.SetDEF(character.GetDEF() - defense_buff);
+    }
+    public CharacterStats character;
+    public int defense_buff;
+}
+
+//base class handling all trinkets
+public class Trinket : Item
+{
+    public virtual void SetTrinket(CharacterStats c)
+    {
+        character = c;
+    }
+    public virtual void RemoveTrinket()
+    {
+    }
+    CharacterStats character;
+}
+
+//--DERIVED ITEMS--
 public class HotDog : Item
 {
     public HotDog()

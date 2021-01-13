@@ -11,7 +11,7 @@ public class PlayerMovement : CharacterAnimationHandler
 
     private Rigidbody2D rb;
 
-    private void Start()
+    private new void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         base.Start();
