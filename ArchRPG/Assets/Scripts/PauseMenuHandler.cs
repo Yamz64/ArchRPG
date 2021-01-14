@@ -20,6 +20,7 @@ public class PauseMenuHandler : MonoBehaviour
     public int inventory_offset;
 
     public int highlighted_item;
+    public int highlighted_party_member;
     private bool menu_input;
     private bool item_select_menu;
     private bool base_pause_character_select;
@@ -169,7 +170,20 @@ public class PauseMenuHandler : MonoBehaviour
 
     public void OpenUseItemMenu()
     {
-        transform.GetChild(1).GetChild(2).GetChild(11).gameObject.SetActive(true);
+        GameObject menu = transform.GetChild(1).GetChild(2).GetChild(11).gameObject;
+        menu.SetActive(true);
+        if (cursor_position == 8)
+        {
+            menu.transform.position = new Vector3(menu.transform.position.x, cursor.transform.position.y + .3f, transform.position.z);
+        }
+        else if(cursor_position == 0)
+        {
+            menu.transform.position = new Vector3(menu.transform.position.x, cursor.transform.position.y - .3f, transform.position.z);
+        }
+        else
+        {
+            menu.transform.position = new Vector3(menu.transform.position.x, cursor.transform.position.y, transform.position.z);
+        }
         cursor_position = 9;
         item_select_menu = true;
     }
@@ -219,11 +233,13 @@ public class PauseMenuHandler : MonoBehaviour
                         highlighted_item = 0;
                         item_select_menu = false;
                         OpenMenu(1);
+                        CloseUseItemMenu();
                         UpdateInventoryItems();
                         UpdateInventoryImageandDesc();
                         break;
                     case 2:
                         cursor_position = 0;
+                        highlighted_party_member = 0;
                         base_pause_character_select = true;
                         break;
                     case 3:
@@ -242,18 +258,36 @@ public class PauseMenuHandler : MonoBehaviour
             if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
             {
                 if (!menu_input)
+                {
                     cursor_position--;
+                    highlighted_party_member--;
+                }
                 menu_input = true;
             }
             else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[2].positions.Count - 1)
             {
                 if (!menu_input)
+                {
                     cursor_position++;
+                    highlighted_party_member++;
+                }
                 menu_input = true;
             }
             else
             {
                 menu_input = false;
+            }
+
+            if (Input.GetButtonDown("Interact"))
+            {
+                if(cursor_position == 0)
+                {
+                    OpenMenu(2);
+                }
+                else if(cursor_position < data.GetPartySize()+1)
+                {
+                    OpenMenu(2);
+                }
             }
 
             //update the cursor position
