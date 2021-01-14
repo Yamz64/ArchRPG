@@ -41,6 +41,77 @@ public class PauseMenuHandler : MonoBehaviour
         menus[index].SetActive(false);
     }
 
+    public void UpdatePartyInfo()
+    {
+        //get a list of objects to update the info for
+        List<GameObject> party_info = new List<GameObject>();
+        for(int i=6; i<10; i++)
+        {
+            party_info.Add(transform.GetChild(1).GetChild(1).GetChild(i).gameObject);
+        }
+
+        //update party info
+        for(int i=0; i<party_info.Count; i++)
+        {
+            //set the first object's information to the player's info
+            if (i == 0)
+            {
+                //set the name, character's image, level text, xp fill, HP info/fill, MP info/fill
+                party_info[0].transform.GetChild(1).GetComponent<Text>().text = data.GetName();
+
+                party_info[0].GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                party_info[0].GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetImageFilepath());
+
+                party_info[0].transform.GetChild(2).GetComponent<Text>().text = "Level " + data.GetLVL().ToString();
+                party_info[0].transform.GetChild(2).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetExperience() / data.GetMaxExperience();
+
+                party_info[0].transform.GetChild(3).GetComponent<Text>().text = "HP: (" + data.GetHP() + "/" + data.GetHPMAX() + ")";
+                party_info[0].transform.GetChild(3).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetHP() / data.GetHPMAX();
+
+                party_info[0].transform.GetChild(4).GetComponent<Text>().text = "HP: (" + data.GetSP() + "/" + data.GetSPMax() + ")";
+                party_info[0].transform.GetChild(4).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetSP() / data.GetSPMax();
+
+                continue;
+            }
+            //if there is a party member that exists to update info for
+            if (i < data.GetPartySize() + 1)
+            {
+                //set the name, character's image, level text, xp fill, HP info/fill, MP info/fill
+                party_info[i].transform.GetChild(1).GetComponent<Text>().text = data.GetPartyMember(i-1).GetName();
+
+                party_info[i].GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                party_info[i].GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetPartyMember(i-1).GetImageFilepath());
+
+                party_info[i].transform.GetChild(2).GetComponent<Text>().text = "Level " + data.GetPartyMember(i-1).GetLVL().ToString();
+                party_info[i].transform.GetChild(2).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetExperience() / data.GetMaxExperience();
+
+                party_info[i].transform.GetChild(3).GetComponent<Text>().text = "HP: (" + data.GetPartyMember(i-1).GetHP() + "/" + data.GetPartyMember(i-1).GetHPMAX() + ")";
+                party_info[i].transform.GetChild(3).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetPartyMember(i-1).GetHP() / data.GetPartyMember(i-1).GetHPMAX();
+
+                party_info[i].transform.GetChild(4).GetComponent<Text>().text = "HP: (" + data.GetPartyMember(i-1).GetSP() + "/" + data.GetPartyMember(i-1).GetSPMax() + ")";
+                party_info[i].transform.GetChild(4).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetPartyMember(i-1).GetSP() / data.GetPartyMember(i-1).GetSPMax();
+            }
+            //if there is no party member that the data exists for set all the data to invisible
+            else
+            {
+                //set the name, character's image, level text, xp fill, HP info/fill, MP info/fill
+                party_info[i].transform.GetChild(1).GetComponent<Text>().text = "";
+
+                party_info[i].GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                party_info[i].GetComponent<Image>().sprite = null;
+
+                party_info[i].transform.GetChild(2).GetComponent<Text>().text = "";
+                party_info[i].transform.GetChild(2).GetChild(0).GetComponent<Image>().fillAmount = 0.0f;
+
+                party_info[i].transform.GetChild(3).GetComponent<Text>().text = "";
+                party_info[i].transform.GetChild(3).GetChild(0).GetComponent<Image>().fillAmount = 0.0f;
+
+                party_info[i].transform.GetChild(4).GetComponent<Text>().text = "";
+                party_info[i].transform.GetChild(4).GetChild(0).GetComponent<Image>().fillAmount = 0.0f;
+            }
+        }
+    }
+
     public void UpdateInventoryItems()
     {
         //first get all of the item view slots and store them in a temporary list
@@ -316,7 +387,7 @@ public class PauseMenuHandler : MonoBehaviour
         }
 
         //define the player's data
-        data = GetComponent<PlayerData>();
+        data = GetComponent<PlayerDataMono>().data;
         Item a = new Item();
         Item b = new Item();
         Item c = new Item();
@@ -366,6 +437,7 @@ public class PauseMenuHandler : MonoBehaviour
                 GetComponent<PlayerMovement>().interaction_protection = true;
                 cursor.SetActive(true);
                 OpenMenu(0);
+                UpdatePartyInfo();
             }
             else
             {

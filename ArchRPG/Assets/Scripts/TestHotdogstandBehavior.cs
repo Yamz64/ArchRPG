@@ -6,6 +6,6 @@ public class TestHotdogstandBehavior : InteractableBaseClass
 {
     public override void Interact()
     {
-        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerData>().AddItem(new HotDog());
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDataMono>().data.AddItem(new HotDog());
     }
 }

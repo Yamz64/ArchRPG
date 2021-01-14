@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterStats : MonoBehaviour
+public class CharacterStats
 {
     //--ACCESSORS--
     public int GetHP() { return HP; }
@@ -113,7 +113,7 @@ public class CharacterStats : MonoBehaviour
     private int LVL;        //current level of the character
 
     //--MISC STATS--
-    private new string name;            //name of the character
+    private string name;            //name of the character
     private string desc;                //description of the character
     private string image_filepath;      //character image filepath
     private Weapon weapon;              //current equipped weapon
