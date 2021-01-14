@@ -42,7 +42,7 @@ public class PlayerData : CharacterStats
     public void UseItem(int index)
     {
         inventory[index].Use();
-        RemoveItem(index);
+        if (inventory[index].amount <= 1) inventory.RemoveAt(index);
     }
     public void AddItem(Item item)
     {
@@ -80,9 +80,13 @@ public class PlayerData : CharacterStats
     {
         //first see if there is more than one of an item in the player's inventory if there is then remove only one of those items
         //if not, then remove it entirely from the inventory
-        if (inventory[index].amount < 1)
+        if (inventory[index].amount <= 1)
         {
             inventory.RemoveAt(index);
+        }
+        else
+        {
+            inventory[index].Remove();
         }
     }
     public override void SetWeapon(Weapon w)
