@@ -37,6 +37,7 @@ public class PlayerData : CharacterStats
         //if the item is not found, add the item
         if (!found)
         {
+            item.character = this;
             inventory.Add(item);
             Debug.Log("Added " + item.name + " to inventory!");
         }

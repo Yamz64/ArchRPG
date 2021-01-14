@@ -25,6 +25,7 @@ public class Item
     public string image_file_path;
     public int amount;
     public int limit;
+    public CharacterStats character;
 }
 
 //base class handling all weapons
@@ -39,7 +40,6 @@ public class Weapon : Item
     {
         character.SetATK(character.GetATK() - damage_buff);
     }
-    public CharacterStats character;
     public int damage_buff;
 }
 
@@ -55,7 +55,6 @@ public class Armor : Item
     {
         character.SetDEF(character.GetDEF() - defense_buff);
     }
-    public CharacterStats character;
     public int defense_buff;
 }
 
@@ -69,7 +68,6 @@ public class Trinket : Item
     public virtual void RemoveTrinket()
     {
     }
-    CharacterStats character;
 }
 
 //--DERIVED ITEMS--
@@ -86,7 +84,7 @@ public class HotDog : Item
 
     public override void Use()
     {
-        Debug.Log("The Hot Dog has been consumed");
+        character.SetHP(character.GetHP() + 50);
         Remove();
     }
 }

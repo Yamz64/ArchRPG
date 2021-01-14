@@ -28,11 +28,23 @@ public class CharacterStats : MonoBehaviour
     public Ability GetAbility(int index) { return abilities[index]; }
 
     //--MODIFIERS--
-    public void SetHP(int h) { HP = h; }
+    public void SetHP(int h) {
+        HP = h;
+        if (HP > HP_max) HP = HP_max;
+        if (HP <= 0) HP = 0;
+    }
     public void SetHPMax(int h) { HP_max = h; }
-    public void SetSAN(int s) { SAN = s; }
+    public void SetSAN(int s) {
+        SAN = s;
+        if (SAN > SAN_max) SAN = SAN_max;
+        if (SAN <= 0) SAN = 0;
+    }
     public void SetSANMax(int s) { SAN_max = s; }
-    public void SetSP(int s) { SP = s; }
+    public void SetSP(int s) {
+        SP = s;
+        if (SP > SP_max) SP = SP_max;
+        if (SP <= 0) SP = 0;
+    }
     public void SetSPMax(int s) { SP_max = s; }
     public void SetATK(int a) { ATK = a; }
     public void SetPOW(int p) { POW = p; }

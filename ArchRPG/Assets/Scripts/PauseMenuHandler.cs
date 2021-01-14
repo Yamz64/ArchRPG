@@ -22,6 +22,7 @@ public class PauseMenuHandler : MonoBehaviour
     public int highlighted_item;
     private bool menu_input;
     private bool item_select_menu;
+    private bool base_pause_character_select;
     private GameObject cursor;
     private List<GameObject> menus;
     private PlayerData data;
@@ -111,54 +112,82 @@ public class PauseMenuHandler : MonoBehaviour
 
     public void BasePauseMenuRoutine()
     {
-        //change position of cursor in the menu
-        if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+        if (!base_pause_character_select)
         {
-            if (!menu_input)
-                cursor_position--;
-            menu_input = true;
-        }
-        else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[0].positions.Count - 1)
-        {
-            if (!menu_input)
-                cursor_position++;
-            menu_input = true;
+            //change position of cursor in the menu
+            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+            {
+                if (!menu_input)
+                    cursor_position--;
+                menu_input = true;
+            }
+            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[0].positions.Count - 1)
+            {
+                if (!menu_input)
+                    cursor_position++;
+                menu_input = true;
+            }
+            else
+            {
+                menu_input = false;
+            }
+
+            //handle input
+            if (Input.GetButtonDown("Interact"))
+            {
+                switch (cursor_position)
+                {
+                    case 0:
+                        GetComponent<PlayerMovement>().interaction_protection = false;
+                        cursor.SetActive(false);
+                        CloseMenu(0);
+                        menu_mode = false;
+                        break;
+                    case 1:
+                        inventory_offset = 0;
+                        highlighted_item = 0;
+                        item_select_menu = false;
+                        OpenMenu(1);
+                        UpdateInventoryItems();
+                        UpdateInventoryImageandDesc();
+                        break;
+                    case 2:
+                        cursor_position = 0;
+                        base_pause_character_select = true;
+                        break;
+                    case 3:
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            //update the cursor position
+            cursor.transform.position = cursor_positions[0].positions[cursor_position].position;
         }
         else
         {
-            menu_input = false;
-        }
-
-        //handle input
-        if (Input.GetButtonDown("Interact"))
-        {
-            switch (cursor_position)
+            //change position of cursor in the menu
+            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
             {
-                case 0:
-                    GetComponent<PlayerMovement>().interaction_protection = false;
-                    cursor.SetActive(false);
-                    CloseMenu(0);
-                    menu_mode = false;
-                    break;
-                case 1:
-                    inventory_offset = 0;
-                    highlighted_item = 0;
-                    item_select_menu = false;
-                    OpenMenu(1);
-                    UpdateInventoryItems();
-                    UpdateInventoryImageandDesc();
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                default:
-                    break;
+                if (!menu_input)
+                    cursor_position--;
+                menu_input = true;
             }
-        }
+            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[2].positions.Count - 1)
+            {
+                if (!menu_input)
+                    cursor_position++;
+                menu_input = true;
+            }
+            else
+            {
+                menu_input = false;
+            }
 
-        //update the cursor position
-        cursor.transform.position = cursor_positions[0].positions[cursor_position].position;
+            //update the cursor position
+            cursor.transform.position = cursor_positions[2].positions[cursor_position].position;
+        }
     }
 
     public void ItemMenuRoutine()
@@ -331,6 +360,7 @@ public class PauseMenuHandler : MonoBehaviour
     {
         if (Input.GetButtonDown("Menu"))
         {
+            base_pause_character_select = false;
             if (!menu_mode)
             {
                 GetComponent<PlayerMovement>().interaction_protection = true;
