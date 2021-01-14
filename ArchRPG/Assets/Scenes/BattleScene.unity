@@ -186,12 +186,14 @@ MonoBehaviour:
   member1Prefab: {fileID: 5863634071550135657, guid: da6a1e09c149c9e46a62dc0e50c21407, type: 3}
   member2Prefab: {fileID: 5863634071550135657, guid: da6a1e09c149c9e46a62dc0e50c21407, type: 3}
   member3Prefab: {fileID: 5863634071550135657, guid: da6a1e09c149c9e46a62dc0e50c21407, type: 3}
-  enemyPrefab: {fileID: 1221372087356533519, guid: c66ab2e1e3a1abf40a6e197396aa45ad, type: 3}
+  enemyPrefab: {fileID: 3649797668599104361, guid: c6288666f4d0a824fba8448c5d8e8173, type: 3}
   playerStation: {fileID: 1489905312}
   member1Station: {fileID: 698593766}
   member2Station: {fileID: 375501834}
   member3Station: {fileID: 173307079}
   enemyStation: {fileID: 974848988}
+  time: 2
+  timer: 2
 --- !u!1 &101508250
 GameObject:
   m_ObjectHideFlags: 0
@@ -1193,7 +1195,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 194}
+  m_AnchoredPosition: {x: -90, y: 65}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &974848989

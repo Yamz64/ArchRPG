@@ -73,6 +73,27 @@ public class BattleScript : MonoBehaviour
     private List<GameObject> menus;     //The list of menu objects
     private PlayerData data;            //Object to hold player data
 
+    //Main text to let player know state of battle
+    public Text dialogue;
+
+    //GameObjects to use as basis for battle characters
+    public GameObject playerPrefab;
+    public GameObject member1Prefab; public GameObject member2Prefab; public GameObject member3Prefab;
+    public GameObject enemyPrefab;
+
+    //Locations to spawn characters at
+    public Transform playerStation;
+    public Transform member1Station; public Transform member2Station; public Transform member3Station;
+    public Transform enemyStation;
+
+    //Units to use in battle
+    unit playerUnit;
+    unit member1Unit; unit member2Unit; unit member3Unit;
+    unit enemyUnit;
+
+    public float time = 2;
+    public float timer = 2;
+
     //Function to open the menu at the given index
     public void OpenMenu(int index)
     {
@@ -161,7 +182,7 @@ public class BattleScript : MonoBehaviour
     //Used to navigate the basic action menu
     public void BaseActionMenuRoutine()
     {
-        if (!action_select_menu)
+        if (!action_select_menu && state == battleState.PLAYER && timer == time)
         {
             //change position of cursor in the menu
             if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
@@ -192,6 +213,7 @@ public class BattleScript : MonoBehaviour
                         // CloseMenu(0);
                         //menu_mode = false;
                         AttackButton();
+                        timer = 1;
                         break;
 
                     //Open item menu
@@ -205,6 +227,7 @@ public class BattleScript : MonoBehaviour
                         UpdateInventoryImageandDesc();
                         */
                         ItemButton();
+                        timer = 1;
                         break;
 
                     //Skip to next turn
@@ -212,6 +235,7 @@ public class BattleScript : MonoBehaviour
                         //cursor_position = 0;
                         //action_select_menu = true;
                         SkipButton();
+                        timer = 1;
                         break;
                     case 3:
                         break;
@@ -223,7 +247,7 @@ public class BattleScript : MonoBehaviour
             //update the cursor position
             cursor.transform.position = cursor_positions[0].positions[cursor_position].position;
         }
-        else
+        else if (state == battleState.PLAYER && timer == time)
         {
             //change position of cursor in the menu
             if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
@@ -357,24 +381,6 @@ public class BattleScript : MonoBehaviour
         //update cursor position
         cursor.transform.position = cursor_positions[1].positions[cursor_position].position;
     }
-
-    //Main text to let player know state of battle
-    public Text dialogue;
-
-    //GameObjects to use as basis for battle characters
-    public GameObject playerPrefab;
-    public GameObject member1Prefab;   public GameObject member2Prefab;    public GameObject member3Prefab;
-    public GameObject enemyPrefab;
-
-    //Locations to spawn characters at
-    public Transform playerStation;
-    public Transform member1Station;    public Transform member2Station;    public Transform member3Station;
-    public Transform enemyStation;
-
-    //Units to use in battle
-    unit playerUnit;
-    unit member1Unit;    unit member2Unit;    unit member3Unit;
-    unit enemyUnit;
 
     //Create battle characters, set up HUD's, display text, and start player turn
     IEnumerator setupBattle()
@@ -514,6 +520,7 @@ public class BattleScript : MonoBehaviour
         //If player lives, they attack
         else
         {
+            timer = time;
             state = battleState.PLAYER;
             playerTurn();
         }
