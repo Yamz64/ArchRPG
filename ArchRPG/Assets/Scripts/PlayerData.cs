@@ -4,18 +4,43 @@ using UnityEngine;
 
 public class PlayerData : CharacterStats
 {
+    //--CONSTRUCTOR--
+    public PlayerData()
+    {
+        inventory = new List<Item>();
+        party_stats = new List<CharacterStats>();
+        SetImageFilepath("CharacterSprites/TestCharacter");
+
+        SetName("Player");
+
+        SetLVL(10);
+        SetMaxExperience(100);
+        SetExperience(10);
+
+        SetHPMax(100);
+        SetHP(50);
+
+        SetSPMax(50);
+        SetSP(45);
+    }
+
     public int GetExperience() { return experience; }
     public void SetExperience(int e) { experience = e; }
+    public int GetMaxExperience() { return max_experience; }
+    public void SetMaxExperience(int e) { max_experience = e; }
 
     //party functions
-    public void AddPartyMember(CharacterStats c) { party_stats.Add(c); }
+    public void AddPartyMember(CharacterStats c) { if (party_stats.Count < 3) party_stats.Add(c); }
     public void RemovePartyMember(int index) { party_stats.RemoveAt(index); }
+    public int GetPartySize() { return party_stats.Count; }
     public CharacterStats GetPartyMember(int index) { return party_stats[index]; }
 
     //--INVENTORY FUNCTIONS--
+    public void SetInventory(List<Item> i) { inventory = i; }
     public int GetInventorySize() { return inventory.Count; }
     public Item GetItem(int i) { return inventory[i]; }
-    public void UseItem(int index) {
+    public void UseItem(int index)
+    {
         inventory[index].Use();
         RemoveItem(index);
     }
@@ -46,7 +71,7 @@ public class PlayerData : CharacterStats
         {
             inventory[index].Add();
         }
-        for(int i=0; i<inventory.Count; i++)
+        for (int i = 0; i < inventory.Count; i++)
         {
             Debug.Log(inventory[i].name + ": " + inventory[i].amount);
         }
@@ -55,7 +80,7 @@ public class PlayerData : CharacterStats
     {
         //first see if there is more than one of an item in the player's inventory if there is then remove only one of those items
         //if not, then remove it entirely from the inventory
-        if(inventory[index].amount < 1)
+        if (inventory[index].amount < 1)
         {
             inventory.RemoveAt(index);
         }
@@ -66,7 +91,7 @@ public class PlayerData : CharacterStats
         bool found = false;
         for (int i = 0; i < inventory.Count; i++)
         {
-            if(inventory[i].name == w.name)
+            if (inventory[i].name == w.name)
             {
                 found = true;
                 break;
@@ -222,13 +247,8 @@ public class PlayerData : CharacterStats
         }
     }
 
-    private void Start()
-    {
-        inventory = new List<Item>();
-        party_stats = new List<CharacterStats>();
-    }
-
     private int experience;
+    private int max_experience;
     private List<Item> inventory;
     private List<CharacterStats> party_stats;
 }
