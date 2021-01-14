@@ -65,12 +65,16 @@ public class BattleScript : MonoBehaviour
     //
     private bool menu_input;
     //
+    private bool action_select_menu;
+    //
     private bool item_select_menu;
 
     //The animated cursor object
     private GameObject cursor;
     //The list of menu objects
     private List<GameObject> menus;
+    //Object to hold player data
+    private PlayerData data;
 
     //Function to open the menu at the given index
     public void OpenMenu(int index)
@@ -86,6 +90,282 @@ public class BattleScript : MonoBehaviour
         cursor_position = 0;
         active_menu = index;
         menus[index].SetActive(false);
+    }
+
+    public void OpenPerformActionMenu()
+    {
+        transform.GetChild(1).GetChild(2).GetChild(11).gameObject.SetActive(true);
+        cursor_position = 9;
+        item_select_menu = true;
+    }
+
+    public void ClosePerformActionMenu()
+    {
+        transform.GetChild(1).GetChild(2).GetChild(11).gameObject.SetActive(false);
+        cursor_position = highlighted_item - inventory_offset;
+        item_select_menu = false;
+    }
+
+    public void OpenUseItemMenu()
+    {
+        transform.GetChild(1).GetChild(2).GetChild(11).gameObject.SetActive(true);
+        cursor_position = 9;
+        item_select_menu = true;
+    }
+
+    public void CloseUseItemMenu()
+    {
+        transform.GetChild(1).GetChild(2).GetChild(11).gameObject.SetActive(false);
+        cursor_position = highlighted_item - inventory_offset;
+        item_select_menu = false;
+    }
+
+    public void UpdateInventoryItems()
+    {
+        //first get all of the item view slots and store them in a temporary list
+        List<Text> item_viewer_name = new List<Text>();
+
+        for (int i = 0; i < cursor_positions[1].positions.Count - 3; i++)
+        {
+            item_viewer_name.Add(cursor_positions[1].positions[i].transform.parent.GetComponent<Text>());
+        }
+
+        //loop through the item viewer and set the corresponding item name to the corresponding viewer position along with the amount
+        for (int i = 0; i < item_viewer_name.Count; i++)
+        {
+            if (i + inventory_offset < data.GetInventorySize())
+            {
+                item_viewer_name[i].text = data.GetItem(i + inventory_offset).name;
+                item_viewer_name[i].transform.GetChild(0).GetComponent<Text>().text = "x " + data.GetItem(i + inventory_offset).amount.ToString();
+            }
+            else
+            {
+                item_viewer_name[i].text = "";
+                item_viewer_name[i].transform.GetChild(0).GetComponent<Text>().text = "";
+            }
+        }
+    }
+
+    public void UpdateInventoryImageandDesc()
+    {
+        //Get the item that is currently selected
+        if (cursor_position + inventory_offset < data.GetInventorySize())
+        {
+            Item item = data.GetItem(cursor_position + inventory_offset);
+
+            transform.GetChild(1).GetChild(2).GetChild(10).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            //try to update the image first
+            if (item.image_file_path == "" || item.image_file_path == null)
+            {
+                transform.GetChild(1).GetChild(2).GetChild(10).GetComponent<Image>().sprite = Resources.Load<Sprite>("ItemSprites/NullItem");
+            }
+            else
+            {
+                transform.GetChild(1).GetChild(2).GetChild(10).GetComponent<Image>().sprite = Resources.Load<Sprite>(item.image_file_path);
+            }
+
+            //update item description
+            transform.GetChild(1).GetChild(2).GetChild(9).GetComponent<Text>().text = item.description;
+        }
+        else
+        {
+            transform.GetChild(1).GetChild(2).GetChild(10).GetComponent<Image>().sprite = null;
+            transform.GetChild(1).GetChild(2).GetChild(10).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+            transform.GetChild(1).GetChild(2).GetChild(9).GetComponent<Text>().text = "";
+        }
+    }
+
+    public void BaseActionMenuRoutine()
+    {
+        if (!action_select_menu)
+        {
+            //change position of cursor in the menu
+            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+            {
+                if (!menu_input)
+                    cursor_position--;
+                menu_input = true;
+            }
+            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[0].positions.Count - 1)
+            {
+                if (!menu_input)
+                    cursor_position++;
+                menu_input = true;
+            }
+            else
+            {
+                menu_input = false;
+            }
+
+            //handle input
+            if (Input.GetButtonDown("Interact"))
+            {
+                switch (cursor_position)
+                {
+                    case 0:
+                        //cursor.SetActive(false);
+                        // CloseMenu(0);
+                        //menu_mode = false;
+                        AttackButton();
+                        break;
+                    case 1:
+                        /*
+                        inventory_offset = 0;
+                        highlighted_item = 0;
+                        item_select_menu = false;
+                        OpenMenu(1);
+                        UpdateInventoryItems();
+                        UpdateInventoryImageandDesc();
+                        */
+                        ItemButton();
+                        break;
+                    case 2:
+                        //cursor_position = 0;
+                        //action_select_menu = true;
+                        SkipButton();
+                        break;
+                    case 3:
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            //update the cursor position
+            cursor.transform.position = cursor_positions[0].positions[cursor_position].position;
+        }
+        else
+        {
+            //change position of cursor in the menu
+            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+            {
+                if (!menu_input)
+                    cursor_position--;
+                menu_input = true;
+            }
+            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[2].positions.Count - 1)
+            {
+                if (!menu_input)
+                    cursor_position++;
+                menu_input = true;
+            }
+            else
+            {
+                menu_input = false;
+            }
+
+            //update the cursor position
+            cursor.transform.position = cursor_positions[2].positions[cursor_position].position;
+        }
+    }
+
+    public void ItemMenuRoutine()
+    {
+        //change position of cursor in the menu if in item select mode
+        if (item_select_menu == false)
+        {
+            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+            {
+                if (!menu_input)
+                {
+                    cursor_position--;
+                    highlighted_item--;
+                    UpdateInventoryImageandDesc();
+                }
+                menu_input = true;
+            }
+            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[1].positions.Count - 1 - 3)
+            {
+                if (!menu_input)
+                {
+                    cursor_position++;
+                    highlighted_item++;
+                    UpdateInventoryImageandDesc();
+                }
+                menu_input = true;
+            }
+            else if (Input.GetAxisRaw("Vertical") > 0.0f && inventory_offset > 0 && cursor_position == 0)
+            {
+                if (!menu_input)
+                {
+                    inventory_offset--;
+                    highlighted_item--;
+                    UpdateInventoryItems();
+                    UpdateInventoryImageandDesc();
+                }
+                menu_input = true;
+            }
+            else if (Input.GetAxisRaw("Vertical") < 0.0f && (cursor_positions[1].positions.Count - 3 + inventory_offset) < data.GetInventorySize() && cursor_position == cursor_positions[1].positions.Count - 1 - 3)
+            {
+                if (!menu_input)
+                {
+                    inventory_offset++;
+                    highlighted_item++;
+                    UpdateInventoryItems();
+                    UpdateInventoryImageandDesc();
+                }
+                menu_input = true;
+            }
+            else if (Input.GetButtonDown("Interact"))
+            {
+                if (!menu_input)
+                    OpenUseItemMenu();
+                menu_input = true;
+            }
+            else
+            {
+                menu_input = false;
+            }
+        }
+        else
+        {
+            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 9)
+            {
+                if (!menu_input)
+                {
+                    cursor_position--;
+                }
+                menu_input = true;
+            }
+            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[1].positions.Count - 1)
+            {
+                if (!menu_input)
+                {
+                    cursor_position++;
+                }
+                menu_input = true;
+            }
+            else if (Input.GetButtonDown("Interact"))
+            {
+                switch (cursor_position)
+                {
+                    case 9:
+                        data.UseItem(highlighted_item);
+                        UpdateInventoryItems();
+                        UpdateInventoryImageandDesc();
+                        CloseUseItemMenu();
+                        break;
+                    case 10:
+                        data.RemoveItem(highlighted_item);
+                        UpdateInventoryItems();
+                        UpdateInventoryImageandDesc();
+                        CloseUseItemMenu();
+                        break;
+                    case 11:
+                        CloseUseItemMenu();
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                menu_input = false;
+            }
+        }
+
+        //update cursor position
+        cursor.transform.position = cursor_positions[1].positions[cursor_position].position;
     }
 
     //Main text to let player know state of battle
@@ -105,13 +385,6 @@ public class BattleScript : MonoBehaviour
     unit playerUnit;
     unit member1Unit;    unit member2Unit;    unit member3Unit;
     unit enemyUnit;
-
-    //Start the battle
-    void Start()
-    {
-        state = battleState.START;
-        StartCoroutine( setupBattle() );
-    }
 
     //Create battle characters, set up HUD's, display text, and start player turn
     IEnumerator setupBattle()
@@ -287,5 +560,46 @@ public class BattleScript : MonoBehaviour
     {
         if (state != battleState.PLAYER) return;
         StartCoroutine(skipTurn());
+    }
+
+    //Start the battle
+    void Start()
+    {
+        menu_mode = false;
+        menu_input = false;
+        item_select_menu = false;
+
+        //define the cursor's gameObject
+        cursor = transform.GetChild(1).GetChild(transform.GetChild(1).childCount - 1).gameObject;
+
+        //define all the menus
+        menus = new List<GameObject>();
+        for (int i = 6; i < transform.GetChild(1).childCount - 2; i++)
+        {
+            menus.Add(transform.GetChild(1).GetChild(i).gameObject);
+        }
+
+        state = battleState.START;
+        StartCoroutine(setupBattle());
+    }
+
+    void Update()
+    {
+        cursor.SetActive(true);
+        if (state == battleState.PLAYER)
+        {
+            //handle cursor movement in the various menus
+            switch (active_menu)
+            {
+                case 0:
+                    BaseActionMenuRoutine();
+                    break;
+                case 1:
+                    ItemMenuRoutine();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
