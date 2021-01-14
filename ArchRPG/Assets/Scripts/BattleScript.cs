@@ -69,12 +69,9 @@ public class BattleScript : MonoBehaviour
     //
     private bool item_select_menu;
 
-    //The animated cursor object
-    private GameObject cursor;
-    //The list of menu objects
-    private List<GameObject> menus;
-    //Object to hold player data
-    private PlayerData data;
+    private GameObject cursor;          //The animated cursor 
+    private List<GameObject> menus;     //The list of menu objects
+    private PlayerData data;            //Object to hold player data
 
     //Function to open the menu at the given index
     public void OpenMenu(int index)
@@ -90,20 +87,6 @@ public class BattleScript : MonoBehaviour
         cursor_position = 0;
         active_menu = index;
         menus[index].SetActive(false);
-    }
-
-    public void OpenPerformActionMenu()
-    {
-        transform.GetChild(1).GetChild(2).GetChild(11).gameObject.SetActive(true);
-        cursor_position = 9;
-        item_select_menu = true;
-    }
-
-    public void ClosePerformActionMenu()
-    {
-        transform.GetChild(1).GetChild(2).GetChild(11).gameObject.SetActive(false);
-        cursor_position = highlighted_item - inventory_offset;
-        item_select_menu = false;
     }
 
     public void OpenUseItemMenu()
@@ -175,6 +158,7 @@ public class BattleScript : MonoBehaviour
         }
     }
 
+    //Used to navigate the basic action menu
     public void BaseActionMenuRoutine()
     {
         if (!action_select_menu)
@@ -202,12 +186,15 @@ public class BattleScript : MonoBehaviour
             {
                 switch (cursor_position)
                 {
+                    //Open attacks menu
                     case 0:
                         //cursor.SetActive(false);
                         // CloseMenu(0);
                         //menu_mode = false;
                         AttackButton();
                         break;
+
+                    //Open item menu
                     case 1:
                         /*
                         inventory_offset = 0;
@@ -219,6 +206,8 @@ public class BattleScript : MonoBehaviour
                         */
                         ItemButton();
                         break;
+
+                    //Skip to next turn
                     case 2:
                         //cursor_position = 0;
                         //action_select_menu = true;
@@ -259,6 +248,7 @@ public class BattleScript : MonoBehaviour
         }
     }
 
+    //Use to navigate through item menu (not implemented yet)
     public void ItemMenuRoutine()
     {
         //change position of cursor in the menu if in item select mode
