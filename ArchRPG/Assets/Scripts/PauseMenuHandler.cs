@@ -422,42 +422,6 @@ public class PauseMenuHandler : MonoBehaviour
 
         //define the player's data
         data = GetComponent<PlayerDataMono>().data;
-        Item a = new Item();
-        Item b = new Item();
-        Item c = new Item();
-        Item d = new Item();
-        Item e = new Item();
-        Item f = new Item();
-        Item g = new Item();
-        Item h = new Item();
-        Item j = new Item();
-        a.name = "a";
-        a.amount = 1;
-        b.name = "b";
-        b.amount = 1;
-        c.name = "c";
-        c.amount = 1;
-        d.name = "d";
-        d.amount = 1;
-        e.name = "e";
-        e.amount = 1;
-        f.name = "f";
-        f.amount = 1;
-        g.name = "g";
-        g.amount = 1;
-        h.name = "h";
-        h.amount = 1;
-        j.name = "i";
-        j.amount = 1;
-        data.AddItem(a);
-        data.AddItem(b);
-        data.AddItem(c);
-        data.AddItem(d);
-        data.AddItem(e);
-        data.AddItem(f);
-        data.AddItem(g);
-        data.AddItem(h);
-        data.AddItem(j);
     }
 
     // Update is called once per frame
