@@ -24,11 +24,8 @@ public class BattleScript : MonoBehaviour
 	    Get Sprite ready
 
     For each member/enemy in the list:
-	    Player:
-		    Choose action (attack, defend, use item, etc.)
-	    Enemy:
-		    Have action chosen based on probability/circumstances (AI)
-
+	    Player:		    Choose action (attack, defend, use item, etc.)
+	    Enemy:		    Have action chosen based on probability/circumstances (AI)
 	    Record damage from attacks, skip characters who have health below 0
 
     Complementary Steps:
@@ -62,16 +59,22 @@ public class BattleScript : MonoBehaviour
 
     //Current item (index) being highlighted by cursor
     public int highlighted_item;
+    //Current attack (index) being highlighted by cursor
+    public int highlighted_attack;
     //
     private bool menu_input;
-    //
+    //Bool to check whether the player has the action menu open
     private bool action_select_menu;
-    //
+    //Bool to check whether the player has the attack menu open
+    private bool attack_select_menu;
+    //Bool to check whether the player has the item menu open
     private bool item_select_menu;
 
     private GameObject cursor;          //The animated cursor 
     private List<GameObject> menus;     //The list of menu objects
     private PlayerData data;            //Object to hold player data
+
+    private SortedDictionary<string, int> attacks;
 
     //Main text to let player know state of battle
     public Text dialogue;
@@ -91,8 +94,8 @@ public class BattleScript : MonoBehaviour
     unit member1Unit; unit member2Unit; unit member3Unit;
     unit enemyUnit;
 
-    public float time = 2;
-    public float timer = 2;
+    private float time = 2;
+    private float timer = 2;
 
     //Function to open the menu at the given index
     public void OpenMenu(int index)
@@ -112,16 +115,26 @@ public class BattleScript : MonoBehaviour
 
     public void OpenUseItemMenu()
     {
-        transform.GetChild(1).GetChild(2).GetChild(11).gameObject.SetActive(true);
+        transform.GetChild(1).GetChild(7).GetChild(11).gameObject.SetActive(true);
         cursor_position = 9;
         item_select_menu = true;
     }
 
     public void CloseUseItemMenu()
     {
-        transform.GetChild(1).GetChild(2).GetChild(11).gameObject.SetActive(false);
+        transform.GetChild(1).GetChild(7).GetChild(11).gameObject.SetActive(false);
         cursor_position = highlighted_item - inventory_offset;
         item_select_menu = false;
+    }
+
+    public void openUseAttackMenu()
+    {
+        
+    }
+
+    public void closeUseAttackMenu()
+    {
+        
     }
 
     public void UpdateInventoryItems()
@@ -129,9 +142,9 @@ public class BattleScript : MonoBehaviour
         //first get all of the item view slots and store them in a temporary list
         List<Text> item_viewer_name = new List<Text>();
 
-        for (int i = 0; i < cursor_positions[1].positions.Count - 3; i++)
+        for (int i = 0; i < cursor_positions[2].positions.Count - 3; i++)
         {
-            item_viewer_name.Add(cursor_positions[1].positions[i].transform.parent.GetComponent<Text>());
+            item_viewer_name.Add(cursor_positions[2].positions[i].transform.parent.GetComponent<Text>());
         }
 
         //loop through the item viewer and set the corresponding item name to the corresponding viewer position along with the amount
@@ -157,25 +170,25 @@ public class BattleScript : MonoBehaviour
         {
             Item item = data.GetItem(cursor_position + inventory_offset);
 
-            transform.GetChild(1).GetChild(2).GetChild(10).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            transform.GetChild(1).GetChild(7).GetChild(10).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
             //try to update the image first
             if (item.image_file_path == "" || item.image_file_path == null)
             {
-                transform.GetChild(1).GetChild(2).GetChild(10).GetComponent<Image>().sprite = Resources.Load<Sprite>("ItemSprites/NullItem");
+                transform.GetChild(1).GetChild(7).GetChild(10).GetComponent<Image>().sprite = Resources.Load<Sprite>("ItemSprites/NullItem");
             }
             else
             {
-                transform.GetChild(1).GetChild(2).GetChild(10).GetComponent<Image>().sprite = Resources.Load<Sprite>(item.image_file_path);
+                transform.GetChild(1).GetChild(7).GetChild(10).GetComponent<Image>().sprite = Resources.Load<Sprite>(item.image_file_path);
             }
 
             //update item description
-            transform.GetChild(1).GetChild(2).GetChild(9).GetComponent<Text>().text = item.description;
+            transform.GetChild(1).GetChild(7).GetChild(9).GetComponent<Text>().text = item.description;
         }
         else
         {
-            transform.GetChild(1).GetChild(2).GetChild(10).GetComponent<Image>().sprite = null;
-            transform.GetChild(1).GetChild(2).GetChild(10).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-            transform.GetChild(1).GetChild(2).GetChild(9).GetComponent<Text>().text = "";
+            transform.GetChild(1).GetChild(7).GetChild(10).GetComponent<Image>().sprite = null;
+            transform.GetChild(1).GetChild(7).GetChild(10).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+            transform.GetChild(1).GetChild(7).GetChild(9).GetComponent<Text>().text = "";
         }
     }
 
@@ -209,25 +222,28 @@ public class BattleScript : MonoBehaviour
                 {
                     //Open attacks menu
                     case 0:
+                        attack_select_menu = false;
+                        OpenMenu(1);
+
                         //cursor.SetActive(false);
                         // CloseMenu(0);
                         //menu_mode = false;
-                        AttackButton();
-                        timer = 1;
+                        //AttackButton();
+                        //timer = 1;
                         break;
 
                     //Open item menu
                     case 1:
-                        /*
+                        
                         inventory_offset = 0;
                         highlighted_item = 0;
                         item_select_menu = false;
-                        OpenMenu(1);
+                        OpenMenu(2);
                         UpdateInventoryItems();
                         UpdateInventoryImageandDesc();
-                        */
-                        ItemButton();
-                        timer = 1;
+                        
+                        //ItemButton();
+                        //timer = 1;
                         break;
 
                     //Skip to next turn
@@ -256,7 +272,7 @@ public class BattleScript : MonoBehaviour
                     cursor_position--;
                 menu_input = true;
             }
-            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[2].positions.Count - 1)
+            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[0].positions.Count - 1)
             {
                 if (!menu_input)
                     cursor_position++;
@@ -268,15 +284,15 @@ public class BattleScript : MonoBehaviour
             }
 
             //update the cursor position
-            cursor.transform.position = cursor_positions[2].positions[cursor_position].position;
+            cursor.transform.position = cursor_positions[0].positions[cursor_position].position;
         }
     }
 
-    //Use to navigate through item menu (not implemented yet)
-    public void ItemMenuRoutine()
+    //Used to navigate the basic action menu
+    public void AttackMenuRoutine()
     {
         //change position of cursor in the menu if in item select mode
-        if (item_select_menu == false)
+        if (attack_select_menu == false && state == battleState.PLAYER)
         {
             if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
             {
@@ -294,7 +310,6 @@ public class BattleScript : MonoBehaviour
                 {
                     cursor_position++;
                     highlighted_item++;
-                    UpdateInventoryImageandDesc();
                 }
                 menu_input = true;
             }
@@ -304,19 +319,16 @@ public class BattleScript : MonoBehaviour
                 {
                     inventory_offset--;
                     highlighted_item--;
-                    UpdateInventoryItems();
-                    UpdateInventoryImageandDesc();
                 }
                 menu_input = true;
             }
-            else if (Input.GetAxisRaw("Vertical") < 0.0f && (cursor_positions[1].positions.Count - 3 + inventory_offset) < data.GetInventorySize() && cursor_position == cursor_positions[1].positions.Count - 1 - 3)
+            else if (Input.GetAxisRaw("Vertical") < 0.0f && (cursor_positions[1].positions.Count - 2 + inventory_offset) < 
+                data.GetInventorySize() && cursor_position == cursor_positions[1].positions.Count - 1 - 2)
             {
                 if (!menu_input)
                 {
                     inventory_offset++;
                     highlighted_item++;
-                    UpdateInventoryItems();
-                    UpdateInventoryImageandDesc();
                 }
                 menu_input = true;
             }
@@ -331,7 +343,7 @@ public class BattleScript : MonoBehaviour
                 menu_input = false;
             }
         }
-        else
+        else if (state == battleState.PLAYER)
         {
             if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 9)
             {
@@ -380,6 +392,117 @@ public class BattleScript : MonoBehaviour
 
         //update cursor position
         cursor.transform.position = cursor_positions[1].positions[cursor_position].position;
+    }
+
+    //Use to navigate through item menu (not implemented yet)
+    public void ItemMenuRoutine()
+    {
+        //change position of cursor in the menu if in item select mode
+        if (item_select_menu == false && state == battleState.PLAYER)
+        {
+            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+            {
+                if (!menu_input)
+                {
+                    cursor_position--;
+                    highlighted_item--;
+                    UpdateInventoryImageandDesc();
+                }
+                menu_input = true;
+            }
+            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[2].positions.Count - 1 - 3)
+            {
+                if (!menu_input)
+                {
+                    cursor_position++;
+                    highlighted_item++;
+                    UpdateInventoryImageandDesc();
+                }
+                menu_input = true;
+            }
+            else if (Input.GetAxisRaw("Vertical") > 0.0f && inventory_offset > 0 && cursor_position == 0)
+            {
+                if (!menu_input)
+                {
+                    inventory_offset--;
+                    highlighted_item--;
+                    UpdateInventoryItems();
+                    UpdateInventoryImageandDesc();
+                }
+                menu_input = true;
+            }
+            else if (Input.GetAxisRaw("Vertical") < 0.0f && (cursor_positions[2].positions.Count - 3 + inventory_offset) < 
+                data.GetInventorySize() && cursor_position == cursor_positions[2].positions.Count - 1 - 3)
+            {
+                if (!menu_input)
+                {
+                    inventory_offset++;
+                    highlighted_item++;
+                    UpdateInventoryItems();
+                    UpdateInventoryImageandDesc();
+                }
+                menu_input = true;
+            }
+            else if (Input.GetButtonDown("Interact"))
+            {
+                if (!menu_input)
+                    OpenUseItemMenu();
+                menu_input = true;
+            }
+            else
+            {
+                menu_input = false;
+            }
+        }
+        else if (state == battleState.PLAYER)
+        {
+            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 9)
+            {
+                if (!menu_input)
+                {
+                    cursor_position--;
+                }
+                menu_input = true;
+            }
+            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[2].positions.Count - 1)
+            {
+                if (!menu_input)
+                {
+                    cursor_position++;
+                }
+                menu_input = true;
+            }
+            else if (Input.GetButtonDown("Interact"))
+            {
+                switch (cursor_position)
+                {
+                    case 9:
+                        data.UseItem(highlighted_item);
+                        UpdateInventoryItems();
+                        UpdateInventoryImageandDesc();
+                        CloseUseItemMenu();
+                        break;
+                    case 10:
+                        data.RemoveItem(highlighted_item);
+                        UpdateInventoryItems();
+                        UpdateInventoryImageandDesc();
+                        CloseUseItemMenu();
+                        break;
+                    case 11:
+                        CloseUseItemMenu();
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                menu_input = false;
+            }
+        }
+
+        //update cursor position
+        cursor.transform.position = cursor_positions[2].positions[cursor_position].position;
     }
 
     //Create battle characters, set up HUD's, display text, and start player turn
@@ -571,7 +694,7 @@ public class BattleScript : MonoBehaviour
 
         //define all the menus
         menus = new List<GameObject>();
-        for (int i = 6; i < transform.GetChild(1).childCount - 2; i++)
+        for (int i = 5; i < transform.GetChild(1).childCount - 2; i++)
         {
             menus.Add(transform.GetChild(1).GetChild(i).gameObject);
         }
@@ -592,7 +715,12 @@ public class BattleScript : MonoBehaviour
                     BaseActionMenuRoutine();
                     break;
                 case 1:
+                    AttackMenuRoutine();
+                    break;
+                case 2:
                     ItemMenuRoutine();
+                    break;
+                case 3:
                     break;
                 default:
                     break;

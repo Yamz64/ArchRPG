@@ -10,13 +10,16 @@ public class unit : MonoBehaviour
     public int level;           //Level of the unit
     public int maxHP;           //Maximum HP possible
     public int currentHP;       //Current Hit points
+    public int maxMP;           //Maximum MP possible
+    public int currentMP;       //Current Mana/Skill Points
     public bool enemy;
 
     public Image view;          //Image of unit
     public Text nameText;       //Text object to project name to
     public Image nameTextBack;  //Background for the text
     public Text levelText;      //Text object to project level to
-    public Slider hpSlider;     //Slider to project health to
+    public Slider hpSlider;     //Slider to project hit points to
+    public Slider mpSlider;     //Slider to project mana/skill points to
 
     //Function to set up the HUD with important data
     public void setHUD()        
@@ -31,6 +34,12 @@ public class unit : MonoBehaviour
     public void setHP(int hp)
     {
         hpSlider.value = hp;
+    }
+
+    //Set the current value of the MP slider
+    public void setMP(int mp)
+    {
+        mpSlider.value = mp;
     }
 
     //Adjust the health of the slide to reflect damage taken
