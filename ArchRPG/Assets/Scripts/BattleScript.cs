@@ -56,6 +56,8 @@ public class BattleScript : MonoBehaviour
 
     //
     public int inventory_offset;
+    //Int to track how many attacks away from the bottom before the menu can start scrolling
+    public int attack_offset;
 
     //Current item (index) being highlighted by cursor
     public int highlighted_item;
@@ -301,51 +303,56 @@ public class BattleScript : MonoBehaviour
         //change position of cursor in the menu if in item select mode
         if (attack_select_menu == false && state == battleState.PLAYER)
         {
+            //If input is up and cursor is not at the top yet
             if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
             {
                 if (!menu_input)
                 {
                     cursor_position--;
-                    highlighted_item--;
+                    highlighted_attack--;
                     UpdateInventoryImageandDesc();
                 }
                 menu_input = true;
             }
+            //If input is down and cursor is not at bottom of basic menu
             else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[1].positions.Count - 1 - 3)
             {
                 if (!menu_input)
                 {
                     cursor_position++;
-                    highlighted_item++;
+                    highlighted_attack++;
                 }
                 menu_input = true;
             }
+            //If input is up and the current top of the menu is not the very top (has scrolled down)
             else if (Input.GetAxisRaw("Vertical") > 0.0f && inventory_offset > 0 && cursor_position == 0)
             {
                 if (!menu_input)
                 {
-                    inventory_offset--;
-                    highlighted_item--;
+                    attack_offset--;
+                    highlighted_attack--;
                 }
                 menu_input = true;
             }
+            //If input is down and the menu is up to the scrolling point
             else if (Input.GetAxisRaw("Vertical") < 0.0f && (cursor_positions[1].positions.Count - 3 + inventory_offset) < 
                 data.GetInventorySize() && cursor_position == cursor_positions[1].positions.Count - 1 - 3)
             {
                 if (!menu_input)
                 {
-                    inventory_offset++;
-                    highlighted_item++;
+                    attack_offset++;
+                    highlighted_attack++;
                 }
                 menu_input = true;
             }
+            //If the player chooses an attack
             else if (Input.GetButtonDown("Interact"))
             {
                 if (!menu_input)
                     OpenUseAttackMenu();
                 menu_input = true;
             }
-
+            //If the player presses the cancel key
             else if (Input.GetButtonDown("Cancel"))
             {
                 CloseMenu(1);
@@ -586,7 +593,10 @@ public class BattleScript : MonoBehaviour
     }
 
     //Player turn, display relevant text
-    void playerTurn()    {  dialogue.text = "Player's Turn";   }
+    void playerTurn()
+    {
+        dialogue.text = "Player's Turn";
+    }
 
     //Deal damage to enemy, check if it is dead, and act accordingly (win battle or enemy turn)
     IEnumerator playerAttack()
