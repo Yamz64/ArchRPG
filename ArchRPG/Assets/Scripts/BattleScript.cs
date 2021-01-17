@@ -74,9 +74,7 @@ public class BattleScript : MonoBehaviour
 
     private GameObject cursor;          //The animated cursor 
     private List<GameObject> menus;     //The list of menu objects
-    private PlayerData data;            //Object to hold player data
-
-    private SortedDictionary<string, int> attacks;
+    private PlayerData data = new PlayerData();            //Object to hold player data
 
     //Main text to let player know state of battle
     public Text dialogue;
@@ -151,13 +149,13 @@ public class BattleScript : MonoBehaviour
         //first get all of the item view slots and store them in a temporary list
         List<Text> item_viewer_name = new List<Text>();
 
-        for (int i = 0; i < cursor_positions[2].positions.Count - 3; i++)
+        for (int i=0; i<cursor_positions[2].positions.Count - 3; i++)
         {
             item_viewer_name.Add(cursor_positions[2].positions[i].transform.parent.GetComponent<Text>());
         }
 
         //loop through the item viewer and set the corresponding item name to the corresponding viewer position along with the amount
-        for (int i = 0; i < item_viewer_name.Count; i++)
+        for (int i=0; i<item_viewer_name.Count; i++)
         {
             if (i + inventory_offset < data.GetInventorySize())
             {
@@ -297,7 +295,7 @@ public class BattleScript : MonoBehaviour
         }
     }
 
-    //Used to navigate the basic action menu
+    //Used to navigate the basic attack menu
     public void AttackMenuRoutine()
     {
         //change position of cursor in the menu if in item select mode
@@ -310,7 +308,6 @@ public class BattleScript : MonoBehaviour
                 {
                     cursor_position--;
                     highlighted_attack--;
-                    UpdateInventoryImageandDesc();
                 }
                 menu_input = true;
             }
@@ -325,7 +322,7 @@ public class BattleScript : MonoBehaviour
                 menu_input = true;
             }
             //If input is up and the current top of the menu is not the very top (has scrolled down)
-            else if (Input.GetAxisRaw("Vertical") > 0.0f && inventory_offset > 0 && cursor_position == 0)
+            else if (Input.GetAxisRaw("Vertical") > 0.0f && attack_offset > 0 && cursor_position == 0)
             {
                 if (!menu_input)
                 {
@@ -335,7 +332,7 @@ public class BattleScript : MonoBehaviour
                 menu_input = true;
             }
             //If input is down and the menu is up to the scrolling point
-            else if (Input.GetAxisRaw("Vertical") < 0.0f && (cursor_positions[1].positions.Count - 3 + inventory_offset) < 
+            else if (Input.GetAxisRaw("Vertical") < 0.0f && (cursor_positions[1].positions.Count - 3 + attack_offset) < 
                 data.GetInventorySize() && cursor_position == cursor_positions[1].positions.Count - 1 - 3)
             {
                 if (!menu_input)
@@ -415,12 +412,13 @@ public class BattleScript : MonoBehaviour
         cursor.transform.position = cursor_positions[1].positions[cursor_position].position;
     }
 
-    //Use to navigate through item menu (not implemented yet)
+    //Use to navigate through item menu 
     public void ItemMenuRoutine()
     {
         //change position of cursor in the menu if in item select mode
         if (item_select_menu == false && state == battleState.PLAYER)
         {
+            //If input is up and not at top of menu
             if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
             {
                 if (!menu_input)
@@ -431,6 +429,7 @@ public class BattleScript : MonoBehaviour
                 }
                 menu_input = true;
             }
+            //If input is down and not at bottom of the menu
             else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[2].positions.Count - 1 - 3)
             {
                 if (!menu_input)
@@ -441,6 +440,7 @@ public class BattleScript : MonoBehaviour
                 }
                 menu_input = true;
             }
+            //If input is up and the cursor is at the top and 
             else if (Input.GetAxisRaw("Vertical") > 0.0f && inventory_offset > 0 && cursor_position == 0)
             {
                 if (!menu_input)
@@ -452,6 +452,7 @@ public class BattleScript : MonoBehaviour
                 }
                 menu_input = true;
             }
+            //If input is down and the # of positions is less than the inventory size and the cursor has reached the bottom
             else if (Input.GetAxisRaw("Vertical") < 0.0f && (cursor_positions[2].positions.Count - 3 + inventory_offset) < 
                 data.GetInventorySize() && cursor_position == cursor_positions[2].positions.Count - 1 - 3)
             {
@@ -534,6 +535,18 @@ public class BattleScript : MonoBehaviour
         cursor.transform.position = cursor_positions[2].positions[cursor_position].position;
     }
 
+    //Use to navigate through the swap process
+    public void SwapMenuRoutine()
+    {
+        if (state == battleState.PLAYER)
+        {
+
+        }
+
+        //update cursor position
+        cursor.transform.position = cursor_positions[3].positions[cursor_position].position;
+    }
+
     //Create battle characters, set up HUD's, display text, and start player turn
     IEnumerator setupBattle()
     {
@@ -599,14 +612,14 @@ public class BattleScript : MonoBehaviour
     }
 
     //Deal damage to enemy, check if it is dead, and act accordingly (win battle or enemy turn)
-    IEnumerator playerAttack()
+    IEnumerator playerAttack(Attack ata, unit uni, unit target)
     {
         dialogue.text = "Player is attacking";
 
         yield return new WaitForSeconds(1f);
 
-        bool dead = enemyUnit.takeDamage(4);
-        enemyUnit.setHP(enemyUnit.currentHP);
+        bool dead = target.takeDamage(ata.damage);
+        target.setHP(target.currentHP);
 
         yield return new WaitForSeconds(1f);
 
@@ -614,7 +627,7 @@ public class BattleScript : MonoBehaviour
         if (dead)
         {
             state = battleState.WIN;
-            StartCoroutine( unitDeath(enemyUnit) );
+            StartCoroutine( unitDeath(target) );
             battleEnd();
         }
         //If enemy lives, they attack
@@ -695,10 +708,10 @@ public class BattleScript : MonoBehaviour
     }
 
     //Player chooses to attack
-    public void AttackButton()
+    public void AttackButton(Attack ata, unit uni, unit target)
     {
         if (state != battleState.PLAYER) return;
-        StartCoroutine(playerAttack());
+        StartCoroutine(playerAttack(ata, uni, target));
     }
 
     //Player chooses to heal themself
@@ -730,6 +743,8 @@ public class BattleScript : MonoBehaviour
         {
             menus.Add(transform.GetChild(1).GetChild(i).gameObject);
         }
+
+        
 
         state = battleState.START;
         StartCoroutine(setupBattle());

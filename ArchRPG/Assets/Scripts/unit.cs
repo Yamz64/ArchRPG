@@ -25,7 +25,7 @@ public class unit : MonoBehaviour
     public void setHUD()        
     {
         nameText.text = unitName;
-        levelText.text = "Lvl " + level;
+        levelText.text = "Lvl : " + level;
         hpSlider.maxValue = maxHP;
         hpSlider.value = currentHP;
     }
