@@ -89,14 +89,25 @@ public class BattleScript : MonoBehaviour
     public Transform member1Station; public Transform member2Station; public Transform member3Station;
     public Transform enemyStation;
 
+    private List<Transform> partyStations;
+
     //Units to use in battle
     unit playerUnit;
     unit member1Unit; unit member2Unit; unit member3Unit;
     unit enemyUnit;
 
+    private List<GameObject> partyUnits;
+
     //Variables used to make sure only one action is taken per turn
     private float time = 2;
     private float timer = 2;
+
+    private int i1 = 5;
+    private int i2 = 5;
+    private Transform p1;
+    private Transform p2;
+    private GameObject p1p;
+    private GameObject p2p;
 
     //Function to open the menu at the given index
     public void OpenMenu(int index)
@@ -257,8 +268,8 @@ public class BattleScript : MonoBehaviour
                     case 2:
                         //cursor_position = 0;
                         //action_select_menu = true;
-                        SkipButton();
-                        timer = 1;
+                        OpenMenu(3);
+                        transform.GetChild(1).GetChild(8).GetChild(2).GetComponent<Text>().text = "Swap:\n\n";
                         break;
                     case 3:
                         break;
@@ -540,7 +551,60 @@ public class BattleScript : MonoBehaviour
     {
         if (state == battleState.PLAYER)
         {
+            if (i1 == 5)
+            {
+                transform.GetChild(1).GetChild(8).GetChild(2).GetComponent<Text>().text = "Swap:\n\n" 
+                    + partyUnits[cursor_position].GetComponent<unit>().unitName;
+            }
+            else if (i2 == 5)
+            {
+                transform.GetChild(1).GetChild(8).GetChild(2).GetComponent<Text>().text = "Swap:\n\n" + p1p.GetComponent<unit>().unitName;
+                transform.GetChild(1).GetChild(8).GetChild(3).GetComponent<Text>().text = "With:\n\n"
+                    + partyUnits[cursor_position].GetComponent<unit>().unitName;
+            }
+            //If input is down and the cursor is not at the bottom yet
+            if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < 2)
+            {
+                cursor_position += 2;
+            }
+            //If input is up and the cursor is not at the top yet
+            else if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 1)
+            {
+                cursor_position -= 2;
+            }
+            //If input is right and the cursor is not at the right side yet
+            else if (Input.GetAxisRaw("Horizontal") > 0.0f && cursor_position != 1 && cursor_position != 3)
+            {
+                cursor_position++;
+                cursor.transform.Rotate(0.0f, 0.0f, 180.0f);
+            }
+            //If input is left and the cursor is not at the left side yet
+            else if (Input.GetAxisRaw("Horizontal") < 0.0f && cursor_position != 0 && cursor_position != 2)
+            {
+                cursor_position--;
+                cursor.transform.Rotate(0.0f, 0.0f, 180.0f);
+            }
+            //If player clicks on a unit, record it as the first unit or second unit, 
+            //and then swap once there are 2 of them
+            else if (Input.GetButtonDown("Interact"))
+            {
+                if (i1 == 5)
+                {
+                    p1.position = partyStations[cursor_position].position;
+                    i1 = cursor_position;
+                    p1p = partyUnits[cursor_position];
+                    transform.GetChild(1).GetChild(8).GetChild(3).gameObject.SetActive(true);
+                }
+                else if (i2 == 5 && i1 != i2)
+                {
+                    p2.position = partyStations[cursor_position].position;
+                    i2 = cursor_position;
+                    p2p = partyUnits[cursor_position];
 
+                    
+
+                }
+            }
         }
 
         //update cursor position
@@ -553,6 +617,7 @@ public class BattleScript : MonoBehaviour
         //Create player unit
         GameObject playerGo = Instantiate(playerPrefab, playerStation);
         playerUnit = playerGo.GetComponent<unit>();
+        partyUnits.Add(playerGo);
 
         //Create enemy unit
         GameObject enemyGo = Instantiate(enemyPrefab, enemyStation);
@@ -568,6 +633,11 @@ public class BattleScript : MonoBehaviour
             GameObject member1Go = Instantiate(member1Prefab, member1Station);
             member1Unit = member1Go.GetComponent<unit>();
             member1Unit.setHUD();
+            partyUnits.Add(member1Go);
+        }
+        else
+        {
+            partyUnits.Add(null);
         }
 
         //Create party member 3 if possible
@@ -576,6 +646,11 @@ public class BattleScript : MonoBehaviour
             GameObject member2Go = Instantiate(member2Prefab, member2Station);
             member2Unit = member2Go.GetComponent<unit>();
             member2Unit.setHUD();
+            partyUnits.Add(member2Go);
+        }
+        else
+        {
+            partyUnits.Add(null);
         }
 
         //Create party member 4 if possible
@@ -584,6 +659,11 @@ public class BattleScript : MonoBehaviour
             GameObject member3Go = Instantiate(member3Prefab, member3Station);
             member3Unit = member3Go.GetComponent<unit>();
             member3Unit.setHUD();
+            partyUnits.Add(member3Go);
+        }
+        else
+        {
+            partyUnits.Add(null);
         }
 
         //Display text to player, showing an enemy has appeared
@@ -744,7 +824,13 @@ public class BattleScript : MonoBehaviour
             menus.Add(transform.GetChild(1).GetChild(i).gameObject);
         }
 
-        
+        partyStations = new List<Transform>();
+        partyStations.Add(playerStation);
+        partyStations.Add(member1Station);
+        partyStations.Add(member2Station);
+        partyStations.Add(member3Station);
+
+        partyUnits = new List<GameObject>();
 
         state = battleState.START;
         StartCoroutine(setupBattle());
