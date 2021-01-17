@@ -22,6 +22,17 @@ public class PlayerData : CharacterStats
 
         SetSPMax(50);
         SetSP(45);
+
+        SetSAN(100);
+        SetSANMax(100);
+
+        SetATK(50);
+        SetPOW(50);
+        SetDEF(50);
+        SetWIL(50);
+        SetRES(50);
+        SetSPD(50);
+        SetLCK(50);
     }
 
     public int GetExperience() { return experience; }

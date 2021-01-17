@@ -18,12 +18,16 @@ public class PauseMenuHandler : MonoBehaviour
     public List<MenuPositions> cursor_positions;
 
     public int inventory_offset;
+    public int equipped_offset;
 
     public int highlighted_item;
     public int highlighted_party_member;
+
+    private int equip_type;     //0 = weapon, 1 = armor, 2 = trinket
     private bool menu_input;
     private bool item_select_menu;
     private bool base_pause_character_select;
+    private bool equipping;
     private GameObject cursor;
     private List<GameObject> menus;
     private PlayerData data;
@@ -195,6 +199,1788 @@ public class PauseMenuHandler : MonoBehaviour
         item_select_menu = false;
     }
 
+    public void UpdateEquipMenuInfo()
+    {
+        Weapon equipment = null;
+        UpdateEquipMenuInfo(equipment);
+    }
+
+    public void UpdateEquipMenuInfo(Weapon equipment = null)
+    {
+        //--UPDATE NAME--
+        if (highlighted_party_member == 0)
+            menus[2].transform.GetChild(0).GetComponent<Text>().text = data.GetName();
+        else
+            menus[2].transform.GetChild(0).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member-1).GetName();
+
+        //--UPDATE IMAGE--
+        if (highlighted_party_member == 0)
+            menus[2].transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetImageFilepath());
+        else
+            menus[2].transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetPartyMember(highlighted_party_member-1).GetImageFilepath());
+
+        //--UPDATE DESCRIPTION--
+        if (highlighted_party_member == 0)
+            menus[2].transform.GetChild(2).GetComponent<Text>().text = data.GetDesc();
+        else
+            menus[2].transform.GetChild(2).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetDesc();
+
+        //--UPDATE LEVEL--
+        if (highlighted_party_member == 0)
+            menus[2].transform.GetChild(3).GetComponent<Text>().text = "LV." + data.GetLVL().ToString();
+        else
+            menus[2].transform.GetChild(3).GetComponent<Text>().text = "LV." + data.GetPartyMember(highlighted_party_member-1).GetLVL().ToString();
+
+        //--UPDATE XP DATA--
+        //bar
+        menus[2].transform.GetChild(4).GetChild(0).GetComponent<Image>().fillAmount = data.GetExperience() / data.GetMaxExperience();
+        //ratio
+        menus[2].transform.GetChild(4).GetChild(1).GetComponent<Text>().text = data.GetExperience().ToString() + "/" + data.GetMaxExperience();
+
+        //--UPDATE HP DATA--
+        //bar
+        if(highlighted_party_member == 0)
+            menus[2].transform.GetChild(5).GetChild(0).GetComponent<Image>().fillAmount = data.GetHP() / data.GetHPMAX();
+        else
+            menus[2].transform.GetChild(5).GetChild(0).GetComponent<Image>().fillAmount = data.GetPartyMember(highlighted_party_member-1).GetHP() / data.GetPartyMember(highlighted_party_member-1).GetHPMAX();
+        //ratio
+        if (highlighted_party_member == 0)
+            menus[2].transform.GetChild(5).GetChild(1).GetComponent<Text>().text = data.GetHP().ToString() + "/" + data.GetHPMAX().ToString();
+        else
+            menus[2].transform.GetChild(5).GetChild(1).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetHP().ToString() + "/" + data.GetPartyMember(highlighted_party_member-1).GetHPMAX().ToString();
+
+        //--UPDATE SP DATA--
+        //bar
+        if (highlighted_party_member == 0)
+            menus[2].transform.GetChild(6).GetChild(0).GetComponent<Image>().fillAmount = data.GetSP() / data.GetSPMax();
+        else
+            menus[2].transform.GetChild(6).GetChild(0).GetComponent<Image>().fillAmount = data.GetPartyMember(highlighted_party_member - 1).GetSP() / data.GetPartyMember(highlighted_party_member - 1).GetSPMax();
+        //ratio
+        if (highlighted_party_member == 0)
+            menus[2].transform.GetChild(6).GetChild(1).GetComponent<Text>().text = data.GetSP().ToString() + "/" + data.GetSPMax().ToString();
+        else
+            menus[2].transform.GetChild(6).GetChild(1).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetSP().ToString() + "/" + data.GetPartyMember(highlighted_party_member - 1).GetSPMax().ToString();
+
+        //--UPDATE SAN DATA--
+        //bar
+        if (highlighted_party_member == 0)
+            menus[2].transform.GetChild(7).GetChild(0).GetComponent<Image>().fillAmount = data.GetSAN() / data.GetSANMax();
+        else
+            menus[2].transform.GetChild(7).GetChild(0).GetComponent<Image>().fillAmount = data.GetPartyMember(highlighted_party_member - 1).GetSAN() / data.GetPartyMember(highlighted_party_member - 1).GetSANMax();
+        //ratio
+        if (highlighted_party_member == 0)
+            menus[2].transform.GetChild(7).GetChild(1).GetComponent<Text>().text = data.GetSAN().ToString() + "/" + data.GetSANMax().ToString();
+        else
+            menus[2].transform.GetChild(7).GetChild(1).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetSAN().ToString() + "/" + data.GetPartyMember(highlighted_party_member - 1).GetSANMax().ToString();
+
+        //--UPDATE STAT DATA--
+        //if equipment is not being changed
+        if(equipment == null)
+        {
+            //ATK
+            if (highlighted_party_member == 0)
+                menus[2].transform.GetChild(9).GetChild(0).GetComponent<Text>().text = "ATK:\t\t" + data.GetATK().ToString();
+            else
+                menus[2].transform.GetChild(9).GetChild(0).GetComponent<Text>().text = "ATK:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetATK().ToString();
+
+            //POW
+            if (highlighted_party_member == 0)
+                menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPOW().ToString();
+            else
+                menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString();
+
+            //DEF
+            if (highlighted_party_member == 0)
+                menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetDEF().ToString();
+            else
+                menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetDEF().ToString();
+
+            //WIL
+            if (highlighted_party_member == 0)
+                menus[2].transform.GetChild(9).GetChild(3).GetComponent<Text>().text = "WIL:\t\t" + data.GetWIL().ToString();
+            else
+                menus[2].transform.GetChild(9).GetChild(3).GetComponent<Text>().text = "WIL:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetWIL().ToString();
+
+            //RES
+            if (highlighted_party_member == 0)
+                menus[2].transform.GetChild(9).GetChild(4).GetComponent<Text>().text = "RES:\t\t" + data.GetRES().ToString();
+            else
+                menus[2].transform.GetChild(9).GetChild(4).GetComponent<Text>().text = "RES:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetRES().ToString();
+
+            //SPD
+            if (highlighted_party_member == 0)
+                menus[2].transform.GetChild(9).GetChild(5).GetComponent<Text>().text = "SPD:\t\t" + data.GetSPD().ToString();
+            else
+                menus[2].transform.GetChild(9).GetChild(5).GetComponent<Text>().text = "SPD:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetSPD().ToString();
+
+            //LCK
+            if (highlighted_party_member == 0)
+                menus[2].transform.GetChild(9).GetChild(6).GetComponent<Text>().text = "LCK:\t\t" + data.GetLCK().ToString();
+            else
+                menus[2].transform.GetChild(9).GetChild(6).GetComponent<Text>().text = "LCK:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetLCK().ToString();
+        }
+        //equipment is being changed
+        else
+        {
+            //ATK
+            //determine if stat bonus is positive, negative, or does not increase
+
+            //not changed
+            if (equipment.damage_buff == 0)
+            {
+                if (highlighted_party_member == 0)
+                    menus[2].transform.GetChild(9).GetChild(0).GetComponent<Text>().text = "ATK:\t\t" + data.GetATK().ToString();
+                else
+                    menus[2].transform.GetChild(9).GetChild(0).GetComponent<Text>().text = "ATK:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetATK().ToString();
+            }
+            else
+            {
+                int bonus = equipment.damage_buff / Mathf.Abs(equipment.damage_buff);
+                    
+                //positive
+                if(bonus == 1)
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(0).GetComponent<Text>().text = "ATK:\t\t" + data.GetATK().ToString() + " + " + equipment.damage_buff.ToString()
+                            + " -> " + (data.GetATK() + equipment.damage_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(0).GetComponent<Text>().text = "ATK:\t\t" + data.GetPartyMember(highlighted_party_member-1).GetATK().ToString()
+                            + " + " + equipment.damage_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member-1).GetATK() + equipment.damage_buff).ToString();
+                }
+                //negative
+                else
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(0).GetComponent<Text>().text = "ATK:\t\t" + data.GetATK().ToString() + " + " + equipment.damage_buff.ToString()
+                            + " -> " + (data.GetATK() + equipment.damage_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(0).GetComponent<Text>().text = "ATK:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetATK().ToString()
+                            + " - " + equipment.damage_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetATK() + equipment.damage_buff).ToString();
+                }
+            }
+
+            //POW
+            //determine if stat bonus is positive, negative, or does not increase
+
+            //not changed
+            if (equipment.power_buff == 0)
+            {
+                if (highlighted_party_member == 0)
+                    menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPOW().ToString();
+                else
+                    menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString();
+            }
+            else
+            {
+                int bonus = equipment.power_buff / Mathf.Abs(equipment.power_buff);
+
+                //positive
+                if (bonus == 1)
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPOW().ToString() + " + " + equipment.power_buff.ToString()
+                            + " -> " + (data.GetPOW() + equipment.power_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString()
+                            + " + " + equipment.power_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetPOW() + equipment.power_buff).ToString();
+                }
+                //negative
+                else
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPOW().ToString() + " - " + equipment.power_buff.ToString()
+                            + " -> " + (data.GetPOW() - equipment.power_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString()
+                            + " - " + equipment.power_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetPOW() - equipment.power_buff).ToString();
+                }
+            }
+
+            //DEF
+            //determine if stat bonus is positive, negative, or does not increase
+
+            //not changed
+            if (equipment.defense_buff == 0)
+            {
+                if (highlighted_party_member == 0)
+                    menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetDEF().ToString();
+                else
+                    menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetDEF().ToString();
+            }
+            else
+            {
+                int bonus = equipment.defense_buff / Mathf.Abs(equipment.defense_buff);
+
+                //positive
+                if (bonus == 1)
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetDEF().ToString() + " + " + equipment.defense_buff.ToString()
+                            + " -> " + (data.GetDEF() + equipment.defense_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetDEF().ToString()
+                            + " + " + equipment.defense_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetDEF() + equipment.defense_buff).ToString();
+                }
+                //negative
+                else
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetDEF().ToString() + " - " + equipment.defense_buff.ToString()
+                            + " -> " + (data.GetDEF() - equipment.defense_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetDEF().ToString()
+                            + " - " + equipment.defense_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetDEF() - equipment.defense_buff).ToString();
+                }
+            }
+
+            //WIL
+            //determine if stat bonus is positive, negative, or does not increase
+
+            //not changed
+            if (equipment.will_buff == 0)
+            {
+                if (highlighted_party_member == 0)
+                    menus[2].transform.GetChild(9).GetChild(3).GetComponent<Text>().text = "WIL:\t\t" + data.GetWIL().ToString();
+                else
+                    menus[2].transform.GetChild(9).GetChild(3).GetComponent<Text>().text = "WIL:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetWIL().ToString();
+            }
+            else
+            {
+                int bonus = equipment.will_buff / Mathf.Abs(equipment.will_buff);
+
+                //positive
+                if (bonus == 1)
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(3).GetComponent<Text>().text = "WIL:\t\t" + data.GetWIL().ToString() + " + " + equipment.will_buff.ToString()
+                            + " -> " + (data.GetWIL() + equipment.will_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(3).GetComponent<Text>().text = "WIL:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetWIL().ToString()
+                            + " + " + equipment.will_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetWIL() + equipment.will_buff).ToString();
+                }
+                //negative
+                else
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(3).GetComponent<Text>().text = "WIL:\t\t" + data.GetWIL().ToString() + " - " + equipment.will_buff.ToString()
+                            + " -> " + (data.GetWIL() - equipment.will_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(3).GetComponent<Text>().text = "WIL:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetWIL().ToString()
+                            + " - " + equipment.will_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetWIL() - equipment.will_buff).ToString();
+                }
+            }
+
+            //RES
+            //determine if stat bonus is positive, negative, or does not increase
+
+            //not changed
+            if (equipment.resistance_buff == 0)
+            {
+                if (highlighted_party_member == 0)
+                    menus[2].transform.GetChild(9).GetChild(4).GetComponent<Text>().text = "RES:\t\t" + data.GetRES().ToString();
+                else
+                    menus[2].transform.GetChild(9).GetChild(4).GetComponent<Text>().text = "RES:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetRES().ToString();
+            }
+            else
+            {
+                int bonus = equipment.resistance_buff / Mathf.Abs(equipment.resistance_buff);
+
+                //positive
+                if (bonus == 1)
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(4).GetComponent<Text>().text = "RES:\t\t" + data.GetRES().ToString() + " + " + equipment.resistance_buff.ToString()
+                            + " -> " + (data.GetRES() + equipment.resistance_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(4).GetComponent<Text>().text = "RES:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetRES().ToString()
+                            + " + " + equipment.resistance_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetRES() + equipment.resistance_buff).ToString();
+                }
+                //negative
+                else
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(4).GetComponent<Text>().text = "RES:\t\t" + data.GetRES().ToString() + " - " + equipment.resistance_buff.ToString()
+                            + " -> " + (data.GetRES() - equipment.resistance_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(4).GetComponent<Text>().text = "RES:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetRES().ToString()
+                            + " - " + equipment.resistance_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetRES() - equipment.resistance_buff).ToString();
+                }
+            }
+
+            //SPD
+            //determine if stat bonus is positive, negative, or does not increase
+
+            //not changed
+            if (equipment.speed_buff == 0)
+            {
+                if (highlighted_party_member == 0)
+                    menus[2].transform.GetChild(9).GetChild(5).GetComponent<Text>().text = "SPD:\t\t" + data.GetSPD().ToString();
+                else
+                    menus[2].transform.GetChild(9).GetChild(5).GetComponent<Text>().text = "SPD:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetSPD().ToString();
+            }
+            else
+            {
+                int bonus = equipment.speed_buff / Mathf.Abs(equipment.speed_buff);
+
+                //positive
+                if (bonus == 1)
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(5).GetComponent<Text>().text = "SPD:\t\t" + data.GetSPD().ToString() + " + " + equipment.speed_buff.ToString()
+                            + " -> " + (data.GetSPD() + equipment.speed_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(5).GetComponent<Text>().text = "SPD:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetSPD().ToString()
+                            + " + " + equipment.speed_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetSPD() + equipment.speed_buff).ToString();
+                }
+                //negative
+                else
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(5).GetComponent<Text>().text = "SPD:\t\t" + data.GetSP().ToString() + " - " + equipment.speed_buff.ToString()
+                            + " -> " + (data.GetSPD() - equipment.speed_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(5).GetComponent<Text>().text = "SPD:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetSPD().ToString()
+                            + " - " + equipment.speed_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetSPD() - equipment.speed_buff).ToString();
+                }
+            }
+
+            //LCK
+            //determine if stat bonus is positive, negative, or does not increase
+
+            //not changed
+            if (equipment.luck_buff == 0)
+            {
+                if (highlighted_party_member == 0)
+                    menus[2].transform.GetChild(9).GetChild(6).GetComponent<Text>().text = "LCK:\t\t" + data.GetLCK().ToString();
+                else
+                    menus[2].transform.GetChild(9).GetChild(6).GetComponent<Text>().text = "LCK:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetLCK().ToString();
+            }
+            else
+            {
+                int bonus = equipment.speed_buff / Mathf.Abs(equipment.speed_buff);
+
+                //positive
+                if (bonus == 1)
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(6).GetComponent<Text>().text = "LCK:\t\t" + data.GetLCK().ToString() + " + " + equipment.luck_buff.ToString()
+                            + " -> " + (data.GetLCK() + equipment.luck_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(6).GetComponent<Text>().text = "LCK:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetLCK().ToString()
+                            + " + " + equipment.luck_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetLCK() + equipment.luck_buff).ToString();
+                }
+                //negative
+                else
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(6).GetComponent<Text>().text = "LCK:\t\t" + data.GetLCK().ToString() + " - " + equipment.luck_buff.ToString()
+                            + " -> " + (data.GetLCK() - equipment.luck_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(6).GetComponent<Text>().text = "LCK:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetLCK().ToString()
+                            + " - " + equipment.luck_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetLCK() - equipment.luck_buff).ToString();
+                }
+            }
+        }
+
+        //--UPDATE WEAPON INFO--
+        //no weapon equipped
+        if(data.GetWeapon() == null)
+        {
+            //set the image to nothing
+            menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+            menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().sprite = null;
+
+            //set the text to nothing
+            menus[2].transform.GetChild(10).GetChild(0).GetChild(1).GetComponent<Text>().text = "";
+        }
+        //weapon equipped
+        else
+        {
+            //set the image
+            menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetWeapon().image_file_path);
+
+            //set the text to weapon's name
+            menus[2].transform.GetChild(10).GetChild(0).GetChild(1).GetComponent<Text>().text = data.GetWeapon().name;
+        }
+
+        //--UPDATE ARMOR INFO--
+        //no armor equipped
+        if (data.GetArmor() == null)
+        {
+            //set the image to nothing
+            menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+            menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().sprite = null;
+
+            //set the text to nothing
+            menus[2].transform.GetChild(10).GetChild(1).GetChild(1).GetComponent<Text>().text = "";
+        }
+        //armor equipped
+        else
+        {
+            //set the image
+            menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetArmor().image_file_path);
+
+            //set the text to armor's name
+            menus[2].transform.GetChild(10).GetChild(1).GetChild(1).GetComponent<Text>().text = data.GetArmor().name;
+        }
+
+        //--UPDATE TRINKET INFO--
+        //no trinket equipped
+        if (data.GetTrinket() == null)
+        {
+            //set the image to nothing
+            menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+            menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().sprite = null;
+
+            //set the text to nothing
+            menus[2].transform.GetChild(10).GetChild(2).GetChild(1).GetComponent<Text>().text = "";
+        }
+        //trinket equipped
+        else
+        {
+            //set the image
+            menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetTrinket().image_file_path);
+
+            //set the text to armor's name
+            menus[2].transform.GetChild(10).GetChild(2).GetChild(1).GetComponent<Text>().text = data.GetTrinket().name;
+        }
+
+        //--UPDATE ITEM SELECTION LIST--
+        //change list based off of the equip type:
+        //weapon
+        if(equip_type == 0)
+        {
+            //populate a list of weapons to equip
+            List<Item> equippable_items = new List<Item>();
+            for(int i=0; i<data.GetInventorySize(); i++)
+            {
+                if(data.GetItem(i) is Weapon)
+                {
+                    equippable_items.Add(data.GetItem(i));
+                }
+            }
+
+            //Loop through display objects
+            for(int i=11; i<15; i++)
+            {
+                //set the image, name, and amount for each available object
+                if (equipped_offset + (i-11) < equippable_items.Count)
+                {
+                    menus[2].transform.GetChild(i).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                    menus[2].transform.GetChild(i).GetComponent<Image>().sprite = Resources.Load<Sprite>(equippable_items[equipped_offset + (i - 11)].image_file_path);
+                    menus[2].transform.GetChild(i).GetChild(0).GetComponent<Text>().text = equippable_items[equipped_offset + (i-11)].name;
+                    menus[2].transform.GetChild(i).GetChild(1).GetComponent<Text>().text = equippable_items[equipped_offset + (i-11)].amount.ToString();
+                }
+                //object is not available
+                else
+                {
+                    menus[2].transform.GetChild(i).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                    menus[2].transform.GetChild(i).GetComponent<Image>().sprite = null;
+                    menus[2].transform.GetChild(i).GetChild(0).GetComponent<Text>().text = "";
+                    menus[2].transform.GetChild(i).GetChild(1).GetComponent<Text>().text = "";
+                }
+            }
+        }
+        //armor
+        else if(equip_type == 1)
+        {
+            //populate a list of weapons to equip
+            List<Item> equippable_items = new List<Item>();
+            for (int i = 0; i < data.GetInventorySize(); i++)
+            {
+                if (data.GetItem(i) is Armor)
+                {
+                    equippable_items.Add(data.GetItem(i));
+                }
+            }
+
+            //Loop through display objects
+            for (int i = 11; i < 15; i++)
+            {
+                //set the image, name, and amount for each available object
+                if (equipped_offset + (i - 11) < equippable_items.Count)
+                {
+                    menus[2].transform.GetChild(i).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                    menus[2].transform.GetChild(i).GetComponent<Image>().sprite = Resources.Load<Sprite>(equippable_items[equipped_offset + (i - 11)].image_file_path);
+                    menus[2].transform.GetChild(i).GetChild(0).GetComponent<Text>().text = equippable_items[equipped_offset + (i - 11)].name;
+                    menus[2].transform.GetChild(i).GetChild(1).GetComponent<Text>().text = equippable_items[equipped_offset + (i - 11)].amount.ToString();
+                }
+                //object is not available
+                else
+                {
+                    menus[2].transform.GetChild(i).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                    menus[2].transform.GetChild(i).GetComponent<Image>().sprite = null;
+                    menus[2].transform.GetChild(i).GetChild(0).GetComponent<Text>().text = "";
+                    menus[2].transform.GetChild(i).GetChild(1).GetComponent<Text>().text = "";
+                }
+            }
+        }
+        //trinket
+        else
+        {
+            //populate a list of weapons to equip
+            List<Item> equippable_items = new List<Item>();
+            for (int i = 0; i < data.GetInventorySize(); i++)
+            {
+                if (data.GetItem(i) is Trinket)
+                {
+                    equippable_items.Add(data.GetItem(i));
+                }
+            }
+
+            //Loop through display objects
+            for (int i = 11; i < 15; i++)
+            {
+                //set the image, name, and amount for each available object
+                if (equipped_offset + (i - 11) < equippable_items.Count)
+                {
+                    menus[2].transform.GetChild(i).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                    menus[2].transform.GetChild(i).GetComponent<Image>().sprite = Resources.Load<Sprite>(equippable_items[equipped_offset + (i - 11)].image_file_path);
+                    menus[2].transform.GetChild(i).GetChild(0).GetComponent<Text>().text = equippable_items[equipped_offset + (i - 11)].name;
+                    menus[2].transform.GetChild(i).GetChild(1).GetComponent<Text>().text = equippable_items[equipped_offset + (i - 11)].amount.ToString();
+                }
+                //object is not available
+                else
+                {
+                    menus[2].transform.GetChild(i).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                    menus[2].transform.GetChild(i).GetComponent<Image>().sprite = null;
+                    menus[2].transform.GetChild(i).GetChild(0).GetComponent<Text>().text = "";
+                    menus[2].transform.GetChild(i).GetChild(1).GetComponent<Text>().text = "";
+                }
+            }
+        }
+
+        //--UPDATE ITEM DESCRIPTION--
+        //not equipping an item
+        if (!equipping)
+        {
+            //weapon
+            if(cursor_position == 0)
+            {
+                //no weapon equipped
+                if (data.GetWeapon() == null)
+                    menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
+                //weapon equipped
+                else
+                    menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetWeapon().description;
+            }
+            //armor
+            else if(cursor_position == 1)
+            {
+                //no armor equipped
+                if (data.GetWeapon() == null)
+                    menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
+                //armor equipped
+                else
+                    menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetArmor().description;
+            }
+            //trinket
+            else
+            {
+                //no trinket equipped
+                if (data.GetWeapon() == null)
+                    menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
+                //trinket equipped
+                else
+                    menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetTrinket().description;
+            }
+        }
+        else
+        {
+            if (equipment != null)
+                menus[2].transform.GetChild(15).GetComponent<Text>().text = equipment.description;
+            else
+                menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
+        }
+    }
+
+    public void UpdateEquipMenuInfo(Armor equipment = null)
+    {
+        //--UPDATE NAME--
+        if (highlighted_party_member == 0)
+            menus[2].transform.GetChild(0).GetComponent<Text>().text = data.GetName();
+        else
+            menus[2].transform.GetChild(0).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetName();
+
+        //--UPDATE IMAGE--
+        if (highlighted_party_member == 0)
+            menus[2].transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetImageFilepath());
+        else
+            menus[2].transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetPartyMember(highlighted_party_member - 1).GetImageFilepath());
+
+        //--UPDATE DESCRIPTION--
+        if (highlighted_party_member == 0)
+            menus[2].transform.GetChild(2).GetComponent<Text>().text = data.GetDesc();
+        else
+            menus[2].transform.GetChild(2).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetDesc();
+
+        //--UPDATE LEVEL--
+        if (highlighted_party_member == 0)
+            menus[2].transform.GetChild(3).GetComponent<Text>().text = "LV." + data.GetLVL().ToString();
+        else
+            menus[2].transform.GetChild(3).GetComponent<Text>().text = "LV." + data.GetPartyMember(highlighted_party_member - 1).GetLVL().ToString();
+
+        //--UPDATE XP DATA--
+        //bar
+        menus[2].transform.GetChild(4).GetChild(0).GetComponent<Image>().fillAmount = data.GetExperience() / data.GetMaxExperience();
+        //ratio
+        menus[2].transform.GetChild(4).GetChild(1).GetComponent<Text>().text = data.GetExperience().ToString() + "/" + data.GetMaxExperience();
+
+        //--UPDATE HP DATA--
+        //bar
+        if (highlighted_party_member == 0)
+            menus[2].transform.GetChild(5).GetChild(0).GetComponent<Image>().fillAmount = data.GetHP() / data.GetHPMAX();
+        else
+            menus[2].transform.GetChild(5).GetChild(0).GetComponent<Image>().fillAmount = data.GetPartyMember(highlighted_party_member - 1).GetHP() / data.GetPartyMember(highlighted_party_member - 1).GetHPMAX();
+        //ratio
+        if (highlighted_party_member == 0)
+            menus[2].transform.GetChild(5).GetChild(1).GetComponent<Text>().text = data.GetHP().ToString() + "/" + data.GetHPMAX().ToString();
+        else
+            menus[2].transform.GetChild(5).GetChild(1).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetHP().ToString() + "/" + data.GetPartyMember(highlighted_party_member - 1).GetHPMAX().ToString();
+
+        //--UPDATE SP DATA--
+        //bar
+        if (highlighted_party_member == 0)
+            menus[2].transform.GetChild(6).GetChild(0).GetComponent<Image>().fillAmount = data.GetSP() / data.GetSPMax();
+        else
+            menus[2].transform.GetChild(6).GetChild(0).GetComponent<Image>().fillAmount = data.GetPartyMember(highlighted_party_member - 1).GetSP() / data.GetPartyMember(highlighted_party_member - 1).GetSPMax();
+        //ratio
+        if (highlighted_party_member == 0)
+            menus[2].transform.GetChild(6).GetChild(1).GetComponent<Text>().text = data.GetSP().ToString() + "/" + data.GetSPMax().ToString();
+        else
+            menus[2].transform.GetChild(6).GetChild(1).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetSP().ToString() + "/" + data.GetPartyMember(highlighted_party_member - 1).GetSPMax().ToString();
+
+        //--UPDATE SAN DATA--
+        //bar
+        if (highlighted_party_member == 0)
+            menus[2].transform.GetChild(7).GetChild(0).GetComponent<Image>().fillAmount = data.GetSAN() / data.GetSANMax();
+        else
+            menus[2].transform.GetChild(7).GetChild(0).GetComponent<Image>().fillAmount = data.GetPartyMember(highlighted_party_member - 1).GetSAN() / data.GetPartyMember(highlighted_party_member - 1).GetSANMax();
+        //ratio
+        if (highlighted_party_member == 0)
+            menus[2].transform.GetChild(7).GetChild(1).GetComponent<Text>().text = data.GetSAN().ToString() + "/" + data.GetSANMax().ToString();
+        else
+            menus[2].transform.GetChild(7).GetChild(1).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetSAN().ToString() + "/" + data.GetPartyMember(highlighted_party_member - 1).GetSANMax().ToString();
+
+        //--UPDATE STAT DATA--
+        //if equipment is not being changed
+        if (equipment == null)
+        {
+            //ATK
+            if (highlighted_party_member == 0)
+                menus[2].transform.GetChild(9).GetChild(0).GetComponent<Text>().text = "ATK:\t\t" + data.GetATK().ToString();
+            else
+                menus[2].transform.GetChild(9).GetChild(0).GetComponent<Text>().text = "ATK:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetATK().ToString();
+
+            //POW
+            if (highlighted_party_member == 0)
+                menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPOW().ToString();
+            else
+                menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString();
+
+            //DEF
+            if (highlighted_party_member == 0)
+                menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetDEF().ToString();
+            else
+                menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetDEF().ToString();
+
+            //WIL
+            if (highlighted_party_member == 0)
+                menus[2].transform.GetChild(9).GetChild(3).GetComponent<Text>().text = "WIL:\t\t" + data.GetWIL().ToString();
+            else
+                menus[2].transform.GetChild(9).GetChild(3).GetComponent<Text>().text = "WIL:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetWIL().ToString();
+
+            //RES
+            if (highlighted_party_member == 0)
+                menus[2].transform.GetChild(9).GetChild(4).GetComponent<Text>().text = "RES:\t\t" + data.GetRES().ToString();
+            else
+                menus[2].transform.GetChild(9).GetChild(4).GetComponent<Text>().text = "RES:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetRES().ToString();
+
+            //SPD
+            if (highlighted_party_member == 0)
+                menus[2].transform.GetChild(9).GetChild(5).GetComponent<Text>().text = "SPD:\t\t" + data.GetSPD().ToString();
+            else
+                menus[2].transform.GetChild(9).GetChild(5).GetComponent<Text>().text = "SPD:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetSPD().ToString();
+
+            //LCK
+            if (highlighted_party_member == 0)
+                menus[2].transform.GetChild(9).GetChild(6).GetComponent<Text>().text = "LCK:\t\t" + data.GetLCK().ToString();
+            else
+                menus[2].transform.GetChild(9).GetChild(6).GetComponent<Text>().text = "LCK:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetLCK().ToString();
+        }
+        //equipment is being changed
+        else
+        {
+            //ATK
+            //determine if stat bonus is positive, negative, or does not increase
+
+            //not changed
+            if (equipment.damage_buff == 0)
+            {
+                if (highlighted_party_member == 0)
+                    menus[2].transform.GetChild(9).GetChild(0).GetComponent<Text>().text = "ATK:\t\t" + data.GetATK().ToString();
+                else
+                    menus[2].transform.GetChild(9).GetChild(0).GetComponent<Text>().text = "ATK:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetATK().ToString();
+            }
+            else
+            {
+                int bonus = equipment.damage_buff / Mathf.Abs(equipment.damage_buff);
+
+                //positive
+                if (bonus == 1)
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(0).GetComponent<Text>().text = "ATK:\t\t" + data.GetATK().ToString() + " + " + equipment.damage_buff.ToString()
+                            + " -> " + (data.GetATK() + equipment.damage_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(0).GetComponent<Text>().text = "ATK:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetATK().ToString()
+                            + " + " + equipment.damage_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetATK() + equipment.damage_buff).ToString();
+                }
+                //negative
+                else
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(0).GetComponent<Text>().text = "ATK:\t\t" + data.GetATK().ToString() + " + " + equipment.damage_buff.ToString()
+                            + " -> " + (data.GetATK() + equipment.damage_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(0).GetComponent<Text>().text = "ATK:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetATK().ToString()
+                            + " - " + equipment.damage_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetATK() + equipment.damage_buff).ToString();
+                }
+            }
+
+            //POW
+            //determine if stat bonus is positive, negative, or does not increase
+
+            //not changed
+            if (equipment.power_buff == 0)
+            {
+                if (highlighted_party_member == 0)
+                    menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPOW().ToString();
+                else
+                    menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString();
+            }
+            else
+            {
+                int bonus = equipment.power_buff / Mathf.Abs(equipment.power_buff);
+
+                //positive
+                if (bonus == 1)
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPOW().ToString() + " + " + equipment.power_buff.ToString()
+                            + " -> " + (data.GetPOW() + equipment.power_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString()
+                            + " + " + equipment.power_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetPOW() + equipment.power_buff).ToString();
+                }
+                //negative
+                else
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPOW().ToString() + " - " + equipment.power_buff.ToString()
+                            + " -> " + (data.GetPOW() - equipment.power_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString()
+                            + " - " + equipment.power_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetPOW() - equipment.power_buff).ToString();
+                }
+            }
+
+            //DEF
+            //determine if stat bonus is positive, negative, or does not increase
+
+            //not changed
+            if (equipment.defense_buff == 0)
+            {
+                if (highlighted_party_member == 0)
+                    menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetDEF().ToString();
+                else
+                    menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetDEF().ToString();
+            }
+            else
+            {
+                int bonus = equipment.defense_buff / Mathf.Abs(equipment.defense_buff);
+
+                //positive
+                if (bonus == 1)
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetDEF().ToString() + " + " + equipment.defense_buff.ToString()
+                            + " -> " + (data.GetDEF() + equipment.defense_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetDEF().ToString()
+                            + " + " + equipment.defense_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetDEF() + equipment.defense_buff).ToString();
+                }
+                //negative
+                else
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetDEF().ToString() + " - " + equipment.defense_buff.ToString()
+                            + " -> " + (data.GetDEF() - equipment.defense_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetDEF().ToString()
+                            + " - " + equipment.defense_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetDEF() - equipment.defense_buff).ToString();
+                }
+            }
+
+            //WIL
+            //determine if stat bonus is positive, negative, or does not increase
+
+            //not changed
+            if (equipment.will_buff == 0)
+            {
+                if (highlighted_party_member == 0)
+                    menus[2].transform.GetChild(9).GetChild(3).GetComponent<Text>().text = "WIL:\t\t" + data.GetWIL().ToString();
+                else
+                    menus[2].transform.GetChild(9).GetChild(3).GetComponent<Text>().text = "WIL:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetWIL().ToString();
+            }
+            else
+            {
+                int bonus = equipment.will_buff / Mathf.Abs(equipment.will_buff);
+
+                //positive
+                if (bonus == 1)
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(3).GetComponent<Text>().text = "WIL:\t\t" + data.GetWIL().ToString() + " + " + equipment.will_buff.ToString()
+                            + " -> " + (data.GetWIL() + equipment.will_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(3).GetComponent<Text>().text = "WIL:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetWIL().ToString()
+                            + " + " + equipment.will_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetWIL() + equipment.will_buff).ToString();
+                }
+                //negative
+                else
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(3).GetComponent<Text>().text = "WIL:\t\t" + data.GetWIL().ToString() + " - " + equipment.will_buff.ToString()
+                            + " -> " + (data.GetWIL() - equipment.will_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(3).GetComponent<Text>().text = "WIL:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetWIL().ToString()
+                            + " - " + equipment.will_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetWIL() - equipment.will_buff).ToString();
+                }
+            }
+
+            //RES
+            //determine if stat bonus is positive, negative, or does not increase
+
+            //not changed
+            if (equipment.resistance_buff == 0)
+            {
+                if (highlighted_party_member == 0)
+                    menus[2].transform.GetChild(9).GetChild(4).GetComponent<Text>().text = "RES:\t\t" + data.GetRES().ToString();
+                else
+                    menus[2].transform.GetChild(9).GetChild(4).GetComponent<Text>().text = "RES:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetRES().ToString();
+            }
+            else
+            {
+                int bonus = equipment.resistance_buff / Mathf.Abs(equipment.resistance_buff);
+
+                //positive
+                if (bonus == 1)
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(4).GetComponent<Text>().text = "RES:\t\t" + data.GetRES().ToString() + " + " + equipment.resistance_buff.ToString()
+                            + " -> " + (data.GetRES() + equipment.resistance_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(4).GetComponent<Text>().text = "RES:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetRES().ToString()
+                            + " + " + equipment.resistance_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetRES() + equipment.resistance_buff).ToString();
+                }
+                //negative
+                else
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(4).GetComponent<Text>().text = "RES:\t\t" + data.GetRES().ToString() + " - " + equipment.resistance_buff.ToString()
+                            + " -> " + (data.GetRES() - equipment.resistance_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(4).GetComponent<Text>().text = "RES:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetRES().ToString()
+                            + " - " + equipment.resistance_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetRES() - equipment.resistance_buff).ToString();
+                }
+            }
+
+            //SPD
+            //determine if stat bonus is positive, negative, or does not increase
+
+            //not changed
+            if (equipment.speed_buff == 0)
+            {
+                if (highlighted_party_member == 0)
+                    menus[2].transform.GetChild(9).GetChild(5).GetComponent<Text>().text = "SPD:\t\t" + data.GetSPD().ToString();
+                else
+                    menus[2].transform.GetChild(9).GetChild(5).GetComponent<Text>().text = "SPD:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetSPD().ToString();
+            }
+            else
+            {
+                int bonus = equipment.speed_buff / Mathf.Abs(equipment.speed_buff);
+
+                //positive
+                if (bonus == 1)
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(5).GetComponent<Text>().text = "SPD:\t\t" + data.GetSPD().ToString() + " + " + equipment.speed_buff.ToString()
+                            + " -> " + (data.GetSPD() + equipment.speed_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(5).GetComponent<Text>().text = "SPD:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetSPD().ToString()
+                            + " + " + equipment.speed_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetSPD() + equipment.speed_buff).ToString();
+                }
+                //negative
+                else
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(5).GetComponent<Text>().text = "SPD:\t\t" + data.GetSP().ToString() + " - " + equipment.speed_buff.ToString()
+                            + " -> " + (data.GetSPD() - equipment.speed_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(5).GetComponent<Text>().text = "SPD:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetSPD().ToString()
+                            + " - " + equipment.speed_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetSPD() - equipment.speed_buff).ToString();
+                }
+            }
+
+            //LCK
+            //determine if stat bonus is positive, negative, or does not increase
+
+            //not changed
+            if (equipment.luck_buff == 0)
+            {
+                if (highlighted_party_member == 0)
+                    menus[2].transform.GetChild(9).GetChild(6).GetComponent<Text>().text = "LCK:\t\t" + data.GetLCK().ToString();
+                else
+                    menus[2].transform.GetChild(9).GetChild(6).GetComponent<Text>().text = "LCK:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetLCK().ToString();
+            }
+            else
+            {
+                int bonus = equipment.speed_buff / Mathf.Abs(equipment.speed_buff);
+
+                //positive
+                if (bonus == 1)
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(6).GetComponent<Text>().text = "LCK:\t\t" + data.GetLCK().ToString() + " + " + equipment.luck_buff.ToString()
+                            + " -> " + (data.GetLCK() + equipment.luck_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(6).GetComponent<Text>().text = "LCK:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetLCK().ToString()
+                            + " + " + equipment.luck_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetLCK() + equipment.luck_buff).ToString();
+                }
+                //negative
+                else
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(6).GetComponent<Text>().text = "LCK:\t\t" + data.GetLCK().ToString() + " - " + equipment.luck_buff.ToString()
+                            + " -> " + (data.GetLCK() - equipment.luck_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(6).GetComponent<Text>().text = "LCK:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetLCK().ToString()
+                            + " - " + equipment.luck_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetLCK() - equipment.luck_buff).ToString();
+                }
+            }
+        }
+
+        //--UPDATE WEAPON INFO--
+        //no weapon equipped
+        if (data.GetWeapon() == null)
+        {
+            //set the image to nothing
+            menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+            menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().sprite = null;
+
+            //set the text to nothing
+            menus[2].transform.GetChild(10).GetChild(0).GetChild(1).GetComponent<Text>().text = "";
+        }
+        //weapon equipped
+        else
+        {
+            //set the image
+            menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetWeapon().image_file_path);
+
+            //set the text to weapon's name
+            menus[2].transform.GetChild(10).GetChild(0).GetChild(1).GetComponent<Text>().text = data.GetWeapon().name;
+        }
+
+        //--UPDATE ARMOR INFO--
+        //no armor equipped
+        if (data.GetArmor() == null)
+        {
+            //set the image to nothing
+            menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+            menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().sprite = null;
+
+            //set the text to nothing
+            menus[2].transform.GetChild(10).GetChild(1).GetChild(1).GetComponent<Text>().text = "";
+        }
+        //armor equipped
+        else
+        {
+            //set the image
+            menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetArmor().image_file_path);
+
+            //set the text to armor's name
+            menus[2].transform.GetChild(10).GetChild(1).GetChild(1).GetComponent<Text>().text = data.GetArmor().name;
+        }
+
+        //--UPDATE TRINKET INFO--
+        //no trinket equipped
+        if (data.GetTrinket() == null)
+        {
+            //set the image to nothing
+            menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+            menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().sprite = null;
+
+            //set the text to nothing
+            menus[2].transform.GetChild(10).GetChild(2).GetChild(1).GetComponent<Text>().text = "";
+        }
+        //trinket equipped
+        else
+        {
+            //set the image
+            menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetTrinket().image_file_path);
+
+            //set the text to armor's name
+            menus[2].transform.GetChild(10).GetChild(2).GetChild(1).GetComponent<Text>().text = data.GetTrinket().name;
+        }
+
+        //--UPDATE ITEM SELECTION LIST--
+        //change list based off of the equip type:
+        //weapon
+        if (equip_type == 0)
+        {
+            //populate a list of weapons to equip
+            List<Item> equippable_items = new List<Item>();
+            for (int i = 0; i < data.GetInventorySize(); i++)
+            {
+                if (data.GetItem(i) is Weapon)
+                {
+                    equippable_items.Add(data.GetItem(i));
+                }
+            }
+
+            //Loop through display objects
+            for (int i = 11; i < 15; i++)
+            {
+                //set the image, name, and amount for each available object
+                if (equipped_offset + (i - 11) < equippable_items.Count)
+                {
+                    menus[2].transform.GetChild(i).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                    menus[2].transform.GetChild(i).GetComponent<Image>().sprite = Resources.Load<Sprite>(equippable_items[equipped_offset + (i - 11)].image_file_path);
+                    menus[2].transform.GetChild(i).GetChild(0).GetComponent<Text>().text = equippable_items[equipped_offset + (i - 11)].name;
+                    menus[2].transform.GetChild(i).GetChild(1).GetComponent<Text>().text = equippable_items[equipped_offset + (i - 11)].amount.ToString();
+                }
+                //object is not available
+                else
+                {
+                    menus[2].transform.GetChild(i).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                    menus[2].transform.GetChild(i).GetComponent<Image>().sprite = null;
+                    menus[2].transform.GetChild(i).GetChild(0).GetComponent<Text>().text = "";
+                    menus[2].transform.GetChild(i).GetChild(1).GetComponent<Text>().text = "";
+                }
+            }
+        }
+        //armor
+        else if (equip_type == 1)
+        {
+            //populate a list of weapons to equip
+            List<Item> equippable_items = new List<Item>();
+            for (int i = 0; i < data.GetInventorySize(); i++)
+            {
+                if (data.GetItem(i) is Armor)
+                {
+                    equippable_items.Add(data.GetItem(i));
+                }
+            }
+
+            //Loop through display objects
+            for (int i = 11; i < 15; i++)
+            {
+                //set the image, name, and amount for each available object
+                if (equipped_offset + (i - 11) < equippable_items.Count)
+                {
+                    menus[2].transform.GetChild(i).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                    menus[2].transform.GetChild(i).GetComponent<Image>().sprite = Resources.Load<Sprite>(equippable_items[equipped_offset + (i - 11)].image_file_path);
+                    menus[2].transform.GetChild(i).GetChild(0).GetComponent<Text>().text = equippable_items[equipped_offset + (i - 11)].name;
+                    menus[2].transform.GetChild(i).GetChild(1).GetComponent<Text>().text = equippable_items[equipped_offset + (i - 11)].amount.ToString();
+                }
+                //object is not available
+                else
+                {
+                    menus[2].transform.GetChild(i).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                    menus[2].transform.GetChild(i).GetComponent<Image>().sprite = null;
+                    menus[2].transform.GetChild(i).GetChild(0).GetComponent<Text>().text = "";
+                    menus[2].transform.GetChild(i).GetChild(1).GetComponent<Text>().text = "";
+                }
+            }
+        }
+        //trinket
+        else
+        {
+            //populate a list of weapons to equip
+            List<Item> equippable_items = new List<Item>();
+            for (int i = 0; i < data.GetInventorySize(); i++)
+            {
+                if (data.GetItem(i) is Trinket)
+                {
+                    equippable_items.Add(data.GetItem(i));
+                }
+            }
+
+            //Loop through display objects
+            for (int i = 11; i < 15; i++)
+            {
+                //set the image, name, and amount for each available object
+                if (equipped_offset + (i - 11) < equippable_items.Count)
+                {
+                    menus[2].transform.GetChild(i).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                    menus[2].transform.GetChild(i).GetComponent<Image>().sprite = Resources.Load<Sprite>(equippable_items[equipped_offset + (i - 11)].image_file_path);
+                    menus[2].transform.GetChild(i).GetChild(0).GetComponent<Text>().text = equippable_items[equipped_offset + (i - 11)].name;
+                    menus[2].transform.GetChild(i).GetChild(1).GetComponent<Text>().text = equippable_items[equipped_offset + (i - 11)].amount.ToString();
+                }
+                //object is not available
+                else
+                {
+                    menus[2].transform.GetChild(i).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                    menus[2].transform.GetChild(i).GetComponent<Image>().sprite = null;
+                    menus[2].transform.GetChild(i).GetChild(0).GetComponent<Text>().text = "";
+                    menus[2].transform.GetChild(i).GetChild(1).GetComponent<Text>().text = "";
+                }
+            }
+        }
+
+        //--UPDATE ITEM DESCRIPTION--
+        //not equipping an item
+        if (!equipping)
+        {
+            //weapon
+            if (cursor_position == 0)
+            {
+                //no weapon equipped
+                if (data.GetWeapon() == null)
+                    menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
+                //weapon equipped
+                else
+                    menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetWeapon().description;
+            }
+            //armor
+            else if (cursor_position == 1)
+            {
+                //no armor equipped
+                if (data.GetWeapon() == null)
+                    menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
+                //armor equipped
+                else
+                    menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetArmor().description;
+            }
+            //trinket
+            else
+            {
+                //no trinket equipped
+                if (data.GetWeapon() == null)
+                    menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
+                //trinket equipped
+                else
+                    menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetTrinket().description;
+            }
+        }
+        else
+        {
+            if (equipment != null)
+                menus[2].transform.GetChild(15).GetComponent<Text>().text = equipment.description;
+            else
+                menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
+        }
+    }
+
+    public void UpdateEquipMenuInfo(Trinket equipment = null)
+    {
+        //--UPDATE NAME--
+        if (highlighted_party_member == 0)
+            menus[2].transform.GetChild(0).GetComponent<Text>().text = data.GetName();
+        else
+            menus[2].transform.GetChild(0).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetName();
+
+        //--UPDATE IMAGE--
+        if (highlighted_party_member == 0)
+            menus[2].transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetImageFilepath());
+        else
+            menus[2].transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetPartyMember(highlighted_party_member - 1).GetImageFilepath());
+
+        //--UPDATE DESCRIPTION--
+        if (highlighted_party_member == 0)
+            menus[2].transform.GetChild(2).GetComponent<Text>().text = data.GetDesc();
+        else
+            menus[2].transform.GetChild(2).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetDesc();
+
+        //--UPDATE LEVEL--
+        if (highlighted_party_member == 0)
+            menus[2].transform.GetChild(3).GetComponent<Text>().text = "LV." + data.GetLVL().ToString();
+        else
+            menus[2].transform.GetChild(3).GetComponent<Text>().text = "LV." + data.GetPartyMember(highlighted_party_member - 1).GetLVL().ToString();
+
+        //--UPDATE XP DATA--
+        //bar
+        menus[2].transform.GetChild(4).GetChild(0).GetComponent<Image>().fillAmount = data.GetExperience() / data.GetMaxExperience();
+        //ratio
+        menus[2].transform.GetChild(4).GetChild(1).GetComponent<Text>().text = data.GetExperience().ToString() + "/" + data.GetMaxExperience();
+
+        //--UPDATE HP DATA--
+        //bar
+        if (highlighted_party_member == 0)
+            menus[2].transform.GetChild(5).GetChild(0).GetComponent<Image>().fillAmount = data.GetHP() / data.GetHPMAX();
+        else
+            menus[2].transform.GetChild(5).GetChild(0).GetComponent<Image>().fillAmount = data.GetPartyMember(highlighted_party_member - 1).GetHP() / data.GetPartyMember(highlighted_party_member - 1).GetHPMAX();
+        //ratio
+        if (highlighted_party_member == 0)
+            menus[2].transform.GetChild(5).GetChild(1).GetComponent<Text>().text = data.GetHP().ToString() + "/" + data.GetHPMAX().ToString();
+        else
+            menus[2].transform.GetChild(5).GetChild(1).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetHP().ToString() + "/" + data.GetPartyMember(highlighted_party_member - 1).GetHPMAX().ToString();
+
+        //--UPDATE SP DATA--
+        //bar
+        if (highlighted_party_member == 0)
+            menus[2].transform.GetChild(6).GetChild(0).GetComponent<Image>().fillAmount = data.GetSP() / data.GetSPMax();
+        else
+            menus[2].transform.GetChild(6).GetChild(0).GetComponent<Image>().fillAmount = data.GetPartyMember(highlighted_party_member - 1).GetSP() / data.GetPartyMember(highlighted_party_member - 1).GetSPMax();
+        //ratio
+        if (highlighted_party_member == 0)
+            menus[2].transform.GetChild(6).GetChild(1).GetComponent<Text>().text = data.GetSP().ToString() + "/" + data.GetSPMax().ToString();
+        else
+            menus[2].transform.GetChild(6).GetChild(1).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetSP().ToString() + "/" + data.GetPartyMember(highlighted_party_member - 1).GetSPMax().ToString();
+
+        //--UPDATE SAN DATA--
+        //bar
+        if (highlighted_party_member == 0)
+            menus[2].transform.GetChild(7).GetChild(0).GetComponent<Image>().fillAmount = data.GetSAN() / data.GetSANMax();
+        else
+            menus[2].transform.GetChild(7).GetChild(0).GetComponent<Image>().fillAmount = data.GetPartyMember(highlighted_party_member - 1).GetSAN() / data.GetPartyMember(highlighted_party_member - 1).GetSANMax();
+        //ratio
+        if (highlighted_party_member == 0)
+            menus[2].transform.GetChild(7).GetChild(1).GetComponent<Text>().text = data.GetSAN().ToString() + "/" + data.GetSANMax().ToString();
+        else
+            menus[2].transform.GetChild(7).GetChild(1).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetSAN().ToString() + "/" + data.GetPartyMember(highlighted_party_member - 1).GetSANMax().ToString();
+
+        //--UPDATE STAT DATA--
+        //if equipment is not being changed
+        if (equipment == null)
+        {
+            //ATK
+            if (highlighted_party_member == 0)
+                menus[2].transform.GetChild(9).GetChild(0).GetComponent<Text>().text = "ATK:\t\t" + data.GetATK().ToString();
+            else
+                menus[2].transform.GetChild(9).GetChild(0).GetComponent<Text>().text = "ATK:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetATK().ToString();
+
+            //POW
+            if (highlighted_party_member == 0)
+                menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPOW().ToString();
+            else
+                menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString();
+
+            //DEF
+            if (highlighted_party_member == 0)
+                menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetDEF().ToString();
+            else
+                menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetDEF().ToString();
+
+            //WIL
+            if (highlighted_party_member == 0)
+                menus[2].transform.GetChild(9).GetChild(3).GetComponent<Text>().text = "WIL:\t\t" + data.GetWIL().ToString();
+            else
+                menus[2].transform.GetChild(9).GetChild(3).GetComponent<Text>().text = "WIL:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetWIL().ToString();
+
+            //RES
+            if (highlighted_party_member == 0)
+                menus[2].transform.GetChild(9).GetChild(4).GetComponent<Text>().text = "RES:\t\t" + data.GetRES().ToString();
+            else
+                menus[2].transform.GetChild(9).GetChild(4).GetComponent<Text>().text = "RES:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetRES().ToString();
+
+            //SPD
+            if (highlighted_party_member == 0)
+                menus[2].transform.GetChild(9).GetChild(5).GetComponent<Text>().text = "SPD:\t\t" + data.GetSPD().ToString();
+            else
+                menus[2].transform.GetChild(9).GetChild(5).GetComponent<Text>().text = "SPD:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetSPD().ToString();
+
+            //LCK
+            if (highlighted_party_member == 0)
+                menus[2].transform.GetChild(9).GetChild(6).GetComponent<Text>().text = "LCK:\t\t" + data.GetLCK().ToString();
+            else
+                menus[2].transform.GetChild(9).GetChild(6).GetComponent<Text>().text = "LCK:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetLCK().ToString();
+        }
+        //equipment is being changed
+        else
+        {
+            //ATK
+            //determine if stat bonus is positive, negative, or does not increase
+
+            //not changed
+            if (equipment.damage_buff == 0)
+            {
+                if (highlighted_party_member == 0)
+                    menus[2].transform.GetChild(9).GetChild(0).GetComponent<Text>().text = "ATK:\t\t" + data.GetATK().ToString();
+                else
+                    menus[2].transform.GetChild(9).GetChild(0).GetComponent<Text>().text = "ATK:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetATK().ToString();
+            }
+            else
+            {
+                int bonus = equipment.damage_buff / Mathf.Abs(equipment.damage_buff);
+
+                //positive
+                if (bonus == 1)
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(0).GetComponent<Text>().text = "ATK:\t\t" + data.GetATK().ToString() + " + " + equipment.damage_buff.ToString()
+                            + " -> " + (data.GetATK() + equipment.damage_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(0).GetComponent<Text>().text = "ATK:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetATK().ToString()
+                            + " + " + equipment.damage_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetATK() + equipment.damage_buff).ToString();
+                }
+                //negative
+                else
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(0).GetComponent<Text>().text = "ATK:\t\t" + data.GetATK().ToString() + " + " + equipment.damage_buff.ToString()
+                            + " -> " + (data.GetATK() + equipment.damage_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(0).GetComponent<Text>().text = "ATK:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetATK().ToString()
+                            + " - " + equipment.damage_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetATK() + equipment.damage_buff).ToString();
+                }
+            }
+
+            //POW
+            //determine if stat bonus is positive, negative, or does not increase
+
+            //not changed
+            if (equipment.power_buff == 0)
+            {
+                if (highlighted_party_member == 0)
+                    menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPOW().ToString();
+                else
+                    menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString();
+            }
+            else
+            {
+                int bonus = equipment.power_buff / Mathf.Abs(equipment.power_buff);
+
+                //positive
+                if (bonus == 1)
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPOW().ToString() + " + " + equipment.power_buff.ToString()
+                            + " -> " + (data.GetPOW() + equipment.power_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString()
+                            + " + " + equipment.power_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetPOW() + equipment.power_buff).ToString();
+                }
+                //negative
+                else
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPOW().ToString() + " - " + equipment.power_buff.ToString()
+                            + " -> " + (data.GetPOW() - equipment.power_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString()
+                            + " - " + equipment.power_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetPOW() - equipment.power_buff).ToString();
+                }
+            }
+
+            //DEF
+            //determine if stat bonus is positive, negative, or does not increase
+
+            //not changed
+            if (equipment.defense_buff == 0)
+            {
+                if (highlighted_party_member == 0)
+                    menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetDEF().ToString();
+                else
+                    menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetDEF().ToString();
+            }
+            else
+            {
+                int bonus = equipment.defense_buff / Mathf.Abs(equipment.defense_buff);
+
+                //positive
+                if (bonus == 1)
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetDEF().ToString() + " + " + equipment.defense_buff.ToString()
+                            + " -> " + (data.GetDEF() + equipment.defense_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetDEF().ToString()
+                            + " + " + equipment.defense_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetDEF() + equipment.defense_buff).ToString();
+                }
+                //negative
+                else
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetDEF().ToString() + " - " + equipment.defense_buff.ToString()
+                            + " -> " + (data.GetDEF() - equipment.defense_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetDEF().ToString()
+                            + " - " + equipment.defense_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetDEF() - equipment.defense_buff).ToString();
+                }
+            }
+
+            //WIL
+            //determine if stat bonus is positive, negative, or does not increase
+
+            //not changed
+            if (equipment.will_buff == 0)
+            {
+                if (highlighted_party_member == 0)
+                    menus[2].transform.GetChild(9).GetChild(3).GetComponent<Text>().text = "WIL:\t\t" + data.GetWIL().ToString();
+                else
+                    menus[2].transform.GetChild(9).GetChild(3).GetComponent<Text>().text = "WIL:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetWIL().ToString();
+            }
+            else
+            {
+                int bonus = equipment.will_buff / Mathf.Abs(equipment.will_buff);
+
+                //positive
+                if (bonus == 1)
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(3).GetComponent<Text>().text = "WIL:\t\t" + data.GetWIL().ToString() + " + " + equipment.will_buff.ToString()
+                            + " -> " + (data.GetWIL() + equipment.will_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(3).GetComponent<Text>().text = "WIL:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetWIL().ToString()
+                            + " + " + equipment.will_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetWIL() + equipment.will_buff).ToString();
+                }
+                //negative
+                else
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(3).GetComponent<Text>().text = "WIL:\t\t" + data.GetWIL().ToString() + " - " + equipment.will_buff.ToString()
+                            + " -> " + (data.GetWIL() - equipment.will_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(3).GetComponent<Text>().text = "WIL:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetWIL().ToString()
+                            + " - " + equipment.will_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetWIL() - equipment.will_buff).ToString();
+                }
+            }
+
+            //RES
+            //determine if stat bonus is positive, negative, or does not increase
+
+            //not changed
+            if (equipment.resistance_buff == 0)
+            {
+                if (highlighted_party_member == 0)
+                    menus[2].transform.GetChild(9).GetChild(4).GetComponent<Text>().text = "RES:\t\t" + data.GetRES().ToString();
+                else
+                    menus[2].transform.GetChild(9).GetChild(4).GetComponent<Text>().text = "RES:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetRES().ToString();
+            }
+            else
+            {
+                int bonus = equipment.resistance_buff / Mathf.Abs(equipment.resistance_buff);
+
+                //positive
+                if (bonus == 1)
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(4).GetComponent<Text>().text = "RES:\t\t" + data.GetRES().ToString() + " + " + equipment.resistance_buff.ToString()
+                            + " -> " + (data.GetRES() + equipment.resistance_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(4).GetComponent<Text>().text = "RES:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetRES().ToString()
+                            + " + " + equipment.resistance_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetRES() + equipment.resistance_buff).ToString();
+                }
+                //negative
+                else
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(4).GetComponent<Text>().text = "RES:\t\t" + data.GetRES().ToString() + " - " + equipment.resistance_buff.ToString()
+                            + " -> " + (data.GetRES() - equipment.resistance_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(4).GetComponent<Text>().text = "RES:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetRES().ToString()
+                            + " - " + equipment.resistance_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetRES() - equipment.resistance_buff).ToString();
+                }
+            }
+
+            //SPD
+            //determine if stat bonus is positive, negative, or does not increase
+
+            //not changed
+            if (equipment.speed_buff == 0)
+            {
+                if (highlighted_party_member == 0)
+                    menus[2].transform.GetChild(9).GetChild(5).GetComponent<Text>().text = "SPD:\t\t" + data.GetSPD().ToString();
+                else
+                    menus[2].transform.GetChild(9).GetChild(5).GetComponent<Text>().text = "SPD:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetSPD().ToString();
+            }
+            else
+            {
+                int bonus = equipment.speed_buff / Mathf.Abs(equipment.speed_buff);
+
+                //positive
+                if (bonus == 1)
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(5).GetComponent<Text>().text = "SPD:\t\t" + data.GetSPD().ToString() + " + " + equipment.speed_buff.ToString()
+                            + " -> " + (data.GetSPD() + equipment.speed_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(5).GetComponent<Text>().text = "SPD:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetSPD().ToString()
+                            + " + " + equipment.speed_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetSPD() + equipment.speed_buff).ToString();
+                }
+                //negative
+                else
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(5).GetComponent<Text>().text = "SPD:\t\t" + data.GetSP().ToString() + " - " + equipment.speed_buff.ToString()
+                            + " -> " + (data.GetSPD() - equipment.speed_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(5).GetComponent<Text>().text = "SPD:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetSPD().ToString()
+                            + " - " + equipment.speed_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetSPD() - equipment.speed_buff).ToString();
+                }
+            }
+
+            //LCK
+            //determine if stat bonus is positive, negative, or does not increase
+
+            //not changed
+            if (equipment.luck_buff == 0)
+            {
+                if (highlighted_party_member == 0)
+                    menus[2].transform.GetChild(9).GetChild(6).GetComponent<Text>().text = "LCK:\t\t" + data.GetLCK().ToString();
+                else
+                    menus[2].transform.GetChild(9).GetChild(6).GetComponent<Text>().text = "LCK:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetLCK().ToString();
+            }
+            else
+            {
+                int bonus = equipment.speed_buff / Mathf.Abs(equipment.speed_buff);
+
+                //positive
+                if (bonus == 1)
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(6).GetComponent<Text>().text = "LCK:\t\t" + data.GetLCK().ToString() + " + " + equipment.luck_buff.ToString()
+                            + " -> " + (data.GetLCK() + equipment.luck_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(6).GetComponent<Text>().text = "LCK:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetLCK().ToString()
+                            + " + " + equipment.luck_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetLCK() + equipment.luck_buff).ToString();
+                }
+                //negative
+                else
+                {
+                    if (highlighted_party_member == 0)
+                        menus[2].transform.GetChild(9).GetChild(6).GetComponent<Text>().text = "LCK:\t\t" + data.GetLCK().ToString() + " - " + equipment.luck_buff.ToString()
+                            + " -> " + (data.GetLCK() - equipment.luck_buff).ToString();
+                    else
+                        menus[2].transform.GetChild(9).GetChild(6).GetComponent<Text>().text = "LCK:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetLCK().ToString()
+                            + " - " + equipment.luck_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetLCK() - equipment.luck_buff).ToString();
+                }
+            }
+        }
+
+        //--UPDATE WEAPON INFO--
+        //no weapon equipped
+        if (data.GetWeapon() == null)
+        {
+            //set the image to nothing
+            menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+            menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().sprite = null;
+
+            //set the text to nothing
+            menus[2].transform.GetChild(10).GetChild(0).GetChild(1).GetComponent<Text>().text = "";
+        }
+        //weapon equipped
+        else
+        {
+            //set the image
+            menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetWeapon().image_file_path);
+
+            //set the text to weapon's name
+            menus[2].transform.GetChild(10).GetChild(0).GetChild(1).GetComponent<Text>().text = data.GetWeapon().name;
+        }
+
+        //--UPDATE ARMOR INFO--
+        //no armor equipped
+        if (data.GetArmor() == null)
+        {
+            //set the image to nothing
+            menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+            menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().sprite = null;
+
+            //set the text to nothing
+            menus[2].transform.GetChild(10).GetChild(1).GetChild(1).GetComponent<Text>().text = "";
+        }
+        //armor equipped
+        else
+        {
+            //set the image
+            menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetArmor().image_file_path);
+
+            //set the text to armor's name
+            menus[2].transform.GetChild(10).GetChild(1).GetChild(1).GetComponent<Text>().text = data.GetArmor().name;
+        }
+
+        //--UPDATE TRINKET INFO--
+        //no trinket equipped
+        if (data.GetTrinket() == null)
+        {
+            //set the image to nothing
+            menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+            menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().sprite = null;
+
+            //set the text to nothing
+            menus[2].transform.GetChild(10).GetChild(2).GetChild(1).GetComponent<Text>().text = "";
+        }
+        //trinket equipped
+        else
+        {
+            //set the image
+            menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetTrinket().image_file_path);
+
+            //set the text to armor's name
+            menus[2].transform.GetChild(10).GetChild(2).GetChild(1).GetComponent<Text>().text = data.GetTrinket().name;
+        }
+
+        //--UPDATE ITEM SELECTION LIST--
+        //change list based off of the equip type:
+        //weapon
+        if (equip_type == 0)
+        {
+            //populate a list of weapons to equip
+            List<Item> equippable_items = new List<Item>();
+            for (int i = 0; i < data.GetInventorySize(); i++)
+            {
+                if (data.GetItem(i) is Weapon)
+                {
+                    equippable_items.Add(data.GetItem(i));
+                }
+            }
+
+            //Loop through display objects
+            for (int i = 11; i < 15; i++)
+            {
+                //set the image, name, and amount for each available object
+                if (equipped_offset + (i - 11) < equippable_items.Count)
+                {
+                    menus[2].transform.GetChild(i).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                    menus[2].transform.GetChild(i).GetComponent<Image>().sprite = Resources.Load<Sprite>(equippable_items[equipped_offset + (i - 11)].image_file_path);
+                    menus[2].transform.GetChild(i).GetChild(0).GetComponent<Text>().text = equippable_items[equipped_offset + (i - 11)].name;
+                    menus[2].transform.GetChild(i).GetChild(1).GetComponent<Text>().text = equippable_items[equipped_offset + (i - 11)].amount.ToString();
+                }
+                //object is not available
+                else
+                {
+                    menus[2].transform.GetChild(i).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                    menus[2].transform.GetChild(i).GetComponent<Image>().sprite = null;
+                    menus[2].transform.GetChild(i).GetChild(0).GetComponent<Text>().text = "";
+                    menus[2].transform.GetChild(i).GetChild(1).GetComponent<Text>().text = "";
+                }
+            }
+        }
+        //armor
+        else if (equip_type == 1)
+        {
+            //populate a list of weapons to equip
+            List<Item> equippable_items = new List<Item>();
+            for (int i = 0; i < data.GetInventorySize(); i++)
+            {
+                if (data.GetItem(i) is Armor)
+                {
+                    equippable_items.Add(data.GetItem(i));
+                }
+            }
+
+            //Loop through display objects
+            for (int i = 11; i < 15; i++)
+            {
+                //set the image, name, and amount for each available object
+                if (equipped_offset + (i - 11) < equippable_items.Count)
+                {
+                    menus[2].transform.GetChild(i).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                    menus[2].transform.GetChild(i).GetComponent<Image>().sprite = Resources.Load<Sprite>(equippable_items[equipped_offset + (i - 11)].image_file_path);
+                    menus[2].transform.GetChild(i).GetChild(0).GetComponent<Text>().text = equippable_items[equipped_offset + (i - 11)].name;
+                    menus[2].transform.GetChild(i).GetChild(1).GetComponent<Text>().text = equippable_items[equipped_offset + (i - 11)].amount.ToString();
+                }
+                //object is not available
+                else
+                {
+                    menus[2].transform.GetChild(i).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                    menus[2].transform.GetChild(i).GetComponent<Image>().sprite = null;
+                    menus[2].transform.GetChild(i).GetChild(0).GetComponent<Text>().text = "";
+                    menus[2].transform.GetChild(i).GetChild(1).GetComponent<Text>().text = "";
+                }
+            }
+        }
+        //trinket
+        else
+        {
+            //populate a list of weapons to equip
+            List<Item> equippable_items = new List<Item>();
+            for (int i = 0; i < data.GetInventorySize(); i++)
+            {
+                if (data.GetItem(i) is Trinket)
+                {
+                    equippable_items.Add(data.GetItem(i));
+                }
+            }
+
+            //Loop through display objects
+            for (int i = 11; i < 15; i++)
+            {
+                //set the image, name, and amount for each available object
+                if (equipped_offset + (i - 11) < equippable_items.Count)
+                {
+                    menus[2].transform.GetChild(i).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                    menus[2].transform.GetChild(i).GetComponent<Image>().sprite = Resources.Load<Sprite>(equippable_items[equipped_offset + (i - 11)].image_file_path);
+                    menus[2].transform.GetChild(i).GetChild(0).GetComponent<Text>().text = equippable_items[equipped_offset + (i - 11)].name;
+                    menus[2].transform.GetChild(i).GetChild(1).GetComponent<Text>().text = equippable_items[equipped_offset + (i - 11)].amount.ToString();
+                }
+                //object is not available
+                else
+                {
+                    menus[2].transform.GetChild(i).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                    menus[2].transform.GetChild(i).GetComponent<Image>().sprite = null;
+                    menus[2].transform.GetChild(i).GetChild(0).GetComponent<Text>().text = "";
+                    menus[2].transform.GetChild(i).GetChild(1).GetComponent<Text>().text = "";
+                }
+            }
+        }
+
+        //--UPDATE ITEM DESCRIPTION--
+        //not equipping an item
+        if (!equipping)
+        {
+            //weapon
+            if (cursor_position == 0)
+            {
+                //no weapon equipped
+                if (data.GetWeapon() == null)
+                    menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
+                //weapon equipped
+                else
+                    menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetWeapon().description;
+            }
+            //armor
+            else if (cursor_position == 1)
+            {
+                //no armor equipped
+                if (data.GetWeapon() == null)
+                    menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
+                //armor equipped
+                else
+                    menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetArmor().description;
+            }
+            //trinket
+            else
+            {
+                //no trinket equipped
+                if (data.GetWeapon() == null)
+                    menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
+                //trinket equipped
+                else
+                    menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetTrinket().description;
+            }
+        }
+        else
+        {
+            if (equipment != null)
+                menus[2].transform.GetChild(15).GetComponent<Text>().text = equipment.description;
+            else
+                menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
+        }
+    }
+
     public void BasePauseMenuRoutine()
     {
         if (!base_pause_character_select)
@@ -238,6 +2024,7 @@ public class PauseMenuHandler : MonoBehaviour
                         UpdateInventoryImageandDesc();
                         break;
                     case 2:
+                        equipping = false;
                         cursor_position = 0;
                         highlighted_party_member = 0;
                         base_pause_character_select = true;
@@ -403,12 +2190,46 @@ public class PauseMenuHandler : MonoBehaviour
         cursor.transform.position = cursor_positions[1].positions[cursor_position].position;
     }
 
+    public void EquipMenuRoutine()
+    {
+        //see if the player is currently equipping an item
+        if (!equipping)
+        {
+            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+            {
+                if (!menu_input)
+                {
+                    cursor_position--;
+                }
+                menu_input = true;
+            }
+            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[3].positions.Count - 1 - 4)
+            {
+                if (!menu_input)
+                {
+                    cursor_position++;
+                }
+                menu_input = true;
+            }
+            else
+            {
+                menu_input = false;
+            }
+        }
+        else
+        {
+
+        }
+        cursor.transform.position = cursor_positions[3].positions[cursor_position].transform.position;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         menu_mode = false;
         menu_input = false;
         item_select_menu = false;
+        equipping = false;
 
         //define the cursor's gameObject
         cursor = transform.GetChild(1).GetChild(transform.GetChild(1).childCount - 1).gameObject;
@@ -459,6 +2280,10 @@ public class PauseMenuHandler : MonoBehaviour
                     break;
                 case 1:
                     ItemMenuRoutine();
+                    break;
+                case 2:
+                    UpdateEquipMenuInfo();
+                    EquipMenuRoutine();
                     break;
                 default:
                     break;

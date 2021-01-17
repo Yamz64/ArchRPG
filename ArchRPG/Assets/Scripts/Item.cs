@@ -35,12 +35,24 @@ public class Weapon : Item
     {
         character = c;
         c.SetATK(c.GetATK() + damage_buff);
+        c.SetPOW(c.GetPOW() + power_buff);
+        c.SetDEF(c.GetDEF() + defense_buff);
+        c.SetWIL(c.GetWIL() + will_buff);
+        c.SetRES(c.GetRES() + resistance_buff);
+        c.SetSPD(c.GetSPD() + speed_buff);
+        c.SetLCK(c.GetLCK() + luck_buff);
     }
     public virtual void RemoveWeapon()
     {
         character.SetATK(character.GetATK() - damage_buff);
     }
     public int damage_buff;
+    public int power_buff;
+    public int defense_buff;
+    public int will_buff;
+    public int resistance_buff;
+    public int speed_buff;
+    public int luck_buff;
 }
 
 //base class handling all armor
@@ -49,13 +61,25 @@ public class Armor : Item
     public virtual void SetArmor(CharacterStats c)
     {
         character = c;
+        c.SetATK(c.GetATK() + damage_buff);
+        c.SetPOW(c.GetPOW() + power_buff);
         c.SetDEF(c.GetDEF() + defense_buff);
+        c.SetWIL(c.GetWIL() + will_buff);
+        c.SetRES(c.GetRES() + resistance_buff);
+        c.SetSPD(c.GetSPD() + speed_buff);
+        c.SetLCK(c.GetLCK() + luck_buff);
     }
     public virtual void RemoveArmor()
     {
         character.SetDEF(character.GetDEF() - defense_buff);
     }
+    public int damage_buff;
+    public int power_buff;
     public int defense_buff;
+    public int will_buff;
+    public int resistance_buff;
+    public int speed_buff;
+    public int luck_buff;
 }
 
 //base class handling all trinkets
@@ -64,10 +88,24 @@ public class Trinket : Item
     public virtual void SetTrinket(CharacterStats c)
     {
         character = c;
+        c.SetATK(c.GetATK() + damage_buff);
+        c.SetPOW(c.GetPOW() + power_buff);
+        c.SetDEF(c.GetDEF() + defense_buff);
+        c.SetWIL(c.GetWIL() + will_buff);
+        c.SetRES(c.GetRES() + resistance_buff);
+        c.SetSPD(c.GetSPD() + speed_buff);
+        c.SetLCK(c.GetLCK() + luck_buff);
     }
     public virtual void RemoveTrinket()
     {
     }
+    public int damage_buff;
+    public int power_buff;
+    public int defense_buff;
+    public int will_buff;
+    public int resistance_buff;
+    public int speed_buff;
+    public int luck_buff;
 }
 
 //--DERIVED ITEMS--

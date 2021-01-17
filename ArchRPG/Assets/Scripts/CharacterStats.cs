@@ -14,6 +14,7 @@ public class CharacterStats
     public int GetATK() { return ATK; }
     public int GetPOW() { return POW; }
     public int GetDEF() { return DEF; }
+    public int GetWIL() { return WIL; }
     public int GetRES() { return RES; }
     public int GetSPD() { return SPD; }
     public int GetLCK() { return LCK; }
@@ -49,6 +50,7 @@ public class CharacterStats
     public void SetATK(int a) { ATK = a; }
     public void SetPOW(int p) { POW = p; }
     public void SetDEF(int d) { DEF = d; }
+    public void SetWIL(int w) { WIL = w; }
     public void SetRES(int r) { RES = r; }
     public void SetSPD(int s) { SPD = s; }
     public void SetLCK(int l) { LCK = l; }
@@ -107,7 +109,8 @@ public class CharacterStats
     private int ATK;        //attack power of a character
     private int POW;        //power of a character - handles special attack damage
     private int DEF;        //defensive power of the character
-    private int RES;        //resistance of the character - likelihood to resist status effects, likelihood to resist loss of sanity, and defense against special moves
+    private int WIL;        //will of the character - likelihood to resist loss of sanity, and defense against special moves
+    private int RES;        //resistance of the character - likelihood to resist status effects
     private int SPD;        //speed - how quickly does the chracter get their turn
     private int LCK;        //luck - how likely to land a random crit, get loot or survive mortal damage with 1hp
     private int LVL;        //current level of the character
