@@ -351,11 +351,11 @@ public class PauseMenuHandler : MonoBehaviour
                 else
                 {
                     if (highlighted_party_member == 0)
-                        menus[2].transform.GetChild(9).GetChild(0).GetComponent<Text>().text = "ATK:\t\t" + data.GetATK().ToString() + " + " + equipment.damage_buff.ToString()
+                        menus[2].transform.GetChild(9).GetChild(0).GetComponent<Text>().text = "ATK:\t\t" + data.GetATK().ToString() + " + " + Mathf.Abs(equipment.damage_buff).ToString()
                             + " -> " + (data.GetATK() + equipment.damage_buff).ToString();
                     else
                         menus[2].transform.GetChild(9).GetChild(0).GetComponent<Text>().text = "ATK:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetATK().ToString()
-                            + " - " + equipment.damage_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetATK() + equipment.damage_buff).ToString();
+                            + " - " + Mathf.Abs(equipment.damage_buff).ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetATK() + equipment.damage_buff).ToString();
                 }
             }
 
@@ -388,11 +388,11 @@ public class PauseMenuHandler : MonoBehaviour
                 else
                 {
                     if (highlighted_party_member == 0)
-                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPOW().ToString() + " - " + equipment.power_buff.ToString()
-                            + " -> " + (data.GetPOW() - equipment.power_buff).ToString();
+                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPOW().ToString() + " - " + Mathf.Abs(equipment.power_buff).ToString()
+                            + " -> " + (data.GetPOW() + equipment.power_buff).ToString();
                     else
                         menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString()
-                            + " - " + equipment.power_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetPOW() - equipment.power_buff).ToString();
+                            + " - " + Mathf.Abs(equipment.power_buff).ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetPOW() + equipment.power_buff).ToString();
                 }
             }
 
@@ -402,7 +402,7 @@ public class PauseMenuHandler : MonoBehaviour
             //not changed
             if (equipment.defense_buff == 0)
             {
-                if (highlighted_party_member == 0)
+                if (highlighted_party_member == 0) 
                     menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetDEF().ToString();
                 else
                     menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetDEF().ToString();
@@ -425,11 +425,11 @@ public class PauseMenuHandler : MonoBehaviour
                 else
                 {
                     if (highlighted_party_member == 0)
-                        menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetDEF().ToString() + " - " + equipment.defense_buff.ToString()
-                            + " -> " + (data.GetDEF() - equipment.defense_buff).ToString();
+                        menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetDEF().ToString() + " - " + Mathf.Abs(equipment.defense_buff).ToString()
+                            + " -> " + (data.GetDEF() + equipment.defense_buff).ToString();
                     else
                         menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetDEF().ToString()
-                            + " - " + equipment.defense_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetDEF() - equipment.defense_buff).ToString();
+                            + " - " + Mathf.Abs(equipment.defense_buff).ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetDEF() + equipment.defense_buff).ToString();
                 }
             }
 
@@ -462,11 +462,11 @@ public class PauseMenuHandler : MonoBehaviour
                 else
                 {
                     if (highlighted_party_member == 0)
-                        menus[2].transform.GetChild(9).GetChild(3).GetComponent<Text>().text = "WIL:\t\t" + data.GetWIL().ToString() + " - " + equipment.will_buff.ToString()
-                            + " -> " + (data.GetWIL() - equipment.will_buff).ToString();
+                        menus[2].transform.GetChild(9).GetChild(3).GetComponent<Text>().text = "WIL:\t\t" + data.GetWIL().ToString() + " - " + Mathf.Abs(equipment.will_buff).ToString()
+                            + " -> " + (data.GetWIL() + equipment.will_buff).ToString();
                     else
                         menus[2].transform.GetChild(9).GetChild(3).GetComponent<Text>().text = "WIL:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetWIL().ToString()
-                            + " - " + equipment.will_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetWIL() - equipment.will_buff).ToString();
+                            + " - " + Mathf.Abs(equipment.will_buff).ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetWIL() + equipment.will_buff).ToString();
                 }
             }
 
@@ -499,11 +499,11 @@ public class PauseMenuHandler : MonoBehaviour
                 else
                 {
                     if (highlighted_party_member == 0)
-                        menus[2].transform.GetChild(9).GetChild(4).GetComponent<Text>().text = "RES:\t\t" + data.GetRES().ToString() + " - " + equipment.resistance_buff.ToString()
-                            + " -> " + (data.GetRES() - equipment.resistance_buff).ToString();
+                        menus[2].transform.GetChild(9).GetChild(4).GetComponent<Text>().text = "RES:\t\t" + data.GetRES().ToString() + " - " + Mathf.Abs(equipment.resistance_buff).ToString()
+                            + " -> " + (data.GetRES() + equipment.resistance_buff).ToString();
                     else
                         menus[2].transform.GetChild(9).GetChild(4).GetComponent<Text>().text = "RES:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetRES().ToString()
-                            + " - " + equipment.resistance_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetRES() - equipment.resistance_buff).ToString();
+                            + " - " + Mathf.Abs(equipment.resistance_buff).ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetRES() + equipment.resistance_buff).ToString();
                 }
             }
 
@@ -536,11 +536,11 @@ public class PauseMenuHandler : MonoBehaviour
                 else
                 {
                     if (highlighted_party_member == 0)
-                        menus[2].transform.GetChild(9).GetChild(5).GetComponent<Text>().text = "SPD:\t\t" + data.GetSP().ToString() + " - " + equipment.speed_buff.ToString()
-                            + " -> " + (data.GetSPD() - equipment.speed_buff).ToString();
+                        menus[2].transform.GetChild(9).GetChild(5).GetComponent<Text>().text = "SPD:\t\t" + data.GetSPD().ToString() + " - " + Mathf.Abs(equipment.speed_buff).ToString()
+                            + " -> " + (data.GetSPD() + equipment.speed_buff).ToString();
                     else
                         menus[2].transform.GetChild(9).GetChild(5).GetComponent<Text>().text = "SPD:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetSPD().ToString()
-                            + " - " + equipment.speed_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetSPD() - equipment.speed_buff).ToString();
+                            + " - " + Mathf.Abs(equipment.speed_buff).ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetSPD() + equipment.speed_buff).ToString();
                 }
             }
 
@@ -557,7 +557,7 @@ public class PauseMenuHandler : MonoBehaviour
             }
             else
             {
-                int bonus = equipment.speed_buff / Mathf.Abs(equipment.speed_buff);
+                int bonus = equipment.luck_buff / Mathf.Abs(equipment.luck_buff);
 
                 //positive
                 if (bonus == 1)
@@ -573,11 +573,11 @@ public class PauseMenuHandler : MonoBehaviour
                 else
                 {
                     if (highlighted_party_member == 0)
-                        menus[2].transform.GetChild(9).GetChild(6).GetComponent<Text>().text = "LCK:\t\t" + data.GetLCK().ToString() + " - " + equipment.luck_buff.ToString()
-                            + " -> " + (data.GetLCK() - equipment.luck_buff).ToString();
+                        menus[2].transform.GetChild(9).GetChild(6).GetComponent<Text>().text = "LCK:\t\t" + data.GetLCK().ToString() + " - " + Mathf.Abs(equipment.luck_buff).ToString()
+                            + " -> " + (data.GetLCK() + equipment.luck_buff).ToString();
                     else
                         menus[2].transform.GetChild(9).GetChild(6).GetComponent<Text>().text = "LCK:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetLCK().ToString()
-                            + " - " + equipment.luck_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetLCK() - equipment.luck_buff).ToString();
+                            + " - " + Mathf.Abs(equipment.luck_buff).ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetLCK() + equipment.luck_buff).ToString();
                 }
             }
         }
@@ -943,11 +943,11 @@ public class PauseMenuHandler : MonoBehaviour
                 else
                 {
                     if (highlighted_party_member == 0)
-                        menus[2].transform.GetChild(9).GetChild(0).GetComponent<Text>().text = "ATK:\t\t" + data.GetATK().ToString() + " + " + equipment.damage_buff.ToString()
+                        menus[2].transform.GetChild(9).GetChild(0).GetComponent<Text>().text = "ATK:\t\t" + data.GetATK().ToString() + " + " + Mathf.Abs(equipment.damage_buff).ToString()
                             + " -> " + (data.GetATK() + equipment.damage_buff).ToString();
                     else
                         menus[2].transform.GetChild(9).GetChild(0).GetComponent<Text>().text = "ATK:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetATK().ToString()
-                            + " - " + equipment.damage_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetATK() + equipment.damage_buff).ToString();
+                            + " - " + Mathf.Abs(equipment.damage_buff).ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetATK() + equipment.damage_buff).ToString();
                 }
             }
 
@@ -980,11 +980,11 @@ public class PauseMenuHandler : MonoBehaviour
                 else
                 {
                     if (highlighted_party_member == 0)
-                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPOW().ToString() + " - " + equipment.power_buff.ToString()
-                            + " -> " + (data.GetPOW() - equipment.power_buff).ToString();
+                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPOW().ToString() + " - " + Mathf.Abs(equipment.power_buff).ToString()
+                            + " -> " + (data.GetPOW() + equipment.power_buff).ToString();
                     else
                         menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString()
-                            + " - " + equipment.power_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetPOW() - equipment.power_buff).ToString();
+                            + " - " + Mathf.Abs(equipment.power_buff).ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetPOW() + equipment.power_buff).ToString();
                 }
             }
 
@@ -1017,11 +1017,11 @@ public class PauseMenuHandler : MonoBehaviour
                 else
                 {
                     if (highlighted_party_member == 0)
-                        menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetDEF().ToString() + " - " + equipment.defense_buff.ToString()
-                            + " -> " + (data.GetDEF() - equipment.defense_buff).ToString();
+                        menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetDEF().ToString() + " - " + Mathf.Abs(equipment.defense_buff).ToString()
+                            + " -> " + (data.GetDEF() + equipment.defense_buff).ToString();
                     else
                         menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetDEF().ToString()
-                            + " - " + equipment.defense_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetDEF() - equipment.defense_buff).ToString();
+                            + " - " + Mathf.Abs(equipment.defense_buff).ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetDEF() + equipment.defense_buff).ToString();
                 }
             }
 
@@ -1054,11 +1054,11 @@ public class PauseMenuHandler : MonoBehaviour
                 else
                 {
                     if (highlighted_party_member == 0)
-                        menus[2].transform.GetChild(9).GetChild(3).GetComponent<Text>().text = "WIL:\t\t" + data.GetWIL().ToString() + " - " + equipment.will_buff.ToString()
-                            + " -> " + (data.GetWIL() - equipment.will_buff).ToString();
+                        menus[2].transform.GetChild(9).GetChild(3).GetComponent<Text>().text = "WIL:\t\t" + data.GetWIL().ToString() + " - " + Mathf.Abs(equipment.will_buff).ToString()
+                            + " -> " + (data.GetWIL() + equipment.will_buff).ToString();
                     else
                         menus[2].transform.GetChild(9).GetChild(3).GetComponent<Text>().text = "WIL:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetWIL().ToString()
-                            + " - " + equipment.will_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetWIL() - equipment.will_buff).ToString();
+                            + " - " + Mathf.Abs(equipment.will_buff).ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetWIL() + equipment.will_buff).ToString();
                 }
             }
 
@@ -1091,11 +1091,11 @@ public class PauseMenuHandler : MonoBehaviour
                 else
                 {
                     if (highlighted_party_member == 0)
-                        menus[2].transform.GetChild(9).GetChild(4).GetComponent<Text>().text = "RES:\t\t" + data.GetRES().ToString() + " - " + equipment.resistance_buff.ToString()
-                            + " -> " + (data.GetRES() - equipment.resistance_buff).ToString();
+                        menus[2].transform.GetChild(9).GetChild(4).GetComponent<Text>().text = "RES:\t\t" + data.GetRES().ToString() + " - " + Mathf.Abs(equipment.resistance_buff).ToString()
+                            + " -> " + (data.GetRES() + equipment.resistance_buff).ToString();
                     else
                         menus[2].transform.GetChild(9).GetChild(4).GetComponent<Text>().text = "RES:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetRES().ToString()
-                            + " - " + equipment.resistance_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetRES() - equipment.resistance_buff).ToString();
+                            + " - " + Mathf.Abs(equipment.resistance_buff).ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetRES() + equipment.resistance_buff).ToString();
                 }
             }
 
@@ -1128,11 +1128,11 @@ public class PauseMenuHandler : MonoBehaviour
                 else
                 {
                     if (highlighted_party_member == 0)
-                        menus[2].transform.GetChild(9).GetChild(5).GetComponent<Text>().text = "SPD:\t\t" + data.GetSP().ToString() + " - " + equipment.speed_buff.ToString()
-                            + " -> " + (data.GetSPD() - equipment.speed_buff).ToString();
+                        menus[2].transform.GetChild(9).GetChild(5).GetComponent<Text>().text = "SPD:\t\t" + data.GetSPD().ToString() + " - " + Mathf.Abs(equipment.speed_buff).ToString()
+                            + " -> " + (data.GetSPD() + equipment.speed_buff).ToString();
                     else
                         menus[2].transform.GetChild(9).GetChild(5).GetComponent<Text>().text = "SPD:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetSPD().ToString()
-                            + " - " + equipment.speed_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetSPD() - equipment.speed_buff).ToString();
+                            + " - " + Mathf.Abs(equipment.speed_buff).ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetSPD() + equipment.speed_buff).ToString();
                 }
             }
 
@@ -1149,7 +1149,7 @@ public class PauseMenuHandler : MonoBehaviour
             }
             else
             {
-                int bonus = equipment.speed_buff / Mathf.Abs(equipment.speed_buff);
+                int bonus = equipment.luck_buff / Mathf.Abs(equipment.luck_buff);
 
                 //positive
                 if (bonus == 1)
@@ -1165,11 +1165,11 @@ public class PauseMenuHandler : MonoBehaviour
                 else
                 {
                     if (highlighted_party_member == 0)
-                        menus[2].transform.GetChild(9).GetChild(6).GetComponent<Text>().text = "LCK:\t\t" + data.GetLCK().ToString() + " - " + equipment.luck_buff.ToString()
-                            + " -> " + (data.GetLCK() - equipment.luck_buff).ToString();
+                        menus[2].transform.GetChild(9).GetChild(6).GetComponent<Text>().text = "LCK:\t\t" + data.GetLCK().ToString() + " - " + Mathf.Abs(equipment.luck_buff).ToString()
+                            + " -> " + (data.GetLCK() + equipment.luck_buff).ToString();
                     else
                         menus[2].transform.GetChild(9).GetChild(6).GetComponent<Text>().text = "LCK:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetLCK().ToString()
-                            + " - " + equipment.luck_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetLCK() - equipment.luck_buff).ToString();
+                            + " - " + Mathf.Abs(equipment.luck_buff).ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetLCK() + equipment.luck_buff).ToString();
                 }
             }
         }
@@ -1535,11 +1535,11 @@ public class PauseMenuHandler : MonoBehaviour
                 else
                 {
                     if (highlighted_party_member == 0)
-                        menus[2].transform.GetChild(9).GetChild(0).GetComponent<Text>().text = "ATK:\t\t" + data.GetATK().ToString() + " + " + equipment.damage_buff.ToString()
+                        menus[2].transform.GetChild(9).GetChild(0).GetComponent<Text>().text = "ATK:\t\t" + data.GetATK().ToString() + " + " + Mathf.Abs(equipment.damage_buff).ToString()
                             + " -> " + (data.GetATK() + equipment.damage_buff).ToString();
                     else
                         menus[2].transform.GetChild(9).GetChild(0).GetComponent<Text>().text = "ATK:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetATK().ToString()
-                            + " - " + equipment.damage_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetATK() + equipment.damage_buff).ToString();
+                            + " - " + Mathf.Abs(equipment.damage_buff).ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetATK() + equipment.damage_buff).ToString();
                 }
             }
 
@@ -1572,11 +1572,11 @@ public class PauseMenuHandler : MonoBehaviour
                 else
                 {
                     if (highlighted_party_member == 0)
-                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPOW().ToString() + " - " + equipment.power_buff.ToString()
-                            + " -> " + (data.GetPOW() - equipment.power_buff).ToString();
+                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPOW().ToString() + " - " + Mathf.Abs(equipment.power_buff).ToString()
+                            + " -> " + (data.GetPOW() + equipment.power_buff).ToString();
                     else
                         menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString()
-                            + " - " + equipment.power_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetPOW() - equipment.power_buff).ToString();
+                            + " - " + Mathf.Abs(equipment.power_buff).ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetPOW() + equipment.power_buff).ToString();
                 }
             }
 
@@ -1609,11 +1609,11 @@ public class PauseMenuHandler : MonoBehaviour
                 else
                 {
                     if (highlighted_party_member == 0)
-                        menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetDEF().ToString() + " - " + equipment.defense_buff.ToString()
-                            + " -> " + (data.GetDEF() - equipment.defense_buff).ToString();
+                        menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetDEF().ToString() + " - " + Mathf.Abs(equipment.defense_buff).ToString()
+                            + " -> " + (data.GetDEF() + equipment.defense_buff).ToString();
                     else
                         menus[2].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "DEF:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetDEF().ToString()
-                            + " - " + equipment.defense_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetDEF() - equipment.defense_buff).ToString();
+                            + " - " + Mathf.Abs(equipment.defense_buff).ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetDEF() + equipment.defense_buff).ToString();
                 }
             }
 
@@ -1646,11 +1646,11 @@ public class PauseMenuHandler : MonoBehaviour
                 else
                 {
                     if (highlighted_party_member == 0)
-                        menus[2].transform.GetChild(9).GetChild(3).GetComponent<Text>().text = "WIL:\t\t" + data.GetWIL().ToString() + " - " + equipment.will_buff.ToString()
-                            + " -> " + (data.GetWIL() - equipment.will_buff).ToString();
+                        menus[2].transform.GetChild(9).GetChild(3).GetComponent<Text>().text = "WIL:\t\t" + data.GetWIL().ToString() + " - " + Mathf.Abs(equipment.will_buff).ToString()
+                            + " -> " + (data.GetWIL() + equipment.will_buff).ToString();
                     else
                         menus[2].transform.GetChild(9).GetChild(3).GetComponent<Text>().text = "WIL:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetWIL().ToString()
-                            + " - " + equipment.will_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetWIL() - equipment.will_buff).ToString();
+                            + " - " + Mathf.Abs(equipment.will_buff).ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetWIL() + equipment.will_buff).ToString();
                 }
             }
 
@@ -1683,11 +1683,11 @@ public class PauseMenuHandler : MonoBehaviour
                 else
                 {
                     if (highlighted_party_member == 0)
-                        menus[2].transform.GetChild(9).GetChild(4).GetComponent<Text>().text = "RES:\t\t" + data.GetRES().ToString() + " - " + equipment.resistance_buff.ToString()
-                            + " -> " + (data.GetRES() - equipment.resistance_buff).ToString();
+                        menus[2].transform.GetChild(9).GetChild(4).GetComponent<Text>().text = "RES:\t\t" + data.GetRES().ToString() + " - " + Mathf.Abs(equipment.resistance_buff).ToString()
+                            + " -> " + (data.GetRES() + equipment.resistance_buff).ToString();
                     else
                         menus[2].transform.GetChild(9).GetChild(4).GetComponent<Text>().text = "RES:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetRES().ToString()
-                            + " - " + equipment.resistance_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetRES() - equipment.resistance_buff).ToString();
+                            + " - " + Mathf.Abs(equipment.resistance_buff).ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetRES() + equipment.resistance_buff).ToString();
                 }
             }
 
@@ -1720,11 +1720,11 @@ public class PauseMenuHandler : MonoBehaviour
                 else
                 {
                     if (highlighted_party_member == 0)
-                        menus[2].transform.GetChild(9).GetChild(5).GetComponent<Text>().text = "SPD:\t\t" + data.GetSP().ToString() + " - " + equipment.speed_buff.ToString()
-                            + " -> " + (data.GetSPD() - equipment.speed_buff).ToString();
+                        menus[2].transform.GetChild(9).GetChild(5).GetComponent<Text>().text = "SPD:\t\t" + data.GetSPD().ToString() + " - " + Mathf.Abs(equipment.speed_buff).ToString()
+                            + " -> " + (data.GetSPD() + equipment.speed_buff).ToString();
                     else
                         menus[2].transform.GetChild(9).GetChild(5).GetComponent<Text>().text = "SPD:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetSPD().ToString()
-                            + " - " + equipment.speed_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetSPD() - equipment.speed_buff).ToString();
+                            + " - " + Mathf.Abs(equipment.speed_buff).ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetSPD() + equipment.speed_buff).ToString();
                 }
             }
 
@@ -1741,7 +1741,7 @@ public class PauseMenuHandler : MonoBehaviour
             }
             else
             {
-                int bonus = equipment.speed_buff / Mathf.Abs(equipment.speed_buff);
+                int bonus = equipment.luck_buff / Mathf.Abs(equipment.luck_buff);
 
                 //positive
                 if (bonus == 1)
@@ -1757,11 +1757,11 @@ public class PauseMenuHandler : MonoBehaviour
                 else
                 {
                     if (highlighted_party_member == 0)
-                        menus[2].transform.GetChild(9).GetChild(6).GetComponent<Text>().text = "LCK:\t\t" + data.GetLCK().ToString() + " - " + equipment.luck_buff.ToString()
-                            + " -> " + (data.GetLCK() - equipment.luck_buff).ToString();
+                        menus[2].transform.GetChild(9).GetChild(6).GetComponent<Text>().text = "LCK:\t\t" + data.GetLCK().ToString() + " - " + Mathf.Abs(equipment.luck_buff).ToString()
+                            + " -> " + (data.GetLCK() + equipment.luck_buff).ToString();
                     else
                         menus[2].transform.GetChild(9).GetChild(6).GetComponent<Text>().text = "LCK:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetLCK().ToString()
-                            + " - " + equipment.luck_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetLCK() - equipment.luck_buff).ToString();
+                            + " - " + Mathf.Abs(equipment.luck_buff).ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetLCK() + equipment.luck_buff).ToString();
                 }
             }
         }
@@ -2027,7 +2027,9 @@ public class PauseMenuHandler : MonoBehaviour
                         equipping = false;
                         cursor_position = 0;
                         highlighted_party_member = 0;
+                        equip_type = 0;
                         base_pause_character_select = true;
+                        UpdateEquipMenuInfo();
                         break;
                     case 3:
                         break;
@@ -2200,6 +2202,8 @@ public class PauseMenuHandler : MonoBehaviour
                 if (!menu_input)
                 {
                     cursor_position--;
+                    equip_type--;
+                    UpdateEquipMenuInfo();
                 }
                 menu_input = true;
             }
@@ -2208,6 +2212,76 @@ public class PauseMenuHandler : MonoBehaviour
                 if (!menu_input)
                 {
                     cursor_position++;
+                    equip_type++;
+                    UpdateEquipMenuInfo();
+                }
+                menu_input = true;
+            }
+            else if (Input.GetButtonDown("Interact"))
+            {
+                if (!menu_input)
+                {
+                    //first see if there is at least one of the desired type of item to equip then enter equip mode if there is
+                    if (equip_type == 0)
+                    {
+                        Weapon temp = new Weapon();
+                        temp = null;
+                        for(int i=0; i<data.GetInventorySize(); i++)
+                        {
+                            if(data.GetItem(i) is Weapon)
+                            {
+                                temp = (Weapon)data.GetItem(i);
+                                break;
+                            }
+                        }
+
+                        if (temp != null)
+                        {
+                            equipping = true;
+                            cursor_position = 3;
+                            UpdateEquipMenuInfo(temp);
+                        }
+                    }
+                    else if(equip_type == 1)
+                    {
+                        Armor temp = new Armor();
+                        temp = null;
+                        for (int i = 0; i < data.GetInventorySize(); i++)
+                        {
+                            if (data.GetItem(i) is Armor)
+                            {
+                                temp = (Armor)data.GetItem(i);
+                                break;
+                            }
+                        }
+
+                        if (temp != null)
+                        {
+                            equipping = true;
+                            cursor_position = 3;
+                            UpdateEquipMenuInfo(temp);
+                        }
+                    }
+                    else
+                    {
+                        Trinket temp = new Trinket();
+                        temp = null;
+                        for (int i = 0; i < data.GetInventorySize(); i++)
+                        {
+                            if (data.GetItem(i) is Trinket)
+                            {
+                                temp = (Trinket)data.GetItem(i);
+                                break;
+                            }
+                        }
+
+                        if (temp != null)
+                        {
+                            equipping = true;
+                            cursor_position = 3;
+                            UpdateEquipMenuInfo(temp);
+                        }
+                    }
                 }
                 menu_input = true;
             }
@@ -2218,7 +2292,101 @@ public class PauseMenuHandler : MonoBehaviour
         }
         else
         {
-
+            //first get a list of the desired item type
+            List<Item> equippables = new List<Item>();
+            if(equip_type == 0)
+            {
+                for(int i=0; i<data.GetInventorySize(); i++)
+                {
+                    if(data.GetItem(i) is Weapon)
+                    {
+                        equippables.Add(data.GetItem(i));
+                    }
+                }
+            }
+            else if(equip_type == 1)
+            {
+                for (int i = 0; i < data.GetInventorySize(); i++)
+                {
+                    if (data.GetItem(i) is Armor)
+                    {
+                        equippables.Add(data.GetItem(i));
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < data.GetInventorySize(); i++)
+                {
+                    if (data.GetItem(i) is Trinket)
+                    {
+                        equippables.Add(data.GetItem(i));
+                    }
+                }
+            }
+            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 3)
+            {
+                if (!menu_input)
+                {
+                    cursor_position--;
+                    Debug.Log(((Weapon)equippables[cursor_position - 3 + equipped_offset]).defense_buff);
+                    if (equip_type == 0)
+                    {
+                        if (cursor_position - 3 + equipped_offset < equippables.Count)
+                            UpdateEquipMenuInfo((Weapon)equippables[cursor_position - 3 + equipped_offset]);
+                        else
+                            UpdateEquipMenuInfo();
+                    }
+                    else if (equip_type == 1)
+                    {
+                        if (cursor_position - 3 + equipped_offset < equippables.Count)
+                            UpdateEquipMenuInfo((Armor)equippables[cursor_position - 3 + equipped_offset]);
+                        else
+                            UpdateEquipMenuInfo();
+                    }
+                    else
+                    {
+                        if (cursor_position - 3 + equipped_offset < equippables.Count)
+                            UpdateEquipMenuInfo((Trinket)equippables[cursor_position - 3 + equipped_offset]);
+                        else
+                            UpdateEquipMenuInfo();
+                    }
+                }
+                menu_input = true;
+            }
+            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[3].positions.Count - 1)
+            {
+                if (!menu_input)
+                {
+                    cursor_position++;
+                    if (equip_type == 0)
+                    {
+                        if (cursor_position - 3 + equipped_offset < equippables.Count)
+                            UpdateEquipMenuInfo((Weapon)equippables[cursor_position - 3 + equipped_offset]);
+                        else
+                            UpdateEquipMenuInfo();
+                    }
+                    else if (equip_type == 1)
+                    {
+                        if (cursor_position - 3 + equipped_offset < equippables.Count)
+                            UpdateEquipMenuInfo((Armor)equippables[cursor_position - 3 + equipped_offset]);
+                        else
+                            UpdateEquipMenuInfo();
+                    }
+                    else
+                    {
+                        if (cursor_position - 3 + equipped_offset < equippables.Count)
+                            UpdateEquipMenuInfo((Trinket)equippables[cursor_position - 3 + equipped_offset]);
+                        else
+                            UpdateEquipMenuInfo();
+                    }
+                }
+                menu_input = true;
+            }
+            else
+            {
+                menu_input = false;
+            }
         }
         cursor.transform.position = cursor_positions[3].positions[cursor_position].transform.position;
     }
@@ -2243,6 +2411,53 @@ public class PauseMenuHandler : MonoBehaviour
 
         //define the player's data
         data = GetComponent<PlayerDataMono>().data;
+
+        //add temporary items for testing
+        Weapon test_weapon = new Weapon();
+        test_weapon.name = "TestWeapon";
+        test_weapon.image_file_path = "ItemSprites/TestWeaponIcon";
+        test_weapon.description = "A weapon of code!  Made for debugging so it's not really good...";
+        test_weapon.limit = 1;
+        test_weapon.amount = 1;
+        test_weapon.damage_buff = 80;
+        test_weapon.power_buff = 20;
+        test_weapon.defense_buff = 0;
+        test_weapon.will_buff = 0;
+        test_weapon.resistance_buff = 0;
+        test_weapon.speed_buff = -10;
+        test_weapon.luck_buff = 10;
+
+        Armor test_armor = new Armor();
+        test_armor.name = "TestArmor";
+        test_armor.image_file_path = "ItemSprites/TestArmorIcon";
+        test_armor.description = "A suit of armor made of code!  Awkward and clunky, just like a programmer's first draft...";
+        test_armor.limit = 1;
+        test_armor.amount = 1;
+        test_armor.damage_buff = 0;
+        test_armor.power_buff = 0;
+        test_armor.defense_buff = 50;
+        test_armor.will_buff = 10;
+        test_armor.resistance_buff = 50;
+        test_armor.speed_buff = -5;
+        test_armor.luck_buff = 10;
+
+        Trinket test_trinket = new Trinket();
+        test_trinket.name = "TestTrinket";
+        test_trinket.image_file_path = "ItemSprites/TestTrinketIcon";
+        test_trinket.description = "The jewel on the ring is value at 1 bit!  Not one bitcoin, like an actual bit of memory...";
+        test_trinket.limit = 1;
+        test_trinket.amount = 1;
+        test_trinket.damage_buff = 0;
+        test_trinket.power_buff = 60;
+        test_trinket.defense_buff = 10;
+        test_trinket.will_buff = 50;
+        test_trinket.resistance_buff = 10;
+        test_trinket.speed_buff = -15;
+        test_trinket.luck_buff = 20;
+
+        data.AddItem(test_weapon);
+        data.AddItem(test_armor);
+        data.AddItem(test_trinket);
     }
 
     // Update is called once per frame
@@ -2282,7 +2497,6 @@ public class PauseMenuHandler : MonoBehaviour
                     ItemMenuRoutine();
                     break;
                 case 2:
-                    UpdateEquipMenuInfo();
                     EquipMenuRoutine();
                     break;
                 default:

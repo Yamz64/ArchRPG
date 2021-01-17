@@ -12,6 +12,7 @@ public class PlayerData : CharacterStats
         SetImageFilepath("CharacterSprites/TestCharacter");
 
         SetName("Player");
+        SetDesc("This is the test player character...");
 
         SetLVL(10);
         SetMaxExperience(100);
@@ -23,8 +24,8 @@ public class PlayerData : CharacterStats
         SetSPMax(50);
         SetSP(45);
 
-        SetSAN(100);
         SetSANMax(100);
+        SetSAN(100);
 
         SetATK(50);
         SetPOW(50);
