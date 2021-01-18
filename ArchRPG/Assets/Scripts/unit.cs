@@ -13,6 +13,8 @@ public class unit : MonoBehaviour
     public int maxMP;           //Maximum MP possible
     public int currentMP;       //Current Mana/Skill Points
     public bool enemy;
+    public int position;        //0 == Frontline, 1 == Backline
+    public List<Attack> attacks;//List of attacks the unit can perform
 
     public Image view;          //Image of unit
     public Text nameText;       //Text object to project name to

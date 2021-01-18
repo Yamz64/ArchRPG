@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Different states of battle (turns)
 public enum battleState {  START, PLAYER, PARTY1, PARTY2, PARTY3, ENEMY, WIN, LOSE }
 
 public class BattleScript : MonoBehaviour
@@ -63,7 +64,7 @@ public class BattleScript : MonoBehaviour
     public int highlighted_item;
     //Current attack (index) being highlighted by cursor
     public int highlighted_attack;
-    //
+    //Bool to check whether the menu is accepting input
     private bool menu_input;
     //Bool to check whether the player has the action menu open
     private bool action_select_menu;
@@ -72,9 +73,9 @@ public class BattleScript : MonoBehaviour
     //Bool to check whether the player has the item menu open
     private bool item_select_menu;
 
-    private GameObject cursor;          //The animated cursor 
-    private List<GameObject> menus;     //The list of menu objects
-    private PlayerData data = new PlayerData();            //Object to hold player data
+    private GameObject cursor;                      //The animated cursor 
+    private List<GameObject> menus;                 //The list of menu objects
+    private PlayerData data = new PlayerData();     //Object to hold player data
 
     //Main text to let player know state of battle
     public Text dialogue;
@@ -89,6 +90,7 @@ public class BattleScript : MonoBehaviour
     public Transform member1Station; public Transform member2Station; public Transform member3Station;
     public Transform enemyStation;
 
+    //List of party spawn locations
     private List<Transform> partyStations;
 
     //Units to use in battle
@@ -96,12 +98,14 @@ public class BattleScript : MonoBehaviour
     unit member1Unit; unit member2Unit; unit member3Unit;
     unit enemyUnit;
 
+    //List of party units
     private List<GameObject> partyUnits;
 
     //Variables used to make sure only one action is taken per turn
     private float time = 2;
     private float timer = 2;
 
+    //Variables to use in the swap menu
     private int i1 = 5;
     private int i2 = 5;
     private Transform p1;
@@ -141,6 +145,7 @@ public class BattleScript : MonoBehaviour
         item_select_menu = false;
     }
 
+    //Open menu to choose whether an attack is used
     public void OpenUseAttackMenu()
     {
         transform.GetChild(1).GetChild(6).GetChild(6).gameObject.SetActive(true);
@@ -148,6 +153,7 @@ public class BattleScript : MonoBehaviour
         attack_select_menu = true;
     }
 
+    //Close the use attack menu
     public void CloseUseAttackMenu()
     {
         transform.GetChild(1).GetChild(6).GetChild(6).gameObject.SetActive(false);
@@ -270,7 +276,7 @@ public class BattleScript : MonoBehaviour
                         //action_select_menu = true;
                         OpenMenu(3);
                         transform.GetChild(1).GetChild(8).GetChild(2).GetComponent<Text>().text = "Swap:\n\n";
-                        timer = 1;
+                        //timer = 1;
                         break;
                     case 3:
                         break;
@@ -291,6 +297,7 @@ public class BattleScript : MonoBehaviour
                     cursor_position--;
                 menu_input = true;
             }
+            //If input is down and not at bottom
             else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[0].positions.Count - 1)
             {
                 if (!menu_input)
@@ -375,6 +382,7 @@ public class BattleScript : MonoBehaviour
         }
         else if (state == battleState.PLAYER)
         {
+            //If input is up and in the attack select menu
             if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 4)
             {
                 if (!menu_input)
@@ -383,6 +391,7 @@ public class BattleScript : MonoBehaviour
                 }
                 menu_input = true;
             }
+            //If input is down and in the attack select menu
             else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[1].positions.Count - 1)
             {
                 if (!menu_input)
@@ -391,6 +400,7 @@ public class BattleScript : MonoBehaviour
                 }
                 menu_input = true;
             }
+            //If player clicks on an option
             else if (Input.GetButtonDown("Interact"))
             {
                 switch (cursor_position)
@@ -402,12 +412,6 @@ public class BattleScript : MonoBehaviour
                         CloseUseAttackMenu();
                         break;
                     case 5:
-                        data.RemoveItem(highlighted_item);
-                        UpdateInventoryItems();
-                        UpdateInventoryImageandDesc();
-                        CloseUseAttackMenu();
-                        break;
-                    case 6:
                         CloseUseAttackMenu();
                         break;
                     default:
@@ -552,11 +556,13 @@ public class BattleScript : MonoBehaviour
     {
         if (state == battleState.PLAYER)
         {
+            //If first unit hasn't been selected
             if (i1 == 5)
             {
                 transform.GetChild(1).GetChild(8).GetChild(2).GetComponent<Text>().text = "Swap:\n\n" 
                     + partyUnits[cursor_position].GetComponent<unit>().unitName;
             }
+            //If second unit hasn't been selected
             else if (i2 == 5)
             {
                 transform.GetChild(1).GetChild(8).GetChild(2).GetComponent<Text>().text = "Swap:\n\n" + p1p.GetComponent<unit>().unitName;
@@ -616,10 +622,17 @@ public class BattleScript : MonoBehaviour
                     {
                         cursor.transform.Rotate(0.0f, 0.0f, 180.0f);
                     }
-                    
+
                     CloseMenu(3);
-                    OpenMenu(0);
+                    menu_input = false;
+                    active_menu = 0;
                     transform.GetChild(1).GetChild(8).GetChild(3).gameObject.SetActive(false);
+                    for (int i = 0; i < 4; i++)
+                    {
+                        Debug.Log("Unit " + i + " == " + partyUnits[i].GetComponent<unit>().unitName);
+                    }
+                    state = battleState.ENEMY;
+                    StartCoroutine(enemyAttack());
                 }
             }
             else if (Input.GetButtonDown("Cancel"))
@@ -627,7 +640,8 @@ public class BattleScript : MonoBehaviour
                 if (i1 == 5)
                 {
                     CloseMenu(3);
-                    OpenMenu(0);
+                    menu_input = false;
+                    active_menu = 0;
                 }
                 else if (i2 == 5)
                 {
@@ -724,7 +738,7 @@ public class BattleScript : MonoBehaviour
     //Deal damage to enemy, check if it is dead, and act accordingly (win battle or enemy turn)
     IEnumerator playerAttack(Attack ata, unit uni, unit target)
     {
-        dialogue.text = "Player is attacking";
+        dialogue.text = "Player used " + ata.name;
 
         yield return new WaitForSeconds(1f);
 
@@ -831,6 +845,7 @@ public class BattleScript : MonoBehaviour
         StartCoroutine(healPlayer(5));
     }
 
+    //Player chooses to skip their turn
     public void SkipButton()
     {
         if (state != battleState.PLAYER) return;
@@ -844,34 +859,31 @@ public class BattleScript : MonoBehaviour
         menu_input = false;
         item_select_menu = false;
 
-        //Debug.Log("Bools set");
 
         //define the cursor's gameObject
-        cursor = transform.GetChild(1).GetChild(transform.GetChild(1).childCount - 2).gameObject;
-        //Debug.Log("Cursor set set");
+        cursor = transform.GetChild(1).GetChild(transform.GetChild(1).childCount - 1).gameObject;
 
         //define all the menus
         menus = new List<GameObject>();
-        for (int i = 5; i < transform.GetChild(1).childCount - 3; i++)
+        for (int i = 5; i < transform.GetChild(1).childCount - 2; i++)
         {
             menus.Add(transform.GetChild(1).GetChild(i).gameObject);
         }
-        //Debug.Log("Menus set");
 
+        //Set p1 and p2 to default locations
         p1 = new GameObject().transform;
         p2 = new GameObject().transform;
 
+        //Add unit spawn spots to list
         partyStations = new List<Transform>();
         partyStations.Add(playerStation.transform);
         partyStations.Add(member1Station.transform);
         partyStations.Add(member2Station.transform);
         partyStations.Add(member3Station.transform);
 
-        //Debug.Log("Stations set");
 
         partyUnits = new List<GameObject>();
 
-        //Debug.Log("Units set");
 
         state = battleState.START;
         StartCoroutine(setupBattle());
@@ -880,7 +892,8 @@ public class BattleScript : MonoBehaviour
     void Update()
     {
         cursor.SetActive(true);
-        if (state == battleState.PLAYER)
+        if (state == battleState.PLAYER || state == battleState.PARTY1 || state == battleState.PARTY2
+            || state == battleState.PARTY3)
         {
             //handle cursor movement in the various menus
             switch (active_menu)
