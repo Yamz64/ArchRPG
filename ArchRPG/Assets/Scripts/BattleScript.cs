@@ -270,6 +270,7 @@ public class BattleScript : MonoBehaviour
                         //action_select_menu = true;
                         OpenMenu(3);
                         transform.GetChild(1).GetChild(8).GetChild(2).GetComponent<Text>().text = "Swap:\n\n";
+                        timer = 1;
                         break;
                     case 3:
                         break;
@@ -568,18 +569,18 @@ public class BattleScript : MonoBehaviour
                 cursor_position += 2;
             }
             //If input is up and the cursor is not at the top yet
-            else if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 1)
+            else if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 1 && cursor_position < 4)
             {
                 cursor_position -= 2;
             }
             //If input is right and the cursor is not at the right side yet
-            else if (Input.GetAxisRaw("Horizontal") > 0.0f && cursor_position != 1 && cursor_position != 3)
+            else if (Input.GetAxisRaw("Horizontal") > 0.0f && cursor_position >= 0 && cursor_position != 1 && cursor_position < 3)
             {
                 cursor_position++;
                 cursor.transform.Rotate(0.0f, 0.0f, 180.0f);
             }
             //If input is left and the cursor is not at the left side yet
-            else if (Input.GetAxisRaw("Horizontal") < 0.0f && cursor_position != 0 && cursor_position != 2)
+            else if (Input.GetAxisRaw("Horizontal") < 0.0f && cursor_position > 0 && cursor_position != 2 && cursor_position <= 3)
             {
                 cursor_position--;
                 cursor.transform.Rotate(0.0f, 0.0f, 180.0f);
@@ -595,14 +596,43 @@ public class BattleScript : MonoBehaviour
                     p1p = partyUnits[cursor_position];
                     transform.GetChild(1).GetChild(8).GetChild(3).gameObject.SetActive(true);
                 }
-                else if (i2 == 5 && i1 != i2)
+                else if (i2 == 5 && i1 != cursor_position)
                 {
                     p2.position = partyStations[cursor_position].position;
                     i2 = cursor_position;
                     p2p = partyUnits[cursor_position];
 
+                    partyStations[i1] = p2;
+                    partyStations[i2] = p1;
                     
+                    partyUnits[i1].transform.position = p2p.transform.position;
+                    partyUnits[i2].transform.position = p1.position;
+                    partyUnits[i1] = p2p;
+                    partyUnits[i2] = p1p;
+                    i1 = 5;
+                    i2 = 5;
 
+                    if (cursor_position == 1 || cursor_position == 3)
+                    {
+                        cursor.transform.Rotate(0.0f, 0.0f, 180.0f);
+                    }
+                    
+                    CloseMenu(3);
+                    OpenMenu(0);
+                    transform.GetChild(1).GetChild(8).GetChild(3).gameObject.SetActive(false);
+                }
+            }
+            else if (Input.GetButtonDown("Cancel"))
+            {
+                if (i1 == 5)
+                {
+                    CloseMenu(3);
+                    OpenMenu(0);
+                }
+                else if (i2 == 5)
+                {
+                    i1 = 5;
+                    transform.GetChild(1).GetChild(8).GetChild(3).gameObject.SetActive(false);
                 }
             }
         }
@@ -617,7 +647,7 @@ public class BattleScript : MonoBehaviour
         //Create player unit
         GameObject playerGo = Instantiate(playerPrefab, playerStation);
         playerUnit = playerGo.GetComponent<unit>();
-        partyUnits.Add(playerGo);
+        partyUnits.Add(playerGo.gameObject);
 
         //Create enemy unit
         GameObject enemyGo = Instantiate(enemyPrefab, enemyStation);
@@ -633,7 +663,7 @@ public class BattleScript : MonoBehaviour
             GameObject member1Go = Instantiate(member1Prefab, member1Station);
             member1Unit = member1Go.GetComponent<unit>();
             member1Unit.setHUD();
-            partyUnits.Add(member1Go);
+            partyUnits.Add(member1Go.gameObject);
         }
         else
         {
@@ -646,7 +676,7 @@ public class BattleScript : MonoBehaviour
             GameObject member2Go = Instantiate(member2Prefab, member2Station);
             member2Unit = member2Go.GetComponent<unit>();
             member2Unit.setHUD();
-            partyUnits.Add(member2Go);
+            partyUnits.Add(member2Go.gameObject);
         }
         else
         {
@@ -659,7 +689,7 @@ public class BattleScript : MonoBehaviour
             GameObject member3Go = Instantiate(member3Prefab, member3Station);
             member3Unit = member3Go.GetComponent<unit>();
             member3Unit.setHUD();
-            partyUnits.Add(member3Go);
+            partyUnits.Add(member3Go.gameObject);
         }
         else
         {
@@ -814,23 +844,34 @@ public class BattleScript : MonoBehaviour
         menu_input = false;
         item_select_menu = false;
 
+        //Debug.Log("Bools set");
+
         //define the cursor's gameObject
-        cursor = transform.GetChild(1).GetChild(transform.GetChild(1).childCount - 1).gameObject;
+        cursor = transform.GetChild(1).GetChild(transform.GetChild(1).childCount - 2).gameObject;
+        //Debug.Log("Cursor set set");
 
         //define all the menus
         menus = new List<GameObject>();
-        for (int i = 5; i < transform.GetChild(1).childCount - 2; i++)
+        for (int i = 5; i < transform.GetChild(1).childCount - 3; i++)
         {
             menus.Add(transform.GetChild(1).GetChild(i).gameObject);
         }
+        //Debug.Log("Menus set");
+
+        p1 = new GameObject().transform;
+        p2 = new GameObject().transform;
 
         partyStations = new List<Transform>();
-        partyStations.Add(playerStation);
-        partyStations.Add(member1Station);
-        partyStations.Add(member2Station);
-        partyStations.Add(member3Station);
+        partyStations.Add(playerStation.transform);
+        partyStations.Add(member1Station.transform);
+        partyStations.Add(member2Station.transform);
+        partyStations.Add(member3Station.transform);
+
+        //Debug.Log("Stations set");
 
         partyUnits = new List<GameObject>();
+
+        //Debug.Log("Units set");
 
         state = battleState.START;
         StartCoroutine(setupBattle());
@@ -854,6 +895,7 @@ public class BattleScript : MonoBehaviour
                     ItemMenuRoutine();
                     break;
                 case 3:
+                    SwapMenuRoutine();
                     break;
                 default:
                     break;
