@@ -16,6 +16,18 @@ public class unit : MonoBehaviour
     public int position;        //0 == Frontline, 1 == Backline
     public List<Attack> attacks;//List of attacks the unit can perform
 
+    //< Status Effects >//
+    bool BFTrauma = false;
+    bool paralyzed = false;
+    bool crying = false;
+    bool poison = false;
+    bool soaked = false;
+    bool flammable = false;
+    bool exhausted = false;
+    bool knockedDown = false;
+    bool maddened = false;
+    bool indifference = false;
+
     public Image view;          //Image of unit
     public Text nameText;       //Text object to project name to
     public Image nameTextBack;  //Background for the text

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 //Different states of battle (turns)
-public enum battleState {  START, PLAYER, PARTY1, PARTY2, PARTY3, ENEMY, WIN, LOSE }
+public enum battleState {  START, PLAYER, PARTY1, PARTY2, PARTY3, ATTACK, ENEMY, WIN, LOSE }
 
 public class BattleScript : MonoBehaviour
 {
@@ -25,7 +25,7 @@ public class BattleScript : MonoBehaviour
 	    Get Sprite ready
 
     For each member/enemy in the list:
-	    Player:		    Choose action (attack, defend, use item, etc.)
+	    Player (Party Member):		    Choose action (attack, defend, use item, etc.)
 	    Enemy:		    Have action chosen based on probability/circumstances (AI)
 	    Record damage from attacks, skip characters who have health below 0
 
@@ -55,7 +55,7 @@ public class BattleScript : MonoBehaviour
     [SerializeField]
     public List<MenuPositions> cursor_positions;
 
-    //
+    //Int to track how many items away from the bottom before the menu can start scrolling
     public int inventory_offset;
     //Int to track how many attacks away from the bottom before the menu can start scrolling
     public int attack_offset;
@@ -552,6 +552,12 @@ public class BattleScript : MonoBehaviour
     }
 
     //Use to navigate through the swap process
+    /*
+     * To Work on:
+     * Multiple swaps
+     * Swap at the end of the party's turn
+     * Making sure backline sprites appear on top of frontline
+     */
     public void SwapMenuRoutine()
     {
         if (state == battleState.PLAYER)

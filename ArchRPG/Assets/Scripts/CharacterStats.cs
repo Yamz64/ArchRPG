@@ -5,11 +5,11 @@ using UnityEngine;
 public class CharacterStats
 {
     //--ACCESSORS--
-    public int GetHP() { return HP; }
+    public int GetHP()  { return HP; }
     public int GetHPMAX() { return HP_max; }
     public int GetSAN() { return SAN; }
     public int GetSANMax() { return SAN_max; }
-    public int GetSP() { return SP; }
+    public int GetSP()  { return SP; }
     public int GetSPMax() { return SP_max; }
     public int GetATK() { return ATK; }
     public int GetPOW() { return POW; }

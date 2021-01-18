@@ -23,5 +23,12 @@ public class Attack : Ability
         user.setMP(user.currentMP - cost);
     }
     public int damage;  //int denotes the amount of damage the attack will do
-
+    /*
+     * 0 = Physical
+     * 1 = Psychic
+     * 2 = Acid
+     * 3 = Fire 
+     * 4 = Electric
+     */
+    public int damageType; 
 }
