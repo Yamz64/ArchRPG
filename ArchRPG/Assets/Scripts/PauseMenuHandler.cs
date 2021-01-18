@@ -2026,7 +2026,6 @@ public class PauseMenuHandler : MonoBehaviour
                     case 2:
                         equipping = false;
                         cursor_position = 0;
-                        highlighted_party_member = 0;
                         equip_type = 0;
                         base_pause_character_select = true;
                         UpdateEquipMenuInfo();
@@ -2072,10 +2071,12 @@ public class PauseMenuHandler : MonoBehaviour
                 if(cursor_position == 0)
                 {
                     OpenMenu(2);
+                    UpdateEquipMenuInfo();
                 }
                 else if(cursor_position < data.GetPartySize()+1)
                 {
                     OpenMenu(2);
+                    UpdateEquipMenuInfo();
                 }
             }
 
@@ -2470,6 +2471,7 @@ public class PauseMenuHandler : MonoBehaviour
             {
                 GetComponent<PlayerMovement>().interaction_protection = true;
                 cursor.SetActive(true);
+                highlighted_party_member = 0;
                 OpenMenu(0);
                 UpdatePartyInfo();
             }
