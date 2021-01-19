@@ -2890,7 +2890,39 @@ public class PauseMenuHandler : MonoBehaviour
 
     public void PositionMenuRoutine()
     {
-
+        //right
+        if(Input.GetAxisRaw("Horizontal") > 0.0f && cursor_position < 3)
+        {
+            if (!menu_input)
+                cursor_position++;
+            menu_input = true;
+        }
+        //left
+        else if (Input.GetAxisRaw("Horizontal") < 0.0f && cursor_position > 0)
+        {
+            if (!menu_input)
+                cursor_position--;
+            menu_input = true;
+        }
+        //up
+        else if(Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 1)
+        {
+            if (!menu_input)
+                cursor_position -= 2;
+            menu_input = true;
+        }
+        //down
+        else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < 2)
+        {
+            if (!menu_input)
+                cursor_position += 2;
+            menu_input = true;
+        }
+        else
+        {
+            menu_input = false;
+        }
+        cursor.transform.position = cursor_positions[4].positions[cursor_position].position;
     }
 
     // Start is called before the first frame update
