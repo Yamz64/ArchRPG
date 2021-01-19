@@ -32,28 +32,32 @@ public class unit : MonoBehaviour
     public Text nameText;       //Text object to project name to
     public Image nameTextBack;  //Background for the text
     public Text levelText;      //Text object to project level to
-    public Slider hpSlider;     //Slider to project hit points to
-    public Slider mpSlider;     //Slider to project mana/skill points to
+    public Image hpBar;         //Bar to project hit points to
+    public Image mpBar;         //Bar to project mana/skill points to
 
     //Function to set up the HUD with important data
     public void setHUD()        
     {
         nameText.text = unitName;
         levelText.text = "Lvl : " + level;
-        hpSlider.maxValue = maxHP;
-        hpSlider.value = currentHP;
+        hpBar.fillAmount = (float)currentHP / maxHP;
+        if (!enemy)
+        {
+            if (maxMP <= 0) { maxMP = 1; }
+            mpBar.fillAmount = (float)currentMP / maxMP;
+        }
     }
 
     //Set the current value of the HP slider
     public void setHP(int hp)
     {
-        hpSlider.value = hp;
+        hpBar.GetComponent<Image>().fillAmount = (float)hp / maxHP;
     }
 
     //Set the current value of the MP slider
     public void setMP(int mp)
     {
-        mpSlider.value = mp;
+        mpBar.GetComponent<Image>().fillAmount = (float)mp / maxMP;
     }
 
     //Adjust the health of the slide to reflect damage taken

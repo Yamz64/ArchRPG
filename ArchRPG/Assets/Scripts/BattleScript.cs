@@ -112,6 +112,7 @@ public class BattleScript : MonoBehaviour
     private Transform p2;
     private GameObject p1p;
     private GameObject p2p;
+    private List<GameObject> swaps;
 
     //Function to open the menu at the given index
     public void OpenMenu(int index)
@@ -601,18 +602,21 @@ public class BattleScript : MonoBehaviour
             //and then swap once there are 2 of them
             else if (Input.GetButtonDown("Interact"))
             {
-                if (i1 == 5)
+                if (i1 == 5 && !swaps.Contains(partyUnits[cursor_position]))
                 {
                     p1.position = partyStations[cursor_position].position;
                     i1 = cursor_position;
                     p1p = partyUnits[cursor_position];
                     transform.GetChild(1).GetChild(8).GetChild(3).gameObject.SetActive(true);
                 }
-                else if (i2 == 5 && i1 != cursor_position)
+                else if (i2 == 5 && i1 != cursor_position && !swaps.Contains(partyUnits[cursor_position]))
                 {
                     p2.position = partyStations[cursor_position].position;
                     i2 = cursor_position;
                     p2p = partyUnits[cursor_position];
+
+                    swaps.Add(partyUnits[i1].gameObject);
+                    swaps.Add(partyUnits[i2].gameObject);
 
                     partyStations[i1] = p2;
                     partyStations[i2] = p1;
@@ -623,6 +627,7 @@ public class BattleScript : MonoBehaviour
                     partyUnits[i2] = p1p;
                     i1 = 5;
                     i2 = 5;
+
 
                     if (cursor_position == 1 || cursor_position == 3)
                     {
@@ -659,6 +664,16 @@ public class BattleScript : MonoBehaviour
 
         //update cursor position
         cursor.transform.position = cursor_positions[3].positions[cursor_position].position;
+    }
+
+    IEnumerator partyRoutine()
+    {
+        List<GameObject> partyMembers = partyUnits;
+        for (int i = 0; i < partyMembers.Count; i++)
+        {
+
+        }
+        yield return new WaitForSeconds(2f);
     }
 
     //Create battle characters, set up HUD's, display text, and start player turn
@@ -867,11 +882,11 @@ public class BattleScript : MonoBehaviour
 
 
         //define the cursor's gameObject
-        cursor = transform.GetChild(1).GetChild(transform.GetChild(1).childCount - 1).gameObject;
+        cursor = transform.GetChild(1).GetChild(transform.GetChild(1).childCount - 2).gameObject;
 
         //define all the menus
         menus = new List<GameObject>();
-        for (int i = 5; i < transform.GetChild(1).childCount - 2; i++)
+        for (int i = 5; i < transform.GetChild(1).childCount - 3; i++)
         {
             menus.Add(transform.GetChild(1).GetChild(i).gameObject);
         }
@@ -879,6 +894,7 @@ public class BattleScript : MonoBehaviour
         //Set p1 and p2 to default locations
         p1 = new GameObject().transform;
         p2 = new GameObject().transform;
+        swaps = new List<GameObject>();
 
         //Add unit spawn spots to list
         partyStations = new List<Transform>();
@@ -886,6 +902,8 @@ public class BattleScript : MonoBehaviour
         partyStations.Add(member1Station.transform);
         partyStations.Add(member2Station.transform);
         partyStations.Add(member3Station.transform);
+
+        
 
 
         partyUnits = new List<GameObject>();
