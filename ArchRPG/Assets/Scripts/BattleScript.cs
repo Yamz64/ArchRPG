@@ -114,6 +114,8 @@ public class BattleScript : MonoBehaviour
     private GameObject p2p;
     private List<GameObject> swaps;
 
+    private int currentUnit = 0;
+
     //Function to open the menu at the given index
     public void OpenMenu(int index)
     {
@@ -162,6 +164,7 @@ public class BattleScript : MonoBehaviour
         attack_select_menu = false;
     }
 
+    //Update list of items in item menu
     public void UpdateInventoryItems()
     {
         //first get all of the item view slots and store them in a temporary list
@@ -188,6 +191,26 @@ public class BattleScript : MonoBehaviour
         }
     }
 
+    //Update list of attacks in attack menu
+    public void UpdateAttackList()
+    {
+        List<Text> attack_viewer = new List<Text>();
+
+        for (int i = 0; i < cursor_positions[1].positions.Count - 2; i++)
+        {
+            if (i + attack_offset < partyUnits[currentUnit].GetComponent<unit>().attacks.Count)
+            {
+                attack_viewer[i].text = partyUnits[currentUnit].GetComponent<unit>().getAttack(i + attack_offset).name;
+
+            }
+            else
+            {
+                attack_viewer[i].text = "";
+            }
+        }
+    }
+
+    //Update image/description based on selected item
     public void UpdateInventoryImageandDesc()
     {
         //Get the item that is currently selected
@@ -214,6 +237,36 @@ public class BattleScript : MonoBehaviour
             transform.GetChild(1).GetChild(7).GetChild(10).GetComponent<Image>().sprite = null;
             transform.GetChild(1).GetChild(7).GetChild(10).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
             transform.GetChild(1).GetChild(7).GetChild(9).GetComponent<Text>().text = "";
+        }
+    }
+
+    //Update image and descriptions based on selected attack
+    public void UpdateAttackImageandDesc()
+    {
+        if (cursor_position + attack_offset < partyUnits[currentUnit].GetComponent<unit>().attacks.Count)
+        {
+            Attack attack = partyUnits[currentUnit].GetComponent<unit>().getAttack(cursor_position + attack_offset);
+
+            transform.GetChild(1).GetChild(6).GetChild(10).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+
+            if (attack.image_file_path == "" || attack.image_file_path == null)
+            {
+                transform.GetChild(1).GetChild(6).GetChild(10).GetComponent<Image>().sprite = Resources.Load<Sprite>("AttackSprites/NullItem");
+            }
+            else
+            {
+                transform.GetChild(1).GetChild(6).GetChild(10).GetComponent<Image>().sprite = Resources.Load<Sprite>(attack.image_file_path);
+            }
+            //update item description
+            transform.GetChild(1).GetChild(6).GetChild(11).GetComponent<Text>().text = attack.desc1;
+            transform.GetChild(1).GetChild(6).GetChild(12).GetComponent<Text>().text = attack.desc2;
+        }
+        else
+        {
+            transform.GetChild(1).GetChild(6).GetChild(10).GetComponent<Image>().sprite = null;
+            transform.GetChild(1).GetChild(6).GetChild(10).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+            transform.GetChild(1).GetChild(6).GetChild(11).GetComponent<Text>().text = "";
+            transform.GetChild(1).GetChild(6).GetChild(12).GetComponent<Text>().text = "";
         }
     }
 
@@ -316,7 +369,7 @@ public class BattleScript : MonoBehaviour
     }
 
     //Used to navigate the basic attack menu
-    public void AttackMenuRoutine()
+    public void AttackMenuRoutine(int uniNum)
     {
         //change position of cursor in the menu if in item select mode
         if (attack_select_menu == false && state == battleState.PLAYER)
@@ -328,6 +381,7 @@ public class BattleScript : MonoBehaviour
                 {
                     cursor_position--;
                     highlighted_attack--;
+                    UpdateAttackImageandDesc();
                 }
                 menu_input = true;
             }
@@ -338,6 +392,7 @@ public class BattleScript : MonoBehaviour
                 {
                     cursor_position++;
                     highlighted_attack++;
+                    UpdateAttackImageandDesc();
                 }
                 menu_input = true;
             }
@@ -348,6 +403,8 @@ public class BattleScript : MonoBehaviour
                 {
                     attack_offset--;
                     highlighted_attack--;
+                    UpdateAttackList();
+                    UpdateAttackImageandDesc();
                 }
                 menu_input = true;
             }
@@ -359,6 +416,8 @@ public class BattleScript : MonoBehaviour
                 {
                     attack_offset++;
                     highlighted_attack++;
+                    UpdateAttackList();
+                    UpdateAttackImageandDesc();
                 }
                 menu_input = true;
             }
@@ -408,8 +467,8 @@ public class BattleScript : MonoBehaviour
                 {
                     case 4:
                         data.UseItem(highlighted_item);
-                        UpdateInventoryItems();
-                        UpdateInventoryImageandDesc();
+                        UpdateAttackList();
+                        UpdateAttackImageandDesc();
                         CloseUseAttackMenu();
                         break;
                     case 5:
@@ -666,16 +725,6 @@ public class BattleScript : MonoBehaviour
         cursor.transform.position = cursor_positions[3].positions[cursor_position].position;
     }
 
-    IEnumerator partyRoutine()
-    {
-        List<GameObject> partyMembers = partyUnits;
-        for (int i = 0; i < partyMembers.Count; i++)
-        {
-
-        }
-        yield return new WaitForSeconds(2f);
-    }
-
     //Create battle characters, set up HUD's, display text, and start player turn
     IEnumerator setupBattle()
     {
@@ -926,7 +975,7 @@ public class BattleScript : MonoBehaviour
                     BaseActionMenuRoutine();
                     break;
                 case 1:
-                    AttackMenuRoutine();
+                    AttackMenuRoutine(currentUnit);
                     break;
                 case 2:
                     ItemMenuRoutine();

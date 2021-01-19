@@ -48,6 +48,30 @@ public class unit : MonoBehaviour
         }
     }
 
+    //Get the current Hit Points of the unit
+    public int getHP()    { return currentHP;   }
+
+    //Get the current skill points/MP of the unit
+    public int getMP()    { return currentMP;   }
+
+    //Get the attack at the given index
+    public Attack getAttack(int index)
+    {
+        if (index < attacks.Count)
+        {
+            return attacks[index];
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public bool useAttack(int index, unit target)
+    {
+        return false;
+    }
+
     //Set the current value of the HP slider
     public void setHP(int hp)
     {

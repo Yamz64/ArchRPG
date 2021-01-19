@@ -30,5 +30,8 @@ public class Attack : Ability
      * 3 = Fire 
      * 4 = Electric
      */
-    public int damageType; 
+    public int damageType;
+    public string image_file_path;
+    public string desc1;
+    public string desc2;
 }
