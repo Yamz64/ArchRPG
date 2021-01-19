@@ -14070,11 +14070,6 @@ MonoBehaviour:
     - {fileID: 1247104883}
     - {fileID: 575388307}
   - positions:
-    - {fileID: 775391091}
-    - {fileID: 1510991318}
-    - {fileID: 1206356374}
-    - {fileID: 533348856}
-  - positions:
     - {fileID: 2115891830}
     - {fileID: 1129569436}
     - {fileID: 1434782242}
@@ -14082,6 +14077,11 @@ MonoBehaviour:
     - {fileID: 749964972}
     - {fileID: 1787331182}
     - {fileID: 1075487692}
+  - positions:
+    - {fileID: 775391091}
+    - {fileID: 1510991318}
+    - {fileID: 1206356374}
+    - {fileID: 1374017940}
   inventory_offset: 0
   equipped_offset: 0
   highlighted_item: 0
