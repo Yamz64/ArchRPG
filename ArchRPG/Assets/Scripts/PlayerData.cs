@@ -34,6 +34,8 @@ public class PlayerData : CharacterStats
         SetRES(50);
         SetSPD(50);
         SetLCK(50);
+
+        SetPos(0);
     }
 
     public int GetExperience() { return experience; }
@@ -42,7 +44,28 @@ public class PlayerData : CharacterStats
     public void SetMaxExperience(int e) { max_experience = e; }
 
     //party functions
-    public void AddPartyMember(CharacterStats c) { if (party_stats.Count < 3) party_stats.Add(c); }
+    public void AddPartyMember(CharacterStats c) {
+        if (party_stats.Count < 3)
+        {
+            //loop through party stats to find the first available position for the new party member
+            for(int i=0; i<4; i++)
+            {
+                bool valid_position = true;
+                if (GetPos() == i) valid_position = false;
+                for(int j=0; j<party_stats.Count; j++)
+                {
+                    if (party_stats[j].GetPos() == i) {
+                        valid_position = false;
+                        break;
+                    }
+                }
+                if (!valid_position) continue;
+                c.SetPos(i);
+                break;
+            }
+            party_stats.Add(c);
+        }
+    }
     public void RemovePartyMember(int index) { party_stats.RemoveAt(index); }
     public int GetPartySize() { return party_stats.Count; }
     public CharacterStats GetPartyMember(int index) { return party_stats[index]; }

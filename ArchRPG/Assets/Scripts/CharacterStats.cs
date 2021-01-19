@@ -19,6 +19,7 @@ public class CharacterStats
     public int GetSPD() { return SPD; }
     public int GetLCK() { return LCK; }
     public int GetLVL() { return LVL; }
+    public int GetPos() { return position; }
 
     public string GetName() { return name; }
     public string GetDesc() { return desc; }
@@ -55,6 +56,7 @@ public class CharacterStats
     public void SetSPD(int s) { SPD = s; }
     public void SetLCK(int l) { LCK = l; }
     public void SetLVL(int l) { LVL = l; }
+    public void SetPos(int p) { position = p; }
 
     public void SetName(string n) { name = n; }
     public void SetDesc(string s) { desc = s; }
@@ -119,6 +121,7 @@ public class CharacterStats
     private string name;            //name of the character
     private string desc;                //description of the character
     private string image_filepath;      //character image filepath
+    private int position;               //position in the party
     private Weapon weapon;              //current equipped weapon
     private Armor armor;                //current equipped armor
     private Trinket trinket;            //current equipped trinket

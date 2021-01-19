@@ -73,7 +73,7 @@ public class PauseMenuHandler : MonoBehaviour
                 party_info[0].transform.GetChild(3).GetComponent<Text>().text = "HP: (" + data.GetHP() + "/" + data.GetHPMAX() + ")";
                 party_info[0].transform.GetChild(3).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetHP() / data.GetHPMAX();
 
-                party_info[0].transform.GetChild(4).GetComponent<Text>().text = "HP: (" + data.GetSP() + "/" + data.GetSPMax() + ")";
+                party_info[0].transform.GetChild(4).GetComponent<Text>().text = "MP: (" + data.GetSP() + "/" + data.GetSPMax() + ")";
                 party_info[0].transform.GetChild(4).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetSP() / data.GetSPMax();
 
                 continue;
@@ -93,7 +93,7 @@ public class PauseMenuHandler : MonoBehaviour
                 party_info[i].transform.GetChild(3).GetComponent<Text>().text = "HP: (" + data.GetPartyMember(i-1).GetHP() + "/" + data.GetPartyMember(i-1).GetHPMAX() + ")";
                 party_info[i].transform.GetChild(3).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetPartyMember(i-1).GetHP() / data.GetPartyMember(i-1).GetHPMAX();
 
-                party_info[i].transform.GetChild(4).GetComponent<Text>().text = "HP: (" + data.GetPartyMember(i-1).GetSP() + "/" + data.GetPartyMember(i-1).GetSPMax() + ")";
+                party_info[i].transform.GetChild(4).GetComponent<Text>().text = "MP: (" + data.GetPartyMember(i-1).GetSP() + "/" + data.GetPartyMember(i-1).GetSPMax() + ")";
                 party_info[i].transform.GetChild(4).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetPartyMember(i-1).GetSP() / data.GetPartyMember(i-1).GetSPMax();
             }
             //if there is no party member that the data exists for set all the data to invisible
@@ -2194,6 +2194,69 @@ public class PauseMenuHandler : MonoBehaviour
         }
     }
 
+    public void UpdatePositionMenu()
+    {
+        //populate a list of cards to update
+        List<GameObject> cards = new List<GameObject>();
+        for(int i=0; i<4; i++)
+        {
+            cards.Add(menus[3].transform.GetChild(i).gameObject);
+        }
+
+        //hide all cards
+        for(int i=0; i<4; i++)
+        {
+            cards[i].SetActive(false);
+        }
+
+        //update the player's card first
+        //show the card, update the name on the card, update the image, update the level, xp, hp, mp, and sanity bars and text objects
+        cards[data.GetPos()].SetActive(true);
+        cards[data.GetPos()].transform.GetChild(1).GetComponent<Text>().text = data.GetName();
+        cards[data.GetPos()].transform.GetChild(2).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetImageFilepath());
+
+        //level and xp
+        cards[data.GetPos()].transform.GetChild(3).GetComponent<Text>().text = "Level " + data.GetLVL().ToString();
+        cards[data.GetPos()].transform.GetChild(3).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetExperience() / data.GetMaxExperience();
+
+        //hp
+        cards[data.GetPos()].transform.GetChild(4).GetComponent<Text>().text = "HP: (" + data.GetHP() + "/" + data.GetHPMAX() + ")";
+        cards[data.GetPos()].transform.GetChild(4).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetHP() / data.GetHPMAX();
+
+        //mp
+        cards[data.GetPos()].transform.GetChild(5).GetComponent<Text>().text = "MP: (" + data.GetSP() + "/" + data.GetSPMax() + ")";
+        cards[data.GetPos()].transform.GetChild(5).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetSP() / data.GetSPMax();
+
+        //san
+        cards[data.GetPos()].transform.GetChild(6).GetComponent<Text>().text = "SAN: (" + data.GetSP() + "/" + data.GetSPMax() + ")";
+        cards[data.GetPos()].transform.GetChild(6).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetSAN() / data.GetSANMax();
+
+        //now do this for the rest of the party members
+        for(int i=0; i<data.GetPartySize(); i++)
+        {
+            //show the card, update the name on the card, update the image, update the level, xp, hp, mp, and sanity bars and text objects
+            cards[data.GetPartyMember(i).GetPos()].SetActive(true);
+            cards[data.GetPartyMember(i).GetPos()].transform.GetChild(1).GetComponent<Text>().text = data.GetPartyMember(i).GetName();
+            cards[data.GetPartyMember(i).GetPos()].transform.GetChild(2).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetPartyMember(i).GetImageFilepath());
+
+            //level and xp
+            cards[data.GetPartyMember(i).GetPos()].transform.GetChild(3).GetComponent<Text>().text = "Level " + data.GetPartyMember(i).GetLVL().ToString();
+            cards[data.GetPartyMember(i).GetPos()].transform.GetChild(3).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetExperience() / data.GetMaxExperience();
+
+            //hp
+            cards[data.GetPartyMember(i).GetPos()].transform.GetChild(4).GetComponent<Text>().text = "HP: (" + data.GetPartyMember(i).GetHP() + "/" + data.GetPartyMember(i).GetHPMAX() + ")";
+            cards[data.GetPartyMember(i).GetPos()].transform.GetChild(4).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetPartyMember(i).GetHP() / data.GetPartyMember(i).GetHPMAX();
+
+            //mp
+            cards[data.GetPartyMember(i).GetPos()].transform.GetChild(5).GetComponent<Text>().text = "MP: (" + data.GetPartyMember(i).GetSP() + "/" + data.GetPartyMember(i).GetSPMax() + ")";
+            cards[data.GetPartyMember(i).GetPos()].transform.GetChild(5).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetPartyMember(i).GetSP() / data.GetPartyMember(i).GetSPMax();
+
+            //san
+            cards[data.GetPartyMember(i).GetPos()].transform.GetChild(6).GetComponent<Text>().text = "SAN: (" + data.GetPartyMember(i).GetSP() + "/" + data.GetPartyMember(i).GetSPMax() + ")";
+            cards[data.GetPartyMember(i).GetPos()].transform.GetChild(6).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetPartyMember(i).GetSAN() / data.GetPartyMember(i).GetSANMax();
+        }
+    }
+
     public void BasePauseMenuRoutine()
     {
         if (!base_pause_character_select)
@@ -2244,6 +2307,9 @@ public class PauseMenuHandler : MonoBehaviour
                         UpdateEquipMenuInfo();
                         break;
                     case 3:
+                        cursor_position = 0;
+                        UpdatePositionMenu();
+                        OpenMenu(3);
                         break;
                     default:
                         break;
@@ -2822,6 +2888,11 @@ public class PauseMenuHandler : MonoBehaviour
         cursor.transform.position = cursor_positions[3].positions[cursor_position].transform.position;
     }
 
+    public void PositionMenuRoutine()
+    {
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -2943,6 +3014,9 @@ public class PauseMenuHandler : MonoBehaviour
                     break;
                 case 2:
                     EquipMenuRoutine();
+                    break;
+                case 3:
+                    PositionMenuRoutine();
                     break;
                 default:
                     break;
