@@ -31,6 +31,24 @@ public class Item
 //base class handling all weapons
 public class Weapon : Item
 {
+    public Weapon() { }
+
+    public Weapon(Weapon w)
+    {
+        name = w.name;
+        image_file_path = w.image_file_path;
+        description = w.description;
+        limit = w.limit;
+        amount = w.amount;
+        damage_buff = w.damage_buff;
+        power_buff = w.power_buff;
+        defense_buff = w.defense_buff;
+        will_buff = w.will_buff;
+        resistance_buff = w.resistance_buff;
+        speed_buff = w.speed_buff;
+        luck_buff = w.luck_buff;
+    }
+
     public virtual void SetWeapon(CharacterStats c)
     {
         character = c;
@@ -45,6 +63,12 @@ public class Weapon : Item
     public virtual void RemoveWeapon()
     {
         character.SetATK(character.GetATK() - damage_buff);
+        character.SetPOW(character.GetPOW() - power_buff);
+        character.SetDEF(character.GetDEF() - defense_buff);
+        character.SetWIL(character.GetWIL() - will_buff);
+        character.SetRES(character.GetRES() - resistance_buff);
+        character.SetSPD(character.GetSPD() - speed_buff);
+        character.SetLCK(character.GetLCK() - luck_buff);
     }
     public int damage_buff;
     public int power_buff;
@@ -71,7 +95,13 @@ public class Armor : Item
     }
     public virtual void RemoveArmor()
     {
+        character.SetATK(character.GetATK() - damage_buff);
+        character.SetPOW(character.GetPOW() - power_buff);
         character.SetDEF(character.GetDEF() - defense_buff);
+        character.SetWIL(character.GetWIL() - will_buff);
+        character.SetRES(character.GetRES() - resistance_buff);
+        character.SetSPD(character.GetSPD() - speed_buff);
+        character.SetLCK(character.GetLCK() - luck_buff);
     }
     public int damage_buff;
     public int power_buff;
@@ -98,6 +128,13 @@ public class Trinket : Item
     }
     public virtual void RemoveTrinket()
     {
+        character.SetATK(character.GetATK() - damage_buff);
+        character.SetPOW(character.GetPOW() - power_buff);
+        character.SetDEF(character.GetDEF() - defense_buff);
+        character.SetWIL(character.GetWIL() - will_buff);
+        character.SetRES(character.GetRES() - resistance_buff);
+        character.SetSPD(character.GetSPD() - speed_buff);
+        character.SetLCK(character.GetLCK() - luck_buff);
     }
     public int damage_buff;
     public int power_buff;

@@ -583,71 +583,142 @@ public class PauseMenuHandler : MonoBehaviour
         }
 
         //--UPDATE WEAPON INFO--
-        //no weapon equipped
-        if(data.GetWeapon() == null)
+        //first party member
+        if (highlighted_party_member == 0)
         {
-            //set the image to nothing
-            menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-            menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().sprite = null;
+            //no weapon equipped
+            if (data.GetWeapon() == null)
+            {
+                //set the image to nothing
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().sprite = null;
 
-            //set the text to nothing
-            menus[2].transform.GetChild(10).GetChild(0).GetChild(1).GetComponent<Text>().text = "";
+                //set the text to nothing
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(1).GetComponent<Text>().text = "";
+            }
+            //weapon equipped
+            else
+            {
+                //set the image
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetWeapon().image_file_path);
+
+                //set the text to weapon's name
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(1).GetComponent<Text>().text = data.GetWeapon().name;
+            }
+
+            //--UPDATE ARMOR INFO--
+            //no armor equipped
+            if (data.GetArmor() == null)
+            {
+                //set the image to nothing
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().sprite = null;
+
+                //set the text to nothing
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(1).GetComponent<Text>().text = "";
+            }
+            //armor equipped
+            else
+            {
+                //set the image
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetArmor().image_file_path);
+
+                //set the text to armor's name
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(1).GetComponent<Text>().text = data.GetArmor().name;
+            }
+
+            //--UPDATE TRINKET INFO--
+            //no trinket equipped
+            if (data.GetTrinket() == null)
+            {
+                //set the image to nothing
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().sprite = null;
+
+                //set the text to nothing
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(1).GetComponent<Text>().text = "";
+            }
+            //trinket equipped
+            else
+            {
+                //set the image
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetTrinket().image_file_path);
+
+                //set the text to armor's name
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(1).GetComponent<Text>().text = data.GetTrinket().name;
+            }
         }
-        //weapon equipped
+        //other party member
         else
         {
-            //set the image
-            menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-            menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetWeapon().image_file_path);
+            //no weapon equipped
+            if (data.GetPartyMember(highlighted_party_member-1).GetWeapon() == null)
+            {
+                //set the image to nothing
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().sprite = null;
 
-            //set the text to weapon's name
-            menus[2].transform.GetChild(10).GetChild(0).GetChild(1).GetComponent<Text>().text = data.GetWeapon().name;
+                //set the text to nothing
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(1).GetComponent<Text>().text = "";
+            }
+            //weapon equipped
+            else
+            {
+                //set the image
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetPartyMember(highlighted_party_member-1).GetWeapon().image_file_path);
+
+                //set the text to weapon's name
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(1).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member-1).GetWeapon().name;
+            }
+
+            //--UPDATE ARMOR INFO--
+            //no armor equipped
+            if (data.GetPartyMember(highlighted_party_member-1).GetArmor() == null)
+            {
+                //set the image to nothing
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().sprite = null;
+
+                //set the text to nothing
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(1).GetComponent<Text>().text = "";
+            }
+            //armor equipped
+            else
+            {
+                //set the image
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetPartyMember(highlighted_party_member-1).GetArmor().image_file_path);
+
+                //set the text to armor's name
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(1).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member-1).GetArmor().name;
+            }
+
+            //--UPDATE TRINKET INFO--
+            //no trinket equipped
+            if (data.GetPartyMember(highlighted_party_member-1).GetTrinket() == null)
+            {
+                //set the image to nothing
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().sprite = null;
+
+                //set the text to nothing
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(1).GetComponent<Text>().text = "";
+            }
+            //trinket equipped
+            else
+            {
+                //set the image
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetPartyMember(highlighted_party_member-1).GetTrinket().image_file_path);
+
+                //set the text to armor's name
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(1).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member-1).GetTrinket().name;
+            }
         }
-
-        //--UPDATE ARMOR INFO--
-        //no armor equipped
-        if (data.GetArmor() == null)
-        {
-            //set the image to nothing
-            menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-            menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().sprite = null;
-
-            //set the text to nothing
-            menus[2].transform.GetChild(10).GetChild(1).GetChild(1).GetComponent<Text>().text = "";
-        }
-        //armor equipped
-        else
-        {
-            //set the image
-            menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-            menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetArmor().image_file_path);
-
-            //set the text to armor's name
-            menus[2].transform.GetChild(10).GetChild(1).GetChild(1).GetComponent<Text>().text = data.GetArmor().name;
-        }
-
-        //--UPDATE TRINKET INFO--
-        //no trinket equipped
-        if (data.GetTrinket() == null)
-        {
-            //set the image to nothing
-            menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-            menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().sprite = null;
-
-            //set the text to nothing
-            menus[2].transform.GetChild(10).GetChild(2).GetChild(1).GetComponent<Text>().text = "";
-        }
-        //trinket equipped
-        else
-        {
-            //set the image
-            menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-            menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetTrinket().image_file_path);
-
-            //set the text to armor's name
-            menus[2].transform.GetChild(10).GetChild(2).GetChild(1).GetComponent<Text>().text = data.GetTrinket().name;
-        }
-
         //--UPDATE ITEM SELECTION LIST--
         //change list based off of the equip type:
         //weapon
@@ -771,7 +842,7 @@ public class PauseMenuHandler : MonoBehaviour
             else if(cursor_position == 1)
             {
                 //no armor equipped
-                if (data.GetWeapon() == null)
+                if (data.GetArmor() == null)
                     menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
                 //armor equipped
                 else
@@ -781,7 +852,7 @@ public class PauseMenuHandler : MonoBehaviour
             else
             {
                 //no trinket equipped
-                if (data.GetWeapon() == null)
+                if (data.GetTrinket() == null)
                     menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
                 //trinket equipped
                 else
@@ -1175,71 +1246,142 @@ public class PauseMenuHandler : MonoBehaviour
         }
 
         //--UPDATE WEAPON INFO--
-        //no weapon equipped
-        if (data.GetWeapon() == null)
+        //first party member
+        if (highlighted_party_member == 0)
         {
-            //set the image to nothing
-            menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-            menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().sprite = null;
+            //no weapon equipped
+            if (data.GetWeapon() == null)
+            {
+                //set the image to nothing
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().sprite = null;
 
-            //set the text to nothing
-            menus[2].transform.GetChild(10).GetChild(0).GetChild(1).GetComponent<Text>().text = "";
+                //set the text to nothing
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(1).GetComponent<Text>().text = "";
+            }
+            //weapon equipped
+            else
+            {
+                //set the image
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetWeapon().image_file_path);
+
+                //set the text to weapon's name
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(1).GetComponent<Text>().text = data.GetWeapon().name;
+            }
+
+            //--UPDATE ARMOR INFO--
+            //no armor equipped
+            if (data.GetArmor() == null)
+            {
+                //set the image to nothing
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().sprite = null;
+
+                //set the text to nothing
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(1).GetComponent<Text>().text = "";
+            }
+            //armor equipped
+            else
+            {
+                //set the image
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetArmor().image_file_path);
+
+                //set the text to armor's name
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(1).GetComponent<Text>().text = data.GetArmor().name;
+            }
+
+            //--UPDATE TRINKET INFO--
+            //no trinket equipped
+            if (data.GetTrinket() == null)
+            {
+                //set the image to nothing
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().sprite = null;
+
+                //set the text to nothing
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(1).GetComponent<Text>().text = "";
+            }
+            //trinket equipped
+            else
+            {
+                //set the image
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetTrinket().image_file_path);
+
+                //set the text to armor's name
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(1).GetComponent<Text>().text = data.GetTrinket().name;
+            }
         }
-        //weapon equipped
+        //other party member
         else
         {
-            //set the image
-            menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-            menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetWeapon().image_file_path);
+            //no weapon equipped
+            if (data.GetPartyMember(highlighted_party_member - 1).GetWeapon() == null)
+            {
+                //set the image to nothing
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().sprite = null;
 
-            //set the text to weapon's name
-            menus[2].transform.GetChild(10).GetChild(0).GetChild(1).GetComponent<Text>().text = data.GetWeapon().name;
+                //set the text to nothing
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(1).GetComponent<Text>().text = "";
+            }
+            //weapon equipped
+            else
+            {
+                //set the image
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetPartyMember(highlighted_party_member - 1).GetWeapon().image_file_path);
+
+                //set the text to weapon's name
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(1).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetWeapon().name;
+            }
+
+            //--UPDATE ARMOR INFO--
+            //no armor equipped
+            if (data.GetPartyMember(highlighted_party_member - 1).GetArmor() == null)
+            {
+                //set the image to nothing
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().sprite = null;
+
+                //set the text to nothing
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(1).GetComponent<Text>().text = "";
+            }
+            //armor equipped
+            else
+            {
+                //set the image
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetPartyMember(highlighted_party_member - 1).GetArmor().image_file_path);
+
+                //set the text to armor's name
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(1).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetArmor().name;
+            }
+
+            //--UPDATE TRINKET INFO--
+            //no trinket equipped
+            if (data.GetPartyMember(highlighted_party_member - 1).GetTrinket() == null)
+            {
+                //set the image to nothing
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().sprite = null;
+
+                //set the text to nothing
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(1).GetComponent<Text>().text = "";
+            }
+            //trinket equipped
+            else
+            {
+                //set the image
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetPartyMember(highlighted_party_member - 1).GetTrinket().image_file_path);
+
+                //set the text to armor's name
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(1).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetTrinket().name;
+            }
         }
-
-        //--UPDATE ARMOR INFO--
-        //no armor equipped
-        if (data.GetArmor() == null)
-        {
-            //set the image to nothing
-            menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-            menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().sprite = null;
-
-            //set the text to nothing
-            menus[2].transform.GetChild(10).GetChild(1).GetChild(1).GetComponent<Text>().text = "";
-        }
-        //armor equipped
-        else
-        {
-            //set the image
-            menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-            menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetArmor().image_file_path);
-
-            //set the text to armor's name
-            menus[2].transform.GetChild(10).GetChild(1).GetChild(1).GetComponent<Text>().text = data.GetArmor().name;
-        }
-
-        //--UPDATE TRINKET INFO--
-        //no trinket equipped
-        if (data.GetTrinket() == null)
-        {
-            //set the image to nothing
-            menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-            menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().sprite = null;
-
-            //set the text to nothing
-            menus[2].transform.GetChild(10).GetChild(2).GetChild(1).GetComponent<Text>().text = "";
-        }
-        //trinket equipped
-        else
-        {
-            //set the image
-            menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-            menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetTrinket().image_file_path);
-
-            //set the text to armor's name
-            menus[2].transform.GetChild(10).GetChild(2).GetChild(1).GetComponent<Text>().text = data.GetTrinket().name;
-        }
-
         //--UPDATE ITEM SELECTION LIST--
         //change list based off of the equip type:
         //weapon
@@ -1767,71 +1909,142 @@ public class PauseMenuHandler : MonoBehaviour
         }
 
         //--UPDATE WEAPON INFO--
-        //no weapon equipped
-        if (data.GetWeapon() == null)
+        //first party member
+        if (highlighted_party_member == 0)
         {
-            //set the image to nothing
-            menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-            menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().sprite = null;
+            //no weapon equipped
+            if (data.GetWeapon() == null)
+            {
+                //set the image to nothing
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().sprite = null;
 
-            //set the text to nothing
-            menus[2].transform.GetChild(10).GetChild(0).GetChild(1).GetComponent<Text>().text = "";
+                //set the text to nothing
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(1).GetComponent<Text>().text = "";
+            }
+            //weapon equipped
+            else
+            {
+                //set the image
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetWeapon().image_file_path);
+
+                //set the text to weapon's name
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(1).GetComponent<Text>().text = data.GetWeapon().name;
+            }
+
+            //--UPDATE ARMOR INFO--
+            //no armor equipped
+            if (data.GetArmor() == null)
+            {
+                //set the image to nothing
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().sprite = null;
+
+                //set the text to nothing
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(1).GetComponent<Text>().text = "";
+            }
+            //armor equipped
+            else
+            {
+                //set the image
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetArmor().image_file_path);
+
+                //set the text to armor's name
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(1).GetComponent<Text>().text = data.GetArmor().name;
+            }
+
+            //--UPDATE TRINKET INFO--
+            //no trinket equipped
+            if (data.GetTrinket() == null)
+            {
+                //set the image to nothing
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().sprite = null;
+
+                //set the text to nothing
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(1).GetComponent<Text>().text = "";
+            }
+            //trinket equipped
+            else
+            {
+                //set the image
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetTrinket().image_file_path);
+
+                //set the text to armor's name
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(1).GetComponent<Text>().text = data.GetTrinket().name;
+            }
         }
-        //weapon equipped
+        //other party member
         else
         {
-            //set the image
-            menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-            menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetWeapon().image_file_path);
+            //no weapon equipped
+            if (data.GetPartyMember(highlighted_party_member - 1).GetWeapon() == null)
+            {
+                //set the image to nothing
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().sprite = null;
 
-            //set the text to weapon's name
-            menus[2].transform.GetChild(10).GetChild(0).GetChild(1).GetComponent<Text>().text = data.GetWeapon().name;
+                //set the text to nothing
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(1).GetComponent<Text>().text = "";
+            }
+            //weapon equipped
+            else
+            {
+                //set the image
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetPartyMember(highlighted_party_member - 1).GetWeapon().image_file_path);
+
+                //set the text to weapon's name
+                menus[2].transform.GetChild(10).GetChild(0).GetChild(1).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetWeapon().name;
+            }
+
+            //--UPDATE ARMOR INFO--
+            //no armor equipped
+            if (data.GetPartyMember(highlighted_party_member - 1).GetArmor() == null)
+            {
+                //set the image to nothing
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().sprite = null;
+
+                //set the text to nothing
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(1).GetComponent<Text>().text = "";
+            }
+            //armor equipped
+            else
+            {
+                //set the image
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetPartyMember(highlighted_party_member - 1).GetArmor().image_file_path);
+
+                //set the text to armor's name
+                menus[2].transform.GetChild(10).GetChild(1).GetChild(1).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetArmor().name;
+            }
+
+            //--UPDATE TRINKET INFO--
+            //no trinket equipped
+            if (data.GetPartyMember(highlighted_party_member - 1).GetTrinket() == null)
+            {
+                //set the image to nothing
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().sprite = null;
+
+                //set the text to nothing
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(1).GetComponent<Text>().text = "";
+            }
+            //trinket equipped
+            else
+            {
+                //set the image
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetPartyMember(highlighted_party_member - 1).GetTrinket().image_file_path);
+
+                //set the text to armor's name
+                menus[2].transform.GetChild(10).GetChild(2).GetChild(1).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetTrinket().name;
+            }
         }
-
-        //--UPDATE ARMOR INFO--
-        //no armor equipped
-        if (data.GetArmor() == null)
-        {
-            //set the image to nothing
-            menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-            menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().sprite = null;
-
-            //set the text to nothing
-            menus[2].transform.GetChild(10).GetChild(1).GetChild(1).GetComponent<Text>().text = "";
-        }
-        //armor equipped
-        else
-        {
-            //set the image
-            menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-            menus[2].transform.GetChild(10).GetChild(1).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetArmor().image_file_path);
-
-            //set the text to armor's name
-            menus[2].transform.GetChild(10).GetChild(1).GetChild(1).GetComponent<Text>().text = data.GetArmor().name;
-        }
-
-        //--UPDATE TRINKET INFO--
-        //no trinket equipped
-        if (data.GetTrinket() == null)
-        {
-            //set the image to nothing
-            menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-            menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().sprite = null;
-
-            //set the text to nothing
-            menus[2].transform.GetChild(10).GetChild(2).GetChild(1).GetComponent<Text>().text = "";
-        }
-        //trinket equipped
-        else
-        {
-            //set the image
-            menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-            menus[2].transform.GetChild(10).GetChild(2).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetTrinket().image_file_path);
-
-            //set the text to armor's name
-            menus[2].transform.GetChild(10).GetChild(2).GetChild(1).GetComponent<Text>().text = data.GetTrinket().name;
-        }
-
         //--UPDATE ITEM SELECTION LIST--
         //change list based off of the equip type:
         //weapon
@@ -2330,7 +2543,6 @@ public class PauseMenuHandler : MonoBehaviour
                 if (!menu_input)
                 {
                     cursor_position--;
-                    Debug.Log(((Weapon)equippables[cursor_position - 3 + equipped_offset]).defense_buff);
                     if (equip_type == 0)
                     {
                         if (cursor_position - 3 + equipped_offset < equippables.Count)
@@ -2384,10 +2596,228 @@ public class PauseMenuHandler : MonoBehaviour
                 }
                 menu_input = true;
             }
+            //allow the menu to scroll
+            else if(Input.GetAxisRaw("Vertical") > 0.0f && cursor_position == 3 && equipped_offset > 0)
+            {
+                if (!menu_input)
+                {
+                    equipped_offset--;
+                    if (equip_type == 0)
+                    {
+                        if (cursor_position - 3 + equipped_offset < equippables.Count)
+                            UpdateEquipMenuInfo((Weapon)equippables[cursor_position - 3 + equipped_offset]);
+                        else
+                            UpdateEquipMenuInfo();
+                    }
+                    else if (equip_type == 1)
+                    {
+                        if (cursor_position - 3 + equipped_offset < equippables.Count)
+                            UpdateEquipMenuInfo((Armor)equippables[cursor_position - 3 + equipped_offset]);
+                        else
+                            UpdateEquipMenuInfo();
+                    }
+                    else
+                    {
+                        if (cursor_position - 3 + equipped_offset < equippables.Count)
+                            UpdateEquipMenuInfo((Trinket)equippables[cursor_position - 3 + equipped_offset]);
+                        else
+                            UpdateEquipMenuInfo();
+                    }
+                }
+                menu_input = true;
+            }
+            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position == 6 && (cursor_position - 3 + equipped_offset) < equippables.Count -1)
+            {
+                if (!menu_input)
+                {
+                    equipped_offset++;
+                    if (equip_type == 0)
+                    {
+                        if (cursor_position - 3 + equipped_offset < equippables.Count)
+                            UpdateEquipMenuInfo((Weapon)equippables[cursor_position - 3 + equipped_offset]);
+                        else
+                            UpdateEquipMenuInfo();
+                    }
+                    else if (equip_type == 1)
+                    {
+                        if (cursor_position - 3 + equipped_offset < equippables.Count)
+                            UpdateEquipMenuInfo((Armor)equippables[cursor_position - 3 + equipped_offset]);
+                        else
+                            UpdateEquipMenuInfo();
+                    }
+                    else
+                    {
+                        if (cursor_position - 3 + equipped_offset < equippables.Count)
+                            UpdateEquipMenuInfo((Trinket)equippables[cursor_position - 3 + equipped_offset]);
+                        else
+                            UpdateEquipMenuInfo();
+                    }
+                }
+                menu_input = true;
+            }
+            //handle actual equipping of items
+            else if (Input.GetButtonDown("Interact"))
+            {
+                //if this is a valid frame for input
+                if (!menu_input)
+                {
+                    //get the equiptype
+                    //weapon
+                    if(equip_type == 0)
+                    {
+                        //equiping to a party member?
+                        //no
+                        if (highlighted_party_member == 0)
+                        {
+                            //see if there is a weapon equipped
+                            //no
+                            if (data.GetWeapon() == null)
+                            {
+                                //equip the weapon
+                                data.SetWeapon((Weapon)equippables[cursor_position - 3 + equipped_offset]);
+                            }
+                            //yes
+                            else
+                            {
+                                //remove the current weapon and add it to the inventory
+                                data.AddItem(data.GetWeapon());
+                                data.RemoveWeapon();
+
+                                //set the new weapon
+                                data.SetWeapon((Weapon)equippables[cursor_position - 3 + equipped_offset]);
+                            }
+                        }
+                        //yes
+                        else
+                        {
+                            //see if there is a weapon equipped
+                            //no
+                            if (data.GetPartyMember(highlighted_party_member-1).GetWeapon() == null)
+                            {
+                                //equip the weapon
+                                data.SetPartyWeapon((Weapon)equippables[cursor_position - 3 + equipped_offset], highlighted_party_member - 1);
+                            }
+                            //yes
+                            else
+                            {
+                                //remove the current weapon and add it to the inventory
+                                data.AddItem(data.GetPartyMember(highlighted_party_member-1).GetWeapon());
+                                data.RemovePartyWeapon(highlighted_party_member-1);
+
+                                //set the new weapon
+                                data.SetPartyWeapon((Weapon)equippables[cursor_position - 3 + equipped_offset], highlighted_party_member - 1);
+                            }
+                        }
+                    }
+                    //armor
+                    else if(equip_type == 1)
+                    {
+                        //equipping to a party member?
+                        //no
+                        if (highlighted_party_member == 0)
+                        {
+                            //see if there is a weapon equipped
+                            //no
+                            if (data.GetArmor() == null)
+                            {
+                                //equip the weapon
+                                data.SetArmor((Armor)equippables[cursor_position - 3 + equipped_offset]);
+                            }
+                            //yes
+                            else
+                            {
+                                //remove the current weapon and add it to the inventory
+                                data.AddItem(data.GetArmor());
+                                data.RemoveArmor();
+
+                                //set the new weapon
+                                data.SetArmor((Armor)equippables[cursor_position - 3 + equipped_offset]);
+                            }
+                        }
+                        //yes
+                        else
+                        {
+                            //see if there is a weapon equipped
+                            //no
+                            if (data.GetPartyMember(highlighted_party_member - 1).GetArmor() == null)
+                            {
+                                //equip the weapon
+                                data.SetPartyArmor((Armor)equippables[cursor_position - 3 + equipped_offset], highlighted_party_member - 1);
+                            }
+                            //yes
+                            else
+                            {
+                                //remove the current weapon and add it to the inventory
+                                data.AddItem(data.GetPartyMember(highlighted_party_member - 1).GetArmor());
+                                data.RemovePartyArmor(highlighted_party_member - 1);
+
+                                //set the new weapon
+                                data.SetPartyArmor((Armor)equippables[cursor_position - 3 + equipped_offset], highlighted_party_member - 1);
+                            }
+                        }
+                    }
+                    //trinket
+                    else
+                    {
+                        //equipping to a party member?
+                        //no
+                        if (highlighted_party_member == 0)
+                        {
+                            //see if there is a weapon equipped
+                            //no
+                            if (data.GetTrinket() == null)
+                            {
+                                //equip the weapon
+                                data.SetTrinket((Trinket)equippables[cursor_position - 3 + equipped_offset]);
+                            }
+                            //yes
+                            else
+                            {
+                                //remove the current weapon and add it to the inventory
+                                data.AddItem(data.GetTrinket());
+                                data.RemoveTrinket();
+
+                                //set the new weapon
+                                data.SetTrinket((Trinket)equippables[cursor_position - 3 + equipped_offset]);
+                            }
+                        }
+                        //yes
+                        else
+                        {
+                            //see if there is a weapon equipped
+                            //no
+                            if (data.GetPartyMember(highlighted_party_member - 1).GetTrinket() == null)
+                            {
+                                //equip the weapon
+                                data.SetPartyTrinket((Trinket)equippables[cursor_position - 3 + equipped_offset], highlighted_party_member - 1);
+                            }
+                            //yes
+                            else
+                            {
+                                //remove the current weapon and add it to the inventory
+                                data.AddItem(data.GetPartyMember(highlighted_party_member - 1).GetTrinket());
+                                data.RemovePartyTrinket(highlighted_party_member - 1);
+
+                                //set the new weapon
+                                data.SetPartyTrinket((Trinket)equippables[cursor_position - 3 + equipped_offset], highlighted_party_member - 1);
+                            }
+                        }
+                    }
+
+                    //set the equip mode cursor position and update the equip menu information
+                    equipping = false;
+                    equipped_offset = 0;
+                    equip_type = 0;
+                    cursor_position = 0;
+                    UpdateEquipMenuInfo();
+                }
+                menu_input = true;
+            }
             else
             {
                 menu_input = false;
             }
+            
         }
         cursor.transform.position = cursor_positions[3].positions[cursor_position].transform.position;
     }
@@ -2459,6 +2889,19 @@ public class PauseMenuHandler : MonoBehaviour
         data.AddItem(test_weapon);
         data.AddItem(test_armor);
         data.AddItem(test_trinket);
+
+        Weapon test_weapon2 = new Weapon(test_weapon);
+        test_weapon2.name = "TestWeapon2";
+        data.AddItem(test_weapon2);
+        Weapon test_weapon3 = new Weapon(test_weapon);
+        test_weapon3.name = "TestWeapon3";
+        data.AddItem(test_weapon3);
+        Weapon test_weapon4 = new Weapon(test_weapon);
+        test_weapon4.name = "TestWeapon4";
+        data.AddItem(test_weapon4);
+        Weapon test_weapon5 = new Weapon(test_weapon);
+        test_weapon5.name = "TestWeapon5";
+        data.AddItem(test_weapon5);
     }
 
     // Update is called once per frame
