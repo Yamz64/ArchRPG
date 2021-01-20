@@ -16,6 +16,7 @@ public class Ability
     public int cost = 0;    //int denotes the cost of using the ability (if any)
 }
 
+//Sub class to deal with attacks (abilities that deal damage)
 public class Attack : Ability
 {
     public virtual void UseAttack(unit user, unit target)
@@ -31,8 +32,8 @@ public class Attack : Ability
      * 3 = Fire 
      * 4 = Electric
      */
-    public int damageType;
-    public string image_file_path;
-    public string desc1;
-    public string desc2;
-}
+    public int damageType;          //The type of damage dealt by the attack
+    public string image_file_path;  //Give path to image that goes with attack
+    public string desc1;            //Give info on attack name, cost, and basic details
+    public string desc2;            //Give actual description and more details (damage type, targets, etc.)
+}   
