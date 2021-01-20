@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //base class handling all items
+[System.Serializable]
 public class Item
 {
     public void Add() {
@@ -29,6 +30,7 @@ public class Item
 }
 
 //base class handling all weapons
+[System.Serializable]
 public class Weapon : Item
 {
     public Weapon() { }
@@ -80,6 +82,7 @@ public class Weapon : Item
 }
 
 //base class handling all armor
+[System.Serializable]
 public class Armor : Item
 {
     public virtual void SetArmor(CharacterStats c)
@@ -113,6 +116,7 @@ public class Armor : Item
 }
 
 //base class handling all trinkets
+[System.Serializable]
 public class Trinket : Item
 {
     public virtual void SetTrinket(CharacterStats c)

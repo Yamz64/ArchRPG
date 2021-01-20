@@ -1,0 +1,282 @@
+{
+    "position": {
+        "x": 0.0,
+        "y": 0.0
+    },
+    "progress": 0,
+    "HPs": [
+        50,
+        86,
+        86,
+        86
+    ],
+    "SPs": [
+        45,
+        75,
+        75,
+        75
+    ],
+    "SANs": [
+        100,
+        100,
+        100,
+        100
+    ],
+    "XPs": [
+        10,
+        10,
+        10,
+        10
+    ],
+    "levels": [
+        10,
+        10,
+        10,
+        10
+    ],
+    "positions": [
+        3,
+        1,
+        2,
+        0
+    ],
+    "weapons": [
+        {
+            "name": "",
+            "description": "",
+            "image_file_path": "",
+            "amount": 0,
+            "limit": 0,
+            "damage_buff": 0,
+            "power_buff": 0,
+            "defense_buff": 0,
+            "will_buff": 0,
+            "resistance_buff": 0,
+            "speed_buff": 0,
+            "luck_buff": 0
+        },
+        {
+            "name": "",
+            "description": "",
+            "image_file_path": "",
+            "amount": 0,
+            "limit": 0,
+            "damage_buff": 0,
+            "power_buff": 0,
+            "defense_buff": 0,
+            "will_buff": 0,
+            "resistance_buff": 0,
+            "speed_buff": 0,
+            "luck_buff": 0
+        },
+        {
+            "name": "",
+            "description": "",
+            "image_file_path": "",
+            "amount": 0,
+            "limit": 0,
+            "damage_buff": 0,
+            "power_buff": 0,
+            "defense_buff": 0,
+            "will_buff": 0,
+            "resistance_buff": 0,
+            "speed_buff": 0,
+            "luck_buff": 0
+        },
+        {
+            "name": "",
+            "description": "",
+            "image_file_path": "",
+            "amount": 0,
+            "limit": 0,
+            "damage_buff": 0,
+            "power_buff": 0,
+            "defense_buff": 0,
+            "will_buff": 0,
+            "resistance_buff": 0,
+            "speed_buff": 0,
+            "luck_buff": 0
+        }
+    ],
+    "armors": [
+        {
+            "name": "",
+            "description": "",
+            "image_file_path": "",
+            "amount": 0,
+            "limit": 0,
+            "damage_buff": 0,
+            "power_buff": 0,
+            "defense_buff": 0,
+            "will_buff": 0,
+            "resistance_buff": 0,
+            "speed_buff": 0,
+            "luck_buff": 0
+        },
+        {
+            "name": "",
+            "description": "",
+            "image_file_path": "",
+            "amount": 0,
+            "limit": 0,
+            "damage_buff": 0,
+            "power_buff": 0,
+            "defense_buff": 0,
+            "will_buff": 0,
+            "resistance_buff": 0,
+            "speed_buff": 0,
+            "luck_buff": 0
+        },
+        {
+            "name": "",
+            "description": "",
+            "image_file_path": "",
+            "amount": 0,
+            "limit": 0,
+            "damage_buff": 0,
+            "power_buff": 0,
+            "defense_buff": 0,
+            "will_buff": 0,
+            "resistance_buff": 0,
+            "speed_buff": 0,
+            "luck_buff": 0
+        },
+        {
+            "name": "",
+            "description": "",
+            "image_file_path": "",
+            "amount": 0,
+            "limit": 0,
+            "damage_buff": 0,
+            "power_buff": 0,
+            "defense_buff": 0,
+            "will_buff": 0,
+            "resistance_buff": 0,
+            "speed_buff": 0,
+            "luck_buff": 0
+        }
+    ],
+    "trinkets": [
+        {
+            "name": "",
+            "description": "",
+            "image_file_path": "",
+            "amount": 0,
+            "limit": 0,
+            "damage_buff": 0,
+            "power_buff": 0,
+            "defense_buff": 0,
+            "will_buff": 0,
+            "resistance_buff": 0,
+            "speed_buff": 0,
+            "luck_buff": 0
+        },
+        {
+            "name": "",
+            "description": "",
+            "image_file_path": "",
+            "amount": 0,
+            "limit": 0,
+            "damage_buff": 0,
+            "power_buff": 0,
+            "defense_buff": 0,
+            "will_buff": 0,
+            "resistance_buff": 0,
+            "speed_buff": 0,
+            "luck_buff": 0
+        },
+        {
+            "name": "",
+            "description": "",
+            "image_file_path": "",
+            "amount": 0,
+            "limit": 0,
+            "damage_buff": 0,
+            "power_buff": 0,
+            "defense_buff": 0,
+            "will_buff": 0,
+            "resistance_buff": 0,
+            "speed_buff": 0,
+            "luck_buff": 0
+        },
+        {
+            "name": "",
+            "description": "",
+            "image_file_path": "",
+            "amount": 0,
+            "limit": 0,
+            "damage_buff": 0,
+            "power_buff": 0,
+            "defense_buff": 0,
+            "will_buff": 0,
+            "resistance_buff": 0,
+            "speed_buff": 0,
+            "luck_buff": 0
+        }
+    ],
+    "inventory": [
+        {
+            "name": "TestWeapon",
+            "description": "A weapon of code!  Made for debugging so it's not really good...",
+            "image_file_path": "ItemSprites/TestWeaponIcon",
+            "amount": 1,
+            "limit": 1
+        },
+        {
+            "name": "TestArmor",
+            "description": "A suit of armor made of code!  Awkward and clunky, just like a programmer's first draft...",
+            "image_file_path": "ItemSprites/TestArmorIcon",
+            "amount": 1,
+            "limit": 1
+        },
+        {
+            "name": "TestTrinket",
+            "description": "The jewel on the ring is value at 1 bit!  Not one bitcoin, like an actual bit of memory...",
+            "image_file_path": "ItemSprites/TestTrinketIcon",
+            "amount": 1,
+            "limit": 1
+        },
+        {
+            "name": "TestWeapon2",
+            "description": "A weapon of code!  Made for debugging so it's not really good...",
+            "image_file_path": "ItemSprites/TestWeaponIcon",
+            "amount": 1,
+            "limit": 1
+        },
+        {
+            "name": "TestWeapon3",
+            "description": "A weapon of code!  Made for debugging so it's not really good...",
+            "image_file_path": "ItemSprites/TestWeaponIcon",
+            "amount": 1,
+            "limit": 1
+        },
+        {
+            "name": "TestWeapon4",
+            "description": "A weapon of code!  Made for debugging so it's not really good...",
+            "image_file_path": "ItemSprites/TestWeaponIcon",
+            "amount": 1,
+            "limit": 1
+        },
+        {
+            "name": "TestWeapon5",
+            "description": "A weapon of code!  Made for debugging so it's not really good...",
+            "image_file_path": "ItemSprites/TestWeaponIcon",
+            "amount": 1,
+            "limit": 1
+        },
+        {
+            "name": "Hot Dog",
+            "description": "A tube of unidentified, but delicious meat!  Heals 50 HP when eaten!",
+            "image_file_path": "ItemSprites/HotDog",
+            "amount": 30,
+            "limit": 30
+        }
+    ],
+    "names": [
+        "Player",
+        "TestPartyMember",
+        "TestPartyMember",
+        "TestPartyMember"
+    ],
+    "e_abilities": []
+}
