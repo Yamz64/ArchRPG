@@ -14086,6 +14086,7 @@ MonoBehaviour:
   equipped_offset: 0
   highlighted_item: 0
   highlighted_party_member: 0
+  highlighted_swap: 0
 --- !u!1 &1577036944
 GameObject:
   m_ObjectHideFlags: 0

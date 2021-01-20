@@ -23,6 +23,8 @@ public class PauseMenuHandler : MonoBehaviour
     public int highlighted_item;
     public int highlighted_party_member;
 
+    public int highlighted_swap;
+
     private int equip_type;     //0 = weapon, 1 = armor, 2 = trinket
     private bool menu_input;
     private bool item_select_menu;
@@ -2212,6 +2214,7 @@ public class PauseMenuHandler : MonoBehaviour
         //update the player's card first
         //show the card, update the name on the card, update the image, update the level, xp, hp, mp, and sanity bars and text objects
         cards[data.GetPos()].SetActive(true);
+        cards[data.GetPos()].GetComponent<Image>().color = Color.white;
         cards[data.GetPos()].transform.GetChild(1).GetComponent<Text>().text = data.GetName();
         cards[data.GetPos()].transform.GetChild(2).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetImageFilepath());
 
@@ -2236,6 +2239,7 @@ public class PauseMenuHandler : MonoBehaviour
         {
             //show the card, update the name on the card, update the image, update the level, xp, hp, mp, and sanity bars and text objects
             cards[data.GetPartyMember(i).GetPos()].SetActive(true);
+            cards[data.GetPartyMember(i).GetPos()].GetComponent<Image>().color = Color.white;
             cards[data.GetPartyMember(i).GetPos()].transform.GetChild(1).GetComponent<Text>().text = data.GetPartyMember(i).GetName();
             cards[data.GetPartyMember(i).GetPos()].transform.GetChild(2).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetPartyMember(i).GetImageFilepath());
 
@@ -2255,6 +2259,9 @@ public class PauseMenuHandler : MonoBehaviour
             cards[data.GetPartyMember(i).GetPos()].transform.GetChild(6).GetComponent<Text>().text = "SAN: (" + data.GetPartyMember(i).GetSP() + "/" + data.GetPartyMember(i).GetSPMax() + ")";
             cards[data.GetPartyMember(i).GetPos()].transform.GetChild(6).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetPartyMember(i).GetSAN() / data.GetPartyMember(i).GetSANMax();
         }
+
+        //change the color of the highlighted swap card
+        if (highlighted_swap != -1) cards[highlighted_swap].GetComponent<Image>().color = Color.grey;
     }
 
     public void BasePauseMenuRoutine()
@@ -2308,6 +2315,7 @@ public class PauseMenuHandler : MonoBehaviour
                         break;
                     case 3:
                         cursor_position = 0;
+                        highlighted_swap = -1;
                         UpdatePositionMenu();
                         OpenMenu(3);
                         break;
@@ -2916,6 +2924,41 @@ public class PauseMenuHandler : MonoBehaviour
         {
             if (!menu_input)
                 cursor_position += 2;
+            menu_input = true;
+        }
+        //input
+        else if (Input.GetButtonDown("Interact"))
+        {
+            if (!menu_input)
+            {
+                if (highlighted_swap == -1)
+                {
+                    if (menus[3].transform.GetChild(cursor_position).gameObject.activeInHierarchy)
+                    {
+                        highlighted_swap = cursor_position;
+                        UpdatePositionMenu();
+                    }
+                }
+                else
+                {
+                    //swap the already selected party member's position with the newly selected party member's position if it is not the same party member
+                    if (highlighted_swap != cursor_position)
+                    {
+                        //handle swapping of the player's position first
+                        if (data.GetPos() == highlighted_swap) data.SetPos(cursor_position);
+                        else if (data.GetPos() == cursor_position) data.SetPos(highlighted_swap);
+
+                        //then handle swapping of the party
+                        for (int i = 0; i < data.GetPartySize(); i++)
+                        {
+                            if (data.GetPartyMember(i).GetPos() == highlighted_swap) data.GetPartyMember(i).SetPos(cursor_position);
+                            else if (data.GetPartyMember(i).GetPos() == cursor_position) data.GetPartyMember(i).SetPos(highlighted_swap);
+                        }
+                    }
+                    highlighted_swap = -1;
+                    UpdatePositionMenu();
+                }
+            }
             menu_input = true;
         }
         else
