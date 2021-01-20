@@ -17,6 +17,7 @@ public class unit : MonoBehaviour
     public List<Attack> attacks;//List of attacks the unit can perform
 
     //< Status Effects >//
+    /*
     bool BFTrauma = false;
     bool paralyzed = false;
     bool crying = false;
@@ -27,6 +28,7 @@ public class unit : MonoBehaviour
     bool knockedDown = false;
     bool maddened = false;
     bool indifference = false;
+    */
 
     public Image view;          //Image of unit
     public Text nameText;       //Text object to project name to
@@ -46,6 +48,7 @@ public class unit : MonoBehaviour
             if (maxMP <= 0) { maxMP = 1; }
             mpBar.fillAmount = (float)currentMP / maxMP;
         }
+        attacks = new List<Attack>();
     }
 
     //Get the current Hit Points of the unit
@@ -65,6 +68,11 @@ public class unit : MonoBehaviour
         {
             return null;
         }
+    }
+
+    public void addAttack(Attack move)
+    {
+        attacks.Add(move);
     }
 
     public bool useAttack(int index, unit target)
