@@ -8,26 +8,30 @@ public class unit : MonoBehaviour
 {
     public string unitName;     //Name of the unit
     public int level;           //Level of the unit
+    public int exp;             //The amount of experience the unit has
     public int maxHP;           //Maximum HP possible
     public int currentHP;       //Current Hit points
     public int maxMP;           //Maximum MP possible
     public int currentMP;       //Current Mana/Skill Points
-    public bool enemy;
+    public int sanity;          //The sanity of the unit
+    public bool enemy;          //Whether the unit is an enemy unit or not
     public int position;        //0 == Frontline, 1 == Backline
-    public List<Attack> attacks;//List of attacks the unit can perform
+    public List<Ability> attacks;//List of attacks the unit can perform
+    public Weapon unitWeapon;   //The weapon the unit is holding
+    public Armor unitArmor;     //The armor the unit is wearing
+    public Trinket unitTrinket; //The trinket that the unit has
 
     //< Status Effects >//
     /*
     bool BFTrauma = false;
-    bool paralyzed = false;
     bool crying = false;
-    bool poison = false;
-    bool soaked = false;
-    bool flammable = false;
-    bool exhausted = false;
-    bool knockedDown = false;
     bool maddened = false;
     bool indifference = false;
+    bool grossedOut = false;
+    bool gurgling = false;
+    bool vomiting = false;
+    bool synapticShock = false;
+    bool uncontrollableSpasm = false;
     */
 
     public Image view;          //Image of unit
@@ -48,7 +52,7 @@ public class unit : MonoBehaviour
             if (maxMP <= 0) { maxMP = 1; }
             mpBar.fillAmount = (float)currentMP / maxMP;
         }
-        attacks = new List<Attack>();
+        attacks = new List<Ability>();
     }
 
     //Get the current Hit Points of the unit
@@ -58,7 +62,7 @@ public class unit : MonoBehaviour
     public int getMP()    { return currentMP;   }
 
     //Get the attack at the given index
-    public Attack getAttack(int index)
+    public Ability getAttack(int index)
     {
         if (index < attacks.Count)
         {
@@ -70,11 +74,13 @@ public class unit : MonoBehaviour
         }
     }
 
-    public void addAttack(Attack move)
+    //Add an attack to the unit's list of attacks
+    public void addAttack(Ability move)
     {
         attacks.Add(move);
     }
 
+    //Use the attack at the given index against the given target
     public bool useAttack(int index, unit target)
     {
         return false;

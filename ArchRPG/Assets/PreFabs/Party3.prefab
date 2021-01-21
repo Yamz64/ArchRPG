@@ -1051,8 +1051,8 @@ MonoBehaviour:
   level: 0
   maxHP: 30
   currentHP: 30
-  maxMP: 0
-  currentMP: 0
+  maxMP: 20
+  currentMP: 20
   enemy: 0
   position: 0
   view: {fileID: 7304494372436943289}

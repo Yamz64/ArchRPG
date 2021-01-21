@@ -281,7 +281,7 @@ public class BattleScript : MonoBehaviour
     {
         if (cursor_position + attack_offset < partyUnits[currentUnit].GetComponent<unit>().attacks.Count)
         {
-            Attack attack = partyUnits[currentUnit].GetComponent<unit>().getAttack(cursor_position + attack_offset);
+            Ability attack = partyUnits[currentUnit].GetComponent<unit>().getAttack(cursor_position + attack_offset);
 
             transform.GetChild(1).GetChild(6).GetChild(2).GetChild(3).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
 
@@ -505,9 +505,9 @@ public class BattleScript : MonoBehaviour
                 switch (cursor_position)
                 {
                     case 4:
-                        actions.Add(new action("attack", highlighted_attack + attack_offset, 0));
-                        partyUnits[currentUnit].GetComponent<unit>().attacks[highlighted_attack + attack_offset]
-                            .UseAttack(partyUnits[currentUnit].GetComponent<unit>(), enemyUnit);
+                        actions.Add(new action("attack", highlighted_attack, 0));
+                        //partyUnits[currentUnit].GetComponent<unit>().attacks[highlighted_attack]
+                        //    .UseAttack(partyUnits[currentUnit].GetComponent<unit>(), enemyUnit);
                         currentUnit += 1;
                         
                         CloseUseAttackMenu();
@@ -518,10 +518,13 @@ public class BattleScript : MonoBehaviour
                         if (currentUnit >= activeUnits)
                         {
                             currentUnit = 0;
-                            state = battleState.ENEMY;
-                            StartCoroutine(enemyAttack());
+                            state = battleState.ATTACK;
+                            StartCoroutine(performActions());
                         }
-                        playerTurn();
+                        else
+                        {
+                            playerTurn();
+                        }
 
                         break;
                     case 5:
@@ -641,18 +644,21 @@ public class BattleScript : MonoBehaviour
                 {
                     case 9:
                         actions.Add(new action("item", highlighted_item, currentUnit));
-                        data.UseItem(highlighted_item);
-                        UpdateInventoryItems();
-                        UpdateInventoryImageandDesc();
+                        //data.UseItem(highlighted_item);
+                        //UpdateInventoryItems();
+                        //UpdateInventoryImageandDesc();
                         currentUnit += 1;
-                  
+
                         if (currentUnit >= activeUnits)
                         {
                             currentUnit = 0;
-                            state = battleState.ENEMY;
-                            StartCoroutine(enemyAttack());
+                            state = battleState.ATTACK;
+                            StartCoroutine(performActions());
                         }
-                        playerTurn();
+                        else
+                        {
+                            playerTurn();
+                        }
 
                         CloseUseItemMenu();
                         break;
@@ -766,10 +772,13 @@ public class BattleScript : MonoBehaviour
                     if (currentUnit >= activeUnits)
                     {
                         currentUnit = 0;
-                        state = battleState.ENEMY;
-                        StartCoroutine(enemyAttack());
+                        state = battleState.ATTACK;
+                        StartCoroutine(performActions());
                     }
-                    playerTurn();
+                    else
+                    {
+                        playerTurn();
+                    }
 
 
                     CloseMenu(3);
@@ -782,6 +791,10 @@ public class BattleScript : MonoBehaviour
             {
                 if (i1 == 5)
                 {
+                    if (cursor_position == 1 || cursor_position == 3)
+                    {
+                        cursor.transform.Rotate(0.0f, 0.0f, 180.0f);
+                    }
                     CloseMenu(3);
                     menu_input = false;
                     active_menu = 0;
@@ -798,25 +811,69 @@ public class BattleScript : MonoBehaviour
         cursor.transform.position = cursor_positions[3].positions[cursor_position].position;
     }
 
-    public void PerformSwaps(int i)
+    //Swap 2 units in order of selection
+    public void PerformSwaps()
     {
-        partyStations[swapInds[i]] = p2;
-        partyStations[swapInds[i+1]] = p1;
+        Debug.Log("swapInds.size == " + swapInds.Count);
+        partyStations[swapInds[0]] = p2;
+        partyStations[swapInds[1]] = p1;
 
-        partyUnits[swapInds[i]].transform.position = p2p.transform.position;
-        partyUnits[swapInds[i+1]].transform.position = p1.position;
-        partyUnits[swapInds[i]] = p2p;
-        partyUnits[swapInds[i+1]] = p1p;
-        swapInds.RemoveAt(i + 1);
-        swapInds.RemoveAt(i);
-        swaps.RemoveAt(i + 1);
-        swaps.RemoveAt(i);
+        partyUnits[swapInds[0]].transform.position = p2p.transform.position;
+        partyUnits[swapInds[1]].transform.position = p1.position;
+        partyUnits[swapInds[0]] = p2p;
+        partyUnits[swapInds[1]] = p1p;
+
+        swapInds.RemoveAt(0);
+        swapInds.RemoveAt(0);
     }
 
+    //Perform the selected actions, after they have been selected
     IEnumerator performActions()
     {
-        yield return new WaitForSeconds(2f);
+        List<GameObject> temp = new List<GameObject>();
+        for (int i = 0; i < actions.Count; i++)
+        {
+            temp.Add(partyUnits[i]);
+        }
+        for (int i = 0; i < actions.Count; i++)
+        {
+            yield return new WaitForSeconds(2f);
+            if (actions[i].getType() == "attack")
+            {
+                dialogue.text = temp[i].GetComponent<unit>().unitName + " used " +
+                    temp[i].GetComponent<unit>().attacks[actions[i].getIndex()].name;
+                //StartCoroutine(playerAttack(temp[i].GetComponent<unit>().attacks[actions[i].getIndex()], 
+                    //temp[i].GetComponent<unit>(), enemyUnit));
+                temp[i].GetComponent<unit>().attacks[actions[i].getIndex()]
+                            .UseAttack(temp[i].GetComponent<unit>(), enemyUnit);
+            }
+            else if (actions[i].getType() == "item")
+            {
+                dialogue.text = temp[i].GetComponent<unit>().unitName + " used " +
+                    data.GetItem(actions[i].getIndex()).name;
+                data.UseItem(actions[i].getIndex());
+                UpdateInventoryItems();
+                UpdateInventoryImageandDesc();
 
+            }
+            else if (actions[i].getType() == "swap")
+            {
+                dialogue.text = temp[i].GetComponent<unit>().unitName + " swapped places with "
+                    + temp[actions[i].getTarget()].GetComponent<unit>().unitName;
+                PerformSwaps();
+            }
+            else
+            {
+                dialogue.text = "Invalid action selected";
+            }
+            yield return new WaitForSeconds(1f);
+        }
+
+        swapInds.Clear();
+        swaps.Clear();
+
+        state = battleState.ENEMY;
+        StartCoroutine(enemyAttack());
 
     }
 
@@ -880,7 +937,7 @@ public class BattleScript : MonoBehaviour
 
         actions = new List<action>();
 
-        Attack mover = new Attack();
+        Ability mover = new Ability();
         mover.name = "Basic Attack";
         mover.cost = 1;
         mover.damage = 3;
@@ -934,11 +991,13 @@ public class BattleScript : MonoBehaviour
     }
 
     //Deal damage to enemy, check if it is dead, and act accordingly (win battle or enemy turn)
-    IEnumerator playerAttack(Attack ata, unit uni, unit target)
+    IEnumerator playerAttack(Ability ata, unit uni, unit target)
     {
-        dialogue.text = "Player used " + ata.name;
+        //dialogue.text = "Player used " + ata.name;
 
         yield return new WaitForSeconds(1f);
+
+        uni.currentMP -= ata.cost;
 
         bool dead = target.takeDamage(ata.damage);
         target.setHP(target.currentHP);
@@ -953,12 +1012,13 @@ public class BattleScript : MonoBehaviour
             battleEnd();
         }
         //If enemy lives, they attack
-        else
+        /*else
         {
             state = battleState.ENEMY;
             StartCoroutine(enemyAttack());
         }
         yield return new WaitForSeconds(2f);
+        */
     }
 
     //Heal damage the player has taken
@@ -1031,7 +1091,7 @@ public class BattleScript : MonoBehaviour
     }
 
     //Player chooses to attack
-    public void AttackButton(Attack ata, unit uni, unit target)
+    public void AttackButton(Ability ata, unit uni, unit target)
     {
         if (state != battleState.PLAYER) return;
         StartCoroutine(playerAttack(ata, uni, target));
@@ -1084,7 +1144,7 @@ public class BattleScript : MonoBehaviour
         
         partyUnits = new List<GameObject>();
 
-
+        swapInds = new List<int>();
 
         state = battleState.START;
         StartCoroutine(setupBattle());
