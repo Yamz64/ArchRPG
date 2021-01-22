@@ -130,8 +130,13 @@ public class BattleScript : MonoBehaviour
     //List of party units
     private List<GameObject> partyUnits;
 
+    private List<GameObject> enemyUnits;
+
     //Int to track the number of units actually in the party
-    int activeUnits = 1;            
+    int activeUnits = 1;
+
+
+    int activeEnemies = 1;
 
     //Variables used to make sure only one action is taken per turn
     private float time = 2;
@@ -684,7 +689,6 @@ public class BattleScript : MonoBehaviour
     /*
      * To Work on:
      * Multiple swaps
-     * Swap at the end of the party's turn
      * Making sure backline sprites appear on top of frontline
      */
     public void SwapMenuRoutine()
@@ -945,6 +949,12 @@ public class BattleScript : MonoBehaviour
         else
         {
             partyUnits.Add(null);
+        }
+
+        if (enemyPrefab2 && enemyStation2)
+        {
+            GameObject enemyGo2 = Instantiate(enemyPrefab2, enemyStation2);
+            enemyUnit2 = enemyGo2.GetComponent<unit>();
         }
 
         actions = new List<action>();

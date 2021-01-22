@@ -287,13 +287,13 @@ MonoBehaviour:
   member2Prefab: {fileID: 1005756538189142237, guid: 1d06632b7c0b6a14794d092181a35b9b, type: 3}
   member3Prefab: {fileID: 7304494372106587136, guid: 1422bce278ec8a14695dfb6b0fa4aab6, type: 3}
   enemyPrefab: {fileID: 3649797668599104361, guid: c6288666f4d0a824fba8448c5d8e8173, type: 3}
-  enemyPrefab2: {fileID: 0}
+  enemyPrefab2: {fileID: 3649797668599104361, guid: c6288666f4d0a824fba8448c5d8e8173, type: 3}
   playerStation: {fileID: 1489905312}
   member1Station: {fileID: 698593766}
   member2Station: {fileID: 375501834}
   member3Station: {fileID: 173307079}
   enemyStation: {fileID: 974848988}
-  enemyStation2: {fileID: 0}
+  enemyStation2: {fileID: 1314743688}
   frames: []
   currentUnit: 0
 --- !u!114 &43254541
@@ -4421,7 +4421,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -201, y: 65}
+  m_AnchoredPosition: {x: -157, y: 65}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1314743689
