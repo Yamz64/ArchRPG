@@ -11,8 +11,8 @@ public class unit : MonoBehaviour
     public int exp;             //The amount of experience the unit has
     public int maxHP;           //Maximum HP possible
     public int currentHP;       //Current Hit points
-    public int maxMP;           //Maximum MP possible
-    public int currentMP;       //Current Mana/Skill Points
+    public int maxSP;           //Maximum SP possible
+    public int currentSP;       //Current Skill Points
     public int sanity;          //The sanity of the unit
     public bool enemy;          //Whether the unit is an enemy unit or not
     public int position;        //0 == Frontline, 1 == Backline
@@ -39,9 +39,15 @@ public class unit : MonoBehaviour
     public Image nameTextBack;  //Background for the text
     public Text levelText;      //Text object to project level to
     public Image hpBar;         //Bar to project hit points to
-    public Image mpBar;         //Bar to project mana/skill points to
+    public Image hpBarBack;
+    public Text hpSideText;
+    public Image hpSideTextBack;
+    public Image spBar;         //Bar to project mana/skill points to
+    public Image spBarBack;
+    public Text spSideText;
+    public Image spSideTextBack;
 
-    //Function to set up the HUD with important data
+    //Function to set up the HUD with isportant data
     public void setHUD()        
     {
         nameText.text = unitName;
@@ -49,8 +55,8 @@ public class unit : MonoBehaviour
         hpBar.fillAmount = (float)currentHP / maxHP;
         if (!enemy)
         {
-            if (maxMP <= 0) { maxMP = 1; }
-            mpBar.fillAmount = (float)currentMP / maxMP;
+            if (maxSP <= 0) { maxSP = 1; }
+            spBar.fillAmount = (float)currentSP / maxSP;
         }
         attacks = new List<Ability>();
     }
@@ -59,7 +65,7 @@ public class unit : MonoBehaviour
     public int getHP()    { return currentHP;   }
 
     //Get the current skill points/MP of the unit
-    public int getMP()    { return currentMP;   }
+    public int getSP()    { return currentSP;   }
 
     //Get the attack at the given index
     public Ability getAttack(int index)
@@ -93,9 +99,9 @@ public class unit : MonoBehaviour
     }
 
     //Set the current value of the MP slider
-    public void setMP(int mp)
+    public void setSP(int sp)
     {
-        mpBar.GetComponent<Image>().fillAmount = (float)mp / maxMP;
+        spBar.GetComponent<Image>().fillAmount = (float)sp / maxSP;
     }
 
     //Adjust the health of the slide to reflect damage taken

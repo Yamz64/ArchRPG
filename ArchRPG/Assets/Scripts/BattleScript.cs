@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 //Different states of battle (turns)
-public enum battleState {  START, PLAYER, PARTY1, PARTY2, PARTY3, ATTACK, ENEMY, WIN, LOSE }
+public enum battleState {  START, PLAYER, PARTY1, PARTY2, PARTY3, ATTACK, ENEMY, WIN, LOSE, FLEE }
 
 public class action
 {
@@ -81,11 +81,15 @@ public class BattleScript : MonoBehaviour
     public int inventory_offset;
     //Int to track how many attacks away from the bottom before the menu can start scrolling
     public int attack_offset;
+    //Int to track how many actions away from the bottom before the menu can start scrolling
+    public int action_offset;
 
     //Current item (index) being highlighted by cursor
     public int highlighted_item;
     //Current attack (index) being highlighted by cursor
     public int highlighted_attack;
+    //Current action in base menu (index) being highlighed by cursor
+    public int highlighted_action;
     //Bool to check whether the menu is accepting input
     private bool menu_input;
     //Bool to check whether the player has the action menu open
@@ -334,23 +338,35 @@ public class BattleScript : MonoBehaviour
             {
                 switch (cursor_position)
                 {
-                    //Open attacks menu
                     case 0:
+                        actions.Add(new action("basic attack", 0, 0));
+                        //partyUnits[currentUnit].GetComponent<unit>().attacks[highlighted_attack]
+                        //    .UseAttack(partyUnits[currentUnit].GetComponent<unit>(), enemyUnit);
+                        currentUnit += 1;
+
+                        if (currentUnit >= activeUnits)
+                        {
+                            currentUnit = 0;
+                            state = battleState.ATTACK;
+                            StartCoroutine(performActions());
+                        }
+                        else
+                        {
+                            playerTurn();
+                        }
+
+                        break;
+
+                    //Open attacks menu
+                    case 1:
                         attack_select_menu = false;
-                        Debug.Log("Unit attack list.length == " + partyUnits[currentUnit].GetComponent<unit>().attacks.Count);
                         UpdateAttackList();
                         UpdateAttackImageandDesc();
                         OpenMenu(1);
-
-                        //cursor.SetActive(false);
-                        // CloseMenu(0);
-                        //menu_mode = false;
-                        //AttackButton();
-                        //timer = 1;
                         break;
 
                     //Open item menu
-                    case 1:
+                    case 2:
                         
                         inventory_offset = 0;
                         highlighted_item = 0;
@@ -358,20 +374,18 @@ public class BattleScript : MonoBehaviour
                         OpenMenu(2);
                         UpdateInventoryItems();
                         UpdateInventoryImageandDesc();
-                        
-                        //ItemButton();
-                        //timer = 1;
                         break;
 
                     //Skip to next turn
-                    case 2:
-                        //cursor_position = 0;
-                        //action_select_menu = true;
+                    case 3:
                         OpenMenu(3);
                         transform.GetChild(1).GetChild(8).GetChild(2).GetComponent<Text>().text = "Swap:\n\n";
-                        //timer = 1;
                         break;
-                    case 3:
+                    case 4:
+                        state = battleState.FLEE;
+                        battleEnd();
+                        break;
+                    case 5:
                         break;
                     default:
                         break;
@@ -830,51 +844,58 @@ public class BattleScript : MonoBehaviour
     //Perform the selected actions, after they have been selected
     IEnumerator performActions()
     {
-        List<GameObject> temp = new List<GameObject>();
-        for (int i = 0; i < actions.Count; i++)
+        if (state != battleState.WIN && state != battleState.LOSE && state != battleState.FLEE)
         {
-            temp.Add(partyUnits[i]);
+            List<GameObject> temp = new List<GameObject>();
+            for (int i = 0; i < actions.Count; i++)
+            {
+                temp.Add(partyUnits[i]);
+            }
+            for (int i = 0; i < actions.Count; i++)
+            {
+                yield return new WaitForSeconds(2f);
+                if (actions[i].getType() == "attack")
+                {
+                    dialogue.text = temp[i].GetComponent<unit>().unitName + " used " +
+                        temp[i].GetComponent<unit>().attacks[actions[i].getIndex()].name;
+                    StartCoroutine(playerAttack(temp[i].GetComponent<unit>().attacks[actions[i].getIndex()],
+                        temp[i].GetComponent<unit>(), enemyUnit));
+                    // temp[i].GetComponent<unit>().attacks[actions[i].getIndex()]
+                    //  .UseAttack(temp[i].GetComponent<unit>(), enemyUnit);
+                }
+                else if (actions[i].getType() == "basic attack")
+                {
+                    dialogue.text = temp[i].GetComponent<unit>().unitName + " attacked the enemy";
+                    StartCoroutine(basicAttack(temp[i].GetComponent<unit>(), enemyUnit));
+                }
+                else if (actions[i].getType() == "item")
+                {
+                    dialogue.text = temp[i].GetComponent<unit>().unitName + " used " +
+                        data.GetItem(actions[i].getIndex()).name;
+                    data.UseItem(actions[i].getIndex());
+                    UpdateInventoryItems();
+                    UpdateInventoryImageandDesc();
+
+                }
+                else if (actions[i].getType() == "swap")
+                {
+                    dialogue.text = temp[i].GetComponent<unit>().unitName + " swapped places with "
+                        + temp[actions[i].getTarget()].GetComponent<unit>().unitName;
+                    PerformSwaps();
+                }
+                else
+                {
+                    dialogue.text = "Invalid action selected";
+                }
+                yield return new WaitForSeconds(1f);
+            }
+
+            swapInds.Clear();
+            swaps.Clear();
+
+            state = battleState.ENEMY;
+            StartCoroutine(enemyAttack());
         }
-        for (int i = 0; i < actions.Count; i++)
-        {
-            yield return new WaitForSeconds(2f);
-            if (actions[i].getType() == "attack")
-            {
-                dialogue.text = temp[i].GetComponent<unit>().unitName + " used " +
-                    temp[i].GetComponent<unit>().attacks[actions[i].getIndex()].name;
-                //StartCoroutine(playerAttack(temp[i].GetComponent<unit>().attacks[actions[i].getIndex()], 
-                    //temp[i].GetComponent<unit>(), enemyUnit));
-                temp[i].GetComponent<unit>().attacks[actions[i].getIndex()]
-                            .UseAttack(temp[i].GetComponent<unit>(), enemyUnit);
-            }
-            else if (actions[i].getType() == "item")
-            {
-                dialogue.text = temp[i].GetComponent<unit>().unitName + " used " +
-                    data.GetItem(actions[i].getIndex()).name;
-                data.UseItem(actions[i].getIndex());
-                UpdateInventoryItems();
-                UpdateInventoryImageandDesc();
-
-            }
-            else if (actions[i].getType() == "swap")
-            {
-                dialogue.text = temp[i].GetComponent<unit>().unitName + " swapped places with "
-                    + temp[actions[i].getTarget()].GetComponent<unit>().unitName;
-                PerformSwaps();
-            }
-            else
-            {
-                dialogue.text = "Invalid action selected";
-            }
-            yield return new WaitForSeconds(1f);
-        }
-
-        swapInds.Clear();
-        swaps.Clear();
-
-        state = battleState.ENEMY;
-        StartCoroutine(enemyAttack());
-
     }
 
     //Create battle characters, set up HUD's, display text, and start player turn
@@ -982,6 +1003,17 @@ public class BattleScript : MonoBehaviour
         bot.nameText.CrossFadeAlpha(0, 2f, false);
         bot.nameTextBack.CrossFadeAlpha(0, 2f, false);
         bot.levelText.CrossFadeAlpha(0, 2f, false);
+        bot.hpBar.CrossFadeAlpha(0, 2f, false);
+        bot.hpBarBack.CrossFadeAlpha(0, 2f, false);
+        bot.hpSideText.CrossFadeAlpha(0, 2f, false);
+        bot.hpSideTextBack.CrossFadeAlpha(0, 2f, false);
+        if (bot.spBar != null)
+        {
+            bot.spBar.CrossFadeAlpha(0, 2f, false);
+            bot.spBarBack.CrossFadeAlpha(0, 2f, false);
+            bot.spSideText.CrossFadeAlpha(0, 2f, false);
+            bot.spSideTextBack.CrossFadeAlpha(0, 2f, false);
+        }
     }
 
     //Player turn, display relevant text
@@ -993,14 +1025,45 @@ public class BattleScript : MonoBehaviour
     //Deal damage to enemy, check if it is dead, and act accordingly (win battle or enemy turn)
     IEnumerator playerAttack(Ability ata, unit uni, unit target)
     {
+        if (state == battleState.PLAYER)
+        {
+            //dialogue.text = "Player used " + ata.name;
+
+            yield return new WaitForSeconds(1f);
+
+            bool dead = target.takeDamage(ata.damage);
+            target.setHP(target.currentHP);
+            uni.setSP(uni.currentSP - ata.cost);
+
+            yield return new WaitForSeconds(1f);
+
+            //If enemy is dead, battle is won
+            if (dead)
+            {
+                state = battleState.WIN;
+                StartCoroutine(unitDeath(target));
+                battleEnd();
+            }
+            //If enemy lives, they attack
+            /*else
+            {
+                state = battleState.ENEMY;
+                StartCoroutine(enemyAttack());
+            }
+            yield return new WaitForSeconds(2f);
+            */
+        }
+    }
+
+    IEnumerator basicAttack(unit uni, unit target)
+    {
         //dialogue.text = "Player used " + ata.name;
 
         yield return new WaitForSeconds(1f);
 
-        uni.currentMP -= ata.cost;
-
-        bool dead = target.takeDamage(ata.damage);
+        bool dead = target.takeDamage(4);
         target.setHP(target.currentHP);
+        uni.setSP(uni.currentSP - 2);
 
         yield return new WaitForSeconds(1f);
 
@@ -1008,17 +1071,9 @@ public class BattleScript : MonoBehaviour
         if (dead)
         {
             state = battleState.WIN;
-            StartCoroutine( unitDeath(target) );
+            StartCoroutine(unitDeath(target));
             battleEnd();
         }
-        //If enemy lives, they attack
-        /*else
-        {
-            state = battleState.ENEMY;
-            StartCoroutine(enemyAttack());
-        }
-        yield return new WaitForSeconds(2f);
-        */
     }
 
     //Heal damage the player has taken
@@ -1087,6 +1142,10 @@ public class BattleScript : MonoBehaviour
         else if (state == battleState.LOSE)
         {
             dialogue.text = "You Died";
+        }
+        else if (state == battleState.FLEE)
+        {
+            dialogue.text = "The party managed to escape";
         }
     }
 

@@ -51,18 +51,65 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: The Weirdo
   level: 0
+  exp: 0
   maxHP: 10
   currentHP: 10
-  maxMP: 30
-  currentMP: 30
+  maxSP: 12
+  currentSP: 12
+  sanity: 0
   enemy: 0
   position: 0
+  unitWeapon:
+    name: 
+    description: 
+    image_file_path: 
+    amount: 0
+    limit: 0
+    damage_buff: 0
+    power_buff: 0
+    defense_buff: 0
+    will_buff: 0
+    resistance_buff: 0
+    speed_buff: 0
+    luck_buff: 0
+  unitArmor:
+    name: 
+    description: 
+    image_file_path: 
+    amount: 0
+    limit: 0
+    damage_buff: 0
+    power_buff: 0
+    defense_buff: 0
+    will_buff: 0
+    resistance_buff: 0
+    speed_buff: 0
+    luck_buff: 0
+  unitTrinket:
+    name: 
+    description: 
+    image_file_path: 
+    amount: 0
+    limit: 0
+    damage_buff: 0
+    power_buff: 0
+    defense_buff: 0
+    will_buff: 0
+    resistance_buff: 0
+    speed_buff: 0
+    luck_buff: 0
   view: {fileID: 1005756538922153316}
   nameText: {fileID: 2091364914256460738}
   nameTextBack: {fileID: 2091364915551912213}
   levelText: {fileID: 5660663057395742738}
   hpBar: {fileID: 3228827963093448120}
-  mpBar: {fileID: 7154836246172106504}
+  hpBarBack: {fileID: 6677424418230713299}
+  hpSideText: {fileID: 6677424418225013380}
+  hpSideTextBack: {fileID: 6677424418141906073}
+  spBar: {fileID: 7154836246172106504}
+  spBarBack: {fileID: 6789429263314605949}
+  spSideText: {fileID: 942803702321795393}
+  spSideTextBack: {fileID: 1355041547190370156}
 --- !u!1 &1005756538922153322
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ public class Ability
     public virtual void UseAttack(unit user, unit target)
     {
         target.setHP(target.currentHP - damage);
-        user.setMP(user.currentMP - cost);
+        user.setSP(user.currentSP - cost);
     }
 
     public bool eldritch = false;   //Whether the ability is eldritch or not

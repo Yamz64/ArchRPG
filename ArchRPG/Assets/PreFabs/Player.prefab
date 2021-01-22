@@ -1152,18 +1152,65 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Conspiracy Guy
   level: 0
+  exp: 0
   maxHP: 20
   currentHP: 20
-  maxMP: 10
-  currentMP: 10
+  maxSP: 10
+  currentSP: 10
+  sanity: 0
   enemy: 0
   position: 0
+  unitWeapon:
+    name: 
+    description: 
+    image_file_path: 
+    amount: 0
+    limit: 0
+    damage_buff: 0
+    power_buff: 0
+    defense_buff: 0
+    will_buff: 0
+    resistance_buff: 0
+    speed_buff: 0
+    luck_buff: 0
+  unitArmor:
+    name: 
+    description: 
+    image_file_path: 
+    amount: 0
+    limit: 0
+    damage_buff: 0
+    power_buff: 0
+    defense_buff: 0
+    will_buff: 0
+    resistance_buff: 0
+    speed_buff: 0
+    luck_buff: 0
+  unitTrinket:
+    name: 
+    description: 
+    image_file_path: 
+    amount: 0
+    limit: 0
+    damage_buff: 0
+    power_buff: 0
+    defense_buff: 0
+    will_buff: 0
+    resistance_buff: 0
+    speed_buff: 0
+    luck_buff: 0
   view: {fileID: 5863634073337913552}
   nameText: {fileID: 4732438157363867254}
   nameTextBack: {fileID: 4732438157545051297}
   levelText: {fileID: 1307254652008017318}
   hpBar: {fileID: 6909033019813768351}
-  mpBar: {fileID: 5339206236476282531}
+  hpBarBack: {fileID: 503115367}
+  hpSideText: {fileID: 470259504}
+  hpSideTextBack: {fileID: 453767469}
+  spBar: {fileID: 5339206236476282531}
+  spBarBack: {fileID: 185245514119742153}
+  spSideText: {fileID: 5890559715238577397}
+  spSideTextBack: {fileID: 5648896271150787288}
 --- !u!1 &5863634073337913566
 GameObject:
   m_ObjectHideFlags: 0

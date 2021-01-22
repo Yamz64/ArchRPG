@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 2474025224127419717}
   - component: {fileID: 2474025224127419718}
   m_Layer: 5
-  m_Name: HPText
+  m_Name: HPTextBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -354,7 +354,7 @@ GameObject:
   - component: {fileID: 2474025224496763112}
   - component: {fileID: 2474025224496763113}
   m_Layer: 5
-  m_Name: Text
+  m_Name: HPText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -701,17 +701,61 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Eldritch Gunner
   level: 2
+  exp: 0
   maxHP: 10
   currentHP: 10
   maxMP: 0
   currentMP: 0
+  sanity: 0
   enemy: 1
   position: 0
+  unitWeapon:
+    name: 
+    description: 
+    image_file_path: 
+    amount: 0
+    limit: 0
+    damage_buff: 0
+    power_buff: 0
+    defense_buff: 0
+    will_buff: 0
+    resistance_buff: 0
+    speed_buff: 0
+    luck_buff: 0
+  unitArmor:
+    name: 
+    description: 
+    image_file_path: 
+    amount: 0
+    limit: 0
+    damage_buff: 0
+    power_buff: 0
+    defense_buff: 0
+    will_buff: 0
+    resistance_buff: 0
+    speed_buff: 0
+    luck_buff: 0
+  unitTrinket:
+    name: 
+    description: 
+    image_file_path: 
+    amount: 0
+    limit: 0
+    damage_buff: 0
+    power_buff: 0
+    defense_buff: 0
+    will_buff: 0
+    resistance_buff: 0
+    speed_buff: 0
+    luck_buff: 0
   view: {fileID: 3649797667331469008}
   nameText: {fileID: 1436975295251400349}
   nameTextBack: {fileID: 7090471288935455508}
   levelText: {fileID: 2288234115139050823}
   hpBar: {fileID: 4607316700963480134}
+  hpBarBack: {fileID: 2474025224679526920}
+  hpSideText: {fileID: 2474025224496763113}
+  hpSideTextBack: {fileID: 2474025224127419718}
   mpBar: {fileID: 0}
 --- !u!1 &3694361481796394241
 GameObject:

@@ -1049,18 +1049,65 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Dog Guy
   level: 0
+  exp: 0
   maxHP: 30
   currentHP: 30
-  maxMP: 20
-  currentMP: 20
+  maxSP: 5
+  currentSP: 5
+  sanity: 0
   enemy: 0
   position: 0
+  unitWeapon:
+    name: 
+    description: 
+    image_file_path: 
+    amount: 0
+    limit: 0
+    damage_buff: 0
+    power_buff: 0
+    defense_buff: 0
+    will_buff: 0
+    resistance_buff: 0
+    speed_buff: 0
+    luck_buff: 0
+  unitArmor:
+    name: 
+    description: 
+    image_file_path: 
+    amount: 0
+    limit: 0
+    damage_buff: 0
+    power_buff: 0
+    defense_buff: 0
+    will_buff: 0
+    resistance_buff: 0
+    speed_buff: 0
+    luck_buff: 0
+  unitTrinket:
+    name: 
+    description: 
+    image_file_path: 
+    amount: 0
+    limit: 0
+    damage_buff: 0
+    power_buff: 0
+    defense_buff: 0
+    will_buff: 0
+    resistance_buff: 0
+    speed_buff: 0
+    luck_buff: 0
   view: {fileID: 7304494372436943289}
   nameText: {fileID: 8479690542617341727}
   nameTextBack: {fileID: 8479690544583628232}
   levelText: {fileID: 2748704161808084175}
   hpBar: {fileID: 5680104971081578424}
-  mpBar: {fileID: 6463537369703793417}
+  hpBarBack: {fileID: 3747301589881433870}
+  hpSideText: {fileID: 3747301589876528729}
+  hpSideTextBack: {fileID: 3747301589926588484}
+  spBar: {fileID: 6463537369703793417}
+  spBarBack: {fileID: 3932496938968597408}
+  spSideText: {fileID: 7331418364802942364}
+  spSideTextBack: {fileID: 8819736694768528305}
 --- !u!1 &7304494372436943287
 GameObject:
   m_ObjectHideFlags: 0

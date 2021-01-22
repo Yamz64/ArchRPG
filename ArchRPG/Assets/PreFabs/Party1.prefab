@@ -355,18 +355,65 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Demon Child
   level: 1
+  exp: 0
   maxHP: 15
   currentHP: 15
-  maxMP: 5
-  currentMP: 5
+  maxSP: 15
+  currentSP: 15
+  sanity: 0
   enemy: 0
   position: 0
+  unitWeapon:
+    name: 
+    description: 
+    image_file_path: 
+    amount: 0
+    limit: 0
+    damage_buff: 0
+    power_buff: 0
+    defense_buff: 0
+    will_buff: 0
+    resistance_buff: 0
+    speed_buff: 0
+    luck_buff: 0
+  unitArmor:
+    name: 
+    description: 
+    image_file_path: 
+    amount: 0
+    limit: 0
+    damage_buff: 0
+    power_buff: 0
+    defense_buff: 0
+    will_buff: 0
+    resistance_buff: 0
+    speed_buff: 0
+    luck_buff: 0
+  unitTrinket:
+    name: 
+    description: 
+    image_file_path: 
+    amount: 0
+    limit: 0
+    damage_buff: 0
+    power_buff: 0
+    defense_buff: 0
+    will_buff: 0
+    resistance_buff: 0
+    speed_buff: 0
+    luck_buff: 0
   view: {fileID: 1166271923061738383}
   nameText: {fileID: 61996323046999337}
   nameTextBack: {fileID: 61996322606006270}
   levelText: {fileID: 6004691470355760889}
   hpBar: {fileID: 873432959059922276}
-  mpBar: {fileID: 4567811316131812804}
+  hpBarBack: {fileID: 4715477982989862200}
+  hpSideText: {fileID: 4715477983013518447}
+  hpSideTextBack: {fileID: 4715477983031089778}
+  spBar: {fileID: 4567811316131812804}
+  spBarBack: {fileID: 4891650187759593878}
+  spSideText: {fileID: 1211405507553669034}
+  spSideTextBack: {fileID: 1086589098909303175}
 --- !u!1 &3611790764216189836
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,7 +897,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6066343210623818762}
   m_Layer: 5
-  m_Name: ManaBar
+  m_Name: SkillBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
