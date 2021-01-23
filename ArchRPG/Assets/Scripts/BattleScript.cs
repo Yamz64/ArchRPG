@@ -135,7 +135,7 @@ public class BattleScript : MonoBehaviour
     //Int to track the number of units actually in the party
     int activeUnits = 1;
 
-
+    //Int to track the number of enemies encountered in the battle
     int activeEnemies = 1;
 
     //Variables used to make sure only one action is taken per turn
@@ -244,7 +244,7 @@ public class BattleScript : MonoBehaviour
 
         for (int i = 0; i < cursor_positions[1].positions.Count - 2; i++)
         {
-            if (i + attack_offset < partyUnits[currentUnit].GetComponent<unit>().attacks.Count)
+            if (i + attack_offset < partyUnits[currentUnit].GetComponent<unit>().abilities.Count)
             {
                 attack_viewer[i].text = partyUnits[currentUnit].GetComponent<unit>().getAttack(i + attack_offset).name;
 
@@ -289,7 +289,7 @@ public class BattleScript : MonoBehaviour
     //Update image and descriptions based on selected attack
     public void UpdateAttackImageandDesc()
     {
-        if (cursor_position + attack_offset < partyUnits[currentUnit].GetComponent<unit>().attacks.Count)
+        if (cursor_position + attack_offset < partyUnits[currentUnit].GetComponent<unit>().abilities.Count)
         {
             Ability attack = partyUnits[currentUnit].GetComponent<unit>().getAttack(cursor_position + attack_offset);
 
@@ -848,8 +848,8 @@ public class BattleScript : MonoBehaviour
                 if (actions[i].getType() == "attack" && state == battleState.ATTACK)
                 {
                     dialogue.text = temp[i].GetComponent<unit>().unitName + " used " +
-                        temp[i].GetComponent<unit>().attacks[actions[i].getIndex()].name;
-                    StartCoroutine(playerAttack(temp[i].GetComponent<unit>().attacks[actions[i].getIndex()],
+                        temp[i].GetComponent<unit>().abilities[actions[i].getIndex()].name;
+                    StartCoroutine(playerAttack(temp[i].GetComponent<unit>().abilities[actions[i].getIndex()],
                         temp[i].GetComponent<unit>(), enemyUnit));
                     // temp[i].GetComponent<unit>().attacks[actions[i].getIndex()]
                     //  .UseAttack(temp[i].GetComponent<unit>(), enemyUnit);
@@ -1056,6 +1056,7 @@ public class BattleScript : MonoBehaviour
         }
     }
 
+    //Use a basic attack against the target, and act accordin
     IEnumerator basicAttack(unit uni, unit target)
     {
         //dialogue.text = "Player used " + ata.name;

@@ -14,9 +14,18 @@ public class unit : MonoBehaviour
     public int maxSP;           //Maximum SP possible
     public int currentSP;       //Current Skill Points
     public int sanity;          //The sanity of the unit
+    public int ATK;             //Attack stat of unit
+    public int DEF;             //Defense stat of unit
+    public int WILL;            //Willpower stat of unit
+    public int RES;             //Resistance stat of unit
+    public int AGI;             //Agility stat of unit
+    public int LCK;             //Luck stat of unit
+
+
+
     public bool enemy;          //Whether the unit is an enemy unit or not
     public int position;        //0 == Frontline, 1 == Backline
-    public List<Ability> attacks;//List of attacks the unit can perform
+    public List<Ability> abilities;//List of attacks the unit can perform
     public Weapon unitWeapon;   //The weapon the unit is holding
     public Armor unitArmor;     //The armor the unit is wearing
     public Trinket unitTrinket; //The trinket that the unit has
@@ -58,7 +67,7 @@ public class unit : MonoBehaviour
             if (maxSP <= 0) { maxSP = 1; }
             spBar.fillAmount = (float)currentSP / maxSP;
         }
-        attacks = new List<Ability>();
+        abilities = new List<Ability>();
     }
 
     //Get the current Hit Points of the unit
@@ -70,9 +79,9 @@ public class unit : MonoBehaviour
     //Get the attack at the given index
     public Ability getAttack(int index)
     {
-        if (index < attacks.Count)
+        if (index < abilities.Count)
         {
-            return attacks[index];
+            return abilities[index];
         }
         else
         {
@@ -83,7 +92,7 @@ public class unit : MonoBehaviour
     //Add an attack to the unit's list of attacks
     public void addAttack(Ability move)
     {
-        attacks.Add(move);
+        abilities.Add(move);
     }
 
     //Use the attack at the given index against the given target
