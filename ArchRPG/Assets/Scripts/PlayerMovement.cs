@@ -71,5 +71,16 @@ public class PlayerMovement : CharacterAnimationHandler
                 }
             }
         }
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            CharacterStatJsonConverter data = new CharacterStatJsonConverter(GetComponent<PlayerDataMono>().data);
+            data.Save(0);
+        }else if (Input.GetKeyDown(KeyCode.L))
+        {
+            CharacterStatJsonConverter data = new CharacterStatJsonConverter(GetComponent<PlayerDataMono>().data);
+            data.Load(0);
+            data.UpdatePlayerData(ref GetComponent<PlayerDataMono>().data);
+        }
     }
 }

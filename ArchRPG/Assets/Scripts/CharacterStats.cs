@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using UnityEngine;
 
 public class CharacterStats
@@ -65,7 +67,7 @@ public class CharacterStats
     public virtual void SetWeapon(Weapon w)
     {
         weapon = w;
-        if (weapon != null) ;
+        if (weapon != null)
         w.SetWeapon(this);
     }
     public virtual void SetArmor(Armor a)
@@ -280,7 +282,7 @@ public class CharacterStats
                 break;
             case 14:
                 //apply the base stats per level
-                HP_max = 173;
+                HP_max = 273;
                 SP_max = 82;
                 ATK = 71;
                 POW = 71;
@@ -483,6 +485,69 @@ public class CharacterStatJsonConverter
         Debug.Log("saved");
     }
 
+    public void Load(int save_file)
+    {
+        //read info from json
+        StreamReader reader = new StreamReader(Application.streamingAssetsPath + "/Saves/" + (save_file + 1).ToString() + "/Save.json");
+        string json = reader.ReadToEnd();
+        reader.Close();
+
+        //convert json info to data in this class instance
+        JsonUtility.FromJsonOverwrite(json, this);
+    }
+
+    public void UpdatePlayerData(ref PlayerData p)
+    {
+        //--FIRST UPDATE THE PLAYER'S STATS--
+        //name, level, position, weapon, armor, and trinket
+        p.SetName(names[0]);
+        p.SetLVL(levels[0]);
+        p.SetPos(positions[0]);
+        p.SetWeapon(weapons[0]);
+        p.SetArmor(armors[0]);
+        p.SetTrinket(trinkets[0]);
+
+        //populate inventory after clearing it
+        p.ClearInventory();
+        for(int i=0; i<inventory.GetLength(0); i++)
+        {
+            p.AddItem(inventory[i]);
+        }
+
+        //update other stats as well as the experience level
+        p.UpdateStats();
+        p.SetExperience(XPs[0]);
+        
+        //update the eldritch abilities
+        for(int i=0; i<e_abilities.GetLength(0); i++)
+        {
+            //try to find a valid eldritch ability, if it exists and add it to the player's abilities
+            System.Type t = System.Type.GetType(e_abilities[i]);
+            p.AddAbility((Ability)System.Activator.CreateInstance(t));
+        }
+
+        //add party members
+        p.ClearParty();
+        for(int i=1; i<names.GetLength(0); i++)
+        {
+            //try to find a valid party member, if it exists and add it to the party
+            System.Type t = System.Type.GetType(names[i]);
+            CharacterStats temp = (CharacterStats)System.Activator.CreateInstance(t);
+
+            //update the party member's stats
+            temp.SetName(names[i]);
+            temp.SetLVL(levels[i]);
+            temp.SetPos(positions[i]);
+            temp.SetWeapon(weapons[i]);
+            temp.SetArmor(armors[i]);
+            temp.SetTrinket(trinkets[i]);
+
+            temp.UpdateStats();
+
+            p.AddPartyMember(temp);
+        }
+    }
+
     public Vector2 position;        //current position in the world (ignored except for after battles)
 
     public int progress;            //how far in the game the player is
@@ -500,4 +565,35 @@ public class CharacterStatJsonConverter
 
     public string[] names;          //the names of the current party members
     public string[] e_abilities;    //the current eldritch abilities that the player has
+}
+
+
+class TestPartyMember : CharacterStats
+{
+    public TestPartyMember()
+    {
+        SetImageFilepath("CharacterSprites/TestCharacter");
+
+        SetName("TestPartyMember");
+        SetDesc("A test for adding a party member...");
+
+        SetLVL(10);
+
+        SetHPMax(100);
+        SetHP(86);
+
+        SetSPMax(100);
+        SetSP(75);
+
+        SetSANMax(100);
+        SetSAN(100);
+
+        SetATK(80);
+        SetPOW(20);
+        SetDEF(50);
+        SetWIL(100);
+        SetRES(30);
+        SetSPD(40);
+        SetLCK(30);
+    }
 }
