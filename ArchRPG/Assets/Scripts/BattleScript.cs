@@ -66,10 +66,8 @@ public class BattleScript : MonoBehaviour
         public List<Transform> positions;
     }
 
-    //Current position (index) the cursor is at
-    public int cursor_position;
-    //Current menu being moved through
-    public int active_menu;
+    public int cursor_position;     //Current position (index) the cursor is at
+    public int active_menu;         //Current menu being moved through
     //
     public bool menu_mode;
 
@@ -108,13 +106,13 @@ public class BattleScript : MonoBehaviour
     public GameObject playerPrefab;
     public GameObject member1Prefab; public GameObject member2Prefab; public GameObject member3Prefab;
     public GameObject enemyPrefab;
-    public GameObject enemyPrefab2;
+    public GameObject enemyPrefab2; public GameObject enemyPrefab3; public GameObject enemyPrefab4;
 
     //Locations to spawn characters at
     public Transform playerStation;
     public Transform member1Station; public Transform member2Station; public Transform member3Station;
     public Transform enemyStation;
-    public Transform enemyStation2;
+    public Transform enemyStation2; public Transform enemyStation3; public Transform enemyStation4;
 
     //List of party spawn locations
     private List<Transform> partyStations;
@@ -123,13 +121,14 @@ public class BattleScript : MonoBehaviour
     unit playerUnit;
     unit member1Unit; unit member2Unit; unit member3Unit;
     unit enemyUnit;
-    unit enemyUnit2;
+    unit enemyUnit2; unit enemyUnit3; unit enemyUnit4;
 
     public List<Image> frames;
 
     //List of party units
     private List<GameObject> partyUnits;
 
+    //List of enemy units
     private List<GameObject> enemyUnits;
 
     //Int to track the number of units actually in the party
@@ -904,6 +903,7 @@ public class BattleScript : MonoBehaviour
         //Create enemy unit
         GameObject enemyGo = Instantiate(enemyPrefab, enemyStation);
         enemyUnit = enemyGo.GetComponent<unit>();
+        enemyUnits.Add(enemyGo.gameObject);
 
         //Set up HUD's
         playerUnit.setHUD();
@@ -955,6 +955,39 @@ public class BattleScript : MonoBehaviour
         {
             GameObject enemyGo2 = Instantiate(enemyPrefab2, enemyStation2);
             enemyUnit2 = enemyGo2.GetComponent<unit>();
+            enemyUnit2.setHUD();
+            enemyUnits.Add(enemyGo2.gameObject);
+            activeEnemies += 1;
+        }
+        else
+        {
+            enemyUnits.Add(null);
+        }
+
+        if (enemyPrefab3 && enemyStation3)
+        {
+            GameObject enemyGo3 = Instantiate(enemyPrefab3, enemyStation3);
+            enemyUnit3 = enemyGo3.GetComponent<unit>();
+            enemyUnit3.setHUD();
+            enemyUnits.Add(enemyGo3.gameObject);
+            activeEnemies += 1;
+        }
+        else
+        {
+            enemyUnits.Add(null);
+        }
+
+        if (enemyPrefab4 && enemyStation4)
+        {
+            GameObject enemyGo4 = Instantiate(enemyPrefab4, enemyStation4);
+            enemyUnit4 = enemyGo4.GetComponent<unit>();
+            enemyUnit4.setHUD();
+            enemyUnits.Add(enemyGo4.gameObject);
+            activeEnemies += 1;
+        }
+        else
+        {
+            enemyUnits.Add(null);
         }
 
         actions = new List<action>();
@@ -976,7 +1009,24 @@ public class BattleScript : MonoBehaviour
         }
 
         //Display text to player, showing an enemy has appeared
-        dialogue.text = "The " + enemyUnit.unitName + " appears.";
+        if (activeEnemies == 1)
+        {
+            dialogue.text = "The " + enemyUnit.unitName + " appears.";
+        }
+        else if (activeEnemies == 2)
+        {
+            int index = 1;
+            while (index < 4 && enemyUnits[index+1] != null)
+            {
+                index += 1;
+            }
+            dialogue.text = "The " + enemyUnits[0].GetComponent<unit>().unitName + " and "
+                + enemyUnits[index].GetComponent<unit>().unitName + " appeared";
+        }
+        else if (activeEnemies >= 3)
+        {
+            dialogue.text = "A group of enemies appeared";
+        }
 
         //Start player turn
         yield return new WaitForSeconds(2f);
@@ -1002,18 +1052,17 @@ public class BattleScript : MonoBehaviour
         yield return new WaitForSeconds(1f);
         bot.view.CrossFadeAlpha(0, 2f, false);
         bot.nameText.CrossFadeAlpha(0, 2f, false);
-        bot.nameTextBack.CrossFadeAlpha(0, 2f, false);
+        bot.BBackground.CrossFadeAlpha(0, 2f, false);
+        bot.WBackground.CrossFadeAlpha(0, 2f, false);
         bot.levelText.CrossFadeAlpha(0, 2f, false);
         bot.hpBar.CrossFadeAlpha(0, 2f, false);
-        bot.hpBarBack.CrossFadeAlpha(0, 2f, false);
         bot.hpSideText.CrossFadeAlpha(0, 2f, false);
-        bot.hpSideTextBack.CrossFadeAlpha(0, 2f, false);
+        bot.hpReadOut.CrossFadeAlpha(0, 2f, false);
         if (bot.spBar != null)
         {
             bot.spBar.CrossFadeAlpha(0, 2f, false);
-            bot.spBarBack.CrossFadeAlpha(0, 2f, false);
             bot.spSideText.CrossFadeAlpha(0, 2f, false);
-            bot.spSideTextBack.CrossFadeAlpha(0, 2f, false);
+            bot.spReadOut.CrossFadeAlpha(0, 2f, false);
         }
     }
 
@@ -1211,6 +1260,7 @@ public class BattleScript : MonoBehaviour
 
         
         partyUnits = new List<GameObject>();
+        enemyUnits = new List<GameObject>();
 
         swapInds = new List<int>();
 
@@ -1220,7 +1270,7 @@ public class BattleScript : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("State == " + state);
+        //Debug.Log("State == " + state);
         cursor.SetActive(true);
         if (state == battleState.PLAYER && currentUnit < partyUnits.Count && partyUnits[currentUnit] != null)
         {

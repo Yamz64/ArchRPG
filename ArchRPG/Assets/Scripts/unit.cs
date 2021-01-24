@@ -22,7 +22,7 @@ public class unit : MonoBehaviour
     public int LCK;             //Luck stat of unit
 
 
-
+    public bool player;         //Whether the unit is the main player character
     public bool enemy;          //Whether the unit is an enemy unit or not
     public int position;        //0 == Frontline, 1 == Backline
     public List<Ability> abilities;//List of attacks the unit can perform
@@ -45,16 +45,15 @@ public class unit : MonoBehaviour
 
     public Image view;          //Image of unit
     public Text nameText;       //Text object to project name to
-    public Image nameTextBack;  //Background for the text
+    public Image BBackground;   //Background for the text
+    public Image WBackground;   //Forms border around UI data
     public Text levelText;      //Text object to project level to
     public Image hpBar;         //Bar to project hit points to
-    public Image hpBarBack;
     public Text hpSideText;
-    public Image hpSideTextBack;
+    public Text hpReadOut;
     public Image spBar;         //Bar to project mana/skill points to
-    public Image spBarBack;
     public Text spSideText;
-    public Image spSideTextBack;
+    public Text spReadOut;
 
     //Function to set up the HUD with isportant data
     public void setHUD()        
@@ -62,11 +61,14 @@ public class unit : MonoBehaviour
         nameText.text = unitName;
         levelText.text = "Lvl : " + level;
         hpBar.fillAmount = (float)currentHP / maxHP;
+        hpReadOut.text = currentHP + " / " + maxHP;
         if (!enemy)
         {
             if (maxSP <= 0) { maxSP = 1; }
             spBar.fillAmount = (float)currentSP / maxSP;
+            spReadOut.text = currentSP + " / " + maxSP;
         }
+
         abilities = new List<Ability>();
     }
 
