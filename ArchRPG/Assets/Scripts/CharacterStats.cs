@@ -481,7 +481,7 @@ public class CharacterStatJsonConverter
     {
         string data = JsonUtility.ToJson(this, true);
 
-        System.IO.File.WriteAllText(Application.streamingAssetsPath + "/Saves/" + (save_file + 1).ToString() + "/Save.json", data);
+        File.WriteAllText(Application.streamingAssetsPath + "/Saves/" + (save_file + 1).ToString() + "/Save.json", data);
         Debug.Log("saved");
     }
 
@@ -503,9 +503,9 @@ public class CharacterStatJsonConverter
         p.SetName(names[0]);
         p.SetLVL(levels[0]);
         p.SetPos(positions[0]);
-        p.SetWeapon(weapons[0]);
-        p.SetArmor(armors[0]);
-        p.SetTrinket(trinkets[0]);
+        if (weapons[0].name != "") p.SetWeapon(weapons[0]);
+        if (armors[0].name != "") p.SetArmor(armors[0]);
+        if (trinkets[0].name != "") p.SetTrinket(trinkets[0]);
 
         //populate inventory after clearing it
         p.ClearInventory();
@@ -538,9 +538,9 @@ public class CharacterStatJsonConverter
             temp.SetName(names[i]);
             temp.SetLVL(levels[i]);
             temp.SetPos(positions[i]);
-            temp.SetWeapon(weapons[i]);
-            temp.SetArmor(armors[i]);
-            temp.SetTrinket(trinkets[i]);
+            if(weapons[i].name != "") temp.SetWeapon(weapons[i]);
+            if(armors[i].name != "") temp.SetArmor(armors[i]);
+            if(trinkets[i].name != "") temp.SetTrinket(trinkets[i]);
 
             temp.UpdateStats();
 
