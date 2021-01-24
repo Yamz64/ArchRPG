@@ -22,8 +22,9 @@ public class unit : MonoBehaviour
     public int LCK;             //Luck stat of unit
 
 
-
+    public bool player;         //Whether the unit is the main player character
     public bool enemy;          //Whether the unit is an enemy unit or not
+    public bool outOfSP;
     public int position;        //0 == Frontline, 1 == Backline
     public List<Ability> abilities;//List of attacks the unit can perform
     public Weapon unitWeapon;   //The weapon the unit is holding
@@ -45,16 +46,15 @@ public class unit : MonoBehaviour
 
     public Image view;          //Image of unit
     public Text nameText;       //Text object to project name to
-    public Image nameTextBack;  //Background for the text
+    public Image BBackground;   //Background for the text
+    public Image WBackground;   //Forms border around UI data
     public Text levelText;      //Text object to project level to
     public Image hpBar;         //Bar to project hit points to
-    public Image hpBarBack;
-    public Text hpSideText;
-    public Image hpSideTextBack;
+    public Text hpSideText;     //HP Icon
+    public Text hpReadOut;      //Text showing exact number of hitpoints
     public Image spBar;         //Bar to project mana/skill points to
-    public Image spBarBack;
-    public Text spSideText;
-    public Image spSideTextBack;
+    public Text spSideText;     //SP Icon
+    public Text spReadOut;      //Text showing exact number of skillpoints
 
     //Function to set up the HUD with isportant data
     public void setHUD()        
@@ -62,11 +62,14 @@ public class unit : MonoBehaviour
         nameText.text = unitName;
         levelText.text = "Lvl : " + level;
         hpBar.fillAmount = (float)currentHP / maxHP;
+        hpReadOut.text = currentHP + " / " + maxHP;
         if (!enemy)
         {
             if (maxSP <= 0) { maxSP = 1; }
             spBar.fillAmount = (float)currentSP / maxSP;
+            spReadOut.text = currentSP + " / " + maxSP;
         }
+
         abilities = new List<Ability>();
     }
 
@@ -98,27 +101,64 @@ public class unit : MonoBehaviour
     //Use the attack at the given index against the given target
     public bool useAttack(int index, unit target)
     {
+        if (outOfSP == false)
+        {
+            currentSP -= abilities[index].cost;
+            if (currentSP == 0)
+            {
+                outOfSP = true;
+            }
+            spReadOut.text = 0 + " / " + maxSP;
+            bool d = target.takeDamage(abilities[index].damage);
+            return d;
+        }
         return false;
     }
 
     //Set the current value of the HP slider
     public void setHP(int hp)
     {
-        hpBar.GetComponent<Image>().fillAmount = (float)hp / maxHP;
+        if (currentHP <= 0)
+        {
+            hpBar.GetComponent<Image>().fillAmount = 0.0f / maxHP;
+            hpReadOut.text = 0 + " / " + maxHP;
+        }
+        else
+        {
+            hpBar.GetComponent<Image>().fillAmount = (float)hp / maxHP;
+            hpReadOut.text = currentHP + " / " + maxHP;
+        }
     }
 
     //Set the current value of the MP slider
     public void setSP(int sp)
     {
-        spBar.GetComponent<Image>().fillAmount = (float)sp / maxSP;
+        if (currentSP <= 0)
+        {
+            spBar.GetComponent<Image>().fillAmount = 0.0f / maxSP;
+            spReadOut.text = 0 + " / " + maxSP;
+        }
+        else
+        {
+            spBar.GetComponent<Image>().fillAmount = (float)sp / maxSP;
+            spReadOut.text = currentSP + " / " + maxSP;
+        }
     }
 
     //Adjust the health of the slide to reflect damage taken
     public bool takeDamage(int dam)
     {
         currentHP -= dam;
-        if (currentHP <= 0)     return true;        
-        else    return false;        
+        if (currentHP <= 0)
+        {
+            hpReadOut.text = 0 + " / " + maxHP;
+            return true;
+        }
+        else
+        {
+            hpReadOut.text = currentHP + " / " + maxHP;
+            return false;
+        }
     }
 
     //Adjust the health of the slider to reflect damage healed
@@ -128,6 +168,11 @@ public class unit : MonoBehaviour
         if (currentHP > maxHP)
         {
             currentHP = maxHP;
+            hpReadOut.text = maxHP + " / " + maxHP;
+        }
+        else
+        {
+            hpReadOut.text = currentHP + " / " + maxHP;
         }
     }
 }

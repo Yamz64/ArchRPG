@@ -361,6 +361,13 @@ MonoBehaviour:
   maxSP: 15
   currentSP: 15
   sanity: 0
+  ATK: 0
+  DEF: 0
+  WILL: 0
+  RES: 0
+  AGI: 0
+  LCK: 0
+  player: 0
   enemy: 0
   position: 0
   unitWeapon:
@@ -407,13 +414,9 @@ MonoBehaviour:
   nameTextBack: {fileID: 61996322606006270}
   levelText: {fileID: 6004691470355760889}
   hpBar: {fileID: 873432959059922276}
-  hpBarBack: {fileID: 4715477982989862200}
   hpSideText: {fileID: 4715477983013518447}
-  hpSideTextBack: {fileID: 4715477983031089778}
   spBar: {fileID: 4567811316131812804}
-  spBarBack: {fileID: 4891650187759593878}
   spSideText: {fileID: 1211405507553669034}
-  spSideTextBack: {fileID: 1086589098909303175}
 --- !u!1 &3611790764216189836
 GameObject:
   m_ObjectHideFlags: 0
