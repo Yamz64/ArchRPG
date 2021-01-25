@@ -1069,9 +1069,9 @@ public class BattleScript : MonoBehaviour
     //Create battle characters, set up HUD's, display text, and start player turn
     IEnumerator setupBattle()
     {
-        
         //Create player unit
         GameObject playerGo = Instantiate(playerPrefab, playerStation);
+        playerGo = loader.updateUnit(playerGo, 0);
         playerUnit = playerGo.GetComponent<unit>();
         partyUnits.Add(playerGo.gameObject);
 
@@ -1085,9 +1085,10 @@ public class BattleScript : MonoBehaviour
         enemyUnit.setHUD();
 
         //Create party member 2 if possible
-        if (member1Prefab && member1Station)
+        if (member1Prefab && member1Station && activeUnits < loader.HPs.Length)
         {
             GameObject member1Go = Instantiate(member1Prefab, member1Station);
+            member1Go = loader.updateUnit(member1Go, activeUnits);
             member1Unit = member1Go.GetComponent<unit>();
             member1Unit.setHUD();
             partyUnits.Add(member1Go.gameObject);
@@ -1099,9 +1100,10 @@ public class BattleScript : MonoBehaviour
         }
 
         //Create party member 3 if possible
-        if (member2Prefab && member2Station)
+        if (member2Prefab && member2Station && activeUnits < loader.HPs.Length)
         {
             GameObject member2Go = Instantiate(member2Prefab, member2Station);
+            member2Go = loader.updateUnit(member2Go, activeUnits);
             member2Unit = member2Go.GetComponent<unit>();
             member2Unit.setHUD();
             partyUnits.Add(member2Go.gameObject);
@@ -1113,9 +1115,10 @@ public class BattleScript : MonoBehaviour
         }
 
         //Create party member 4 if possible
-        if (member3Prefab && member3Station)
+        if (member3Prefab && member3Station && activeUnits < loader.HPs.Length)
         {
             GameObject member3Go = Instantiate(member3Prefab, member3Station);
+            member3Go = loader.updateUnit(member3Go, activeUnits);
             member3Unit = member3Go.GetComponent<unit>();
             member3Unit.setHUD();
             partyUnits.Add(member3Go.gameObject);
@@ -1399,6 +1402,8 @@ public class BattleScript : MonoBehaviour
         menu_input = false;
         item_select_menu = false;
 
+        loader = new CharacterStatJsonConverter(data);
+        loader.Load(0);
 
         //define the cursor's gameObject
         cursor = transform.GetChild(1).GetChild(transform.GetChild(1).childCount - 2).gameObject;

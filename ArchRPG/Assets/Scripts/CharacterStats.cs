@@ -496,6 +496,29 @@ public class CharacterStatJsonConverter
         JsonUtility.FromJsonOverwrite(json, this);
     }
 
+    public GameObject updateUnit(GameObject id, int num)
+    {
+        if (num < HPs.Length)
+        {
+            id.GetComponent<unit>().maxHP = HPs[num];
+            id.GetComponent<unit>().currentHP = HPs[num];
+            id.GetComponent<unit>().maxSP = SPs[num];
+            id.GetComponent<unit>().currentSP = SPs[num];
+            id.GetComponent<unit>().sanity = SANs[num];
+            id.GetComponent<unit>().exp = XPs[num];
+            id.GetComponent<unit>().level = levels[num];
+            id.GetComponent<unit>().unitWeapon = weapons[num];
+            id.GetComponent<unit>().unitArmor = armors[num];
+            id.GetComponent<unit>().unitTrinket = trinkets[num];
+            id.GetComponent<unit>().unitName = names[num];
+            return id;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
     public void UpdatePlayerData(ref PlayerData p)
     {
         //--FIRST UPDATE THE PLAYER'S STATS--

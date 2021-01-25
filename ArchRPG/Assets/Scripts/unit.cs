@@ -148,6 +148,7 @@ public class unit : MonoBehaviour
     //Adjust the health of the slide to reflect damage taken
     public bool takeDamage(int dam)
     {
+        StartCoroutine(flashDamage());
         currentHP -= dam;
         if (currentHP <= 0)
         {
@@ -164,6 +165,7 @@ public class unit : MonoBehaviour
     //Adjust the health of the slider to reflect damage healed
     public void healDamage(int ep)
     {
+        StartCoroutine(flashHeal());
         currentHP += ep;
         if (currentHP > maxHP)
         {
@@ -174,5 +176,32 @@ public class unit : MonoBehaviour
         {
             hpReadOut.text = currentHP + " / " + maxHP;
         }
+    }
+
+    IEnumerator flashDamage()
+    {
+        Color ori = BBackground.color;
+        Color red = BBackground.color;
+        red.b = 0.0f;
+        red.g = 0.0f;
+        red.r = 1.0f;
+        yield return new WaitForSeconds(0.5f);
+        BBackground.color = red;
+        yield return new WaitForSeconds(0.5f);
+        BBackground.color = ori;
+    }
+
+    IEnumerator flashHeal()
+    {
+        Color ori = BBackground.color;
+        Color green = BBackground.color;
+        green.b = 0.0f;
+        green.g = 1.0f;
+        green.r = 0.0f;
+        yield return new WaitForSeconds(0.5f);
+        BBackground.color = green;
+        yield return new WaitForSeconds(0.5f);
+        BBackground.color = ori;
+
     }
 }
