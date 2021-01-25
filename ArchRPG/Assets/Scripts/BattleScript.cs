@@ -6,6 +6,7 @@ using UnityEngine.UI;
 //Different states of battle (turns)
 public enum battleState {  START, PLAYER, PARTY1, PARTY2, PARTY3, ATTACK, ENEMY, WIN, LOSE, FLEE }
 
+//A class to use to store actions that are done during the ATTACK state
 public class action
 {
     public action()
@@ -92,6 +93,8 @@ public class BattleScript : MonoBehaviour
     private bool menu_input;
     //Bool to check whether the player has the attack menu open
     private bool attack_select_menu;
+    //Bool to check whether the player is selecting an enemy to attack
+    private bool enemy_select_menu;
     //Bool to check whether the player has the item menu open
     private bool item_select_menu;
 
@@ -140,6 +143,8 @@ public class BattleScript : MonoBehaviour
     //Int to track the number of enemies encountered in the battle
     int activeEnemies = 1;
 
+    int enemyDeaths = 0;
+
     //Variables used to make sure only one action is taken per turn
     private float time = 2;
     private float timer = 2;
@@ -162,6 +167,10 @@ public class BattleScript : MonoBehaviour
 
     //The current unit in the party that is choosing an action
     public int currentUnit = 0;
+
+    public int currentEnemy = 0;
+
+    CharacterStatJsonConverter loader;
 
     //Function to open the menu at the given index
     public void OpenMenu(int index)
@@ -209,6 +218,52 @@ public class BattleScript : MonoBehaviour
         transform.GetChild(1).GetChild(6).GetChild(7).gameObject.SetActive(false);
         cursor_position = highlighted_attack - attack_offset;
         attack_select_menu = false;
+    }
+
+    //Open the enemy select menu
+    public void OpenSelectEnemyMenu()
+    {
+        int i = 0;
+        while (enemyUnits[i].GetComponent<unit>().currentHP <= 0)
+        {
+            i += 1;
+        }
+        dialogue.text = "Select Target";
+        enemySelect(i);
+    }
+
+    //Close the enemy select menu
+    public void CloseSelectEnemyMenu()
+    {
+        for (int i = 0; i < activeEnemies; i++)
+        {
+            if (enemyUnits[i].GetComponent<unit>().currentHP > 0)
+            {
+                Color temp = enemyUnits[i].GetComponent<unit>().view.color;
+                temp.a = 1.0f;
+                enemyUnits[i].GetComponent<unit>().view.color = temp;
+            }
+        }
+    }
+
+    //Make one enemy appear highlighted compared to the other ones
+    public void enemySelect(int act)
+    {
+        for (int i = 0; i < activeEnemies; i++)
+        {
+            if (i != act && enemyUnits[i].GetComponent<unit>().currentHP > 0)
+            {
+                Color temp = enemyUnits[i].GetComponent<unit>().view.color;
+                temp.a = 0.6f;
+                enemyUnits[i].GetComponent<unit>().view.color = temp;
+            }
+            else if (i == act)
+            {
+                Color temp = enemyUnits[i].GetComponent<unit>().view.color;
+                temp.a = 1.0f;
+                enemyUnits[i].GetComponent<unit>().view.color = temp;
+            }
+        }
     }
 
     //Update list of items in item menu
@@ -372,9 +427,9 @@ public class BattleScript : MonoBehaviour
                     //Open attacks menu
                     case 1:
                         attack_select_menu = false;
+                        OpenMenu(1);
                         UpdateAttackList();
                         UpdateAttackImageandDesc();
-                        OpenMenu(1);
                         break;
 
                     //Open item menu
@@ -481,7 +536,7 @@ public class BattleScript : MonoBehaviour
                 menu_input = false;
             }
         }
-        else if (state == battleState.PLAYER)
+        else if (enemy_select_menu == false && state == battleState.PLAYER)
         {
             //If input is up and in the attack select menu
             if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 3)
@@ -507,27 +562,41 @@ public class BattleScript : MonoBehaviour
                 switch (cursor_position)
                 {
                     case 4:
-                        actions.Add(new action("attack", highlighted_attack, 0));
-                        //partyUnits[currentUnit].GetComponent<unit>().attacks[highlighted_attack]
-                        //    .UseAttack(partyUnits[currentUnit].GetComponent<unit>(), enemyUnit);
-                        currentUnit += 1;
-                        
-                        CloseUseAttackMenu();
-                        CloseMenu(1);
-                        menu_input = false;
-                        active_menu = 0;
-
-                        if (currentUnit >= activeUnits)
+                        if (activeEnemies > 1)
                         {
-                            currentUnit = 0;
-                            state = battleState.ATTACK;
-                            StartCoroutine(performActions());
+                            SpriteRenderer[] opts = transform.GetChild(1).GetChild(6).GetComponentsInChildren<SpriteRenderer>();
+                            foreach(SpriteRenderer child in opts)
+                            {
+                                Color temp = child.color;
+                                temp.a = 0.6f;
+                                child.color = temp;
+                            }
+                            OpenSelectEnemyMenu();
+                            enemy_select_menu = true;
                         }
                         else
                         {
-                            playerTurn();
-                        }
+                            actions.Add(new action("attack", highlighted_attack, currentEnemy));
+                            //partyUnits[currentUnit].GetComponent<unit>().attacks[highlighted_attack]
+                            //    .UseAttack(partyUnits[currentUnit].GetComponent<unit>(), enemyUnit);
+                            currentUnit += 1;
 
+                            CloseUseAttackMenu();
+                            CloseMenu(1);
+                            menu_input = false;
+                            active_menu = 0;
+
+                            if (currentUnit >= activeUnits)
+                            {
+                                currentUnit = 0;
+                                state = battleState.ATTACK;
+                                StartCoroutine(performActions());
+                            }
+                            else
+                            {
+                                playerTurn();
+                            }
+                        }
                         break;
                     case 5:
                         CloseUseAttackMenu();
@@ -539,6 +608,73 @@ public class BattleScript : MonoBehaviour
             else if (Input.GetButtonDown("Cancel"))
             {
                 CloseUseAttackMenu();
+            }
+            else
+            {
+                menu_input = false;
+            }
+        }
+        else if (state == battleState.PLAYER)
+        {
+            if (Input.GetAxisRaw("Horizontal") > 0.0f && currentEnemy < activeEnemies - 1 && 
+                enemyUnits[currentEnemy + 1].GetComponent<unit>().currentHP > 0)
+            {
+                if (!menu_input)
+                {
+                    currentEnemy++;
+                    enemySelect(currentEnemy);
+                }
+                menu_input = true;
+            }
+            else if (Input.GetAxisRaw("Horizontal") < 0.0f && currentEnemy > 0 && 
+                enemyUnits[currentEnemy-1].GetComponent<unit>().currentHP > 0)
+            {
+                if (!menu_input)
+                {
+                    currentEnemy--;
+                    enemySelect(currentEnemy);
+                }
+                menu_input = true;
+            }
+            else if (Input.GetButtonDown("Interact"))
+            {
+                actions.Add(new action("attack", highlighted_attack, currentEnemy));
+                //partyUnits[currentUnit].GetComponent<unit>().attacks[highlighted_attack]
+                //    .UseAttack(partyUnits[currentUnit].GetComponent<unit>(), enemyUnit);
+                currentUnit += 1;
+
+                SpriteRenderer[] opts = transform.GetChild(1).GetChild(6).GetComponentsInChildren<SpriteRenderer>();
+                foreach (SpriteRenderer child in opts)
+                {
+                    Color temp = child.color;
+                    temp.a = 1.0f;
+                    child.color = temp;
+                }
+
+                CloseSelectEnemyMenu();
+                CloseUseAttackMenu();
+                CloseMenu(1);
+                enemy_select_menu = false;
+                menu_input = false;
+                active_menu = 0;
+
+                if (currentUnit >= activeUnits)
+                {
+                    currentUnit = 0;
+                    state = battleState.ATTACK;
+                    StartCoroutine(performActions());
+                }
+                else
+                {
+                    playerTurn();
+                }
+            }
+            else if (Input.GetButtonDown("Cancel"))
+            {
+                CloseSelectEnemyMenu();
+                CloseUseAttackMenu();
+                cursor_position = highlighted_attack + attack_offset;
+                menu_input = false;
             }
             else
             {
@@ -887,7 +1023,7 @@ public class BattleScript : MonoBehaviour
                     dialogue.text = temp[i].GetComponent<unit>().unitName + " used " +
                         temp[i].GetComponent<unit>().abilities[actions[i].getIndex()].name;
                     StartCoroutine(playerAttack(temp[i].GetComponent<unit>().abilities[actions[i].getIndex()],
-                        temp[i].GetComponent<unit>(), enemyUnit));
+                        temp[i].GetComponent<unit>(), enemyUnits[actions[i].getTarget()].GetComponent<unit>()));
                     // temp[i].GetComponent<unit>().attacks[actions[i].getIndex()]
                     //  .UseAttack(temp[i].GetComponent<unit>(), enemyUnit);
                 }
@@ -933,6 +1069,7 @@ public class BattleScript : MonoBehaviour
     //Create battle characters, set up HUD's, display text, and start player turn
     IEnumerator setupBattle()
     {
+        
         //Create player unit
         GameObject playerGo = Instantiate(playerPrefab, playerStation);
         playerUnit = playerGo.GetComponent<unit>();
@@ -1019,7 +1156,7 @@ public class BattleScript : MonoBehaviour
         actions = new List<action>();
 
         Ability mover = new Ability();
-        mover.name = "Basic Attack";
+        mover.name = "Attack 1";
         mover.cost = 1;
         mover.damage = 3;
         mover.damageType = 0;
@@ -1096,34 +1233,31 @@ public class BattleScript : MonoBehaviour
     //Deal damage to enemy, check if it is dead, and act accordingly (win battle or enemy turn)
     IEnumerator playerAttack(Ability ata, unit uni, unit target)
     {
-        if (state == battleState.PLAYER)
+        //dialogue.text = "Player used " + ata.name;
+
+        yield return new WaitForSeconds(1f);
+
+        bool dead = target.takeDamage(ata.damage);
+        target.setHP(target.currentHP);
+        uni.setSP(uni.currentSP - ata.cost);
+
+        yield return new WaitForSeconds(1f);
+
+        //If enemy is dead, battle is won
+        if (dead)
         {
-            //dialogue.text = "Player used " + ata.name;
-
-            yield return new WaitForSeconds(1f);
-
-            bool dead = target.takeDamage(ata.damage);
-            target.setHP(target.currentHP);
-            uni.setSP(uni.currentSP - ata.cost);
-
-            yield return new WaitForSeconds(1f);
-
-            //If enemy is dead, battle is won
-            if (dead)
-            {
-                state = battleState.WIN;
-                StartCoroutine(unitDeath(target));
-                battleEnd();
-            }
-            //If enemy lives, they attack
-            /*else
-            {
-                state = battleState.ENEMY;
-                StartCoroutine(enemyAttack());
-            }
-            yield return new WaitForSeconds(2f);
-            */
+            state = battleState.WIN;
+            StartCoroutine(unitDeath(target));
+            battleEnd();
         }
+        //If enemy lives, they attack
+        /*else
+        {
+            state = battleState.ENEMY;
+            StartCoroutine(enemyAttack());
+        }
+        yield return new WaitForSeconds(2f);
+        */
     }
 
     //Use a basic attack against the target, and act accordin
