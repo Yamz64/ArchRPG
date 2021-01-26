@@ -33,6 +33,7 @@ public class PauseMenuHandler : MonoBehaviour
     private GameObject cursor;
     private List<GameObject> menus;
     private PlayerData data;
+    private PlayerOverworldAudioHandler audio_handler;
 
     public void OpenMenu(int index)
     {
@@ -2272,13 +2273,19 @@ public class PauseMenuHandler : MonoBehaviour
             if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
             {
                 if (!menu_input)
+                {
                     cursor_position--;
+                    audio_handler.PlaySound("Sound/SFX/cursor");
+                }
                 menu_input = true;
             }
             else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[0].positions.Count - 1)
             {
                 if (!menu_input)
+                {
                     cursor_position++;
+                    audio_handler.PlaySound("Sound/SFX/cursor");
+                }
                 menu_input = true;
             }
             else
@@ -2289,6 +2296,7 @@ public class PauseMenuHandler : MonoBehaviour
             //handle input
             if (Input.GetButtonDown("Interact"))
             {
+                audio_handler.PlaySound("Sound/SFX/select");
                 switch (cursor_position)
                 {
                     case 0:
@@ -2336,6 +2344,7 @@ public class PauseMenuHandler : MonoBehaviour
                 {
                     cursor_position--;
                     highlighted_party_member--;
+                    audio_handler.PlaySound("Sound/SFX/cursor");
                 }
                 menu_input = true;
             }
@@ -2345,6 +2354,7 @@ public class PauseMenuHandler : MonoBehaviour
                 {
                     cursor_position++;
                     highlighted_party_member++;
+                    audio_handler.PlaySound("Sound/SFX/cursor");
                 }
                 menu_input = true;
             }
@@ -2355,7 +2365,8 @@ public class PauseMenuHandler : MonoBehaviour
 
             if (Input.GetButtonDown("Interact"))
             {
-                if(cursor_position == 0)
+                audio_handler.PlaySound("Sound/SFX/select");
+                if (cursor_position == 0)
                 {
                     OpenMenu(2);
                     UpdateEquipMenuInfo();
@@ -2383,6 +2394,7 @@ public class PauseMenuHandler : MonoBehaviour
                 {
                     cursor_position--;
                     highlighted_item--;
+                    audio_handler.PlaySound("Sound/SFX/cursor");
                     UpdateInventoryImageandDesc();
                 }
                 menu_input = true;
@@ -2393,6 +2405,7 @@ public class PauseMenuHandler : MonoBehaviour
                 {
                     cursor_position++;
                     highlighted_item++;
+                    audio_handler.PlaySound("Sound/SFX/cursor");
                     UpdateInventoryImageandDesc();
                 }
                 menu_input = true;
@@ -2403,6 +2416,7 @@ public class PauseMenuHandler : MonoBehaviour
                 {
                     inventory_offset--;
                     highlighted_item--;
+                    audio_handler.PlaySound("Sound/SFX/cursor");
                     UpdateInventoryItems();
                     UpdateInventoryImageandDesc();
                 }
@@ -2414,6 +2428,7 @@ public class PauseMenuHandler : MonoBehaviour
                 {
                     inventory_offset++;
                     highlighted_item++;
+                    audio_handler.PlaySound("Sound/SFX/cursor");
                     UpdateInventoryItems();
                     UpdateInventoryImageandDesc();
                 }
@@ -2421,7 +2436,10 @@ public class PauseMenuHandler : MonoBehaviour
             }else if (Input.GetButtonDown("Interact"))
             {
                 if (!menu_input)
+                {
+                    audio_handler.PlaySound("Sound/SFX/select");
                     OpenUseItemMenu();
+                }
                 menu_input = true;
             }
             else
@@ -2436,6 +2454,7 @@ public class PauseMenuHandler : MonoBehaviour
                 if (!menu_input)
                 {
                     cursor_position--;
+                    audio_handler.PlaySound("Sound/SFX/cursor");
                 }
                 menu_input = true;
             }
@@ -2444,11 +2463,13 @@ public class PauseMenuHandler : MonoBehaviour
                 if (!menu_input)
                 {
                     cursor_position++;
+                    audio_handler.PlaySound("Sound/SFX/cursor");
                 }
                 menu_input = true;
             }
             else if (Input.GetButtonDown("Interact"))
             {
+                audio_handler.PlaySound("Sound/SFX/select");
                 switch (cursor_position)
                 {
                     case 9:
@@ -2491,6 +2512,7 @@ public class PauseMenuHandler : MonoBehaviour
                 {
                     cursor_position--;
                     equip_type--;
+                    audio_handler.PlaySound("Sound/SFX/cursor");
                     UpdateEquipMenuInfo();
                 }
                 menu_input = true;
@@ -2501,6 +2523,7 @@ public class PauseMenuHandler : MonoBehaviour
                 {
                     cursor_position++;
                     equip_type++;
+                    audio_handler.PlaySound("Sound/SFX/cursor");
                     UpdateEquipMenuInfo();
                 }
                 menu_input = true;
@@ -2509,6 +2532,7 @@ public class PauseMenuHandler : MonoBehaviour
             {
                 if (!menu_input)
                 {
+                    audio_handler.PlaySound("Sound/SFX/select");
                     //first see if there is at least one of the desired type of item to equip then enter equip mode if there is
                     if (equip_type == 0)
                     {
@@ -2617,6 +2641,7 @@ public class PauseMenuHandler : MonoBehaviour
                 if (!menu_input)
                 {
                     cursor_position--;
+                    audio_handler.PlaySound("Sound/SFX/cursor");
                     if (equip_type == 0)
                     {
                         if (cursor_position - 3 + equipped_offset < equippables.Count)
@@ -2646,6 +2671,7 @@ public class PauseMenuHandler : MonoBehaviour
                 if (!menu_input)
                 {
                     cursor_position++;
+                    audio_handler.PlaySound("Sound/SFX/cursor");
                     if (equip_type == 0)
                     {
                         if (cursor_position - 3 + equipped_offset < equippables.Count)
@@ -2676,6 +2702,7 @@ public class PauseMenuHandler : MonoBehaviour
                 if (!menu_input)
                 {
                     equipped_offset--;
+                    audio_handler.PlaySound("Sound/SFX/cursor");
                     if (equip_type == 0)
                     {
                         if (cursor_position - 3 + equipped_offset < equippables.Count)
@@ -2705,6 +2732,7 @@ public class PauseMenuHandler : MonoBehaviour
                 if (!menu_input)
                 {
                     equipped_offset++;
+                    audio_handler.PlaySound("Sound/SFX/cursor");
                     if (equip_type == 0)
                     {
                         if (cursor_position - 3 + equipped_offset < equippables.Count)
@@ -2735,9 +2763,10 @@ public class PauseMenuHandler : MonoBehaviour
                 //if this is a valid frame for input
                 if (!menu_input)
                 {
+                    audio_handler.PlaySound("Sound/SFX/select");
                     //get the equiptype
                     //weapon
-                    if(equip_type == 0)
+                    if (equip_type == 0)
                     {
                         //equiping to a party member?
                         //no
@@ -2902,28 +2931,40 @@ public class PauseMenuHandler : MonoBehaviour
         if(Input.GetAxisRaw("Horizontal") > 0.0f && cursor_position < 3)
         {
             if (!menu_input)
+            {
                 cursor_position++;
+                audio_handler.PlaySound("Sound/SFX/cursor");
+            }
             menu_input = true;
         }
         //left
         else if (Input.GetAxisRaw("Horizontal") < 0.0f && cursor_position > 0)
         {
             if (!menu_input)
+            {
                 cursor_position--;
+                audio_handler.PlaySound("Sound/SFX/cursor");
+            }
             menu_input = true;
         }
         //up
         else if(Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 1)
         {
             if (!menu_input)
+            {
                 cursor_position -= 2;
+                audio_handler.PlaySound("Sound/SFX/cursor");
+            }
             menu_input = true;
         }
         //down
         else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < 2)
         {
             if (!menu_input)
+            {
                 cursor_position += 2;
+                audio_handler.PlaySound("Sound/SFX/cursor");
+            }
             menu_input = true;
         }
         //input
@@ -2931,6 +2972,7 @@ public class PauseMenuHandler : MonoBehaviour
         {
             if (!menu_input)
             {
+                audio_handler.PlaySound("Sound/SFX/select");
                 if (highlighted_swap == -1)
                 {
                     if (menus[3].transform.GetChild(cursor_position).gameObject.activeInHierarchy)
@@ -2988,6 +3030,9 @@ public class PauseMenuHandler : MonoBehaviour
 
         //define the player's data
         data = GetComponent<PlayerDataMono>().data;
+
+        //define audio handler
+        audio_handler = GetComponent<PlayerOverworldAudioHandler>();
 
         //add temporary items for testing
         Weapon test_weapon = new Weapon();
@@ -3058,6 +3103,7 @@ public class PauseMenuHandler : MonoBehaviour
             base_pause_character_select = false;
             if (!menu_mode)
             {
+                audio_handler.PlaySound("Sound/SFX/select");
                 GetComponent<PlayerMovement>().interaction_protection = true;
                 cursor.SetActive(true);
                 highlighted_party_member = 0;
@@ -3066,6 +3112,7 @@ public class PauseMenuHandler : MonoBehaviour
             }
             else
             {
+                audio_handler.PlaySound("Sound/SFX/select");
                 GetComponent<PlayerMovement>().interaction_protection = false;
                 cursor.SetActive(false);
                 for(int i=0; i<menus.Count; i++)
