@@ -134,6 +134,8 @@ public class BattleScript : MonoBehaviour
     //List of enemy units
     private List<GameObject> enemyUnits;
 
+    private List<int> deadEnemies;
+
     //Int to track the number of units actually in the party
     int activeUnits = 1;
 
@@ -380,7 +382,7 @@ public class BattleScript : MonoBehaviour
     //Used to navigate the basic action menu
     public void BaseActionMenuRoutine()
     {
-        if (state == battleState.PLAYER && timer == time)
+        if (state == battleState.PLAYER && timer == time && !enemy_select_menu)
         {
             //change position of cursor in the menu
             if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
@@ -406,20 +408,29 @@ public class BattleScript : MonoBehaviour
                 switch (cursor_position)
                 {
                     case 0:
-                        actions.Add(new action("basic attack", 0, 0));
-                        //partyUnits[currentUnit].GetComponent<unit>().attacks[highlighted_attack]
-                        //    .UseAttack(partyUnits[currentUnit].GetComponent<unit>(), enemyUnit);
-                        currentUnit += 1;
-
-                        if (currentUnit >= activeUnits)
+                        if (activeEnemies > 1)
                         {
-                            currentUnit = 0;
-                            state = battleState.ATTACK;
-                            StartCoroutine(performActions());
+                            OpenSelectEnemyMenu();
+                            enemy_select_menu = true;
+                            menu_input = false;
                         }
                         else
                         {
-                            playerTurn();
+                            actions.Add(new action("basic attack", 0, 0));
+                            //partyUnits[currentUnit].GetComponent<unit>().attacks[highlighted_attack]
+                            //    .UseAttack(partyUnits[currentUnit].GetComponent<unit>(), enemyUnit);
+                            currentUnit += 1;
+
+                            if (currentUnit >= activeUnits)
+                            {
+                                currentUnit = 0;
+                                state = battleState.ATTACK;
+                                StartCoroutine(performActions());
+                            }
+                            else
+                            {
+                                playerTurn();
+                            }
                         }
 
                         break;
@@ -461,6 +472,68 @@ public class BattleScript : MonoBehaviour
 
             //update the cursor position
             cursor.transform.position = cursor_positions[0].positions[cursor_position].position;
+        }
+        else if (enemy_select_menu && state == battleState.PLAYER)
+        {
+            //If input is right and not at very edge
+            if (Input.GetAxisRaw("Horizontal") > 0.0f && currentEnemy < activeEnemies - 1 &&
+                enemyUnits[currentEnemy + 1].GetComponent<unit>().currentHP > 0)
+            {
+                if (!menu_input)
+                {
+                    currentEnemy++;
+                    enemySelect(currentEnemy);
+                }
+                menu_input = true;
+            }
+            //If input is left and not at very edge
+            else if (Input.GetAxisRaw("Horizontal") < 0.0f && currentEnemy > 0 &&
+                enemyUnits[currentEnemy - 1].GetComponent<unit>().currentHP > 0)
+            {
+                if (!menu_input)
+                {
+                    currentEnemy--;
+                    enemySelect(currentEnemy);
+                }
+                menu_input = true;
+            }
+            //Add attack to list, make menus right colors again
+            else if (Input.GetButtonDown("Interact"))
+            {
+                actions.Add(new action("basic attack", 0, currentEnemy));
+                //partyUnits[currentUnit].GetComponent<unit>().attacks[highlighted_attack]
+                //    .UseAttack(partyUnits[currentUnit].GetComponent<unit>(), enemyUnit);
+                currentUnit += 1;
+
+                currentEnemy = 0;
+                CloseSelectEnemyMenu();
+                enemy_select_menu = false;
+                menu_input = false;
+                active_menu = 0;
+
+                if (currentUnit >= activeUnits)
+                {
+                    currentUnit = 0;
+                    state = battleState.ATTACK;
+                    StartCoroutine(performActions());
+                }
+                else
+                {
+                    playerTurn();
+                }
+            }
+            //Make menus visible again to select new attack
+            else if (Input.GetButtonDown("Cancel"))
+            {
+                CloseSelectEnemyMenu();
+                enemy_select_menu = false; ;
+                menu_input = false;
+                active_menu = 0;
+            }
+            else
+            {
+                menu_input = false;
+            }
         }
     }
 
@@ -536,6 +609,7 @@ public class BattleScript : MonoBehaviour
                 menu_input = false;
             }
         }
+        //Use attack menu is open
         else if (enemy_select_menu == false && state == battleState.PLAYER)
         {
             //If input is up and in the attack select menu
@@ -561,19 +635,31 @@ public class BattleScript : MonoBehaviour
             {
                 switch (cursor_position)
                 {
+                    //Player uses the attack
                     case 4:
+                        //If more than one enemy exists
                         if (activeEnemies > 1)
                         {
-                            SpriteRenderer[] opts = transform.GetChild(1).GetChild(6).GetComponentsInChildren<SpriteRenderer>();
-                            foreach(SpriteRenderer child in opts)
+                            //Make attack menu invisible
+                            Image[] opts = transform.GetChild(1).GetChild(6).GetComponentsInChildren<Image>();
+                            foreach(Image child in opts)
                             {
                                 Color temp = child.color;
-                                temp.a = 0.6f;
+                                temp.a = 0.0f;
+                                child.color = temp;
+                            }
+
+                            Text[] ts = transform.GetChild(1).GetChild(6).GetComponentsInChildren<Text>();
+                            foreach (Text child in ts)
+                            {
+                                Color temp = child.color;
+                                temp.a = 0.0f;
                                 child.color = temp;
                             }
                             OpenSelectEnemyMenu();
                             enemy_select_menu = true;
                         }
+                        //Only one enemy
                         else
                         {
                             actions.Add(new action("attack", highlighted_attack, currentEnemy));
@@ -586,6 +672,7 @@ public class BattleScript : MonoBehaviour
                             menu_input = false;
                             active_menu = 0;
 
+                            //Perform player attacks
                             if (currentUnit >= activeUnits)
                             {
                                 currentUnit = 0;
@@ -614,8 +701,10 @@ public class BattleScript : MonoBehaviour
                 menu_input = false;
             }
         }
+        //Enemy select menu is open
         else if (state == battleState.PLAYER)
         {
+            //If input is right and not at very edge
             if (Input.GetAxisRaw("Horizontal") > 0.0f && currentEnemy < activeEnemies - 1 && 
                 enemyUnits[currentEnemy + 1].GetComponent<unit>().currentHP > 0)
             {
@@ -626,6 +715,7 @@ public class BattleScript : MonoBehaviour
                 }
                 menu_input = true;
             }
+            //If input is left and not at very edge
             else if (Input.GetAxisRaw("Horizontal") < 0.0f && currentEnemy > 0 && 
                 enemyUnits[currentEnemy-1].GetComponent<unit>().currentHP > 0)
             {
@@ -636,6 +726,7 @@ public class BattleScript : MonoBehaviour
                 }
                 menu_input = true;
             }
+            //Add attack to list, make menus right colors again
             else if (Input.GetButtonDown("Interact"))
             {
                 actions.Add(new action("attack", highlighted_attack, currentEnemy));
@@ -643,8 +734,15 @@ public class BattleScript : MonoBehaviour
                 //    .UseAttack(partyUnits[currentUnit].GetComponent<unit>(), enemyUnit);
                 currentUnit += 1;
 
-                SpriteRenderer[] opts = transform.GetChild(1).GetChild(6).GetComponentsInChildren<SpriteRenderer>();
-                foreach (SpriteRenderer child in opts)
+                Image[] opts = transform.GetChild(1).GetChild(6).GetComponentsInChildren<Image>();
+                foreach (Image child in opts)
+                {
+                    Color temp = child.color;
+                    temp.a = 1.0f;
+                    child.color = temp;
+                }
+                Text[] ts = transform.GetChild(1).GetChild(6).GetComponentsInChildren<Text>();
+                foreach (Text child in ts)
                 {
                     Color temp = child.color;
                     temp.a = 1.0f;
@@ -669,8 +767,24 @@ public class BattleScript : MonoBehaviour
                     playerTurn();
                 }
             }
+            //Make menus visible again to select new attack
             else if (Input.GetButtonDown("Cancel"))
             {
+                Image[] opts = transform.GetChild(1).GetChild(6).GetComponentsInChildren<Image>();
+                foreach (Image child in opts)
+                {
+                    Color temp = child.color;
+                    temp.a = 1.0f;
+                    child.color = temp;
+                }
+                Text[] ts = transform.GetChild(1).GetChild(6).GetComponentsInChildren<Text>();
+                foreach (Text child in ts)
+                {
+                    Color temp = child.color;
+                    temp.a = 1.0f;
+                    child.color = temp;
+                }
+
                 CloseSelectEnemyMenu();
                 CloseUseAttackMenu();
                 cursor_position = highlighted_attack + attack_offset;
@@ -1030,7 +1144,7 @@ public class BattleScript : MonoBehaviour
                 else if (actions[i].getType() == "basic attack" && state == battleState.ATTACK)
                 {
                     dialogue.text = temp[i].GetComponent<unit>().unitName + " attacked the enemy";
-                    StartCoroutine(basicAttack(temp[i].GetComponent<unit>(), enemyUnit));
+                    StartCoroutine(basicAttack(temp[i].GetComponent<unit>(), enemyUnits[actions[i].getTarget()].GetComponent<unit>()));
                 }
                 else if (actions[i].getType() == "item" && state == battleState.ATTACK)
                 {
@@ -1056,6 +1170,7 @@ public class BattleScript : MonoBehaviour
 
             swapInds.Clear();
             swaps.Clear();
+            actions.Clear();
 
             if (state != battleState.WIN && state != battleState.LOSE && state != battleState.FLEE && enemyUnit.getHP() > 0)
             {
@@ -1210,6 +1325,7 @@ public class BattleScript : MonoBehaviour
     //Fade out a unit from the screen when they die
     IEnumerator unitDeath(unit bot)
     {
+        dialogue.text = bot.unitName + " has been defeated";
         yield return new WaitForSeconds(1f);
         bot.view.CrossFadeAlpha(0, 2f, false);
         bot.nameText.CrossFadeAlpha(0, 2f, false);
@@ -1249,18 +1365,15 @@ public class BattleScript : MonoBehaviour
         //If enemy is dead, battle is won
         if (dead)
         {
-            state = battleState.WIN;
-            StartCoroutine(unitDeath(target));
-            battleEnd();
+            enemyDeaths++;
+            unitDeath(target);
+            if (enemyDeaths == enemyUnits.Count)
+            {
+                state = battleState.WIN;
+                StartCoroutine(unitDeath(target));
+                battleEnd();
+            }
         }
-        //If enemy lives, they attack
-        /*else
-        {
-            state = battleState.ENEMY;
-            StartCoroutine(enemyAttack());
-        }
-        yield return new WaitForSeconds(2f);
-        */
     }
 
     //Use a basic attack against the target, and act accordin
@@ -1279,9 +1392,15 @@ public class BattleScript : MonoBehaviour
         //If enemy is dead, battle is won
         if (dead)
         {
-            state = battleState.WIN;
-            StartCoroutine(unitDeath(target));
-            battleEnd();
+            Debug.Log("Enemy should be dead");
+            enemyDeaths++;
+            unitDeath(target);
+            if (enemyDeaths == enemyUnits.Count)
+            {
+                state = battleState.WIN;
+                StartCoroutine(unitDeath(target));
+                battleEnd();
+            }
         }
     }
 
@@ -1315,7 +1434,7 @@ public class BattleScript : MonoBehaviour
     //Deal damage to player, check if they're dead, and act accordingly (lose battle or player turn)
     IEnumerator enemyAttack(int x)
     {
-        if (state == battleState.ENEMY)
+        if (state == battleState.ENEMY && enemyUnits[x].GetComponent<unit>().currentHP > 0)
         {
             dialogue.text = enemyUnits[x].GetComponent<unit>().unitName + " is attacking";
 
@@ -1332,7 +1451,7 @@ public class BattleScript : MonoBehaviour
             {
                 partyDeaths += 1;
                 StartCoroutine(unitDeath(partyUnits[r].GetComponent<unit>()));
-                if (partyDeaths == activeUnits)
+                if (partyDeaths == partyUnits.Count)
                 {
                     state = battleState.LOSE;
                     battleEnd();
@@ -1350,6 +1469,17 @@ public class BattleScript : MonoBehaviour
             {
                 StartCoroutine(enemyAttack(x + 1));
             }
+        }
+        else if (state == battleState.ENEMY && x+1 < activeEnemies)
+        {
+            StartCoroutine(enemyAttack(x + 1));
+        }
+        else if (state == battleState.ENEMY && x+1 >= activeEnemies)
+        {
+            timer = time;
+            OpenMenu(0);
+            state = battleState.PLAYER;
+            playerTurn();
         }
         else if (state == battleState.WIN || state == battleState.LOSE || state == battleState.FLEE)
         {
@@ -1432,6 +1562,7 @@ public class BattleScript : MonoBehaviour
         
         partyUnits = new List<GameObject>();
         enemyUnits = new List<GameObject>();
+        deadEnemies = new List<int>();
 
         swapInds = new List<int>();
 
@@ -1441,7 +1572,6 @@ public class BattleScript : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log("State == " + state);
         cursor.SetActive(true);
         if (state == battleState.PLAYER && currentUnit < partyUnits.Count && partyUnits[currentUnit] != null)
         {
@@ -1466,7 +1596,14 @@ public class BattleScript : MonoBehaviour
         }
         else if (state == battleState.WIN)
         {
-            dialogue.text = "The " + enemyUnit.unitName + " has been defeated";
+            if (enemyUnits.Count > 1)
+            {
+                dialogue.text = "The group of enemies has been defeated";
+            }
+            else
+            {
+                dialogue.text = "The " + enemyUnit.unitName + " has been defeated";
+            }
         }
         else if (state == battleState.LOSE)
         {
