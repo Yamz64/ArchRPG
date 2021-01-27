@@ -85,6 +85,12 @@ public class PlayerData : CharacterStats
         inventory[index].Use();
         if (inventory[index].amount <= 1) inventory.RemoveAt(index);
     }
+
+    public void UseItem(int index, unit user)
+    {
+        inventory[index].Use(user);
+        if (inventory[index].amount <= 1) inventory.RemoveAt(index);
+    }
     public void AddItem(Item item)
     {
         //first see if the player is carrying the particular item in question

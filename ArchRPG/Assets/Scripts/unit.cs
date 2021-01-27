@@ -178,6 +178,7 @@ public class unit : MonoBehaviour
         }
     }
 
+    //Flash red in response to damage
     IEnumerator flashDamage()
     {
         Color ori = BBackground.color;
@@ -191,6 +192,7 @@ public class unit : MonoBehaviour
         BBackground.color = ori;
     }
 
+    //Flash green in response to healing damage
     IEnumerator flashHeal()
     {
         Color ori = BBackground.color;

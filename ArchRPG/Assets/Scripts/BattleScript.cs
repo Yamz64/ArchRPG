@@ -69,8 +69,6 @@ public class BattleScript : MonoBehaviour
 
     public int cursor_position;     //Current position (index) the cursor is at
     public int active_menu;         //Current menu being moved through
-    //
-    public bool menu_mode;
 
     //A list of positions the cursor can go through
     [SerializeField]
@@ -1050,8 +1048,11 @@ public class BattleScript : MonoBehaviour
                         useSound(1);
                         actions.Add(new action("item", highlighted_item, currentUnit));
                         //data.UseItem(highlighted_item);
-                        //UpdateInventoryItems();
-                        //UpdateInventoryImageandDesc();
+                        UpdateInventoryItems();
+                        UpdateInventoryImageandDesc();
+                        CloseUseItemMenu();
+                        CloseMenu(2);
+                        active_menu = 0;
                         currentUnit += 1;
 
                         if (currentUnit >= activeUnits)
@@ -1072,6 +1073,8 @@ public class BattleScript : MonoBehaviour
                         UpdateInventoryItems();
                         UpdateInventoryImageandDesc();
                         CloseUseItemMenu();
+                        CloseMenu(2);
+                        active_menu = 0;
                         break;
                     case 11:
                         CloseUseItemMenu();
@@ -1329,7 +1332,7 @@ public class BattleScript : MonoBehaviour
                 {
                     dialogue.text = temp[i].GetComponent<unit>().unitName + " used " +
                         data.GetItem(actions[i].getIndex()).name;
-                    data.UseItem(actions[i].getIndex());
+                    data.UseItem(actions[i].getIndex(), temp[actions[i].getTarget()].GetComponent<unit>());
                     UpdateInventoryItems();
                     UpdateInventoryImageandDesc();
 
@@ -1468,6 +1471,12 @@ public class BattleScript : MonoBehaviour
             }
         }
 
+        data.AddItem(new HotDog());
+        data.AddItem(new HotDog());
+        data.AddItem(new HotDog());
+        data.AddItem(new HotDog());
+        data.AddItem(new HotDog());
+
         //Display text to player, showing an enemy has appeared
         if (activeEnemies == 1)
         {
@@ -1488,20 +1497,6 @@ public class BattleScript : MonoBehaviour
         state = battleState.PLAYER;
         playerTurn();
     }
-
-    /*
-    IEnumerator blinker(GameObject bot)
-    {
-        Color ori = bot.transform.GetChild(1).GetComponent<Image>().color;
-        Color clear = bot.transform.GetChild(1).GetComponent<Image>().color;
-        clear.a = 0.0f;
-        bot.transform.GetChild(1).GetComponent<Image>().color = clear;
-
-        yield return new WaitForSeconds(2f);
-        bot.transform.GetChild(1).GetComponent<Image>().color = ori;
-        yield return new WaitForSeconds(2f);
-    }
-    */
 
     //Fade out a unit from the screen when they die
     IEnumerator unitDeath(unit bot)
@@ -1714,7 +1709,6 @@ public class BattleScript : MonoBehaviour
     //Start the battle
     void Start()
     {
-        menu_mode = false;
         menu_input = false;
         item_select_menu = false;
 

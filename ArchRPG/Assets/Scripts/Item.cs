@@ -21,6 +21,11 @@ public class Item
         Debug.Log("The item has been used");
     }
 
+    public virtual void Use (unit user)
+    {
+        Debug.Log(user.unitName + " has used the item");
+    }
+
     public string name;
     public string description;
     public string image_file_path;
@@ -166,4 +171,13 @@ public class HotDog : Item
         character.SetHP(character.GetHP() + 50);
         Remove();
     }
+
+    public override void Use(unit user)
+    {
+        user.healDamage(50);
+        user.setHP(user.getHP());
+        Remove();
+    }
 }
+
+
