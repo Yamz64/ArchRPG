@@ -864,6 +864,7 @@ MonoBehaviour:
   LCK: 0
   player: 0
   enemy: 0
+  outOfSP: 0
   position: 0
   unitWeapon:
     name: 
@@ -1024,8 +1025,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -257, y: -29.32}
-  m_SizeDelta: {x: 87.93945, y: 37.46414}
+  m_AnchoredPosition: {x: -258.62, y: -29.32}
+  m_SizeDelta: {x: 91.170044, y: 37.46414}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4705570930719786976
 CanvasRenderer:
@@ -1178,8 +1179,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -257.71, y: -12.475006}
-  m_SizeDelta: {x: 87, y: 37.05002}
+  m_AnchoredPosition: {x: -259.21, y: -12.475006}
+  m_SizeDelta: {x: 89.99036, y: 37.05002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &997195821702079055
 CanvasRenderer:

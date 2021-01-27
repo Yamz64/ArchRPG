@@ -165,6 +165,7 @@ public class BattleScript : MonoBehaviour
     private List<GameObject> swaps;         //List of units to swap
     private List<int> swapInds;             //Indices of units to swap
 
+    //List of actions to do during the ATTACK state
     private List<action> actions;
 
     //The current unit in the party that is choosing an action
@@ -176,6 +177,7 @@ public class BattleScript : MonoBehaviour
     //Use to load in unit info from json file
     CharacterStatJsonConverter loader;
 
+    //Use to play specific sounds with the audio handler
     public void useSound(int num)
     {
         if (num == 0)
@@ -246,7 +248,9 @@ public class BattleScript : MonoBehaviour
         int i = 0;
         while (enemyUnits[i].GetComponent<unit>().currentHP <= 0)
         {
+            //Debug.Log("Current index (enemy) == " + i);
             i += 1;
+            Debug.Log("Current index (enemy) == " + i);
         }
         dialogue.text = "Select Target";
         enemySelect(i);
@@ -435,6 +439,8 @@ public class BattleScript : MonoBehaviour
                         if (activeEnemies > 1)
                         {
                             useSound(1);
+                            currentEnemy = 0;
+                            while (enemyUnits[currentEnemy].GetComponent<unit>().currentHP <= 0) currentEnemy++;
                             OpenSelectEnemyMenu();
                             enemy_select_menu = true;
                             menu_input = false;
@@ -504,26 +510,76 @@ public class BattleScript : MonoBehaviour
         else if (enemy_select_menu && state == battleState.PLAYER)
         {
             //If input is right and not at very edge
-            if (Input.GetAxisRaw("Horizontal") > 0.0f && currentEnemy + 1 < activeEnemies &&
-                enemyUnits[currentEnemy + 1].GetComponent<unit>().currentHP > 0)
+            if (Input.GetAxisRaw("Horizontal") > 0.0f && currentEnemy < enemyUnits.Count - 1)
             {
                 if (!menu_input)
                 {
-                    useSound(0);
-                    currentEnemy++;
-                    enemySelect(currentEnemy);
+                    if (enemyUnits.Count - enemyDeaths > 1)
+                    {
+                        if (enemyUnits[currentEnemy + 1].GetComponent<unit>().currentHP <= 0)
+                        {
+                            //Debug.Log("Current index3 == " + currentEnemy + ",enemy right == " + 
+                            // enemyUnits[currentEnemy+1].GetComponent<unit>().currentHP);
+                            int temp = currentEnemy;
+                            currentEnemy++;
+                            while (enemyUnits[currentEnemy].GetComponent<unit>().currentHP <= 0 && currentEnemy < enemyUnits.Count)
+                            {
+                                Debug.Log("Current index == " + currentEnemy);
+                                currentEnemy++;
+                            }
+                            if (currentEnemy < enemyUnits.Count)
+                            {
+                                useSound(0);
+                                enemySelect(currentEnemy);
+                            }
+                            else
+                            {
+                                currentEnemy = temp;
+                            }
+                        }
+                        else
+                        {
+                            //Debug.Log("Current index2 == " + currentEnemy);
+                            useSound(0);
+                            currentEnemy++;
+                            enemySelect(currentEnemy);
+                        }
+                    }
                 }
                 menu_input = true;
             }
             //If input is left and not at very edge
-            else if (Input.GetAxisRaw("Horizontal") < 0.0f && currentEnemy > 0 &&
-                enemyUnits[currentEnemy - 1].GetComponent<unit>().currentHP > 0)
+            else if (Input.GetAxisRaw("Horizontal") < 0.0f && currentEnemy > 0)
             {
                 if (!menu_input)
                 {
-                    useSound(0);
-                    currentEnemy--;
-                    enemySelect(currentEnemy);
+                    if (enemyUnits.Count - enemyDeaths > 1)
+                    {
+                        if (enemyUnits[currentEnemy - 1].GetComponent<unit>().currentHP <= 0)
+                        {
+                            int temp = currentEnemy;
+                            currentEnemy--;
+                            while (enemyUnits[currentEnemy].GetComponent<unit>().currentHP <= 0 && currentEnemy >= 0)
+                            {
+                                currentEnemy--;
+                            }
+                            if (currentEnemy >= 0)
+                            {
+                                useSound(0);
+                                enemySelect(currentEnemy);
+                            }
+                            else
+                            {
+                                currentEnemy = temp;
+                            }
+                        }
+                        else
+                        {
+                            useSound(0);
+                            currentEnemy--;
+                            enemySelect(currentEnemy);
+                        }
+                    }
                 }
                 menu_input = true;
             }
@@ -566,6 +622,7 @@ public class BattleScript : MonoBehaviour
             {
                 menu_input = false;
             }
+            Debug.Log("Current index == " + currentEnemy);
         }
     }
 
@@ -749,27 +806,64 @@ public class BattleScript : MonoBehaviour
         else if (state == battleState.PLAYER)
         {
             //If input is right and not at very edge
-            if (Input.GetAxisRaw("Horizontal") > 0.0f && currentEnemy < activeEnemies - 1 && 
-                enemyUnits[currentEnemy + 1].GetComponent<unit>().currentHP > 0)
+            if (Input.GetAxisRaw("Horizontal") > 0.0f && currentEnemy < enemyUnits.Count - 1)
             {
                 if (!menu_input)
                 {
-                    useSound(0);
-                    currentEnemy++;
-                    enemySelect(currentEnemy);
-
+                    if (enemyUnits[currentEnemy + 1].GetComponent<unit>().currentHP <= 0)
+                    {
+                        int temp = currentEnemy;
+                        while (enemyUnits[currentEnemy].GetComponent<unit>().currentHP <= 0 && currentEnemy < enemyUnits.Count)
+                        {
+                            currentEnemy++;
+                        }
+                        if (currentEnemy < enemyUnits.Count)
+                        {
+                            useSound(0);
+                            enemySelect(currentEnemy);
+                        }
+                        else
+                        {
+                            currentEnemy = temp;
+                        }
+                    }
+                    else
+                    {
+                        useSound(0);
+                        currentEnemy++;
+                        enemySelect(currentEnemy);
+                    }
                 }
                 menu_input = true;
             }
             //If input is left and not at very edge
-            else if (Input.GetAxisRaw("Horizontal") < 0.0f && currentEnemy > 0 && 
-                enemyUnits[currentEnemy-1].GetComponent<unit>().currentHP > 0)
+            else if (Input.GetAxisRaw("Horizontal") < 0.0f && currentEnemy > 0)
             {
                 if (!menu_input)
                 {
-                    useSound(0);
-                    currentEnemy--;
-                    enemySelect(currentEnemy);
+                    if (enemyUnits[currentEnemy - 1].GetComponent<unit>().currentHP <= 0)
+                    {
+                        int temp = currentEnemy;
+                        while (enemyUnits[currentEnemy].GetComponent<unit>().currentHP <= 0 && currentEnemy >= 0)
+                        {
+                            currentEnemy--;
+                        }
+                        if (currentEnemy >= 0)
+                        {
+                            useSound(0);
+                            enemySelect(currentEnemy);
+                        }
+                        else
+                        {
+                            currentEnemy = temp;
+                        }
+                    }
+                    else
+                    {
+                        useSound(0);
+                        currentEnemy--;
+                        enemySelect(currentEnemy);
+                    }
                 }
                 menu_input = true;
             }
@@ -1203,17 +1297,33 @@ public class BattleScript : MonoBehaviour
                 yield return new WaitForSeconds(2f);
                 if (actions[i].getType() == "attack" && state == battleState.ATTACK)
                 {
-                    dialogue.text = temp[i].GetComponent<unit>().unitName + " used " +
-                        temp[i].GetComponent<unit>().abilities[actions[i].getIndex()].name;
-                    StartCoroutine(playerAttack(temp[i].GetComponent<unit>().abilities[actions[i].getIndex()],
-                        temp[i].GetComponent<unit>(), enemyUnits[actions[i].getTarget()].GetComponent<unit>()));
+                    if (enemyUnits[actions[i].getTarget()].GetComponent<unit>().currentHP > 0)
+                    {
+                        dialogue.text = temp[i].GetComponent<unit>().unitName + " used " +
+                            temp[i].GetComponent<unit>().abilities[actions[i].getIndex()].name;
+                        StartCoroutine(playerAttack(temp[i].GetComponent<unit>().abilities[actions[i].getIndex()],
+                            temp[i].GetComponent<unit>(), enemyUnits[actions[i].getTarget()].GetComponent<unit>()));
+                    }
+                    else
+                    {
+                        dialogue.text = temp[i].GetComponent<unit>().unitName + " tried attacking " +
+                            enemyUnits[actions[i].getTarget()].GetComponent<unit>().unitName + ", but they weren't there";
+                    }
                     // temp[i].GetComponent<unit>().attacks[actions[i].getIndex()]
                     //  .UseAttack(temp[i].GetComponent<unit>(), enemyUnit);
                 }
                 else if (actions[i].getType() == "basic attack" && state == battleState.ATTACK)
                 {
-                    dialogue.text = temp[i].GetComponent<unit>().unitName + " attacked the enemy";
-                    StartCoroutine(basicAttack(temp[i].GetComponent<unit>(), enemyUnits[actions[i].getTarget()].GetComponent<unit>()));
+                    if (enemyUnits[actions[i].getTarget()].GetComponent<unit>().currentHP > 0)
+                    {
+                        dialogue.text = temp[i].GetComponent<unit>().unitName + " attacked the enemy";
+                        StartCoroutine(basicAttack(temp[i].GetComponent<unit>(), enemyUnits[actions[i].getTarget()].GetComponent<unit>()));
+                    }
+                    else
+                    {
+                        dialogue.text = temp[i].GetComponent<unit>().unitName + " tried attacking " +
+                            enemyUnits[actions[i].getTarget()].GetComponent<unit>().unitName + ", but they weren't there";
+                    }
                 }
                 else if (actions[i].getType() == "item" && state == battleState.ATTACK)
                 {
