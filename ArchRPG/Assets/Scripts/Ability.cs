@@ -57,3 +57,163 @@ public class Attack : Ability
     public string desc2;            //Give actual description and more details (damage type, targets, etc.)
     */
 }   
+
+public class TestAbility : Ability
+{
+    public TestAbility()
+    {
+        eldritch = false;
+        name = "TestAbility";
+        type = 0;
+        position = 0;
+        cost = 10;
+        damage = 20;
+        damageType = 0;
+        image_file_path = "AbilitySprites/Fist";
+        desc1 = "This is test ability...";
+    }
+}
+
+public class TestAbility1 : Ability
+{
+    public TestAbility1()
+    {
+        eldritch = false;
+        name = "TestAbility1";
+        type = 0;
+        position = 1;
+        cost = 10;
+        damage = 20;
+        damageType = 0;
+        image_file_path = "AbilitySprites/Fist";
+        desc1 = "This is test ability 1...";
+    }
+}
+
+public class TestAbility2 : Ability
+{
+    public TestAbility2()
+    {
+        eldritch = false;
+        name = "TestAbility2";
+        type = 0;
+        position = 2;
+        cost = 10;
+        damage = 20;
+        damageType = 0;
+        image_file_path = "AbilitySprites/Fist";
+        desc1 = "This is test ability 2...";
+    }
+}
+
+public class TestAbility3 : Ability
+{
+    public TestAbility3()
+    {
+        eldritch = false;
+        name = "TestAbility3";
+        type = 0;
+        position = 0;
+        cost = 10;
+        damage = 20;
+        damageType = 0;
+        image_file_path = "AbilitySprites/Fist";
+        desc1 = "This is test ability 3...";
+    }
+}
+
+public class TestAbility4 : Ability
+{
+    public TestAbility4()
+    {
+        eldritch = false;
+        name = "TestAbility4";
+        type = 0;
+        position = 0;
+        cost = 10;
+        damage = 20;
+        damageType = 0;
+        image_file_path = "AbilitySprites/Fist";
+        desc1 = "This is test ability 4...";
+    }
+}
+
+public class TestAbility5 : Ability
+{
+    public TestAbility5()
+    {
+        eldritch = false;
+        name = "TestAbility5";
+        type = 0;
+        position = 0;
+        cost = 10;
+        damage = 20;
+        damageType = 0;
+        image_file_path = "AbilitySprites/Fist";
+        desc1 = "This is test ability 5...";
+    }
+}
+
+public class TestAbility6 : Ability
+{
+    public TestAbility6()
+    {
+        eldritch = false;
+        name = "TestAbility6";
+        type = 0;
+        position = 0;
+        cost = 10;
+        damage = 20;
+        damageType = 0;
+        image_file_path = "AbilitySprites/Fist";
+        desc1 = "This is test ability 6...";
+    }
+}
+
+public class TestAbility7 : Ability
+{
+    public TestAbility7()
+    {
+        eldritch = false;
+        name = "TestAbility7";
+        type = 0;
+        position = 0;
+        cost = 10;
+        damage = 20;
+        damageType = 0;
+        image_file_path = "AbilitySprites/Fist";
+        desc1 = "This is test ability 7...";
+    }
+}
+
+public class TestAbility8 : Ability
+{
+    public TestAbility8()
+    {
+        eldritch = false;
+        name = "TestAbility8";
+        type = 0;
+        position = 0;
+        cost = 10;
+        damage = 20;
+        damageType = 0;
+        image_file_path = "AbilitySprites/Fist";
+        desc1 = "This is test ability 8...";
+    }
+}
+
+public class TestAbility9 : Ability
+{
+    public TestAbility9()
+    {
+        eldritch = false;
+        name = "TestAbility9";
+        type = 0;
+        position = 0;
+        cost = 10;
+        damage = 20;
+        damageType = 0;
+        image_file_path = "AbilitySprites/Fist";
+        desc1 = "This is test ability 9...";
+    }
+}

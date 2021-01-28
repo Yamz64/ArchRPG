@@ -22,7 +22,7 @@ public class CharacterStats
     public int GetLCK() { return LCK; }
     public int GetLVL() { return LVL; }
     public int GetPos() { return position; }
-    public int GetAbiliyCount() { return abilities.Count; }
+    public int GetAbilityCount() { return abilities.Count; }
 
     public string GetName() { return name; }
     public string GetDesc() { return desc; }
@@ -431,7 +431,7 @@ public class CharacterStatJsonConverter
 
         //get number of eldritch abilities
         int number = 0;
-        for(int i=0; i<p.GetAbiliyCount(); i++)
+        for(int i=0; i<p.GetAbilityCount(); i++)
         {
             if (p.GetAbility(i).eldritch) number++;
         }
@@ -471,7 +471,7 @@ public class CharacterStatJsonConverter
         }
 
         //populate a list of eldritch abilities from player's abilities
-        for(int i=0; i<p.GetAbiliyCount(); i++)
+        for(int i=0; i<p.GetAbilityCount(); i++)
         {
             if (p.GetAbility(i).eldritch) e_abilities[i] = p.GetAbility(i).name;
         }
