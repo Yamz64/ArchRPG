@@ -2919,11 +2919,11 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 411443691}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1925450811}
+  m_Father: {fileID: 959267173}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -10843,14 +10843,14 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1311312479}
+  - {fileID: 411443692}
   - {fileID: 1621728021}
   m_Father: {fileID: 612583376}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 135, y: 28.999992}
+  m_AnchoredPosition: {x: 135, y: -52}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &959267174
@@ -13899,11 +13899,11 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1311312478}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 959267173}
+  m_Father: {fileID: 1925450811}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -16483,6 +16483,15 @@ MonoBehaviour:
     - {fileID: 1510991318}
     - {fileID: 1206356374}
     - {fileID: 1374017940}
+  - positions:
+    - {fileID: 2040673142}
+    - {fileID: 213088749}
+    - {fileID: 1247649777}
+    - {fileID: 431797304}
+    - {fileID: 2053968506}
+    - {fileID: 1311312479}
+    - {fileID: 411443692}
+    - {fileID: 528564078}
   inventory_offset: 0
   equipped_offset: 0
   highlighted_item: 0
@@ -19474,7 +19483,7 @@ GameObject:
   - component: {fileID: 1915090676}
   - component: {fileID: 1915090675}
   m_Layer: 5
-  m_Name: LevelUp
+  m_Name: Abilities
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19533,7 +19542,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Level Up
+  m_Text: Abilities
 --- !u!222 &1915090676
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -19571,14 +19580,14 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 411443692}
+  - {fileID: 1311312479}
   - {fileID: 1582918176}
   m_Father: {fileID: 612583376}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 135, y: -52}
+  m_AnchoredPosition: {x: 135, y: 28.99999}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1925450812

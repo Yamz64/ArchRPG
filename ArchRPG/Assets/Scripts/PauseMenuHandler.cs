@@ -30,6 +30,7 @@ public class PauseMenuHandler : MonoBehaviour
     private bool item_select_menu;
     private bool base_pause_character_select;
     private bool equipping;
+    private bool ability_select;
     private GameObject cursor;
     private List<GameObject> menus;
     private PlayerData data;
@@ -2318,6 +2319,7 @@ public class PauseMenuHandler : MonoBehaviour
                         equipping = false;
                         cursor_position = 0;
                         equip_type = 0;
+                        ability_select = false;
                         base_pause_character_select = true;
                         UpdateEquipMenuInfo();
                         break;
@@ -2326,6 +2328,11 @@ public class PauseMenuHandler : MonoBehaviour
                         highlighted_swap = -1;
                         UpdatePositionMenu();
                         OpenMenu(3);
+                        break;
+                    case 4:
+                        cursor_position = 0;
+                        ability_select = true;
+                        base_pause_character_select = true;
                         break;
                     default:
                         break;
@@ -2366,15 +2373,29 @@ public class PauseMenuHandler : MonoBehaviour
             if (Input.GetButtonDown("Interact"))
             {
                 audio_handler.PlaySound("Sound/SFX/select");
-                if (cursor_position == 0)
+                if (!ability_select)
                 {
-                    OpenMenu(2);
-                    UpdateEquipMenuInfo();
+                    if (cursor_position == 0)
+                    {
+                        OpenMenu(2);
+                        UpdateEquipMenuInfo();
+                    }
+                    else if (cursor_position < data.GetPartySize() + 1)
+                    {
+                        OpenMenu(2);
+                        UpdateEquipMenuInfo();
+                    }
                 }
-                else if(cursor_position < data.GetPartySize()+1)
+                else
                 {
-                    OpenMenu(2);
-                    UpdateEquipMenuInfo();
+                    if (cursor_position == 0)
+                    {
+                        OpenMenu(4);
+                    }
+                    else if (cursor_position < data.GetPartySize() + 1)
+                    {
+                        OpenMenu(4);
+                    }
                 }
             }
 
@@ -3010,6 +3031,43 @@ public class PauseMenuHandler : MonoBehaviour
         cursor.transform.position = cursor_positions[4].positions[cursor_position].position;
     }
 
+    public void AbilityMenuRoutine()
+    {
+        //up
+        if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+        {
+            if(!menu_input)
+                cursor_position--;
+            menu_input = true;
+        }
+        //down
+        else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < 7)
+        {
+            if(!menu_input)
+                cursor_position++;
+            menu_input = true;
+        }
+        //right
+        else if (Input.GetAxis("Horizontal") > 0.0f && cursor_position < 4)
+        {
+            if(!menu_input)
+                cursor_position += 4;
+            menu_input = true;
+        }
+        //left
+        else if (Input.GetAxis("Horizontal") < 0.0f && cursor_position > 3)
+        {
+            if(!menu_input)
+                cursor_position -= 4;
+            menu_input = true;
+        }
+        else
+        {
+            menu_input = false;
+        }
+        cursor.transform.position = cursor_positions[5].positions[cursor_position].transform.position;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -3139,6 +3197,9 @@ public class PauseMenuHandler : MonoBehaviour
                     break;
                 case 3:
                     PositionMenuRoutine();
+                    break;
+                case 4:
+                    AbilityMenuRoutine();
                     break;
                 default:
                     break;
