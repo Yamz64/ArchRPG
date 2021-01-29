@@ -1463,7 +1463,7 @@ public class BattleScript : MonoBehaviour
                 {
                     dialogue.text = "Invalid action selected";
                 }
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(2f);
             }
 
             swapInds.Clear();
@@ -1472,6 +1472,7 @@ public class BattleScript : MonoBehaviour
 
             if (state != battleState.WIN && state != battleState.LOSE && state != battleState.FLEE && enemyDeaths < enemyUnits.Count)
             {
+                yield return new WaitForSeconds(3f);
                 state = battleState.ENEMY;
                 enemyAttacks();
             }
@@ -1664,8 +1665,8 @@ public class BattleScript : MonoBehaviour
         if (dead)
         {
             enemyDeaths++;
-            uni.exp += target.exp;
             StartCoroutine(unitDeath(target));
+            StartCoroutine(levelUp(target.giveEXP(), uni));
             if (enemyDeaths == enemyUnits.Count)
             {
                 state = battleState.WIN;
@@ -1692,8 +1693,8 @@ public class BattleScript : MonoBehaviour
         if (dead)
         {
             enemyDeaths++;
-            uni.exp += target.exp;
             StartCoroutine(unitDeath(target));
+            StartCoroutine(levelUp(target.giveEXP(), uni));
             if (enemyDeaths == enemyUnits.Count)
             {
                 state = battleState.WIN;
@@ -1795,6 +1796,19 @@ public class BattleScript : MonoBehaviour
         }
     }
 
+    IEnumerator levelUp(int expGained, unit uni)
+    {
+        dialogue.text = uni.unitName + " gained " + expGained + " exp";
+        bool boost = uni.gainEXP(expGained);
+        yield return new WaitForSeconds(3f);
+        if (boost == true)
+        {
+            dialogue.text = uni.unitName + " levelled up!";
+            uni.setHUD();
+            yield return new WaitForSeconds(5f);
+        }
+    }
+
     //Display relevant text based on who wins the battle
     void battleEnd()
     {
@@ -1823,6 +1837,7 @@ public class BattleScript : MonoBehaviour
                 }
             }
         }
+        
     }
 
     //Player chooses to attack

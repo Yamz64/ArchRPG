@@ -8,6 +8,7 @@ public class unit : MonoBehaviour
 {
     public string unitName;     //Name of the unit
     public int level;           //Level of the unit
+    public int currentLevelTop; //Limit for next level
     public int exp;             //The amount of experience the unit has
     public int maxHP;           //Maximum HP possible
     public int currentHP;       //Current Hit points
@@ -79,6 +80,8 @@ public class unit : MonoBehaviour
     //Get the current skill points/MP of the unit
     public int getSP()    { return currentSP;   }
 
+    public int getEXP() { return exp; }
+
     public int getSAN() { return sanity; }
     public int getATK() { return ATK; }
     public int getDEF() { return DEF; }
@@ -139,6 +142,21 @@ public class unit : MonoBehaviour
         }
     }
 
+    public bool gainEXP(int val)
+    {
+        exp += val;
+        if (exp >= currentLevelTop)
+        {
+            if (level < 20) level += 1;
+            currentLevelTop = level * 10;
+            exp = 0;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     //Get the attack at the given index
     public Ability getAttack(int index)
     {
@@ -248,6 +266,11 @@ public class unit : MonoBehaviour
         BBackground.color = ori;
 
     }
+
+    public int expGain;
+    public List<Item> rewards;
+
+    public int giveEXP() { return expGain; }
 }
 
 public class allyUnit : unit
@@ -258,8 +281,4 @@ public class allyUnit : unit
 public class enemyUnit : unit
 {
 
-    public int expGain;
-    public List<Item> rewards;
-
-    public int giveEXP() { return expGain; }
 }
