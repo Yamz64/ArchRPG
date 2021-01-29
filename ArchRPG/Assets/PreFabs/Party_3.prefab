@@ -51,6 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Dog Guy
   level: 0
+  currentLevelTop: 0
   exp: 0
   maxHP: 30
   currentHP: 30
@@ -63,8 +64,9 @@ MonoBehaviour:
   RES: 0
   AGI: 0
   LCK: 0
-  player: 0
+  player: 1
   enemy: 0
+  outOfSP: 0
   position: 0
   unitWeapon:
     name: 
@@ -116,6 +118,8 @@ MonoBehaviour:
   spBar: {fileID: 1293854210363932563}
   spSideText: {fileID: 744046793374772677}
   spReadOut: {fileID: 3334912340381295422}
+  expGain: 0
+  rewards: []
 --- !u!1 &771182454583347694
 GameObject:
   m_ObjectHideFlags: 0

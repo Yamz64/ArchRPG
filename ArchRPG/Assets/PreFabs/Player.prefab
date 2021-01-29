@@ -850,6 +850,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Conspiracy Guy
   level: 0
+  currentLevelTop: 20
   exp: 0
   maxHP: 20
   currentHP: 20
@@ -862,7 +863,7 @@ MonoBehaviour:
   RES: 0
   AGI: 0
   LCK: 0
-  player: 0
+  player: 1
   enemy: 0
   outOfSP: 0
   position: 0
@@ -916,6 +917,8 @@ MonoBehaviour:
   spBar: {fileID: 5339206236476282531}
   spSideText: {fileID: 5890559715238577397}
   spReadOut: {fileID: 8479125116668922382}
+  expGain: 0
+  rewards: []
 --- !u!1 &5863634073337913566
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,8 +1028,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -258.62, y: -29.32}
-  m_SizeDelta: {x: 91.170044, y: 37.46414}
+  m_AnchoredPosition: {x: -259.97003, y: -29.32}
+  m_SizeDelta: {x: 93.87012, y: 37.46414}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4705570930719786976
 CanvasRenderer:
@@ -1179,8 +1182,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -259.21, y: -12.475006}
-  m_SizeDelta: {x: 89.99036, y: 37.05002}
+  m_AnchoredPosition: {x: -260.56003, y: -12.475006}
+  m_SizeDelta: {x: 92.69043, y: 37.05002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &997195821702079055
 CanvasRenderer:

@@ -551,6 +551,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Eldritch Gunner
   level: 2
+  currentLevelTop: 0
   exp: 0
   maxHP: 10
   currentHP: 10
@@ -565,6 +566,7 @@ MonoBehaviour:
   LCK: 0
   player: 0
   enemy: 1
+  outOfSP: 0
   position: 0
   unitWeapon:
     name: 
@@ -616,6 +618,8 @@ MonoBehaviour:
   spBar: {fileID: 0}
   spSideText: {fileID: 0}
   spReadOut: {fileID: 0}
+  expGain: 30
+  rewards: []
 --- !u!1 &3694361481796394241
 GameObject:
   m_ObjectHideFlags: 0

@@ -696,6 +696,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Demon Child
   level: 0
+  currentLevelTop: 0
   exp: 0
   maxHP: 15
   currentHP: 15
@@ -708,8 +709,9 @@ MonoBehaviour:
   RES: 0
   AGI: 0
   LCK: 0
-  player: 0
+  player: 1
   enemy: 0
+  outOfSP: 0
   position: 0
   unitWeapon:
     name: 
@@ -761,6 +763,8 @@ MonoBehaviour:
   spBar: {fileID: 6503547467583766925}
   spSideText: {fileID: 4748745535991927771}
   spReadOut: {fileID: 7346058602607811872}
+  expGain: 0
+  rewards: []
 --- !u!1 &5905742278944277389
 GameObject:
   m_ObjectHideFlags: 0

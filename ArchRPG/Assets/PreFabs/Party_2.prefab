@@ -588,6 +588,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: The Weirdo
   level: 0
+  currentLevelTop: 0
   exp: 0
   maxHP: 10
   currentHP: 10
@@ -600,8 +601,9 @@ MonoBehaviour:
   RES: 0
   AGI: 0
   LCK: 0
-  player: 0
+  player: 1
   enemy: 0
+  outOfSP: 0
   position: 0
   unitWeapon:
     name: 
@@ -653,6 +655,8 @@ MonoBehaviour:
   spBar: {fileID: 2943560177741168025}
   spSideText: {fileID: 3710530083065360335}
   spReadOut: {fileID: 1687421547341652276}
+  expGain: 0
+  rewards: []
 --- !u!1 &5125154281436196725
 GameObject:
   m_ObjectHideFlags: 0
