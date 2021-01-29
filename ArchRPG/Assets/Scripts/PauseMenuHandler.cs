@@ -2500,6 +2500,10 @@ public class PauseMenuHandler : MonoBehaviour
                         ability_select = true;
                         base_pause_character_select = true;
                         break;
+                    case 5:
+                        cursor_position = 0;
+                        OpenMenu(5);
+                        break;
                     default:
                         break;
                 }
@@ -3290,6 +3294,54 @@ public class PauseMenuHandler : MonoBehaviour
         cursor.transform.position = cursor_positions[5].positions[cursor_position].transform.position;
     }
 
+    public void LevelUpMenuRoutine()
+    {
+        //cursor input
+        //left
+        if(Input.GetAxisRaw("Horizontal") < 0.0f && cursor_position > 0)
+        {
+            if (!menu_input)
+            {
+                cursor_position--;
+                audio_handler.PlaySound("Sound/SFX/cursor");
+            }
+            menu_input = true;
+        //right
+        }else if (Input.GetAxisRaw("Horizontal") > 0.0f && cursor_position < 7)
+        {
+            if (!menu_input)
+            {
+                cursor_position++;
+                audio_handler.PlaySound("Sound/SFX/cursor");
+            }
+            menu_input = true;
+        //up
+        }else if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 3)
+        {
+            if (!menu_input)
+            {
+                cursor_position -= 4;
+                audio_handler.PlaySound("Sound/SFX/cursor");
+            }
+            menu_input = true;
+        }
+        //down
+        else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < 4)
+        {
+            if (!menu_input)
+            {
+                cursor_position += 4;
+                audio_handler.PlaySound("Sound/SFX/cursor");
+            }
+            menu_input = true;
+        }
+        else
+        {
+            menu_input = false;
+        }
+        cursor.transform.position = cursor_positions[6].positions[cursor_position].transform.position;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -3433,6 +3485,9 @@ public class PauseMenuHandler : MonoBehaviour
                     break;
                 case 4:
                     AbilityMenuRoutine();
+                    break;
+                case 5:
+                    LevelUpMenuRoutine();
                     break;
                 default:
                     break;

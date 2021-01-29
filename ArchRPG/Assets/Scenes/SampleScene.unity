@@ -17899,6 +17899,15 @@ MonoBehaviour:
     - {fileID: 1311312479}
     - {fileID: 411443692}
     - {fileID: 528564078}
+  - positions:
+    - {fileID: 849063120}
+    - {fileID: 2134292375}
+    - {fileID: 160844688}
+    - {fileID: 1682271301}
+    - {fileID: 426989300}
+    - {fileID: 195007826}
+    - {fileID: 1083001276}
+    - {fileID: 1297228590}
   inventory_offset: 0
   equipped_offset: 0
   ability_offset: 0
