@@ -130,6 +130,8 @@ public class BattleScript : MonoBehaviour
     //List of party units
     private List<GameObject> partyUnits;
 
+    private List<string> partyNames;
+
     //List of enemy units
     private List<GameObject> enemyUnits;
 
@@ -1410,7 +1412,7 @@ public class BattleScript : MonoBehaviour
                     {
                         dialogue.text = temp[x].GetComponent<unit>().unitName + " used " +
                             temp[x].GetComponent<unit>().abilities[actions[i].getIndex()].name;
-                        StartCoroutine(playerAttack(temp[x].GetComponent<unit>().abilities[actions[i].getIndex()],
+                        StartCoroutine(playerAttack(actions[i].getIndex(),
                             temp[x].GetComponent<unit>(), enemyUnits[actions[i].getTarget()].GetComponent<unit>()));
                     }
                     else
@@ -1484,6 +1486,7 @@ public class BattleScript : MonoBehaviour
         playerGo = loader.updateUnit(playerGo, 0);
         playerUnit = playerGo.GetComponent<unit>();
         partyUnits.Add(playerGo.gameObject);
+        partyNames.Add(playerGo.GetComponent<unit>().unitName);
 
         //Create enemy unit
         GameObject enemyGo = Instantiate(enemyPrefab, enemyStation);
@@ -1495,13 +1498,14 @@ public class BattleScript : MonoBehaviour
         enemyUnit.setHUD();
 
         //Create party member 2 if possible
-        if (member1Prefab && member1Station && activeUnits < loader.HPs.Length)
+        if (member1Station && activeUnits < loader.HPs.Length)
         {
             GameObject member1Go = Instantiate(member1Prefab, member1Station);
             member1Go = loader.updateUnit(member1Go, activeUnits);
             member1Unit = member1Go.GetComponent<unit>();
             member1Unit.setHUD();
             partyUnits.Add(member1Go.gameObject);
+            partyNames.Add(member1Go.GetComponent<unit>().unitName);
             activeUnits += 1;
         }
         else
@@ -1510,13 +1514,14 @@ public class BattleScript : MonoBehaviour
         }
 
         //Create party member 3 if possible
-        if (member2Prefab && member2Station && activeUnits < loader.HPs.Length)
+        if (member2Station && activeUnits < loader.HPs.Length)
         {
             GameObject member2Go = Instantiate(member2Prefab, member2Station);
             member2Go = loader.updateUnit(member2Go, activeUnits);
             member2Unit = member2Go.GetComponent<unit>();
             member2Unit.setHUD();
             partyUnits.Add(member2Go.gameObject);
+            partyNames.Add(member2Go.GetComponent<unit>().unitName);
             activeUnits += 1;
         }
         else
@@ -1525,13 +1530,14 @@ public class BattleScript : MonoBehaviour
         }
 
         //Create party member 4 if possible
-        if (member3Prefab && member3Station && activeUnits < loader.HPs.Length)
+        if (member3Station && activeUnits < loader.HPs.Length)
         {
             GameObject member3Go = Instantiate(member3Prefab, member3Station);
             member3Go = loader.updateUnit(member3Go, activeUnits);
             member3Unit = member3Go.GetComponent<unit>();
             member3Unit.setHUD();
             partyUnits.Add(member3Go.gameObject);
+            partyNames.Add(member3Go.GetComponent<unit>().unitName);
             activeUnits += 1;
         }
         else
@@ -1644,15 +1650,13 @@ public class BattleScript : MonoBehaviour
     }
 
     //Deal damage to enemy, check if it is dead, and act accordingly (win battle or enemy turn)
-    IEnumerator playerAttack(Ability ata, unit uni, unit target)
+    IEnumerator playerAttack(int ata, unit uni, unit target)
     {
         //dialogue.text = "Player used " + ata.name;
 
         yield return new WaitForSeconds(1f);
 
-        bool dead = target.takeDamage(ata.damage);
-        target.setHP(target.currentHP);
-        uni.setSP(uni.currentSP - ata.cost);
+        bool dead = uni.useAttack(ata, target);
 
         yield return new WaitForSeconds(1f);
 
@@ -1660,7 +1664,7 @@ public class BattleScript : MonoBehaviour
         if (dead)
         {
             enemyDeaths++;
-            unitDeath(target);
+            uni.exp += target.exp;
             StartCoroutine(unitDeath(target));
             if (enemyDeaths == enemyUnits.Count)
             {
@@ -1668,6 +1672,7 @@ public class BattleScript : MonoBehaviour
                 battleEnd();
             }
         }
+        
     }
 
     //Use a basic attack against the target, and act accordin
@@ -1677,7 +1682,7 @@ public class BattleScript : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        bool dead = target.takeDamage(4);
+        bool dead = target.takeDamage(4 + (uni.ATK/100) - (target.DEF/200));
         target.setHP(target.currentHP);
         uni.setSP(uni.currentSP - 2);
 
@@ -1687,6 +1692,7 @@ public class BattleScript : MonoBehaviour
         if (dead)
         {
             enemyDeaths++;
+            uni.exp += target.exp;
             StartCoroutine(unitDeath(target));
             if (enemyDeaths == enemyUnits.Count)
             {
@@ -1804,10 +1810,23 @@ public class BattleScript : MonoBehaviour
         {
             dialogue.text = "The party managed to escape";
         }
+        for (int i = 0; i < partyUnits.Count; i++)
+        {
+            if (partyUnits[i] != null)
+            {
+                for (int x = 0; x < partyNames.Count; x++)
+                {
+                    if (partyUnits[i].GetComponent<unit>().unitName == partyNames[x])
+                    {
+                        loader.storeUnit(partyUnits[i], x);
+                    }
+                }
+            }
+        }
     }
 
     //Player chooses to attack
-    public void AttackButton(Ability ata, unit uni, unit target)
+    public void AttackButton(int ata, unit uni, unit target)
     {
         if (state != battleState.PLAYER) return;
         StartCoroutine(playerAttack(ata, uni, target));
@@ -1866,6 +1885,7 @@ public class BattleScript : MonoBehaviour
 
         
         partyUnits = new List<GameObject>();
+        partyNames = new List<string>();
         enemyUnits = new List<GameObject>();
 
         swapInds = new List<int>();

@@ -79,6 +79,66 @@ public class unit : MonoBehaviour
     //Get the current skill points/MP of the unit
     public int getSP()    { return currentSP;   }
 
+    public int getSAN() { return sanity; }
+    public int getATK() { return ATK; }
+    public int getDEF() { return DEF; }
+    public int getWILL() { return WILL; }
+    public int getRES() { return RES; }
+    public int getAGI() { return AGI; }
+    public int getLUCK() { return LCK; }
+
+    //Set the current value of the HP slider
+    public void setHP(int hp)
+    {
+        currentHP = hp;
+        if (currentHP > maxHP) currentHP = maxHP;
+        else if (currentHP < 0) currentHP = 0;
+        if (currentHP <= 0)
+        {
+            hpBar.GetComponent<Image>().fillAmount = 0.0f / maxHP;
+            hpReadOut.text = 0 + " / " + maxHP;
+        }
+        else
+        {
+            hpBar.GetComponent<Image>().fillAmount = (float)hp / maxHP;
+            hpReadOut.text = currentHP + " / " + maxHP;
+        }
+    }
+
+    //Set the current value of the MP slider
+    public void setSP(int sp)
+    {
+        currentSP = sp;
+        if (currentSP > maxSP) currentSP = maxSP;
+        else if (currentSP < 0) currentSP = 0;
+        if (currentSP <= 0)
+        {
+            spBar.GetComponent<Image>().fillAmount = 0.0f / maxSP;
+            spReadOut.text = 0 + " / " + maxSP;
+        }
+        else
+        {
+            spBar.GetComponent<Image>().fillAmount = (float)sp / maxSP;
+            spReadOut.text = currentSP + " / " + maxSP;
+        }
+    }
+
+    public void setSAN(int sn)
+    {
+        if (sn >= 0 && sn <= 100)
+        {
+            sanity = sn;
+        }
+        else if (sn < 0)
+        {
+            sanity = 0;
+        }
+        else if (sn > 100)
+        {
+            sanity = 100;
+        }
+    }
+
     //Get the attack at the given index
     public Ability getAttack(int index)
     {
@@ -103,46 +163,26 @@ public class unit : MonoBehaviour
     {
         if (outOfSP == false)
         {
-            currentSP -= abilities[index].cost;
+            Ability ata = getAttack(index);
+            setSP(currentSP - ata.cost);
             if (currentSP == 0)
             {
                 outOfSP = true;
             }
-            spReadOut.text = 0 + " / " + maxSP;
-            bool d = target.takeDamage(abilities[index].damage);
+            int val = ata.damage + (ATK / 100);
+            if (ata.damageType == 0)
+            {
+                val -= target.DEF / 200;
+            }
+            else
+            {
+                val -= target.WILL / 200;
+            }
+            bool d = target.takeDamage(val);
+            target.setHP(target.currentHP);
             return d;
         }
         return false;
-    }
-
-    //Set the current value of the HP slider
-    public void setHP(int hp)
-    {
-        if (currentHP <= 0)
-        {
-            hpBar.GetComponent<Image>().fillAmount = 0.0f / maxHP;
-            hpReadOut.text = 0 + " / " + maxHP;
-        }
-        else
-        {
-            hpBar.GetComponent<Image>().fillAmount = (float)hp / maxHP;
-            hpReadOut.text = currentHP + " / " + maxHP;
-        }
-    }
-
-    //Set the current value of the MP slider
-    public void setSP(int sp)
-    {
-        if (currentSP <= 0)
-        {
-            spBar.GetComponent<Image>().fillAmount = 0.0f / maxSP;
-            spReadOut.text = 0 + " / " + maxSP;
-        }
-        else
-        {
-            spBar.GetComponent<Image>().fillAmount = (float)sp / maxSP;
-            spReadOut.text = currentSP + " / " + maxSP;
-        }
     }
 
     //Adjust the health of the slide to reflect damage taken
@@ -152,11 +192,13 @@ public class unit : MonoBehaviour
         currentHP -= dam;
         if (currentHP <= 0)
         {
+            hpBar.GetComponent<Image>().fillAmount = 0.0f / maxHP;
             hpReadOut.text = 0 + " / " + maxHP;
             return true;
         }
         else
         {
+            hpBar.GetComponent<Image>().fillAmount = (float)currentHP / maxHP;
             hpReadOut.text = currentHP + " / " + maxHP;
             return false;
         }
@@ -206,4 +248,18 @@ public class unit : MonoBehaviour
         BBackground.color = ori;
 
     }
+}
+
+public class allyUnit : unit
+{
+
+}
+
+public class enemyUnit : unit
+{
+
+    public int expGain;
+    public List<Item> rewards;
+
+    public int giveEXP() { return expGain; }
 }

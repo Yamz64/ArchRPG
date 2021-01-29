@@ -519,6 +519,22 @@ public class CharacterStatJsonConverter
         }
     }
 
+    public void storeUnit(GameObject id, int num)
+    {
+        if (num < HPs.Length)
+        {
+            HPs[num] = id.GetComponent<unit>().currentHP;
+            SPs[num] = id.GetComponent<unit>().currentSP;
+            SANs[num] = id.GetComponent<unit>().sanity;
+            XPs[num] = id.GetComponent<unit>().exp;
+            levels[num] = id.GetComponent<unit>().level;
+            weapons[num] = id.GetComponent<unit>().unitWeapon;
+            armors[num] = id.GetComponent<unit>().unitArmor;
+            trinkets[num] = id.GetComponent<unit>().unitTrinket;
+            names[num] = id.GetComponent<unit>().unitName;
+        }
+    }
+
     public void UpdatePlayerData(ref PlayerData p)
     {
         //--FIRST UPDATE THE PLAYER'S STATS--

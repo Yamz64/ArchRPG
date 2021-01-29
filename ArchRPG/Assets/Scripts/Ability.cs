@@ -22,10 +22,11 @@ public class Ability
     public int damage;  //int denotes the amount of damage the attack will do
     /*
      * 0 = Physical
-     * 1 = Psychic
-     * 2 = Acid
-     * 3 = Fire 
-     * 4 = Electric
+     * 1 = Special
+     * 2 = Psychic
+     * 3 = Acid
+     * 4 = Fire 
+     * 5 = Electric
      */
     public int damageType;          //The type of damage dealt by the attack
     public string image_file_path;  //Give path to image that goes with attack
