@@ -44,6 +44,8 @@ public class PlayerData : CharacterStats
     public void SetExperience(int e) { experience = e; }
     public int GetMaxExperience() { return max_experience; }
     public void SetMaxExperience(int e) { max_experience = e; }
+    public int GetEP() { return EP; }
+    public void SetEP(int e) { EP = e; }
     public Vector2 GetSavedPosition() { return saved_position; }
     public void SetSavedPosition(Vector2 p) { saved_position = p; }
 
@@ -590,6 +592,7 @@ public class PlayerData : CharacterStats
     private int progress;
     private int experience;
     private int max_experience;
+    private int EP;
     private Vector2 saved_position;
     private List<Item> inventory;
     private List<CharacterStats> party_stats;

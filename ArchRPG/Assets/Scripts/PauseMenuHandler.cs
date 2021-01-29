@@ -61,7 +61,7 @@ public class PauseMenuHandler : MonoBehaviour
     {
         //get a list of objects to update the info for
         List<GameObject> party_info = new List<GameObject>();
-        for(int i=6; i<10; i++)
+        for(int i=7; i<11; i++)
         {
             party_info.Add(transform.GetChild(1).GetChild(1).GetChild(i).gameObject);
         }
