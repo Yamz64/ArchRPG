@@ -2431,6 +2431,12 @@ public class PauseMenuHandler : MonoBehaviour
         }
     }
 
+    public void UpdateLevelUpMenu()
+    {
+        //--FIRST UPDATE EP--
+        menus[6].transform.GetChild(1).GetComponent<Text>().text = "EP: " + data.GetEP().ToString();
+    }
+
     public void BasePauseMenuRoutine()
     {
         if (!base_pause_character_select)

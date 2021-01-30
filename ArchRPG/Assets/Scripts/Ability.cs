@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Reflection;
 
 //base class for handling abilities
 public class Ability
@@ -29,6 +30,7 @@ public class Ability
      * 5 = Electric
      */
     public int damageType;          //The type of damage dealt by the attack
+    public int level_cost;          //cost to purchase this ability on levelup (only applies to eldritch abilities)
     public string image_file_path;  //Give path to image that goes with attack
     public string desc1;            //Give info on attack name, cost, and basic details
     public string desc2;            //Give actual description and more details (damage type, targets, etc.)
@@ -216,5 +218,169 @@ public class TestAbility9 : Ability
         damageType = 0;
         image_file_path = "AbilitySprites/Fist";
         desc1 = "This is test ability 9...";
+    }
+}
+
+
+public class EldritchAbilities
+{
+    public List<Ability> GetEldritchAbilities()
+    {
+        System.Type e_ability = GetType();
+        System.Type[] temp = e_ability.GetNestedTypes();
+
+        List<Ability> e_abilities = new List<Ability>();
+        for(int i=0; i<temp.GetLength(0); i++)
+        {
+            System.Type type = temp[i].GetType();
+            Ability instance = (Ability)System.Activator.CreateInstance(type);
+            e_abilities.Add(instance);
+        }
+
+        return e_abilities;
+    }
+
+    public class TestEAbility : Ability
+    {
+        public TestEAbility()
+        {
+            eldritch = true;
+            name = "TestEAbility";
+            type = 2;
+            position = 0;
+            cost = 10;
+            damage = 40;
+            damageType = 0;
+            image_file_path = "AbilitySprites/Eldritch";
+            desc1 = "This is eldritch test ability";
+        } 
+    }
+
+    public class TestEAbility1 : Ability
+    {
+        public TestEAbility1()
+        {
+            eldritch = true;
+            name = "TestEAbility1";
+            type = 2;
+            position = 0;
+            cost = 10;
+            damage = 40;
+            damageType = 0;
+            image_file_path = "AbilitySprites/Eldritch";
+            desc1 = "This is eldritch test ability 1";
+        }
+    }
+
+    public class TestEAbility2 : Ability
+    {
+        public TestEAbility2()
+        {
+            eldritch = true;
+            name = "TestEAbility2";
+            type = 2;
+            position = 0;
+            cost = 10;
+            damage = 40;
+            damageType = 0;
+            image_file_path = "AbilitySprites/Eldritch";
+            desc1 = "This is eldritch test ability 2";
+        }
+    }
+
+    public class TestEAbility3 : Ability
+    {
+        public TestEAbility3()
+        {
+            eldritch = true;
+            name = "TestEAbility3";
+            type = 2;
+            position = 0;
+            cost = 10;
+            damage = 40;
+            damageType = 0;
+            image_file_path = "AbilitySprites/Eldritch";
+            desc1 = "This is eldritch test ability 3";
+        }
+    }
+
+    public class TestEAbility4 : Ability
+    {
+        public TestEAbility4()
+        {
+            eldritch = true;
+            name = "TestEAbility4";
+            type = 2;
+            position = 0;
+            cost = 10;
+            damage = 40;
+            damageType = 0;
+            image_file_path = "AbilitySprites/Eldritch";
+            desc1 = "This is eldritch test ability 4";
+        }
+    }
+
+    public class TestEAbility5 : Ability
+    {
+        public TestEAbility5()
+        {
+            eldritch = true;
+            name = "TestEAbility1";
+            type = 2;
+            position = 0;
+            cost = 10;
+            damage = 40;
+            damageType = 0;
+            image_file_path = "AbilitySprites/Eldritch";
+            desc1 = "This is eldritch test ability 5";
+        }
+    }
+
+    public class TestEAbility6 : Ability
+    {
+        public TestEAbility6()
+        {
+            eldritch = true;
+            name = "TestEAbility6";
+            type = 2;
+            position = 0;
+            cost = 10;
+            damage = 40;
+            damageType = 0;
+            image_file_path = "AbilitySprites/Eldritch";
+            desc1 = "This is eldritch test ability 6";
+        }
+    }
+
+    public class TestEAbility7 : Ability
+    {
+        public TestEAbility7()
+        {
+            eldritch = true;
+            name = "TestEAbility7";
+            type = 2;
+            position = 0;
+            cost = 10;
+            damage = 40;
+            damageType = 0;
+            image_file_path = "AbilitySprites/Eldritch";
+            desc1 = "This is eldritch test ability 7";
+        }
+    }
+
+    public class TestEAbility8 : Ability
+    {
+        public TestEAbility8()
+        {
+            eldritch = true;
+            name = "TestEAbility8";
+            type = 2;
+            position = 0;
+            cost = 10;
+            damage = 40;
+            damageType = 0;
+            image_file_path = "AbilitySprites/Eldritch";
+            desc1 = "This is eldritch test ability 8";
+        }
     }
 }

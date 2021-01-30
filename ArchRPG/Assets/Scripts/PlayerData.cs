@@ -36,6 +36,8 @@ public class PlayerData : CharacterStats
         SetLCK(50);
 
         SetPos(0);
+
+        EP = 5;
     }
 
     public int GetProgress() { return progress; }
