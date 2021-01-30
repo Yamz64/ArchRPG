@@ -244,7 +244,6 @@ MonoBehaviour:
   state: 0
   cursor_position: 0
   active_menu: 0
-  menu_mode: 0
   cursor_positions:
   - positions:
     - {fileID: 172956388}
@@ -300,8 +299,8 @@ MonoBehaviour:
   enemyStation2: {fileID: 1314743688}
   enemyStation3: {fileID: 1163937706}
   enemyStation4: {fileID: 0}
-  frames: []
   currentUnit: 0
+  moves: 0
   currentEnemy: 0
 --- !u!114 &43254541
 MonoBehaviour:

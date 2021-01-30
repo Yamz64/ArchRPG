@@ -14,6 +14,14 @@ public class Ability
         target.setHP(target.currentHP - damage);
         user.setSP(user.currentSP - cost);
     }
+    public virtual void UseAttack(unit user, List<unit> targets)
+    {
+        for(int i = 0; i < targets.Count; i++)
+        {
+            targets[i].setHP(targets[i].currentHP - damage);
+        }
+        user.setSP(user.currentSP - cost);
+    }
 
     public bool eldritch = false;   //Whether the ability is eldritch or not
     public string name;     //The name of the ability

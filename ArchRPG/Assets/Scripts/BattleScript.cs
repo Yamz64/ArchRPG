@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 //Different states of battle (turns)
-public enum battleState {  START, PLAYER, PARTY1, PARTY2, PARTY3, ATTACK, ENEMY, WIN, LOSE, FLEE }
+public enum battleState {  START, PLAYER, ATTACK, ENEMY, WIN, LOSE, FLEE }
 
 //A class to use to store actions that are done during the ATTACK state
 public class action
@@ -100,11 +100,10 @@ public class BattleScript : MonoBehaviour
     unit enemyUnit;
     unit enemyUnit2; unit enemyUnit3; unit enemyUnit4;
 
-    public List<Image> frames;
-
     //List of party units
     private List<GameObject> partyUnits;
 
+    //Names of party members (to match for saving)
     private List<string> partyNames;
 
     //List of enemy units
@@ -146,6 +145,7 @@ public class BattleScript : MonoBehaviour
     //The current unit in the party that is choosing an action
     public int currentUnit = 0;
 
+    //The number of moves that should be done by the party
     public int moves = 0;
 
     //The enemy currently being highlighted
@@ -190,7 +190,7 @@ public class BattleScript : MonoBehaviour
     //Open menu to choose whether to use selected item or not
     public void OpenUseItemMenu()
     {
-        transform.GetChild(1).GetChild(7).GetChild(11).gameObject.SetActive(true);
+        transform.GetChild(1).Find("ItemMenu").GetChild(11).gameObject.SetActive(true);
         cursor_position = 9;
         item_select_menu = true;
     }
@@ -198,7 +198,7 @@ public class BattleScript : MonoBehaviour
     //Close the use item menu
     public void CloseUseItemMenu()
     {
-        transform.GetChild(1).GetChild(7).GetChild(11).gameObject.SetActive(false);
+        transform.GetChild(1).Find("ItemMenu").GetChild(11).gameObject.SetActive(false);
         cursor_position = highlighted_item - inventory_offset;
         item_select_menu = false;
     }
@@ -206,7 +206,8 @@ public class BattleScript : MonoBehaviour
     //Open menu to choose whether an attack is used
     public void OpenUseAttackMenu()
     {
-        transform.GetChild(1).GetChild(6).GetChild(7).gameObject.SetActive(true);
+        transform.GetChild(1).Find("AttackMenu").GetChild(7).gameObject.SetActive(true);
+        //transform.GetChild(1).GetChild(6).GetChild(7).gameObject.SetActive(true);
         cursor_position = 4;
         attack_select_menu = true;
     }
@@ -214,7 +215,7 @@ public class BattleScript : MonoBehaviour
     //Close the use attack menu
     public void CloseUseAttackMenu()
     {
-        transform.GetChild(1).GetChild(6).GetChild(7).gameObject.SetActive(false);
+        transform.GetChild(1).Find("AttackMenu").GetChild(7).gameObject.SetActive(false);
         cursor_position = highlighted_attack - attack_offset;
         attack_select_menu = false;
     }
@@ -326,25 +327,25 @@ public class BattleScript : MonoBehaviour
         {
             Item item = data.GetItem(cursor_position + inventory_offset);
 
-            transform.GetChild(1).GetChild(7).GetChild(10).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            transform.GetChild(1).Find("ItemMenu").GetChild(10).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
             //try to update the image first
             if (item.image_file_path == "" || item.image_file_path == null)
             {
-                transform.GetChild(1).GetChild(7).GetChild(10).GetComponent<Image>().sprite = Resources.Load<Sprite>("ItemSprites/NullItem");
+                transform.GetChild(1).Find("ItemMenu").GetChild(10).GetComponent<Image>().sprite = Resources.Load<Sprite>("ItemSprites/NullItem");
             }
             else
             {
-                transform.GetChild(1).GetChild(7).GetChild(10).GetComponent<Image>().sprite = Resources.Load<Sprite>(item.image_file_path);
+                transform.GetChild(1).Find("ItemMenu").GetChild(10).GetComponent<Image>().sprite = Resources.Load<Sprite>(item.image_file_path);
             }
 
             //update item description
-            transform.GetChild(1).GetChild(7).GetChild(9).GetComponent<Text>().text = item.description;
+            transform.GetChild(1).Find("ItemMenu").GetChild(9).GetComponent<Text>().text = item.description;
         }
         else
         {
-            transform.GetChild(1).GetChild(7).GetChild(10).GetComponent<Image>().sprite = null;
-            transform.GetChild(1).GetChild(7).GetChild(10).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-            transform.GetChild(1).GetChild(7).GetChild(9).GetComponent<Text>().text = "";
+            transform.GetChild(1).Find("ItemMenu").GetChild(10).GetComponent<Image>().sprite = null;
+            transform.GetChild(1).Find("ItemMenu").GetChild(10).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+            transform.GetChild(1).Find("ItemMenu").GetChild(9).GetComponent<Text>().text = "";
         }
     }
 
@@ -355,26 +356,26 @@ public class BattleScript : MonoBehaviour
         {
             Ability attack = partyUnits[currentUnit].GetComponent<unit>().getAttack(cursor_position + attack_offset);
 
-            transform.GetChild(1).GetChild(6).GetChild(2).GetChild(3).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            transform.GetChild(1).Find("AttackMenu").GetChild(2).GetChild(3).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
 
             if (attack.image_file_path == "" || attack.image_file_path == null)
             {
-                transform.GetChild(1).GetChild(6).GetChild(2).GetChild(3).GetComponent<Image>().sprite = Resources.Load<Sprite>("AttackSprites/NullItem");
+                transform.GetChild(1).Find("AttackMenu").GetChild(2).GetChild(3).GetComponent<Image>().sprite = Resources.Load<Sprite>("AttackSprites/NullItem");
             }
             else
             {
-                transform.GetChild(1).GetChild(6).GetChild(2).GetChild(3).GetComponent<Image>().sprite = Resources.Load<Sprite>(attack.image_file_path);
+                transform.GetChild(1).Find("AttackMenu").GetChild(2).GetChild(3).GetComponent<Image>().sprite = Resources.Load<Sprite>(attack.image_file_path);
             }
             //update item description
-            transform.GetChild(1).GetChild(6).GetChild(2).GetChild(4).GetComponent<Text>().text = attack.desc1;
-            transform.GetChild(1).GetChild(6).GetChild(2).GetChild(5).GetComponent<Text>().text = attack.desc2;
+            transform.GetChild(1).Find("AttackMenu").GetChild(2).GetChild(4).GetComponent<Text>().text = attack.desc1;
+            transform.GetChild(1).Find("AttackMenu").GetChild(2).GetChild(5).GetComponent<Text>().text = attack.desc2;
         }
         else
         {
-            transform.GetChild(1).GetChild(6).GetChild(2).GetChild(3).GetComponent<Image>().sprite = null;
-            transform.GetChild(1).GetChild(6).GetChild(2).GetChild(3).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-            transform.GetChild(1).GetChild(6).GetChild(2).GetChild(4).GetComponent<Text>().text = "";
-            transform.GetChild(1).GetChild(6).GetChild(2).GetChild(5).GetComponent<Text>().text = "";
+            transform.GetChild(1).Find("AttackMenu").GetChild(2).GetChild(3).GetComponent<Image>().sprite = null;
+            transform.GetChild(1).Find("AttackMenu").GetChild(2).GetChild(3).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+            transform.GetChild(1).Find("AttackMenu").GetChild(2).GetChild(4).GetComponent<Text>().text = "";
+            transform.GetChild(1).Find("AttackMenu").GetChild(2).GetChild(5).GetComponent<Text>().text = "";
         }
     }
 
@@ -426,8 +427,6 @@ public class BattleScript : MonoBehaviour
                         {
                             useSound(1);
                             actions.Add(new action("basic attack", 0, 0));
-                            //partyUnits[currentUnit].GetComponent<unit>().attacks[highlighted_attack]
-                            //    .UseAttack(partyUnits[currentUnit].GetComponent<unit>(), enemyUnit);
                             currentUnit += 1;
                             moves += 1;
 
@@ -481,7 +480,7 @@ public class BattleScript : MonoBehaviour
                     case 3:
                         useSound(0);
                         OpenMenu(3);
-                        transform.GetChild(1).GetChild(8).GetChild(2).GetComponent<Text>().text = "Swap:\n\n";
+                        transform.GetChild(1).Find("SwapMenu").GetChild(2).GetComponent<Text>().text = "Swap:\n\n";
                         break;
                     case 4:
                         state = battleState.FLEE;
@@ -528,7 +527,6 @@ public class BattleScript : MonoBehaviour
                         }
                         else
                         {
-                            //Debug.Log("Current index2 == " + currentEnemy);
                             useSound(0);
                             currentEnemy++;
                             enemySelect(currentEnemy);
@@ -577,8 +575,6 @@ public class BattleScript : MonoBehaviour
             {
                 useSound(1);
                 actions.Add(new action("basic attack", 0, currentEnemy));
-                //partyUnits[currentUnit].GetComponent<unit>().attacks[highlighted_attack]
-                //    .UseAttack(partyUnits[currentUnit].GetComponent<unit>(), enemyUnit);
                 currentUnit += 1;
                 moves += 1;
 
@@ -624,7 +620,6 @@ public class BattleScript : MonoBehaviour
             {
                 menu_input = false;
             }
-            Debug.Log("Current index == " + currentEnemy);
         }
     }
 
@@ -742,7 +737,7 @@ public class BattleScript : MonoBehaviour
                         {
                             useSound(1);
                             //Make attack menu invisible
-                            Image[] opts = transform.GetChild(1).GetChild(6).GetComponentsInChildren<Image>();
+                            Image[] opts = transform.GetChild(1).Find("AttackMenu").GetComponentsInChildren<Image>();
                             foreach(Image child in opts)
                             {
                                 Color temp = child.color;
@@ -750,7 +745,7 @@ public class BattleScript : MonoBehaviour
                                 child.color = temp;
                             }
 
-                            Text[] ts = transform.GetChild(1).GetChild(6).GetComponentsInChildren<Text>();
+                            Text[] ts = transform.GetChild(1).Find("AttackMenu").GetComponentsInChildren<Text>();
                             foreach (Text child in ts)
                             {
                                 Color temp = child.color;
@@ -765,8 +760,6 @@ public class BattleScript : MonoBehaviour
                         {
                             useSound(1);
                             actions.Add(new action("attack", highlighted_attack, currentEnemy));
-                            //partyUnits[currentUnit].GetComponent<unit>().attacks[highlighted_attack]
-                            //    .UseAttack(partyUnits[currentUnit].GetComponent<unit>(), enemyUnit);
                             currentUnit += 1;
                             moves += 1;
 
@@ -887,19 +880,17 @@ public class BattleScript : MonoBehaviour
             {
                 useSound(1);
                 actions.Add(new action("attack", highlighted_attack, currentEnemy));
-                //partyUnits[currentUnit].GetComponent<unit>().attacks[highlighted_attack]
-                //    .UseAttack(partyUnits[currentUnit].GetComponent<unit>(), enemyUnit);
                 currentUnit += 1;
                 moves += 1;
 
-                Image[] opts = transform.GetChild(1).GetChild(6).GetComponentsInChildren<Image>();
+                Image[] opts = transform.GetChild(1).Find("AttackMenu").GetComponentsInChildren<Image>();
                 foreach (Image child in opts)
                 {
                     Color temp = child.color;
                     temp.a = 1.0f;
                     child.color = temp;
                 }
-                Text[] ts = transform.GetChild(1).GetChild(6).GetComponentsInChildren<Text>();
+                Text[] ts = transform.GetChild(1).Find("AttackMenu").GetComponentsInChildren<Text>();
                 foreach (Text child in ts)
                 {
                     Color temp = child.color;
@@ -941,14 +932,14 @@ public class BattleScript : MonoBehaviour
             else if (Input.GetButtonDown("Cancel"))
             {
                 useSound(0);
-                Image[] opts = transform.GetChild(1).GetChild(6).GetComponentsInChildren<Image>();
+                Image[] opts = transform.GetChild(1).Find("AttackMenu").GetComponentsInChildren<Image>();
                 foreach (Image child in opts)
                 {
                     Color temp = child.color;
                     temp.a = 1.0f;
                     child.color = temp;
                 }
-                Text[] ts = transform.GetChild(1).GetChild(6).GetComponentsInChildren<Text>();
+                Text[] ts = transform.GetChild(1).Find("AttackMenu").GetComponentsInChildren<Text>();
                 foreach (Text child in ts)
                 {
                     Color temp = child.color;
@@ -1158,16 +1149,16 @@ public class BattleScript : MonoBehaviour
             //If second unit hasn't been selected
             if (i2 == 5)
             {
-                transform.GetChild(1).GetChild(8).GetChild(2).GetComponent<Text>().text = "Swap:\n\n" + 
+                transform.GetChild(1).Find("SwapMenu").GetChild(2).GetComponent<Text>().text = "Swap:\n\n" + 
                     partyUnits[currentUnit].GetComponent<unit>().unitName;
                 if (partyUnits[cursor_position] != null)
                 {
-                    transform.GetChild(1).GetChild(8).GetChild(3).GetComponent<Text>().text = "With:\n\n"
+                    transform.GetChild(1).Find("SwapMenu").GetChild(3).GetComponent<Text>().text = "With:\n\n"
                         + partyUnits[cursor_position].GetComponent<unit>().unitName;
                 }
                 else
                 {
-                    transform.GetChild(1).GetChild(8).GetChild(3).GetComponent<Text>().text = "With:\n\nSpace "
+                    transform.GetChild(1).Find("SwapMenu").GetChild(3).GetComponent<Text>().text = "With:\n\nSpace "
                         + cursor_position;
                 }
             }
@@ -1285,7 +1276,7 @@ public class BattleScript : MonoBehaviour
                     CloseMenu(3);
                     menu_input = false;
                     active_menu = 0;
-                    transform.GetChild(1).GetChild(8).GetChild(3).gameObject.SetActive(false);
+                    transform.GetChild(1).Find("SwapMenu").GetChild(3).gameObject.SetActive(false);
                 }
             }
             else if (Input.GetButtonDown("Cancel"))
@@ -1306,7 +1297,14 @@ public class BattleScript : MonoBehaviour
                 {
                     useSound(0);
                     i1 = 5;
-                    transform.GetChild(1).GetChild(8).GetChild(3).gameObject.SetActive(false);
+                    i2 = 5;
+                    if (cursor_position == 1 || cursor_position == 3)
+                    {
+                        cursor.transform.Rotate(0.0f, 0.0f, 180.0f);
+                    }
+                    CloseMenu(3);
+                    menu_input = false;
+                    active_menu = 0;
                 }
             }
         }
@@ -1776,6 +1774,7 @@ public class BattleScript : MonoBehaviour
         }
     }
 
+    //Use to give a unit experience and, if possible, level them up. Display text as well
     IEnumerator levelUp(int expGained, unit uni)
     {
         dialogue.text = uni.unitName + " gained " + expGained + " exp";
@@ -1825,6 +1824,7 @@ public class BattleScript : MonoBehaviour
         StartCoroutine(NextScene());
     }
 
+    //Transfer to the next scene (most likely overworld or loading/transition screen
     IEnumerator NextScene()
     {
         yield return new WaitForSeconds(2f);
