@@ -1,0 +1,149 @@
+{
+    "position": {
+        "x": 0.0,
+        "y": 0.0
+    },
+    "progress": 0,
+    "HPs": [
+        46,
+        78
+    ],
+    "SPs": [
+        39,
+        69
+    ],
+    "SANs": [
+        100,
+        100
+    ],
+    "XPs": [
+        10,
+        60
+    ],
+    "levels": [
+        10,
+        11
+    ],
+    "positions": [
+        0,
+        1
+    ],
+    "weapons": [
+        {
+            "name": "TestWeapon",
+            "description": "A weapon of code!  Made for debugging so it's not really good...",
+            "image_file_path": "ItemSprites/TestWeaponIcon",
+            "amount": 1,
+            "limit": 1,
+            "damage_buff": 80,
+            "power_buff": 20,
+            "defense_buff": 0,
+            "will_buff": 0,
+            "resistance_buff": 0,
+            "speed_buff": -10,
+            "luck_buff": 10
+        },
+        {
+            "name": "TestWeapon2",
+            "description": "A weapon of code!  Made for debugging so it's not really good...",
+            "image_file_path": "ItemSprites/TestWeaponIcon",
+            "amount": 1,
+            "limit": 1,
+            "damage_buff": 80,
+            "power_buff": 20,
+            "defense_buff": 0,
+            "will_buff": 0,
+            "resistance_buff": 0,
+            "speed_buff": -10,
+            "luck_buff": 10
+        }
+    ],
+    "armors": [
+        {
+            "name": "TestArmor",
+            "description": "A suit of armor made of code!  Awkward and clunky, just like a programmer's first draft...",
+            "image_file_path": "ItemSprites/TestArmorIcon",
+            "amount": 1,
+            "limit": 1,
+            "damage_buff": 0,
+            "power_buff": 0,
+            "defense_buff": 50,
+            "will_buff": 10,
+            "resistance_buff": 50,
+            "speed_buff": -5,
+            "luck_buff": 10
+        },
+        {
+            "name": "",
+            "description": "",
+            "image_file_path": "",
+            "amount": 0,
+            "limit": 0,
+            "damage_buff": 0,
+            "power_buff": 0,
+            "defense_buff": 0,
+            "will_buff": 0,
+            "resistance_buff": 0,
+            "speed_buff": 0,
+            "luck_buff": 0
+        }
+    ],
+    "trinkets": [
+        {
+            "name": "",
+            "description": "",
+            "image_file_path": "",
+            "amount": 0,
+            "limit": 0,
+            "damage_buff": 0,
+            "power_buff": 0,
+            "defense_buff": 0,
+            "will_buff": 0,
+            "resistance_buff": 0,
+            "speed_buff": 0,
+            "luck_buff": 0
+        },
+        {
+            "name": "TestTrinket",
+            "description": "The jewel on the ring is value at 1 bit!  Not one bitcoin, like an actual bit of memory...",
+            "image_file_path": "ItemSprites/TestTrinketIcon",
+            "amount": 1,
+            "limit": 1,
+            "damage_buff": 0,
+            "power_buff": 60,
+            "defense_buff": 10,
+            "will_buff": 50,
+            "resistance_buff": 10,
+            "speed_buff": -15,
+            "luck_buff": 20
+        }
+    ],
+    "inventory": [
+        {
+            "name": "TestWeapon3",
+            "description": "A weapon of code!  Made for debugging so it's not really good...",
+            "image_file_path": "ItemSprites/TestWeaponIcon",
+            "amount": 1,
+            "limit": 1
+        },
+        {
+            "name": "TestWeapon4",
+            "description": "A weapon of code!  Made for debugging so it's not really good...",
+            "image_file_path": "ItemSprites/TestWeaponIcon",
+            "amount": 1,
+            "limit": 1
+        },
+        {
+            "name": "TestWeapon5",
+            "description": "A weapon of code!  Made for debugging so it's not really good...",
+            "image_file_path": "ItemSprites/TestWeaponIcon",
+            "amount": 1,
+            "limit": 1
+        }
+    ],
+    "names": [
+        "Player",
+        "TestPartyMember"
+    ],
+    "e_abilities": []
+}

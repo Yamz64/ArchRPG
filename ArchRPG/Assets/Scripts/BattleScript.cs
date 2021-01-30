@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 //Different states of battle (turns)
 public enum battleState {  START, PLAYER, PARTY1, PARTY2, PARTY3, ATTACK, ENEMY, WIN, LOSE, FLEE }
@@ -31,32 +32,6 @@ public class action
 
 public class BattleScript : MonoBehaviour
 {
-    /*
-    Steps:
-    Access party member data
-    For each member:
-	    Add name into the order
-	    Define character as member (have actions/stats ready)
-		    Could also grab player data directly and load character object in
-	    Get sprite ready
-
-    Get enemy data for stage (stage data as well)
-    For each enemy:
-	    Add name into the order
-	    Define character as enemy (record stats and possible actions)
-	    Get AI ready
-	    Get Sprite ready
-
-    For each member/enemy in the list:
-	    Player (Party Member):		    Choose action (attack, defend, use item, etc.)
-	    Enemy:		    Have action chosen based on probability/circumstances (AI)
-	    Record damage from attacks, skip characters who have health below 0
-
-    Complementary Steps:
-	    Reorder characters if a speed stat has been changed/ability used
-	    Skip over characters whose health is < 0
-     */
-
     //Use to determine state of the battle (turns, win/loss, etc.)
     public battleState state;
 
@@ -1382,7 +1357,10 @@ public class BattleScript : MonoBehaviour
         {
             int v = 0;
             while (enemyUnits[v].GetComponent<unit>().currentHP <= 0) v++;
-            StartCoroutine(enemyAttack(v));
+            if (v < enemyUnits.Count)
+            {
+                StartCoroutine(enemyAttack(v));
+            }
         }
     }
 
@@ -1683,7 +1661,7 @@ public class BattleScript : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        bool dead = target.takeDamage(4 + (uni.ATK/100) - (target.DEF/200));
+        bool dead = target.takeDamage(5 + (uni.ATK/100) - (target.DEF/200));
         target.setHP(target.currentHP);
         uni.setSP(uni.currentSP - 2);
 
@@ -1735,6 +1713,7 @@ public class BattleScript : MonoBehaviour
     {
         if (state == battleState.ENEMY && enemyUnits[x].GetComponent<unit>().currentHP > 0)
         {
+            yield return new WaitForSeconds(1f);
             dialogue.text = enemyUnits[x].GetComponent<unit>().unitName + " is attacking";
 
             yield return new WaitForSeconds(1f);
@@ -1792,6 +1771,7 @@ public class BattleScript : MonoBehaviour
         }
         else if (state == battleState.WIN || state == battleState.LOSE || state == battleState.FLEE)
         {
+            battleEnd();
             StopCoroutine("enemyAttack");
         }
     }
@@ -1812,6 +1792,10 @@ public class BattleScript : MonoBehaviour
     //Display relevant text based on who wins the battle
     void battleEnd()
     {
+        StopCoroutine("performActions");
+        StopCoroutine("playerAttack");
+        StopCoroutine("basicAttack");
+        StopCoroutine("enemyAttack");
         if (state == battleState.WIN)
         {
             dialogue.text = "The " + enemyUnit.unitName + " has been defeated";
@@ -1837,7 +1821,14 @@ public class BattleScript : MonoBehaviour
                 }
             }
         }
-        
+        loader.Save(1);
+        StartCoroutine(NextScene());
+    }
+
+    IEnumerator NextScene()
+    {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene("SampleScene");
     }
 
     //Player chooses to attack

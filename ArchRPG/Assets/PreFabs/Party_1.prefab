@@ -709,7 +709,7 @@ MonoBehaviour:
   RES: 0
   AGI: 0
   LCK: 0
-  player: 1
+  player: 0
   enemy: 0
   outOfSP: 0
   position: 0
