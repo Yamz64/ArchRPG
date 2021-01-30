@@ -20,6 +20,7 @@ public class PauseMenuHandler : MonoBehaviour
     public int inventory_offset;
     public int equipped_offset;
     public int ability_offset;
+    public int levelup_offset;
 
     public int highlighted_item;
     public int highlighted_party_member;
@@ -2434,7 +2435,47 @@ public class PauseMenuHandler : MonoBehaviour
     public void UpdateLevelUpMenu()
     {
         //--FIRST UPDATE EP--
-        menus[6].transform.GetChild(1).GetComponent<Text>().text = "EP: " + data.GetEP().ToString();
+        menus[5].transform.GetChild(1).GetComponent<Text>().text = "EP: " + data.GetEP().ToString();
+
+        //then get a list of all eldritch abilities in the game
+        List<Ability> e_abilities = EldritchAbilities.GetEldritchAbilities();
+
+        //--HANDLE THE ARROWS ONSCREEN--
+        //up
+        if (levelup_offset == 0) menus[5].transform.GetChild(2).GetComponent<Image>().sprite = scroll_icons[1];
+        else menus[5].transform.GetChild(2).GetComponent<Image>().sprite = scroll_icons[0];
+        //down
+        if (levelup_offset + 7 >= e_abilities.Count - 1) menus[5].transform.GetChild(3).GetComponent<Image>().sprite = scroll_icons[1];
+        else menus[5].transform.GetChild(3).GetComponent<Image>().sprite = scroll_icons[0];
+
+        //--UPDATE SCROLLING LIST OF ABILITIES--
+        for(int i=4; i<12; i++)
+        {
+            //get the object then update it's name and cost to the right menu item
+            GameObject ability = menus[5].transform.GetChild(i).gameObject;
+            
+            //check to see if out of bounds and clear text for the name and cost if it is
+            if(levelup_offset * 4 + (i - 4) >= e_abilities.Count)
+            {
+                ability.GetComponent<Text>().text = "";
+                ability.transform.GetChild(0).GetComponent<Text>().text = "";
+            }
+            else
+            {
+                ability.GetComponent<Text>().text = e_abilities[levelup_offset * 4 + (i - 4)].name;
+                ability.transform.GetChild(0).GetComponent<Text>().text = "EP: " + e_abilities[levelup_offset * 4 + (i - 4)].level_cost.ToString();
+            }
+        }
+
+        //--UPDATE SP COST--
+        if (levelup_offset * 4 + cursor_position < e_abilities.Count)
+            menus[5].transform.GetChild(12).GetChild(1).GetComponent<Text>().text = "(" + e_abilities[levelup_offset * 4 + cursor_position].cost.ToString() + " SP)";
+        else menus[5].transform.GetChild(12).GetChild(1).GetComponent<Text>().text = "";
+
+        //--UPDATE DESCRIPTION--
+        if (levelup_offset * 4 + cursor_position < e_abilities.Count)
+            menus[5].transform.GetChild(12).GetChild(2).GetComponent<Text>().text = e_abilities[levelup_offset * 4 + cursor_position].desc1;
+        else menus[5].transform.GetChild(12).GetChild(2).GetComponent<Text>().text = "";
     }
 
     public void BasePauseMenuRoutine()
@@ -2508,6 +2549,8 @@ public class PauseMenuHandler : MonoBehaviour
                         break;
                     case 5:
                         cursor_position = 0;
+                        levelup_offset = 0;
+                        UpdateLevelUpMenu();
                         OpenMenu(5);
                         break;
                     default:
@@ -3309,6 +3352,7 @@ public class PauseMenuHandler : MonoBehaviour
             if (!menu_input)
             {
                 cursor_position--;
+                UpdateLevelUpMenu();
                 audio_handler.PlaySound("Sound/SFX/cursor");
             }
             menu_input = true;
@@ -3318,6 +3362,7 @@ public class PauseMenuHandler : MonoBehaviour
             if (!menu_input)
             {
                 cursor_position++;
+                UpdateLevelUpMenu();
                 audio_handler.PlaySound("Sound/SFX/cursor");
             }
             menu_input = true;
@@ -3327,6 +3372,7 @@ public class PauseMenuHandler : MonoBehaviour
             if (!menu_input)
             {
                 cursor_position -= 4;
+                UpdateLevelUpMenu();
                 audio_handler.PlaySound("Sound/SFX/cursor");
             }
             menu_input = true;
@@ -3337,6 +3383,29 @@ public class PauseMenuHandler : MonoBehaviour
             if (!menu_input)
             {
                 cursor_position += 4;
+                UpdateLevelUpMenu();
+                audio_handler.PlaySound("Sound/SFX/cursor");
+            }
+            menu_input = true;
+        }
+        //scroll up
+        else if(Input.GetAxisRaw("Vertical") > 0.0f && levelup_offset > 0)
+        {
+            if (!menu_input)
+            {
+                levelup_offset--;
+                UpdateLevelUpMenu();
+                audio_handler.PlaySound("Sound/SFX/cursor");
+            }
+            menu_input = true;
+        }
+        //scroll down
+        else if(Input.GetAxisRaw("Vertical") < 0.0f && levelup_offset + 8 < EldritchAbilities.GetEldritchAbilities().Count)
+        {
+            if (!menu_input)
+            {
+                levelup_offset++;
+                UpdateLevelUpMenu();
                 audio_handler.PlaySound("Sound/SFX/cursor");
             }
             menu_input = true;

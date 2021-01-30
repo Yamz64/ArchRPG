@@ -230,17 +230,17 @@ public class TestAbility9 : Ability
 }
 
 
-public class EldritchAbilities
+public static class EldritchAbilities
 {
-    public List<Ability> GetEldritchAbilities()
+    public static List<Ability> GetEldritchAbilities()
     {
-        System.Type e_ability = GetType();
+        System.Type e_ability = typeof(EldritchAbilities);
         System.Type[] temp = e_ability.GetNestedTypes();
 
         List<Ability> e_abilities = new List<Ability>();
         for(int i=0; i<temp.GetLength(0); i++)
         {
-            System.Type type = temp[i].GetType();
+            System.Type type = temp[i];
             Ability instance = (Ability)System.Activator.CreateInstance(type);
             e_abilities.Add(instance);
         }
@@ -257,6 +257,7 @@ public class EldritchAbilities
             type = 2;
             position = 0;
             cost = 10;
+            level_cost = 10;
             damage = 40;
             damageType = 0;
             image_file_path = "AbilitySprites/Eldritch";
@@ -273,6 +274,7 @@ public class EldritchAbilities
             type = 2;
             position = 0;
             cost = 10;
+            level_cost = 20;
             damage = 40;
             damageType = 0;
             image_file_path = "AbilitySprites/Eldritch";
@@ -289,6 +291,7 @@ public class EldritchAbilities
             type = 2;
             position = 0;
             cost = 10;
+            level_cost = 30;
             damage = 40;
             damageType = 0;
             image_file_path = "AbilitySprites/Eldritch";
@@ -305,6 +308,7 @@ public class EldritchAbilities
             type = 2;
             position = 0;
             cost = 10;
+            level_cost = 40;
             damage = 40;
             damageType = 0;
             image_file_path = "AbilitySprites/Eldritch";
@@ -321,6 +325,7 @@ public class EldritchAbilities
             type = 2;
             position = 0;
             cost = 10;
+            level_cost = 50;
             damage = 40;
             damageType = 0;
             image_file_path = "AbilitySprites/Eldritch";
@@ -333,10 +338,11 @@ public class EldritchAbilities
         public TestEAbility5()
         {
             eldritch = true;
-            name = "TestEAbility1";
+            name = "TestEAbility5";
             type = 2;
             position = 0;
             cost = 10;
+            level_cost = 60;
             damage = 40;
             damageType = 0;
             image_file_path = "AbilitySprites/Eldritch";
@@ -353,6 +359,7 @@ public class EldritchAbilities
             type = 2;
             position = 0;
             cost = 10;
+            level_cost = 70;
             damage = 40;
             damageType = 0;
             image_file_path = "AbilitySprites/Eldritch";
@@ -369,6 +376,7 @@ public class EldritchAbilities
             type = 2;
             position = 0;
             cost = 10;
+            level_cost = 80;
             damage = 40;
             damageType = 0;
             image_file_path = "AbilitySprites/Eldritch";
@@ -385,6 +393,7 @@ public class EldritchAbilities
             type = 2;
             position = 0;
             cost = 10;
+            level_cost = 90;
             damage = 40;
             damageType = 0;
             image_file_path = "AbilitySprites/Eldritch";
