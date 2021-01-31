@@ -389,8 +389,8 @@ public class BattleScript : MonoBehaviour
             {
                 if (!menu_input)
                 {
-                    cursor_position--;
                     useSound(0);
+                    cursor_position--;
                 }
                 menu_input = true;
             }
@@ -398,8 +398,8 @@ public class BattleScript : MonoBehaviour
             {
                 if (!menu_input)
                 {
-                    cursor_position++;
                     useSound(0);
+                    cursor_position++;
                 }
                 menu_input = true;
             }
@@ -414,9 +414,9 @@ public class BattleScript : MonoBehaviour
                 switch (cursor_position)
                 {
                     case 0:
+                        useSound(1);
                         if (activeEnemies > 1)
                         {
-                            useSound(1);
                             currentEnemy = 0;
                             while (enemyUnits[currentEnemy].GetComponent<unit>().currentHP <= 0) currentEnemy++;
                             OpenSelectEnemyMenu();
@@ -425,7 +425,6 @@ public class BattleScript : MonoBehaviour
                         }
                         else
                         {
-                            useSound(1);
                             actions.Add(new action("basic attack", 0, 0));
                             currentUnit += 1;
                             moves += 1;
@@ -608,7 +607,7 @@ public class BattleScript : MonoBehaviour
                 }
             }
             //Make menus visible again to select new attack
-            else if (Input.GetButtonDown("Cancel"))
+            else if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Menu"))
             {
                 useSound(0);
                 CloseSelectEnemyMenu();
@@ -626,6 +625,7 @@ public class BattleScript : MonoBehaviour
     //Used to navigate the basic attack menu
     public void AttackMenuRoutine()
     {
+        Debug.Log("Cursor Position == " + cursor_position);
         //change position of cursor in the menu if in item select mode
         if (attack_select_menu == false && state == battleState.PLAYER)
         {
@@ -668,7 +668,7 @@ public class BattleScript : MonoBehaviour
             }
             //If input is down and the menu is up to the scrolling point
             else if (Input.GetAxisRaw("Vertical") < 0.0f && (cursor_positions[1].positions.Count - 2 + attack_offset) < 
-                data.GetInventorySize() && cursor_position == cursor_positions[1].positions.Count - 1 - 2)
+                partyUnits[currentUnit].GetComponent<unit>().abilities.Count && cursor_position == cursor_positions[1].positions.Count - 1 - 2)
             {
                 if (!menu_input)
                 {
@@ -691,7 +691,7 @@ public class BattleScript : MonoBehaviour
                 menu_input = true;
             }
             //If the player presses the cancel key
-            else if (Input.GetButtonDown("Cancel"))
+            else if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Menu"))
             {
                 CloseMenu(1);
                 menu_input = false;
@@ -800,7 +800,7 @@ public class BattleScript : MonoBehaviour
                         break;
                 }
             }
-            else if (Input.GetButtonDown("Cancel"))
+            else if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Menu"))
             {
                 useSound(0);
                 CloseUseAttackMenu();
@@ -929,7 +929,7 @@ public class BattleScript : MonoBehaviour
                 }
             }
             //Make menus visible again to select new attack
-            else if (Input.GetButtonDown("Cancel"))
+            else if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Menu"))
             {
                 useSound(0);
                 Image[] opts = transform.GetChild(1).Find("AttackMenu").GetComponentsInChildren<Image>();
@@ -1028,8 +1028,9 @@ public class BattleScript : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetButtonDown("Cancel"))
+            else if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Menu"))
             {
+                useSound(0);
                 CloseMenu(2);
                 cursor_position = 0;
                 menu_input = false;
@@ -1115,7 +1116,7 @@ public class BattleScript : MonoBehaviour
                         break;
                 }
             }
-            else if (Input.GetButtonDown("Cancel"))
+            else if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Menu"))
             {
                 useSound(0);
                 CloseUseItemMenu();
@@ -1279,7 +1280,7 @@ public class BattleScript : MonoBehaviour
                     transform.GetChild(1).Find("SwapMenu").GetChild(3).gameObject.SetActive(false);
                 }
             }
-            else if (Input.GetButtonDown("Cancel"))
+            else if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Menu"))
             {
                 /*
                 if (i1 == 5)
@@ -1571,6 +1572,11 @@ public class BattleScript : MonoBehaviour
                 partyUnits[i].GetComponent<unit>().addAttack(mover);
             }
         }
+        partyUnits[0].GetComponent<unit>().addAttack(new TestAbility1());
+        partyUnits[0].GetComponent<unit>().addAttack(new TestAbility2());
+        partyUnits[0].GetComponent<unit>().addAttack(new TestAbility3());
+        partyUnits[0].GetComponent<unit>().addAttack(new TestAbility4());
+        partyUnits[0].GetComponent<unit>().addAttack(new TestAbility5());
 
         data.AddItem(new HotDog());
         data.AddItem(new HotDog());
