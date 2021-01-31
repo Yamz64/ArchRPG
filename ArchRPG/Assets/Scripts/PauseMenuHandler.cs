@@ -13,6 +13,7 @@ public class PauseMenuHandler : MonoBehaviour
     public int cursor_position;
     public int active_menu;
     public bool menu_mode;
+    public bool pause_menu_protection;
 
     [SerializeField]
     public List<MenuPositions> cursor_positions;
@@ -2464,6 +2465,32 @@ public class PauseMenuHandler : MonoBehaviour
             {
                 ability.GetComponent<Text>().text = e_abilities[levelup_offset * 4 + (i - 4)].name;
                 ability.transform.GetChild(0).GetComponent<Text>().text = "EP: " + e_abilities[levelup_offset * 4 + (i - 4)].level_cost.ToString();
+
+                //if the player already has an ability of this name slightly dim the color
+                bool has_ability = false;
+                for(int j=0; j<data.GetAbilityCount(); j++)
+                {
+                    if(data.GetAbility(j).name == e_abilities[levelup_offset * 4 + (i - 4)].name)
+                    {
+                        has_ability = true;
+                        break;
+                    }
+                }
+
+                if (has_ability)
+                {
+                    Color ability_color = ability.GetComponent<Text>().color;
+                    Color cost_color = ability.transform.GetChild(0).GetComponent<Text>().color;
+                    ability.GetComponent<Text>().color = new Color(ability_color.r, ability_color.g, ability_color.b, .5f);
+                    ability.transform.GetChild(0).GetComponent<Text>().color = new Color(cost_color.r, cost_color.g, cost_color.b, .5f);
+                }
+                else
+                {
+                    Color ability_color = ability.GetComponent<Text>().color;
+                    Color cost_color = ability.transform.GetChild(0).GetComponent<Text>().color;
+                    ability.GetComponent<Text>().color = new Color(ability_color.r, ability_color.g, ability_color.b, 1f);
+                    ability.transform.GetChild(0).GetComponent<Text>().color = new Color(cost_color.r, cost_color.g, cost_color.b, 1f);
+                }
             }
         }
 
@@ -3410,6 +3437,69 @@ public class PauseMenuHandler : MonoBehaviour
             }
             menu_input = true;
         }
+        //input
+        else if (Input.GetButtonDown("Interact"))
+        {
+            //get all eldritch abilities ahead of time
+            List<Ability> e_abilities = EldritchAbilities.GetEldritchAbilities();
+            //see if the player has enough EP to purchase skills
+            //no
+            if(data.GetEP() < e_abilities[levelup_offset * 4 + cursor_position].level_cost)
+            {
+                //write to the dialogue box that the player doesn't have enough
+                List<string> queue = new List<string>();
+                queue.Add("Not enough points to purchase this ability!");
+                GetComponent<PlayerDialogueBoxHandler>().OpenTextBox();
+                GetComponent<PlayerDialogueBoxHandler>().SetWriteQueue(queue);
+                GetComponent<PlayerDialogueBoxHandler>().SetEffectQueue(new List<EffectContainer>());
+                GetComponent<PlayerDialogueBoxHandler>().WriteDriver();
+            }
+            //yes
+            else
+            {
+                //check to see if the player already has the ability
+                bool has_ability = false;
+                for(int i=0; i<data.GetAbilityCount(); i++)
+                {
+                    if(data.GetAbility(i).name == e_abilities[levelup_offset * 4 + cursor_position].name)
+                    {
+                        has_ability = true;
+                        break;
+                    }
+                }
+
+                //doesn't have the ability
+                if (!has_ability)
+                {
+                    //purchase the ability
+                    data.AddAbility(e_abilities[levelup_offset * 4 + cursor_position]);
+                    data.SetEP(data.GetEP() - e_abilities[levelup_offset * 4 + cursor_position].level_cost);
+
+                    //say that the ability has been learned
+                    List<string> queue = new List<string>();
+                    queue.Add("You learned " + e_abilities[levelup_offset * 4 + cursor_position].name + "!");
+                    GetComponent<PlayerDialogueBoxHandler>().OpenTextBox();
+                    GetComponent<PlayerDialogueBoxHandler>().SetWriteQueue(queue);
+                    GetComponent<PlayerDialogueBoxHandler>().SetEffectQueue(new List<EffectContainer>());
+                    GetComponent<PlayerDialogueBoxHandler>().WriteDriver();
+                }
+                //has the ability
+                else
+                {
+                    //write to the dialogue box that the player already purchased the ability
+                    List<string> queue = new List<string>();
+                    queue.Add("This ability has already been learned!");
+                    GetComponent<PlayerDialogueBoxHandler>().OpenTextBox();
+                    GetComponent<PlayerDialogueBoxHandler>().SetWriteQueue(queue);
+                    GetComponent<PlayerDialogueBoxHandler>().SetEffectQueue(new List<EffectContainer>());
+                    GetComponent<PlayerDialogueBoxHandler>().WriteDriver();
+                }
+            }
+
+            //update the menu
+            UpdateLevelUpMenu();
+            menu_input = true;
+        }
         else
         {
             menu_input = false;
@@ -3424,6 +3514,7 @@ public class PauseMenuHandler : MonoBehaviour
         menu_input = false;
         item_select_menu = false;
         equipping = false;
+        pause_menu_protection = false;
 
         //define the cursor's gameObject
         cursor = transform.GetChild(1).GetChild(transform.GetChild(1).childCount - 1).gameObject;
@@ -3541,7 +3632,7 @@ public class PauseMenuHandler : MonoBehaviour
             menu_mode = !menu_mode;
         }
 
-        if (menu_mode)
+        if (menu_mode && !pause_menu_protection)
         {
             //handle cursor movement in the various menus
             switch (active_menu)

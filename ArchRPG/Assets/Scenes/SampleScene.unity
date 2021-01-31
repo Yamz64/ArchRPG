@@ -17850,6 +17850,7 @@ MonoBehaviour:
   cursor_position: 0
   active_menu: 0
   menu_mode: 0
+  pause_menu_protection: 0
   cursor_positions:
   - positions:
     - {fileID: 899625952}
@@ -19804,6 +19805,7 @@ GameObject:
   - component: {fileID: 1749523140}
   - component: {fileID: 1749523142}
   - component: {fileID: 1749523141}
+  - component: {fileID: 1749523143}
   m_Layer: 5
   m_Name: TextBoxBackground
   m_TagString: Untagged
@@ -19869,6 +19871,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1749523139}
   m_CullTransparentMesh: 0
+--- !u!223 &1749523143
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749523139}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 2
+  m_TargetDisplay: 0
 --- !u!1 &1750404414
 GameObject:
   m_ObjectHideFlags: 0

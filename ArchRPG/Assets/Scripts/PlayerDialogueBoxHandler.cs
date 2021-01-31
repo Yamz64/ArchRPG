@@ -19,6 +19,7 @@ public class PlayerDialogueBoxHandler : MonoBehaviour
     {
         active = true;
         movement.interaction_protection = true;
+        GetComponent<PauseMenuHandler>().pause_menu_protection = true;
         dialogue_box.SetActive(true);
     }
 
@@ -57,6 +58,7 @@ public class PlayerDialogueBoxHandler : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         movement.interaction_protection = false;
+        GetComponent<PauseMenuHandler>().pause_menu_protection = false;
     }
 
     //function that handles scrolling text
