@@ -411,6 +411,7 @@ public class BattleScript : MonoBehaviour
             //handle input
             if (Input.GetButtonDown("Interact"))
             {
+                transform.GetChild(1).Find("UnitInfo").gameObject.SetActive(false);
                 switch (cursor_position)
                 {
                     case 0:
@@ -490,6 +491,24 @@ public class BattleScript : MonoBehaviour
                     default:
                         break;
                 }
+            }
+
+            else if ( (Input.GetButtonDown("Menu") || Input.GetButtonDown("Cancel") ) &&
+                transform.GetChild(1).Find("UnitInfo").GetChild(2).GetComponent<Text>().text == "")
+            {
+                unit now = partyUnits[currentUnit].GetComponent<unit>();
+                transform.GetChild(1).Find("UnitInfo").GetChild(2).GetComponent<Text>().text =
+                    now.unitName + "\nSanity: " + now.getSAN() + "\nExp: " + now.getEXP()
+                    + "\nAtk: " + now.getATK() + "\nDef: " + now.getDEF() + "\nWill: "
+                    + now.getWILL() + "\nRes: " + now.getRES() + "\nAgi: " + now.getAGI()
+                    + "\nLuck: " + now.getLUCK();
+                transform.GetChild(1).Find("UnitInfo").gameObject.SetActive(true);
+            }
+            else if ( (Input.GetButtonDown("Menu") || Input.GetButtonDown("Cancel")) &&
+                transform.GetChild(1).Find("UnitInfo").GetChild(2).GetComponent<Text>().text != "")
+            {
+                transform.GetChild(1).Find("UnitInfo").GetChild(2).GetComponent<Text>().text = "";
+                transform.GetChild(1).Find("UnitInfo").gameObject.SetActive(false);
             }
 
             //update the cursor position
@@ -1382,30 +1401,30 @@ public class BattleScript : MonoBehaviour
             for (int i = 0; i < num; i++, x++)
             {
                 while (temp[x] == null) x++;
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(1f);
+                //Use special attack/ability
                 if (actions[i].getType() == "attack" && state == battleState.ATTACK)
                 {
                     if (enemyUnits[actions[i].getTarget()].GetComponent<unit>().currentHP > 0)
                     {
                         dialogue.text = temp[x].GetComponent<unit>().unitName + " used " +
                             temp[x].GetComponent<unit>().abilities[actions[i].getIndex()].name;
-                        StartCoroutine(playerAttack(actions[i].getIndex(),
-                            temp[x].GetComponent<unit>(), enemyUnits[actions[i].getTarget()].GetComponent<unit>()));
+                        yield return playerAttack(actions[i].getIndex(),
+                            temp[x].GetComponent<unit>(), enemyUnits[actions[i].getTarget()].GetComponent<unit>());
                     }
                     else
                     {
                         dialogue.text = temp[x].GetComponent<unit>().unitName + " tried attacking " +
                             enemyUnits[actions[i].getTarget()].GetComponent<unit>().unitName + ", but they weren't there";
                     }
-                    // temp[i].GetComponent<unit>().attacks[actions[i].getIndex()]
-                    //  .UseAttack(temp[i].GetComponent<unit>(), enemyUnit);
                 }
+                //Use basic attack
                 else if (actions[i].getType() == "basic attack" && state == battleState.ATTACK)
                 {
                     if (enemyUnits[actions[i].getTarget()].GetComponent<unit>().currentHP > 0)
                     {
                         dialogue.text = temp[x].GetComponent<unit>().unitName + " attacked the enemy";
-                        StartCoroutine(basicAttack(temp[x].GetComponent<unit>(), enemyUnits[actions[i].getTarget()].GetComponent<unit>()));
+                        yield return basicAttack(temp[x].GetComponent<unit>(), enemyUnits[actions[i].getTarget()].GetComponent<unit>());
                     }
                     else
                     {
@@ -1413,6 +1432,7 @@ public class BattleScript : MonoBehaviour
                             enemyUnits[actions[i].getTarget()].GetComponent<unit>().unitName + ", but they weren't there";
                     }
                 }
+                //Use item
                 else if (actions[i].getType() == "item" && state == battleState.ATTACK)
                 {
                     dialogue.text = temp[x].GetComponent<unit>().unitName + " used " +
@@ -1422,6 +1442,7 @@ public class BattleScript : MonoBehaviour
                     UpdateInventoryImageandDesc();
 
                 }
+                //Swap unit locations
                 else if (actions[i].getType() == "swap" && state == battleState.ATTACK)
                 {
                     if (temp[actions[i].getTarget()] != null)
@@ -1440,7 +1461,7 @@ public class BattleScript : MonoBehaviour
                 {
                     dialogue.text = "Invalid action selected";
                 }
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(1f);
             }
 
             swapInds.Clear();
@@ -1648,7 +1669,7 @@ public class BattleScript : MonoBehaviour
         {
             enemyDeaths++;
             StartCoroutine(unitDeath(target));
-            StartCoroutine(levelUp(target.giveEXP(), uni));
+            yield return levelUp(target.giveEXP(), uni);
             if (enemyDeaths == enemyUnits.Count)
             {
                 state = battleState.WIN;
@@ -1676,7 +1697,7 @@ public class BattleScript : MonoBehaviour
         {
             enemyDeaths++;
             StartCoroutine(unitDeath(target));
-            StartCoroutine(levelUp(target.giveEXP(), uni));
+            yield return levelUp(target.giveEXP(), uni);
             if (enemyDeaths == enemyUnits.Count)
             {
                 state = battleState.WIN;
@@ -1785,12 +1806,12 @@ public class BattleScript : MonoBehaviour
     {
         dialogue.text = uni.unitName + " gained " + expGained + " exp";
         bool boost = uni.gainEXP(expGained);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         if (boost == true)
         {
             dialogue.text = uni.unitName + " levelled up!";
             uni.setHUD();
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(2f);
         }
     }
 

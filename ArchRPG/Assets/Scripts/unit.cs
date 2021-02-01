@@ -271,6 +271,7 @@ public class unit : MonoBehaviour
     public List<Item> rewards;
 
     public int giveEXP() { return expGain; }
+    public List<Item> giveRewards()    { return rewards; }
 }
 
 public class allyUnit : unit
