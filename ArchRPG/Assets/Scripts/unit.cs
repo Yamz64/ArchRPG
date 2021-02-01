@@ -6,6 +6,7 @@ using UnityEngine.UI;
 //Game script to use for battle units
 public class unit : MonoBehaviour
 {
+    public int unitID;
     public string unitName;     //Name of the unit
     public int level;           //Level of the unit
     public int currentLevelTop; //Limit for next level
@@ -272,14 +273,4 @@ public class unit : MonoBehaviour
 
     public int giveEXP() { return expGain; }
     public List<Item> giveRewards()    { return rewards; }
-}
-
-public class allyUnit : unit
-{
-
-}
-
-public class enemyUnit : unit
-{
-
 }
