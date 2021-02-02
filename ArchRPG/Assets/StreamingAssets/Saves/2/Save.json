@@ -6,11 +6,11 @@
     "progress": 0,
     "HPs": [
         42,
-        82
+        70
     ],
     "SPs": [
-        39,
-        69
+        37,
+        67
     ],
     "SANs": [
         100,
@@ -18,7 +18,7 @@
     ],
     "XPs": [
         10,
-        60
+        90
     ],
     "levels": [
         10,
@@ -145,5 +145,6 @@
         "Player",
         "TestPartyMember"
     ],
-    "e_abilities": []
+    "e_abilities": [],
+    "enemy_names": []
 }

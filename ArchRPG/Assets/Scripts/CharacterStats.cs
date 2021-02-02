@@ -477,6 +477,15 @@ public class CharacterStatJsonConverter
         }
     }
 
+    public void SaveEnemyNames(string n1 = null, string n2 = null, string n3 = null, string n4 = null)
+    {
+        enemy_names = new string[4];
+        enemy_names[0] = n1;
+        enemy_names[1] = n2;
+        enemy_names[2] = n3;
+        enemy_names[3] = n4;
+    }
+
     public void Save(int save_file)
     {
         string data = JsonUtility.ToJson(this, true);
@@ -604,6 +613,7 @@ public class CharacterStatJsonConverter
 
     public string[] names;          //the names of the current party members
     public string[] e_abilities;    //the current eldritch abilities that the player has
+    public string[] enemy_names;    //names of enemies to fight
 }
 
 
