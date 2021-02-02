@@ -24,11 +24,12 @@ public class Ability
     }
 
     public bool eldritch = false;   //Whether the ability is eldritch or not
-    public string name;     //The name of the ability
-    public int type;        //int denotes type of ability can be 3 types 0 = normal, 1 = magic, 2 = eldritch
-    public int position;    //int denotes the place the ability can be used 0 = front and backline, 1 = frontline, 2 = backline
-    public int cost = 0;    //int denotes the cost of using the ability (if any)
-    public int damage;  //int denotes the amount of damage the attack will do
+    public int target = 0;          //0-Single, 1-Across, 2-Down, 3-All
+    public string name;             //The name of the ability
+    public int type;                //int denotes type of ability can be 3 types 0 = normal, 1 = magic, 2 = eldritch
+    public int position;            //int denotes the place the ability can be used 0 = front and backline, 1 = frontline, 2 = backline
+    public int cost = 0;            //int denotes the cost of using the ability (if any)
+    public int damage;              //int denotes the amount of damage the attack will do
     /*
      * 0 = Physical
      * 1 = Special

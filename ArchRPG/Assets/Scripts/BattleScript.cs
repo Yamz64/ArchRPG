@@ -1547,8 +1547,11 @@ public class BattleScript : MonoBehaviour
         //Create enemy 2 if possible
         if (enemyPrefab2 && enemyStation2)
         {
+            Enemy1 ene = new Enemy1();
             GameObject enemyGo2 = Instantiate(enemyPrefab2, enemyStation2);
-            enemyUnit2 = enemyGo2.GetComponent<unit>();
+            ene.copyUnitStats(enemyGo2.GetComponent<unit>());
+            ene.copyUnitUI(enemyGo2.GetComponent<unit>());
+            enemyUnit2 = ene;
             enemyUnit2.setHUD();
             enemyUnits.Add(enemyGo2.gameObject);
             activeEnemies += 1;
@@ -1736,20 +1739,53 @@ public class BattleScript : MonoBehaviour
     //Deal damage to player, check if they're dead, and act accordingly (lose battle or player turn)
     IEnumerator enemyAttack(int x)
     {
+        bool dead = false;
+        int r = Random.Range(0, partyUnits.Count);
+        while (partyUnits[r] == null)
+        {
+            r = Random.Range(0, partyUnits.Count);
+        }
         if (state == battleState.ENEMY && enemyUnits[x].GetComponent<unit>().currentHP > 0)
         {
             yield return new WaitForSeconds(1f);
-            dialogue.text = enemyUnits[x].GetComponent<unit>().unitName + " is attacking";
-
-            yield return new WaitForSeconds(1f);
-
-            int r = Random.Range(0, partyUnits.Count);
-            while (partyUnits[r] == null)
+            if (enemyUnits[x].GetComponent<unit>().abilities.Count <= 0)
             {
-                r = Random.Range(0, partyUnits.Count);
+                dialogue.text = enemyUnits[x].GetComponent<unit>().unitName + " is attacking";
+
+                yield return new WaitForSeconds(1f);
+
+                dead = partyUnits[r].GetComponent<unit>().takeDamage(4);
+                partyUnits[r].GetComponent<unit>().setHP(partyUnits[r].GetComponent<unit>().currentHP);
             }
-            bool dead = partyUnits[r].GetComponent<unit>().takeDamage(4);
-            partyUnits[r].GetComponent<unit>().setHP(partyUnits[r].GetComponent<unit>().currentHP);
+            else
+            {
+                List<Ability> attacks = enemyUnits[x].GetComponent<unit>().abilities;
+                int ran = Random.Range(0, attacks.Count);
+                if (attacks[ran].target == 0)
+                {
+                    dialogue.text = enemyUnits[x].GetComponent<unit>().unitName + " used " + attacks[ran].name;
+
+                    yield return new WaitForSeconds(1f);
+
+                    dead = enemyUnits[x].GetComponent<unit>().useAttack(ran, partyUnits[r].GetComponent<unit>());
+                }
+                else if (attacks[ran].target == 1)
+                {
+                    dialogue.text = enemyUnits[x].GetComponent<unit>().unitName + " attacked the row";
+
+                    yield return new WaitForSeconds(1f);
+
+                    dead = enemyUnits[x].GetComponent<unit>().useAttack(ran, partyUnits[r].GetComponent<unit>());
+                }
+                else
+                {
+                    dialogue.text = enemyUnits[x].GetComponent<unit>().unitName + " attacked the column";
+
+                    yield return new WaitForSeconds(1f);
+
+                    dead = enemyUnits[x].GetComponent<unit>().useAttack(ran, partyUnits[r].GetComponent<unit>());
+                }
+            }
 
             yield return new WaitForSeconds(1f);
 

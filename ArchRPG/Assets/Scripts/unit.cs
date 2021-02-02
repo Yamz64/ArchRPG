@@ -6,6 +6,46 @@ using UnityEngine.UI;
 //Game script to use for battle units
 public class unit : MonoBehaviour
 {
+    public unit()
+    {
+        abilities = new List<Ability>();
+    }
+
+    public void copyUnitStats(unit ver)
+    {
+        level = ver.level;
+        maxHP = ver.maxHP;
+        currentHP = ver.currentHP;
+        maxSP = ver.maxSP;
+        currentSP = ver.currentSP;
+        sanity = ver.sanity;
+        enemy = ver.enemy;
+        ATK = ver.ATK;
+        DEF = ver.DEF;
+        WILL = ver.WILL;
+        RES = ver.RES;
+        AGI = ver.AGI;
+        LCK = ver.LCK;
+    }
+
+    public void copyUnitUI(unit ver)
+    {
+        view = ver.view;          
+        nameText = ver.nameText;       
+        BBackground = ver.BBackground;   
+        WBackground = ver.WBackground;   
+        levelText = ver.levelText;      
+        hpBar = ver.hpBar;      
+        hpSideText = ver.hpSideText;     
+        hpReadOut = ver.hpReadOut;
+        if (!enemy)
+        {
+            spBar = ver.spBar;
+            spSideText = ver.spSideText;
+            spReadOut = ver.spReadOut;
+        }
+    }
+
     public int unitID;
     public string unitName;     //Name of the unit
     public int level;           //Level of the unit
@@ -71,8 +111,6 @@ public class unit : MonoBehaviour
             spBar.fillAmount = (float)currentSP / maxSP;
             spReadOut.text = currentSP + " / " + maxSP;
         }
-
-        abilities = new List<Ability>();
     }
 
     //Get the current Hit Points of the unit
@@ -180,7 +218,7 @@ public class unit : MonoBehaviour
     //Use the attack at the given index against the given target
     public bool useAttack(int index, unit target)
     {
-        if (outOfSP == false)
+        if (outOfSP == false || enemy == true)
         {
             Ability ata = getAttack(index);
             setSP(currentSP - ata.cost);
@@ -273,4 +311,27 @@ public class unit : MonoBehaviour
 
     public int giveEXP() { return expGain; }
     public List<Item> giveRewards()    { return rewards; }
+}
+
+public class Enemy1 : unit
+{
+    public Enemy1()
+    {
+        unitName = "Attacker";
+        abilities = new List<Ability>();
+        Ability single = new Ability();
+        single.name = "Base Attack";
+        single.cost = 0;
+        single.damage = 8;
+        single.damageType = 0;
+
+        Ability multi = new Ability();
+        multi.name = "AOE Attack";
+        multi.cost = 0;
+        multi.damage = 5;
+        multi.target = 1;
+        multi.damageType = 0;
+        abilities.Add(single);
+        abilities.Add(multi);
+    }
 }
