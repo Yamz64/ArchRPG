@@ -583,7 +583,6 @@ public class CharacterStatJsonConverter
                     break;
                 case 1:
                     List<Weapon> weapons = Weapons.GetWeapons();
-                    Debug.Log(weapons.Count);
                     for (int j = 0; j < weapons.Count; j++)
                     {
                         if (inventory[i].name == weapons[j].name)

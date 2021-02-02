@@ -118,16 +118,11 @@ public class PlayerData : CharacterStats
         {
             item.character = this;
             inventory.Add(item);
-            Debug.Log("Added " + item.name + " to inventory!");
         }
         //if found attempt to add the item to the player's inventory
         else
         {
             inventory[index].Add();
-        }
-        for (int i = 0; i < inventory.Count; i++)
-        {
-            Debug.Log(inventory[i].name + ": " + inventory[i].amount);
         }
     }
     public void RemoveItem(int index)
