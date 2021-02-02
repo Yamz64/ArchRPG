@@ -5,74 +5,40 @@
     },
     "progress": 0,
     "HPs": [
-        42,
-        70
+        50
     ],
     "SPs": [
-        37,
-        67
+        45
     ],
     "SANs": [
-        100,
         100
     ],
     "XPs": [
-        10,
-        90
+        10
     ],
     "levels": [
-        10,
-        11
+        10
     ],
     "positions": [
-        0,
-        1
+        0
     ],
     "weapons": [
         {
-            "name": "TestWeapon",
-            "description": "A weapon of code!  Made for debugging so it's not really good...",
-            "image_file_path": "ItemSprites/TestWeaponIcon",
-            "amount": 1,
-            "limit": 1,
-            "damage_buff": 80,
-            "power_buff": 20,
+            "name": "",
+            "description": "",
+            "image_file_path": "",
+            "amount": 0,
+            "limit": 0,
+            "damage_buff": 0,
+            "power_buff": 0,
             "defense_buff": 0,
             "will_buff": 0,
             "resistance_buff": 0,
-            "speed_buff": -10,
-            "luck_buff": 10
-        },
-        {
-            "name": "TestWeapon2",
-            "description": "A weapon of code!  Made for debugging so it's not really good...",
-            "image_file_path": "ItemSprites/TestWeaponIcon",
-            "amount": 1,
-            "limit": 1,
-            "damage_buff": 80,
-            "power_buff": 20,
-            "defense_buff": 0,
-            "will_buff": 0,
-            "resistance_buff": 0,
-            "speed_buff": -10,
-            "luck_buff": 10
+            "speed_buff": 0,
+            "luck_buff": 0
         }
     ],
     "armors": [
-        {
-            "name": "TestArmor",
-            "description": "A suit of armor made of code!  Awkward and clunky, just like a programmer's first draft...",
-            "image_file_path": "ItemSprites/TestArmorIcon",
-            "amount": 1,
-            "limit": 1,
-            "damage_buff": 0,
-            "power_buff": 0,
-            "defense_buff": 50,
-            "will_buff": 10,
-            "resistance_buff": 50,
-            "speed_buff": -5,
-            "luck_buff": 10
-        },
         {
             "name": "",
             "description": "",
@@ -102,6 +68,24 @@
             "resistance_buff": 0,
             "speed_buff": 0,
             "luck_buff": 0
+        }
+    ],
+    "inventory": [
+        {
+            "name": "TestWeapon",
+            "description": "A weapon of code!  Made for debugging so it's not really good...",
+            "image_file_path": "ItemSprites/TestWeaponIcon",
+            "amount": 1,
+            "limit": 1,
+            "type": 1
+        },
+        {
+            "name": "TestArmor",
+            "description": "A suit of armor made of code!  Awkward and clunky, just like a programmer's first draft...",
+            "image_file_path": "ItemSprites/TestArmorIcon",
+            "amount": 1,
+            "limit": 1,
+            "type": 2
         },
         {
             "name": "TestTrinket",
@@ -109,42 +93,17 @@
             "image_file_path": "ItemSprites/TestTrinketIcon",
             "amount": 1,
             "limit": 1,
-            "damage_buff": 0,
-            "power_buff": 60,
-            "defense_buff": 10,
-            "will_buff": 50,
-            "resistance_buff": 10,
-            "speed_buff": -15,
-            "luck_buff": 20
-        }
-    ],
-    "inventory": [
-        {
-            "name": "TestWeapon3",
-            "description": "A weapon of code!  Made for debugging so it's not really good...",
-            "image_file_path": "ItemSprites/TestWeaponIcon",
-            "amount": 1,
-            "limit": 1
-        },
-        {
-            "name": "TestWeapon4",
-            "description": "A weapon of code!  Made for debugging so it's not really good...",
-            "image_file_path": "ItemSprites/TestWeaponIcon",
-            "amount": 1,
-            "limit": 1
-        },
-        {
-            "name": "TestWeapon5",
-            "description": "A weapon of code!  Made for debugging so it's not really good...",
-            "image_file_path": "ItemSprites/TestWeaponIcon",
-            "amount": 1,
-            "limit": 1
+            "type": 3
         }
     ],
     "names": [
-        "Player",
-        "TestPartyMember"
+        "Player"
     ],
     "e_abilities": [],
-    "enemy_names": []
+    "enemy_names": [
+        "Eldritch Gunner",
+        "",
+        "",
+        ""
+    ]
 }

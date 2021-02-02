@@ -5,41 +5,44 @@ using UnityEngine;
 public class PlayerData : CharacterStats
 {
     //--CONSTRUCTOR--
-    public PlayerData()
+    public PlayerData(bool l = false)
     {
         inventory = new List<Item>();
         party_stats = new List<CharacterStats>();
-        SetImageFilepath("CharacterSprites/TestCharacter");
+        if(l == false)
+        {
+            CharacterStatJsonConverter data = new CharacterStatJsonConverter(PlayerPrefs.GetInt("_active_save_file_"));
+            PlayerData temp = new PlayerData(true);
+            data.UpdatePlayerData(ref temp);
+            SetImageFilepath("CharacterSprites/TestCharacter");
+            SetName(temp.GetName());
+            SetLVL(temp.GetLVL());
+            SetPos(temp.GetPos());
+            
+            for(int i=0; i<temp.GetInventorySize(); i++)
+            {
+                AddItem(temp.GetItem(i));
+            }
+            UpdateStats();
+            SetHP(temp.GetHP());
+            SetSP(temp.GetSP());
+            SetSAN(temp.GetSAN());
+            SetExperience(temp.GetExperience());
 
-        SetName("Player");
-        SetDesc("This is the test player character...");
+            if (temp.GetWeapon() != null)
+            SetWeapon(temp.GetWeapon());
+            if (temp.GetArmor() != null)
+            SetArmor(temp.GetArmor());
+            if (temp.GetTrinket() != null) 
+            SetTrinket(temp.GetTrinket());
 
-        SetLVL(10);
-        SetMaxExperience(100);
-        SetExperience(10);
-
-        SetHPMax(100);
-        SetHP(50);
-
-        SetSPMax(50);
-        SetSP(45);
-
-        SetSANMax(100);
-        SetSAN(100);
-
-        SetATK(50);
-        SetPOW(50);
-        SetDEF(50);
-        SetWIL(50);
-        SetRES(50);
-        SetSPD(50);
-        SetLCK(50);
-
-        SetPos(0);
-
-        EP = 20;
+            for (int i=0; i < temp.GetPartySize(); i++)
+            {
+                AddPartyMember(temp.GetPartyMember(i));
+            }
+        }
     }
-
+    
     public int GetProgress() { return progress; }
     public void SetProgress(int p) { progress = p; }
     public int GetExperience() { return experience; }
@@ -591,6 +594,7 @@ public class PlayerData : CharacterStats
         if(temp_trinket != null) SetTrinket(temp_trinket);
     }
 
+    private bool loaded;
     private int progress;
     private int experience;
     private int max_experience;

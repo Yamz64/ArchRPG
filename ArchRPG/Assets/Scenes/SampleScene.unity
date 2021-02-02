@@ -21983,7 +21983,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eb0044b0366a974993a0b39369c881f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy_names: []
+  enemy_names:
+  - Eldritch Gunner
   roll_delay: 5
   roll_min: 2
   enemy_encounter_chance: 50

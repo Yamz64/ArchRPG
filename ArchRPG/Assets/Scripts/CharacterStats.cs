@@ -477,6 +477,9 @@ public class CharacterStatJsonConverter
         }
     }
 
+    //constructor without any player data
+    public CharacterStatJsonConverter(int save_file) { Load(save_file); }
+
     public void SaveEnemyNames(string n1 = null, string n2 = null, string n3 = null, string n4 = null)
     {
         enemy_names = new string[4];
@@ -488,6 +491,11 @@ public class CharacterStatJsonConverter
 
     public void Save(int save_file)
     {
+        if (save_file < 0 || save_file > 3)
+        {
+            Mathf.Clamp(save_file, 0, 3);
+            Debug.Log("Input was outside the bounds of 0-3, so it was clamped, please use a value corresponding to save file 0-3!");
+        }
         string data = JsonUtility.ToJson(this, true);
 
         File.WriteAllText(Application.streamingAssetsPath + "/Saves/" + (save_file + 1).ToString() + "/Save.json", data);
@@ -496,6 +504,11 @@ public class CharacterStatJsonConverter
 
     public void Load(int save_file)
     {
+        if (save_file < 0 || save_file > 3)
+        {
+            Mathf.Clamp(save_file, 0, 3);
+            Debug.Log("Input was outside the bounds of 0-3, so it was clamped, please use a value corresponding to save file 0-3!");
+        }
         //read info from json
         StreamReader reader = new StreamReader(Application.streamingAssetsPath + "/Saves/" + (save_file + 1).ToString() + "/Save.json");
         string json = reader.ReadToEnd();
@@ -551,20 +564,65 @@ public class CharacterStatJsonConverter
         p.SetName(names[0]);
         p.SetLVL(levels[0]);
         p.SetPos(positions[0]);
-        if (weapons[0].name != "") p.SetWeapon(weapons[0]);
-        if (armors[0].name != "") p.SetArmor(armors[0]);
-        if (trinkets[0].name != "") p.SetTrinket(trinkets[0]);
-
-        //populate inventory after clearing it
-        p.ClearInventory();
-        for(int i=0; i<inventory.GetLength(0); i++)
-        {
-            p.AddItem(inventory[i]);
-        }
 
         //update other stats as well as the experience level
         p.UpdateStats();
+        p.SetHP(HPs[0]);
+        p.SetSP(SPs[0]);
+        p.SetSAN(SANs[0]);
         p.SetExperience(XPs[0]);
+
+        //populate inventory after clearing it
+        p.ClearInventory();
+        for (int i = 0; i < inventory.GetLength(0); i++)
+        {
+            switch (inventory[i].type)
+            {
+                case 0:
+                    p.AddItem(inventory[i]);
+                    break;
+                case 1:
+                    List<Weapon> weapons = Weapons.GetWeapons();
+                    Debug.Log(weapons.Count);
+                    for (int j = 0; j < weapons.Count; j++)
+                    {
+                        if (inventory[i].name == weapons[j].name)
+                        {
+                            p.AddItem(weapons[j]);
+                            break;
+                        }
+                    }
+                    break;
+                case 2:
+                    List<Armor> armors = Armors.GetArmors();
+                    for (int j = 0; j < armors.Count; j++)
+                    {
+                        if (inventory[i].name == armors[j].name)
+                        {
+                            p.AddItem(armors[j]);
+                            break;
+                        }
+                    }
+                    break;
+                case 3:
+                    List<Trinket> trinkets = Trinkets.GetTrinkets();
+                    for (int j = 0; j < trinkets.Count; j++)
+                    {
+                        if (inventory[i].name == trinkets[j].name)
+                        {
+                            p.AddItem(trinkets[j]);
+                            break;
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        if (weapons[0].name != "") p.SetWeapon(weapons[0]);
+        if (armors[0].name != "") p.SetArmor(armors[0]);
+        if (trinkets[0].name != "") p.SetTrinket(trinkets[0]);
         
         //update the eldritch abilities
         for(int i=0; i<e_abilities.GetLength(0); i++)
@@ -586,11 +644,15 @@ public class CharacterStatJsonConverter
             temp.SetName(names[i]);
             temp.SetLVL(levels[i]);
             temp.SetPos(positions[i]);
-            if(weapons[i].name != "") temp.SetWeapon(weapons[i]);
-            if(armors[i].name != "") temp.SetArmor(armors[i]);
-            if(trinkets[i].name != "") temp.SetTrinket(trinkets[i]);
 
             temp.UpdateStats();
+            temp.SetHP(HPs[i]);
+            temp.SetSP(SPs[i]);
+            temp.SetSAN(SANs[i]);
+
+            if (weapons[i].name != "") temp.SetWeapon(weapons[i]);
+            if(armors[i].name != "") temp.SetArmor(armors[i]);
+            if(trinkets[i].name != "") temp.SetTrinket(trinkets[i]);
 
             p.AddPartyMember(temp);
         }

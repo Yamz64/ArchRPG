@@ -20,7 +20,7 @@ public class RNGEncounter : MonoBehaviour
     private void Start()
     {
         true_roll_max = roll_delay;
-        if (roll_min > roll_max) roll_min = roll_max;
+        if (roll_min > true_roll_max) roll_min = roll_max;
         roll_max = Random.Range(roll_min, true_roll_max);
         roll_delay = 0;
         danger = false;
@@ -61,7 +61,7 @@ public class RNGEncounter : MonoBehaviour
                         if (Random.Range(0.0f, 100.0f) <= enemy_encounter_chance)
                         {
                             //save current player's condition and load the battle scene
-                            CharacterStatJsonConverter data = new CharacterStatJsonConverter(GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerData>());
+                            CharacterStatJsonConverter data = new CharacterStatJsonConverter(GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDataMono>().data);
                             switch (enemy_names.Count)
                             {
                                 case 1:
@@ -77,6 +77,8 @@ public class RNGEncounter : MonoBehaviour
                                     data.SaveEnemyNames(enemy_names[0], enemy_names[1], enemy_names[2], enemy_names[3]);
                                     break;
                             }
+                            data.Save(PlayerPrefs.GetInt("_active_save_file_"));
+                            SceneManager.LoadScene("BattleScene");
                         }
                     }
                 }

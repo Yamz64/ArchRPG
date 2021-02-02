@@ -16,6 +16,7 @@ public class Item
         Debug.Log("Added " + name + " to inventory!");
     }
     public void Remove() { amount--; }
+
     public virtual void Use()
     {
         Debug.Log("The item has been used");
@@ -31,6 +32,7 @@ public class Item
     public string image_file_path;
     public int amount;
     public int limit;
+    public int type;                    //0 = item, 1 = weapon, 2 = armor, 3 = trinket
     public CharacterStats character;
 }
 
@@ -180,4 +182,115 @@ public class HotDog : Item
     }
 }
 
+public static class Weapons
+{
+    public static List<Weapon> GetWeapons()
+    {
+        System.Type weapon = typeof(Weapons);
+        System.Type[] temp = weapon.GetNestedTypes();
 
+        List<Weapon> weapons = new List<Weapon>();
+        for (int i = 0; i < temp.GetLength(0); i++)
+        {
+            System.Type type = temp[i];
+            Weapon instance = (Weapon)System.Activator.CreateInstance(type);
+            weapons.Add(instance);
+        }
+
+        return weapons;
+    }
+
+    public class TestWeapon : Weapon
+    {
+        public TestWeapon()
+        {
+            name = "TestWeapon";
+            image_file_path = "ItemSprites/TestWeaponIcon";
+            description = "A weapon of code!  Made for debugging so it's not really good...";
+            limit = 1;
+            amount = 1;
+            damage_buff = 80;
+            power_buff = 20;
+            defense_buff = 0;
+            will_buff = 0;
+            resistance_buff = 0;
+            speed_buff = -10;
+            luck_buff = 10;
+        }
+    }
+}
+
+public static class Armors
+{
+    public static List<Armor> GetArmors()
+    {
+        System.Type armor = typeof(Armors);
+        System.Type[] temp = armor.GetNestedTypes();
+
+        List<Armor> armors = new List<Armor>();
+        for (int i = 0; i < temp.GetLength(0); i++)
+        {
+            System.Type type = temp[i];
+            Armor instance = (Armor)System.Activator.CreateInstance(type);
+            armors.Add(instance);
+        }
+
+        return armors;
+    }
+
+    public class TestArmor : Armor
+    {
+        public TestArmor()
+        {
+            name = "TestArmor";
+            image_file_path = "ItemSprites/TestArmorIcon";
+            description = "A suit of armor made of code!  Awkward and clunky, just like a programmer's first draft...";
+            limit = 1;
+            amount = 1;
+            damage_buff = 0;
+            power_buff = 0;
+            defense_buff = 50;
+            will_buff = 10;
+            resistance_buff = 50;
+            speed_buff = -5;
+            luck_buff = 10;
+        }
+    }
+}
+
+public static class Trinkets
+{
+    public static List<Trinket> GetTrinkets()
+    {
+        System.Type trinket = typeof(Trinkets);
+        System.Type[] temp = trinket.GetNestedTypes();
+
+        List<Trinket> trinkets = new List<Trinket>();
+        for (int i = 0; i < temp.GetLength(0); i++)
+        {
+            System.Type type = temp[i];
+            Trinket instance = (Trinket)System.Activator.CreateInstance(type);
+            trinkets.Add(instance);
+        }
+
+        return trinkets;
+    }
+
+    public class TestTrinket : Trinket
+    {
+        public TestTrinket()
+        {
+            name = "TestTrinket";
+            image_file_path = "ItemSprites/TestTrinketIcon";
+            description = "The jewel on the ring is valued at 1 bit!  Not one bitcoin, like an actual bit of memory...";
+            limit = 1;
+            amount = 1;
+            damage_buff = 0;
+            power_buff = 10;
+            will_buff = 50;
+            resistance_buff = 10;
+            speed_buff = -15;
+            luck_buff = 20;
+        }
+    }
+}

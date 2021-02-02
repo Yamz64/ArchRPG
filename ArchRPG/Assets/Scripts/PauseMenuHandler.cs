@@ -2558,6 +2558,7 @@ public class PauseMenuHandler : MonoBehaviour
                         equipping = false;
                         cursor_position = 0;
                         equip_type = 0;
+                        equipped_offset = 0;
                         ability_select = false;
                         base_pause_character_select = true;
                         UpdateEquipMenuInfo();
@@ -3531,66 +3532,6 @@ public class PauseMenuHandler : MonoBehaviour
 
         //define audio handler
         audio_handler = GetComponent<PlayerOverworldAudioHandler>();
-
-        //add temporary items for testing
-        Weapon test_weapon = new Weapon();
-        test_weapon.name = "TestWeapon";
-        test_weapon.image_file_path = "ItemSprites/TestWeaponIcon";
-        test_weapon.description = "A weapon of code!  Made for debugging so it's not really good...";
-        test_weapon.limit = 1;
-        test_weapon.amount = 1;
-        test_weapon.damage_buff = 80;
-        test_weapon.power_buff = 20;
-        test_weapon.defense_buff = 0;
-        test_weapon.will_buff = 0;
-        test_weapon.resistance_buff = 0;
-        test_weapon.speed_buff = -10;
-        test_weapon.luck_buff = 10;
-
-        Armor test_armor = new Armor();
-        test_armor.name = "TestArmor";
-        test_armor.image_file_path = "ItemSprites/TestArmorIcon";
-        test_armor.description = "A suit of armor made of code!  Awkward and clunky, just like a programmer's first draft...";
-        test_armor.limit = 1;
-        test_armor.amount = 1;
-        test_armor.damage_buff = 0;
-        test_armor.power_buff = 0;
-        test_armor.defense_buff = 50;
-        test_armor.will_buff = 10;
-        test_armor.resistance_buff = 50;
-        test_armor.speed_buff = -5;
-        test_armor.luck_buff = 10;
-
-        Trinket test_trinket = new Trinket();
-        test_trinket.name = "TestTrinket";
-        test_trinket.image_file_path = "ItemSprites/TestTrinketIcon";
-        test_trinket.description = "The jewel on the ring is value at 1 bit!  Not one bitcoin, like an actual bit of memory...";
-        test_trinket.limit = 1;
-        test_trinket.amount = 1;
-        test_trinket.damage_buff = 0;
-        test_trinket.power_buff = 60;
-        test_trinket.defense_buff = 10;
-        test_trinket.will_buff = 50;
-        test_trinket.resistance_buff = 10;
-        test_trinket.speed_buff = -15;
-        test_trinket.luck_buff = 20;
-
-        data.AddItem(test_weapon);
-        data.AddItem(test_armor);
-        data.AddItem(test_trinket);
-
-        Weapon test_weapon2 = new Weapon(test_weapon);
-        test_weapon2.name = "TestWeapon2";
-        data.AddItem(test_weapon2);
-        Weapon test_weapon3 = new Weapon(test_weapon);
-        test_weapon3.name = "TestWeapon3";
-        data.AddItem(test_weapon3);
-        Weapon test_weapon4 = new Weapon(test_weapon);
-        test_weapon4.name = "TestWeapon4";
-        data.AddItem(test_weapon4);
-        Weapon test_weapon5 = new Weapon(test_weapon);
-        test_weapon5.name = "TestWeapon5";
-        data.AddItem(test_weapon5);
 
         data.AddAbility(new TestAbility());
         data.AddAbility(new TestAbility1());
