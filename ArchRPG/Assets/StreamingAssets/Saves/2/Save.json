@@ -5,19 +5,19 @@
     },
     "progress": 0,
     "HPs": [
-        50
+        20
     ],
     "SPs": [
-        45
+        41
     ],
     "SANs": [
-        100
+        0
     ],
     "XPs": [
-        10
+        0
     ],
     "levels": [
-        10
+        11
     ],
     "positions": [
         0
@@ -29,6 +29,7 @@
             "image_file_path": "",
             "amount": 0,
             "limit": 0,
+            "type": 0,
             "damage_buff": 0,
             "power_buff": 0,
             "defense_buff": 0,
@@ -45,6 +46,7 @@
             "image_file_path": "",
             "amount": 0,
             "limit": 0,
+            "type": 0,
             "damage_buff": 0,
             "power_buff": 0,
             "defense_buff": 0,
@@ -61,6 +63,7 @@
             "image_file_path": "",
             "amount": 0,
             "limit": 0,
+            "type": 0,
             "damage_buff": 0,
             "power_buff": 0,
             "defense_buff": 0,
@@ -77,7 +80,7 @@
             "image_file_path": "ItemSprites/TestWeaponIcon",
             "amount": 1,
             "limit": 1,
-            "type": 1
+            "type": 0
         },
         {
             "name": "TestArmor",
@@ -85,15 +88,15 @@
             "image_file_path": "ItemSprites/TestArmorIcon",
             "amount": 1,
             "limit": 1,
-            "type": 2
+            "type": 0
         },
         {
             "name": "TestTrinket",
-            "description": "The jewel on the ring is value at 1 bit!  Not one bitcoin, like an actual bit of memory...",
+            "description": "The jewel on the ring is valued at 1 bit!  Not one bitcoin, like an actual bit of memory...",
             "image_file_path": "ItemSprites/TestTrinketIcon",
             "amount": 1,
             "limit": 1,
-            "type": 3
+            "type": 0
         }
     ],
     "names": [
