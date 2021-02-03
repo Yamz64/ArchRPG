@@ -61,6 +61,7 @@ public class unit : MonoBehaviour
     public int RES;             //Resistance stat of unit
     public int AGI;             //Agility stat of unit
     public int LCK;             //Luck stat of unit
+    public string status = "";
 
 
     public bool player;         //Whether the unit is the main player character
@@ -237,6 +238,14 @@ public class unit : MonoBehaviour
             }
             bool d = target.takeDamage(val);
             target.setHP(target.currentHP);
+            if (d == false)
+            {
+                int r = Random.Range(1, 101);
+                if (r > target.RES || r == 1)
+                {
+                    target.giveStatus(ata.damageType);
+                }
+            }
             return d;
         }
         return false;
@@ -274,6 +283,18 @@ public class unit : MonoBehaviour
         else
         {
             hpReadOut.text = currentHP + " / " + maxHP;
+        }
+    }
+
+    public void giveStatus(int id)
+    {
+        if (id == 0)
+        {
+            status = "Concussed";
+        }
+        else
+        {
+            status = "Pertubed";
         }
     }
 

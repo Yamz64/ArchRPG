@@ -164,8 +164,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6c386b2fe26d4c94b911b079b6303289, type: 3}
-    m_FontSize: 50
+    m_Font: {fileID: 12800000, guid: b3d12615f4239dc419df7b0dace5b315, type: 3}
+    m_FontSize: 35
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 3
@@ -332,8 +332,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6c386b2fe26d4c94b911b079b6303289, type: 3}
-    m_FontSize: 55
+    m_Font: {fileID: 12800000, guid: b3d12615f4239dc419df7b0dace5b315, type: 3}
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -379,8 +379,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -21, y: 71.50946}
-  m_SizeDelta: {x: 297.12683, y: 42.785828}
+  m_AnchoredPosition: {x: -30.599976, y: 71.50946}
+  m_SizeDelta: {x: 316.26843, y: 42.785828}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5542024319276491470
 CanvasRenderer:
@@ -411,8 +411,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6c386b2fe26d4c94b911b079b6303289, type: 3}
-    m_FontSize: 50
+    m_Font: {fileID: 12800000, guid: b3d12615f4239dc419df7b0dace5b315, type: 3}
+    m_FontSize: 35
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 3
@@ -549,6 +549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93693d66b1eec4d4d90e87ce7e3c9edf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitID: 0
   unitName: Eldritch Gunner
   level: 2
   currentLevelTop: 0
@@ -564,6 +565,7 @@ MonoBehaviour:
   RES: 0
   AGI: 0
   LCK: 0
+  status: 
   player: 0
   enemy: 1
   outOfSP: 0
@@ -574,6 +576,7 @@ MonoBehaviour:
     image_file_path: 
     amount: 0
     limit: 0
+    type: 0
     damage_buff: 0
     power_buff: 0
     defense_buff: 0
@@ -587,6 +590,7 @@ MonoBehaviour:
     image_file_path: 
     amount: 0
     limit: 0
+    type: 0
     damage_buff: 0
     power_buff: 0
     defense_buff: 0
@@ -600,6 +604,7 @@ MonoBehaviour:
     image_file_path: 
     amount: 0
     limit: 0
+    type: 0
     damage_buff: 0
     power_buff: 0
     defense_buff: 0
@@ -836,11 +841,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6c386b2fe26d4c94b911b079b6303289, type: 3}
-    m_FontSize: 45
+    m_Font: {fileID: 12800000, guid: b3d12615f4239dc419df7b0dace5b315, type: 3}
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 4
+    m_MinSize: 0
     m_MaxSize: 45
     m_Alignment: 4
     m_AlignByGeometry: 0

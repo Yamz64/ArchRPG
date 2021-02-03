@@ -1167,12 +1167,6 @@ public class BattleScript : MonoBehaviour
     {
         if (state == battleState.PLAYER)
         {
-            //If first unit hasn't been selected
-            //if (i1 == 5)
-            //{
-             //   transform.GetChild(1).GetChild(8).GetChild(2).GetComponent<Text>().text = "Swap:\n\n" 
-            //        + partyUnits[cursor_position].GetComponent<unit>().unitName;
-           // }
             //If second unit hasn't been selected
             if (i2 == 5)
             {
@@ -1186,7 +1180,7 @@ public class BattleScript : MonoBehaviour
                 else
                 {
                     transform.GetChild(1).Find("SwapMenu").GetChild(3).GetComponent<Text>().text = "With:\n\nSpace "
-                        + cursor_position + 1;
+                        + (cursor_position + 1);
                 }
             }
             //If input is down and the cursor is not at the bottom yet
@@ -1219,15 +1213,6 @@ public class BattleScript : MonoBehaviour
             //and then swap once there are 2 of them
             else if (Input.GetButtonDown("Interact"))
             {
-                /*
-                if (i1 == 5 && !swaps.Contains(partyUnits[cursor_position]))
-                {
-                    p1.position = partyStations[cursor_position].position;
-                    i1 = cursor_position;
-                    p1p = partyUnits[cursor_position];
-                    transform.GetChild(1).GetChild(8).GetChild(3).gameObject.SetActive(true);
-                }
-                */
                 if (i2 == 5 && currentUnit != cursor_position && !swaps.Contains(partyUnits[currentUnit]))
                 {
                     useSound(1);
@@ -1308,18 +1293,6 @@ public class BattleScript : MonoBehaviour
             }
             else if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Menu"))
             {
-                /*
-                if (i1 == 5)
-                {
-                    if (cursor_position == 1 || cursor_position == 3)
-                    {
-                        cursor.transform.Rotate(0.0f, 0.0f, 180.0f);
-                    }
-                    CloseMenu(3);
-                    menu_input = false;
-                    active_menu = 0;
-                }
-                */
                 if (i2 == 5)
                 {
                     useSound(0);
