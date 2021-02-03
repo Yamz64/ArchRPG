@@ -229,6 +229,7 @@ public class BattleScript : MonoBehaviour
             i += 1;
         }
         dialogue.text = "Select Target";
+        cursor.SetActive(false);
         enemySelect(i);
     }
 
@@ -244,6 +245,8 @@ public class BattleScript : MonoBehaviour
                 enemyUnits[i].GetComponent<unit>().view.color = temp;
             }
         }
+        enemy_select_menu = false;
+        cursor.SetActive(true);
     }
 
     //Make one enemy appear highlighted compared to the other ones
@@ -280,10 +283,13 @@ public class BattleScript : MonoBehaviour
         //loop through the item viewer and set the corresponding item name to the corresponding viewer position along with the amount
         for (int i=0; i<item_viewer_name.Count; i++)
         {
-            if (i + inventory_offset < data.GetInventorySize())
+            if (data != null)
             {
-                item_viewer_name[i].text = data.GetItem(i + inventory_offset).name;
-                item_viewer_name[i].transform.GetChild(0).GetComponent<Text>().text = "x " + data.GetItem(i + inventory_offset).amount.ToString();
+                if (i + inventory_offset < data.GetInventorySize())
+                {
+                    item_viewer_name[i].text = data.GetItem(i + inventory_offset).name;
+                    item_viewer_name[i].transform.GetChild(0).GetComponent<Text>().text = "x " + data.GetItem(i + inventory_offset).amount.ToString();
+                }
             }
             else
             {
@@ -320,24 +326,27 @@ public class BattleScript : MonoBehaviour
     //Update image/description based on selected item
     public void UpdateInventoryImageandDesc()
     {
-        //Get the item that is currently selected
-        if (cursor_position + inventory_offset < data.GetInventorySize())
+        if (data != null)
         {
-            Item item = data.GetItem(cursor_position + inventory_offset);
-
-            transform.GetChild(1).Find("ItemMenu").GetChild(10).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-            //try to update the image first
-            if (item.image_file_path == "" || item.image_file_path == null)
+            //Get the item that is currently selected
+            if (cursor_position + inventory_offset < data.GetInventorySize())
             {
-                transform.GetChild(1).Find("ItemMenu").GetChild(10).GetComponent<Image>().sprite = Resources.Load<Sprite>("ItemSprites/NullItem");
-            }
-            else
-            {
-                transform.GetChild(1).Find("ItemMenu").GetChild(10).GetComponent<Image>().sprite = Resources.Load<Sprite>(item.image_file_path);
-            }
+                Item item = data.GetItem(cursor_position + inventory_offset);
 
-            //update item description
-            transform.GetChild(1).Find("ItemMenu").GetChild(9).GetComponent<Text>().text = item.description;
+                transform.GetChild(1).Find("ItemMenu").GetChild(10).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                //try to update the image first
+                if (item.image_file_path == "" || item.image_file_path == null)
+                {
+                    transform.GetChild(1).Find("ItemMenu").GetChild(10).GetComponent<Image>().sprite = Resources.Load<Sprite>("ItemSprites/NullItem");
+                }
+                else
+                {
+                    transform.GetChild(1).Find("ItemMenu").GetChild(10).GetComponent<Image>().sprite = Resources.Load<Sprite>(item.image_file_path);
+                }
+
+                //update item description
+                transform.GetChild(1).Find("ItemMenu").GetChild(9).GetComponent<Text>().text = item.description;
+            }
         }
         else
         {
@@ -914,6 +923,7 @@ public class BattleScript : MonoBehaviour
                     child.color = temp;
                 }
 
+                cursor.SetActive(true);
                 CloseSelectEnemyMenu();
                 CloseUseAttackMenu();
                 CloseMenu(1);
@@ -1979,8 +1989,6 @@ public class BattleScript : MonoBehaviour
 
         data = GetComponent<PlayerDataMono>().data;
 
-        data.AddItem(new HotDog());
-
         //Define audio object
         audio_handler = GetComponent<PlayerOverworldAudioHandler>();
 
@@ -2011,7 +2019,8 @@ public class BattleScript : MonoBehaviour
 
     void Update()
     {
-        cursor.SetActive(true);
+        if (!enemy_select_menu) cursor.SetActive(true);
+        else cursor.SetActive(false);
         if (state == battleState.PLAYER && currentUnit < partyUnits.Count && partyUnits[currentUnit] != null)
         {
             //handle cursor movement in the various menus

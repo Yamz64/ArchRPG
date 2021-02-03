@@ -30,6 +30,7 @@ public class Ability
     public int position;            //int denotes the place the ability can be used 0 = front and backline, 1 = frontline, 2 = backline
     public int cost = 0;            //int denotes the cost of using the ability (if any)
     public int damage;              //int denotes the amount of damage the attack will do
+    public int statChance = 0;
     /*
      * 0 = Physical
      * 1 = Special
@@ -227,6 +228,56 @@ public class TestAbility9 : Ability
         damageType = 0;
         image_file_path = "AbilitySprites/Fist";
         desc1 = "This is test ability 9...";
+    }
+}
+
+//Use to attack all units in front line or back line 
+public class AOERow : Ability
+{
+    public AOERow()
+    {
+        name = "AOE Attack";
+        cost = 0;
+        damage = 5;
+        target = 1;
+        damageType = 0;
+    }
+}
+
+//Use to attack all units in a column
+public class AOELine : Ability
+{
+    public AOELine()
+    {
+        name = "Line Attack";
+        cost = 0;
+        damage = 5;
+        target = 2;
+        damageType = 0;
+    }
+}
+
+//Use to attack the whole party
+public class AOEFull : Ability
+{
+    public AOEFull()
+    {
+        name = "Burst Attack";
+        cost = 0;
+        damage = 5;
+        target = 3;
+        damageType = 0;
+    }
+}
+
+public class status1 : Ability
+{
+    status1()
+    {
+        statChance = 100;
+        target = 0;
+        damage = 0;
+        damageType = 0;
     }
 }
 

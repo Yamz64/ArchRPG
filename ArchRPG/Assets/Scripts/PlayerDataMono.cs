@@ -8,6 +8,6 @@ public class PlayerDataMono : MonoBehaviour
 
     private void Start()
     {
-        data = new PlayerData();
+        data = new PlayerData(false);
     }
 }

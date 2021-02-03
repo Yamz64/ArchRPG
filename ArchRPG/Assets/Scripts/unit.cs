@@ -6,11 +6,6 @@ using UnityEngine.UI;
 //Game script to use for battle units
 public class unit : MonoBehaviour
 {
-    public unit()
-    {
-        abilities = new List<Ability>();
-    }
-
     public void copyUnitStats(unit ver)
     {
         level = ver.level;
@@ -72,7 +67,7 @@ public class unit : MonoBehaviour
     public bool enemy;          //Whether the unit is an enemy unit or not
     public bool outOfSP;
     public int position;        //0 == Frontline, 1 == Backline
-    public List<Ability> abilities;//List of attacks the unit can perform
+    public List<Ability> abilities = new List<Ability>();//List of attacks the unit can perform
     public Weapon unitWeapon;   //The weapon the unit is holding
     public Armor unitArmor;     //The armor the unit is wearing
     public Trinket unitTrinket; //The trinket that the unit has
@@ -337,16 +332,20 @@ public class Enemy1 : unit
         single.damage = 8;
         single.damageType = 0;
 
-        Ability multi = new Ability();
-        multi.name = "AOE Attack";
-        multi.cost = 0;
-        multi.damage = 5;
-        multi.target = 1;
-        multi.damageType = 0;
         abilities.Add(single);
-        abilities.Add(multi);
+        abilities.Add(new AOERow());
+        abilities.Add(new AOELine());
+    }
+}
 
-        Ability status = new Ability();
-        multi.name = "Debuffer";
+public class Enemy2 : unit
+{
+    public Enemy2()
+    {
+        unitName = "Debuffer";
+
+        maxHP = 8;
+        currentHP = 8;
+        level = 3;
     }
 }
