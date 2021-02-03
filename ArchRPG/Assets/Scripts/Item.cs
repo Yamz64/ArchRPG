@@ -205,7 +205,7 @@ public static class Weapons
         public TestWeapon()
         {
             name = "TestWeapon";
-            image_file_path = "ItemSprites/TestWeaponIcon";
+            image_file_path = "ItemSprites/Weapon_1";
             description = "A weapon of code!  Made for debugging so it's not really good...";
             limit = 1;
             amount = 1;
@@ -243,7 +243,7 @@ public static class Armors
         public TestArmor()
         {
             name = "TestArmor";
-            image_file_path = "ItemSprites/TestArmorIcon";
+            image_file_path = "ItemSprites/Armor_1";
             description = "A suit of armor made of code!  Awkward and clunky, just like a programmer's first draft...";
             limit = 1;
             amount = 1;
@@ -281,7 +281,7 @@ public static class Trinkets
         public TestTrinket()
         {
             name = "TestTrinket";
-            image_file_path = "ItemSprites/TestTrinketIcon";
+            image_file_path = "ItemSprites/Trinket_1";
             description = "The jewel on the ring is valued at 1 bit!  Not one bitcoin, like an actual bit of memory...";
             limit = 1;
             amount = 1;
