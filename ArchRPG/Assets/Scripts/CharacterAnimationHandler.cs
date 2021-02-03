@@ -78,6 +78,7 @@ public class CharacterAnimationHandler : MonoBehaviour
                 {
                     case 0:
                         if (index >= idle_sprites_up.Count) index = 0;
+                        rend.flipX = false;
                         rend.sprite = idle_sprites_up[index];
                         break;
                     case 1:
@@ -87,6 +88,7 @@ public class CharacterAnimationHandler : MonoBehaviour
                         break;
                     case 2:
                         if (index >= idle_sprites_down.Count) index = 0;
+                        rend.flipX = false;
                         rend.sprite = idle_sprites_down[index];
                         break;
                     case 3:
@@ -117,6 +119,7 @@ public class CharacterAnimationHandler : MonoBehaviour
                 switch (direction)
                 {
                     case 0:
+                        rend.flipX = false;
                         rend.sprite = walk_sprites_up[index];
                         break;
                     case 1:
@@ -124,6 +127,7 @@ public class CharacterAnimationHandler : MonoBehaviour
                         rend.sprite = walk_sprites_side[index];
                         break;
                     case 2:
+                        rend.flipX = false;
                         rend.sprite = walk_sprites_down[index];
                         break;
                     case 3:
@@ -145,6 +149,7 @@ public class CharacterAnimationHandler : MonoBehaviour
                 {
                     case 0:
                         if (index >= walk_sprites_up.Count) index = 0;
+                        rend.flipX = false;
                         rend.sprite = walk_sprites_up[index];
                         break;
                     case 1:
@@ -154,6 +159,7 @@ public class CharacterAnimationHandler : MonoBehaviour
                         break;
                     case 2:
                         if (index >= walk_sprites_down.Count) index = 0;
+                        rend.flipX = false;
                         rend.sprite = walk_sprites_down[index];
                         break;
                     case 3:
