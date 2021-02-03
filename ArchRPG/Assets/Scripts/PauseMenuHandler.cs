@@ -30,6 +30,8 @@ public class PauseMenuHandler : MonoBehaviour
 
     public int highlighted_swap;
 
+    public bool menu_input;
+
     [SerializeField]
     public Sprite[] scroll_icons;
 
@@ -37,7 +39,6 @@ public class PauseMenuHandler : MonoBehaviour
     public Sprite[] positional_icons;
 
     private int equip_type;     //0 = weapon, 1 = armor, 2 = trinket
-    private bool menu_input;
     private bool item_select_menu;
     private bool base_pause_character_select;
     private bool equipping;
@@ -54,7 +55,7 @@ public class PauseMenuHandler : MonoBehaviour
         cursor_position = 0;
         active_menu = index;
         menus[index].SetActive(true);
-        if (index == 9) save_select = false;
+        if (index == 6) save_select = false;
     }
 
     public void CloseMenu(int index)
@@ -2536,7 +2537,7 @@ public class PauseMenuHandler : MonoBehaviour
             else
             {
                 //load the file
-                CharacterStatJsonConverter data = new CharacterStatJsonConverter(i);
+                CharacterStatJsonConverter save = new CharacterStatJsonConverter(i);
                 
                 //set the images
                 for(int j=1; j<5; j++)
@@ -2551,7 +2552,7 @@ public class PauseMenuHandler : MonoBehaviour
                     {
                         //see first if there are available party members
                         //no
-                        if(j >= data.names.GetLength(0))
+                        if(j > save.names.GetLength(0))
                         {
                             menus[6].transform.GetChild(3 + i).GetChild(j).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
                         }
@@ -2559,7 +2560,7 @@ public class PauseMenuHandler : MonoBehaviour
                         else
                         {
                             menus[6].transform.GetChild(3 + i).GetChild(j).GetComponent<Image>().color = Color.white;
-                            System.Type t = System.Type.GetType(data.names[j]);
+                            System.Type t = System.Type.GetType(save.names[j - 1]);
                             CharacterStats temp = (CharacterStats)System.Activator.CreateInstance(t);
                             menus[6].transform.GetChild(3 + i).GetChild(j).GetComponent<Image>().sprite = Resources.Load<Sprite>(temp.GetImageFilepath());
                         }
@@ -2567,7 +2568,7 @@ public class PauseMenuHandler : MonoBehaviour
                 }
 
                 //set the current level
-                menus[6].transform.GetChild(3 + i).GetChild(5).GetComponent<Text>().text = "Lvl " + data.levels[0];
+                menus[6].transform.GetChild(3 + i).GetChild(5).GetComponent<Text>().text = "Lvl " + save.levels[0];
                 //set the time
                 menus[6].transform.GetChild(3 + i).GetChild(6).GetComponent<Text>().text = "";
             }
@@ -3603,7 +3604,24 @@ public class PauseMenuHandler : MonoBehaviour
             {
                 if (!menu_input)
                 {
-
+                    switch (cursor_position)
+                    {
+                        case 0:
+                            cursor_position = 0;
+                            save_load = false;
+                            save_select = true;
+                            break;
+                        case 1:
+                            cursor_position = 0;
+                            save_load = true;
+                            save_select = true;
+                            break;
+                        case 2:
+                            break;
+                        default:
+                            break;
+                    }
+                    audio_handler.PlaySound("Sound/SFX/select");
                 }
                 menu_input = true;
             }
@@ -3630,7 +3648,29 @@ public class PauseMenuHandler : MonoBehaviour
                 {
                     cursor_position++;
                     audio_handler.PlaySound("Sound/SFX/cursor");
-                }menu_input = true;
+                }
+                menu_input = true;
+            }
+            else if (Input.GetButtonDown("Interact"))
+            {
+                if (!menu_input)
+                {
+                    //save
+                    if (!save_load)
+                    {
+                        CharacterStatJsonConverter save = new CharacterStatJsonConverter(data);
+                        save.Save(cursor_position);
+                        UpdateSaveMenu();
+                    }
+                    //load
+                    else
+                    {
+                        CharacterStatJsonConverter save = new CharacterStatJsonConverter(cursor_position);
+                        Debug.Log("Loaded data from save file " + cursor_position);
+                        UpdateSaveMenu();
+                    }
+                }
+                menu_input = true;
             }
             else
             {

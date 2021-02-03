@@ -8,6 +8,7 @@ public class SavePointBehavior : InteractableBaseClass
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<PauseMenuHandler>().menu_mode = true;
+        player.GetComponent<PauseMenuHandler>().menu_input = true;
         player.GetComponent<PauseMenuHandler>().OpenMenu(6);
         player.GetComponent<PauseMenuHandler>().ActivateCursor();
         player.GetComponent<PauseMenuHandler>().UpdateSaveMenu();
