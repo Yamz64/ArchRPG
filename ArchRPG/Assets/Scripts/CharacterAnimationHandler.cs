@@ -49,6 +49,7 @@ public class CharacterAnimationHandler : MonoBehaviour
                 index = 0;
                 switch (direction) {
                     case 0:
+                        rend.flipX = false;
                         rend.sprite = idle_sprites_up[index];
                         break;
                     case 1:
@@ -56,6 +57,7 @@ public class CharacterAnimationHandler : MonoBehaviour
                         rend.sprite = idle_sprites_side[index];
                         break;
                     case 2:
+                        rend.flipX = false;
                         rend.sprite = idle_sprites_down[index];
                         break;
                     case 3:
