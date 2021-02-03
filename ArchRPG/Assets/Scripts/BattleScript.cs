@@ -73,7 +73,7 @@ public class BattleScript : MonoBehaviour
 
     private GameObject cursor;                      //The animated cursor 
     private List<GameObject> menus;                 //The list of menu objects
-    private PlayerData data = new PlayerData();     //Object to hold player data
+    private PlayerData data;                        //Object to hold player data
     private PlayerOverworldAudioHandler audio_handler;
 
     //Main text to let player know state of battle
@@ -226,9 +226,7 @@ public class BattleScript : MonoBehaviour
         int i = 0;
         while (enemyUnits[i].GetComponent<unit>().currentHP <= 0)
         {
-            //Debug.Log("Current index (enemy) == " + i);
             i += 1;
-            Debug.Log("Current index (enemy) == " + i);
         }
         dialogue.text = "Select Target";
         enemySelect(i);
@@ -644,7 +642,6 @@ public class BattleScript : MonoBehaviour
     //Used to navigate the basic attack menu
     public void AttackMenuRoutine()
     {
-        Debug.Log("Cursor Position == " + cursor_position);
         //change position of cursor in the menu if in item select mode
         if (attack_select_menu == false && state == battleState.PLAYER)
         {
@@ -1179,7 +1176,7 @@ public class BattleScript : MonoBehaviour
                 else
                 {
                     transform.GetChild(1).Find("SwapMenu").GetChild(3).GetComponent<Text>().text = "With:\n\nSpace "
-                        + cursor_position;
+                        + cursor_position + 1;
                 }
             }
             //If input is down and the cursor is not at the bottom yet
@@ -1370,7 +1367,6 @@ public class BattleScript : MonoBehaviour
     //Start the enemy attack routine
     public void enemyAttacks()
     {
-        Debug.Log("Starting enemy attack run");
         if (state == battleState.ENEMY)
         {
             int v = 0;
@@ -1549,10 +1545,11 @@ public class BattleScript : MonoBehaviour
         {
             Enemy1 ene = new Enemy1();
             GameObject enemyGo2 = Instantiate(enemyPrefab2, enemyStation2);
-            ene.copyUnitStats(enemyGo2.GetComponent<unit>());
             ene.copyUnitUI(enemyGo2.GetComponent<unit>());
             enemyUnit2 = ene;
             enemyUnit2.setHUD();
+            enemyGo2.GetComponent<unit>().copyUnitStats(ene);
+            enemyGo2.GetComponent<unit>().unitName = ene.unitName;
             enemyUnits.Add(enemyGo2.gameObject);
             activeEnemies += 1;
         }
@@ -1602,11 +1599,13 @@ public class BattleScript : MonoBehaviour
         partyUnits[0].GetComponent<unit>().addAttack(new TestAbility4());
         partyUnits[0].GetComponent<unit>().addAttack(new TestAbility5());
 
+        /*
         data.AddItem(new HotDog());
         data.AddItem(new HotDog());
         data.AddItem(new HotDog());
         data.AddItem(new HotDog());
         data.AddItem(new HotDog());
+        */
 
         //Display text to player, showing an enemy/enemies have appeared
         if (activeEnemies == 1)
@@ -1740,7 +1739,9 @@ public class BattleScript : MonoBehaviour
     IEnumerator enemyAttack(int x)
     {
         bool dead = false;
+        bool dead2 = false;
         int r = Random.Range(0, partyUnits.Count);
+        int r2 = 0;
         while (partyUnits[r] == null)
         {
             r = Random.Range(0, partyUnits.Count);
@@ -1748,7 +1749,7 @@ public class BattleScript : MonoBehaviour
         if (state == battleState.ENEMY && enemyUnits[x].GetComponent<unit>().currentHP > 0)
         {
             yield return new WaitForSeconds(1f);
-            if (enemyUnits[x].GetComponent<unit>().abilities.Count <= 0)
+            if (enemyUnits[x].GetComponent<unit>().abilities.Count == 0)
             {
                 dialogue.text = enemyUnits[x].GetComponent<unit>().unitName + " is attacking";
 
@@ -1776,6 +1777,16 @@ public class BattleScript : MonoBehaviour
                     yield return new WaitForSeconds(1f);
 
                     dead = enemyUnits[x].GetComponent<unit>().useAttack(ran, partyUnits[r].GetComponent<unit>());
+                    if ((r == 1 || r == 3) && partyUnits[r - 1] != null && partyUnits[r - 1].GetComponent<unit>().currentHP > 0)
+                    {
+                        dead2 = enemyUnits[x].GetComponent<unit>().useAttack(ran, partyUnits[r - 1].GetComponent<unit>());
+                        r2 = r - 1;
+                    }
+                    else if ((r==0 || r==2) && partyUnits[r+1] != null && partyUnits[r + 1].GetComponent<unit>().currentHP > 0)
+                    {
+                        dead2 = enemyUnits[x].GetComponent<unit>().useAttack(ran, partyUnits[r + 1].GetComponent<unit>());
+                        r2 = r + 1;
+                    }
                 }
                 else
                 {
@@ -1784,13 +1795,23 @@ public class BattleScript : MonoBehaviour
                     yield return new WaitForSeconds(1f);
 
                     dead = enemyUnits[x].GetComponent<unit>().useAttack(ran, partyUnits[r].GetComponent<unit>());
+                    if ((r == 0 || r == 1) && partyUnits[r + 2] != null && partyUnits[r + 2].GetComponent<unit>().currentHP > 0)
+                    {
+                        dead2 = enemyUnits[x].GetComponent<unit>().useAttack(ran, partyUnits[r + 2].GetComponent<unit>());
+                        r2 = r + 2;
+                    }
+                    else if ((r == 2 || r == 3) && partyUnits[r - 2] != null && partyUnits[r - 2].GetComponent<unit>().currentHP > 0)
+                    {
+                        dead2 = enemyUnits[x].GetComponent<unit>().useAttack(ran, partyUnits[r - 2].GetComponent<unit>());
+                        r2 = r - 2;
+                    }
                 }
             }
 
             yield return new WaitForSeconds(1f);
 
             //If player is dead, lose battle
-            if (dead)
+            if (dead && !dead2)
             {
                 partyDeaths += 1;
                 StartCoroutine(unitDeath(partyUnits[r].GetComponent<unit>()));
@@ -1799,6 +1820,28 @@ public class BattleScript : MonoBehaviour
                     state = battleState.LOSE;
                     battleEnd();
                 }
+            }
+            else if (!dead && dead2)
+            {
+                partyDeaths += 1;
+                StartCoroutine(unitDeath(partyUnits[r2].GetComponent<unit>()));
+                if (partyDeaths == partyUnits.Count)
+                {
+                    state = battleState.LOSE;
+                    battleEnd();
+                }
+            }
+            else if (dead && dead2)
+            {
+                partyDeaths += 2;
+                StartCoroutine(unitDeath(partyUnits[r].GetComponent<unit>()));
+                StartCoroutine(unitDeath(partyUnits[r2].GetComponent<unit>()));
+                if (partyDeaths == partyUnits.Count)
+                {
+                    state = battleState.LOSE;
+                    battleEnd();
+                }
+
             }
             //If player lives, they attack
             else if (x+1 >= activeEnemies)
@@ -1922,11 +1965,10 @@ public class BattleScript : MonoBehaviour
         item_select_menu = false;
 
         //Load in json data
-        loader = new CharacterStatJsonConverter(data);
-        loader.Load(0);
+        loader = new CharacterStatJsonConverter(PlayerPrefs.GetInt("_active_save_file_"));
 
         //define the cursor's gameObject
-        cursor = transform.GetChild(1).GetChild(transform.GetChild(1).childCount - 2).gameObject;
+        cursor = transform.GetChild(1).Find("Cursor").gameObject;
 
         //define all the menus
         menus = new List<GameObject>();
@@ -1934,6 +1976,10 @@ public class BattleScript : MonoBehaviour
         {
             menus.Add(transform.GetChild(1).GetChild(i).gameObject);
         }
+
+        data = GetComponent<PlayerDataMono>().data;
+
+        data.AddItem(new HotDog());
 
         //Define audio object
         audio_handler = GetComponent<PlayerOverworldAudioHandler>();
@@ -1965,7 +2011,6 @@ public class BattleScript : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("State == " + state);
         cursor.SetActive(true);
         if (state == battleState.PLAYER && currentUnit < partyUnits.Count && partyUnits[currentUnit] != null)
         {

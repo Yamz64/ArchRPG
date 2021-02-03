@@ -16,8 +16,11 @@ public class unit : MonoBehaviour
         level = ver.level;
         maxHP = ver.maxHP;
         currentHP = ver.currentHP;
-        maxSP = ver.maxSP;
-        currentSP = ver.currentSP;
+        if (!ver.enemy)
+        {
+            maxSP = ver.maxSP;
+            currentSP = ver.currentSP;
+        }
         sanity = ver.sanity;
         enemy = ver.enemy;
         ATK = ver.ATK;
@@ -26,6 +29,7 @@ public class unit : MonoBehaviour
         RES = ver.RES;
         AGI = ver.AGI;
         LCK = ver.LCK;
+        abilities = ver.abilities;
     }
 
     public void copyUnitUI(unit ver)
@@ -221,8 +225,9 @@ public class unit : MonoBehaviour
         if (outOfSP == false || enemy == true)
         {
             Ability ata = getAttack(index);
+            if (!enemy)
             setSP(currentSP - ata.cost);
-            if (currentSP == 0)
+            if (currentSP == 0 && !enemy)
             {
                 outOfSP = true;
             }
@@ -318,6 +323,13 @@ public class Enemy1 : unit
     public Enemy1()
     {
         unitName = "Attacker";
+
+        maxHP = 10;
+        currentHP = 10;
+        level = 2;
+        expGain = 30;
+        enemy = true;
+
         abilities = new List<Ability>();
         Ability single = new Ability();
         single.name = "Base Attack";
@@ -333,5 +345,8 @@ public class Enemy1 : unit
         multi.damageType = 0;
         abilities.Add(single);
         abilities.Add(multi);
+
+        Ability status = new Ability();
+        multi.name = "Debuffer";
     }
 }
