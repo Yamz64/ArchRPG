@@ -677,7 +677,6 @@ public class CharacterStatJsonConverter
     public string[] enemy_names;    //names of enemies to fight
 }
 
-
 class TestPartyMember : CharacterStats
 {
     public TestPartyMember()

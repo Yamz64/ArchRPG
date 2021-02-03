@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,6 +42,8 @@ public class PauseMenuHandler : MonoBehaviour
     private bool base_pause_character_select;
     private bool equipping;
     private bool ability_select;
+    private bool save_select;
+    private bool save_load;     //false is save true is load
     private GameObject cursor;
     private List<GameObject> menus;
     private PlayerData data;
@@ -50,6 +54,7 @@ public class PauseMenuHandler : MonoBehaviour
         cursor_position = 0;
         active_menu = index;
         menus[index].SetActive(true);
+        if (index == 9) save_select = false;
     }
 
     public void CloseMenu(int index)
@@ -58,6 +63,10 @@ public class PauseMenuHandler : MonoBehaviour
         active_menu = index;
         menus[index].SetActive(false);
     }
+
+    public void ActivateCursor() { cursor.SetActive(true); }
+
+    public void DeactivateCursor() { cursor.SetActive(false); }
 
     public void UpdatePartyInfo()
     {
@@ -2505,6 +2514,66 @@ public class PauseMenuHandler : MonoBehaviour
         else menus[5].transform.GetChild(12).GetChild(2).GetComponent<Text>().text = "";
     }
 
+    public void UpdateSaveMenu()
+    {
+        //attempt to load the save data from each file
+        for(int i=0; i<4; i++)
+        {
+            //see if the file exists
+            //no
+            if (!File.Exists(Application.streamingAssetsPath + "/Saves/" + (i + 1).ToString() + "/Save.json"))
+            {
+                //set all images to invisible
+                for(int j=1; j<5; j++)
+                {
+                    menus[6].transform.GetChild(3 + i).GetChild(j).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                }
+                //set the current level to nothing
+                menus[6].transform.GetChild(3 + i).GetChild(5).GetComponent<Text>().text = "";
+                //set the time to nothing
+                menus[6].transform.GetChild(3 + i).GetChild(6).GetComponent<Text>().text = "";
+            }
+            else
+            {
+                //load the file
+                CharacterStatJsonConverter data = new CharacterStatJsonConverter(i);
+                
+                //set the images
+                for(int j=1; j<5; j++)
+                {
+                    //set the first index always to the player
+                    if(j - 1 == 0)
+                    {
+                        menus[6].transform.GetChild(3 + i).GetChild(j).GetComponent<Image>().color = Color.white;
+                        menus[6].transform.GetChild(3 + i).GetChild(j).GetComponent<Image>().sprite = Resources.Load<Sprite>("CharacterSprites/PC");
+                    }
+                    else
+                    {
+                        //see first if there are available party members
+                        //no
+                        if(j >= data.names.GetLength(0))
+                        {
+                            menus[6].transform.GetChild(3 + i).GetChild(j).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                        }
+                        //yes
+                        else
+                        {
+                            menus[6].transform.GetChild(3 + i).GetChild(j).GetComponent<Image>().color = Color.white;
+                            System.Type t = System.Type.GetType(data.names[j]);
+                            CharacterStats temp = (CharacterStats)System.Activator.CreateInstance(t);
+                            menus[6].transform.GetChild(3 + i).GetChild(j).GetComponent<Image>().sprite = Resources.Load<Sprite>(temp.GetImageFilepath());
+                        }
+                    }
+                }
+
+                //set the current level
+                menus[6].transform.GetChild(3 + i).GetChild(5).GetComponent<Text>().text = "Lvl " + data.levels[0];
+                //set the time
+                menus[6].transform.GetChild(3 + i).GetChild(6).GetComponent<Text>().text = "";
+            }
+        }
+    }
+
     public void BasePauseMenuRoutine()
     {
         if (!base_pause_character_select)
@@ -3508,6 +3577,69 @@ public class PauseMenuHandler : MonoBehaviour
         cursor.transform.position = cursor_positions[6].positions[cursor_position].transform.position;
     }
 
+    public void SaveMenuRoutine()
+    {
+        if (!save_select)
+        {
+            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+            {
+                if (!menu_input)
+                {
+                    cursor_position--;
+                    audio_handler.PlaySound("Sound/SFX/cursor");
+                }
+                menu_input = true;
+            }
+            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[7].positions.Count - 1)
+            {
+                if (!menu_input)
+                {
+                    cursor_position++;
+                    audio_handler.PlaySound("Sound/SFX/cursor");
+                }
+                menu_input = true;
+            }
+            else if (Input.GetButtonDown("Interact"))
+            {
+                if (!menu_input)
+                {
+
+                }
+                menu_input = true;
+            }
+            else
+            {
+                menu_input = false;
+            }
+            cursor.transform.position = cursor_positions[7].positions[cursor_position].transform.position;
+        }
+        else
+        {
+            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+            {
+                if (!menu_input)
+                {
+                    cursor_position--;
+                    audio_handler.PlaySound("Sound/SFX/cursor");
+                }
+                menu_input = true;
+            }
+            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[8].positions.Count - 1)
+            {
+                if (!menu_input)
+                {
+                    cursor_position++;
+                    audio_handler.PlaySound("Sound/SFX/cursor");
+                }menu_input = true;
+            }
+            else
+            {
+                menu_input = false;
+            }
+            cursor.transform.position = cursor_positions[8].positions[cursor_position].transform.position;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -3595,6 +3727,9 @@ public class PauseMenuHandler : MonoBehaviour
                     break;
                 case 5:
                     LevelUpMenuRoutine();
+                    break;
+                case 6:
+                    SaveMenuRoutine();
                     break;
                 default:
                     break;
