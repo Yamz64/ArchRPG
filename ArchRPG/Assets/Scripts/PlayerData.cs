@@ -14,7 +14,7 @@ public class PlayerData : CharacterStats
             CharacterStatJsonConverter data = new CharacterStatJsonConverter(PlayerPrefs.GetInt("_active_save_file_"));
             PlayerData temp = new PlayerData(true);
             data.UpdatePlayerData(ref temp);
-            SetImageFilepath("CharacterSprites/TestCharacter");
+            SetImageFilepath("CharacterSprites/PC");
             SetName(temp.GetName());
             SetLVL(temp.GetLVL());
             SetPos(temp.GetPos());
