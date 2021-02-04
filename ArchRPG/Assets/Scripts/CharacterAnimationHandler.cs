@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CharacterAnimationHandler : MonoBehaviour
 {
+    public bool speedup;
     public bool moving;
     public bool was_moving;
     public float idle_anim_delay;
@@ -105,7 +106,9 @@ public class CharacterAnimationHandler : MonoBehaviour
             else
             {
                 //after a delay change the idlesprite
-                idle_anim_delay += Time.deltaTime;
+                if (!speedup)
+                    idle_anim_delay += Time.deltaTime;
+                else idle_anim_delay += 2 * Time.deltaTime;
             }
         }
         //walking
