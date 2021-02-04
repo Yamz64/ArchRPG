@@ -67,19 +67,19 @@ public class CharacterStats
     public virtual void SetWeapon(Weapon w)
     {
         weapon = w;
-        if (weapon != null)
+        if (weapon != null) 
         w.SetWeapon(this);
     }
     public virtual void SetArmor(Armor a)
     {
         armor = a;
-        if(armor != null)
+        if (weapon != null) 
         a.SetArmor(this);
     }
     public virtual void SetTrinket(Trinket t)
     {
         trinket = t;
-        if(trinket != null)
+        if (weapon != null) 
         t.SetTrinket(this);
     }
     public virtual void RemoveWeapon()
@@ -619,9 +619,42 @@ public class CharacterStatJsonConverter
             }
         }
 
-        if (weapons[0].name != "") p.SetWeapon(weapons[0]);
-        if (armors[0].name != "") p.SetArmor(armors[0]);
-        if (trinkets[0].name != "") p.SetTrinket(trinkets[0]);
+        if (weapons[0].name != "")
+        {
+            p.AddItem(weapons[0]);
+            for(int i = 0; i<p.GetInventorySize(); i++)
+            {
+                if(p.GetItem(i).name == weapons[0].name)
+                {
+                    p.SetWeapon((Weapon)p.GetItem(i));
+                    break;
+                }
+            }
+        }
+        if (armors[0].name != "")
+        {
+            p.AddItem(armors[0]);
+            for (int i = 0; i < p.GetInventorySize(); i++)
+            {
+                if (p.GetItem(i).name == armors[0].name)
+                {
+                    p.SetArmor((Armor)p.GetItem(i));
+                    break;
+                }
+            }
+        }
+        if (trinkets[0].name != "")
+        {
+            p.AddItem(trinkets[0]);
+            for (int i = 0; i < p.GetInventorySize(); i++)
+            {
+                if (p.GetItem(i).name == trinkets[0].name)
+                {
+                    p.SetTrinket((Trinket)p.GetItem(i));
+                    break;
+                }
+            }
+        }
         
         //update the eldritch abilities
         for(int i=0; i<e_abilities.GetLength(0); i++)
@@ -649,9 +682,42 @@ public class CharacterStatJsonConverter
             temp.SetSP(SPs[i]);
             temp.SetSAN(SANs[i]);
 
-            if (weapons[i].name != "") temp.SetWeapon(weapons[i]);
-            if(armors[i].name != "") temp.SetArmor(armors[i]);
-            if(trinkets[i].name != "") temp.SetTrinket(trinkets[i]);
+            if (weapons[i].name != "")
+            {
+                p.AddItem(weapons[i]);
+                for (int j = 0; j < p.GetInventorySize(); j++)
+                {
+                    if (p.GetItem(j).name == weapons[0].name)
+                    {
+                        p.SetWeapon((Weapon)p.GetItem(j));
+                        break;
+                    }
+                }
+            }
+            if (armors[i].name != "")
+            {
+                p.AddItem(armors[i]);
+                for (int j = 0; j < p.GetInventorySize(); j++)
+                {
+                    if (p.GetItem(j).name == armors[0].name)
+                    {
+                        p.SetArmor((Armor)p.GetItem(j));
+                        break;
+                    }
+                }
+            }
+            if (trinkets[i].name != "")
+            {
+                p.AddItem(trinkets[i]);
+                for (int j = 0; j < p.GetInventorySize(); j++)
+                {
+                    if (p.GetItem(j).name == trinkets[0].name)
+                    {
+                        p.SetTrinket((Trinket)p.GetItem(j));
+                        break;
+                    }
+                }
+            }
 
             p.AddPartyMember(temp);
         }

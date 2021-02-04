@@ -2777,8 +2777,11 @@ public class PauseMenuHandler : MonoBehaviour
             {
                 if (!menu_input)
                 {
-                    audio_handler.PlaySound("Sound/SFX/select");
-                    OpenUseItemMenu();
+                    if (data.GetInventorySize() > cursor_position)
+                    {
+                        audio_handler.PlaySound("Sound/SFX/select");
+                        OpenUseItemMenu();
+                    }
                 }
                 menu_input = true;
             }
@@ -3660,6 +3663,7 @@ public class PauseMenuHandler : MonoBehaviour
                     {
                         CharacterStatJsonConverter save = new CharacterStatJsonConverter(data);
                         save.Save(cursor_position);
+                        PlayerPrefs.SetInt("_active_save_file_", cursor_position);
                         UpdateSaveMenu();
                     }
                     //load
@@ -3667,6 +3671,7 @@ public class PauseMenuHandler : MonoBehaviour
                     {
                         CharacterStatJsonConverter save = new CharacterStatJsonConverter(cursor_position);
                         Debug.Log("Loaded data from save file " + cursor_position);
+                        PlayerPrefs.SetInt("_active_save_file_", cursor_position);
                         UpdateSaveMenu();
                     }
                 }

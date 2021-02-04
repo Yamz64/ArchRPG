@@ -28,12 +28,42 @@ public class PlayerData : CharacterStats
             SetSP(temp.GetSP());
             SetSAN(temp.GetSAN());
             SetExperience(temp.GetExperience());
-
             if (temp.GetWeapon() != null)
-            SetWeapon(temp.GetWeapon());
+            {
+                AddItem(temp.GetWeapon());
+                for (int i = 0; i < GetInventorySize(); i++)
+                {
+                    if (GetItem(i).name == temp.GetWeapon().name)
+                    {
+                        SetWeapon((Weapon)GetItem(i));
+                        break;
+                    }
+                }
+            }
             if (temp.GetArmor() != null)
-            SetArmor(temp.GetArmor());
-            if (temp.GetTrinket() != null) 
+            {
+                AddItem(temp.GetArmor());
+                for (int i = 0; i < GetInventorySize(); i++)
+                {
+                    if (GetItem(i).name == temp.GetArmor().name)
+                    {
+                        SetArmor((Armor)GetItem(i));
+                        break;
+                    }
+                }
+            }
+            if (temp.GetTrinket() != null)
+            {
+                AddItem(temp.GetTrinket());
+                for (int i = 0; i < GetInventorySize(); i++)
+                {
+                    if (GetItem(i).name == temp.GetTrinket().name)
+                    {
+                        SetTrinket((Trinket)GetItem(i));
+                        break;
+                    }
+                }
+            } 
             SetTrinket(temp.GetTrinket());
 
             for (int i=0; i < temp.GetPartySize(); i++)
