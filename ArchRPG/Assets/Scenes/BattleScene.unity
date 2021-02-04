@@ -284,9 +284,9 @@ MonoBehaviour:
   highlighted_action: 0
   dialogue: {fileID: 1606678685}
   playerPrefab: {fileID: 5863634071550135657, guid: da6a1e09c149c9e46a62dc0e50c21407, type: 3}
-  member1Prefab: {fileID: 4685509571167345223, guid: 869226c07b9befa4db2aee5e52e4e8c7, type: 3}
-  member2Prefab: {fileID: 3719651914654738003, guid: 66ec9a0e9b31edf46bfe095bd75bae6b, type: 3}
-  member3Prefab: {fileID: 771182454269879385, guid: 99246008ce508374f869f402c9c9d73b, type: 3}
+  member1Prefab: {fileID: 5863634071550135657, guid: da6a1e09c149c9e46a62dc0e50c21407, type: 3}
+  member2Prefab: {fileID: 5863634071550135657, guid: da6a1e09c149c9e46a62dc0e50c21407, type: 3}
+  member3Prefab: {fileID: 5863634071550135657, guid: da6a1e09c149c9e46a62dc0e50c21407, type: 3}
   enemyPrefab: {fileID: 3649797668599104361, guid: c6288666f4d0a824fba8448c5d8e8173, type: 3}
   enemyPrefab2: {fileID: 3649797668599104361, guid: c6288666f4d0a824fba8448c5d8e8173, type: 3}
   enemyPrefab3: {fileID: 3649797668599104361, guid: c6288666f4d0a824fba8448c5d8e8173, type: 3}

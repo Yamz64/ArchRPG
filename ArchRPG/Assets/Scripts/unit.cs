@@ -62,6 +62,7 @@ public class unit : MonoBehaviour
     public int AGI;             //Agility stat of unit
     public int LCK;             //Luck stat of unit
     public string status = "";
+    public int statusCounter = 0;
 
 
     public bool player;         //Whether the unit is the main player character
@@ -291,10 +292,12 @@ public class unit : MonoBehaviour
         if (id == 0)
         {
             status = "Concussed";
+            statusCounter = 3;
         }
         else
         {
             status = "Pertubed";
+            statusCounter = 1;
         }
     }
 
@@ -338,6 +341,7 @@ public class Enemy1 : unit
 {
     public Enemy1()
     {
+        unitID = -1;
         unitName = "Attacker";
 
         maxHP = 10;
@@ -345,6 +349,12 @@ public class Enemy1 : unit
         level = 2;
         expGain = 30;
         enemy = true;
+
+        ATK = 1;
+        DEF = 0;
+        WILL = 2;
+        RES = 4;
+
 
         abilities = new List<Ability>();
         Ability single = new Ability();
@@ -363,10 +373,14 @@ public class Enemy2 : unit
 {
     public Enemy2()
     {
+        unitID = -2;
         unitName = "Debuffer";
 
         maxHP = 8;
         currentHP = 8;
         level = 3;
+        expGain = 30;
+        enemy = true;
+
     }
 }

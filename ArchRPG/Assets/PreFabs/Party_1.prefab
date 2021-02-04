@@ -694,6 +694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93693d66b1eec4d4d90e87ce7e3c9edf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitID: 0
   unitName: Demon Child
   level: 0
   currentLevelTop: 0
@@ -709,6 +710,7 @@ MonoBehaviour:
   RES: 0
   AGI: 0
   LCK: 0
+  status: 
   player: 0
   enemy: 0
   outOfSP: 0
@@ -719,6 +721,7 @@ MonoBehaviour:
     image_file_path: 
     amount: 0
     limit: 0
+    type: 0
     damage_buff: 0
     power_buff: 0
     defense_buff: 0
@@ -732,6 +735,7 @@ MonoBehaviour:
     image_file_path: 
     amount: 0
     limit: 0
+    type: 0
     damage_buff: 0
     power_buff: 0
     defense_buff: 0
@@ -745,6 +749,7 @@ MonoBehaviour:
     image_file_path: 
     amount: 0
     limit: 0
+    type: 0
     damage_buff: 0
     power_buff: 0
     defense_buff: 0
