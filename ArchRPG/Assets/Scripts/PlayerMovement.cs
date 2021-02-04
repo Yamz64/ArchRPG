@@ -71,5 +71,9 @@ public class PlayerMovement : CharacterAnimationHandler
                 }
             }
         }
+        else
+        {
+            rb.velocity = Vector3.zero;
+        }
     }
 }
