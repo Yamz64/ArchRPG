@@ -9285,7 +9285,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 7455051853ca0a740a8c18c0a9b62c4f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -19754,6 +19754,7 @@ MonoBehaviour:
   highlighted_item: 0
   highlighted_party_member: 0
   highlighted_swap: 0
+  menu_input: 0
   scroll_icons:
   - {fileID: 2277371194642704998, guid: f5e15c92c50e14b478d22930f9bc2ccb, type: 3}
   - {fileID: 2344068645934278199, guid: f5e15c92c50e14b478d22930f9bc2ccb, type: 3}
