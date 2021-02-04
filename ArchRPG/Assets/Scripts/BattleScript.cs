@@ -1512,6 +1512,7 @@ public class BattleScript : MonoBehaviour
         GameObject playerGo = Instantiate(playerPrefab, playerStation);
         playerGo = loader.updateUnit(playerGo, 0);
         playerUnit = playerGo.GetComponent<unit>();
+        playerUnit.ImageFilePath = "CharacterSprites/PC";
         playerUnit.setHUD();
         playerUnit.setAGI(0);
         partyUnits.Add(playerGo.gameObject);
@@ -1923,6 +1924,7 @@ public class BattleScript : MonoBehaviour
         }
     }
 
+    //An enemy attack function, used with enemies that have a list of abilities
     IEnumerator enemyAttack(int ata, int val, unit uni, unit target)
     {
         bool dead = false;
@@ -1995,7 +1997,6 @@ public class BattleScript : MonoBehaviour
         }
         Debug.Log("Reached end of enemy attack");
     }
-
 
     //Use to give a unit experience and, if possible, level them up. Display text as well
     IEnumerator levelUp(int expGained, unit uni)

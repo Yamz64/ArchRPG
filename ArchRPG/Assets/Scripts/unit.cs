@@ -88,10 +88,14 @@ public class unit : MonoBehaviour
     public Image spBar;         //Bar to project mana/skill points to
     public Text spSideText;     //SP Icon
     public Text spReadOut;      //Text showing exact number of skillpoints
+    public Image statusBackW;
+    public Image statusBackColor;
+    public Text statusText;
 
     //Function to set up the HUD with isportant data
     public void setHUD()        
     {
+        view.sprite = Resources.Load<Sprite>(ImageFilePath);
         nameText.text = unitName;
         levelText.text = "Lvl : " + level;
         hpBar.fillAmount = (float)currentHP / maxHP;
@@ -291,6 +295,7 @@ public class unit : MonoBehaviour
         {
             status = "Concussed";
             statusCounter = 3;
+
         }
         else
         {
@@ -355,6 +360,7 @@ public class Enemy1 : unit
 {
     public Enemy1()
     {
+        ImageFilePath = "CharacterSprites/EnemyTestPicture2";
         unitID = -1;
         unitName = "Attacker";
 
