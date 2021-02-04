@@ -38,7 +38,7 @@ public class Ability
         * 4 = Fire 
         * 5 = Electric
         */
-    public string statusEffect;
+    public string statusEffect = "";
     public int damageType;          //The type of damage dealt by the attack
     public int level_cost;          //cost to purchase this ability on levelup (only applies to eldritch abilities)
     public string image_file_path;  //Give path to image that goes with attack

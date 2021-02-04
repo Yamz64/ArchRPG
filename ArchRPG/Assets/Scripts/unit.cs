@@ -57,6 +57,7 @@ public class unit : MonoBehaviour
     public int sanity;          //The sanity of the unit
     public int ATK;             //Attack stat of unit
     public int DEF;             //Defense stat of unit
+    public int POW;             //Power stat of unit
     public int WILL;            //Willpower stat of unit
     public int RES;             //Resistance stat of unit
     public int AGI;             //Agility stat of unit
@@ -119,6 +120,7 @@ public class unit : MonoBehaviour
     public int getSAN() { return sanity; }
     public int getATK() { return ATK; }
     public int getDEF() { return DEF; }
+    public int getPOW() { return POW; }
     public int getWILL() { return WILL; }
     public int getRES() { return RES; }
     public int getAGI() { return AGI; }
@@ -178,11 +180,13 @@ public class unit : MonoBehaviour
 
     public void setATK(int a)    { ATK = a; }
     public void setDEF(int d)    { DEF = d; }
+    public void setPOW(int p)    { POW = p; }
     public void setWILL(int w)   { WILL = w; }
     public void setRES(int r)    { RES = r; }
     public void setAGI(int a)    { AGI = a; }
     public void setLCK(int l)    { LCK = l; }
 
+    //Gain the given amount of exp, and level up if it reaches the respective level value
     public bool gainEXP(int val)
     {
         exp += val;
@@ -198,6 +202,7 @@ public class unit : MonoBehaviour
             return false;
         }
     }
+
     //Get the attack at the given index
     public Ability getAttack(int index)
     {
@@ -243,10 +248,17 @@ public class unit : MonoBehaviour
             target.setHP(target.currentHP);
             if (d == false)
             {
-                int r = Random.Range(1, 101);
-                if (r > target.RES || r == 1)
+                if (ata.statusEffect == "")
                 {
-                    target.giveStatus(ata.damageType);
+                    int r = Random.Range(1, 101);
+                    if (r > target.RES || r == 1)
+                    {
+                        target.giveStatus(ata.damageType);
+                    }
+                }
+                else
+                {
+                    target.giveStatus(ata.statusEffect);
                 }
             }
             return d;
@@ -289,18 +301,55 @@ public class unit : MonoBehaviour
         }
     }
 
+    //Give the matching status to this unit
     public void giveStatus(int id)
     {
-        if (id == 0)
+        if (status == "")
         {
-            status = "Concussed";
-            statusCounter = 3;
+            if (id == 0)
+            {
+                status = "Confused";
+                statusCounter = 3;
 
+            }
+            else
+            {
+                status = "Pertubed";
+                statusCounter = 1;
+            }
+            statusText.text = status;
+            transform.Find("Status").gameObject.SetActive(true);
         }
-        else
+    }
+
+    //Give the named status to this unit
+    public void giveStatus(string id)
+    {
+        if (status == "")
         {
-            status = "Pertubed";
-            statusCounter = 1;
+            status = id;
+            if (status == "Confused")
+            {
+                statusCounter = 3;
+            }
+            else
+            {
+                statusCounter = 1;
+            }
+            statusText.text = status;
+            transform.Find("Status").gameObject.SetActive(true);
+        }
+    }
+
+    //Decrement the status counter, and remove the status when it reaches 0
+    public void statusTurn()
+    {
+        statusCounter -= 1;
+        if (statusCounter <= 0)
+        {
+            status = "";
+            statusCounter = 0;
+            transform.Find("Status").gameObject.SetActive(false);
         }
     }
 
@@ -354,6 +403,168 @@ public class unit : MonoBehaviour
     public List<Item> giveRewards()    { return rewards; }
 }
 
+public class PlayerUnit : unit
+{
+    public PlayerUnit()
+    {
+        unitName = "Player";
+        level = 1;
+        maxHP = currentHP = 27;
+        maxSP = currentSP = 14;
+        ATK = 4;
+        POW = 6;
+        DEF = 4;
+        WILL = 6;
+        RES = 6;
+        AGI = 3;
+        LCK = 0;
+        eldritch = new List<Ability>();
+    }
+    public PlayerUnit(int lev)
+    {
+        unitName = "Player";
+        level = lev;
+        maxHP = currentHP = 17 + (20 * (lev - 1));
+        maxSP = currentSP = 14 + (4 * (lev - 1));
+        ATK = 4 + (3 * (lev - 1));
+        POW = (int)(6.5 * lev);
+        DEF = 4 + (4 * (lev - 1));
+        WILL = (int)((5.5 * lev) + 1);
+        RES = (int)((2.5 * lev) + 3.5);
+        AGI = 3 * lev;
+        LCK = (int)(0.0125 / 3 * Mathf.Pow(lev, 3));
+        eldritch = new List<Ability>();
+    }
+    List<Ability> eldritch;
+}
+
+public class ShirleyUnit : unit
+{
+    public ShirleyUnit()
+    {
+        unitName = "Shirley";
+        level = 1;
+        maxHP = currentHP = 19;
+        maxSP = currentSP = 16;
+        ATK = 9;
+        POW = 7;
+        DEF = 4;
+        WILL = 7;
+        RES = 5;
+        AGI = 4;
+        LCK = 0;
+    }
+    public ShirleyUnit(int lev)
+    {
+        unitName = "Shirley";
+        level = lev;
+        maxHP = currentHP = (int)(0.68 * Mathf.Pow(lev,2) + 19);
+        maxSP = currentSP = (int)((7.8 * lev)+9);
+        ATK = (8 * lev) + 1;
+        POW = (int)(5.25 * lev) + 1;
+        DEF = (3 * lev) + 1;
+        WILL = (6 * lev) + 1;
+        RES = (2 * lev) + 3;
+        AGI = 4 * lev;
+        LCK = (int)(0.17 * Mathf.Pow(lev, 2));
+    }
+}
+
+public class ClyveUnit : unit
+{
+    public ClyveUnit()
+    {
+        unitName = "Clyve";
+        level = 1;
+        maxHP = currentHP = 27;
+        maxSP = currentSP = 14;
+        ATK = 4;
+        POW = 6;
+        DEF = 4;
+        WILL = 6;
+        RES = 6;
+        AGI = 3;
+        LCK = 0;
+    }
+    public ClyveUnit(int lev)
+    {
+        unitName = "Clyve";
+        level = lev;
+        maxHP = currentHP = 17 + (20 * (lev - 1));
+        maxSP = currentSP = 14 + (4 * (lev - 1));
+        ATK = 4 + (3 * (lev - 1));
+        POW = 6 + (int)(6.5 * (lev - 1));
+        DEF = 4 + (4 * (lev - 1));
+        WILL = 6 + (int)(5.5 * (lev - 1) + 1);
+        RES = 3 + (int)(2.5 * (lev - 1) + 3.5);
+        AGI = 3 + (3 * (lev - 1));
+        LCK = 0 + (int)(0.0125 / 3 * Mathf.Pow((lev - 1), 3));
+    }
+}
+
+public class NormUnit : unit
+{
+    public NormUnit()
+    {
+        unitName = "Norm";
+        level = 1;
+        maxHP = currentHP = 27;
+        maxSP = currentSP = 14;
+        ATK = 4;
+        POW = 6;
+        DEF = 4;
+        WILL = 6;
+        RES = 6;
+        AGI = 3;
+        LCK = 0;
+    }
+    public NormUnit(int lev)
+    {
+        unitName = "Norm";
+        level = lev;
+        maxHP = currentHP = 17 + (20 * (lev - 1));
+        maxSP = currentSP = 14 + (4 * (lev - 1));
+        ATK = 4 + (3 * (lev - 1));
+        POW = 6 + (int)(6.5 * (lev - 1));
+        DEF = 4 + (4 * (lev - 1));
+        WILL = 6 + (int)(5.5 * (lev - 1) + 1);
+        RES = 3 + (int)(2.5 * (lev - 1) + 3.5);
+        AGI = 3 + (3 * (lev - 1));
+        LCK = 0 + (int)(0.0125 / 3 * Mathf.Pow((lev - 1), 3));
+    }
+}
+
+public class JimUnit : unit
+{
+    public JimUnit()
+    {
+        unitName = "Jim";
+        level = 1;
+        maxHP = currentHP = 27;
+        maxSP = currentSP = 14;
+        ATK = 4;
+        POW = 6;
+        DEF = 4;
+        WILL = 6;
+        RES = 6;
+        AGI = 3;
+        LCK = 0;
+    }
+    public JimUnit(int lev)
+    {
+        unitName = "Jim";
+        level = lev;
+        maxHP = currentHP = 17 + (20 * (lev - 1));
+        maxSP = currentSP = 14 + (4 * (lev - 1));
+        ATK = 4 + (3 * (lev - 1));
+        POW = 6 + (int)(6.5 * (lev - 1));
+        DEF = 4 + (4 * (lev - 1));
+        WILL = 6 + (int)(5.5 * (lev - 1) + 1);
+        RES = 3 + (int)(2.5 * (lev - 1) + 3.5);
+        AGI = 3 + (3 * (lev - 1));
+        LCK = 0 + (int)(0.0125 / 3 * Mathf.Pow((lev - 1), 3));
+    }
+}
 
 //First basic enemy
 public class Enemy1 : unit

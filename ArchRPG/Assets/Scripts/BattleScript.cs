@@ -1486,6 +1486,16 @@ public class BattleScript : MonoBehaviour
                 }
                 yield return new WaitForSeconds(1f);
             }
+            for (int i = 0; i < partyUnits.Count; i++)
+            {
+                if (partyUnits[i] != null)
+                {
+                    if (partyUnits[i].GetComponent<unit>().status != "")
+                    {
+                        partyUnits[i].GetComponent<unit>().statusTurn();
+                    }
+                }
+            }
 
             swapInds.Clear();
             swaps.Clear();
@@ -1513,10 +1523,11 @@ public class BattleScript : MonoBehaviour
         playerUnit.ImageFilePath = "CharacterSprites/PC";
         playerUnit.setHUD();
         playerUnit.setAGI(0);
+        playerUnit.setRES(50);
         partyUnits.Add(playerGo.gameObject);
         partyNames.Add(playerGo.GetComponent<unit>().unitName);
-        //Debug.Log("Enemy Names == " + loader.enemy_names[0]);
-        Debug.Log("Eldricth Gunner == " + loader.enemy_names[0] + " is " + ("Eldritch Gunner" == loader.enemy_names[0]));
+
+
         unit ene1;
         if (loader.enemy_names[0] == "Eldritch Gunner")
         {
@@ -1530,7 +1541,7 @@ public class BattleScript : MonoBehaviour
         {
             ene1 = new Enemy3();
         }
-        Debug.Log("Enemy 0 is " + ene1.unitName);
+        //Debug.Log("Enemy 0 is " + ene1.unitName);
         //Create enemy unit
         GameObject enemyGo = Instantiate(enemyPrefab, enemyStation);
         ene1.copyUnitUI(enemyGo.GetComponent<unit>());
