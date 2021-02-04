@@ -567,6 +567,7 @@ MonoBehaviour:
   AGI: 0
   LCK: 0
   status: 
+  statusCounter: 0
   player: 0
   enemy: 1
   outOfSP: 0
@@ -613,6 +614,7 @@ MonoBehaviour:
     resistance_buff: 0
     speed_buff: 0
     luck_buff: 0
+  ImageFilePath: 
   view: {fileID: 3649797667331469008}
   nameText: {fileID: 1436975295251400349}
   BBackground: {fileID: 7090471288935455508}
@@ -624,6 +626,9 @@ MonoBehaviour:
   spBar: {fileID: 0}
   spSideText: {fileID: 0}
   spReadOut: {fileID: 0}
+  statusBackW: {fileID: 4558645723584788683}
+  statusBackColor: {fileID: 1386433708222662443}
+  statusText: {fileID: 9138436967345132172}
   expGain: 30
   rewards: []
 --- !u!1 &3694361481796394241

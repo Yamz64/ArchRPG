@@ -45,7 +45,7 @@ public class unit : MonoBehaviour
         }
     }
 
-    public int unitID;
+    public int unitID;          //Numerical ID number of unit
     public string unitName;     //Name of the unit
     public int level;           //Level of the unit
     public int currentLevelTop; //Limit for next level
@@ -61,32 +61,22 @@ public class unit : MonoBehaviour
     public int RES;             //Resistance stat of unit
     public int AGI;             //Agility stat of unit
     public int LCK;             //Luck stat of unit
-    public string status = "";
-    public int statusCounter = 0;
+    public string status = "";  //String to say what status effect the unit has
+    public int statusCounter = 0;   //Int to track how many more turns the unit will have the status for
 
 
     public bool player;         //Whether the unit is the main player character
     public bool enemy;          //Whether the unit is an enemy unit or not
-    public bool outOfSP;
+    public bool outOfSP;        //Bool to say whether a unit has no more SP for attacks (party)
     public int position;        //0 == Frontline, 1 == Backline
-    public List<Ability> abilities = new List<Ability>();//List of attacks the unit can perform
+    public List<Ability> abilities = new List<Ability>();   //List of attacks the unit can perform
     public Weapon unitWeapon;   //The weapon the unit is holding
     public Armor unitArmor;     //The armor the unit is wearing
     public Trinket unitTrinket; //The trinket that the unit has
 
     //< Status Effects >//
-    /*
-    bool BFTrauma = false;
-    bool crying = false;
-    bool maddened = false;
-    bool indifference = false;
-    bool grossedOut = false;
-    bool gurgling = false;
-    bool vomiting = false;
-    bool synapticShock = false;
-    bool uncontrollableSpasm = false;
-    */
 
+    public string ImageFilePath;//Use to determine what image to display for the unit
     public Image view;          //Image of unit
     public Text nameText;       //Text object to project name to
     public Image BBackground;   //Background for the text
@@ -98,10 +88,14 @@ public class unit : MonoBehaviour
     public Image spBar;         //Bar to project mana/skill points to
     public Text spSideText;     //SP Icon
     public Text spReadOut;      //Text showing exact number of skillpoints
+    public Image statusBackW;
+    public Image statusBackColor;
+    public Text statusText;
 
     //Function to set up the HUD with isportant data
     public void setHUD()        
     {
+        view.sprite = Resources.Load<Sprite>(ImageFilePath);
         nameText.text = unitName;
         levelText.text = "Lvl : " + level;
         hpBar.fillAmount = (float)currentHP / maxHP;
@@ -182,6 +176,13 @@ public class unit : MonoBehaviour
         }
     }
 
+    public void setATK(int a)    { ATK = a; }
+    public void setDEF(int d)    { DEF = d; }
+    public void setWILL(int w)   { WILL = w; }
+    public void setRES(int r)    { RES = r; }
+    public void setAGI(int a)    { AGI = a; }
+    public void setLCK(int l)    { LCK = l; }
+
     public bool gainEXP(int val)
     {
         exp += val;
@@ -221,6 +222,7 @@ public class unit : MonoBehaviour
     {
         if (outOfSP == false || enemy == true)
         {
+            StartCoroutine(flashDealDamage());
             Ability ata = getAttack(index);
             if (!enemy)
             setSP(currentSP - ata.cost);
@@ -293,6 +295,7 @@ public class unit : MonoBehaviour
         {
             status = "Concussed";
             statusCounter = 3;
+
         }
         else
         {
@@ -315,6 +318,20 @@ public class unit : MonoBehaviour
         BBackground.color = ori;
     }
 
+    //Flash orange when dealing damage
+    IEnumerator flashDealDamage()
+    {
+        Color ori = BBackground.color;
+        Color now = BBackground.color;
+        now.b = 0.0f;
+        now.g = 0.5f;
+        now.r = 1.0f;
+        yield return new WaitForSeconds(0.5f);
+        BBackground.color = now;
+        yield return new WaitForSeconds(0.5f);
+        BBackground.color = ori;
+    }
+
     //Flash green in response to healing damage
     IEnumerator flashHeal()
     {
@@ -330,22 +347,25 @@ public class unit : MonoBehaviour
 
     }
 
-    public int expGain;
-    public List<Item> rewards;
+    public int expGain;         //Amount of exp awarded for defeating the unit
+    public List<Item> rewards;  //A list of possible rewards awarded for defeating the unit
 
     public int giveEXP() { return expGain; }
     public List<Item> giveRewards()    { return rewards; }
 }
 
+
+//First basic enemy
 public class Enemy1 : unit
 {
     public Enemy1()
     {
+        ImageFilePath = "CharacterSprites/EnemyTestPicture2";
         unitID = -1;
         unitName = "Attacker";
 
-        maxHP = 10;
-        currentHP = 10;
+        maxHP = 11;
+        currentHP = 11;
         level = 2;
         expGain = 30;
         enemy = true;
@@ -354,6 +374,7 @@ public class Enemy1 : unit
         DEF = 0;
         WILL = 2;
         RES = 4;
+        AGI = 2;
 
 
         abilities = new List<Ability>();

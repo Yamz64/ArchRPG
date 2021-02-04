@@ -284,7 +284,7 @@ public class BattleScript : MonoBehaviour
         //first get all of the item view slots and store them in a temporary list
         List<Text> item_viewer_name = new List<Text>();
 
-        for (int i=0; i<cursor_positions[2].positions.Count - 3; i++)
+        for (int i=0; i<cursor_positions[2].positions.Count - 2; i++)
         {
             item_viewer_name.Add(cursor_positions[2].positions[i].transform.parent.GetComponent<Text>());
         }
@@ -512,7 +512,7 @@ public class BattleScript : MonoBehaviour
                     now.unitName + "\nSanity: " + now.getSAN() + "\nExp: " + now.getEXP()
                     + "\nAtk: " + now.getATK() + "\nDef: " + now.getDEF() + "\nWill: "
                     + now.getWILL() + "\nRes: " + now.getRES() + "\nAgi: " + now.getAGI()
-                    + "\nLuck: " + now.getLUCK();
+                    + "\nLuck: " + now.getLUCK() + "\nPosition == " + now.position;
                 transform.GetChild(1).Find("UnitInfo").gameObject.SetActive(true);
             }
             else if ( (Input.GetButtonDown("Menu") || Input.GetButtonDown("Cancel")) &&
@@ -762,7 +762,7 @@ public class BattleScript : MonoBehaviour
                     //Player uses the attack
                     case 4:
                         //If more than one enemy exists
-                        if (activeEnemies > 1)
+                        if (activeEnemies > 1 || enemyUnits.Count - enemyDeaths > 1)
                         {
                             useSound(1);
                             //Make attack menu invisible
@@ -934,6 +934,7 @@ public class BattleScript : MonoBehaviour
                 enemy_select_menu = false;
                 menu_input = false;
                 active_menu = 0;
+                OpenMenu(0);
 
                 if (moves >= activeUnits)
                 {
@@ -1131,6 +1132,7 @@ public class BattleScript : MonoBehaviour
                             }
                         }
                         break;
+                        /*
                     case 10:
                         data.RemoveItem(highlighted_item);
                         UpdateInventoryItems();
@@ -1139,7 +1141,9 @@ public class BattleScript : MonoBehaviour
                         CloseMenu(2);
                         active_menu = 0;
                         break;
-                    case 11:
+                        */
+
+                    case 10:
                         CloseUseItemMenu();
                         break;
                     default:
@@ -1224,9 +1228,15 @@ public class BattleScript : MonoBehaviour
                     {
                         p1.position = partyStations[currentUnit].position;
                         p1p = partyUnits[currentUnit];
-
+                        if (cursor_position == 0 || cursor_position == 1) p1p.GetComponent<unit>().position = 0;
+                        else p1p.GetComponent<unit>().position = 1;
                         p2.position = partyStations[cursor_position].position;
                         p2p = partyUnits[cursor_position];
+                        if (p2p != null)
+                        {
+                            if (currentUnit == 0 || currentUnit == 1) p2p.GetComponent<unit>().position = 0;
+                            else p2p.GetComponent<unit>().position = 1;
+                        }
                     }
                     else
                     {
@@ -1331,9 +1341,7 @@ public class BattleScript : MonoBehaviour
             {
                 partyUnits[swapInds[1]].transform.position = p1.position;
             }
-            partyUnits[swapInds[0]].GetComponent<unit>().position = p2p.GetComponent<unit>().position;
             partyUnits[swapInds[0]] = p2p;
-            partyUnits[swapInds[1]].GetComponent<unit>().position = p1p.GetComponent<unit>().position;
             partyUnits[swapInds[1]] = p1p;
         }
         else
@@ -1346,9 +1354,7 @@ public class BattleScript : MonoBehaviour
             {
                 partyUnits[swapInds[1]].transform.position = p3.position;
             }
-            partyUnits[swapInds[0]].GetComponent<unit>().position = p4p.GetComponent<unit>().position;
             partyUnits[swapInds[0]] = p4p;
-            partyUnits[swapInds[1]].GetComponent<unit>().position = p3p.GetComponent<unit>().position;
             partyUnits[swapInds[1]] = p3p;
         }
         swapInds.RemoveAt(0);
@@ -1398,7 +1404,7 @@ public class BattleScript : MonoBehaviour
             {
                 temp.Add(partyUnits[i]);
             }
-            actions.Sort((a, b) => { return a.getSPD().CompareTo(b.getSPD()); });
+            actions.Sort((a, b) => { return b.getSPD().CompareTo(a.getSPD()); });
             for (int z = 0; z < actions.Count; z++)
             {
                 yield return new WaitForSeconds(1f);
@@ -1455,7 +1461,7 @@ public class BattleScript : MonoBehaviour
                     else
                     {
                         dialogue.text = temp[ind].GetComponent<unit>().unitName + " moved to position "
-                            + actions[z].getTarget();
+                            + (actions[z].getTarget() + 1);
                     }
                     PerformSwaps();
                 }
@@ -1492,6 +1498,8 @@ public class BattleScript : MonoBehaviour
                 yield return new WaitForSeconds(3f);
                 state = battleState.PLAYER;
                 OpenMenu(0);
+                currentUnit = 0;
+                while (partyUnits[currentUnit] == null) currentUnit++;
                 playerTurn();
             }
         }
@@ -1504,9 +1512,12 @@ public class BattleScript : MonoBehaviour
         GameObject playerGo = Instantiate(playerPrefab, playerStation);
         playerGo = loader.updateUnit(playerGo, 0);
         playerUnit = playerGo.GetComponent<unit>();
+        playerUnit.ImageFilePath = "CharacterSprites/PC";
+        playerUnit.setHUD();
+        playerUnit.setAGI(0);
         partyUnits.Add(playerGo.gameObject);
         partyNames.Add(playerGo.GetComponent<unit>().unitName);
-        playerUnit.setHUD();
+
 
         Enemy1 ene1 = new Enemy1();
         //Create enemy unit
@@ -1614,11 +1625,11 @@ public class BattleScript : MonoBehaviour
         //Make test ability to use in menu
         Ability mover = new Ability();
         mover.name = "Attack 1";
-        mover.cost = 1;
-        mover.damage = 3;
+        mover.cost = 3;
+        mover.damage = 6;
         mover.damageType = 0;
-        mover.desc1 = "The most basic of attacks\n\nCost = 1";
-        mover.desc2 = "Does 3 physical damage, used to test out attack system. Works in both lines.";
+        mover.desc1 = "The most basic of attacks\nCost = 3";
+        mover.desc2 = "Does 6 physical damage, used to test out attack system. Works in both lines.";
 
         for (int i = 0; i < partyUnits.Count; i++)
         {
@@ -1913,6 +1924,7 @@ public class BattleScript : MonoBehaviour
         }
     }
 
+    //An enemy attack function, used with enemies that have a list of abilities
     IEnumerator enemyAttack(int ata, int val, unit uni, unit target)
     {
         bool dead = false;
@@ -1985,7 +1997,6 @@ public class BattleScript : MonoBehaviour
         }
         Debug.Log("Reached end of enemy attack");
     }
-
 
     //Use to give a unit experience and, if possible, level them up. Display text as well
     IEnumerator levelUp(int expGained, unit uni)
