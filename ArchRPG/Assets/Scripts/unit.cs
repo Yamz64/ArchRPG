@@ -360,9 +360,9 @@ public class Enemy1 : unit
 {
     public Enemy1()
     {
-        ImageFilePath = "CharacterSprites/EnemyTestPicture2";
+        ImageFilePath = "EnemySprites/EnemyTestPicture";
         unitID = -1;
-        unitName = "Attacker";
+        unitName = "Eldritch Gunner";
 
         maxHP = 11;
         currentHP = 11;
@@ -378,13 +378,7 @@ public class Enemy1 : unit
 
 
         abilities = new List<Ability>();
-        Ability single = new Ability();
-        single.name = "Base Attack";
-        single.cost = 0;
-        single.damage = 8;
-        single.damageType = 0;
-
-        abilities.Add(single);
+        abilities.Add(new Basic());
         abilities.Add(new AOERow());
         abilities.Add(new AOELine());
     }
@@ -394,6 +388,7 @@ public class Enemy2 : unit
 {
     public Enemy2()
     {
+        ImageFilePath = "EnemySprites/EnemyTestPicture2";
         unitID = -2;
         unitName = "Debuffer";
 
@@ -403,5 +398,25 @@ public class Enemy2 : unit
         expGain = 30;
         enemy = true;
 
+        abilities = new List<Ability>();
+        abilities.Add(new Basic());
+        abilities.Add(new status1());
+
+    }
+}
+
+public class Enemy3 : unit
+{
+    public Enemy3()
+    {
+        ImageFilePath = "EnemySprites/EnemySprite1";
+        unitID = -3;
+        unitName = "NormalEnemy";
+
+        maxHP = 9;
+        currentHP = 9;
+        level = 1;
+        expGain = 10;
+        enemy = true;
     }
 }

@@ -31,13 +31,14 @@ public class Ability
     public int cost = 0;            //int denotes the cost of using the ability (if any)
     public int damage;              //int denotes the amount of damage the attack will do
     /*
-     * 0 = Physical
-     * 1 = Special
-     * 2 = Psychic
-     * 3 = Acid
-     * 4 = Fire 
-     * 5 = Electric
-     */
+        * 0 = Physical
+        * 1 = Special
+        * 2 = Psychic
+        * 3 = Acid
+        * 4 = Fire 
+        * 5 = Electric
+        */
+    public string statusEffect;
     public int damageType;          //The type of damage dealt by the attack
     public int level_cost;          //cost to purchase this ability on levelup (only applies to eldritch abilities)
     public string image_file_path;  //Give path to image that goes with attack
@@ -230,6 +231,18 @@ public class TestAbility9 : Ability
     }
 }
 
+public class Basic : Ability
+{
+    public Basic()
+    {
+        name = "Base Attack";
+        cost = 1;
+        target = 0;
+        damage = 8;
+        damageType = 0;
+    }
+}
+
 //Use to attack all units in front line or back line 
 public class AOERow : Ability
 {
@@ -271,11 +284,14 @@ public class AOEFull : Ability
 
 public class status1 : Ability
 {
-    status1()
+    public status1()
     {
+        name = "Status Attack";
+        cost = 0;
         target = 0;
         damage = 0;
         damageType = 0;
+        statusEffect = "Confused";
     }
 }
 

@@ -1409,7 +1409,6 @@ public class BattleScript : MonoBehaviour
             {
                 yield return new WaitForSeconds(1f);
                 int ind = actions[z].getID();
-                Debug.Log("z == " + z + ", Index == " + ind);
                 //Use the selected attack
                 if (actions[z].getType() == "attack" && state == battleState.ATTACK)
                 {
@@ -1468,7 +1467,6 @@ public class BattleScript : MonoBehaviour
                 //Enemy performs an attack
                 else if (actions[z].getType() == "enemyAttack" && state == battleState.ATTACK)
                 {
-                    Debug.Log("Enemy Attack in progress, enemy target == " + actions[z].getTarget());
                     if (partyUnits[actions[z].getTarget()].GetComponent<unit>().currentHP > 0)
                     {
                         dialogue.text = enemyUnits[ind].GetComponent<unit>().unitName + " used " +
@@ -1517,9 +1515,22 @@ public class BattleScript : MonoBehaviour
         playerUnit.setAGI(0);
         partyUnits.Add(playerGo.gameObject);
         partyNames.Add(playerGo.GetComponent<unit>().unitName);
-
-
-        Enemy1 ene1 = new Enemy1();
+        //Debug.Log("Enemy Names == " + loader.enemy_names[0]);
+        Debug.Log("Eldricth Gunner == " + loader.enemy_names[0] + " is " + ("Eldritch Gunner" == loader.enemy_names[0]));
+        unit ene1;
+        if (loader.enemy_names[0] == "Eldritch Gunner")
+        {
+            ene1 = new Enemy1();
+        }
+        else if (loader.enemy_names[0] == "Debuffer")
+        {
+            ene1 = new Enemy2();
+        }
+        else
+        {
+            ene1 = new Enemy3();
+        }
+        Debug.Log("Enemy 0 is " + ene1.unitName);
         //Create enemy unit
         GameObject enemyGo = Instantiate(enemyPrefab, enemyStation);
         ene1.copyUnitUI(enemyGo.GetComponent<unit>());
@@ -1578,9 +1589,12 @@ public class BattleScript : MonoBehaviour
         }
 
         //Create enemy 2 if possible
-        if (enemyPrefab2 && enemyStation2)
+        if (enemyPrefab2 && enemyStation2 && loader.enemy_names[1] != null && loader.enemy_names[1] != "")
         {
-            Enemy1 ene = new Enemy1();
+            unit ene;
+            if (loader.enemy_names[1] == "Eldritch Gunner") { ene = new Enemy1(); }
+            else if (loader.enemy_names[1] == "Debuffer") { ene = new Enemy2(); }
+            else { ene = new Enemy3(); }
             GameObject enemyGo2 = Instantiate(enemyPrefab2, enemyStation2);
             ene.copyUnitUI(enemyGo2.GetComponent<unit>());
             enemyUnit2 = ene;
@@ -1592,9 +1606,12 @@ public class BattleScript : MonoBehaviour
         }
 
         //Create enemy 3 if possible
-        if (enemyPrefab3 && enemyStation3)
+        if (enemyPrefab3 && enemyStation3 && loader.enemy_names[2] != null && loader.enemy_names[2] != "")
         {
-            Enemy1 ene = new Enemy1();
+            unit ene;
+            if (loader.enemy_names[2] == "Eldritch Gunner") { ene = new Enemy1(); }
+            else if (loader.enemy_names[2] == "Debuffer") { ene = new Enemy2(); }
+            else { ene = new Enemy3(); }
             GameObject enemyGo3 = Instantiate(enemyPrefab3, enemyStation3);
             ene.copyUnitUI(enemyGo3.GetComponent<unit>());
             enemyUnit3 = ene;
@@ -1606,9 +1623,12 @@ public class BattleScript : MonoBehaviour
         }
 
         //Create enemy 4 if possible
-        if (enemyPrefab4 && enemyStation4)
+        if (enemyPrefab4 && enemyStation4 && loader.enemy_names[3] != null && loader.enemy_names[3] != "")
         {
-            Enemy1 ene = new Enemy1();
+            unit ene;
+            if (loader.enemy_names[3] == "Eldritch Gunner")    {    ene = new Enemy1();    }
+            else if (loader.enemy_names[3] == "Debuffer")    {    ene = new Enemy2();   }
+            else    {    ene = new Enemy3();    }
             GameObject enemyGo4 = Instantiate(enemyPrefab4, enemyStation4);
             ene.copyUnitUI(enemyGo4.GetComponent<unit>());
             enemyUnit4 = ene;
@@ -1995,7 +2015,6 @@ public class BattleScript : MonoBehaviour
                 battleEnd();
             }
         }
-        Debug.Log("Reached end of enemy attack");
     }
 
     //Use to give a unit experience and, if possible, level them up. Display text as well
@@ -2083,6 +2102,7 @@ public class BattleScript : MonoBehaviour
         item_select_menu = false;
 
         //Load in json data
+        Debug.Log("Save File == " + PlayerPrefs.GetInt("_active_active_save_file_"));
         loader = new CharacterStatJsonConverter(PlayerPrefs.GetInt("_active_save_file_"));
 
         //define the cursor's gameObject
