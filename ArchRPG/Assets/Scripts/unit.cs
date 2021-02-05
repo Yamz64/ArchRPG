@@ -405,25 +405,11 @@ public class unit : MonoBehaviour
 
 public class PlayerUnit : unit
 {
-    public PlayerUnit()
-    {
-        unitName = "Player";
-        level = 1;
-        maxHP = currentHP = 27;
-        maxSP = currentSP = 14;
-        ATK = 4;
-        POW = 6;
-        DEF = 4;
-        WILL = 6;
-        RES = 6;
-        AGI = 3;
-        LCK = 0;
-        eldritch = new List<Ability>();
-    }
-    public PlayerUnit(int lev)
+    public PlayerUnit(int lev = 1)
     {
         unitName = "Player";
         level = lev;
+        ImageFilePath = "CharacterSprites/PC";
         maxHP = currentHP = 17 + (20 * (lev - 1));
         maxSP = currentSP = 14 + (4 * (lev - 1));
         ATK = 4 + (3 * (lev - 1));
@@ -440,21 +426,7 @@ public class PlayerUnit : unit
 
 public class ShirleyUnit : unit
 {
-    public ShirleyUnit()
-    {
-        unitName = "Shirley";
-        level = 1;
-        maxHP = currentHP = 19;
-        maxSP = currentSP = 16;
-        ATK = 9;
-        POW = 7;
-        DEF = 4;
-        WILL = 7;
-        RES = 5;
-        AGI = 4;
-        LCK = 0;
-    }
-    public ShirleyUnit(int lev)
+    public ShirleyUnit(int lev = 1)
     {
         unitName = "Shirley";
         level = lev;
@@ -472,97 +444,73 @@ public class ShirleyUnit : unit
 
 public class ClyveUnit : unit
 {
-    public ClyveUnit()
-    {
-        unitName = "Clyve";
-        level = 1;
-        maxHP = currentHP = 27;
-        maxSP = currentSP = 14;
-        ATK = 4;
-        POW = 6;
-        DEF = 4;
-        WILL = 6;
-        RES = 6;
-        AGI = 3;
-        LCK = 0;
-    }
-    public ClyveUnit(int lev)
+    public ClyveUnit(int lev = 1)
     {
         unitName = "Clyve";
         level = lev;
-        maxHP = currentHP = 17 + (20 * (lev - 1));
-        maxSP = currentSP = 14 + (4 * (lev - 1));
-        ATK = 4 + (3 * (lev - 1));
-        POW = 6 + (int)(6.5 * (lev - 1));
-        DEF = 4 + (4 * (lev - 1));
-        WILL = 6 + (int)(5.5 * (lev - 1) + 1);
-        RES = 3 + (int)(2.5 * (lev - 1) + 3.5);
-        AGI = 3 + (3 * (lev - 1));
-        LCK = 0 + (int)(0.0125 / 3 * Mathf.Pow((lev - 1), 3));
+        maxHP = currentHP = (17 * lev) + 6;
+        maxSP = currentSP = (int)((5.75 * lev) + 10);
+        ATK = (4 * lev) + 1;
+        POW = (int)(2.5 * lev) + 1;
+        DEF = (int)((8 * lev) + 0.5);
+        WILL = (4 * lev) + 1;
+        RES = (int)((3.5 * lev) + 3.5);
+        AGI = (4 * lev) + 1;
+        LCK = (int)(0.0093 * Mathf.Pow(lev, 3));
     }
 }
 
 public class NormUnit : unit
 {
-    public NormUnit()
-    {
-        unitName = "Norm";
-        level = 1;
-        maxHP = currentHP = 27;
-        maxSP = currentSP = 14;
-        ATK = 4;
-        POW = 6;
-        DEF = 4;
-        WILL = 6;
-        RES = 6;
-        AGI = 3;
-        LCK = 0;
-    }
-    public NormUnit(int lev)
+    public NormUnit(int lev = 1)
     {
         unitName = "Norm";
         level = lev;
-        maxHP = currentHP = 17 + (20 * (lev - 1));
-        maxSP = currentSP = 14 + (4 * (lev - 1));
-        ATK = 4 + (3 * (lev - 1));
-        POW = 6 + (int)(6.5 * (lev - 1));
-        DEF = 4 + (4 * (lev - 1));
-        WILL = 6 + (int)(5.5 * (lev - 1) + 1);
-        RES = 3 + (int)(2.5 * (lev - 1) + 3.5);
-        AGI = 3 + (3 * (lev - 1));
-        LCK = 0 + (int)(0.0125 / 3 * Mathf.Pow((lev - 1), 3));
+        maxHP = currentHP = (24 * lev) + 35;
+        maxSP = currentSP = (int)((2.5 * lev) + 5);
+        ATK = (5 * lev) + 1;
+        POW = (int)((2.5 * lev) + 0.5);
+        DEF = (4 * lev) + 1;
+        WILL = (3 * lev) + 1;
+        RES = (3 * lev) + 3;
+        AGI = 4 * lev;
+        LCK = (int)(0.0125 / 3 * Mathf.Pow(lev, 3));
     }
 }
 
 public class JimUnit : unit
 {
-    public JimUnit()
-    {
-        unitName = "Jim";
-        level = 1;
-        maxHP = currentHP = 27;
-        maxSP = currentSP = 14;
-        ATK = 4;
-        POW = 6;
-        DEF = 4;
-        WILL = 6;
-        RES = 6;
-        AGI = 3;
-        LCK = 0;
-    }
-    public JimUnit(int lev)
+    public JimUnit(int lev = 1)
     {
         unitName = "Jim";
         level = lev;
-        maxHP = currentHP = 17 + (20 * (lev - 1));
-        maxSP = currentSP = 14 + (4 * (lev - 1));
-        ATK = 4 + (3 * (lev - 1));
-        POW = 6 + (int)(6.5 * (lev - 1));
-        DEF = 4 + (4 * (lev - 1));
-        WILL = 6 + (int)(5.5 * (lev - 1) + 1);
-        RES = 3 + (int)(2.5 * (lev - 1) + 3.5);
-        AGI = 3 + (3 * (lev - 1));
-        LCK = 0 + (int)(0.0125 / 3 * Mathf.Pow((lev - 1), 3));
+        maxHP = currentHP = (int)((0.7 * Mathf.Pow(lev, 2)) + 19);
+        maxSP = currentSP = (int)((8.25 * lev) + 10);
+        ATK = (int)((2.5 * lev) + 1);
+        POW = (int)((8.5 * lev) + 1);
+        DEF = (5 * lev) + 1;
+        WILL = (6 * lev) + 1;
+        RES = (2 * lev) + 1;
+        AGI = 3 * lev;
+        LCK = (int)(0.007 / 3 * Mathf.Pow(lev, 3));
+    }
+}
+
+public class EldritchPartyUnit : unit
+{
+    public EldritchPartyUnit(int lev = 1)
+    {
+        unitName = "Eldritch Abomination";
+        level = lev;
+        maxHP = currentHP = (14 * lev) + 2;
+        maxSP = currentSP = (7 * lev) + 10;
+        ATK = (int)((2.5 * lev) + 0.5);
+        POW = (7 * lev) + 1;
+        DEF = (3 * lev) + 1;
+        WILL = (int)((2.5 * lev) + 0.5);
+        RES = (2 * lev) + 3;
+        AGI = 3 * lev;
+        LCK = (int)(0.01 / 3 * Mathf.Pow(lev, 3));
     }
 }
 

@@ -5,7 +5,7 @@
     },
     "progress": 0,
     "HPs": [
-        37
+        149
     ],
     "SPs": [
         40
@@ -14,7 +14,7 @@
         0
     ],
     "XPs": [
-        0
+        30
     ],
     "levels": [
         11
@@ -80,7 +80,7 @@
     "e_abilities": [],
     "enemy_names": [
         "Eldritch Gunner",
-        "",
+        "Debuffer",
         "",
         ""
     ]

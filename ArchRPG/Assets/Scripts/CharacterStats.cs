@@ -529,9 +529,12 @@ public class CharacterStatJsonConverter
             id.GetComponent<unit>().sanity = SANs[num];
             id.GetComponent<unit>().exp = XPs[num];
             id.GetComponent<unit>().level = levels[num];
-            id.GetComponent<unit>().unitWeapon = weapons[num];
-            id.GetComponent<unit>().unitArmor = armors[num];
-            id.GetComponent<unit>().unitTrinket = trinkets[num];
+            if (weapons[num] != null)
+                id.GetComponent<unit>().unitWeapon = weapons[num];
+            if (armors[num] != null)
+                id.GetComponent<unit>().unitArmor = armors[num];
+            if (trinkets[num] != null)
+                id.GetComponent<unit>().unitTrinket = trinkets[num];
             id.GetComponent<unit>().unitName = names[num];
             return id;
         }

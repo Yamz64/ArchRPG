@@ -788,7 +788,9 @@ public class BattleScript : MonoBehaviour
                         else
                         {
                             useSound(1);
-                            actions.Add(new action(currentUnit, "attack", highlighted_attack, currentEnemy, partyUnits[currentUnit].GetComponent<unit>().getAGI()));
+                            actions.Add(new action(currentUnit, "attack", highlighted_attack, currentEnemy, 
+                                partyUnits[currentUnit].GetComponent<unit>().getAGI()));
+                            currentEnemy = 0;
                             currentUnit += 1;
                             moves += 1;
 
@@ -908,7 +910,9 @@ public class BattleScript : MonoBehaviour
             else if (Input.GetButtonDown("Interact"))
             {
                 useSound(1);
-                actions.Add(new action(currentUnit, "attack", highlighted_attack, currentEnemy, partyUnits[currentUnit].GetComponent<unit>().getAGI()));
+                actions.Add(new action(currentUnit, "attack", highlighted_attack, currentEnemy, 
+                    partyUnits[currentUnit].GetComponent<unit>().getAGI()));
+                currentEnemy = 0;
                 currentUnit += 1;
                 moves += 1;
 
@@ -936,6 +940,7 @@ public class BattleScript : MonoBehaviour
                 active_menu = 0;
                 OpenMenu(0);
 
+                //If this unit is the last one in the party to move
                 if (moves >= activeUnits)
                 {
                     moves = 0;
@@ -1516,14 +1521,16 @@ public class BattleScript : MonoBehaviour
     //Create battle characters, set up HUD's, display text, and start player turn
     IEnumerator setupBattle()
     {
+        unit p1 = new PlayerUnit(loader.levels[0]);
+        p1.currentHP = loader.HPs[0];
         //Create player unit
         GameObject playerGo = Instantiate(playerPrefab, playerStation);
         playerGo = loader.updateUnit(playerGo, 0);
         playerUnit = playerGo.GetComponent<unit>();
-        playerUnit.ImageFilePath = "CharacterSprites/PC";
+        p1.copyUnitUI(playerUnit);
+        playerUnit = p1;
         playerUnit.setHUD();
-        playerUnit.setAGI(0);
-        playerUnit.setRES(50);
+        playerGo.GetComponent<unit>().copyUnitStats(p1);
         partyUnits.Add(playerGo.gameObject);
         partyNames.Add(playerGo.GetComponent<unit>().unitName);
 
@@ -1552,7 +1559,7 @@ public class BattleScript : MonoBehaviour
         enemyUnits.Add(enemyGo.gameObject);        
 
         //Create party member 2 if possible
-        if (member1Station && activeUnits < loader.HPs.Length)
+        if (member1Prefab && member1Station && activeUnits < loader.HPs.Length)
         {
             GameObject member1Go = Instantiate(member1Prefab, member1Station);
             member1Go = loader.updateUnit(member1Go, activeUnits);
@@ -1717,6 +1724,9 @@ public class BattleScript : MonoBehaviour
         bot.hpBar.CrossFadeAlpha(0, 2f, false);
         bot.hpSideText.CrossFadeAlpha(0, 2f, false);
         bot.hpReadOut.CrossFadeAlpha(0, 2f, false);
+        bot.statusBackW.CrossFadeAlpha(0, 2f, false);
+        bot.statusBackColor.CrossFadeAlpha(0, 2f, false);
+        bot.statusText.CrossFadeAlpha(0, 2f, false);
         if (bot.spBar != null)
         {
             bot.spBar.CrossFadeAlpha(0, 2f, false);
@@ -1763,7 +1773,6 @@ public class BattleScript : MonoBehaviour
         //dialogue.text = "Player used " + ata.name;
 
         yield return new WaitForSeconds(1f);
-
         bool dead = target.takeDamage(5 + (uni.ATK/100) - (target.DEF/200));
         target.setHP(target.currentHP);
         uni.setSP(uni.currentSP - 2);
