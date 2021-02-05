@@ -209,6 +209,7 @@ public static class Weapons
             description = "A weapon of code!  Made for debugging so it's not really good...";
             limit = 1;
             amount = 1;
+            type = 1;
             damage_buff = 80;
             power_buff = 20;
             defense_buff = 0;
@@ -247,6 +248,7 @@ public static class Armors
             description = "A suit of armor made of code!  Awkward and clunky, just like a programmer's first draft...";
             limit = 1;
             amount = 1;
+            type = 2;
             damage_buff = 0;
             power_buff = 0;
             defense_buff = 50;
@@ -285,6 +287,7 @@ public static class Trinkets
             description = "The jewel on the ring is valued at 1 bit!  Not one bitcoin, like an actual bit of memory...";
             limit = 1;
             amount = 1;
+            type = 3;
             damage_buff = 0;
             power_buff = 10;
             will_buff = 50;

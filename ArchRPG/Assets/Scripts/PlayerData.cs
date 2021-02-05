@@ -63,8 +63,7 @@ public class PlayerData : CharacterStats
                         break;
                     }
                 }
-            } 
-            SetTrinket(temp.GetTrinket());
+            }
 
             for (int i=0; i < temp.GetPartySize(); i++)
             {
