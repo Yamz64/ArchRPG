@@ -194,8 +194,9 @@ public class unit : MonoBehaviour
         exp += val;
         if (exp >= currentLevelTop)
         {
+           StartCoroutine(flashLevel());
             if (level < 20) level += 1;
-            currentLevelTop = level * 10;
+            currentLevelTop = (int)(2.5 * Mathf.Pow(level, 4));
             exp = 0;
             return true;
         }
@@ -399,7 +400,19 @@ public class unit : MonoBehaviour
         BBackground.color = green;
         yield return new WaitForSeconds(0.5f);
         BBackground.color = ori;
+    }
 
+    IEnumerator flashLevel()
+    {
+        Color ori = BBackground.color;
+        Color green = BBackground.color;
+        green.b = 0.5f;
+        green.g = 1.0f;
+        green.r = 0.0f;
+        yield return new WaitForSeconds(0.5f);
+        BBackground.color = green;
+        yield return new WaitForSeconds(0.5f);
+        BBackground.color = ori;
     }
 
     public int expGain;         //Amount of exp awarded for defeating the unit
@@ -532,6 +545,7 @@ public class NewKidUnit : unit
     {
         unitID = 5;
         unitName = "New Kid";
+        ImageFilePath = "EnemySprites/Zim";
 
         level = 5;
 
@@ -551,7 +565,6 @@ public class NewKidUnit : unit
         abilities.Add(new AOEStatus1());
         abilities.Add(new Basic());
         abilities.Add(new AOELine());
-
     }
 }
 

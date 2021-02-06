@@ -287,37 +287,21 @@ MonoBehaviour:
   - {fileID: 5863634071550135657, guid: da6a1e09c149c9e46a62dc0e50c21407, type: 3}
   - {fileID: 5863634071550135657, guid: da6a1e09c149c9e46a62dc0e50c21407, type: 3}
   - {fileID: 5863634071550135657, guid: da6a1e09c149c9e46a62dc0e50c21407, type: 3}
-  playerPrefab: {fileID: 5863634071550135657, guid: da6a1e09c149c9e46a62dc0e50c21407, type: 3}
-  member1Prefab: {fileID: 5863634071550135657, guid: da6a1e09c149c9e46a62dc0e50c21407, type: 3}
-  member2Prefab: {fileID: 5863634071550135657, guid: da6a1e09c149c9e46a62dc0e50c21407, type: 3}
-  member3Prefab: {fileID: 5863634071550135657, guid: da6a1e09c149c9e46a62dc0e50c21407, type: 3}
   enemyPrefabs:
   - {fileID: 3649797668599104361, guid: c6288666f4d0a824fba8448c5d8e8173, type: 3}
   - {fileID: 3649797668599104361, guid: c6288666f4d0a824fba8448c5d8e8173, type: 3}
   - {fileID: 3649797668599104361, guid: c6288666f4d0a824fba8448c5d8e8173, type: 3}
   - {fileID: 3649797668599104361, guid: c6288666f4d0a824fba8448c5d8e8173, type: 3}
-  enemyPrefab: {fileID: 3649797668599104361, guid: c6288666f4d0a824fba8448c5d8e8173, type: 3}
-  enemyPrefab2: {fileID: 3649797668599104361, guid: c6288666f4d0a824fba8448c5d8e8173, type: 3}
-  enemyPrefab3: {fileID: 3649797668599104361, guid: c6288666f4d0a824fba8448c5d8e8173, type: 3}
-  enemyPrefab4: {fileID: 3649797668599104361, guid: c6288666f4d0a824fba8448c5d8e8173, type: 3}
   allyStations:
   - {fileID: 1489905312}
   - {fileID: 698593766}
   - {fileID: 375501834}
   - {fileID: 173307079}
-  playerStation: {fileID: 1489905312}
-  member1Station: {fileID: 698593766}
-  member2Station: {fileID: 375501834}
-  member3Station: {fileID: 173307079}
   targetStations:
   - {fileID: 974848988}
   - {fileID: 1314743688}
   - {fileID: 1163937706}
   - {fileID: 1286840832}
-  enemyStation: {fileID: 974848988}
-  enemyStation2: {fileID: 1314743688}
-  enemyStation3: {fileID: 1163937706}
-  enemyStation4: {fileID: 1286840832}
   currentUnit: 0
   moves: 0
   currentEnemy: 0
@@ -782,7 +766,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.050980393}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1281,7 +1265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.050980393}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2949,7 +2933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.050980393}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3543,7 +3527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.043137256}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4101,7 +4085,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.043137256}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4731,7 +4715,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.043137256}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4876,7 +4860,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.043137256}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5293,7 +5277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.050980393}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

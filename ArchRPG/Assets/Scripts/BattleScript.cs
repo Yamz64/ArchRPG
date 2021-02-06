@@ -98,9 +98,6 @@ public class BattleScript : MonoBehaviour
 
     public List<Transform> targetStations;
 
-    //List of party spawn locations
-    private List<Transform> partyStations;
-
     //List of party units
     private List<GameObject> partyUnits;
 
@@ -183,8 +180,8 @@ public class BattleScript : MonoBehaviour
     //Function to close the menu at the given index
     public void CloseMenu(int index)
     {
+        active_menu = 0;
         cursor_position = 0;
-        active_menu = index;
         menus[index].SetActive(false);
     }
 
@@ -716,7 +713,6 @@ public class BattleScript : MonoBehaviour
             {
                 CloseMenu(1);
                 menu_input = false;
-                active_menu = 0;
             }
             else
             {
@@ -789,7 +785,6 @@ public class BattleScript : MonoBehaviour
                             CloseUseAttackMenu();
                             CloseMenu(1);
                             menu_input = false;
-                            active_menu = 0;
 
                             //Perform player attacks
                             if (moves >= activeUnits)
@@ -929,8 +924,6 @@ public class BattleScript : MonoBehaviour
                 CloseMenu(1);
                 enemy_select_menu = false;
                 menu_input = false;
-                active_menu = 0;
-                OpenMenu(0);
 
                 //If this unit is the last one in the party to move
                 if (moves >= activeUnits)
@@ -987,7 +980,7 @@ public class BattleScript : MonoBehaviour
         }
 
         //update cursor position
-        cursor.transform.position = cursor_positions[1].positions[cursor_position].position;
+        cursor.transform.position = cursor_positions[active_menu].positions[cursor_position].position;
     }
 
     //Use to navigate through item menu 
@@ -1063,7 +1056,6 @@ public class BattleScript : MonoBehaviour
                 cursor_position = 0;
                 menu_input = false;
                 inventory_offset = 0;
-                active_menu = 0;
             }
             else
             {
@@ -1102,7 +1094,6 @@ public class BattleScript : MonoBehaviour
                         UpdateInventoryImageandDesc();
                         CloseUseItemMenu();
                         CloseMenu(2);
-                        active_menu = 0;
                         currentUnit += 1;
                         moves += 1;
 
@@ -1159,7 +1150,7 @@ public class BattleScript : MonoBehaviour
         }
 
         //update cursor position
-        cursor.transform.position = cursor_positions[2].positions[cursor_position].position;
+        cursor.transform.position = cursor_positions[active_menu].positions[cursor_position].position;
     }
 
     //Use to navigate through the swap process
@@ -1223,11 +1214,11 @@ public class BattleScript : MonoBehaviour
                     useSound(1);
                     if (swaps.Count < 1)
                     {
-                        p1.position = partyStations[currentUnit].position;
+                        p1.position = allyStations[currentUnit].position;
                         p1p = partyUnits[currentUnit];
                         if (cursor_position == 0 || cursor_position == 1) p1p.GetComponent<unit>().position = 0;
                         else p1p.GetComponent<unit>().position = 1;
-                        p2.position = partyStations[cursor_position].position;
+                        p2.position = allyStations[cursor_position].position;
                         p2p = partyUnits[cursor_position];
                         if (p2p != null)
                         {
@@ -1237,10 +1228,10 @@ public class BattleScript : MonoBehaviour
                     }
                     else
                     {
-                        p3.position = partyStations[currentUnit].position;
+                        p3.position = allyStations[currentUnit].position;
                         p3p = partyUnits[currentUnit];
 
-                        p4.position = partyStations[cursor_position].position;
+                        p4.position = allyStations[cursor_position].position;
                         p4p = partyUnits[cursor_position];
                     }
                     i1 = currentUnit;
@@ -1272,6 +1263,9 @@ public class BattleScript : MonoBehaviour
                     currentUnit += 1;
                     moves += 1;
 
+                    CloseMenu(3);
+                    menu_input = false;
+
                     if (moves >= activeUnits)
                     {
                         moves = 0;
@@ -1294,12 +1288,6 @@ public class BattleScript : MonoBehaviour
                             playerTurn();
                         }
                     }
-
-
-                    CloseMenu(3);
-                    menu_input = false;
-                    active_menu = 0;
-                    transform.GetChild(1).Find("SwapMenu").GetChild(3).gameObject.SetActive(false);
                 }
             }
             else if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Menu"))
@@ -1321,7 +1309,7 @@ public class BattleScript : MonoBehaviour
         }
 
         //update cursor position
-        cursor.transform.position = cursor_positions[3].positions[cursor_position].position;
+        cursor.transform.position = cursor_positions[active_menu].positions[cursor_position].position;
     }
 
     //Swap 2 units in order of selection
@@ -1329,8 +1317,8 @@ public class BattleScript : MonoBehaviour
     {
         if (swaps.Count == swapInds.Count)
         {
-            partyStations[swapInds[0]] = p2;
-            partyStations[swapInds[1]] = p1;
+            allyStations[swapInds[0]] = p2;
+            allyStations[swapInds[1]] = p1;
 
             partyUnits[swapInds[0]].transform.position = p2.position;
             if (partyUnits[swapInds[1]] != null)
@@ -1342,8 +1330,8 @@ public class BattleScript : MonoBehaviour
         }
         else
         {
-            partyStations[swapInds[0]] = p4;
-            partyStations[swapInds[1]] = p3;
+            allyStations[swapInds[0]] = p4;
+            allyStations[swapInds[1]] = p3;
 
             partyUnits[swapInds[0]].transform.position = p4.position;
             if (partyUnits[swapInds[1]] != null)
@@ -1404,7 +1392,7 @@ public class BattleScript : MonoBehaviour
                     {
                         dialogue.text = temp[ind].GetComponent<unit>().unitName + " used " +
                             temp[ind].GetComponent<unit>().abilities[actions[z].getIndex()].name;
-                        yield return playerAttack(actions[z].getIndex(),
+                        yield return playerAttack(actions[z].getIndex(), actions[z].getTarget(),
                             temp[ind].GetComponent<unit>(), enemyUnits[actions[z].getTarget()].GetComponent<unit>());
                     }
                     else
@@ -1567,6 +1555,10 @@ public class BattleScript : MonoBehaviour
             {
                 enen = new Enemy2();
             }
+            else if (loader.enemy_names[i] == "New Kid")
+            {
+                enen = new NewKidUnit();
+            }
             else if (loader.enemy_names[i] != "")
             {
                 enen = new Enemy3();
@@ -1669,7 +1661,7 @@ public class BattleScript : MonoBehaviour
     }
 
     //Deal damage to enemy, check if it is dead, and act accordingly (win battle or enemy turn)
-    IEnumerator playerAttack(int ata, unit uni, unit target)
+    IEnumerator playerAttack(int ata, int val, unit uni, unit target)
     {
         //dialogue.text = "Player used " + ata.name;
 
@@ -2025,7 +2017,7 @@ public class BattleScript : MonoBehaviour
     public void AttackButton(int ata, unit uni, unit target)
     {
         if (state != battleState.PLAYER) return;
-        StartCoroutine(playerAttack(ata, uni, target));
+        StartCoroutine(playerAttack(ata, ata, uni, target));
     }
 
     //Player chooses to heal themself
