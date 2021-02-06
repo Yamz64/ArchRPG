@@ -89,14 +89,20 @@ public class BattleScript : MonoBehaviour
     public Text dialogue;
 
     //GameObjects to use as basis for battle characters
+    public List<GameObject> partyPrefabs;
     public GameObject playerPrefab;
     public GameObject member1Prefab; public GameObject member2Prefab; public GameObject member3Prefab;
+
+    public List<GameObject> enemyPrefabs;
     public GameObject enemyPrefab;
     public GameObject enemyPrefab2; public GameObject enemyPrefab3; public GameObject enemyPrefab4;
 
     //Locations to spawn characters at
+    public List<Transform> allyStations;
     public Transform playerStation;
     public Transform member1Station; public Transform member2Station; public Transform member3Station;
+
+    public List<Transform> targetStations;
     public Transform enemyStation;
     public Transform enemyStation2; public Transform enemyStation3; public Transform enemyStation4;
 
@@ -119,13 +125,13 @@ public class BattleScript : MonoBehaviour
     private List<GameObject> enemyUnits;
 
     //Int to track the number of units actually in the party
-    int activeUnits = 1;
+    int activeUnits = 0;
 
     //Int to track the number of deaths in the party
     int partyDeaths = 0;
 
     //Int to track the number of enemies encountered in the battle
-    int activeEnemies = 1;
+    int activeEnemies = 0;
 
     //Number of enemies that have died
     int enemyDeaths = 0;
@@ -510,7 +516,7 @@ public class BattleScript : MonoBehaviour
                 unit now = partyUnits[currentUnit].GetComponent<unit>();
                 transform.GetChild(1).Find("UnitInfo").GetChild(2).GetComponent<Text>().text =
                     now.unitName + "\nSanity: " + now.getSAN() + "\nExp: " + now.getEXP()
-                    + "\nAtk: " + now.getATK() + "\nDef: " + now.getDEF() + "\nWill: "
+                    + "\nAtk: " + now.getATK() + "\nPOW: " + now.getPOW() + "\nDef: " + now.getDEF() + "\nWill: "
                     + now.getWILL() + "\nRes: " + now.getRES() + "\nAgi: " + now.getAGI()
                     + "\nLuck: " + now.getLUCK() + "\nPosition == " + now.position;
                 transform.GetChild(1).Find("UnitInfo").gameObject.SetActive(true);
@@ -1472,17 +1478,25 @@ public class BattleScript : MonoBehaviour
                 //Enemy performs an attack
                 else if (actions[z].getType() == "enemyAttack" && state == battleState.ATTACK)
                 {
-                    if (partyUnits[actions[z].getTarget()].GetComponent<unit>().currentHP > 0)
+                    if (partyUnits[actions[z].getTarget()] != null)
                     {
-                        dialogue.text = enemyUnits[ind].GetComponent<unit>().unitName + " used " +
-                            enemyUnits[ind].GetComponent<unit>().abilities[actions[z].getIndex()].name;
-                        yield return enemyAttack(actions[z].getIndex(), actions[z].getTarget(),
-                            enemyUnits[ind].GetComponent<unit>(), partyUnits[actions[z].getTarget()].GetComponent<unit>());
+                        if (partyUnits[actions[z].getTarget()].GetComponent<unit>().currentHP > 0)
+                        {
+                            dialogue.text = enemyUnits[ind].GetComponent<unit>().unitName + " used " +
+                                enemyUnits[ind].GetComponent<unit>().abilities[actions[z].getIndex()].name;
+                            yield return enemyAttack(actions[z].getIndex(), actions[z].getTarget(),
+                                enemyUnits[ind].GetComponent<unit>(), partyUnits[actions[z].getTarget()].GetComponent<unit>());
+                        }
+                        else
+                        {
+                            dialogue.text = enemyUnits[ind].GetComponent<unit>().unitName + " tried attacking " +
+                                partyUnits[actions[z].getTarget()].GetComponent<unit>().unitName + ", but they weren't there";
+                        }
                     }
                     else
                     {
-                        dialogue.text = enemyUnits[ind].GetComponent<unit>().unitName + " tried attacking " +
-                            partyUnits[actions[z].getTarget()].GetComponent<unit>().unitName + ", but they weren't there";
+                        dialogue.text = enemyUnits[ind].GetComponent<unit>().unitName + " attacked position " +
+                            (actions[z].getTarget() + 1) + ", but nobody was there";
                     }
                 }
                 else
@@ -1521,6 +1535,50 @@ public class BattleScript : MonoBehaviour
     //Create battle characters, set up HUD's, display text, and start player turn
     IEnumerator setupBattle()
     {
+        for (int i = 0; i < loader.names.Length; i++)
+        {
+            unit p;
+            if (loader.names[i] == "Player")
+            {
+                p = new PlayerUnit(loader.levels[i]);
+            }
+            else if (loader.names[i] == "Jim")
+            {
+                p = new JimUnit(loader.levels[i]);
+            }
+            else if (loader.names[i] == "Clyve")
+            {
+                p = new ClyveUnit(loader.levels[i]);
+            }
+            else if (loader.names[i] == "Norm")
+            {
+                p = new NormUnit(loader.levels[i]);
+            }
+            else if (loader.names[i] == "Shirley")
+            {
+                p = new ShirleyUnit(loader.levels[i]);
+            }
+            else if (loader.names[i] == "Eldritch")
+            {
+                p = new EldritchPartyUnit(loader.levels[i]);
+            }
+            else
+            {
+                partyUnits.Add(null);
+                continue;
+            }
+            p.currentHP = loader.HPs[i];
+            GameObject unitGo = Instantiate(partyPrefabs[i], allyStations[i]);
+            unitGo = loader.updateUnit(unitGo, i);
+            p.copyUnitUI(unitGo.GetComponent<unit>());
+            p.setHUD();
+            unitGo.GetComponent<unit>().copyUnitStats(p);
+            partyUnits.Add(unitGo.gameObject);
+            partyNames.Add(unitGo.GetComponent<unit>().unitName);
+            activeUnits += 1;
+        }
+        while (partyUnits.Count != 4) partyUnits.Add(null);
+        /*
         unit p1 = new PlayerUnit(loader.levels[0]);
         p1.currentHP = loader.HPs[0];
         //Create player unit
@@ -1533,8 +1591,37 @@ public class BattleScript : MonoBehaviour
         playerGo.GetComponent<unit>().copyUnitStats(p1);
         partyUnits.Add(playerGo.gameObject);
         partyNames.Add(playerGo.GetComponent<unit>().unitName);
+        */
 
+        for (int i = 0; i < loader.enemy_names.Length; i++)
+        {
+            unit enen;
+            if (loader.enemy_names[i] == "Eldritch Gunner")
+            {
+                enen = new Enemy1();
+            }
+            else if (loader.enemy_names[i] == "Debuffer")
+            {
+                enen = new Enemy2();
+            }
+            else if (loader.enemy_names[i] != "")
+            {
+                enen = new Enemy3();
+            }
+            else
+            {
+                continue;
+            }
+            GameObject eGo = Instantiate(enemyPrefabs[i], targetStations[i]);
+            enen.copyUnitUI(eGo.GetComponent<unit>());
+            enen.setHUD();
+            eGo.GetComponent<unit>().copyUnitStats(enen);
+            eGo.GetComponent<unit>().unitName = enen.unitName;
+            enemyUnits.Add(eGo.gameObject);
+            activeEnemies += 1;
+        }
 
+        /*
         unit ene1;
         if (loader.enemy_names[0] == "Eldritch Gunner")
         {
@@ -1558,6 +1645,7 @@ public class BattleScript : MonoBehaviour
         enemyGo.GetComponent<unit>().unitName = ene1.unitName;
         enemyUnits.Add(enemyGo.gameObject);        
 
+        /*
         //Create party member 2 if possible
         if (member1Prefab && member1Station && activeUnits < loader.HPs.Length)
         {
@@ -1605,6 +1693,8 @@ public class BattleScript : MonoBehaviour
         {
             partyUnits.Add(null);
         }
+        */
+        /*
 
         //Create enemy 2 if possible
         if (enemyPrefab2 && enemyStation2 && loader.enemy_names[1] != null && loader.enemy_names[1] != "")
@@ -1656,6 +1746,7 @@ public class BattleScript : MonoBehaviour
             enemyUnits.Add(enemyGo4.gameObject);
             activeEnemies += 1;
         }
+        */
 
         //Define actions list
         actions = new List<action>();
@@ -1693,7 +1784,7 @@ public class BattleScript : MonoBehaviour
         //Display text to player, showing an enemy/enemies have appeared
         if (activeEnemies == 1)
         {
-            dialogue.text = "The " + enemyUnit.unitName + " appears.";
+            dialogue.text = "The " + enemyUnits[0].GetComponent<unit>().unitName + " appears.";
         }
         else if (activeEnemies == 2)
         {
@@ -2060,7 +2151,7 @@ public class BattleScript : MonoBehaviour
         StopCoroutine("enemyAttack");
         if (state == battleState.WIN)
         {
-            dialogue.text = "The " + enemyUnit.unitName + " has been defeated";
+            dialogue.text = "The " + enemyUnits[0].GetComponent<unit>().unitName + " has been defeated";
         }
         else if (state == battleState.LOSE)
         {
@@ -2198,7 +2289,7 @@ public class BattleScript : MonoBehaviour
             }
             else
             {
-                dialogue.text = "The " + enemyUnit.unitName + " has been defeated";
+                dialogue.text = "The " + enemyUnits[0].GetComponent<unit>().unitName + " has been defeated";
             }
         }
         else if (state == battleState.LOSE)

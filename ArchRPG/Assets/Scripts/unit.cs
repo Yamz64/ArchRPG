@@ -9,6 +9,7 @@ public class unit : MonoBehaviour
     public void copyUnitStats(unit ver)
     {
         level = ver.level;
+        currentLevelTop = (int)(2.5 * Mathf.Pow(level, 4));
         maxHP = ver.maxHP;
         currentHP = ver.currentHP;
         if (!ver.enemy)
@@ -20,11 +21,13 @@ public class unit : MonoBehaviour
         enemy = ver.enemy;
         ATK = ver.ATK;
         DEF = ver.DEF;
+        POW = ver.POW;
         WILL = ver.WILL;
         RES = ver.RES;
         AGI = ver.AGI;
         LCK = ver.LCK;
         abilities = ver.abilities;
+        position = ver.position;
     }
 
     public void copyUnitUI(unit ver)
@@ -43,6 +46,9 @@ public class unit : MonoBehaviour
             spSideText = ver.spSideText;
             spReadOut = ver.spReadOut;
         }
+        statusBackW = ver.statusBackW;
+        statusBackColor = ver.statusBackColor;
+        statusText = ver.statusText;
     }
 
     public int unitID;          //Numerical ID number of unit
@@ -89,11 +95,11 @@ public class unit : MonoBehaviour
     public Image spBar;         //Bar to project mana/skill points to
     public Text spSideText;     //SP Icon
     public Text spReadOut;      //Text showing exact number of skillpoints
-    public Image statusBackW;
-    public Image statusBackColor;
-    public Text statusText;
+    public Image statusBackW;   //White background of the status bar
+    public Image statusBackColor;   //Colored background of the status bar
+    public Text statusText;     //Text to say what status effect the unit has
 
-    //Function to set up the HUD with isportant data
+    //Function to set up the HUD with important data
     public void setHUD()        
     {
         view.sprite = Resources.Load<Sprite>(ImageFilePath);
@@ -109,24 +115,19 @@ public class unit : MonoBehaviour
         }
     }
 
-    //Get the current Hit Points of the unit
-    public int getHP()    { return currentHP;   }
+    public int getHP()      { return currentHP;   }
+    public int getSP()      { return currentSP;   }
+    public int getEXP()     { return exp; }
+    public int getSAN()     { return sanity; }
+    public int getATK()     { return ATK; }
+    public int getDEF()     { return DEF; }
+    public int getPOW()     { return POW; }
+    public int getWILL()    { return WILL; }
+    public int getRES()     { return RES; }
+    public int getAGI()     { return AGI; }
+    public int getLUCK()    { return LCK; }
 
-    //Get the current skill points/MP of the unit
-    public int getSP()    { return currentSP;   }
-
-    public int getEXP() { return exp; }
-
-    public int getSAN() { return sanity; }
-    public int getATK() { return ATK; }
-    public int getDEF() { return DEF; }
-    public int getPOW() { return POW; }
-    public int getWILL() { return WILL; }
-    public int getRES() { return RES; }
-    public int getAGI() { return AGI; }
-    public int getLUCK() { return LCK; }
-
-    //Set the current value of the HP slider
+    //Set the HP (Within bounds)
     public void setHP(int hp)
     {
         currentHP = hp;
@@ -144,7 +145,7 @@ public class unit : MonoBehaviour
         }
     }
 
-    //Set the current value of the MP slider
+    //Set the SP (within bounds)
     public void setSP(int sp)
     {
         currentSP = sp;
@@ -162,6 +163,7 @@ public class unit : MonoBehaviour
         }
     }
 
+    //Set the sanity (within bounds)
     public void setSAN(int sn)
     {
         if (sn >= 0 && sn <= 100)
@@ -225,8 +227,10 @@ public class unit : MonoBehaviour
     //Use the attack at the given index against the given target
     public bool useAttack(int index, unit target)
     {
+        //If SP isn't 0 or the unit is an enemy
         if (outOfSP == false || enemy == true)
         {
+            //Flash to show unit is attacking
             StartCoroutine(flashDealDamage());
             Ability ata = getAttack(index);
             if (!enemy)
@@ -235,6 +239,7 @@ public class unit : MonoBehaviour
             {
                 outOfSP = true;
             }
+            //Calculate damage of the attack
             int val = ata.damage + (ATK / 100);
             if (ata.damageType == 0)
             {
@@ -244,6 +249,7 @@ public class unit : MonoBehaviour
             {
                 val -= target.WILL / 200;
             }
+            //Check if target is dead from attack
             bool d = target.takeDamage(val);
             target.setHP(target.currentHP);
             if (d == false)
@@ -409,12 +415,13 @@ public class PlayerUnit : unit
     {
         unitName = "Player";
         level = lev;
+        currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
         ImageFilePath = "CharacterSprites/PC";
-        maxHP = currentHP = 17 + (20 * (lev - 1));
-        maxSP = currentSP = 14 + (4 * (lev - 1));
-        ATK = 4 + (3 * (lev - 1));
+        maxHP = currentHP = (20 * lev) + 7;
+        maxSP = currentSP = 10 + (4 * lev);
+        ATK = (int)(0.5 + (3.5 * lev));
         POW = (int)(6.5 * lev);
-        DEF = 4 + (4 * (lev - 1));
+        DEF = 4 * lev;
         WILL = (int)((5.5 * lev) + 1);
         RES = (int)((2.5 * lev) + 3.5);
         AGI = 3 * lev;
@@ -430,6 +437,7 @@ public class ShirleyUnit : unit
     {
         unitName = "Shirley";
         level = lev;
+        currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
         maxHP = currentHP = (int)(0.68 * Mathf.Pow(lev,2) + 19);
         maxSP = currentSP = (int)((7.8 * lev)+9);
         ATK = (8 * lev) + 1;
@@ -448,6 +456,7 @@ public class ClyveUnit : unit
     {
         unitName = "Clyve";
         level = lev;
+        currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
         maxHP = currentHP = (17 * lev) + 6;
         maxSP = currentSP = (int)((5.75 * lev) + 10);
         ATK = (4 * lev) + 1;
@@ -466,6 +475,7 @@ public class NormUnit : unit
     {
         unitName = "Norm";
         level = lev;
+        currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
         maxHP = currentHP = (24 * lev) + 35;
         maxSP = currentSP = (int)((2.5 * lev) + 5);
         ATK = (5 * lev) + 1;
@@ -484,6 +494,7 @@ public class JimUnit : unit
     {
         unitName = "Jim";
         level = lev;
+        currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
         maxHP = currentHP = (int)((0.7 * Mathf.Pow(lev, 2)) + 19);
         maxSP = currentSP = (int)((8.25 * lev) + 10);
         ATK = (int)((2.5 * lev) + 1);
@@ -502,6 +513,7 @@ public class EldritchPartyUnit : unit
     {
         unitName = "Eldritch Abomination";
         level = lev;
+        currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
         maxHP = currentHP = (14 * lev) + 2;
         maxSP = currentSP = (7 * lev) + 10;
         ATK = (int)((2.5 * lev) + 0.5);
@@ -525,7 +537,7 @@ public class Enemy1 : unit
 
         maxHP = 11;
         currentHP = 11;
-        level = 2;
+        level = 5;
         expGain = 30;
         enemy = true;
 
@@ -577,5 +589,8 @@ public class Enemy3 : unit
         level = 1;
         expGain = 10;
         enemy = true;
+        abilities = new List<Ability>();
+        abilities.Add(new AOERow());
+        abilities.Add(new AOELine());
     }
 }

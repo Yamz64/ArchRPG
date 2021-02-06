@@ -282,18 +282,38 @@ MonoBehaviour:
   highlighted_attack: 0
   highlighted_action: 0
   dialogue: {fileID: 1606678685}
+  partyPrefabs:
+  - {fileID: 5863634071550135657, guid: da6a1e09c149c9e46a62dc0e50c21407, type: 3}
+  - {fileID: 5863634071550135657, guid: da6a1e09c149c9e46a62dc0e50c21407, type: 3}
+  - {fileID: 5863634071550135657, guid: da6a1e09c149c9e46a62dc0e50c21407, type: 3}
+  - {fileID: 5863634071550135657, guid: da6a1e09c149c9e46a62dc0e50c21407, type: 3}
   playerPrefab: {fileID: 5863634071550135657, guid: da6a1e09c149c9e46a62dc0e50c21407, type: 3}
   member1Prefab: {fileID: 5863634071550135657, guid: da6a1e09c149c9e46a62dc0e50c21407, type: 3}
   member2Prefab: {fileID: 5863634071550135657, guid: da6a1e09c149c9e46a62dc0e50c21407, type: 3}
   member3Prefab: {fileID: 5863634071550135657, guid: da6a1e09c149c9e46a62dc0e50c21407, type: 3}
+  enemyPrefabs:
+  - {fileID: 3649797668599104361, guid: c6288666f4d0a824fba8448c5d8e8173, type: 3}
+  - {fileID: 3649797668599104361, guid: c6288666f4d0a824fba8448c5d8e8173, type: 3}
+  - {fileID: 3649797668599104361, guid: c6288666f4d0a824fba8448c5d8e8173, type: 3}
+  - {fileID: 3649797668599104361, guid: c6288666f4d0a824fba8448c5d8e8173, type: 3}
   enemyPrefab: {fileID: 3649797668599104361, guid: c6288666f4d0a824fba8448c5d8e8173, type: 3}
   enemyPrefab2: {fileID: 3649797668599104361, guid: c6288666f4d0a824fba8448c5d8e8173, type: 3}
   enemyPrefab3: {fileID: 3649797668599104361, guid: c6288666f4d0a824fba8448c5d8e8173, type: 3}
   enemyPrefab4: {fileID: 3649797668599104361, guid: c6288666f4d0a824fba8448c5d8e8173, type: 3}
+  allyStations:
+  - {fileID: 1489905312}
+  - {fileID: 698593766}
+  - {fileID: 375501834}
+  - {fileID: 173307079}
   playerStation: {fileID: 1489905312}
   member1Station: {fileID: 698593766}
   member2Station: {fileID: 375501834}
   member3Station: {fileID: 173307079}
+  targetStations:
+  - {fileID: 974848988}
+  - {fileID: 1314743688}
+  - {fileID: 1163937706}
+  - {fileID: 1286840832}
   enemyStation: {fileID: 974848988}
   enemyStation2: {fileID: 1314743688}
   enemyStation3: {fileID: 1163937706}
