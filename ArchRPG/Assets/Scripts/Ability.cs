@@ -295,6 +295,19 @@ public class status1 : Ability
     }
 }
 
+public class AOEStatus1 : Ability
+{
+    public AOEStatus1()
+    {
+        name = "Burst Toxin";
+        cost = 0;
+        target = 1;
+        damage = 0;
+        damageType = 0;
+        statusEffect = "Poison";
+    }
+}
+
 
 public static class EldritchAbilities
 {

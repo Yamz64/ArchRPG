@@ -90,30 +90,16 @@ public class BattleScript : MonoBehaviour
 
     //GameObjects to use as basis for battle characters
     public List<GameObject> partyPrefabs;
-    public GameObject playerPrefab;
-    public GameObject member1Prefab; public GameObject member2Prefab; public GameObject member3Prefab;
 
     public List<GameObject> enemyPrefabs;
-    public GameObject enemyPrefab;
-    public GameObject enemyPrefab2; public GameObject enemyPrefab3; public GameObject enemyPrefab4;
 
     //Locations to spawn characters at
     public List<Transform> allyStations;
-    public Transform playerStation;
-    public Transform member1Station; public Transform member2Station; public Transform member3Station;
 
     public List<Transform> targetStations;
-    public Transform enemyStation;
-    public Transform enemyStation2; public Transform enemyStation3; public Transform enemyStation4;
 
     //List of party spawn locations
     private List<Transform> partyStations;
-
-    //Units to use in battle
-    unit playerUnit;
-    unit member1Unit; unit member2Unit; unit member3Unit;
-    unit enemyUnit;
-    unit enemyUnit2; unit enemyUnit3; unit enemyUnit4;
 
     //List of party units
     private List<GameObject> partyUnits;
@@ -1341,7 +1327,6 @@ public class BattleScript : MonoBehaviour
     //Swap 2 units in order of selection
     public void PerformSwaps()
     {
-        //Debug.Log("swapInds.size == " + swapInds.Count);
         if (swaps.Count == swapInds.Count)
         {
             partyStations[swapInds[0]] = p2;
@@ -1393,14 +1378,6 @@ public class BattleScript : MonoBehaviour
                 }
             }
         }
-        //StartCoroutine(performActions());
-            /*
-            while (enemyUnits[v].GetComponent<unit>().currentHP <= 0) v++;
-            if (v < enemyUnits.Count)
-            {
-                StartCoroutine(enemyAttack(v));
-            }
-            */
     }
 
     //Perform the selected actions, after they have been selected
@@ -1578,20 +1555,6 @@ public class BattleScript : MonoBehaviour
             activeUnits += 1;
         }
         while (partyUnits.Count != 4) partyUnits.Add(null);
-        /*
-        unit p1 = new PlayerUnit(loader.levels[0]);
-        p1.currentHP = loader.HPs[0];
-        //Create player unit
-        GameObject playerGo = Instantiate(playerPrefab, playerStation);
-        playerGo = loader.updateUnit(playerGo, 0);
-        playerUnit = playerGo.GetComponent<unit>();
-        p1.copyUnitUI(playerUnit);
-        playerUnit = p1;
-        playerUnit.setHUD();
-        playerGo.GetComponent<unit>().copyUnitStats(p1);
-        partyUnits.Add(playerGo.gameObject);
-        partyNames.Add(playerGo.GetComponent<unit>().unitName);
-        */
 
         for (int i = 0; i < loader.enemy_names.Length; i++)
         {
@@ -1620,133 +1583,6 @@ public class BattleScript : MonoBehaviour
             enemyUnits.Add(eGo.gameObject);
             activeEnemies += 1;
         }
-
-        /*
-        unit ene1;
-        if (loader.enemy_names[0] == "Eldritch Gunner")
-        {
-            ene1 = new Enemy1();
-        }
-        else if (loader.enemy_names[0] == "Debuffer")
-        {
-            ene1 = new Enemy2();
-        }
-        else
-        {
-            ene1 = new Enemy3();
-        }
-        //Debug.Log("Enemy 0 is " + ene1.unitName);
-        //Create enemy unit
-        GameObject enemyGo = Instantiate(enemyPrefab, enemyStation);
-        ene1.copyUnitUI(enemyGo.GetComponent<unit>());
-        enemyUnit = ene1;
-        enemyUnit.setHUD();
-        enemyGo.GetComponent<unit>().copyUnitStats(ene1);
-        enemyGo.GetComponent<unit>().unitName = ene1.unitName;
-        enemyUnits.Add(enemyGo.gameObject);        
-
-        /*
-        //Create party member 2 if possible
-        if (member1Prefab && member1Station && activeUnits < loader.HPs.Length)
-        {
-            GameObject member1Go = Instantiate(member1Prefab, member1Station);
-            member1Go = loader.updateUnit(member1Go, activeUnits);
-            member1Unit = member1Go.GetComponent<unit>();
-            member1Unit.setHUD();
-            partyUnits.Add(member1Go.gameObject);
-            partyNames.Add(member1Go.GetComponent<unit>().unitName);
-            activeUnits += 1;
-        }
-        else
-        {
-            partyUnits.Add(null);
-        }
-
-        //Create party member 3 if possible
-        if (member2Station && activeUnits < loader.HPs.Length)
-        {
-            GameObject member2Go = Instantiate(member2Prefab, member2Station);
-            member2Go = loader.updateUnit(member2Go, activeUnits);
-            member2Unit = member2Go.GetComponent<unit>();
-            member2Unit.setHUD();
-            partyUnits.Add(member2Go.gameObject);
-            partyNames.Add(member2Go.GetComponent<unit>().unitName);
-            activeUnits += 1;
-        }
-        else
-        {
-            partyUnits.Add(null);
-        }
-
-        //Create party member 4 if possible
-        if (member3Station && activeUnits < loader.HPs.Length)
-        {
-            GameObject member3Go = Instantiate(member3Prefab, member3Station);
-            member3Go = loader.updateUnit(member3Go, activeUnits);
-            member3Unit = member3Go.GetComponent<unit>();
-            member3Unit.setHUD();
-            partyUnits.Add(member3Go.gameObject);
-            partyNames.Add(member3Go.GetComponent<unit>().unitName);
-            activeUnits += 1;
-        }
-        else
-        {
-            partyUnits.Add(null);
-        }
-        */
-        /*
-
-        //Create enemy 2 if possible
-        if (enemyPrefab2 && enemyStation2 && loader.enemy_names[1] != null && loader.enemy_names[1] != "")
-        {
-            unit ene;
-            if (loader.enemy_names[1] == "Eldritch Gunner") { ene = new Enemy1(); }
-            else if (loader.enemy_names[1] == "Debuffer") { ene = new Enemy2(); }
-            else { ene = new Enemy3(); }
-            GameObject enemyGo2 = Instantiate(enemyPrefab2, enemyStation2);
-            ene.copyUnitUI(enemyGo2.GetComponent<unit>());
-            enemyUnit2 = ene;
-            enemyUnit2.setHUD();
-            enemyGo2.GetComponent<unit>().copyUnitStats(ene);
-            enemyGo2.GetComponent<unit>().unitName = ene.unitName;
-            enemyUnits.Add(enemyGo2.gameObject);
-            activeEnemies += 1;
-        }
-
-        //Create enemy 3 if possible
-        if (enemyPrefab3 && enemyStation3 && loader.enemy_names[2] != null && loader.enemy_names[2] != "")
-        {
-            unit ene;
-            if (loader.enemy_names[2] == "Eldritch Gunner") { ene = new Enemy1(); }
-            else if (loader.enemy_names[2] == "Debuffer") { ene = new Enemy2(); }
-            else { ene = new Enemy3(); }
-            GameObject enemyGo3 = Instantiate(enemyPrefab3, enemyStation3);
-            ene.copyUnitUI(enemyGo3.GetComponent<unit>());
-            enemyUnit3 = ene;
-            enemyUnit3.setHUD();
-            enemyGo3.GetComponent<unit>().copyUnitStats(ene);
-            enemyGo3.GetComponent<unit>().unitName = ene.unitName;
-            enemyUnits.Add(enemyGo3.gameObject);
-            activeEnemies += 1;
-        }
-
-        //Create enemy 4 if possible
-        if (enemyPrefab4 && enemyStation4 && loader.enemy_names[3] != null && loader.enemy_names[3] != "")
-        {
-            unit ene;
-            if (loader.enemy_names[3] == "Eldritch Gunner")    {    ene = new Enemy1();    }
-            else if (loader.enemy_names[3] == "Debuffer")    {    ene = new Enemy2();   }
-            else    {    ene = new Enemy3();    }
-            GameObject enemyGo4 = Instantiate(enemyPrefab4, enemyStation4);
-            ene.copyUnitUI(enemyGo4.GetComponent<unit>());
-            enemyUnit4 = ene;
-            enemyUnit4.setHUD();
-            enemyGo4.GetComponent<unit>().copyUnitStats(ene);
-            enemyGo4.GetComponent<unit>().unitName = ene.unitName;
-            enemyUnits.Add(enemyGo4.gameObject);
-            activeEnemies += 1;
-        }
-        */
 
         //Define actions list
         actions = new List<action>();
@@ -1891,8 +1727,8 @@ public class BattleScript : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        playerUnit.healDamage(hel);
-        playerUnit.setHP(playerUnit.currentHP);
+        partyUnits[0].GetComponent<unit>().healDamage(hel);
+        partyUnits[0].GetComponent<unit>().setHP(partyUnits[0].GetComponent<unit>().currentHP);
 
         state = battleState.ENEMY;
         StartCoroutine(enemyAttack(0));
@@ -2239,11 +2075,13 @@ public class BattleScript : MonoBehaviour
         swaps = new List<GameObject>();
 
         //Add unit spawn spots to list
+        /*
         partyStations = new List<Transform>();
         partyStations.Add(playerStation.transform);
         partyStations.Add(member1Station.transform);
         partyStations.Add(member2Station.transform);
         partyStations.Add(member3Station.transform);
+        */
 
         
         partyUnits = new List<GameObject>();

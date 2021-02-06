@@ -526,6 +526,35 @@ public class EldritchPartyUnit : unit
     }
 }
 
+public class NewKidUnit : unit
+{
+    public NewKidUnit()
+    {
+        unitID = 5;
+        unitName = "New Kid";
+
+        level = 5;
+
+        maxHP = currentHP = 102;
+        expGain = 50;
+        enemy = true;
+
+        ATK = 50;
+        POW = 45;
+        DEF = 26;
+        WILL = 30;
+        RES = 13;
+        AGI = 40;
+        LCK = 1;
+
+        abilities = new List<Ability>();
+        abilities.Add(new AOEStatus1());
+        abilities.Add(new Basic());
+        abilities.Add(new AOELine());
+
+    }
+}
+
 //First basic enemy
 public class Enemy1 : unit
 {
@@ -535,8 +564,7 @@ public class Enemy1 : unit
         unitID = -1;
         unitName = "Eldritch Gunner";
 
-        maxHP = 11;
-        currentHP = 11;
+        maxHP = currentHP = 11;
         level = 5;
         expGain = 30;
         enemy = true;

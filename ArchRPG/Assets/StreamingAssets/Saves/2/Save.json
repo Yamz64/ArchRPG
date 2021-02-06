@@ -77,7 +77,7 @@
         {
             "name": "TestWeapon",
             "description": "A weapon of code!  Made for debugging so it's not really good...",
-            "image_file_path": "ItemSprites/TestWeaponIcon",
+            "image_file_path": "ItemSprites/Weapon_1",
             "amount": 1,
             "limit": 1,
             "type": 1
@@ -85,15 +85,15 @@
         {
             "name": "TestArmor",
             "description": "A suit of armor made of code!  Awkward and clunky, just like a programmer's first draft...",
-            "image_file_path": "ItemSprites/TestArmorIcon",
+            "image_file_path": "ItemSprites/Armor_1",
             "amount": 1,
             "limit": 1,
             "type": 2
         },
         {
             "name": "TestTrinket",
-            "description": "The jewel on the ring is value at 1 bit!  Not one bitcoin, like an actual bit of memory...",
-            "image_file_path": "ItemSprites/TestTrinketIcon",
+            "description": "The jewel on the ring is valued at 1 bit!  Not one bitcoin, like an actual bit of memory...",
+            "image_file_path": "ItemSprites/Trinket_1",
             "amount": 1,
             "limit": 1,
             "type": 3
