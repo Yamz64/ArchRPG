@@ -562,6 +562,7 @@ MonoBehaviour:
   sanity: 0
   ATK: 0
   DEF: 0
+  POW: 0
   WILL: 0
   RES: 0
   AGI: 0
@@ -740,8 +741,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6.1, y: 16}
-  m_SizeDelta: {x: 301.63516, y: 20.39354}
+  m_AnchoredPosition: {x: 10.93, y: 16}
+  m_SizeDelta: {x: 291.96988, y: 20.39354}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6299320543385978536
 CanvasRenderer:
@@ -815,8 +816,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -192.4, y: 0.71146}
-  m_SizeDelta: {x: 91.27832, y: 36.070618}
+  m_AnchoredPosition: {x: -186.55, y: 0.71146}
+  m_SizeDelta: {x: 102.98598, y: 36.070618}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3426166615052265597
 CanvasRenderer:

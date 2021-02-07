@@ -281,7 +281,7 @@ public class BattleScript : MonoBehaviour
         //loop through the item viewer and set the corresponding item name to the corresponding viewer position along with the amount
         for (int i=0; i<item_viewer_name.Count; i++)
         {
-
+            Debug.Log("Data == NULL? --> " + data == null);
             if (i + inventory_offset < data.GetInventorySize())
             {
                 item_viewer_name[i].text = data.GetItem(i + inventory_offset).name;

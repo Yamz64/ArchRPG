@@ -6,6 +6,11 @@ using UnityEngine.UI;
 //Game script to use for battle units
 public class unit : MonoBehaviour
 {
+    public unit()
+    {
+        status = "";
+        abilities = new List<Ability>();
+    }
     public void copyUnitStats(unit ver)
     {
         level = ver.level;
@@ -68,7 +73,7 @@ public class unit : MonoBehaviour
     public int RES;             //Resistance stat of unit
     public int AGI;             //Agility stat of unit
     public int LCK;             //Luck stat of unit
-    public string status = "";  //String to say what status effect the unit has
+    public string status;  //String to say what status effect the unit has
     public int statusCounter = 0;   //Int to track how many more turns the unit will have the status for
 
 
@@ -76,7 +81,7 @@ public class unit : MonoBehaviour
     public bool enemy;          //Whether the unit is an enemy unit or not
     public bool outOfSP;        //Bool to say whether a unit has no more SP for attacks (party)
     public int position;        //0 == Frontline, 1 == Backline
-    public List<Ability> abilities = new List<Ability>();   //List of attacks the unit can perform
+    public List<Ability> abilities;   //List of attacks the unit can perform
     public Weapon unitWeapon;   //The weapon the unit is holding
     public Armor unitArmor;     //The armor the unit is wearing
     public Trinket unitTrinket; //The trinket that the unit has
