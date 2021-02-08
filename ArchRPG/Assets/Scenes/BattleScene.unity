@@ -204,8 +204,8 @@ GameObject:
   - component: {fileID: 43254539}
   - component: {fileID: 43254543}
   - component: {fileID: 43254540}
-  - component: {fileID: 43254541}
   - component: {fileID: 43254542}
+  - component: {fileID: 43254541}
   m_Layer: 0
   m_Name: BattleSystem
   m_TagString: Untagged
