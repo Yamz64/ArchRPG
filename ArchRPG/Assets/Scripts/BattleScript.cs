@@ -1545,6 +1545,7 @@ public class BattleScript : MonoBehaviour
             //Debug.Log("P is null? --> " + (p == null));
             p.setHUD();
             unitGo.GetComponent<UnitMono>().mainUnit.copyUnitStats(p);
+            if (i == 2 || i == 3) unitGo.GetComponent<UnitMono>().mainUnit.position = 1;
             partyUnits.Add(unitGo.gameObject);
             partyNames.Add(unitGo.GetComponent<UnitMono>().mainUnit.unitName);
             activeUnits += 1;
@@ -1671,13 +1672,38 @@ public class BattleScript : MonoBehaviour
     //Deal damage to enemy, check if it is dead, and act accordingly (win battle or enemy turn)
     IEnumerator playerAttack(int ata, int val, unit uni, unit target)
     {
+        bool dead = false;
+        bool deadL = false;
+        bool deadR = false;
+
         //dialogue.text = "Player used " + ata.name;
 
         yield return new WaitForSeconds(1f);
 
-        bool dead = uni.useAttack(ata, target);
+        dead = uni.useAttack(ata, target);
         StartCoroutine(flashDamage(target));
         StartCoroutine(flashDealDamage(uni));
+        if (uni.abilities[ata].target == 1)
+        {
+            if (val - 1 >= 0)
+            {
+                if (enemyUnits[val - 1] != null && enemyUnits[val-1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                {
+                    deadL = uni.useAttack(ata, enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit);
+                    StartCoroutine(flashDamage(enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit));
+                    StartCoroutine(flashDealDamage(uni));
+                }
+            }
+            if (val + 1 <= 3)
+            {
+                if (enemyUnits[val + 1] != null && enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                {
+                    deadR = uni.useAttack(ata, enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit);
+                    StartCoroutine(flashDamage(enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit));
+                    StartCoroutine(flashDealDamage(uni));
+                }
+            }
+        }
 
         yield return new WaitForSeconds(1f);
 
@@ -1687,13 +1713,26 @@ public class BattleScript : MonoBehaviour
             enemyDeaths++;
             StartCoroutine(unitDeath(target));
             yield return levelUp(target.giveEXP(), uni);
-            if (enemyDeaths == enemyUnits.Count)
-            {
-                state = battleState.WIN;
-                battleEnd();
-            }
         }
-        
+        if (deadL)
+        {
+            enemyDeaths++;
+            StartCoroutine(unitDeath(enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit));
+            yield return levelUp(enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.giveEXP(), uni);
+        }
+        if (deadR)
+        {
+            enemyDeaths++;
+            StartCoroutine(unitDeath(enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit));
+            yield return levelUp(enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.giveEXP(), uni);
+        }
+
+        if (enemyDeaths == enemyUnits.Count)
+        {
+            state = battleState.WIN;
+            battleEnd();
+        }
+
     }
 
     //Use a basic attack against the target, and act accordin
@@ -1752,6 +1791,7 @@ public class BattleScript : MonoBehaviour
     }
 
     //Deal damage to player, check if they're dead, and act accordingly (lose battle or player turn)
+    //Prototype version of function below
     IEnumerator enemyAttack(int x)
     {
         bool dead = false;
@@ -1902,64 +1942,123 @@ public class BattleScript : MonoBehaviour
         bool dead2 = false;
         int r2 = 0;
 
+        List<bool> deads = new List<bool>();
+        List<int> rs = new List<int>();
+        
+
         yield return new WaitForSeconds(1f);
 
         dead = uni.useAttack(ata, target);
-        
+        StartCoroutine(flashDamage(target));
+        StartCoroutine(flashDealDamage(uni)); 
+
+        //If it is a horizontal AOE attack
         if (uni.abilities[ata].target == 1)
         {
-            if ((val == 1 || val == 3) && partyUnits[val - 1] != null && partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+            //If target is on the right
+            if ((val == 1 || val == 3) && partyUnits[val - 1] != null && 
+                partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
             {
                 dead2 = uni.useAttack(ata, partyUnits[val - 1].GetComponent<UnitMono>().mainUnit);
+                StartCoroutine(flashDamage(partyUnits[val-1].GetComponent<UnitMono>().mainUnit));
+                StartCoroutine(flashDealDamage(uni));
                 r2 = val - 1;
             }
-            else if ((val == 0 || val == 2) && partyUnits[val + 1] != null && partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+            //If target is on the left
+            else if ((val == 0 || val == 2) && partyUnits[val + 1] != null && 
+                partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
             {
                 dead2 = uni.useAttack(ata, partyUnits[val + 1].GetComponent<UnitMono>().mainUnit);
+                StartCoroutine(flashDamage(partyUnits[val + 1].GetComponent<UnitMono>().mainUnit));
+                StartCoroutine(flashDealDamage(uni));
                 r2 = val + 1;
             }
         }
+        //If it is a vertical AOE attack
         else if (uni.abilities[ata].target == 2)
         {
-            if ((val == 0 || val == 1) && partyUnits[val + 2] != null && partyUnits[val + 2].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+            //If target is in the front line
+            if ((val == 0 || val == 1) && partyUnits[val + 2] != null && 
+                partyUnits[val + 2].GetComponent<UnitMono>().mainUnit.currentHP > 0)
             {
                 dead2 = uni.useAttack(ata, partyUnits[val + 2].GetComponent<UnitMono>().mainUnit);
+                StartCoroutine(flashDamage(partyUnits[val + 2].GetComponent<UnitMono>().mainUnit));
+                StartCoroutine(flashDealDamage(uni));
                 r2 = val + 2;
             }
-            else if ((val == 2 || val == 3) && partyUnits[val - 2] != null && partyUnits[val - 2].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+            //If target is in the back line
+            else if ((val == 2 || val == 3) && partyUnits[val - 2] != null && 
+                partyUnits[val - 2].GetComponent<UnitMono>().mainUnit.currentHP > 0)
             {
                 dead2 = uni.useAttack(ata, partyUnits[val - 2].GetComponent<UnitMono>().mainUnit);
+                StartCoroutine(flashDamage(partyUnits[val - 2].GetComponent<UnitMono>().mainUnit));
+                StartCoroutine(flashDealDamage(uni));
                 r2 = val - 2;
+            }
+        }
+
+        else if (uni.abilities[ata].target == 3)
+        {
+            for (int i = 0; i < partyUnits.Count; i++)
+            {
+                if (i != val && partyUnits[i] != null &&
+                partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                {
+                    bool now = uni.useAttack(ata, partyUnits[i].GetComponent<UnitMono>().mainUnit);
+                    StartCoroutine(flashDamage(partyUnits[i].GetComponent<UnitMono>().mainUnit));
+                    StartCoroutine(flashDealDamage(uni));
+                    rs.Add(i);
+                    deads.Add(now);
+                }
             }
         }
 
         yield return new WaitForSeconds(1f);
         //If enemy is dead, battle is won
-        if (dead && !dead2)
+        if (uni.abilities[ata].target <= 2)
         {
-            partyDeaths++;
-            StartCoroutine(unitDeath(target));
-            if (partyDeaths == partyUnits.Count)
+            if (dead && !dead2)
             {
-                state = battleState.LOSE;
-                battleEnd();
+                partyDeaths++;
+                StartCoroutine(unitDeath(target));
+                if (partyDeaths == partyUnits.Count)
+                {
+                    state = battleState.LOSE;
+                    battleEnd();
+                }
+            }
+            else if (!dead && dead2)
+            {
+                partyDeaths++;
+                StartCoroutine(unitDeath(target));
+                if (partyDeaths == partyUnits.Count)
+                {
+                    state = battleState.LOSE;
+                    battleEnd();
+                }
+            }
+            else if (dead && dead2)
+            {
+                partyDeaths += 2;
+                StartCoroutine(unitDeath(partyUnits[val].GetComponent<UnitMono>().mainUnit));
+                StartCoroutine(unitDeath(partyUnits[r2].GetComponent<UnitMono>().mainUnit));
+                if (partyDeaths == partyUnits.Count)
+                {
+                    state = battleState.LOSE;
+                    battleEnd();
+                }
             }
         }
-        else if (!dead && dead2)
+        else if (uni.abilities[ata].target == 3)
         {
-            partyDeaths++;
-            StartCoroutine(unitDeath(target));
-            if (partyDeaths == partyUnits.Count)
+            for (int i = 0; i < deads.Count; i++)
             {
-                state = battleState.LOSE;
-                battleEnd();
+                if (deads[i] == true)
+                {
+                    partyDeaths += 1;
+                    StartCoroutine(unitDeath(partyUnits[rs[i]].GetComponent<UnitMono>().mainUnit));
+                }
             }
-        }
-        else if (dead && dead2)
-        {
-            partyDeaths += 2;
-            StartCoroutine(unitDeath(partyUnits[val].GetComponent<UnitMono>().mainUnit));
-            StartCoroutine(unitDeath(partyUnits[r2].GetComponent<UnitMono>().mainUnit));
             if (partyDeaths == partyUnits.Count)
             {
                 state = battleState.LOSE;

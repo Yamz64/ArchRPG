@@ -591,17 +591,18 @@ public class Enemy1 : unit
         unitID = -1;
         unitName = "Eldritch Gunner";
 
-        maxHP = currentHP = 11;
         level = 5;
+        maxHP = currentHP = (int)(0.67 * Math.Pow(level, 2)) + 19;
         expGain = 30;
         enemy = true;
 
-        ATK = 1;
-        DEF = 0;
-        WILL = 2;
-        RES = 4;
-        AGI = 2;
-
+        ATK = 10 * level;
+        DEF = (5 * level) + 1;
+        POW = 11 * level;
+        WILL = (5 * level) + 1;
+        RES = (4 * level) + 3;
+        AGI = 2 * level;
+        LCK = 0;
 
         abilities = new List<Ability>();
         abilities.Add(new Basic());
@@ -618,11 +619,18 @@ public class Enemy2 : unit
         unitID = -2;
         unitName = "Debuffer";
 
-        maxHP = 8;
-        currentHP = 8;
-        level = 3;
-        expGain = 30;
+        level = 4;
+        maxHP = currentHP = (14 * level) + 2;
+        expGain = 40;
         enemy = true;
+
+        ATK = 7 * level;
+        DEF = (4 * level) + 1;
+        POW = 13 * level;
+        WILL = (5 * level) + 1;
+        RES = (5 * level) + 3;
+        AGI = 3 * level;
+        LCK = 1;
 
         abilities = new List<Ability>();
         abilities.Add(new Basic());
@@ -639,11 +647,19 @@ public class Enemy3 : unit
         unitID = -3;
         unitName = "NormalEnemy";
 
-        maxHP = 9;
-        currentHP = 9;
-        level = 1;
+        level = 3;
+        maxHP = currentHP = (24 * level);
         expGain = 10;
         enemy = true;
+
+        ATK = 7 * level;
+        DEF = (9 * level) + 1;
+        POW = 7 * level;
+        WILL = (7 * level) + 1;
+        RES = (6 * level) + 3;
+        AGI = 2 * level;
+        LCK = 0;
+
         abilities = new List<Ability>();
         abilities.Add(new AOERow());
         abilities.Add(new AOELine());
