@@ -5,78 +5,41 @@ using UnityEngine.UI;
 
 public class UnitMono : MonoBehaviour
 {
-    public unit mainUnit;
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
+        //Debug.Log("Unit before start: " + (mainUnit == null));
         mainUnit = new unit();
-        mainUnit.unitID = unitID;
-        mainUnit.unitName = unitName;
-        mainUnit.level = level;
-        mainUnit.currentLevelTop = currentLevelTop;
-        mainUnit.exp = exp;
-        mainUnit.maxHP = maxHP;
-        mainUnit.currentHP = currentHP;
-        mainUnit.maxSP = maxSP;
-        mainUnit.currentSP = currentSP;
-        mainUnit.sanity = sanity;
-        mainUnit.ATK = ATK;
-        mainUnit.DEF = DEF;
-        mainUnit.POW = POW;
-        mainUnit.WILL = WILL;
-        mainUnit.RES = RES;
-        mainUnit.AGI = AGI;
-        mainUnit.LCK = LCK;
+        //Debug.Log("Unit after start: " + (mainUnit == null));
+
         mainUnit.status = "";
-        mainUnit.statusCounter = 0;
 
         mainUnit.player = player;
         mainUnit.enemy = enemy;
-        mainUnit.outOfSP = outOfSP;
-        /*
-        position;
-        abilities;
-        unitWeapon;
-        unitArmor;
-        unitTrinket;
+        mainUnit.position = position;
+        mainUnit.abilities = new List<Ability>();
+        //Debug.Log("ab null --> " + (mainUnit.abilities == null));
 
-
-
-        ImageFilePath;
-        view;
-        nameText;
-        BBackground;
-        WBackground;
-        levelText;
-        hpBar;
-        hpSideText;
-        hpReadOut;
-        spBar;
-        spSideText;
-        spReadOut;
-        statusBackW;
-        statusBackColor;
-        statusText;
-        */
+        mainUnit.view = view;
+        //Debug.Log("View from mono null? == " + (mainUnit.view == null));
+        mainUnit.nameText = nameText;
+        mainUnit.BBackground = BBackground;
+        mainUnit.WBackground = WBackground;
+        mainUnit.levelText = levelText;
+        mainUnit.hpBar = hpBar;
+        mainUnit.hpSideText = hpSideText;
+        mainUnit.hpReadOut = hpReadOut;
+        if (!enemy)
+        {
+            mainUnit.spBar = spBar;
+            mainUnit.spSideText = spSideText;
+            mainUnit.spReadOut = spReadOut;
+        }
+        mainUnit.statusBackW = statusBackW;
+        mainUnit.statusBackColor = statusBackColor;
+        mainUnit.statusText = statusText;
     }
 
-    public int unitID;          //Numerical ID number of unit
-    public string unitName;     //Name of the unit
-    public int level;           //Level of the unit
-    public int currentLevelTop; //Limit for next level
-    public int exp;             //The amount of experience the unit has
-    public int maxHP;           //Maximum HP possible
-    public int currentHP;       //Current Hit points
-    public int maxSP;           //Maximum SP possible
-    public int currentSP;       //Current Skill Points
-    public int sanity;          //The sanity of the unit
-    public int ATK;             //Attack stat of unit
-    public int DEF;             //Defense stat of unit
-    public int POW;             //Power stat of unit
-    public int WILL;            //Willpower stat of unit
-    public int RES;             //Resistance stat of unit
-    public int AGI;             //Agility stat of unit
-    public int LCK;             //Luck stat of unit
+    public unit mainUnit;
     public string status;  //String to say what status effect the unit has
     public int statusCounter = 0;   //Int to track how many more turns the unit will have the status for
 

@@ -520,22 +520,24 @@ public class CharacterStatJsonConverter
 
     public GameObject updateUnit(GameObject id, int num)
     {
+        unit g = id.GetComponent<UnitMono>().mainUnit;
         if (num < HPs.Length)
         {
-            id.GetComponent<unit>().maxHP = HPs[num];
-            id.GetComponent<unit>().currentHP = HPs[num];
-            id.GetComponent<unit>().maxSP = SPs[num];
-            id.GetComponent<unit>().currentSP = SPs[num];
-            id.GetComponent<unit>().sanity = SANs[num];
-            id.GetComponent<unit>().exp = XPs[num];
-            id.GetComponent<unit>().level = levels[num];
+            g.maxHP = HPs[num];
+            g.currentHP = HPs[num];
+            g.maxSP = SPs[num];
+            g.currentSP = SPs[num];
+            g.sanity = SANs[num];
+            g.exp = XPs[num];
+            g.level = levels[num];
             if (weapons[num] != null)
-                id.GetComponent<unit>().unitWeapon = weapons[num];
+                g.unitWeapon = weapons[num];
             if (armors[num] != null)
-                id.GetComponent<unit>().unitArmor = armors[num];
+                g.unitArmor = armors[num];
             if (trinkets[num] != null)
-                id.GetComponent<unit>().unitTrinket = trinkets[num];
-            id.GetComponent<unit>().unitName = names[num];
+                g.unitTrinket = trinkets[num];
+            g.unitName = names[num];
+            id.GetComponent<UnitMono>().mainUnit = g;
             return id;
         }
         else
@@ -546,17 +548,18 @@ public class CharacterStatJsonConverter
 
     public void storeUnit(GameObject id, int num)
     {
+        unit go = id.GetComponent<UnitMono>().mainUnit;
         if (num < HPs.Length)
         {
-            HPs[num] = id.GetComponent<unit>().currentHP;
-            SPs[num] = id.GetComponent<unit>().currentSP;
-            SANs[num] = id.GetComponent<unit>().sanity;
-            XPs[num] = id.GetComponent<unit>().exp;
-            levels[num] = id.GetComponent<unit>().level;
-            weapons[num] = id.GetComponent<unit>().unitWeapon;
-            armors[num] = id.GetComponent<unit>().unitArmor;
-            trinkets[num] = id.GetComponent<unit>().unitTrinket;
-            names[num] = id.GetComponent<unit>().unitName;
+            HPs[num] = go.currentHP;
+            SPs[num] = go.currentSP;
+            SANs[num] = go.sanity;
+            XPs[num] = go.exp;
+            levels[num] = go.level;
+            weapons[num] = go.unitWeapon;
+            armors[num] = go.unitArmor;
+            trinkets[num] = go.unitTrinket;
+            names[num] = go.unitName;
         }
     }
 

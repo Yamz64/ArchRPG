@@ -925,7 +925,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5863634071550135658}
-  - component: {fileID: 686491585017544300}
+  - component: {fileID: 8244407330679792468}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -954,7 +954,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &686491585017544300
+--- !u!114 &8244407330679792468
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -963,18 +963,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 5863634071550135657}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93693d66b1eec4d4d90e87ce7e3c9edf, type: 3}
+  m_Script: {fileID: 11500000, guid: 19c2303a1f4ed0a4482e17792c4bb84c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   unitID: 0
-  unitName: Conspiracy Guy
+  unitName: 
   level: 0
-  currentLevelTop: 20
+  currentLevelTop: 0
   exp: 0
-  maxHP: 20
-  currentHP: 20
-  maxSP: 10
-  currentSP: 10
+  maxHP: 0
+  currentHP: 0
+  maxSP: 0
+  currentSP: 0
   sanity: 0
   ATK: 0
   DEF: 0
@@ -985,7 +985,7 @@ MonoBehaviour:
   LCK: 0
   status: 
   statusCounter: 0
-  player: 1
+  player: 0
   enemy: 0
   outOfSP: 0
   position: 0
@@ -1046,8 +1046,6 @@ MonoBehaviour:
   statusBackW: {fileID: 976114408232130404}
   statusBackColor: {fileID: 7469232624184205837}
   statusText: {fileID: 3097408027960065870}
-  expGain: 0
-  rewards: []
 --- !u!1 &5863634073337913566
 GameObject:
   m_ObjectHideFlags: 0

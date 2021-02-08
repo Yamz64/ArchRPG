@@ -1,14 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 //Game script to use for battle units
-public class unit : MonoBehaviour
+public class unit
 {
     public unit()
     {
-        status = "";
         abilities = new List<Ability>();
     }
     public void copyUnitStats(unit ver)
@@ -37,7 +37,9 @@ public class unit : MonoBehaviour
 
     public void copyUnitUI(unit ver)
     {
-        view = ver.view;          
+        //Debug.Log("View1 from ver null? == " + (view == null));
+        view = ver.view;
+        //Debug.Log("View from ver null? == " + (view == null));
         nameText = ver.nameText;       
         BBackground = ver.BBackground;   
         WBackground = ver.WBackground;   
@@ -107,6 +109,7 @@ public class unit : MonoBehaviour
     //Function to set up the HUD with important data
     public void setHUD()        
     {
+        //Debug.Log("View for p null? == " + (view == null));
         view.sprite = Resources.Load<Sprite>(ImageFilePath);
         nameText.text = unitName;
         levelText.text = "Lvl : " + level;
@@ -199,7 +202,7 @@ public class unit : MonoBehaviour
         exp += val;
         if (exp >= currentLevelTop)
         {
-           StartCoroutine(flashLevel());
+            //StartCoroutine(flashLevel());
             if (level < 20) level += 1;
             currentLevelTop = (int)(2.5 * Mathf.Pow(level, 4));
             exp = 0;
@@ -237,7 +240,7 @@ public class unit : MonoBehaviour
         if (outOfSP == false || enemy == true)
         {
             //Flash to show unit is attacking
-            StartCoroutine(flashDealDamage());
+            //StartCoroutine(flashDealDamage());
             Ability ata = getAttack(index);
             if (!enemy)
             setSP(currentSP - ata.cost);
@@ -262,7 +265,7 @@ public class unit : MonoBehaviour
             {
                 if (ata.statusEffect == "")
                 {
-                    int r = Random.Range(1, 101);
+                    int r = UnityEngine.Random.Range(1, 101);
                     if (r > target.RES || r == 1)
                     {
                         target.giveStatus(ata.damageType);
@@ -281,7 +284,7 @@ public class unit : MonoBehaviour
     //Adjust the health of the slide to reflect damage taken
     public bool takeDamage(int dam)
     {
-        StartCoroutine(flashDamage());
+        //StartCoroutine(flashDamage());
         currentHP -= dam;
         if (currentHP <= 0)
         {
@@ -300,7 +303,7 @@ public class unit : MonoBehaviour
     //Adjust the health of the slider to reflect damage healed
     public void healDamage(int ep)
     {
-        StartCoroutine(flashHeal());
+        //StartCoroutine(flashHeal());
         currentHP += ep;
         if (currentHP > maxHP)
         {
@@ -330,7 +333,9 @@ public class unit : MonoBehaviour
                 statusCounter = 1;
             }
             statusText.text = status;
-            transform.Find("Status").gameObject.SetActive(true);
+            statusBackW.gameObject.SetActive(true);
+            statusBackColor.gameObject.SetActive(true);
+            statusText.gameObject.SetActive(true);
         }
     }
 
@@ -349,7 +354,9 @@ public class unit : MonoBehaviour
                 statusCounter = 1;
             }
             statusText.text = status;
-            transform.Find("Status").gameObject.SetActive(true);
+            statusBackW.gameObject.SetActive(true);
+            statusBackColor.gameObject.SetActive(true);
+            statusText.gameObject.SetActive(true);
         }
     }
 
@@ -361,12 +368,14 @@ public class unit : MonoBehaviour
         {
             status = "";
             statusCounter = 0;
-            transform.Find("Status").gameObject.SetActive(false);
+            statusBackW.gameObject.SetActive(false);
+            statusBackColor.gameObject.SetActive(false);
+            statusText.gameObject.SetActive(false);
         }
     }
 
     //Flash red in response to damage
-    IEnumerator flashDamage()
+    public IEnumerator flashDamage()
     {
         Color ori = BBackground.color;
         Color red = BBackground.color;
@@ -380,7 +389,7 @@ public class unit : MonoBehaviour
     }
 
     //Flash orange when dealing damage
-    IEnumerator flashDealDamage()
+    public IEnumerator flashDealDamage()
     {
         Color ori = BBackground.color;
         Color now = BBackground.color;
@@ -394,7 +403,7 @@ public class unit : MonoBehaviour
     }
 
     //Flash green in response to healing damage
-    IEnumerator flashHeal()
+    public IEnumerator flashHeal()
     {
         Color ori = BBackground.color;
         Color green = BBackground.color;
@@ -407,7 +416,7 @@ public class unit : MonoBehaviour
         BBackground.color = ori;
     }
 
-    IEnumerator flashLevel()
+    public IEnumerator flashLevel()
     {
         Color ori = BBackground.color;
         Color green = BBackground.color;

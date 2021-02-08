@@ -508,7 +508,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3649797668599104362}
-  - component: {fileID: 7674019205363691628}
+  - component: {fileID: 5329927107562590264}
   m_Layer: 0
   m_Name: Enemy-EG2
   m_TagString: Untagged
@@ -538,7 +538,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7674019205363691628
+--- !u!114 &5329927107562590264
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -547,16 +547,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 3649797668599104361}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93693d66b1eec4d4d90e87ce7e3c9edf, type: 3}
+  m_Script: {fileID: 11500000, guid: 19c2303a1f4ed0a4482e17792c4bb84c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   unitID: 0
-  unitName: Eldritch Gunner
-  level: 2
+  unitName: Eldritch Gunnero
+  level: 0
   currentLevelTop: 0
   exp: 0
-  maxHP: 10
-  currentHP: 10
+  maxHP: 0
+  currentHP: 0
   maxSP: 0
   currentSP: 0
   sanity: 0
@@ -630,8 +630,6 @@ MonoBehaviour:
   statusBackW: {fileID: 4558645723584788683}
   statusBackColor: {fileID: 1386433708222662443}
   statusText: {fileID: 9138436967345132172}
-  expGain: 30
-  rewards: []
 --- !u!1 &3694361481796394241
 GameObject:
   m_ObjectHideFlags: 0
