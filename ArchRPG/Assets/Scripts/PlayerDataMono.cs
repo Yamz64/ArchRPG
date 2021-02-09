@@ -6,7 +6,7 @@ public class PlayerDataMono : MonoBehaviour
 {
     public PlayerData data;
 
-    private void Start()
+    private void Awake()
     {
         data = new PlayerData(false);
     }

@@ -258,25 +258,50 @@ public class unit
             {
                 val -= target.WILL / 200;
             }
-            //Check if target is dead from attack
-            bool d = target.takeDamage(val);
-            target.setHP(target.currentHP);
-            if (d == false)
+            int crit = UnityEngine.Random.Range(1, 101);
+            if (crit <= LCK)
             {
-                if (ata.statusEffect == "")
+                val += (val / 2);
+                Debug.Log("Got a crit!");
+            }
+            bool miss = false;
+            if (status == "Confused")
+            {
+                int dum = UnityEngine.Random.Range(1, 101);
+                if (dum > 75)
                 {
-                    int r = UnityEngine.Random.Range(1, 101);
-                    if (r > target.RES || r == 1)
-                    {
-                        target.giveStatus(ata.damageType);
-                    }
-                }
-                else
-                {
-                    target.giveStatus(ata.statusEffect);
+                    miss = true;
+                    Debug.Log("num == " + dum);
+                    Debug.Log("Attack Missed");
+                    Debug.Log("Status == " + status);
                 }
             }
-            return d;
+            if (miss == false)
+            {
+                //Check if target is dead from attack
+                bool d = target.takeDamage(val);
+                target.setHP(target.currentHP);
+                if (d == false)
+                {
+                    if (ata.statusEffect == "")
+                    {
+                        int r = UnityEngine.Random.Range(1, 101);
+                        if (r > target.RES || r == 1)
+                        {
+                            target.giveStatus(ata.damageType);
+                        }
+                    }
+                    else
+                    {
+                        target.giveStatus(ata.statusEffect);
+                    }
+                }
+                return d;
+            }
+            else
+            {
+                return false;
+            }
         }
         return false;
     }
@@ -453,9 +478,17 @@ public class PlayerUnit : unit
         RES = (int)((2.5 * lev) + 3.5);
         AGI = 3 * lev;
         LCK = (int)(0.0125 / 3 * Mathf.Pow(lev, 3));
-        eldritch = new List<Ability>();
+
+        Ability e1 = new Ability();
+        e1.eldritch = true;
+        e1.cost = 6;
+        e1.damage = 10;
+        e1.target = 1;
+        e1.name = "Ether Burst";
+        e1.desc1 = "A mystical ball of death\nCost: 6";
+        e1.desc2 = "Does 6 damage to any enemy in its radius (AOE)";
+        abilities.Add(e1);
     }
-    List<Ability> eldritch;
 }
 
 public class ShirleyUnit : unit
@@ -591,17 +624,18 @@ public class Enemy1 : unit
         unitID = -1;
         unitName = "Eldritch Gunner";
 
-        maxHP = currentHP = 11;
         level = 5;
+        maxHP = currentHP = (int)(0.67 * Math.Pow(level, 2)) + 19;
         expGain = 30;
         enemy = true;
 
-        ATK = 1;
-        DEF = 0;
-        WILL = 2;
-        RES = 4;
-        AGI = 2;
-
+        ATK = 10 * level;
+        DEF = (5 * level) + 1;
+        POW = 11 * level;
+        WILL = (5 * level) + 1;
+        RES = (4 * level) + 3;
+        AGI = 2 * level;
+        LCK = 0;
 
         abilities = new List<Ability>();
         abilities.Add(new Basic());
@@ -618,11 +652,18 @@ public class Enemy2 : unit
         unitID = -2;
         unitName = "Debuffer";
 
-        maxHP = 8;
-        currentHP = 8;
-        level = 3;
-        expGain = 30;
+        level = 4;
+        maxHP = currentHP = (14 * level) + 2;
+        expGain = 40;
         enemy = true;
+
+        ATK = 7 * level;
+        DEF = (4 * level) + 1;
+        POW = 13 * level;
+        WILL = (5 * level) + 1;
+        RES = (5 * level) + 3;
+        AGI = 3 * level;
+        LCK = 1;
 
         abilities = new List<Ability>();
         abilities.Add(new Basic());
@@ -639,11 +680,19 @@ public class Enemy3 : unit
         unitID = -3;
         unitName = "NormalEnemy";
 
-        maxHP = 9;
-        currentHP = 9;
-        level = 1;
+        level = 3;
+        maxHP = currentHP = (24 * level);
         expGain = 10;
         enemy = true;
+
+        ATK = 7 * level;
+        DEF = (9 * level) + 1;
+        POW = 7 * level;
+        WILL = (7 * level) + 1;
+        RES = (6 * level) + 3;
+        AGI = 2 * level;
+        LCK = 0;
+
         abilities = new List<Ability>();
         abilities.Add(new AOERow());
         abilities.Add(new AOELine());
