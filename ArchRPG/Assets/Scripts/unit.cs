@@ -258,25 +258,50 @@ public class unit
             {
                 val -= target.WILL / 200;
             }
-            //Check if target is dead from attack
-            bool d = target.takeDamage(val);
-            target.setHP(target.currentHP);
-            if (d == false)
+            int crit = UnityEngine.Random.Range(1, 101);
+            if (crit <= LCK)
             {
-                if (ata.statusEffect == "")
+                val += (val / 2);
+                Debug.Log("Got a crit!");
+            }
+            bool miss = false;
+            if (status == "Confused")
+            {
+                int dum = UnityEngine.Random.Range(1, 101);
+                if (dum > 75)
                 {
-                    int r = UnityEngine.Random.Range(1, 101);
-                    if (r > target.RES || r == 1)
-                    {
-                        target.giveStatus(ata.damageType);
-                    }
-                }
-                else
-                {
-                    target.giveStatus(ata.statusEffect);
+                    miss = true;
+                    Debug.Log("num == " + dum);
+                    Debug.Log("Attack Missed");
+                    Debug.Log("Status == " + status);
                 }
             }
-            return d;
+            if (miss == false)
+            {
+                //Check if target is dead from attack
+                bool d = target.takeDamage(val);
+                target.setHP(target.currentHP);
+                if (d == false)
+                {
+                    if (ata.statusEffect == "")
+                    {
+                        int r = UnityEngine.Random.Range(1, 101);
+                        if (r > target.RES || r == 1)
+                        {
+                            target.giveStatus(ata.damageType);
+                        }
+                    }
+                    else
+                    {
+                        target.giveStatus(ata.statusEffect);
+                    }
+                }
+                return d;
+            }
+            else
+            {
+                return false;
+            }
         }
         return false;
     }
@@ -453,9 +478,17 @@ public class PlayerUnit : unit
         RES = (int)((2.5 * lev) + 3.5);
         AGI = 3 * lev;
         LCK = (int)(0.0125 / 3 * Mathf.Pow(lev, 3));
-        eldritch = new List<Ability>();
+
+        Ability e1 = new Ability();
+        e1.eldritch = true;
+        e1.cost = 6;
+        e1.damage = 10;
+        e1.target = 1;
+        e1.name = "Ether Burst";
+        e1.desc1 = "A mystical ball of death\nCost: 6";
+        e1.desc2 = "Does 6 damage to any enemy in its radius (AOE)";
+        abilities.Add(e1);
     }
-    List<Ability> eldritch;
 }
 
 public class ShirleyUnit : unit

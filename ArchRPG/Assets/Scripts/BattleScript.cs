@@ -1538,11 +1538,8 @@ public class BattleScript : MonoBehaviour
 
             p.currentHP = loader.HPs[i];
             GameObject unitGo = Instantiate(partyPrefabs[i], allyStations[i]);
-            //Debug.Log("View from mono main null? == " + (unitGo.GetComponent<UnitMono>().mainUnit.view == null));
             unitGo = loader.updateUnit(unitGo, i);
-            //Debug.Log("View from mono main null? == " + (unitGo.GetComponent<UnitMono>().mainUnit.view == null));
             p.copyUnitUI(unitGo.GetComponent<UnitMono>().mainUnit);
-            //Debug.Log("P is null? --> " + (p == null));
             p.setHUD();
             unitGo.GetComponent<UnitMono>().mainUnit.copyUnitStats(p);
             if (i == 2 || i == 3) unitGo.GetComponent<UnitMono>().mainUnit.position = 1;
@@ -1600,7 +1597,6 @@ public class BattleScript : MonoBehaviour
         {
             if (partyUnits[i] != null)
             {
-                //Debug.Log("abili null? " + (partyUnits[i].GetComponent<UnitMono>().mainUnit.abilities == null));
                 partyUnits[i].GetComponent<UnitMono>().mainUnit.addAttack(mover);
             }
         }
@@ -1610,13 +1606,13 @@ public class BattleScript : MonoBehaviour
         partyUnits[0].GetComponent<UnitMono>().mainUnit.addAttack(new TestAbility4());
         partyUnits[0].GetComponent<UnitMono>().mainUnit.addAttack(new TestAbility5());
 
-        /*
+       
         data.AddItem(new HotDog());
         data.AddItem(new HotDog());
         data.AddItem(new HotDog());
         data.AddItem(new HotDog());
         data.AddItem(new HotDog());
-        */
+        
 
         //Display text to player, showing an enemy/enemies have appeared
         if (activeEnemies == 1)
@@ -1680,29 +1676,43 @@ public class BattleScript : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
+        int preh = target.currentHP;
+        string preS = target.status;
+        int preC = target.statusCounter;
+
         dead = uni.useAttack(ata, target);
-        StartCoroutine(flashDamage(target));
-        StartCoroutine(flashDealDamage(uni));
-        if (uni.abilities[ata].target == 1)
+
+        if (preh != target.currentHP || preS != target.status || preC != target.statusCounter)
         {
-            if (val - 1 >= 0)
+
+            StartCoroutine(flashDamage(target));
+            StartCoroutine(flashDealDamage(uni));
+            if (uni.abilities[ata].target == 1)
             {
-                if (enemyUnits[val - 1] != null && enemyUnits[val-1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                if (val - 1 >= 0)
                 {
-                    deadL = uni.useAttack(ata, enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit);
-                    StartCoroutine(flashDamage(enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit));
-                    StartCoroutine(flashDealDamage(uni));
+                    if (enemyUnits[val - 1] != null && enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                    {
+                        deadL = uni.useAttack(ata, enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit);
+                        StartCoroutine(flashDamage(enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit));
+                        StartCoroutine(flashDealDamage(uni));
+                    }
+                }
+                if (val + 1 <= 3 && val + 1 < enemyUnits.Count)
+                {
+                    if (enemyUnits[val + 1] != null && enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                    {
+                        deadR = uni.useAttack(ata, enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit);
+                        StartCoroutine(flashDamage(enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit));
+                        StartCoroutine(flashDealDamage(uni));
+                    }
                 }
             }
-            if (val + 1 <= 3)
-            {
-                if (enemyUnits[val + 1] != null && enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
-                {
-                    deadR = uni.useAttack(ata, enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit);
-                    StartCoroutine(flashDamage(enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit));
-                    StartCoroutine(flashDealDamage(uni));
-                }
-            }
+        }
+        else
+        {
+            yield return new WaitForSeconds(1f);
+            dialogue.text = uni.unitName + " missed the enemy";
         }
 
         yield return new WaitForSeconds(1f);
