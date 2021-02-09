@@ -18,6 +18,9 @@ public class TransitionHandler : MonoBehaviour
         b_transition.transform.localScale = Vector3.zero;
         b_transition.fillAmount = 0;
 
+        //play sound
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerOverworldAudioHandler>().PlaySound("Sound/SFX/EncounterSmall");
+
         //the actual animation
         float progress = 0;
         while(progress < battle_transition_time)
@@ -28,6 +31,7 @@ public class TransitionHandler : MonoBehaviour
             b_transition.fillAmount = progress * (1f / battle_transition_time);
         }
         yield return new WaitForSeconds(1f);
+        yield return new WaitUntil(() => GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>().isPlaying == false);
         transition_completed = true;
     }
 
