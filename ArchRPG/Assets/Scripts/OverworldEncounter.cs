@@ -14,13 +14,27 @@ public class OverworldEncounter : MonoBehaviour
 
     private float stored_delay;
 
+    private bool initiated_combat;
+
     private Rigidbody2D rb;
     private NPCAnimationHandler anim;
+
+    IEnumerator CombatSequence()
+    {
+        TransitionHandler handler = GameObject.FindGameObjectWithTag("Player").GetComponent<TransitionHandler>();
+        handler.BattleTransitionDriver();
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().interaction_protection = true;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PauseMenuHandler>().pause_menu_protection = true;
+        yield return new WaitUntil(() => handler.transition_completed);
+        SceneManager.LoadScene("BattleScene");
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         stored_delay = attack_delay;
+
+        initiated_combat = false;
 
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<NPCAnimationHandler>();
@@ -49,7 +63,8 @@ public class OverworldEncounter : MonoBehaviour
             rb.velocity = Vector3.zero;
         }
 
-        if (attack_delay < 0.0f) rb.velocity = (GameObject.FindGameObjectWithTag("Player").transform.position - transform.position).normalized * move_speed;
+        if (attack_delay < 0.0f && !initiated_combat) rb.velocity = (GameObject.FindGameObjectWithTag("Player").transform.position - transform.position).normalized * move_speed;
+        if (initiated_combat) rb.velocity = Vector3.zero;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -73,7 +88,11 @@ public class OverworldEncounter : MonoBehaviour
                     break;
             }
             data.Save(PlayerPrefs.GetInt("_active_save_file_"));
-            SceneManager.LoadScene("BattleScene");
+            if (!initiated_combat)
+            {
+                StartCoroutine(CombatSequence());
+                initiated_combat = true;
+            }
         }
     }
 }
