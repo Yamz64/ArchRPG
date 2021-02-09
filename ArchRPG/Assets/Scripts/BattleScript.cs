@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 //Different states of battle (turns)
-public enum battleState {  START, PLAYER, ATTACK, ENEMY, WIN, LOSE, FLEE }
+public enum battleState {  START, PLAYER, ATTACK, ENEMY, WIN, LOSE, FLEE, HUH }
 
 //A class to use to store actions that are done during the ATTACK state
 public class action
@@ -162,6 +162,18 @@ public class BattleScript : MonoBehaviour
         else if (num == 1)
         {
             audio_handler.PlaySound("Sound/SFX/select");
+        }
+        else if (num == 2)
+        {
+            audio_handler.PlaySound("Sound/SFX/EncounterSmall");
+        }
+        else if (num == 3)
+        {
+            audio_handler.PlaySound("Sound/Music/Combat");
+        }
+        else if (num == 4)
+        {
+            audio_handler.PlaySound("Sound/Music/BossMusic");
         }
         else
         {
@@ -1581,6 +1593,7 @@ public class BattleScript : MonoBehaviour
             activeEnemies += 1;
         }
 
+        Debug.Log("Num enemies == " + activeEnemies);
         //Define actions list
         actions = new List<action>();
 
@@ -1613,9 +1626,15 @@ public class BattleScript : MonoBehaviour
         data.AddItem(new HotDog());
         data.AddItem(new HotDog());
         
-
+        if (activeEnemies <= 0)
+        {
+            dialogue.text = "But nobody was there...";
+            yield return new WaitForSeconds(2f);
+            state = battleState.HUH;
+            battleEnd();
+        }
         //Display text to player, showing an enemy/enemies have appeared
-        if (activeEnemies == 1)
+        else if (activeEnemies == 1)
         {
             dialogue.text = "The " + enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName + " appears.";
         }
@@ -2110,6 +2129,10 @@ public class BattleScript : MonoBehaviour
         else if (state == battleState.FLEE)
         {
             dialogue.text = "The party managed to escape";
+        }
+        else if (state == battleState.HUH)
+        {
+            dialogue.text = "Nothing really happened";
         }
         for (int i = 0; i < partyUnits.Count; i++)
         {

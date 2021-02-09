@@ -496,6 +496,7 @@ public class ShirleyUnit : unit
     public ShirleyUnit(int lev = 1)
     {
         unitName = "Shirley";
+        ImageFilePath = "CharacterSprites/Shirley";
         level = lev;
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
         maxHP = currentHP = (int)(0.68 * Mathf.Pow(lev,2) + 19);
@@ -515,6 +516,7 @@ public class ClyveUnit : unit
     public ClyveUnit(int lev = 1)
     {
         unitName = "Clyve";
+        ImageFilePath = "CharacterSprites/Clyve";
         level = lev;
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
         maxHP = currentHP = (17 * lev) + 6;
@@ -534,6 +536,7 @@ public class NormUnit : unit
     public NormUnit(int lev = 1)
     {
         unitName = "Norm";
+        ImageFilePath = "CharacterSprites/Norm2";
         level = lev;
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
         maxHP = currentHP = (24 * lev) + 35;
@@ -552,7 +555,8 @@ public class JimUnit : unit
 {
     public JimUnit(int lev = 1)
     {
-        unitName = "Jim";
+        unitName = "Accident Jim";
+        ImageFilePath = "CharacterSprites/Accident Jim";
         level = lev;
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
         maxHP = currentHP = (int)((0.7 * Mathf.Pow(lev, 2)) + 19);
