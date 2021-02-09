@@ -3710,16 +3710,6 @@ public class PauseMenuHandler : MonoBehaviour
         //define audio handler
         audio_handler = GetComponent<PlayerOverworldAudioHandler>();
         
-        data.AddAbility(new TestAbility());
-        data.AddAbility(new TestAbility1());
-        data.AddAbility(new TestAbility2());
-        data.AddAbility(new TestAbility3());
-        data.AddAbility(new TestAbility4());
-        data.AddAbility(new TestAbility5());
-        data.AddAbility(new TestAbility6());
-        data.AddAbility(new TestAbility7());
-        data.AddAbility(new TestAbility8());
-        data.AddAbility(new TestAbility9());
     }
 
     // Update is called once per frame

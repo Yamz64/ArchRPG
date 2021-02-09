@@ -5,24 +5,66 @@
     },
     "progress": 0,
     "HPs": [
-        50
+        50,
+        23,
+        19
     ],
     "SPs": [
-        45
+        50,
+        15,
+        18
     ],
     "SANs": [
-        0
+        0,
+        100,
+        100
     ],
     "XPs": [
+        10,
+        10,
         10
     ],
     "levels": [
+        10,
+        10,
         10
     ],
     "positions": [
-        0
+        0,
+        1,
+        2
     ],
     "weapons": [
+        {
+            "name": "",
+            "description": "",
+            "image_file_path": "",
+            "amount": 0,
+            "limit": 0,
+            "type": 0,
+            "damage_buff": 0,
+            "power_buff": 0,
+            "defense_buff": 0,
+            "will_buff": 0,
+            "resistance_buff": 0,
+            "speed_buff": 0,
+            "luck_buff": 0
+        },
+        {
+            "name": "",
+            "description": "",
+            "image_file_path": "",
+            "amount": 0,
+            "limit": 0,
+            "type": 0,
+            "damage_buff": 0,
+            "power_buff": 0,
+            "defense_buff": 0,
+            "will_buff": 0,
+            "resistance_buff": 0,
+            "speed_buff": 0,
+            "luck_buff": 0
+        },
         {
             "name": "",
             "description": "",
@@ -54,9 +96,69 @@
             "resistance_buff": 0,
             "speed_buff": 0,
             "luck_buff": 0
+        },
+        {
+            "name": "",
+            "description": "",
+            "image_file_path": "",
+            "amount": 0,
+            "limit": 0,
+            "type": 0,
+            "damage_buff": 0,
+            "power_buff": 0,
+            "defense_buff": 0,
+            "will_buff": 0,
+            "resistance_buff": 0,
+            "speed_buff": 0,
+            "luck_buff": 0
+        },
+        {
+            "name": "",
+            "description": "",
+            "image_file_path": "",
+            "amount": 0,
+            "limit": 0,
+            "type": 0,
+            "damage_buff": 0,
+            "power_buff": 0,
+            "defense_buff": 0,
+            "will_buff": 0,
+            "resistance_buff": 0,
+            "speed_buff": 0,
+            "luck_buff": 0
         }
     ],
     "trinkets": [
+        {
+            "name": "",
+            "description": "",
+            "image_file_path": "",
+            "amount": 0,
+            "limit": 0,
+            "type": 0,
+            "damage_buff": 0,
+            "power_buff": 0,
+            "defense_buff": 0,
+            "will_buff": 0,
+            "resistance_buff": 0,
+            "speed_buff": 0,
+            "luck_buff": 0
+        },
+        {
+            "name": "",
+            "description": "",
+            "image_file_path": "",
+            "amount": 0,
+            "limit": 0,
+            "type": 0,
+            "damage_buff": 0,
+            "power_buff": 0,
+            "defense_buff": 0,
+            "will_buff": 0,
+            "resistance_buff": 0,
+            "speed_buff": 0,
+            "luck_buff": 0
+        },
         {
             "name": "",
             "description": "",
@@ -100,13 +202,10 @@
         }
     ],
     "names": [
-        "Player"
+        "Player",
+        "Clyve",
+        "Jim"
     ],
     "e_abilities": [],
-    "enemy_names": [
-        "Eldritch Gunner",
-        "Debuffer",
-        "",
-        ""
-    ]
+    "enemy_names": []
 }

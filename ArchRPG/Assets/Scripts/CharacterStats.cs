@@ -783,7 +783,7 @@ class Clyve : CharacterStats
 {
     public Clyve()
     {
-        SetImageFilepath("CharacterSprites/TestCharacter");
+        SetImageFilepath("CharacterSprites/Clyve");
 
         SetName("Clyve");
         SetDesc("Your best friend?  Well, he's the only one that really seems to like talking to you.  Too bad he smells...");
@@ -1075,7 +1075,7 @@ class Jim : CharacterStats
 {
     public Jim()
     {
-        SetImageFilepath("CharacterSprites/TestCharacter");
+        SetImageFilepath("CharacterSprites/Accident Jim");
 
         SetName("Jim");
         SetDesc("Being the most accident prone kid on the block has earned him the title of \"Accident Jim.\"  He seems a little confused...");
@@ -1367,7 +1367,7 @@ class Norm : CharacterStats
 {
     public Norm()
     {
-        SetImageFilepath("CharacterSprites/TestCharacter");
+        SetImageFilepath("CharacterSprites/Norm2");
 
         SetName("Norm");
         SetDesc("You once tried telling your classmates that Norm is clearly an orangutan, and not a human.  But they put you in detention for bullying the new kid: how insensitive of you!");
@@ -1659,7 +1659,7 @@ class Shirley : CharacterStats
 {
     public Shirley()
     {
-        SetImageFilepath("CharacterSprites/TestCharacter");
+        SetImageFilepath("CharacterSprites/Shirley");
 
         SetName("Shirley");
         SetDesc("Shirley always shows up to school in uniform... Union soldier uniform that is.  She has an obsession with the history of the Civil War and takes the Battle of Shiloh very seriously.");

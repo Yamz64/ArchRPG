@@ -15,6 +15,7 @@ public class PlayerData : CharacterStats
             PlayerData temp = new PlayerData(true);
             data.UpdatePlayerData(ref temp);
             SetImageFilepath("CharacterSprites/PC");
+            SetDesc("The player character");
             SetName(temp.GetName());
             SetLVL(temp.GetLVL());
             SetPos(temp.GetPos());

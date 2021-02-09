@@ -5,22 +5,34 @@
     },
     "progress": 0,
     "HPs": [
-        50
+        50,
+        23,
+        19
     ],
     "SPs": [
-        45
+        50,
+        15,
+        18
     ],
     "SANs": [
+        0,
+        100,
         100
     ],
     "XPs": [
+        10,
+        10,
         10
     ],
     "levels": [
+        10,
+        10,
         10
     ],
     "positions": [
-        0
+        0,
+        1,
+        2
     ],
     "weapons": [
         {
@@ -29,6 +41,37 @@
             "image_file_path": "",
             "amount": 0,
             "limit": 0,
+            "type": 0,
+            "damage_buff": 0,
+            "power_buff": 0,
+            "defense_buff": 0,
+            "will_buff": 0,
+            "resistance_buff": 0,
+            "speed_buff": 0,
+            "luck_buff": 0
+        },
+        {
+            "name": "",
+            "description": "",
+            "image_file_path": "",
+            "amount": 0,
+            "limit": 0,
+            "type": 0,
+            "damage_buff": 0,
+            "power_buff": 0,
+            "defense_buff": 0,
+            "will_buff": 0,
+            "resistance_buff": 0,
+            "speed_buff": 0,
+            "luck_buff": 0
+        },
+        {
+            "name": "",
+            "description": "",
+            "image_file_path": "",
+            "amount": 0,
+            "limit": 0,
+            "type": 0,
             "damage_buff": 0,
             "power_buff": 0,
             "defense_buff": 0,
@@ -45,6 +88,37 @@
             "image_file_path": "",
             "amount": 0,
             "limit": 0,
+            "type": 0,
+            "damage_buff": 0,
+            "power_buff": 0,
+            "defense_buff": 0,
+            "will_buff": 0,
+            "resistance_buff": 0,
+            "speed_buff": 0,
+            "luck_buff": 0
+        },
+        {
+            "name": "",
+            "description": "",
+            "image_file_path": "",
+            "amount": 0,
+            "limit": 0,
+            "type": 0,
+            "damage_buff": 0,
+            "power_buff": 0,
+            "defense_buff": 0,
+            "will_buff": 0,
+            "resistance_buff": 0,
+            "speed_buff": 0,
+            "luck_buff": 0
+        },
+        {
+            "name": "",
+            "description": "",
+            "image_file_path": "",
+            "amount": 0,
+            "limit": 0,
+            "type": 0,
             "damage_buff": 0,
             "power_buff": 0,
             "defense_buff": 0,
@@ -61,6 +135,37 @@
             "image_file_path": "",
             "amount": 0,
             "limit": 0,
+            "type": 0,
+            "damage_buff": 0,
+            "power_buff": 0,
+            "defense_buff": 0,
+            "will_buff": 0,
+            "resistance_buff": 0,
+            "speed_buff": 0,
+            "luck_buff": 0
+        },
+        {
+            "name": "",
+            "description": "",
+            "image_file_path": "",
+            "amount": 0,
+            "limit": 0,
+            "type": 0,
+            "damage_buff": 0,
+            "power_buff": 0,
+            "defense_buff": 0,
+            "will_buff": 0,
+            "resistance_buff": 0,
+            "speed_buff": 0,
+            "luck_buff": 0
+        },
+        {
+            "name": "",
+            "description": "",
+            "image_file_path": "",
+            "amount": 0,
+            "limit": 0,
+            "type": 0,
             "damage_buff": 0,
             "power_buff": 0,
             "defense_buff": 0,
@@ -74,7 +179,7 @@
         {
             "name": "TestWeapon",
             "description": "A weapon of code!  Made for debugging so it's not really good...",
-            "image_file_path": "ItemSprites/TestWeaponIcon",
+            "image_file_path": "ItemSprites/Weapon_1",
             "amount": 1,
             "limit": 1,
             "type": 1
@@ -82,28 +187,25 @@
         {
             "name": "TestArmor",
             "description": "A suit of armor made of code!  Awkward and clunky, just like a programmer's first draft...",
-            "image_file_path": "ItemSprites/TestArmorIcon",
+            "image_file_path": "ItemSprites/Armor_1",
             "amount": 1,
             "limit": 1,
             "type": 2
         },
         {
             "name": "TestTrinket",
-            "description": "The jewel on the ring is value at 1 bit!  Not one bitcoin, like an actual bit of memory...",
-            "image_file_path": "ItemSprites/TestTrinketIcon",
+            "description": "The jewel on the ring is valued at 1 bit!  Not one bitcoin, like an actual bit of memory...",
+            "image_file_path": "ItemSprites/Trinket_1",
             "amount": 1,
             "limit": 1,
             "type": 3
         }
     ],
     "names": [
-        "Player"
+        "Player",
+        "Clyve",
+        "Jim"
     ],
     "e_abilities": [],
-    "enemy_names": [
-        "Eldritch Gunner",
-        "",
-        "",
-        ""
-    ]
+    "enemy_names": []
 }
