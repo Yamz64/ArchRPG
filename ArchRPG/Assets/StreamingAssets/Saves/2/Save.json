@@ -5,14 +5,14 @@
     },
     "progress": 0,
     "HPs": [
-        50,
+        207,
         23,
-        19
+        11
     ],
     "SPs": [
-        50,
-        67,
-        92
+        34,
+        63,
+        90
     ],
     "SANs": [
         0,
@@ -207,5 +207,10 @@
         "Jim"
     ],
     "e_abilities": [],
-    "enemy_names": []
+    "enemy_names": [
+        "Eldritch Gunner",
+        "",
+        "",
+        ""
+    ]
 }
