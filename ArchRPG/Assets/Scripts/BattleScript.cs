@@ -1572,8 +1572,11 @@ public class BattleScript : MonoBehaviour
             }
 
             p.currentHP = loader.HPs[i];
+<<<<<<< HEAD
             p.currentSP = loader.SPs[i];
             
+=======
+>>>>>>> parent of 10805b6 (Update BattleScript.cs)
             GameObject unitGo = Instantiate(partyPrefabs[i], allyStations[i]);
             unitGo = loader.updateUnit(unitGo, i);
             p.copyUnitUI(unitGo.GetComponent<UnitMono>().mainUnit);
