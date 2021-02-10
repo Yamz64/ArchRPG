@@ -8,6 +8,12 @@ TextureImporter:
   - first:
       213: 3104614265235899185
     second: wall_brick_gray_1
+  - first:
+      213: 388891390104949974
+    second: wall_brick_gray_0
+  - first:
+      213: -2622558744447583593
+    second: wall_brick_gray_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -181,8 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 20e5a15411cc84dc0800000000000000
-      internalID: -3654446723065291262
+      spriteID: 6d4d96ba8ae956500800000000000000
+      internalID: 388891390104949974
       vertices: []
       indices: 
       edges: []
@@ -202,8 +208,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1330ffba93ec51b20800000000000000
-      internalID: 3104614265235899185
+      spriteID: 79a7b9287bcca9bd0800000000000000
+      internalID: -2622558744447583593
       vertices: []
       indices: 
       edges: []
