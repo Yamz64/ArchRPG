@@ -153,27 +153,33 @@ public class BattleScript : MonoBehaviour
     CharacterStatJsonConverter loader;
 
     //Use to play specific sounds with the audio handler
-    public void useSound(int num)
+    public void useSound(int num, bool lop = false, int i = 0)
     {
         if (num == 0)
         {
-            audio_handler.PlaySound("Sound/SFX/cursor");
+            audio_handler.PlaySound("Sound/SFX/cursor", i);
         }
         else if (num == 1)
         {
-            audio_handler.PlaySound("Sound/SFX/select");
+            audio_handler.PlaySound("Sound/SFX/select", i);
         }
         else if (num == 2)
         {
-            audio_handler.PlaySound("Sound/SFX/EncounterSmall");
+            audio_handler.PlaySound("Sound/SFX/EncounterSmall", i);
         }
         else if (num == 3)
         {
-            audio_handler.PlaySound("Sound/Music/Combat");
+            if (!lop)
+                audio_handler.PlaySound("Sound/Music/Combat", i);
+            else
+                audio_handler.PlaySoundLoop("Sound/Music/Combat", i);
         }
         else if (num == 4)
         {
-            audio_handler.PlaySound("Sound/Music/BossMusic");
+            if (!lop)
+                audio_handler.PlaySound("Sound/Music/BossMusic", i);
+            else
+                audio_handler.PlaySoundLoop("Sound/Music/BossMusic", i);
         }
         else
         {
@@ -2259,6 +2265,10 @@ public class BattleScript : MonoBehaviour
 
         //Define audio object
         audio_handler = GetComponent<PlayerOverworldAudioHandler>();
+
+        //Start background music, play transition sound
+        useSound(2);
+        useSound(3, true, 1);
 
         //Set p1 and p2 to default locations
         p1 = new GameObject().transform;
