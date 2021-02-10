@@ -239,7 +239,7 @@ public class unit
     public bool useAttack(int index, unit target)
     {
         //If SP isn't 0 or the unit is an enemy
-        if (outOfSP == false || enemy == true)
+        if (currentSP > 0 || enemy == true)
         {
             //Flash to show unit is attacking
             //StartCoroutine(flashDealDamage());
@@ -472,6 +472,254 @@ public class PlayerUnit : unit
         ImageFilePath = "CharacterSprites/PC";
 
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
+
+        switch(level)
+        {
+            case 1:
+                //apply the base stats per level
+                maxHP = 26;
+                maxSP = 17;
+                ATK = 6;
+                POW = 6;
+                DEF = 6;
+                WILL= 6;
+                RES = 6;
+                AGI= 6;
+                LCK = 6;
+                break;
+            case 2:
+                //apply the base stats per level
+                maxHP = 45;
+                maxSP = 22;
+                ATK = 11;
+                POW = 11;
+                DEF = 11;
+                WILL= 11;
+                RES = 11;
+                AGI= 11;
+                LCK = 11;
+                break;
+            case 3:
+                //apply the base stats per level
+                maxHP = 64;
+                maxSP = 27;
+                ATK = 16;
+                POW = 16;
+                DEF = 16;
+                WILL= 16;
+                RES = 16;
+                AGI= 16;
+                LCK = 16;
+                break;
+            case 4:
+                //apply the base stats per level
+                maxHP = 83;
+                maxSP = 32;
+                ATK = 21;
+                POW = 21;
+                DEF = 21;
+                WILL= 21;
+                RES = 21;
+                AGI= 21;
+                LCK = 21;
+                break;
+            case 5:
+                //apply the base stats per level
+                maxHP = 102;
+                maxSP = 37;
+                ATK = 26;
+                POW = 26;
+                DEF = 26;
+                WILL= 26;
+                RES = 26;
+                AGI= 26;
+                LCK = 26;
+                break;
+            case 6:
+                //apply the base stats per level
+                maxHP = 121;
+                maxSP = 42;
+                ATK = 31;
+                POW = 31;
+                DEF = 31;
+                WILL= 31;
+                RES = 31;
+                AGI= 31;
+                LCK = 31;
+                break;
+            case 7:
+                //apply the base stats per level
+                maxHP = 140;
+                maxSP = 47;
+                ATK = 36;
+                POW = 36;
+                DEF = 36;
+                WILL= 36;
+                RES = 36;
+                AGI= 36;
+                LCK = 36;
+                break;
+            case 8:
+                //apply the base stats per level
+                maxHP = 159;
+                maxSP = 52;
+                ATK = 41;
+                POW = 41;
+                DEF = 41;
+                WILL= 41;
+                RES = 41;
+                AGI= 41;
+                LCK = 41;
+                break;
+            case 9:
+                //apply the base stats per level
+                maxHP = 178;
+                maxSP = 57;
+                ATK = 46;
+                POW = 46;
+                DEF = 46;
+                WILL= 46;
+                RES = 46;
+                AGI= 46;
+                LCK = 46;
+                break;
+            case 10:
+                //apply the base stats per level
+                maxHP = 197;
+                maxSP = 62;
+                ATK = 51;
+                POW = 51;
+                DEF = 51;
+                WILL= 51;
+                RES = 51;
+                AGI= 51;
+                LCK = 51;
+                break;
+            case 11:
+                //apply the base stats per level
+                maxHP = 216;
+                maxSP = 67;
+                ATK = 56;
+                POW = 56;
+                DEF = 56;
+                WILL= 56;
+                RES = 56;
+                AGI= 56;
+                LCK = 56;
+                break;
+            case 12:
+                //apply the base stats per level
+                maxHP = 235;
+                maxSP = 72;
+                ATK = 61;
+                POW = 61;
+                DEF = 61;
+                WILL= 61;
+                RES = 61;
+                AGI= 61;
+                LCK = 61;
+                break;
+            case 13:
+                //apply the base stats per level
+                maxHP = 254;
+                maxSP = 77;
+                ATK = 66;
+                POW = 66;
+                DEF = 66;
+                WILL= 66;
+                RES = 66;
+                AGI= 66;
+                LCK = 66;
+                break;
+            case 14:
+                //apply the base stats per level
+                maxHP = 273;
+                maxSP = 82;
+                ATK = 71;
+                POW = 71;
+                DEF = 71;
+                WILL= 71;
+                RES = 71;
+                AGI= 71;
+                LCK = 71;
+                break;
+            case 15:
+                //apply the base stats per level
+                maxHP = 292;
+                maxSP = 87;
+                ATK = 76;
+                POW = 76;
+                DEF = 76;
+                WILL= 76;
+                RES = 76;
+                AGI= 76;
+                LCK = 76;
+                break;
+            case 16:
+                //apply the base stats per level
+                maxHP = 311;
+                maxSP = 92;
+                ATK = 81;
+                POW = 81;
+                DEF = 81;
+                WILL= 81;
+                RES = 81;
+                AGI= 81;
+                LCK = 81;
+                break;
+            case 17:
+                //apply the base stats per level
+                maxHP = 330;
+                maxSP = 97;
+                ATK = 86;
+                POW = 86;
+                DEF = 86;
+                WILL= 86;
+                RES = 86;
+                AGI= 86;
+                LCK = 86;
+                break;
+            case 18:
+                //apply the base stats per level
+                maxHP = 349;
+                maxSP = 102;
+                ATK = 91;
+                POW = 91;
+                DEF = 91;
+                WILL= 91;
+                RES = 91;
+                AGI= 91;
+                LCK = 91;
+                break;
+            case 19:
+                //apply the base stats per level
+                maxHP = 368;
+                maxSP = 107;
+                ATK = 96;
+                POW = 96;
+                DEF = 96;
+                WILL= 96;
+                RES = 96;
+                AGI= 96;
+                LCK = 96;
+                break;
+            case 20:
+                //apply the base stats per level
+                maxHP = 387;
+                maxSP = 112;
+                ATK = 101;
+                POW = 101;
+                DEF = 101;
+                WILL= 101;
+                RES = 101;
+                AGI= 101;
+                LCK = 101;
+                break;
+            default:
+                break;
+        }
+
+        /*
         maxHP = currentHP = (20 * lev) + 7;
         maxSP = currentSP = 10 + (4 * lev);
         ATK = (int)(0.5 + (3.5 * lev));
@@ -481,6 +729,7 @@ public class PlayerUnit : unit
         RES = (int)((2.5 * lev) + 3.5);
         AGI = 3 * lev;
         LCK = (int)(0.0125 / 3 * Mathf.Pow(lev, 3));
+        */
 
         Ability e1 = new Ability();
         e1.eldritch = true;
@@ -491,6 +740,257 @@ public class PlayerUnit : unit
         e1.desc1 = "A mystical ball of death\nCost: 6";
         e1.desc2 = "Does 6 damage to any enemy in its radius (AOE)";
         abilities.Add(e1);
+    }
+
+    public void updateUnit(int levl = 1)
+    {
+        level = levl;
+        currentLevelTop = (int)(2.5 * Mathf.Pow(level, 4));
+        switch (level)
+        {
+            case 1:
+                //apply the base stats per level
+                maxHP = 26;
+                maxSP = 17;
+                ATK = 6;
+                POW = 6;
+                DEF = 6;
+                WILL = 6;
+                RES = 6;
+                AGI = 6;
+                LCK = 6;
+                break;
+            case 2:
+                //apply the base stats per level
+                maxHP = 45;
+                maxSP = 22;
+                ATK = 11;
+                POW = 11;
+                DEF = 11;
+                WILL = 11;
+                RES = 11;
+                AGI = 11;
+                LCK = 11;
+                break;
+            case 3:
+                //apply the base stats per level
+                maxHP = 64;
+                maxSP = 27;
+                ATK = 16;
+                POW = 16;
+                DEF = 16;
+                WILL = 16;
+                RES = 16;
+                AGI = 16;
+                LCK = 16;
+                break;
+            case 4:
+                //apply the base stats per level
+                maxHP = 83;
+                maxSP = 32;
+                ATK = 21;
+                POW = 21;
+                DEF = 21;
+                WILL = 21;
+                RES = 21;
+                AGI = 21;
+                LCK = 21;
+                break;
+            case 5:
+                //apply the base stats per level
+                maxHP = 102;
+                maxSP = 37;
+                ATK = 26;
+                POW = 26;
+                DEF = 26;
+                WILL = 26;
+                RES = 26;
+                AGI = 26;
+                LCK = 26;
+                break;
+            case 6:
+                //apply the base stats per level
+                maxHP = 121;
+                maxSP = 42;
+                ATK = 31;
+                POW = 31;
+                DEF = 31;
+                WILL = 31;
+                RES = 31;
+                AGI = 31;
+                LCK = 31;
+                break;
+            case 7:
+                //apply the base stats per level
+                maxHP = 140;
+                maxSP = 47;
+                ATK = 36;
+                POW = 36;
+                DEF = 36;
+                WILL = 36;
+                RES = 36;
+                AGI = 36;
+                LCK = 36;
+                break;
+            case 8:
+                //apply the base stats per level
+                maxHP = 159;
+                maxSP = 52;
+                ATK = 41;
+                POW = 41;
+                DEF = 41;
+                WILL = 41;
+                RES = 41;
+                AGI = 41;
+                LCK = 41;
+                break;
+            case 9:
+                //apply the base stats per level
+                maxHP = 178;
+                maxSP = 57;
+                ATK = 46;
+                POW = 46;
+                DEF = 46;
+                WILL = 46;
+                RES = 46;
+                AGI = 46;
+                LCK = 46;
+                break;
+            case 10:
+                //apply the base stats per level
+                maxHP = 197;
+                maxSP = 62;
+                ATK = 51;
+                POW = 51;
+                DEF = 51;
+                WILL = 51;
+                RES = 51;
+                AGI = 51;
+                LCK = 51;
+                break;
+            case 11:
+                //apply the base stats per level
+                maxHP = 216;
+                maxSP = 67;
+                ATK = 56;
+                POW = 56;
+                DEF = 56;
+                WILL = 56;
+                RES = 56;
+                AGI = 56;
+                LCK = 56;
+                break;
+            case 12:
+                //apply the base stats per level
+                maxHP = 235;
+                maxSP = 72;
+                ATK = 61;
+                POW = 61;
+                DEF = 61;
+                WILL = 61;
+                RES = 61;
+                AGI = 61;
+                LCK = 61;
+                break;
+            case 13:
+                //apply the base stats per level
+                maxHP = 254;
+                maxSP = 77;
+                ATK = 66;
+                POW = 66;
+                DEF = 66;
+                WILL = 66;
+                RES = 66;
+                AGI = 66;
+                LCK = 66;
+                break;
+            case 14:
+                //apply the base stats per level
+                maxHP = 273;
+                maxSP = 82;
+                ATK = 71;
+                POW = 71;
+                DEF = 71;
+                WILL = 71;
+                RES = 71;
+                AGI = 71;
+                LCK = 71;
+                break;
+            case 15:
+                //apply the base stats per level
+                maxHP = 292;
+                maxSP = 87;
+                ATK = 76;
+                POW = 76;
+                DEF = 76;
+                WILL = 76;
+                RES = 76;
+                AGI = 76;
+                LCK = 76;
+                break;
+            case 16:
+                //apply the base stats per level
+                maxHP = 311;
+                maxSP = 92;
+                ATK = 81;
+                POW = 81;
+                DEF = 81;
+                WILL = 81;
+                RES = 81;
+                AGI = 81;
+                LCK = 81;
+                break;
+            case 17:
+                //apply the base stats per level
+                maxHP = 330;
+                maxSP = 97;
+                ATK = 86;
+                POW = 86;
+                DEF = 86;
+                WILL = 86;
+                RES = 86;
+                AGI = 86;
+                LCK = 86;
+                break;
+            case 18:
+                //apply the base stats per level
+                maxHP = 349;
+                maxSP = 102;
+                ATK = 91;
+                POW = 91;
+                DEF = 91;
+                WILL = 91;
+                RES = 91;
+                AGI = 91;
+                LCK = 91;
+                break;
+            case 19:
+                //apply the base stats per level
+                maxHP = 368;
+                maxSP = 107;
+                ATK = 96;
+                POW = 96;
+                DEF = 96;
+                WILL = 96;
+                RES = 96;
+                AGI = 96;
+                LCK = 96;
+                break;
+            case 20:
+                //apply the base stats per level
+                maxHP = 387;
+                maxSP = 112;
+                ATK = 101;
+                POW = 101;
+                DEF = 101;
+                WILL = 101;
+                RES = 101;
+                AGI = 101;
+                LCK = 101;
+                break;
+            default:
+                break;
+        }
     }
 }
 

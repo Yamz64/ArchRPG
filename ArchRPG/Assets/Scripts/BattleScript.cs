@@ -1740,7 +1740,6 @@ public class BattleScript : MonoBehaviour
 
         if (preh != target.currentHP || preS != target.status || preC != target.statusCounter)
         {
-
             StartCoroutine(flashDamage(target));
             StartCoroutine(flashDealDamage(uni));
             if (uni.abilities[ata].target == 1)
