@@ -2267,7 +2267,6 @@ public class BattleScript : MonoBehaviour
         audio_handler = GetComponent<PlayerOverworldAudioHandler>();
 
         //Start background music, play transition sound
-        useSound(2);
         useSound(3, true, 1);
 
         //Set p1 and p2 to default locations
