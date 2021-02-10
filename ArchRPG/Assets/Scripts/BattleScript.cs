@@ -767,55 +767,51 @@ public class BattleScript : MonoBehaviour
                 {
                     //Player uses the attack
                     case 4:
-                        //If more than one enemy exists
-                        if (activeEnemies > 1 || enemyUnits.Count - enemyDeaths > 1)
+                        if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.currentSP <= 0)
                         {
-                            useSound(1);
-                            //Make attack menu invisible
-                            Image[] opts = transform.GetChild(1).Find("AttackMenu").GetComponentsInChildren<Image>();
-                            foreach(Image child in opts)
-                            {
-                                Color temp = child.color;
-                                temp.a = 0.0f;
-                                child.color = temp;
-                            }
-
-                            Text[] ts = transform.GetChild(1).Find("AttackMenu").GetComponentsInChildren<Text>();
-                            foreach (Text child in ts)
-                            {
-                                Color temp = child.color;
-                                temp.a = 0.0f;
-                                child.color = temp;
-                            }
-                            OpenSelectEnemyMenu();
-                            enemy_select_menu = true;
+                            dialogue.text = "Insufficient SP";
                         }
-                        //Only one enemy
                         else
                         {
-                            useSound(1);
-                            actions.Add(new action(currentUnit, "attack", highlighted_attack, currentEnemy, 
-                                partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI()));
-                            currentEnemy = 0;
-                            currentUnit += 1;
-                            moves += 1;
-
-                            CloseUseAttackMenu();
-                            CloseMenu(1);
-                            menu_input = false;
-
-                            //Perform player attacks
-                            if (moves >= activeUnits)
+                            //If more than one enemy exists
+                            if (activeEnemies > 1 || enemyUnits.Count - enemyDeaths > 1)
                             {
-                                moves = 0;
-                                currentUnit = 0;
-                                state = battleState.ATTACK;
-                                StartCoroutine(performActions());
+                                useSound(1);
+                                //Make attack menu invisible
+                                Image[] opts = transform.GetChild(1).Find("AttackMenu").GetComponentsInChildren<Image>();
+                                foreach (Image child in opts)
+                                {
+                                    Color temp = child.color;
+                                    temp.a = 0.0f;
+                                    child.color = temp;
+                                }
+
+                                Text[] ts = transform.GetChild(1).Find("AttackMenu").GetComponentsInChildren<Text>();
+                                foreach (Text child in ts)
+                                {
+                                    Color temp = child.color;
+                                    temp.a = 0.0f;
+                                    child.color = temp;
+                                }
+                                OpenSelectEnemyMenu();
+                                enemy_select_menu = true;
                             }
+                            //Only one enemy
                             else
                             {
-                                while (partyUnits[currentUnit] == null && currentUnit < partyUnits.Count) currentUnit++;
-                                if (currentUnit >= partyUnits.Count)
+                                useSound(1);
+                                actions.Add(new action(currentUnit, "attack", highlighted_attack, currentEnemy,
+                                    partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI()));
+                                currentEnemy = 0;
+                                currentUnit += 1;
+                                moves += 1;
+
+                                CloseUseAttackMenu();
+                                CloseMenu(1);
+                                menu_input = false;
+
+                                //Perform player attacks
+                                if (moves >= activeUnits)
                                 {
                                     moves = 0;
                                     currentUnit = 0;
@@ -824,13 +820,26 @@ public class BattleScript : MonoBehaviour
                                 }
                                 else
                                 {
-                                    playerTurn();
+                                    while (partyUnits[currentUnit] == null && currentUnit < partyUnits.Count) currentUnit++;
+                                    if (currentUnit >= partyUnits.Count)
+                                    {
+                                        moves = 0;
+                                        currentUnit = 0;
+                                        state = battleState.ATTACK;
+                                        StartCoroutine(performActions());
+                                    }
+                                    else
+                                    {
+                                        playerTurn();
+                                    }
                                 }
                             }
                         }
                         break;
+
                     case 5:
                         CloseUseAttackMenu();
+                        playerTurn();
                         break;
                     default:
                         break;
@@ -1555,6 +1564,7 @@ public class BattleScript : MonoBehaviour
             }
 
             p.currentHP = loader.HPs[i];
+            p.currentSP = loader.SPs[i];
             GameObject unitGo = Instantiate(partyPrefabs[i], allyStations[i]);
             unitGo = loader.updateUnit(unitGo, i);
             p.copyUnitUI(unitGo.GetComponent<UnitMono>().mainUnit);
