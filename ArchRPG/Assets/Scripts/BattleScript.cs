@@ -1528,6 +1528,8 @@ public class BattleScript : MonoBehaviour
     IEnumerator fadeIn()
     {
         Color ori = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+        transform.GetChild(1).Find("Fader");
+        yield return new WaitForSeconds(1f);
     }
 
     //Create battle characters, set up HUD's, display text, and start player turn
