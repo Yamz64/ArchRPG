@@ -1564,6 +1564,7 @@ public class BattleScript : MonoBehaviour
             }
 
             p.currentHP = loader.HPs[i];
+            p.currentSP = loader.SPs[i];
             GameObject unitGo = Instantiate(partyPrefabs[i], allyStations[i]);
             unitGo = loader.updateUnit(unitGo, i);
             p.copyUnitUI(unitGo.GetComponent<UnitMono>().mainUnit);
