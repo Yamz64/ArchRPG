@@ -502,7 +502,7 @@ public class BattleScript : MonoBehaviour
                         break;
                     case 4:
                         state = battleState.FLEE;
-                        battleEnd();
+                        StartCoroutine( battleEnd() );
                         break;
                     case 5:
                         break;
@@ -1525,11 +1525,23 @@ public class BattleScript : MonoBehaviour
         }
     }
 
+    //Fade into the battle scene (from black to screen)
     IEnumerator fadeIn()
     {
         Color ori = new Color(0.0f, 0.0f, 0.0f, 1.0f);
-        transform.GetChild(1).Find("Fader");
+        transform.GetChild(1).Find("Fader").GetComponent<Image>().color = ori;
+        transform.GetChild(1).Find("Fader").GetComponent<Image>().CrossFadeAlpha(0, 2f, false);
+        yield return new WaitForSeconds(0.5f);
+        
+    }
+
+    //Fade out of the battle scene (from scene to black)
+    IEnumerator fadeOut()
+    {
         yield return new WaitForSeconds(1f);
+        Color ori = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+        //transform.GetChild(1).Find("Fader").GetComponent<Image>().color = ori;
+        transform.GetChild(1).Find("Fader").GetComponent<Image>().CrossFadeAlpha(1, 2f, false);
     }
 
     //Create battle characters, set up HUD's, display text, and start player turn
@@ -1656,7 +1668,7 @@ public class BattleScript : MonoBehaviour
             dialogue.text = "But nobody was there...";
             yield return new WaitForSeconds(2f);
             state = battleState.HUH;
-            battleEnd();
+            StartCoroutine( battleEnd() );
         }
         //Display text to player, showing an enemy/enemies have appeared
         else if (activeEnemies == 1)
@@ -1784,7 +1796,7 @@ public class BattleScript : MonoBehaviour
         if (enemyDeaths == enemyUnits.Count)
         {
             state = battleState.WIN;
-            battleEnd();
+            StartCoroutine(battleEnd());
         }
 
     }
@@ -1812,7 +1824,7 @@ public class BattleScript : MonoBehaviour
             if (enemyDeaths == enemyUnits.Count)
             {
                 state = battleState.WIN;
-                battleEnd();
+                StartCoroutine(battleEnd());
             }
         }
     }
@@ -1928,7 +1940,7 @@ public class BattleScript : MonoBehaviour
                 if (partyDeaths == partyUnits.Count)
                 {
                     state = battleState.LOSE;
-                    battleEnd();
+                    StartCoroutine(battleEnd());
                 }
             }
             else if (!dead && dead2)
@@ -1938,7 +1950,7 @@ public class BattleScript : MonoBehaviour
                 if (partyDeaths == partyUnits.Count)
                 {
                     state = battleState.LOSE;
-                    battleEnd();
+                    StartCoroutine(battleEnd());
                 }
             }
             else if (dead && dead2)
@@ -1949,7 +1961,7 @@ public class BattleScript : MonoBehaviour
                 if (partyDeaths == partyUnits.Count)
                 {
                     state = battleState.LOSE;
-                    battleEnd();
+                    StartCoroutine(battleEnd());
                 }
             }
             //If player lives, they attack
@@ -1984,7 +1996,7 @@ public class BattleScript : MonoBehaviour
         }
         else if (state == battleState.WIN || state == battleState.LOSE || state == battleState.FLEE)
         {
-            battleEnd();
+            StartCoroutine(battleEnd());
             StopCoroutine("enemyAttack");
         }
     }
@@ -2078,7 +2090,7 @@ public class BattleScript : MonoBehaviour
                 if (partyDeaths == partyUnits.Count)
                 {
                     state = battleState.LOSE;
-                    battleEnd();
+                    StartCoroutine( battleEnd() );
                 }
             }
             else if (!dead && dead2)
@@ -2088,7 +2100,7 @@ public class BattleScript : MonoBehaviour
                 if (partyDeaths == partyUnits.Count)
                 {
                     state = battleState.LOSE;
-                    battleEnd();
+                    StartCoroutine( battleEnd() );
                 }
             }
             else if (dead && dead2)
@@ -2099,7 +2111,7 @@ public class BattleScript : MonoBehaviour
                 if (partyDeaths == partyUnits.Count)
                 {
                     state = battleState.LOSE;
-                    battleEnd();
+                    StartCoroutine( battleEnd() );
                 }
             }
         }
@@ -2116,7 +2128,7 @@ public class BattleScript : MonoBehaviour
             if (partyDeaths == partyUnits.Count)
             {
                 state = battleState.LOSE;
-                battleEnd();
+                StartCoroutine( battleEnd() );
             }
         }
     }
@@ -2137,7 +2149,7 @@ public class BattleScript : MonoBehaviour
     }
 
     //Display relevant text based on who wins the battle
-    void battleEnd()
+    IEnumerator battleEnd()
     {
         StopCoroutine("performActions");
         StopCoroutine("playerAttack");
@@ -2173,6 +2185,8 @@ public class BattleScript : MonoBehaviour
             }
         }
         loader.Save(1);
+        yield return fadeOut();
+        Debug.Log("Should be fading in");
         StartCoroutine(NextScene());
     }
 
@@ -2263,6 +2277,7 @@ public class BattleScript : MonoBehaviour
     //Start the battle
     void Start()
     {
+        StartCoroutine(fadeIn());
         menu_input = false;
         item_select_menu = false;
 
