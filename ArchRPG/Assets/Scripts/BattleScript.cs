@@ -1574,8 +1574,11 @@ public class BattleScript : MonoBehaviour
             p.currentHP = loader.HPs[i];
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             p.currentSP = loader.SPs[i];
             
+=======
+>>>>>>> parent of 10805b6 (Update BattleScript.cs)
 =======
 >>>>>>> parent of 10805b6 (Update BattleScript.cs)
 =======
