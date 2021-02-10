@@ -1525,11 +1525,17 @@ public class BattleScript : MonoBehaviour
         }
     }
 
+    IEnumerator fadeIn()
+    {
+        Color ori = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+    }
+
     //Create battle characters, set up HUD's, display text, and start player turn
     IEnumerator setupBattle()
     {
         for (int i = 0; i < loader.names.Length; i++)
         {
+            Debug.Log("Level == " + loader.levels[i]);
             //Debug.Log("i == " + i + ", name == " + loader.names[i]);
             //Debug.Log("prefabi == null? " + (partyPrefabs[i] == null));
             unit p;
@@ -1565,6 +1571,7 @@ public class BattleScript : MonoBehaviour
 
             p.currentHP = loader.HPs[i];
             p.currentSP = loader.SPs[i];
+            
             GameObject unitGo = Instantiate(partyPrefabs[i], allyStations[i]);
             unitGo = loader.updateUnit(unitGo, i);
             p.copyUnitUI(unitGo.GetComponent<UnitMono>().mainUnit);
