@@ -516,7 +516,7 @@ public class BattleScript : MonoBehaviour
             {
                 unit now = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit;
                 transform.GetChild(1).Find("UnitInfo").GetChild(2).GetComponent<Text>().text =
-                    now.unitName + "\nSanity: " + now.getSAN() + "\nExp: " + now.getEXP()
+                    now.unitName + "\nSanity: " + now.getSAN() + "\nExp: " + now.getEXP() + "\nExp to next level: " + (now.currentLevelTop - now.getEXP()) 
                     + "\nAtk: " + now.getATK() + "\nPOW: " + now.getPOW() + "\nDef: " + now.getDEF() + "\nWill: "
                     + now.getWILL() + "\nRes: " + now.getRES() + "\nAgi: " + now.getAGI()
                     + "\nLuck: " + now.getLUCK() + "\nPosition == " + now.position;
@@ -1611,7 +1611,15 @@ public class BattleScript : MonoBehaviour
             }
 
             p.currentHP = loader.HPs[i];
+            if (p.currentHP > p.maxHP)
+            {
+                p.maxHP = p.currentHP;
+            }
             p.currentSP = loader.SPs[i];
+            if (p.currentSP > p.maxSP)
+            {
+                p.maxSP = p.currentSP;
+            }
 
             GameObject unitGo = Instantiate(partyPrefabs[i], allyStations[i]);
             unitGo = loader.updateUnit(unitGo, i);

@@ -270,7 +270,7 @@ public class unit
             if (status == "Confused")
             {
                 int dum = UnityEngine.Random.Range(1, 101);
-                if (dum > 75)
+                if (dum > 50)
                 {
                     miss = true;
                     Debug.Log("num == " + dum);
@@ -287,6 +287,7 @@ public class unit
                 {
                     if (ata.statusEffect == "")
                     {
+                        Debug.Log("Status has no name");
                         int r = UnityEngine.Random.Range(1, 101);
                         if (r > target.RES || r == 1)
                         {
@@ -295,6 +296,7 @@ public class unit
                     }
                     else
                     {
+                        Debug.Log("Status has name");
                         target.giveStatus(ata.statusEffect);
                     }
                 }
@@ -360,6 +362,7 @@ public class unit
                 statusCounter = 1;
             }
             statusText.text = status;
+
             statusBackW.gameObject.SetActive(true);
             statusBackColor.gameObject.SetActive(true);
             statusText.gameObject.SetActive(true);
