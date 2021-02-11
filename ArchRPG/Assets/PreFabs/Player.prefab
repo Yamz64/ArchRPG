@@ -966,23 +966,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c2303a1f4ed0a4482e17792c4bb84c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitID: 0
-  unitName: 
-  level: 0
-  currentLevelTop: 0
-  exp: 0
-  maxHP: 0
-  currentHP: 0
-  maxSP: 0
-  currentSP: 0
-  sanity: 0
-  ATK: 0
-  DEF: 0
-  POW: 0
-  WILL: 0
-  RES: 0
-  AGI: 0
-  LCK: 0
   status: 
   statusCounter: 0
   player: 0
@@ -1090,7 +1073,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5863634073337913566}
-  m_CullTransparentMesh: 0
+  m_CullTransparentMesh: 1
 --- !u!114 &5863634073337913552
 MonoBehaviour:
   m_ObjectHideFlags: 0

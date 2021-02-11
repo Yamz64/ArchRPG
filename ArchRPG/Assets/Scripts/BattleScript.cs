@@ -1368,6 +1368,33 @@ public class BattleScript : MonoBehaviour
             partyUnits[swapInds[0]] = p4p;
             partyUnits[swapInds[1]] = p3p;
         }
+
+        if (partyUnits[swapInds[0]] != null)
+        {
+            if (swapInds[0] == 0 || swapInds[0] == 1)
+            {
+                partyUnits[swapInds[0]].GetComponent<UnitMono>().mainUnit.position = 0;
+                //partyUnits[swapInds[0]].GetComponent<UnitMono>().mainUnit.view.depth = 0;
+            }
+            else
+            {
+                partyUnits[swapInds[0]].GetComponent<UnitMono>().mainUnit.position = 1;
+                //partyUnits[swapInds[0]].GetComponent<UnitMono>().mainUnit.view.canvas.sortingOrder = 1;
+            }
+        }
+        if (partyUnits[swapInds[1]] != null)
+        {
+            if (swapInds[1] == 0 || swapInds[1] == 1)
+            {
+                partyUnits[swapInds[1]].GetComponent<UnitMono>().mainUnit.position = 0;
+                //partyUnits[swapInds[1]].GetComponent<UnitMono>().mainUnit.view.canvas.sortingOrder = 0;
+            }
+            else
+            {
+                partyUnits[swapInds[1]].GetComponent<UnitMono>().mainUnit.position = 1;
+                //partyUnits[swapInds[1]].GetComponent<UnitMono>().mainUnit.view.canvas.sortingOrder = 1;
+            }
+        }
         swapInds.RemoveAt(0);
         swapInds.RemoveAt(0);
     }
@@ -1515,7 +1542,7 @@ public class BattleScript : MonoBehaviour
 
             if (state != battleState.WIN && state != battleState.LOSE && state != battleState.FLEE && enemyDeaths < enemyUnits.Count)
             {
-                yield return new WaitForSeconds(3f);
+                yield return new WaitForSeconds(1.5f);
                 state = battleState.PLAYER;
                 OpenMenu(0);
                 currentUnit = 0;
@@ -1591,7 +1618,13 @@ public class BattleScript : MonoBehaviour
             p.copyUnitUI(unitGo.GetComponent<UnitMono>().mainUnit);
             p.setHUD();
             unitGo.GetComponent<UnitMono>().mainUnit.copyUnitStats(p);
-            if (i == 2 || i == 3) unitGo.GetComponent<UnitMono>().mainUnit.position = 1;
+            //Debug.Log("Unit position should now be 1");
+            if (i == 2 || i == 3)
+            {
+                unitGo.GetComponent<UnitMono>().mainUnit.position = 1;
+                //Debug.Log("Position of " + unitGo.GetComponent<UnitMono>().mainUnit.unitName + " is " 
+                //+ unitGo.GetComponent<UnitMono>().mainUnit.position);
+            }
             partyUnits.Add(unitGo.gameObject);
             partyNames.Add(unitGo.GetComponent<UnitMono>().mainUnit.unitName);
             activeUnits += 1;
