@@ -238,74 +238,82 @@ public class unit
     //Use the attack at the given index against the given target
     public bool useAttack(int index, unit target)
     {
-        //If SP isn't 0 or the unit is an enemy
-        if (currentSP > 0 || enemy == true)
+        Ability ata = getAttack(index);
+        if (ata.position == 0 || (ata.position - 1 == position))
         {
-            //Flash to show unit is attacking
-            //StartCoroutine(flashDealDamage());
-            Ability ata = getAttack(index);
-            if (!enemy)
-            setSP(currentSP - ata.cost);
-            if (currentSP == 0 && !enemy)
+            //If SP isn't 0 or the unit is an enemy
+            if (currentSP > 0 || enemy == true)
             {
-                outOfSP = true;
-            }
-            //Calculate damage of the attack
-            int val = ata.damage + (ATK / 100);
-            if (ata.damageType == 0)
-            {
-                val -= target.DEF / 200;
-            }
-            else
-            {
-                val -= target.WILL / 200;
-            }
-            int crit = UnityEngine.Random.Range(1, 101);
-            if (crit <= LCK)
-            {
-                val += (val / 2);
-                Debug.Log("Got a crit!");
-            }
-            bool miss = false;
-            if (status == "Confused")
-            {
-                int dum = UnityEngine.Random.Range(1, 101);
-                if (dum > 50)
+                //Flash to show unit is attacking
+                //StartCoroutine(flashDealDamage());
+                if (!enemy)
+                    setSP(currentSP - ata.cost);
+                if (currentSP == 0 && !enemy)
                 {
-                    miss = true;
-                    Debug.Log("num == " + dum);
-                    Debug.Log("Attack Missed");
-                    Debug.Log("Status == " + status);
+                    outOfSP = true;
                 }
-            }
-            if (miss == false)
-            {
-                //Check if target is dead from attack
-                bool d = target.takeDamage(val);
-                target.setHP(target.currentHP);
-                if (d == false)
+                //Calculate damage of the attack
+                int val = ata.damage + (ATK / 100);
+                if (ata.damageType == 0)
                 {
-                    if (ata.statusEffect == "")
+                    val -= target.DEF / 200;
+                }
+                else
+                {
+                    val -= target.WILL / 200;
+                }
+                int crit = UnityEngine.Random.Range(1, 101);
+                if (crit <= LCK)
+                {
+                    val += (val / 2);
+                    Debug.Log("Got a crit!");
+                }
+                bool miss = false;
+                if (status == "Confused")
+                {
+                    int dum = UnityEngine.Random.Range(1, 101);
+                    if (dum > 50)
                     {
-                        Debug.Log("Status has no name");
-                        int r = UnityEngine.Random.Range(1, 101);
-                        if (r > target.RES || r == 1)
+                        miss = true;
+                        Debug.Log("num == " + dum);
+                    }
+                }
+                if (miss == false)
+                {
+                    //Check if target is dead from attack
+                    bool d = target.takeDamage(val);
+                    target.setHP(target.currentHP);
+                    if (d == false)
+                    {
+                        Debug.Log(ata.statusEffect + " == empty is " + (ata.statusEffect.Equals("")));
+                        if (ata.statusEffect.Equals(""))
                         {
-                            target.giveStatus(ata.damageType);
+                            Debug.Log("Status has no name");
+                            int r = UnityEngine.Random.Range(1, 101);
+                            if (r > target.RES || r == 1)
+                            {
+                                target.giveStatus(ata.damageType);
+                            }
+                        }
+                        else
+                        {
+                            Debug.Log("Status has name");
+                            target.giveStatus(ata.statusEffect);
                         }
                     }
-                    else
-                    {
-                        Debug.Log("Status has name");
-                        target.giveStatus(ata.statusEffect);
-                    }
+                    return d;
                 }
-                return d;
+                else
+                {
+                    Debug.Log("Missed by confusion");
+                    return false;
+                }
             }
-            else
-            {
-                return false;
-            }
+            return false;
+        }
+        else if (ata.position - 1 != position)
+        {
+            return true;
         }
         return false;
     }

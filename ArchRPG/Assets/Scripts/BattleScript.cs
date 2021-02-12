@@ -803,6 +803,7 @@ public class BattleScript : MonoBehaviour
                                 actions.Add(new action(currentUnit, "attack", highlighted_attack, currentEnemy,
                                     partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI()));
                                 currentEnemy = 0;
+                                highlighted_attack = 0;
                                 currentUnit += 1;
                                 moves += 1;
 
@@ -927,6 +928,7 @@ public class BattleScript : MonoBehaviour
                 actions.Add(new action(currentUnit, "attack", highlighted_attack, currentEnemy,
                     partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI()));
                 currentEnemy = 0;
+                highlighted_attack = 0;
                 currentUnit += 1;
                 moves += 1;
 
@@ -1121,6 +1123,7 @@ public class BattleScript : MonoBehaviour
                         UpdateInventoryImageandDesc();
                         CloseUseItemMenu();
                         CloseMenu(2);
+                        highlighted_item = 0;
                         currentUnit += 1;
                         moves += 1;
 
@@ -1689,6 +1692,8 @@ public class BattleScript : MonoBehaviour
             if (partyUnits[i] != null)
             {
                 partyUnits[i].GetComponent<UnitMono>().mainUnit.addAttack(mover);
+                partyUnits[i].GetComponent<UnitMono>().mainUnit.addAttack(new BasicBack());
+                partyUnits[i].GetComponent<UnitMono>().mainUnit.addAttack(new BasicFront());
             }
         }
         partyUnits[0].GetComponent<UnitMono>().mainUnit.addAttack(new TestAbility1());
@@ -1805,7 +1810,7 @@ public class BattleScript : MonoBehaviour
                 }
             }
         }
-        else
+        else if (dead == false)
         {
             yield return new WaitForSeconds(1f);
             dialogue.text = uni.unitName + " missed the enemy";
@@ -1814,19 +1819,24 @@ public class BattleScript : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         //If enemy is dead, battle is won
-        if (dead)
+        if (dead && target.currentHP <= 0)
         {
             enemyDeaths++;
             StartCoroutine(unitDeath(target));
             yield return levelUp(target.giveEXP(), uni);
         }
-        if (deadL)
+        else if (dead && target.currentHP > 0)
+        {
+            dialogue.text = "Used attack in wrong row";
+            yield return new WaitForSeconds(1f);
+        }
+        if (deadL && enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
         {
             enemyDeaths++;
             StartCoroutine(unitDeath(enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit));
             yield return levelUp(enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.giveEXP(), uni);
         }
-        if (deadR)
+        if (deadR && enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
         {
             enemyDeaths++;
             StartCoroutine(unitDeath(enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit));

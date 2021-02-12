@@ -243,6 +243,36 @@ public class Basic : Ability
     }
 }
 
+public class BasicFront : Ability
+{
+    public BasicFront()
+    {
+        name = "Base Frontline Attack";
+        desc1 = "Simple frontline Attack\nCost: 5";
+        desc2 = "Use when you have to get up close and personal with your opponent";
+        cost = 5;
+        target = 0;
+        damage = 5;
+        damageType = 0;
+        position = 1;
+    }
+}
+
+public class BasicBack : Ability
+{
+    public BasicBack()
+    {
+        name = "Base Backline Attack";
+        desc1 = "Simple backline Attack\nCost: 5";
+        desc2 = "Use when you need to put some space between you and your opponent";
+        cost = 5;
+        target = 0;
+        damage = 5;
+        damageType = 0;
+        position = 2;
+    }
+}
+
 //Use to attack all units in front line or back line 
 public class AOERow : Ability
 {
