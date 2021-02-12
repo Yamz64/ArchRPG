@@ -1184,10 +1184,8 @@ public class BattleScript : MonoBehaviour
     }
 
     //Use to navigate through the swap process
-    /*
-     * To Work on:
+    /* To Work on:
      * Multiple swaps
-     * Making sure backline sprites appear on top of frontline
      */
     public void SwapMenuRoutine()
     {
@@ -1347,6 +1345,11 @@ public class BattleScript : MonoBehaviour
     {
         if (swaps.Count == swapInds.Count)
         {
+            //Swap sibling indices to get backline in front of frontline
+            int a1 = allyStations[swapInds[0]].GetSiblingIndex();
+            int a2 = allyStations[swapInds[1]].GetSiblingIndex();
+            allyStations[swapInds[1]].SetSiblingIndex(a1);
+            allyStations[swapInds[0]].SetSiblingIndex(a2);
             allyStations[swapInds[0]] = p2;
             allyStations[swapInds[1]] = p1;
 
@@ -1360,6 +1363,10 @@ public class BattleScript : MonoBehaviour
         }
         else
         {
+            int a1 = allyStations[swapInds[0]].GetSiblingIndex();
+            int a2 = allyStations[swapInds[1]].GetSiblingIndex();
+            allyStations[swapInds[1]].SetSiblingIndex(a1);
+            allyStations[swapInds[0]].SetSiblingIndex(a2);
             allyStations[swapInds[0]] = p4;
             allyStations[swapInds[1]] = p3;
 
@@ -1440,7 +1447,8 @@ public class BattleScript : MonoBehaviour
             actions.Sort((a, b) => { return b.getSPD().CompareTo(a.getSPD()); });
             for (int z = 0; z < actions.Count; z++)
             {
-                yield return new WaitForSeconds(1f);
+                //yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                yield return new WaitForSeconds(0.5f);
                 int ind = actions[z].getID();
                 //Use the selected attack
                 if (actions[z].getType() == "attack" && state == battleState.ATTACK)
@@ -1526,7 +1534,8 @@ public class BattleScript : MonoBehaviour
                 {
                     dialogue.text = "Invalid action selected";
                 }
-                yield return new WaitForSeconds(1f);
+                yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                //yield return new WaitForSeconds(1f);
             }
             for (int i = 0; i < partyUnits.Count; i++)
             {
@@ -1812,7 +1821,8 @@ public class BattleScript : MonoBehaviour
         }
         else if (dead == false)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+            //yield return new WaitForSeconds(1f);
             dialogue.text = uni.unitName + " missed the enemy";
         }
 
@@ -2235,6 +2245,7 @@ public class BattleScript : MonoBehaviour
             }
         }
         loader.Save(1);
+        yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
         yield return fadeOut();
         Debug.Log("Should be fading in");
         StartCoroutine(NextScene());
