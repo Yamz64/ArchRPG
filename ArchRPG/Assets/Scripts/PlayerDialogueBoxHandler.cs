@@ -75,6 +75,9 @@ public class PlayerDialogueBoxHandler : MonoBehaviour
         write_queue.RemoveAt(0);
     }
 
+    public int GetWriteCount() { return write_queue.Count; }
+    public bool GetActive() { return active; }
+
     //public version of writing function
     public void WriteDriver()
     {
