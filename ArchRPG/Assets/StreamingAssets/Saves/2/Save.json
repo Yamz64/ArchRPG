@@ -10,9 +10,9 @@
         19
     ],
     "SPs": [
-        36,
-        7,
-        12
+        50,
+        15,
+        18
     ],
     "SANs": [
         0,
@@ -208,7 +208,7 @@
     ],
     "e_abilities": [],
     "enemy_names": [
-        "Debuffer",
+        "Eldritch Gunner",
         "",
         "",
         ""

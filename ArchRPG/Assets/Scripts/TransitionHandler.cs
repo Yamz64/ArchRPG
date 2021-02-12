@@ -15,6 +15,7 @@ public class TransitionHandler : MonoBehaviour
         //set all values to 0
         t_canvas.SetActive(true);
         Image b_transition = t_canvas.transform.GetChild(0).GetComponent<Image>();
+        b_transition.gameObject.SetActive(true);
         b_transition.transform.localScale = Vector3.zero;
         b_transition.fillAmount = 0;
 
@@ -35,9 +36,39 @@ public class TransitionHandler : MonoBehaviour
         transition_completed = true;
     }
 
+    IEnumerator Fade(float duration = 1)
+    {
+        //set all values to 0
+        t_canvas.SetActive(true);
+        Image f_transition = t_canvas.transform.GetChild(1).GetComponent<Image>();
+        f_transition.gameObject.SetActive(true);
+
+        //tween it's alpha value
+        float progress = 0;
+        while(progress < duration)
+        {
+            progress += 1 / 24f;
+            yield return new WaitForSeconds(1 / 24f);
+            f_transition.color = Color.Lerp(new Color(f_transition.color.r, f_transition.color.g, 
+                f_transition.color.b, 0.0f), new Color(f_transition.color.r, f_transition.color.g, f_transition.color.b, 1.0f), progress/duration);
+        }
+        transition_completed = true;
+    }
+
     public void BattleTransitionDriver()
     {
         StartCoroutine(BattleTransition());
+    }
+
+    public void FadeDriver(float duration = 1)
+    {
+        StartCoroutine(Fade(duration));
+    }
+
+    public void SetFadeColor(Color c)
+    {
+        Image f_transition = t_canvas.transform.GetChild(1).GetComponent<Image>();
+        f_transition.color = new Color(c.r, c.g, c.b, f_transition.color.a);
     }
 
     // Start is called before the first frame update

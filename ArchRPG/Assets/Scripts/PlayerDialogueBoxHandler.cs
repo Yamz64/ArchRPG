@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class PlayerDialogueBoxHandler : MonoBehaviour
 {
@@ -10,9 +11,11 @@ public class PlayerDialogueBoxHandler : MonoBehaviour
     private bool active;
     private bool writing;
     private List<string> write_queue;
+    private List<string> image_queue;
     private List<EffectContainer> effect_queue;
     private GameObject dialogue_box;
     private TMP_Text text;
+    private Image speaker_image;
     private PlayerMovement movement;
 
     public void OpenTextBox()
@@ -27,7 +30,22 @@ public class PlayerDialogueBoxHandler : MonoBehaviour
     {
         active = false;
         StartCoroutine(ResetInteraction());
+        SetImage();
         dialogue_box.SetActive(false);
+    }
+
+    public void SetImage(string file_path = "")
+    {
+        Sprite temp = Resources.Load<Sprite>(file_path);
+        if(temp == null)
+        {
+            speaker_image.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+        }
+        else
+        {
+            speaker_image.color = Color.white;
+            speaker_image.sprite = temp;
+        }
     }
 
     //public function for clearing the text of the textbox
@@ -42,6 +60,15 @@ public class PlayerDialogueBoxHandler : MonoBehaviour
         for(int i=0; i<new_queue.Count; i++)
         {
             write_queue.Add(new_queue[i]);
+        }
+    }
+
+    public void SetImageQueue(List<string> new_images)
+    {
+        image_queue = new List<string>();
+        for(int i=0; i<new_images.Count; i++)
+        {
+            image_queue.Add(new_images[i]);
         }
     }
 
@@ -160,7 +187,10 @@ public class PlayerDialogueBoxHandler : MonoBehaviour
     {
         dialogue_box = transform.GetChild(1).GetChild(0).gameObject;
         text = dialogue_box.transform.GetChild(0).GetComponent<TMP_Text>();
+        speaker_image = dialogue_box.transform.GetChild(1).GetComponent<Image>();
         movement = GetComponent<PlayerMovement>();
+
+        SetImage();
     }
 
     private void Update()
@@ -181,15 +211,27 @@ public class PlayerDialogueBoxHandler : MonoBehaviour
                 if (write_queue.Count > 0 && Input.GetButtonDown("Interact"))
                 {
                     Clear();
+                    if (image_queue != null)
+                    {
+                        if (image_queue.Count > 0)
+                            image_queue.RemoveAt(0);
+                    }
                     effect_queue.RemoveAt(0);
                     WriteDriver();
                 }
                 else if (write_queue.Count == 0 && Input.GetButtonDown("Interact"))
                 {
                     Clear();
+                    if(image_queue != null)
+                    image_queue.Clear();
                     effect_queue.Clear();
                     CloseTextBox();
                 }
+            }
+
+            if (image_queue != null)
+            {
+                if (image_queue.Count > 0) SetImage(image_queue[0]);
             }
 
             if(effect_queue.Count > 0 && text.text.Length > 0)
