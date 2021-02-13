@@ -551,6 +551,9 @@ public class ClassAAnimationHelper : MonoBehaviour
         player.GetComponent<TransitionHandler>().FadeDriver(2f);
         yield return new WaitUntil(() => player.GetComponent<TransitionHandler>().transition_completed);
         yield return new WaitForSeconds(1f);
+        CharacterStatJsonConverter data = new CharacterStatJsonConverter(player.GetComponent<PlayerDataMono>().data);
+        data.position = new Vector2(-6.5f, 3.9f);
+        data.Save(PlayerPrefs.GetInt("_active_save_file_"));
         SceneManager.LoadScene("ClassAScene");
     }
 
@@ -602,6 +605,7 @@ public class ClassAAnimationHelper : MonoBehaviour
             students.Add(transform.GetChild(i).gameObject);
         }
 
+        player.transform.position = new Vector2(-6.5f, 3.9f);
         StartCoroutine(Animation());
     }
 

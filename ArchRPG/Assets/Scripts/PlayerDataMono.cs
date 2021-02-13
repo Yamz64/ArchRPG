@@ -9,5 +9,6 @@ public class PlayerDataMono : MonoBehaviour
     private void Awake()
     {
         data = new PlayerData(false);
+        gameObject.transform.position = data.GetSavedPosition();
     }
 }

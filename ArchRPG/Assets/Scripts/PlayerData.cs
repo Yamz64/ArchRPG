@@ -19,6 +19,7 @@ public class PlayerData : CharacterStats
             SetName(temp.GetName());
             SetLVL(temp.GetLVL());
             SetPos(temp.GetPos());
+            SetSavedPosition(temp.GetSavedPosition());
             
             for(int i=0; i<temp.GetInventorySize(); i++)
             {

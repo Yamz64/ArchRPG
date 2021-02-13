@@ -570,6 +570,7 @@ public class CharacterStatJsonConverter
         p.SetName(names[0]);
         p.SetLVL(levels[0]);
         p.SetPos(positions[0]);
+        p.SetSavedPosition(position);
 
         //update other stats as well as the experience level
         p.UpdateStats();

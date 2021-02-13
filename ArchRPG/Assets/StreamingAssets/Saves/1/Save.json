@@ -1,7 +1,7 @@
 {
     "position": {
-        "x": 0.0,
-        "y": 0.0
+        "x": 0.5,
+        "y": 2.5
     },
     "progress": 0,
     "HPs": [
@@ -207,10 +207,5 @@
         "Jim"
     ],
     "e_abilities": [],
-    "enemy_names": [
-        "Eldritch Gunner",
-        "Debuffer",
-        "",
-        ""
-    ]
+    "enemy_names": []
 }
