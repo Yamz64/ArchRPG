@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 using UnityEngine.SceneManagement;
 
 //Different states of battle (turns)
@@ -84,6 +85,8 @@ public class BattleScript : MonoBehaviour
     private List<GameObject> menus;                 //The list of menu objects
     private PlayerData data;                        //Object to hold player data
     private PlayerOverworldAudioHandler audio_handler;
+
+    public GameObject background;
 
     //Main text to let player know state of battle
     public Text dialogue;
@@ -1672,6 +1675,8 @@ public class BattleScript : MonoBehaviour
             battleEnd();
         }
 
+        bool boss = false;
+
         int z = 0;
         for (int i = 0; i < loader.enemy_names.Length; i++)
         {
@@ -1687,6 +1692,7 @@ public class BattleScript : MonoBehaviour
             else if (loader.enemy_names[i] == "New Kid")
             {
                 enen = new NewKidUnit();
+                boss = true;
             }
             else if (!loader.enemy_names[i].Equals(""))
             {
@@ -1705,8 +1711,17 @@ public class BattleScript : MonoBehaviour
             z++;
         }
 
-        Debug.Log("enemyNameCount == " + loader.enemy_names.Length);
-        //Debug.Log("Num enemies == " + activeEnemies);
+        if (!boss)
+        {
+            //Start background music
+            useSound(3, true, 1);
+        }
+        else
+        {
+            useSound(4, true, 1);
+            background.GetComponent<VideoPlayer>().clip = Resources.Load<VideoClip>("Backgrounds/Background1Edited");
+        }
+
         //Define actions list
         actions = new List<action>();
 
@@ -2387,9 +2402,6 @@ public class BattleScript : MonoBehaviour
 
         //Define audio object
         audio_handler = GetComponent<PlayerOverworldAudioHandler>();
-
-        //Start background music, play transition sound
-        useSound(3, true, 1);
 
         //Set p1 and p2 to default locations
         p1 = new GameObject().transform;
