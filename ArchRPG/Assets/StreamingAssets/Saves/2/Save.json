@@ -1,18 +1,18 @@
 {
     "position": {
-        "x": 0.5,
-        "y": 2.5
+        "x": -8.5,
+        "y": -7.0
     },
     "progress": 0,
     "HPs": [
-        199,
-        18,
+        207,
+        23,
         19
     ],
     "SPs": [
-        44,
-        11,
-        14
+        50,
+        15,
+        18
     ],
     "SANs": [
         0,
@@ -201,6 +201,7 @@
             "type": 3
         }
     ],
+    "active_scene": "SchoolHallwayScene",
     "names": [
         "Player",
         "Clyve",

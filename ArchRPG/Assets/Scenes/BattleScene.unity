@@ -282,6 +282,7 @@ MonoBehaviour:
   highlighted_item: 0
   highlighted_attack: 0
   highlighted_action: 0
+  background: {fileID: 2099335486}
   dialogue: {fileID: 1606678685}
   partyPrefabs:
   - {fileID: 5863634071550135657, guid: da6a1e09c149c9e46a62dc0e50c21407, type: 3}
@@ -7877,7 +7878,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2094907108}
   m_Layer: 5
-  m_Name: AttackMenu
+  m_Name: AbilityMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
