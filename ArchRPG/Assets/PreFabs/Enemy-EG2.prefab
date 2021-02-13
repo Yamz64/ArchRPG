@@ -132,8 +132,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -28.299988, y: 114}
-  m_SizeDelta: {x: 383.13538, y: 42.16461}
+  m_AnchoredPosition: {x: -33.299988, y: 114}
+  m_SizeDelta: {x: 373.22485, y: 42.16461}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1661978125319624670
 CanvasRenderer:
@@ -458,8 +458,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -32.419983, y: 282.30945}
-  m_SizeDelta: {x: 862.8617, y: 559.416}
+  m_AnchoredPosition: {x: -35.52002, y: 282.30945}
+  m_SizeDelta: {x: 850.46643, y: 559.416}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3649797667331469009
 CanvasRenderer:
@@ -550,23 +550,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c2303a1f4ed0a4482e17792c4bb84c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitID: 0
-  unitName: Eldritch Gunnero
-  level: 0
-  currentLevelTop: 0
-  exp: 0
-  maxHP: 0
-  currentHP: 0
-  maxSP: 0
-  currentSP: 0
-  sanity: 0
-  ATK: 0
-  DEF: 0
-  POW: 0
-  WILL: 0
-  RES: 0
-  AGI: 0
-  LCK: 0
   status: 
   statusCounter: 0
   player: 0
@@ -664,8 +647,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -32.200012, y: 75.70001}
-  m_SizeDelta: {x: 413.98627, y: 129.99277}
+  m_AnchoredPosition: {x: -36.5, y: 75.70001}
+  m_SizeDelta: {x: 405.3145, y: 129.99277}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1225099069499287855
 CanvasRenderer:
@@ -739,8 +722,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 10.93, y: 16}
-  m_SizeDelta: {x: 291.96988, y: 20.39354}
+  m_AnchoredPosition: {x: 9.7, y: 16}
+  m_SizeDelta: {x: 289.49228, y: 20.39354}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6299320543385978536
 CanvasRenderer:
@@ -1160,8 +1143,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -32.400024, y: 76.80945}
-  m_SizeDelta: {x: 431.3897, y: 144.78339}
+  m_AnchoredPosition: {x: -35.5, y: 76.80945}
+  m_SizeDelta: {x: 425.19556, y: 144.78339}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4429070325058051840
 CanvasRenderer:

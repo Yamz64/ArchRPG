@@ -96,6 +96,12 @@ public class BattleScript : MonoBehaviour
     //Locations to spawn characters at
     public List<Transform> allyStations;
 
+    public List<Transform> targetStations1;
+
+    public List<Transform> targetStations2;
+
+    public List<Transform> targetStations3;
+
     public List<Transform> targetStations;
 
     //List of party units
@@ -1653,6 +1659,22 @@ public class BattleScript : MonoBehaviour
 
         for (int i = 0; i < loader.enemy_names.Length; i++)
         {
+            if (!loader.enemy_names[i].Equals("")) activeEnemies += 1;
+        }
+
+        Debug.Log("active == " + activeEnemies);
+        if (activeEnemies == 1) targetStations = targetStations1;
+        else if (activeEnemies == 2) targetStations = targetStations2;
+        else if (activeEnemies == 3) targetStations = targetStations3;
+        else if (activeEnemies == 0)
+        {
+            state = battleState.HUH;
+            battleEnd();
+        }
+
+        int z = 0;
+        for (int i = 0; i < loader.enemy_names.Length; i++)
+        {
             unit enen;
             if (loader.enemy_names[i] == "Eldritch Gunner")
             {
@@ -1666,7 +1688,7 @@ public class BattleScript : MonoBehaviour
             {
                 enen = new NewKidUnit();
             }
-            else if (loader.enemy_names[i] != "")
+            else if (!loader.enemy_names[i].Equals(""))
             {
                 enen = new Enemy3();
             }
@@ -1674,16 +1696,17 @@ public class BattleScript : MonoBehaviour
             {
                 continue;
             }
-            GameObject eGo = Instantiate(enemyPrefabs[i], targetStations[i]);
+            GameObject eGo = Instantiate(enemyPrefabs[z], targetStations[z]);
             enen.copyUnitUI(eGo.GetComponent<UnitMono>().mainUnit);
             enen.setHUD();
             eGo.GetComponent<UnitMono>().mainUnit.copyUnitStats(enen);
             eGo.GetComponent<UnitMono>().mainUnit.unitName = enen.unitName;
             enemyUnits.Add(eGo.gameObject);
-            activeEnemies += 1;
+            z++;
         }
 
-        Debug.Log("Num enemies == " + activeEnemies);
+        Debug.Log("enemyNameCount == " + loader.enemy_names.Length);
+        //Debug.Log("Num enemies == " + activeEnemies);
         //Define actions list
         actions = new List<action>();
 
@@ -2198,13 +2221,13 @@ public class BattleScript : MonoBehaviour
     {
         dialogue.text = uni.unitName + " gained " + expGained + " exp";
         bool boost = uni.gainEXP(expGained);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
         if (boost == true)
         {
             dialogue.text = uni.unitName + " levelled up!";
             StartCoroutine(flashLevel(uni));
             uni.setHUD();
-            yield return new WaitForSeconds(2f);
+            yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact"))); ;
         }
     }
 
@@ -2215,9 +2238,13 @@ public class BattleScript : MonoBehaviour
         StopCoroutine("playerAttack");
         StopCoroutine("basicAttack");
         StopCoroutine("enemyAttack");
-        if (state == battleState.WIN)
+        if (state == battleState.WIN && enemyUnits.Count == 1)
         {
             dialogue.text = "The " + enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName + " has been defeated";
+        }
+        if (state == battleState.WIN && enemyUnits.Count > 1)
+        {
+            dialogue.text = "The group of enemies have been defeated";
         }
         else if (state == battleState.LOSE)
         {
