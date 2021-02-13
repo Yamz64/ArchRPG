@@ -302,7 +302,7 @@ public class ClassAAnimationHelper : MonoBehaviour
         dialogue.Add("You get em' Danny!");
         dialogue.Add("Wow, he's so authentic.");
         dialogue.Add("Me and some dudes were trying to cheat on a math test cuz math is for squares,");
-        dialogue.Add("so I learned on Reddit that math demons like circles, so we went to the hockey rink.");
+        dialogue.Add("so I learned on Reddit that you can summon a demon to do math for you.  It said on Reddit that math demons like circles,");
         dialogue.Add("I don't think it worked right because a hockey rink isn't actually much of a circle,");
         dialogue.Add("so we didn't summon that math demon, however, we did summon what you might call God.");
         dialogue.Add("wait, God is BACK?");
@@ -546,12 +546,6 @@ public class ClassAAnimationHelper : MonoBehaviour
         text_box.WriteDriver();
         yield return new WaitUntil(() => text_box.GetWriteCount() == 0 && !text_box.GetActive());
         yield return new WaitForEndOfFrame();
-
-        //all students begin filing out of the classroom while the screen fades to black
-        for(int i=0; i<students.Count; i++)
-        {
-            StartCoroutine(LeaveClassroom(students[i]));
-        }
 
         //fade to black and then load the proper class A scene
         player.GetComponent<TransitionHandler>().FadeDriver(2f);
