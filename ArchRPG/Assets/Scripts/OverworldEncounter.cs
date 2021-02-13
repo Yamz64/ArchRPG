@@ -87,6 +87,7 @@ public class OverworldEncounter : MonoBehaviour
                     data.SaveEnemyNames(enemy_names[0], enemy_names[1], enemy_names[2], enemy_names[3]);
                     break;
             }
+            data.active_scene = SceneManager.GetActiveScene().name;
             data.Save(PlayerPrefs.GetInt("_active_save_file_"));
             if (!initiated_combat)
             {

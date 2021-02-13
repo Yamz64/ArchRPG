@@ -745,6 +745,7 @@ public class CharacterStatJsonConverter
     public Trinket[] trinkets;      //the current trinkets that the party members are carrying
     public Item[] inventory;        //the player's inventory
 
+    public string active_scene;     //scene to load into after a battle is over
     public string[] names;          //the names of the current party members
     public string[] e_abilities;    //the current eldritch abilities that the player has
     public string[] enemy_names;    //names of enemies to fight

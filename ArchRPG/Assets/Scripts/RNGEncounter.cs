@@ -17,6 +17,14 @@ public class RNGEncounter : MonoBehaviour
     private float roll_max;
     private float true_roll_max;
 
+    IEnumerator Battle()
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<TransitionHandler>().BattleTransitionDriver();
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().interaction_protection = true; 
+        yield return new WaitUntil(() => GameObject.FindGameObjectWithTag("Player").GetComponent<TransitionHandler>().transition_completed);
+        SceneManager.LoadScene("BattleScene");
+    }
+
     private void Start()
     {
         true_roll_max = roll_delay;
@@ -77,8 +85,11 @@ public class RNGEncounter : MonoBehaviour
                                     data.SaveEnemyNames(enemy_names[0], enemy_names[1], enemy_names[2], enemy_names[3]);
                                     break;
                             }
+
+                            //start battle transition and load into the battle
+                            data.active_scene = SceneManager.GetActiveScene().name;
                             data.Save(PlayerPrefs.GetInt("_active_save_file_"));
-                            SceneManager.LoadScene("BattleScene");
+                            StartCoroutine(Battle());
                         }
                     }
                 }

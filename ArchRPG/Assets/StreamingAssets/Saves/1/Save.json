@@ -1,7 +1,7 @@
 {
     "position": {
-        "x": 0.5,
-        "y": 2.5
+        "x": -8.5,
+        "y": -7.0
     },
     "progress": 0,
     "HPs": [
@@ -201,6 +201,7 @@
             "type": 3
         }
     ],
+    "active_scene": "SchoolHallwayScene",
     "names": [
         "Player",
         "Clyve",
@@ -208,6 +209,9 @@
     ],
     "e_abilities": [],
     "enemy_names": [
-	"New Kid"
-	]
+        "Eldritch Gunner",
+        "",
+        "",
+        ""
+    ]
 }
