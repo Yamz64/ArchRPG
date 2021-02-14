@@ -32,6 +32,7 @@ public class Ability
     public int position = 0;            //int denotes the place the ability can be used 0 = front and backline, 1 = frontline, 2 = backline
     public int cost = 0;            //int denotes the cost of using the ability (if any)
     public int damage;              //int denotes the amount of damage the attack will do
+    public int sanity_damage;       //int denotes the amount of sanity damage the attack will do
     /*
         * 0 = Physical
         * 1 = Special
@@ -47,6 +48,7 @@ public class Ability
     public string desc1;            //Give info on attack name, cost, and basic details
     public string desc2;            //Give actual description and more details (damage type, targets, etc.)
     public bool fast = false;       //if this is applied to the ability then it behaves as if the user had double speed
+    public bool use_pow = false;    //if applied to the ability then the attack uses pow to scale the damage rather than atk
 }
 
 //Sub class to deal with attacks (abilities that deal damage)
@@ -509,6 +511,141 @@ public static class EldritchAbilities
             damageType = 0;
             image_file_path = "AbilitySprites/Eldritch";
             desc1 = "This is eldritch test ability 8";
+        }
+    }
+}
+
+namespace EnemyAbilities
+{
+    //Killer Cone
+    public class LookBothWays : Ability
+    {
+        public LookBothWays()
+        {
+            name = "Look Both Ways";
+            cost = 0;
+            position = 0;
+            target = 0;
+            damage = 0;
+        }
+
+        public override void UseAttack(unit user, unit target)
+        {
+            target = user;
+            user.status = "Neurotic";
+        }
+    }
+
+    public class ConeClaw : Ability
+    {
+        public ConeClaw()
+        {
+            name = "Cone Claw";
+            cost = 0;
+            position = 0;
+            target = 0;
+            damage = 4;
+            damageType = 0;
+        }
+    }
+
+    public class CurbStomp : Ability
+    {
+        public CurbStomp()
+        {
+            name = "Curb Stomp";
+            cost = 0;
+            position = 0;
+            target = 0;
+            damage = 12;
+            damageType = 1;
+            statusEffect = "Blunt Trauma";
+        }
+    }
+
+    //Thrash Can
+    public class SpewingGarbage : Ability
+    {
+        public SpewingGarbage()
+        {
+            name = "Spewing Garbage";
+            cost = 0;
+            position = 0;
+            target = 1;
+            damage = 8;
+            damageType = 3;
+            statusEffect = "Vomiting";
+        }
+    }
+
+    public class PutInCan : Ability
+    {
+        public PutInCan()
+        {
+            name = "Put it in the Trash Can";
+            cost = 0;
+            position = 0;
+            target = 0;
+            damage = 0;
+            statusEffect = "Restrained";
+        }
+    }
+
+    public class TakeOutTrash : Ability
+    {
+        public TakeOutTrash()
+        {
+            name = "Take out the Trash";
+            cost = 0;
+            position = 0;
+            target = 0;
+            damage = 15;
+        }
+
+        public override void UseAttack(unit user, unit target)
+        {
+            if (target.status == "Restrained") damage = 25;
+        }
+    }
+
+    //Locker Lurker
+    public class MetallicWail : Ability
+    {
+        public MetallicWail()
+        {
+            name = "Metallic Wail";
+            cost = 0;
+            target = 0;
+            damage = 4;
+            sanity_damage = 0;
+            damageType = 4;
+            use_pow = true;
+            statusEffect = "Weeping";
+        }
+    }
+
+    public class LockerStuffer : Ability
+    {
+        public LockerStuffer()
+        {
+            name = "Locker Stuffer";
+            cost = 0;
+            target = 0;
+            damage = 0;
+            statusEffect = "Restrained";
+        }
+    }
+
+    public class DoorSlam : Ability
+    {
+        public DoorSlam()
+        {
+            name = "Door Slam";
+            cost = 0;
+            target = 1;
+            damage = 18;
+            damageType = 0;
+            statusEffect = "Blunt Trauma";
         }
     }
 }

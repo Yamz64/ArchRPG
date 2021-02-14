@@ -3225,6 +3225,32 @@ public class NewKidUnit : unit
 }
 
 //First basic enemy
+public class KillerCone : unit
+{
+    public KillerCone()
+    {
+        ImageFilePath = "EnemySprites/EnemyTestPicture";
+        unitName = "KillerCone";
+
+        level = 3;
+        maxHP = currentHP = 15;
+        expGain = 15;
+        enemy = true;
+        ATK = 15;
+        DEF = 40;
+        POW = 8;
+        WILL = 6;
+        RES = 4;
+        AGI = 8;
+        LCK = 1;
+
+        abilities = new List<Ability>();
+        abilities.Add(new EnemyAbilities.LookBothWays());
+        abilities.Add(new EnemyAbilities.ConeClaw());
+        abilities.Add(new EnemyAbilities.CurbStomp());
+    }
+}
+
 public class ThrashCan : unit
 {
     public ThrashCan()
@@ -3250,6 +3276,32 @@ public class ThrashCan : unit
         abilities.Add(new Basic());
         abilities.Add(new AOERow());
         attacks = abilities;
+    }
+}
+
+public class LockerLurker : unit
+{
+    public LockerLurker()
+    {
+        ImageFilePath = "EnemySprites/EnemyTestPicture";
+        unitName = "LockerLurker";
+
+        level = 4;
+        maxHP = currentHP = 30;
+        expGain = 50;
+        enemy = true;
+        ATK = 40;
+        DEF = 40;
+        POW = 30;
+        WILL = 6;
+        RES = 6;
+        AGI = 5;
+        LCK = 2;
+
+        abilities = new List<Ability>();
+        abilities.Add(new EnemyAbilities.MetallicWail);
+        abilities.Add(new EnemyAbilities.LockerStuffer());
+        abilities.Add(new EnemyAbilities.DoorSlam());
     }
 }
 
