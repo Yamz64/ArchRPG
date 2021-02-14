@@ -369,6 +369,7 @@ public class PlayerData : CharacterStats
                 SetRES(6);
                 SetSPD(3);
                 SetLCK(0);
+                AddAbility(new PlayerAbilities.Scrutinize());
                 break;
             case 2:
                 //apply the base stats per level
@@ -408,6 +409,7 @@ public class PlayerData : CharacterStats
                 SetRES(13);
                 SetSPD(12);
                 SetLCK(0);
+                AddAbility(new PlayerAbilities.Diagnosis());
                 break;
             case 5:
                 //apply the base stats per level

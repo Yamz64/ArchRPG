@@ -89,7 +89,16 @@ public class unit
     public Trinket unitTrinket; //The trinket that the unit has
 
     //< Status Effects >//
-
+    //damage types
+    /*
+     * 0 - Physical
+     * 1 - Fire
+     * 2 - Electric
+     * 3 - Chemical
+     * 4 - Wierd
+    */
+    public int[] weaknesses;    //an array of integer codes for the weaknesses that a unit may have
+    public int[] resistances;   //an array of integer codes for the resistances that a unit may have
     public string ImageFilePath;//Use to determine what image to display for the unit
     public Image view;          //Image of unit
     public Text nameText;       //Text object to project name to

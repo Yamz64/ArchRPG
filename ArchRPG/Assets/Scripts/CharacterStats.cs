@@ -409,6 +409,13 @@ public class CharacterStats
     private int LVL;        //current level of the character
 
     //--MISC STATS--
+    /* DAMAGE TYPES
+     * 0 - Physical
+     * 1 - Fire
+     * 2 - Electric
+     * 3 - Chemical
+     * 4 - Weird
+    */
     private int resistance;         //integer denoting any particular resistance that this character might have (-1 denotes no resistance)
     private int weakness;           //integer denoting any particular weakness that this character might have (-1 denotes no weakness)
     private string name;            //name of the character
@@ -874,6 +881,9 @@ class Clyve : CharacterStats
         SetRES(7);
         SetSPD(5);
         SetLCK(0);
+
+        SetWeakness(1);
+        SetResistance(3);
     }
     public override void UpdateStats()
     {
@@ -899,6 +909,7 @@ class Clyve : CharacterStats
                 SetRES(7);
                 SetSPD(5);
                 SetLCK(0);
+                AddAbility(new ClyveAbilities.NoShower());
                 break;
             case 2:
                 //apply the base stats per level
@@ -923,6 +934,7 @@ class Clyve : CharacterStats
                 SetRES(14);
                 SetSPD(3);
                 SetLCK(0);
+                AddAbility(new ClyveAbilities.ShoeRemoval());
                 break;
             case 4:
                 //apply the base stats per level
@@ -1166,6 +1178,8 @@ class Jim : CharacterStats
         SetRES(3);
         SetSPD(3);
         SetLCK(0);
+
+        SetResistance(4);
     }
     public override void UpdateStats()
     {
@@ -1203,6 +1217,7 @@ class Jim : CharacterStats
                 SetRES(5);
                 SetSPD(6);
                 SetLCK(0);
+                AddAbility(new JimAbilities.Antacid());
                 break;
             case 3:
                 //apply the base stats per level
@@ -1215,6 +1230,7 @@ class Jim : CharacterStats
                 SetRES(7);
                 SetSPD(9);
                 SetLCK(0);
+                AddAbility(new JimAbilities.Bandaid());
                 break;
             case 4:
                 //apply the base stats per level
@@ -1458,6 +1474,8 @@ class Norm : CharacterStats
         SetRES(6);
         SetSPD(4);
         SetLCK(0);
+
+        SetWeakness(4);
     }
     public override void UpdateStats()
     {
@@ -1495,6 +1513,7 @@ class Norm : CharacterStats
                 SetRES(9);
                 SetSPD(8);
                 SetLCK(0);
+                AddAbility(new NormAbilities.PoopThrow());
                 break;
             case 3:
                 //apply the base stats per level
@@ -1531,6 +1550,7 @@ class Norm : CharacterStats
                 SetRES(18);
                 SetSPD(20);
                 SetLCK(0);
+                AddAbility(new NormAbilities.EatBanana());
                 break;
             case 6:
                 //apply the base stats per level
@@ -1787,6 +1807,7 @@ class Shirley : CharacterStats
                 SetRES(7);
                 SetSPD(8);
                 SetLCK(0);
+                AddAbility(new ShirleyAbilities.OpenFire());
                 break;
             case 3:
                 //apply the base stats per level
@@ -1811,6 +1832,7 @@ class Shirley : CharacterStats
                 SetRES(11);
                 SetSPD(16);
                 SetLCK(2);
+                AddAbility(new ShirleyAbilities.Frontline());
                 break;
             case 5:
                 //apply the base stats per level

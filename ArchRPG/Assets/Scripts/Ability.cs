@@ -23,6 +23,8 @@ public class Ability
         user.setSP(user.currentSP - cost);
     }
 
+    public virtual string OutputText(unit user, unit target) { return null; }
+
     public bool eldritch = false;   //Whether the ability is eldritch or not
     public int target = 0;          //0-Single, 1-Across, 2-Down, 3-All
     public string name;             //The name of the ability
@@ -44,6 +46,7 @@ public class Ability
     public string image_file_path;  //Give path to image that goes with attack
     public string desc1;            //Give info on attack name, cost, and basic details
     public string desc2;            //Give actual description and more details (damage type, targets, etc.)
+    public bool fast = false;       //if this is applied to the ability then it behaves as if the user had double speed
 }
 
 //Sub class to deal with attacks (abilities that deal damage)
@@ -338,7 +341,6 @@ public class AOEStatus1 : Ability
     }
 }
 
-
 public static class EldritchAbilities
 {
     public static List<Ability> GetEldritchAbilities()
@@ -507,6 +509,256 @@ public static class EldritchAbilities
             damageType = 0;
             image_file_path = "AbilitySprites/Eldritch";
             desc1 = "This is eldritch test ability 8";
+        }
+    }
+}
+
+namespace PlayerAbilities
+{
+    public class Scrutinize : Ability
+    {
+        public Scrutinize()
+        {
+            name = "Scrutinize";
+            desc1 = "You remove your glasses so that you can closely inspect your enemies with your near-sightedness - revelas an enemy's weakness";
+            cost = 2;
+            position = 0;
+            target = 0;
+            damage = 0;
+        }
+
+        public override string OutputText(unit user, unit target)
+        {
+            user.setSP(user.getSP() - cost);
+
+            //see if the target has any weaknesses
+            //no
+            if (target.weaknesses == null) return target.unitName + " has no weaknesses!";
+            if (target.weaknesses.GetLength(0) == 0) return target.unitName + " has no weaknesses!";
+
+            //yes
+            string output = target.unitName + " is weak to ";
+
+            //construct the output
+            for(int i=0; i<target.weaknesses.GetLength(0); i++)
+            {
+                //determine what it is weak to first
+                string weakness = "";
+                switch (target.weaknesses[i])
+                {
+                    case 0:
+                        weakness = "Physical";
+                        break;
+                    case 1:
+                        weakness = "Fire";
+                        break;
+                    case 2:
+                        weakness = "Electric";
+                        break;
+                    case 3:
+                        weakness = "Chemical";
+                        break;
+                    case 4:
+                        weakness = "Weird";
+                        break;
+                    default:
+                        break;
+                }
+
+                //the end of the list
+                if(i == target.weaknesses.GetLength(0) - 1)
+                {
+                    if (i == 0)
+                        output += weakness + " damage.";
+                    else
+                        output += "and " + weakness + " damage.";
+                }
+                //not the end of the list
+                else
+                {
+                    if (i == 0)
+                        output += weakness;
+                    else
+                        output += ", " + weakness;
+                }
+            }
+
+            return output;
+        }
+    }
+
+    public class Diagnosis : Ability
+    {
+        public Diagnosis()
+        {
+            name = "Diagnosis";
+            desc1 = "You remove your glasses so that you can closely inspect your enemies with your near-sightedness - revelas an enemy's weakness";
+            cost = 3;
+            position = 0;
+            target = 0;
+            damage = 0;
+        }
+
+        public override string OutputText(unit user, unit target)
+        {
+            user.setSP(user.getSP() - cost);
+
+            //determine target's percentage of remaining health
+            float percent = target.getHP() / target.maxHP;
+
+            if(percent > .5f)
+            {
+                return "The " + target.unitName + " is looking healthy!";
+            }else if(percent < .1f)
+            {
+                return "The " + target.unitName + " is on the ropes!";
+            }
+            return "The " + target.unitName + " is wounded!";
+        }
+    }
+}
+
+namespace ClyveAbilities
+{
+    public class NoShower : Ability
+    {
+        public NoShower()
+        {
+            name = "I Didn't Shower Today";
+            desc1 = "Clyve reminds everyone that he didn't take a shower today, you aren't surprised, but this may cause the enemy to vomit a bit.";
+            cost = 3;
+            target = 0;
+            damage = 0;
+            position = 0;
+            damageType = 3;
+            statusEffect = "Vomiting";
+        }
+    }
+
+    public class ShoeRemoval : Ability
+    {
+        public ShoeRemoval()
+        {
+            name = "Shoe Removal";
+            desc1 = "Clyve removes his shoe, you don't want to describe the smell in too much detail, but it may cause the enemy to tear up a bit.";
+            cost = 4;
+            target = 0;
+            damage = 0;
+            position = 0;
+            damageType = 3;
+            statusEffect = "Weeping";
+        }
+    }
+}
+
+namespace JimAbilities
+{
+    public class Antacid : Ability
+    {
+        public Antacid()
+        {
+            name = "Antacid";
+            desc1 = "Jim has always been a sickly child, so his mom has sent him to school with these miracle tablets for as long as you can remember." +
+                "They cure vomiting and other such stomach ailments.";
+            cost = 3;
+            target = 0;
+            damage = 0;
+            position = 0;
+        }
+
+        public override void UseAttack(unit user, unit target)
+        {
+            user.setSP(user.getSP() - cost);
+            if (target.status == "Vomiting") target.status = "";
+        }
+    }
+
+    public class Bandaid : Ability
+    {
+        public Bandaid()
+        {
+            name = "Bandaid";
+            desc1 = "Jim produces a small adhesive bandage from his belongings to ease the pain of others.";
+            cost = 3;
+            target = 0;
+            damage = 0;
+            position = 0;
+        }
+
+        public override void UseAttack(unit user, unit target)
+        {
+            user.setSP(user.getSP() - cost);
+
+            target.setHP(target.getHP() + 10);
+
+            if (target.getHP() > target.maxHP) target.setHP(target.maxHP);
+        }
+    }
+}
+
+namespace NormAbilities
+{
+    public class PoopThrow : Ability
+    {
+        public PoopThrow()
+        {
+            name = "Poop Throw";
+            desc1 = "Well of course we're going to Throw poo at them!  This attack may cause vomiting in addition to a small amount of chemical damage";
+            cost = 3;
+            damage = 8;
+            damageType = 3;
+            position = 2;
+            statusEffect = "Vomiting";
+        }
+    }
+
+    public class EatBanana : Ability
+    {
+        public EatBanana()
+        {
+            name = "Banana Consumption";
+            desc1 = "Norm produces his favorite food from his secret stash, consumes it healing a small amount of health, and lets out a hearty belch rubbing his stomach.";
+            cost = 5;
+            damage = 0;
+            damageType = 0;
+            position = 0;
+        }
+
+        public override void UseAttack(unit user, unit target)
+        {
+            target = user;
+            user.setHP(user.getHP() + 25);
+            if (user.getHP() > user.maxHP) user.setHP(user.maxHP);
+        }
+    }
+}
+
+namespace ShirleyAbilities
+{
+    public class OpenFire : Ability
+    {
+        public OpenFire()
+        {
+            name = "Open Fire";
+            desc1 = "Shirley quickly draws an Aston Model 1842 flintlock pistol replica, fires at the enemy, and stows it away.  This ability is very quick.";
+            cost = 4;
+            damage = 10;
+            damageType = 0;
+            position = 2;
+            fast = true;
+        }
+    }
+
+    public class Frontline : Ability
+    {
+        public Frontline()
+        {
+            name = "To the Frontlines!";
+            desc1 = "After letting out a zealous warcry, Shirley commands a party member to the frontline, they seem really fired up though.  Buffs ally with Zealous";
+            cost = 6;
+            damage = 0;
+            position = 0;
+            statusEffect = "Zealous";
         }
     }
 }
