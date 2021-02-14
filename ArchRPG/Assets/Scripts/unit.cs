@@ -3299,7 +3299,7 @@ public class LockerLurker : unit
         LCK = 2;
 
         abilities = new List<Ability>();
-        abilities.Add(new EnemyAbilities.MetallicWail);
+        abilities.Add(new EnemyAbilities.MetallicWail());
         abilities.Add(new EnemyAbilities.LockerStuffer());
         abilities.Add(new EnemyAbilities.DoorSlam());
     }
