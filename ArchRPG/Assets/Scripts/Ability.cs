@@ -29,7 +29,7 @@ public class Ability
     public int target = 0;          //0-Single, 1-Across, 2-Down, 3-All
     public string name;             //The name of the ability
     public int type;                //int denotes type of ability can be 3 types 0 = normal, 1 = magic, 2 = eldritch
-    public int position;            //int denotes the place the ability can be used 0 = front and backline, 1 = frontline, 2 = backline
+    public int position = 0;            //int denotes the place the ability can be used 0 = front and backline, 1 = frontline, 2 = backline
     public int cost = 0;            //int denotes the cost of using the ability (if any)
     public int damage;              //int denotes the amount of damage the attack will do
     /*
@@ -43,7 +43,7 @@ public class Ability
     public string statusEffect = "";
     public int damageType;          //The type of damage dealt by the attack
     public int level_cost;          //cost to purchase this ability on levelup (only applies to eldritch abilities)
-    public string image_file_path;  //Give path to image that goes with attack
+    public string image_file_path = "";  //Give path to image that goes with attack
     public string desc1;            //Give info on attack name, cost, and basic details
     public string desc2;            //Give actual description and more details (damage type, targets, etc.)
     public bool fast = false;       //if this is applied to the ability then it behaves as if the user had double speed
