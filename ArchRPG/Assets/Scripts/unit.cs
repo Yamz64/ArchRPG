@@ -9,6 +9,7 @@ public class unit
 {
     public unit()
     {
+        attacks = new List<Ability>();
         abilities = new List<Ability>();
     }
     public void copyUnitStats(unit ver)
@@ -83,6 +84,7 @@ public class unit
     public bool enemy;          //Whether the unit is an enemy unit or not
     public bool outOfSP;        //Bool to say whether a unit has no more SP for attacks (party)
     public int position;        //0 == Frontline, 1 == Backline
+    public List<Ability> attacks;
     public List<Ability> abilities;   //List of attacks the unit can perform
     public Weapon unitWeapon;   //The weapon the unit is holding
     public Armor unitArmor;     //The armor the unit is wearing
@@ -228,6 +230,18 @@ public class unit
     //Get the attack at the given index
     public Ability getAttack(int index)
     {
+        if (index < attacks.Count)
+        {
+            return attacks[index];
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public Ability getAbility(int index)
+    {
         if (index < abilities.Count)
         {
             return abilities[index];
@@ -241,12 +255,18 @@ public class unit
     //Add an attack to the unit's list of attacks
     public void addAttack(Ability move)
     {
+        attacks.Add(move);
+    }
+
+    public void addAbility(Ability move)
+    {
         abilities.Add(move);
     }
 
     //Use the attack at the given index against the given target
     public bool useAttack(int index, unit target)
     {
+        Debug.Log("atk count == " + attacks.Count + ", index == " + index);
         Ability ata = getAttack(index);
         if (ata.position == 0 || (ata.position - 1 == position))
         {
@@ -284,7 +304,6 @@ public class unit
                     if (dum > 50)
                     {
                         miss = true;
-                        Debug.Log("num == " + dum);
                     }
                 }
                 if (miss == false)
@@ -294,29 +313,90 @@ public class unit
                     target.setHP(target.currentHP);
                     if (d == false)
                     {
-                        Debug.Log(ata.statusEffect + " == empty is " + (ata.statusEffect.Equals("")));
                         if (ata.statusEffect.Equals(""))
                         {
-                            Debug.Log("Status has no name");
                             int r = UnityEngine.Random.Range(1, 101);
                             if (r > target.RES || r == 1)
                             {
                                 target.giveStatus(ata.damageType);
                             }
                         }
-                        else
-                        {
-                            Debug.Log("Status has name");
-                            target.giveStatus(ata.statusEffect);
-                        }
+                        else {    target.giveStatus(ata.statusEffect);    }
                     }
                     return d;
                 }
+                else   {    return false;    }
+            }
+            return false;
+        }
+        else if (ata.position - 1 != position)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public bool useAbility(int index, unit target)
+    {
+        Ability ata = getAbility(index);
+        if (ata.position == 0 || (ata.position - 1 == position))
+        {
+            //If SP isn't 0 or the unit is an enemy
+            if (currentSP > 0 || enemy == true)
+            {
+                //Flash to show unit is attacking
+                //StartCoroutine(flashDealDamage());
+                if (!enemy)
+                    setSP(currentSP - ata.cost);
+                if (currentSP == 0 && !enemy)
+                {
+                    outOfSP = true;
+                }
+                //Calculate damage of the attack
+                int val = ata.damage + (ATK / 100);
+                if (ata.damageType == 0)
+                {
+                    val -= target.DEF / 200;
+                }
                 else
                 {
-                    Debug.Log("Missed by confusion");
-                    return false;
+                    val -= target.WILL / 200;
                 }
+                int crit = UnityEngine.Random.Range(1, 101);
+                if (crit <= LCK)
+                {
+                    val += (val / 2);
+                    Debug.Log("Got a crit!");
+                }
+                bool miss = false;
+                if (status == "Confused")
+                {
+                    int dum = UnityEngine.Random.Range(1, 101);
+                    if (dum > 50)
+                    {
+                        miss = true;
+                    }
+                }
+                if (miss == false)
+                {
+                    //Check if target is dead from attack
+                    bool d = target.takeDamage(val);
+                    target.setHP(target.currentHP);
+                    if (d == false)
+                    {
+                        if (ata.statusEffect.Equals(""))
+                        {
+                            int r = UnityEngine.Random.Range(1, 101);
+                            if (r > target.RES || r == 1)
+                            {
+                                target.giveStatus(ata.damageType);
+                            }
+                        }
+                        else    {    target.giveStatus(ata.statusEffect);    }
+                    }
+                    return d;
+                }
+                else   {    return false;    }
             }
             return false;
         }
@@ -3136,6 +3216,7 @@ public class NewKidUnit : unit
         AGI = 40;
         LCK = 1;
 
+        attacks = new List<Ability>();
         abilities = new List<Ability>();
         abilities.Add(new AOEStatus1());
         abilities.Add(new Basic());
@@ -3144,15 +3225,15 @@ public class NewKidUnit : unit
 }
 
 //First basic enemy
-public class Enemy1 : unit
+public class ThrashCan : unit
 {
-    public Enemy1()
+    public ThrashCan()
     {
         ImageFilePath = "EnemySprites/EnemyTestPicture";
         unitID = -1;
-        unitName = "Eldritch Gunner";
+        unitName = "ThrashCan";
 
-        level = 5;
+        level = 3;
         maxHP = currentHP = (int)(0.67 * Math.Pow(level, 2)) + 19;
         expGain = 30;
         enemy = true;
@@ -3168,7 +3249,7 @@ public class Enemy1 : unit
         abilities = new List<Ability>();
         abilities.Add(new Basic());
         abilities.Add(new AOERow());
-        abilities.Add(new AOELine());
+        attacks = abilities;
     }
 }
 

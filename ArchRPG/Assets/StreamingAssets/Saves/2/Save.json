@@ -1,7 +1,7 @@
 {
     "position": {
         "x": -8.5,
-        "y": -7.0
+        "y": 0.0
     },
     "progress": 0,
     "HPs": [
@@ -201,17 +201,56 @@
             "type": 3
         }
     ],
-    "active_scene": "SchoolHallwayScene",
+    "statuses": [
+        {
+            "status_effects": [
+                -1,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1
+            ]
+        },
+        {
+            "status_effects": [
+                -1,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1
+            ]
+        },
+        {
+            "status_effects": [
+                -1,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1
+            ]
+        }
+    ],
+    "active_scene": "",
     "names": [
         "Player",
         "Clyve",
         "Jim"
     ],
     "e_abilities": [],
-    "enemy_names": [
-        "Eldritch Gunner",
-        "",
-        "",
-        ""
-    ]
+    "enemy_names": []
 }
