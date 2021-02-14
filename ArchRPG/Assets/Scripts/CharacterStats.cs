@@ -21,8 +21,12 @@ public class CharacterStats
     public int GetSPD() { return SPD; }
     public int GetLCK() { return LCK; }
     public int GetLVL() { return LVL; }
+    public int GetResistance() { return resistance; }
+    public int GetWeakness() { return weakness; }
     public int GetPos() { return position; }
     public int GetAbilityCount() { return abilities.Count; }
+    public int GetStatus(int index) { return status_effects[index]; }
+    public int GetStatusCount() { return status_effects.Count; }
 
     public string GetName() { return name; }
     public string GetDesc() { return desc; }
@@ -58,8 +62,11 @@ public class CharacterStats
     public void SetRES(int r) { RES = r; }
     public void SetSPD(int s) { SPD = s; }
     public void SetLCK(int l) { LCK = l; }
+    public void SetResistance(int r) { resistance = r; }
+    public void SetWeakness(int w) { weakness = w; }
     public void SetLVL(int l) { LVL = l; }
     public void SetPos(int p) { position = p; }
+    public void SetStatus(int index, int s) { status_effects[index] = s; }
 
     public void SetName(string n) { name = n; }
     public void SetDesc(string s) { desc = s; }
@@ -377,6 +384,12 @@ public class CharacterStats
     public CharacterStats()
     {
         abilities = new List<Ability>();
+        status_effects = new List<int>();
+
+        for(int i=0; i<10; i++)
+        {
+            status_effects.Add(-1);
+        }
     }
 
     //--PRIMARY STATS--
@@ -396,6 +409,8 @@ public class CharacterStats
     private int LVL;        //current level of the character
 
     //--MISC STATS--
+    private int resistance;         //integer denoting any particular resistance that this character might have (-1 denotes no resistance)
+    private int weakness;           //integer denoting any particular weakness that this character might have (-1 denotes no weakness)
     private string name;            //name of the character
     private string desc;                //description of the character
     private string image_filepath;      //character image filepath
@@ -404,14 +419,38 @@ public class CharacterStats
     private Armor armor;                //current equipped armor
     private Trinket trinket;            //current equipped trinket
     private List<Ability> abilities;    //list of abilities that the character has
+
+    //--ACTIVE STATUS EFFECTS--
+    //integer list denoting the number of combat turns left until a status effect terminates effects are located at the following indices
+    /*
+     * 0 - Vomiting
+     * 1 - Aspirating
+     * 2 - Weeping
+     * 3 - Eye Bleeding
+     * 4 - Blunt Trauma
+     * 5 - Hyperactive
+     * 6 - Zealous
+     * 7 - Neurotic
+     * 8 - Restrained
+     * 9 - Consumed
+    */
+    private List<int> status_effects;
 }
 
 [System.Serializable]
 public class CharacterStatJsonConverter
 {
+    [System.Serializable]
+    public class StatusEffectContainer
+    {
+        public StatusEffectContainer() { status_effects = new List<int>(); }
+        public List<int> status_effects;
+    }
+
     //constructor given the current player data
     public CharacterStatJsonConverter(PlayerData p)
     {
+        statuses = new List<StatusEffectContainer>();
         //set the position and progress of the player
         position = p.GetSavedPosition();
         progress = p.GetProgress();
@@ -449,6 +488,14 @@ public class CharacterStatJsonConverter
         trinkets[0] = p.GetTrinket();
         names[0] = p.GetName();
 
+        //add status effects for the player
+        StatusEffectContainer player_status = new StatusEffectContainer();
+        for(int i=0; i<p.GetStatusCount(); i++)
+        {
+            player_status.status_effects.Add(p.GetStatus(i));
+        }
+        statuses.Add(player_status);
+
         //set all lists of things to be saved from party members
         for (int i=1; i<p.GetPartySize()+1; i++)
         {
@@ -462,6 +509,13 @@ public class CharacterStatJsonConverter
             armors[i] = p.GetPartyMember(i-1).GetArmor();
             trinkets[i] = p.GetPartyMember(i-1).GetTrinket();
             names[i] = p.GetPartyMember(i-1).GetName();
+
+            StatusEffectContainer party_status = new StatusEffectContainer();
+            for(int j=0; j<p.GetPartyMember(i-1).GetStatusCount(); j++)
+            {
+                party_status.status_effects.Add(p.GetPartyMember(i - 1).GetStatus(j));
+            }
+            statuses.Add(party_status);
         }
 
         //populate a list of items in the player's inventory
@@ -671,6 +725,12 @@ public class CharacterStatJsonConverter
             p.AddAbility((Ability)System.Activator.CreateInstance(t));
         }
 
+        //update statuses
+        for(int i=0; i<statuses[0].status_effects.Count; i++)
+        {
+            p.SetStatus(i, statuses[0].status_effects[i]);
+        }
+
         //add party members
         p.ClearParty();
         for(int i=1; i<names.GetLength(0); i++)
@@ -726,6 +786,11 @@ public class CharacterStatJsonConverter
                 }
             }
 
+            for(int j=0; j<statuses[i].status_effects.Count; j++)
+            {
+                temp.SetStatus(j, statuses[i].status_effects[j]);
+            }
+
             p.AddPartyMember(temp);
         }
     }
@@ -734,21 +799,22 @@ public class CharacterStatJsonConverter
 
     public int progress;            //how far in the game the player is
 
-    public int[] HPs;               //the current hp levels of the party members
-    public int[] SPs;               //the current sp levels of the party members
-    public int[] SANs;              //the current san level of the party members
-    public int[] XPs;               //the current xp levels of the party members
-    public int[] levels;            //the current levels of the party members
-    public int[] positions;         //the current positions of the party members
-    public Weapon[] weapons;        //the current weapons that the party members are carrying
-    public Armor[] armors;          //the current armors that the party members are carrying
-    public Trinket[] trinkets;      //the current trinkets that the party members are carrying
-    public Item[] inventory;        //the player's inventory
+    public int[] HPs;                               //the current hp levels of the party members
+    public int[] SPs;                               //the current sp levels of the party members
+    public int[] SANs;                              //the current san level of the party members
+    public int[] XPs;                               //the current xp levels of the party members
+    public int[] levels;                            //the current levels of the party members
+    public int[] positions;                         //the current positions of the party members
+    public Weapon[] weapons;                        //the current weapons that the party members are carrying
+    public Armor[] armors;                          //the current armors that the party members are carrying
+    public Trinket[] trinkets;                      //the current trinkets that the party members are carrying
+    public Item[] inventory;                        //the player's inventory
+    public List<StatusEffectContainer> statuses;    //contains the statuses of party members
 
-    public string active_scene;     //scene to load into after a battle is over
-    public string[] names;          //the names of the current party members
-    public string[] e_abilities;    //the current eldritch abilities that the player has
-    public string[] enemy_names;    //names of enemies to fight
+    public string active_scene;                     //scene to load into after a battle is over
+    public string[] names;                          //the names of the current party members
+    public string[] e_abilities;                    //the current eldritch abilities that the player has
+    public string[] enemy_names;                    //names of enemies to fight
 }
 
 class TestPartyMember : CharacterStats

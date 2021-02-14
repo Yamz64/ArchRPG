@@ -7597,9 +7597,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy_names:
   - Eldritch Gunner
-  roll_delay: 0.2
-  roll_min: 0.2
-  enemy_encounter_chance: 9
+  roll_delay: 2
+  roll_min: 1
+  enemy_encounter_chance: 50
 --- !u!19719996 &1078044054
 TilemapCollider2D:
   m_ObjectHideFlags: 0

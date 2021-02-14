@@ -30,6 +30,13 @@ public class PlayerData : CharacterStats
             SetSP(temp.GetSP());
             SetSAN(temp.GetSAN());
             SetExperience(temp.GetExperience());
+
+            for(int i=0; i<temp.GetStatusCount(); i++)
+            {
+                //Debug.Log(temp.GetStatus(i));
+                SetStatus(i, temp.GetStatus(i));
+            }
+
             if (temp.GetWeapon() != null)
             {
                 AddItem(temp.GetWeapon());
