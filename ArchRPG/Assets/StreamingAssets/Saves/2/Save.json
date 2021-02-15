@@ -1,7 +1,7 @@
 {
     "position": {
-        "x": 0.5,
-        "y": 2.5
+        "x": -8.131365776062012,
+        "y": 10.582843780517579
     },
     "progress": 0,
     "HPs": [
@@ -253,8 +253,8 @@
     ],
     "e_abilities": [],
     "enemy_names": [
-        "Eldritch Gunner",
-        "",
+        "KillerCone",
+        "KillerCone",
         "",
         ""
     ]

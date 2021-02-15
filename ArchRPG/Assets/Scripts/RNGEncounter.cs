@@ -72,22 +72,80 @@ public class RNGEncounter : MonoBehaviour
                             CharacterStatJsonConverter data = new CharacterStatJsonConverter(GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDataMono>().data);
                             switch (enemy_names.Count)
                             {
+                                //1 enemy
                                 case 1:
                                     data.SaveEnemyNames(enemy_names[0]);
                                     break;
+                                //2 enemies (pick how many spawn and then pick a random of the 2
                                 case 2:
-                                    data.SaveEnemyNames(enemy_names[0], enemy_names[1]);
+                                    int enemy_num = Random.Range(0, 2);
+                                    if(enemy_num == 0)
+                                    {
+                                        int first_type = Random.Range(0, 2);
+                                        data.SaveEnemyNames(enemy_names[first_type]);
+                                    }
+                                    else
+                                    {
+                                        int first_type = Random.Range(0, 2);
+                                        int second_type = Random.Range(0, 2);
+                                        data.SaveEnemyNames(enemy_names[first_type], enemy_names[second_type]);
+                                    }
                                     break;
                                 case 3:
-                                    data.SaveEnemyNames(enemy_names[0], enemy_names[1], enemy_names[2]);
+                                    enemy_num = Random.Range(0, 3);
+                                    if (enemy_num == 0)
+                                    {
+                                        int first_type = Random.Range(0, 3);
+                                        data.SaveEnemyNames(enemy_names[first_type]);
+                                    }
+                                    else if(enemy_num == 1)
+                                    {
+                                        int first_type = Random.Range(0, 2);
+                                        int second_type = Random.Range(0, 2);
+                                        data.SaveEnemyNames(enemy_names[first_type], enemy_names[second_type]);
+                                    }
+                                    else
+                                    {
+                                        int first_type = Random.Range(0, 3);
+                                        int second_type = Random.Range(0, 3);
+                                        int third_type = Random.Range(0, 3);
+                                        data.SaveEnemyNames(enemy_names[first_type], enemy_names[second_type], enemy_names[third_type]);
+                                    }
                                     break;
                                 case 4:
-                                    data.SaveEnemyNames(enemy_names[0], enemy_names[1], enemy_names[2], enemy_names[3]);
+                                    enemy_num = Random.Range(0, 4);
+                                    if (enemy_num == 0)
+                                    {
+                                        int first_type = Random.Range(0, 4);
+                                        data.SaveEnemyNames(enemy_names[first_type]);
+                                    }
+                                    else if (enemy_num == 1)
+                                    {
+                                        int first_type = Random.Range(0, 2);
+                                        int second_type = Random.Range(0, 2);
+                                        data.SaveEnemyNames(enemy_names[first_type], enemy_names[second_type]);
+                                    }
+                                    else if(enemy_num == 2)
+                                    {
+                                        int first_type = Random.Range(0, 3);
+                                        int second_type = Random.Range(0, 3);
+                                        int third_type = Random.Range(0, 3);
+                                        data.SaveEnemyNames(enemy_names[first_type], enemy_names[second_type], enemy_names[third_type]);
+                                    }
+                                    else
+                                    {
+                                        int first_type = Random.Range(0, 4);
+                                        int second_type = Random.Range(0, 4);
+                                        int third_type = Random.Range(0, 4);
+                                        int fourth_type = Random.Range(0, 4);
+                                        data.SaveEnemyNames(enemy_names[first_type], enemy_names[second_type], enemy_names[third_type], enemy_names[fourth_type]);
+                                    }
                                     break;
                             }
 
                             //start battle transition and load into the battle
                             data.active_scene = SceneManager.GetActiveScene().name;
+                            data.position = GameObject.FindGameObjectWithTag("Player").transform.position;
                             data.Save(PlayerPrefs.GetInt("_active_save_file_"));
                             StartCoroutine(Battle());
                         }
