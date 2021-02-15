@@ -598,6 +598,8 @@ public class CharacterStatJsonConverter
             if (trinkets[num] != null)
                 g.unitTrinket = trinkets[num];
             g.unitName = names[num];
+            g.statuses = statuses[num].status_effects;
+            
             id.GetComponent<UnitMono>().mainUnit = g;
             return id;
         }

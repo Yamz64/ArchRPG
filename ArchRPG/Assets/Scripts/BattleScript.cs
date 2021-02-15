@@ -2134,8 +2134,8 @@ public class BattleScript : MonoBehaviour
             //Swap sibling indices to get backline in front of frontline
             int a1 = allyStations[swapInds[0]].GetSiblingIndex();   //Get hierarchy positions
             int a2 = allyStations[swapInds[1]].GetSiblingIndex();
-            allyStations[swapInds[1]].SetSiblingIndex(a1);          //Swap in hierarchy to have front/back appearance
-            allyStations[swapInds[0]].SetSiblingIndex(a2);
+            allyStations[swapInds[1]].SetSiblingIndex(swapInds[0]);          //Swap in hierarchy to have front/back appearance
+            allyStations[swapInds[0]].SetSiblingIndex(swapInds[1]);
             //allyStations[swapInds[0]] = pSpots[1];                  //Swap locations
             //allyStations[swapInds[1]] = pSpots[0];
 
@@ -2144,7 +2144,7 @@ public class BattleScript : MonoBehaviour
             {
                 partyUnits[swapInds[1]].transform.position = pSpots[0].position;
             }
-            partyUnits[swapInds[0]] = ppgs[1];
+            partyUnits[swapInds[0]] = ppgs[1];      //Switch indices to match with visible order
             partyUnits[swapInds[1]] = ppgs[0];
         //}
         /*
@@ -3015,7 +3015,7 @@ public class BattleScript : MonoBehaviour
         List<int> rs = new List<int>();
 
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         dead = uni.useAbility(ata, target);
         StartCoroutine(flashDamage(target));
@@ -3028,7 +3028,7 @@ public class BattleScript : MonoBehaviour
             if ((val == 1 || val == 3) && partyUnits[val - 1] != null &&
                 partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
             {
-                dead2 = uni.useAttack(ata, partyUnits[val - 1].GetComponent<UnitMono>().mainUnit);
+                dead2 = uni.useAbility(ata, partyUnits[val - 1].GetComponent<UnitMono>().mainUnit);
                 StartCoroutine(flashDamage(partyUnits[val - 1].GetComponent<UnitMono>().mainUnit));
                 StartCoroutine(flashDealDamage(uni));
                 r2 = val - 1;
@@ -3037,7 +3037,7 @@ public class BattleScript : MonoBehaviour
             else if ((val == 0 || val == 2) && partyUnits[val + 1] != null &&
                 partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
             {
-                dead2 = uni.useAttack(ata, partyUnits[val + 1].GetComponent<UnitMono>().mainUnit);
+                dead2 = uni.useAbility(ata, partyUnits[val + 1].GetComponent<UnitMono>().mainUnit);
                 StartCoroutine(flashDamage(partyUnits[val + 1].GetComponent<UnitMono>().mainUnit));
                 StartCoroutine(flashDealDamage(uni));
                 r2 = val + 1;
@@ -3050,7 +3050,7 @@ public class BattleScript : MonoBehaviour
             if ((val == 0 || val == 1) && partyUnits[val + 2] != null &&
                 partyUnits[val + 2].GetComponent<UnitMono>().mainUnit.currentHP > 0)
             {
-                dead2 = uni.useAttack(ata, partyUnits[val + 2].GetComponent<UnitMono>().mainUnit);
+                dead2 = uni.useAbility(ata, partyUnits[val + 2].GetComponent<UnitMono>().mainUnit);
                 StartCoroutine(flashDamage(partyUnits[val + 2].GetComponent<UnitMono>().mainUnit));
                 StartCoroutine(flashDealDamage(uni));
                 r2 = val + 2;
@@ -3059,7 +3059,7 @@ public class BattleScript : MonoBehaviour
             else if ((val == 2 || val == 3) && partyUnits[val - 2] != null &&
                 partyUnits[val - 2].GetComponent<UnitMono>().mainUnit.currentHP > 0)
             {
-                dead2 = uni.useAttack(ata, partyUnits[val - 2].GetComponent<UnitMono>().mainUnit);
+                dead2 = uni.useAbility(ata, partyUnits[val - 2].GetComponent<UnitMono>().mainUnit);
                 StartCoroutine(flashDamage(partyUnits[val - 2].GetComponent<UnitMono>().mainUnit));
                 StartCoroutine(flashDealDamage(uni));
                 r2 = val - 2;
@@ -3073,7 +3073,7 @@ public class BattleScript : MonoBehaviour
                 if (i != val && partyUnits[i] != null &&
                 partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                 {
-                    bool now = uni.useAttack(ata, partyUnits[i].GetComponent<UnitMono>().mainUnit);
+                    bool now = uni.useAbility(ata, partyUnits[i].GetComponent<UnitMono>().mainUnit);
                     StartCoroutine(flashDamage(partyUnits[i].GetComponent<UnitMono>().mainUnit));
                     StartCoroutine(flashDealDamage(uni));
                     rs.Add(i);

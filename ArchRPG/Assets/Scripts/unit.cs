@@ -101,6 +101,9 @@ public class unit
     */
     public int[] weaknesses;    //an array of integer codes for the weaknesses that a unit may have
     public int[] resistances;   //an array of integer codes for the resistances that a unit may have
+    public List<int> statuses;
+    public List<int> statusCounters;
+
     public string ImageFilePath;//Use to determine what image to display for the unit
     public Image view;          //Image of unit
     public Text nameText;       //Text object to project name to
@@ -445,7 +448,7 @@ public class unit
         {
             if (id == 0)
             {
-                status = "Confused";
+                status = "Vomiting";
                 statusCounter = 3;
 
             }
@@ -465,36 +468,87 @@ public class unit
     //Give the named status to this unit
     public void giveStatus(string id)
     {
-        if (status == "")
+        int ran;
+        Debug.Log("Statuses size == " + statuses.Count);
+        if (id == "Vomiting" && statuses[0] == -1)
         {
-            status = id;
-            if (status == "Confused")
-            {
-                statusCounter = 3;
-            }
-            else
-            {
-                statusCounter = 1;
-            }
-            statusText.text = status;
-            statusBackW.gameObject.SetActive(true);
-            statusBackColor.gameObject.SetActive(true);
-            statusText.gameObject.SetActive(true);
+            ran = UnityEngine.Random.Range(5, 9);
+            statuses[0] = ran;
         }
+        else if (id == "Aspirating" && statuses[1] == -1)
+        {
+            ran = UnityEngine.Random.Range(5, 9);
+            statuses[1] = ran;
+        }
+        else if (id == "Weeping" && statuses[2] == -1)
+        {
+            ran = UnityEngine.Random.Range(5, 9);
+            statuses[2] = ran;
+        }
+        else if (id == "Eye Bleeding" && statuses[3] == -1)
+        {
+            ran = UnityEngine.Random.Range(5, 9);
+            statuses[3] = ran;
+        }
+        else if (id == "Blunt Trauma" && statuses[4] == -1)
+        {
+            ran = UnityEngine.Random.Range(5, 9);
+            statuses[4] = ran;
+        }
+        else if (id == "Hyperactive" && statuses[5] == -1)
+        {
+            ran = UnityEngine.Random.Range(5, 9);
+            statuses[5] = ran;
+        }
+        else if (id == "Zealous" && statuses[6] == -1)
+        {
+            ran = UnityEngine.Random.Range(5, 9);
+            statuses[6] = ran;
+        }
+        else if (id == "Neurotic" && statuses[7] == -1)
+        {
+            ran = UnityEngine.Random.Range(5, 9);
+            statuses[7] = ran;
+        }
+        else if (id == "Restrained" && statuses[8] == -1)
+        {
+            ran = UnityEngine.Random.Range(5, 9);
+            statuses[8] = ran;
+        }
+        else if (id == "Consumed" && statuses[9] == -1)
+        {
+            ran = UnityEngine.Random.Range(5, 9);
+            statuses[9] = ran;
+        }
+
+        statusText.text = status;
+        statusBackW.gameObject.SetActive(true);
+        statusBackColor.gameObject.SetActive(true);
+        statusText.gameObject.SetActive(true);
     }
 
     //Decrement the status counter, and remove the status when it reaches 0
     public void statusTurn()
     {
-        if (status == "Consumed")
+        int no = 0;
+        for (int i = 0; i < statuses.Count; i++)
         {
-            takeDamage(maxHP / 10);
+            if (statuses[i] > -1)
+            {
+                statuses[i]--;
+                if (statuses[i] == 0)
+                {
+                    statuses[i] = -1;
+                    no += 1;
+                }
+            }
+            else
+            {
+                no += 1;
+            }
         }
-        statusCounter -= 1;
-        if (statusCounter <= 0)
+        if (no == 10)
         {
-            status = "";
-            statusCounter = 0;
             statusBackW.gameObject.SetActive(false);
             statusBackColor.gameObject.SetActive(false);
             statusText.gameObject.SetActive(false);
@@ -3200,7 +3254,6 @@ public class NewKidUnit : unit
     }
 }
 
-//First basic enemy
 public class KillerCone : unit
 {
     public KillerCone()
