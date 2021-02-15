@@ -1,7 +1,7 @@
 {
     "position": {
-        "x": -23.5,
-        "y": 2.5
+        "x": -8.437199592590332,
+        "y": 4.641112327575684
     },
     "progress": 0,
     "HPs": [
@@ -245,12 +245,17 @@
             ]
         }
     ],
-    "active_scene": "",
+    "active_scene": "Schoolyard",
     "names": [
         "Player",
         "Clyve",
         "Jim"
     ],
     "e_abilities": [],
-    "enemy_names": []
+    "enemy_names": [
+        "StudentBody",
+        "",
+        "",
+        ""
+    ]
 }

@@ -90,11 +90,11 @@ public class ClassAAnimationHelper : MonoBehaviour
         player_physics.interaction_protection = true;
         player_physics.direction = 3;
         player_physics.moving = true;
-        StartCoroutine(TranslateCharacter(player, new Vector2(-8.5f, 4f), .4f));
+        StartCoroutine(CutsceneHelper.TranslateCharacter(player, new Vector2(-8.5f, 4f), .4f));
         yield return new WaitForSeconds(.4f);
         yield return new WaitForEndOfFrame();
         player_physics.direction = 0;
-        StartCoroutine(TranslateCharacter(player, new Vector2(-8.5f, 8.5f), .8f));
+        StartCoroutine(CutsceneHelper.TranslateCharacter(player, new Vector2(-8.5f, 8.5f), .8f));
         yield return new WaitForSeconds(.8f);
         yield return new WaitForEndOfFrame();
         player_physics.direction = 2;
@@ -245,11 +245,11 @@ public class ClassAAnimationHelper : MonoBehaviour
         player_physics.interaction_protection = true;
         player_physics.direction = 2;
         player_physics.moving = true;
-        StartCoroutine(TranslateCharacter(player, new Vector2(-8.5f, 3.9f), .8f));
+        StartCoroutine(CutsceneHelper.TranslateCharacter(player, new Vector2(-8.5f, 3.9f), .8f));
         yield return new WaitForSeconds(.8f);
         yield return new WaitForEndOfFrame();
         player_physics.direction = 1;
-        StartCoroutine(TranslateCharacter(player, new Vector2(-6.5f, 3.9f), .4f));
+        StartCoroutine(CutsceneHelper.TranslateCharacter(player, new Vector2(-6.5f, 3.9f), .4f));
         yield return new WaitForSeconds(.4f);
         yield return new WaitForEndOfFrame();
         player_physics.direction = 0;
@@ -286,10 +286,10 @@ public class ClassAAnimationHelper : MonoBehaviour
 
         //move Danny to the front of the room
         player_physics.interaction_protection = true;
-        StartCoroutine(TranslateCharacter(danny, new Vector2(-8.5f, 2.0f), .4f));
+        StartCoroutine(CutsceneHelper.TranslateCharacter(danny, new Vector2(-8.5f, 2.0f), .4f));
         yield return new WaitForSeconds(.4f);
         yield return new WaitForEndOfFrame();
-        StartCoroutine(TranslateCharacter(danny, new Vector2(-8.5f, 8.5f), 1.3f));
+        StartCoroutine(CutsceneHelper.TranslateCharacter(danny, new Vector2(-8.5f, 8.5f), 1.3f));
         yield return new WaitForSeconds(1.3f);
         yield return new WaitForEndOfFrame();
 
@@ -516,7 +516,7 @@ public class ClassAAnimationHelper : MonoBehaviour
 
         //Danny leaves the classroom
         player_physics.interaction_protection = true;
-        StartCoroutine(TranslateCharacter(danny, new Vector2(-8.5f, -2.5f), 2.2f));
+        StartCoroutine(CutsceneHelper.TranslateCharacter(danny, new Vector2(-8.5f, -2.5f), 2.2f));
         yield return new WaitForSeconds(2.2f);
         yield return new WaitForEndOfFrame();
         danny.GetComponent<SpriteRenderer>().enabled = false;
@@ -557,30 +557,17 @@ public class ClassAAnimationHelper : MonoBehaviour
         SceneManager.LoadScene("ClassAScene");
     }
 
-    IEnumerator TranslateCharacter(GameObject character, Vector2 destination, float time)
-    {
-        Vector2 start_pos = character.transform.position;
-        float progress = 0;
-        while (progress < 1)
-        {
-            progress += 1 / (60f * time);
-            character.transform.position = Vector3.Lerp(start_pos, destination, progress);
-            yield return new WaitForSeconds(1f / 60f);
-        }
-        character.transform.position = destination;
-    }
-
-    IEnumerator LeaveClassroom(GameObject character)
+    public IEnumerator LeaveClassroom(GameObject character)
     {
         //move character to the center of the classroom
         float time = Mathf.Abs(-8.5f - character.transform.position.x) / 5f;
-        StartCoroutine(TranslateCharacter(character, new Vector2(-8.5f, character.transform.position.y), time));
+        StartCoroutine(CutsceneHelper.TranslateCharacter(character, new Vector2(-8.5f, character.transform.position.y), time));
         yield return new WaitForSeconds(time);
         yield return new WaitForEndOfFrame();
 
         //move the character out the door
         time = Mathf.Abs(-2.5f - character.transform.position.y) / 5f;
-        StartCoroutine(TranslateCharacter(character, new Vector2(-8.5f, -2.5f), time));
+        StartCoroutine(CutsceneHelper.TranslateCharacter(character, new Vector2(-8.5f, -2.5f), time));
         yield return new WaitForSeconds(time);
         yield return new WaitForEndOfFrame();
 
