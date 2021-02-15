@@ -28,8 +28,8 @@ public class Ability
     public bool eldritch = false;   //Whether the ability is eldritch or not
     public int target = 0;          //0-Single, 1-Across, 2-Down, 3-All
     public string name;             //The name of the ability
-    public int type;                //int denotes type of ability can be 3 types 0 = normal, 1 = magic, 2 = eldritch
-    public int position = 0;            //int denotes the place the ability can be used 0 = front and backline, 1 = frontline, 2 = backline
+    public int type;                //int denotes who to use ability on --> 0 == enemy, 1 == ally, 2 == self
+    public int position = 0;        //int denotes the place the ability can be used 0 = front and backline, 1 = frontline, 2 = backline
     public int cost = 0;            //int denotes the cost of using the ability (if any)
     public int damage;              //int denotes the amount of damage the attack will do
     public int sanity_damage;       //int denotes the amount of sanity damage the attack will do
@@ -657,9 +657,11 @@ namespace PlayerAbilities
         public Scrutinize()
         {
             name = "Scrutinize";
-            desc1 = "You remove your glasses so that you can closely inspect your enemies with your near-sightedness - revelas an enemy's weakness";
+            desc1 = "Look for a weak spot\nCost: 2";
+            desc2 = "You remove your glasses so that you can closely inspect your enemies with your near-sightedness - reveals an enemy's weakness";
             cost = 2;
             position = 0;
+            type = 0;
             target = 0;
             damage = 0;
         }
@@ -729,9 +731,12 @@ namespace PlayerAbilities
         public Diagnosis()
         {
             name = "Diagnosis";
-            desc1 = "You remove your glasses so that you can closely inspect your enemies with your near-sightedness - revelas an enemy's weakness";
+
+            desc1 = "See how close they are to death\nCost: 3";
+            desc2 = "You remove your glasses so that you can closely inspect your enemies with your near-sightedness - reveals an enemy's health status";
             cost = 3;
             position = 0;
+            type = 0;
             target = 0;
             damage = 0;
         }
@@ -762,9 +767,11 @@ namespace ClyveAbilities
         public NoShower()
         {
             name = "I Didn't Shower Today";
-            desc1 = "Clyve reminds everyone that he didn't take a shower today, you aren't surprised, but this may cause the enemy to vomit a bit.";
+            desc1 = "Induce vomiting\nCost: 3";
+            desc2 = "Clyve reminds everyone that he didn't take a shower today, you aren't surprised, but this may cause the enemy to vomit a bit.";
             cost = 3;
             target = 0;
+            type = 0;
             damage = 0;
             position = 0;
             damageType = 3;
@@ -777,9 +784,11 @@ namespace ClyveAbilities
         public ShoeRemoval()
         {
             name = "Shoe Removal";
-            desc1 = "Clyve removes his shoe, you don't want to describe the smell in too much detail, but it may cause the enemy to tear up a bit.";
+            desc1 = "Induce weeping\nCost: 4";
+            desc2 = "Clyve removes his shoe, you don't want to describe the smell in too much detail, but it may cause the enemy to tear up a bit.";
             cost = 4;
             target = 0;
+            type = 0;
             damage = 0;
             position = 0;
             damageType = 3;
@@ -795,10 +804,12 @@ namespace JimAbilities
         public Antacid()
         {
             name = "Antacid";
-            desc1 = "Jim has always been a sickly child, so his mom has sent him to school with these miracle tablets for as long as you can remember." +
+            desc1 = "Cure vomiting\nCost: 3";
+            desc2 = "Jim has always been a sickly child, so his mom has sent him to school with these miracle tablets for as long as you can remember." +
                 "They cure vomiting and other such stomach ailments.";
             cost = 3;
             target = 0;
+            type = 1;
             damage = 0;
             position = 0;
         }
@@ -815,9 +826,11 @@ namespace JimAbilities
         public Bandaid()
         {
             name = "Bandaid";
-            desc1 = "Jim produces a small adhesive bandage from his belongings to ease the pain of others.";
+            desc1 = "Heal a friend by 10 HP\nCost: 3";
+            desc2 = "Jim produces a small adhesive bandage from his belongings to ease the pain of others.";
             cost = 3;
             target = 0;
+            type = 1;
             damage = 0;
             position = 0;
         }
@@ -840,7 +853,8 @@ namespace NormAbilities
         public PoopThrow()
         {
             name = "Poop Throw";
-            desc1 = "Well of course we're going to Throw poo at them!  This attack may cause vomiting in addition to a small amount of chemical damage";
+            desc1 = "Backline Projectile Attack\nCost: 3";
+            desc2 = "Well of course we're going to Throw poo at them!  This attack may cause vomiting in addition to a small amount of chemical damage";
             cost = 3;
             damage = 8;
             damageType = 3;
@@ -854,9 +868,11 @@ namespace NormAbilities
         public EatBanana()
         {
             name = "Banana Consumption";
-            desc1 = "Norm produces his favorite food from his secret stash, consumes it healing a small amount of health, and lets out a hearty belch rubbing his stomach.";
+            desc1 = "Heal self by 25 HP\nCost: 5";
+            desc2 = "Norm produces his favorite food from his secret stash, consumes it healing a small amount of health, and lets out a hearty belch rubbing his stomach.";
             cost = 5;
             damage = 0;
+            type = 2;
             damageType = 0;
             position = 0;
         }
@@ -877,7 +893,8 @@ namespace ShirleyAbilities
         public OpenFire()
         {
             name = "Open Fire";
-            desc1 = "Shirley quickly draws an Aston Model 1842 flintlock pistol replica, fires at the enemy, and stows it away.  This ability is very quick.";
+            desc1 = "Shoot at the enemy to deal 10 dmg\nCost: 4";
+            desc2 = "Shirley quickly draws an Aston Model 1842 flintlock pistol replica, fires at the enemy, and stows it away.  This ability is very quick.";
             cost = 4;
             damage = 10;
             damageType = 0;
@@ -891,9 +908,11 @@ namespace ShirleyAbilities
         public Frontline()
         {
             name = "To the Frontlines!";
+            desc1 = "Induce Zealous on a team member\nCost = 6";
             desc1 = "After letting out a zealous warcry, Shirley commands a party member to the frontline, they seem really fired up though.  Buffs ally with Zealous";
             cost = 6;
             damage = 0;
+            type = 1;
             position = 0;
             statusEffect = "Zealous";
         }

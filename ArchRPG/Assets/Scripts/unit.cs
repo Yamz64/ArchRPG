@@ -266,15 +266,12 @@ public class unit
     //Use the attack at the given index against the given target
     public bool useAttack(int index, unit target)
     {
-        Debug.Log("atk count == " + attacks.Count + ", index == " + index);
         Ability ata = getAttack(index);
         if (ata.position == 0 || (ata.position - 1 == position))
         {
             //If SP isn't 0 or the unit is an enemy
             if (currentSP > 0 || enemy == true)
             {
-                //Flash to show unit is attacking
-                //StartCoroutine(flashDealDamage());
                 if (!enemy)
                     setSP(currentSP - ata.cost);
                 if (currentSP == 0 && !enemy)
@@ -295,7 +292,6 @@ public class unit
                 if (crit <= LCK)
                 {
                     val += (val / 2);
-                    Debug.Log("Got a crit!");
                 }
                 bool miss = false;
                 if (status == "Confused")
@@ -819,27 +815,14 @@ public class PlayerUnit : unit
                 break;
         }
 
-        /*
-        maxHP = currentHP = (20 * lev) + 7;
-        maxSP = currentSP = 10 + (4 * lev);
-        ATK = (int)(0.5 + (3.5 * lev));
-        POW = (int)(6.5 * lev);
-        DEF = 4 * lev;
-        WILL = (int)((5.5 * lev) + 1);
-        RES = (int)((2.5 * lev) + 3.5);
-        AGI = 3 * lev;
-        LCK = (int)(0.0125 / 3 * Mathf.Pow(lev, 3));
-        */
-
-        Ability e1 = new Ability();
-        e1.eldritch = true;
-        e1.cost = 6;
-        e1.damage = 10;
-        e1.target = 1;
-        e1.name = "Ether Burst";
-        e1.desc1 = "A mystical ball of death\nCost: 6";
-        e1.desc2 = "Does 6 damage to any enemy in its radius (AOE)";
-        abilities.Add(e1);
+        if (level >= 1)
+        {
+            abilities.Add(new PlayerAbilities.Scrutinize());
+        }
+        if (level >= 4)
+        {
+            abilities.Add(new PlayerAbilities.Diagnosis());
+        }
     }
 
     public void updateUnit(int levl = 1)
@@ -1350,17 +1333,14 @@ public class ShirleyUnit : unit
 
         }
 
-        /*
-        maxHP = currentHP = (int)(0.68 * Mathf.Pow(lev,2) + 19);
-        maxSP = currentSP = (int)((7.8 * lev)+9);
-        ATK = (8 * lev) + 1;
-        POW = (int)(5.25 * lev) + 1;
-        DEF = (3 * lev) + 1;
-        WILL = (6 * lev) + 1;
-        RES = (2 * lev) + 3;
-        AGI = 4 * lev;
-        LCK = (int)(0.17 * Mathf.Pow(lev, 2));
-        */
+        if (level >= 2)
+        {
+            attacks.Add(new ShirleyAbilities.OpenFire());
+        }
+        if (level >= 4)
+        {
+            abilities.Add(new ShirleyAbilities.Frontline());
+        }
     }
 
     public void updateUnit(int levl = 1)
@@ -1870,17 +1850,14 @@ public class ClyveUnit : unit
                 break;
         }
 
-        /*
-        maxHP = currentHP = (17 * lev) + 6;
-        maxSP = currentSP = (int)((5.75 * lev) + 10);
-        ATK = (4 * lev) + 1;
-        POW = (int)(2.5 * lev) + 1;
-        DEF = (int)((8 * lev) + 0.5);
-        WILL = (4 * lev) + 1;
-        RES = (int)((3.5 * lev) + 3.5);
-        AGI = (4 * lev) + 1;
-        LCK = (int)(0.0093 * Mathf.Pow(lev, 3));
-        */
+        if (level >= 1)
+        {
+            abilities.Add(new ClyveAbilities.NoShower());
+        }
+        if (level >= 3)
+        {
+            abilities.Add(new ClyveAbilities.ShoeRemoval());
+        }
     }
 
     public void updateUnit(int levl = 1)
@@ -2391,17 +2368,14 @@ public class NormUnit : unit
                 break;
         }
 
-        /*
-        maxHP = currentHP = (24 * lev) + 35;
-        maxSP = currentSP = (int)((2.5 * lev) + 5);
-        ATK = (5 * lev) + 1;
-        POW = (int)((2.5 * lev) + 0.5);
-        DEF = (4 * lev) + 1;
-        WILL = (3 * lev) + 1;
-        RES = (3 * lev) + 3;
-        AGI = 4 * lev;
-        LCK = (int)(0.0125 / 3 * Mathf.Pow(lev, 3));
-        */
+        if (level >= 2)
+        {
+            attacks.Add(new NormAbilities.PoopThrow());
+        }
+        if (level >= 5)
+        {
+            abilities.Add(new NormAbilities.EatBanana());
+        }
     }
 
     public void updateUnit(int levl = 1)
@@ -2911,17 +2885,14 @@ public class JimUnit : unit
                 break;
         }
 
-        /*
-        maxHP = currentHP = (int)((0.7 * Mathf.Pow(lev, 2)) + 19);
-        maxSP = currentSP = (int)((8.25 * lev) + 10);
-        ATK = (int)((2.5 * lev) + 1);
-        POW = (int)((8.5 * lev) + 1);
-        DEF = (5 * lev) + 1;
-        WILL = (6 * lev) + 1;
-        RES = (2 * lev) + 1;
-        AGI = 3 * lev;
-        LCK = (int)(0.007 / 3 * Mathf.Pow(lev, 3));
-        */
+        if (level >= 2)
+        {
+            abilities.Add(new JimAbilities.Antacid());
+        }
+        if (level >= 3)
+        {
+            abilities.Add(new JimAbilities.Bandaid());
+        }
     }
 
     public void updateUnit(int levl = 1)
@@ -3256,7 +3227,6 @@ public class ThrashCan : unit
     public ThrashCan()
     {
         ImageFilePath = "EnemySprites/EnemyTestPicture";
-        unitID = -1;
         unitName = "ThrashCan";
 
         level = 3;
@@ -3273,9 +3243,9 @@ public class ThrashCan : unit
         LCK = 0;
 
         abilities = new List<Ability>();
-        abilities.Add(new Basic());
-        abilities.Add(new AOERow());
-        attacks = abilities;
+        abilities.Add(new EnemyAbilities.PutInCan());
+        abilities.Add(new EnemyAbilities.TakeOutTrash());
+        abilities.Add(new EnemyAbilities.SpewingGarbage());
     }
 }
 
