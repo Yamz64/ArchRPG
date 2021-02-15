@@ -138,20 +138,22 @@ public class BattleScript : MonoBehaviour
     int enemyDeaths = 0;
 
     //Variables used to make sure only one action is taken per turn
-    private float time = 2;
-    private float timer = 2;
+    //private float time = 2;
+    //private float timer = 2;
 
     //Variables to use in the swap menu
     private int i1 = 5;                     //Check if first swap unit has been selected
     private int i2 = 5;                     //Check if second swap unit has been selected
-    private Transform p1;                   //Location of first swap unit
-    private Transform p2;                   //Location of second swap unit
-    private Transform p3;
-    private Transform p4;
-    private GameObject p1p;                 //First swap unit
-    private GameObject p2p;                 //Second swap unit
-    private GameObject p3p;                 //First swap unit
-    private GameObject p4p;                 //Second swap unit
+    private List<Transform> pSpots;
+    //private Transform p1;                   //Location of first swap unit
+    //private Transform p2;                   //Location of second swap unit
+    //private Transform p3;
+    //private Transform p4;
+    private List<GameObject> ppgs;
+    //private GameObject p1p;                 //First swap unit
+    //private GameObject p2p;                 //Second swap unit
+    //private GameObject p3p;                 //First swap unit
+    //private GameObject p4p;                 //Second swap unit
     private List<GameObject> swaps;         //List of units to swap
     private List<int> swapInds;             //Indices of units to swap
 
@@ -562,7 +564,7 @@ public class BattleScript : MonoBehaviour
     //Used to navigate the basic action menu
     public void BaseActionMenuRoutine()
     {
-        if (state == battleState.PLAYER && timer == time && !enemy_select_menu)
+        if (state == battleState.PLAYER && !enemy_select_menu)
         {
             //change position of cursor in the menu
             if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
@@ -2018,31 +2020,34 @@ public class BattleScript : MonoBehaviour
             //and then swap once there are 2 of them
             else if (Input.GetButtonDown("Interact"))
             {
-                if (i2 == 5 && currentUnit != cursor_position && !swaps.Contains(partyUnits[currentUnit]))
+                if (i2 == 5 && currentUnit != cursor_position)
                 {
                     useSound(1);
-                    if (swaps.Count < 1)
-                    {
-                        p1.position = allyStations[currentUnit].position;
-                        p1p = partyUnits[currentUnit];
-                        if (cursor_position == 0 || cursor_position == 1) p1p.GetComponent<UnitMono>().mainUnit.position = 0;
-                        else p1p.GetComponent<UnitMono>().mainUnit.position = 1;
-                        p2.position = allyStations[cursor_position].position;
-                        p2p = partyUnits[cursor_position];
-                        if (p2p != null)
-                        {
-                            if (currentUnit == 0 || currentUnit == 1) p2p.GetComponent<UnitMono>().mainUnit.position = 0;
-                            else p2p.GetComponent<UnitMono>().mainUnit.position = 1;
-                        }
-                    }
-                    else
-                    {
-                        p3.position = allyStations[currentUnit].position;
-                        p3p = partyUnits[currentUnit];
+                    Transform pp1 = new GameObject().transform;
+                    Transform pp2 = new GameObject().transform;
 
-                        p4.position = allyStations[cursor_position].position;
-                        p4p = partyUnits[cursor_position];
+                    GameObject po1 = new GameObject();
+                    GameObject po2 = new GameObject();
+
+                    pp1.position = allyStations[currentUnit].position;
+                    po1 = partyUnits[currentUnit];
+                    if (cursor_position == 0 || cursor_position == 1) po1.GetComponent<UnitMono>().mainUnit.position = 0;
+                    else po1.GetComponent<UnitMono>().mainUnit.position = 1;
+                    pp2.position = allyStations[cursor_position].position;
+                    po2 = partyUnits[cursor_position];
+                    if (po2 != null)
+                    {
+                        if (currentUnit == 0 || currentUnit == 1) po2.GetComponent<UnitMono>().mainUnit.position = 0;
+                        else po2.GetComponent<UnitMono>().mainUnit.position = 1;
                     }
+                    pSpots.Add(pp1);
+                    pSpots.Add(pp2);
+                    ppgs.Add(po1);
+                    ppgs.Add(po2);
+
+
+                   
+
                     i1 = currentUnit;
                     i2 = cursor_position;
                     actions.Add(new action(currentUnit, "swap", i1, i2, partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI()));
@@ -2072,7 +2077,7 @@ public class BattleScript : MonoBehaviour
                     currentUnit += 1;
                     moves += 1;
 
-                    CloseMenu(3);
+                    CloseMenu(4);
                     menu_input = false;
 
                     if (moves >= activeUnits)
@@ -2124,24 +2129,25 @@ public class BattleScript : MonoBehaviour
     //Swap 2 units in order of selection
     public void PerformSwaps()
     {
-        if (swaps.Count == swapInds.Count)
-        {
+        //if (swaps.Count == swapInds.Count)
+        //{
             //Swap sibling indices to get backline in front of frontline
-            int a1 = allyStations[swapInds[0]].GetSiblingIndex();
+            int a1 = allyStations[swapInds[0]].GetSiblingIndex();   //Get hierarchy positions
             int a2 = allyStations[swapInds[1]].GetSiblingIndex();
-            allyStations[swapInds[1]].SetSiblingIndex(a1);
+            allyStations[swapInds[1]].SetSiblingIndex(a1);          //Swap in hierarchy to have front/back appearance
             allyStations[swapInds[0]].SetSiblingIndex(a2);
-            allyStations[swapInds[0]] = p2;
-            allyStations[swapInds[1]] = p1;
+            //allyStations[swapInds[0]] = pSpots[1];                  //Swap locations
+            //allyStations[swapInds[1]] = pSpots[0];
 
-            partyUnits[swapInds[0]].transform.position = p2.position;
+            partyUnits[swapInds[0]].transform.position = pSpots[1].position;
             if (partyUnits[swapInds[1]] != null)
             {
-                partyUnits[swapInds[1]].transform.position = p1.position;
+                partyUnits[swapInds[1]].transform.position = pSpots[0].position;
             }
-            partyUnits[swapInds[0]] = p2p;
-            partyUnits[swapInds[1]] = p1p;
-        }
+            partyUnits[swapInds[0]] = ppgs[1];
+            partyUnits[swapInds[1]] = ppgs[0];
+        //}
+        /*
         else
         {
             int a1 = allyStations[swapInds[0]].GetSiblingIndex();
@@ -2159,6 +2165,7 @@ public class BattleScript : MonoBehaviour
             partyUnits[swapInds[0]] = p4p;
             partyUnits[swapInds[1]] = p3p;
         }
+        */
 
         if (partyUnits[swapInds[0]] != null)
         {
@@ -2188,6 +2195,10 @@ public class BattleScript : MonoBehaviour
         }
         swapInds.RemoveAt(0);
         swapInds.RemoveAt(0);
+        pSpots.RemoveAt(0);
+        pSpots.RemoveAt(0);
+        ppgs.RemoveAt(0);
+        ppgs.RemoveAt(0);
     }
 
     //Start the enemy attack routine
@@ -2216,6 +2227,8 @@ public class BattleScript : MonoBehaviour
     //Perform the selected actions, after they have been selected
     IEnumerator performActions()
     {
+        cursor.SetActive(false);
+        transform.GetChild(1).Find("ActionMenu").gameObject.SetActive(false);
         enemyAttacks();
         Debug.Log("State == " + state);
         if (state != battleState.WIN && state != battleState.LOSE && state != battleState.FLEE)
@@ -2228,7 +2241,7 @@ public class BattleScript : MonoBehaviour
             actions.Sort((a, b) => { return b.getSPD().CompareTo(a.getSPD()); });
             for (int z = 0; z < actions.Count; z++)
             {
-                //yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+
                 yield return new WaitForSeconds(0.5f);
                 int ind = actions[z].getID();
                 //Use the selected attack
@@ -2341,7 +2354,6 @@ public class BattleScript : MonoBehaviour
                     dialogue.text = "Invalid action selected";
                 }
                 yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
-                //yield return new WaitForSeconds(1f);
             }
             for (int i = 0; i < partyUnits.Count; i++)
             {
@@ -2362,6 +2374,8 @@ public class BattleScript : MonoBehaviour
             {
                 yield return new WaitForSeconds(1.5f);
                 state = battleState.PLAYER;
+                cursor.SetActive(true);
+                transform.GetChild(1).Find("ActionMenu").gameObject.SetActive(true);
                 OpenMenu(0);
                 currentUnit = 0;
                 while (partyUnits[currentUnit] == null) currentUnit++;
@@ -2394,9 +2408,6 @@ public class BattleScript : MonoBehaviour
     {
         for (int i = 0; i < loader.names.Length; i++)
         {
-            Debug.Log("Level == " + loader.levels[i]);
-            //Debug.Log("i == " + i + ", name == " + loader.names[i]);
-            //Debug.Log("prefabi == null? " + (partyPrefabs[i] == null));
             unit p;
             if (loader.names[i] == "Player")
             {
@@ -2478,9 +2489,13 @@ public class BattleScript : MonoBehaviour
             {
                 enen = new ThrashCan();
             }
-            else if (loader.enemy_names[i] == "Debuffer")
+            else if (loader.enemy_names[i] == "KillerCone")
             {
-                enen = new Enemy2();
+                enen = new KillerCone();
+            }
+            else if (loader.enemy_names[i] == "LockerLurker")
+            {
+                enen = new LockerLurker();
             }
             else if (loader.enemy_names[i] == "New Kid")
             {
@@ -2957,7 +2972,6 @@ public class BattleScript : MonoBehaviour
             //If player lives, they attack
             else if (x + 1 >= activeEnemies)
             {
-                timer = time;
                 state = battleState.PLAYER;
                 OpenMenu(0);
                 while (partyUnits[currentUnit] == null)
@@ -2978,7 +2992,6 @@ public class BattleScript : MonoBehaviour
         }
         else if (state == battleState.ENEMY && x + 1 >= activeEnemies)
         {
-            timer = time;
             state = battleState.PLAYER;
             OpenMenu(0);
             playerTurn();
@@ -3296,22 +3309,14 @@ public class BattleScript : MonoBehaviour
         audio_handler = GetComponent<PlayerOverworldAudioHandler>();
 
         //Set p1 and p2 to default locations
-        p1 = new GameObject().transform;
-        p2 = new GameObject().transform;
-        p3 = new GameObject().transform;
-        p4 = new GameObject().transform;
+        //p1 = new GameObject().transform;
+        //p2 = new GameObject().transform;
+        //p3 = new GameObject().transform;
+        //p4 = new GameObject().transform;
         swaps = new List<GameObject>();
 
-        //Add unit spawn spots to list
-        /*
-        partyStations = new List<Transform>();
-        partyStations.Add(playerStation.transform);
-        partyStations.Add(member1Station.transform);
-        partyStations.Add(member2Station.transform);
-        partyStations.Add(member3Station.transform);
-        */
-
-
+        pSpots = new List<Transform>();
+        ppgs = new List<GameObject>();
         partyUnits = new List<GameObject>();
         partyNames = new List<string>();
         enemyUnits = new List<GameObject>();
@@ -3324,7 +3329,9 @@ public class BattleScript : MonoBehaviour
 
     void Update()
     {
-        if (!enemy_select_menu) cursor.SetActive(true);
+        if (!enemy_select_menu && state != battleState.ATTACK
+             && state != battleState.WIN && state != battleState.LOSE && state != battleState.HUH
+              && state != battleState.FLEE && state != battleState.START) cursor.SetActive(true);
         else cursor.SetActive(false);
         if (state == battleState.PLAYER && currentUnit < partyUnits.Count && partyUnits[currentUnit] != null)
         {

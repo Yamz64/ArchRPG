@@ -486,6 +486,10 @@ public class unit
     //Decrement the status counter, and remove the status when it reaches 0
     public void statusTurn()
     {
+        if (status == "Consumed")
+        {
+            takeDamage(maxHP / 10);
+        }
         statusCounter -= 1;
         if (statusCounter <= 0)
         {
@@ -3192,6 +3196,7 @@ public class NewKidUnit : unit
         abilities.Add(new AOEStatus1());
         abilities.Add(new Basic());
         abilities.Add(new AOELine());
+        attacks = abilities;
     }
 }
 
@@ -3219,6 +3224,7 @@ public class KillerCone : unit
         abilities.Add(new EnemyAbilities.LookBothWays());
         abilities.Add(new EnemyAbilities.ConeClaw());
         abilities.Add(new EnemyAbilities.CurbStomp());
+        attacks = abilities;
     }
 }
 
@@ -3246,6 +3252,7 @@ public class ThrashCan : unit
         abilities.Add(new EnemyAbilities.PutInCan());
         abilities.Add(new EnemyAbilities.TakeOutTrash());
         abilities.Add(new EnemyAbilities.SpewingGarbage());
+        attacks = abilities;
     }
 }
 
@@ -3272,6 +3279,7 @@ public class LockerLurker : unit
         abilities.Add(new EnemyAbilities.MetallicWail());
         abilities.Add(new EnemyAbilities.LockerStuffer());
         abilities.Add(new EnemyAbilities.DoorSlam());
+        attacks = abilities;
     }
 }
 
@@ -3299,7 +3307,7 @@ public class Enemy2 : unit
         abilities = new List<Ability>();
         abilities.Add(new Basic());
         abilities.Add(new status1());
-
+        attacks = abilities;
     }
 }
 
