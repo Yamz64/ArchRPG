@@ -504,6 +504,13 @@ public class CharacterStatJsonConverter
         }
         statuses.Add(player_status);
 
+        //add unlocked characters from the player
+        unlocked_characters = new bool[p.GetUnlockCount()];
+        for(int i=0; i<p.GetUnlockCount(); i++)
+        {
+            unlocked_characters[i] = p.GetUnlockedMember(i);
+        }
+
         //set all lists of things to be saved from party members
         for (int i=1; i<p.GetPartySize()+1; i++)
         {
@@ -742,6 +749,13 @@ public class CharacterStatJsonConverter
             p.SetStatus(i, statuses[0].status_effects[i]);
         }
 
+        //update unlocked party members
+        for(int i=0; i<unlocked_characters.Length; i++)
+        {
+            if(unlocked_characters[i])
+            p.UnlockPartyMember(i);
+        }
+
         //add party members
         p.ClearParty();
         for(int i=1; i<names.GetLength(0); i++)
@@ -806,10 +820,12 @@ public class CharacterStatJsonConverter
         }
     }
 
-    public Vector2 position;        //current position in the world (ignored except for after battles)
+    public Vector2 position;            //current position in the world (ignored except for after battles)
 
-    public int progress;            //how far in the game the player is
-    public int money;               //stores how much money the player has
+    public bool[] unlocked_characters;  //list of unlocked characters
+
+    public int progress;                //how far in the game the player is
+    public int money;                   //stores how much money the player has
 
     public int[] HPs;                               //the current hp levels of the party members
     public int[] SPs;                               //the current sp levels of the party members

@@ -7,8 +7,10 @@ public class PlayerData : CharacterStats
     //--CONSTRUCTOR--
     public PlayerData(bool l = false)
     {
+        int u_char_count = 4;
         inventory = new List<Item>();
         party_stats = new List<CharacterStats>();
+        added_party_members = new bool[u_char_count];
         if(l == false)
         {
             CharacterStatJsonConverter data = new CharacterStatJsonConverter(PlayerPrefs.GetInt("_active_save_file_"));
@@ -34,8 +36,13 @@ public class PlayerData : CharacterStats
 
             for(int i=0; i<temp.GetStatusCount(); i++)
             {
-                //Debug.Log(temp.GetStatus(i));
                 SetStatus(i, temp.GetStatus(i));
+            }
+
+            for(int i=0; i<u_char_count; i++)
+            {
+                if(temp.GetUnlockedMember(i))
+                UnlockPartyMember(i);
             }
 
             if (temp.GetWeapon() != null)
@@ -117,6 +124,12 @@ public class PlayerData : CharacterStats
             }
             party_stats.Add(c);
         }
+    }
+    public int GetUnlockCount() { return added_party_members.GetLength(0); }
+    public bool GetUnlockedMember(int index) { return added_party_members[index]; }
+    public void UnlockPartyMember(int index)
+    {
+        added_party_members[index] = true;
     }
     public void RemovePartyMember(int index) { party_stats.RemoveAt(index); }
     public int GetPartySize() { return party_stats.Count; }
@@ -641,4 +654,13 @@ public class PlayerData : CharacterStats
     private Vector2 saved_position;
     private List<Item> inventory;
     private List<CharacterStats> party_stats;
+
+    //a list of booleans to determine which party members the player has added to their backlog of party members
+    /*
+     * 0 - Clyve
+     * 1 - Jim
+     * 2 - Norm
+     * 3 - Shirley
+    */
+    private bool[] added_party_members;
 }

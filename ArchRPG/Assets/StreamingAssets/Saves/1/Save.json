@@ -1,7 +1,7 @@
 {
     "position": {
-        "x": -8.5,
-        "y": 0.0
+        "x": -23.5,
+        "y": 2.5
     },
     "progress": 0,
     "money": 50,
@@ -246,17 +246,12 @@
             ]
         }
     ],
-    "active_scene": "SampleScene",
+    "active_scene": "",
     "names": [
         "Player",
         "Clyve",
         "Jim"
     ],
     "e_abilities": [],
-    "enemy_names": [
-        "Eldritch Gunner",
-        "",
-        "",
-        ""
-    ]
+    "enemy_names": []
 }
