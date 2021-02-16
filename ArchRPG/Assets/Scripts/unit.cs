@@ -3336,6 +3336,32 @@ public class LockerLurker : unit
     }
 }
 
+public class StudentBody : unit
+{
+    public StudentBody()
+    {
+        ImageFilePath = "EnemySprites/EnemyTestPicture";
+        unitName = "StudentBody";
+
+        level = 5;
+        maxHP = currentHP = 75;
+        ATK = 50;
+        DEF = 75;
+        POW = 30;
+        WILL = 8;
+        RES = 8;
+        AGI = 18;
+        LCK = 12;
+
+        abilities = new List<Ability>();
+        abilities.Add(new EnemyAbilities.Tag());
+        abilities.Add(new EnemyAbilities.JoinCrowd());
+        abilities.Add(new EnemyAbilities.LunchMoney());
+        abilities.Add(new EnemyAbilities.WarmUps());
+        abilities.Add(new EnemyAbilities.DarkSmoke());
+    }
+}
+
 public class Enemy2 : unit
 {
     public Enemy2()
