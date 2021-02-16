@@ -27,9 +27,11 @@ public class Ability
 
     public bool eldritch = false;   //Whether the ability is eldritch or not
     public int target = 0;          //0-Single, 1-Across, 2-Down, 3-All
+    public int enemyTarget = 0;     //Targets for the ability: 0-Any, 1-Front, 2-Back
     public string name;             //The name of the ability
     public int type;                //int denotes who to use ability on --> 0 == enemy, 1 == ally, 2 == self
     public int position = 0;        //int denotes the place the ability can be used 0 = front and backline, 1 = frontline, 2 = backline
+    public int swapper;             //If ability should swap units: 0-no, 1-yes, pull forward, 2-yes, push backwards
     public int cost = 0;            //int denotes the cost of using the ability (if any)
     public int damage;              //int denotes the amount of damage the attack will do
     public int sanity_damage;       //int denotes the amount of sanity damage the attack will do
@@ -572,6 +574,7 @@ namespace EnemyAbilities
             cost = 0;
             position = 0;
             target = 1;
+            enemyTarget = 0;
             damage = 8;
             damageType = 3;
             statusEffect = "Vomiting";
@@ -586,6 +589,7 @@ namespace EnemyAbilities
             cost = 0;
             position = 0;
             target = 0;
+            enemyTarget = 1;
             damage = 0;
             statusEffect = "Restrained";
         }
@@ -599,6 +603,7 @@ namespace EnemyAbilities
             cost = 0;
             position = 0;
             target = 0;
+            enemyTarget = 0;
             damage = 15;
         }
 
@@ -656,9 +661,11 @@ namespace EnemyAbilities
         {
             name = "Tag!";
             cost = 0;
-            target = 0;
+            target = 1;
+            enemyTarget = 1;
             damage = 30;
             damageType = 0;
+            swapper = 2;
         }
 
         //has to put frontliners to the back
@@ -671,8 +678,9 @@ namespace EnemyAbilities
         {
             name = "Join the Crowd!";
             cost = 0;
-            target = 0;
+            target = 1;
             damage = 0;
+            swapper = 1;
             sanity_damage = 5;
             statusEffect = "Consumed";
         }
@@ -722,12 +730,13 @@ namespace EnemyAbilities
             cost = 0;
             damage = 10;
             damageType = 4;
-            target = 1;
+            target = 3;
             use_pow = true;
             statusEffect = "Weeping";
         }
 
         //this attack needs to hit *everyone* I don't know how to add this
+        //target == 3, all units will be hit
     }
 }
 

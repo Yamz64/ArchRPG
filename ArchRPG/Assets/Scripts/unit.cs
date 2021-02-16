@@ -12,7 +12,7 @@ public class unit
         attacks = new List<Ability>();
         abilities = new List<Ability>();
         statuses = new List<int>();
-        for (int i = 0; i < 9; i++)
+        for (int i = 0; i < 10; i++)
         {
             statuses.Add(-1);
         }
@@ -368,11 +368,13 @@ public class unit
                     {
                         if (ata.statusEffect.Equals(""))
                         {
+                            /*
                             int r = UnityEngine.Random.Range(1, 101);
                             if (r > target.RES || r == 1)
                             {
                                 target.giveStatus(ata.damageType);
                             }
+                            */
                         }
                         else {    target.giveStatus(ata.statusEffect);    }
                     }
