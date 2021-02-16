@@ -1,7 +1,7 @@
 {
     "position": {
-        "x": -6.599999904632568,
-        "y": 12.541125297546387
+        "x": 39.14892578125,
+        "y": 13.847689628601075
     },
     "progress": 0,
     "HPs": [
@@ -253,8 +253,8 @@
     ],
     "e_abilities": [],
     "enemy_names": [
-        "KillerCone",
         "ThrashCan",
+        "KillerCone",
         "",
         ""
     ]

@@ -501,7 +501,7 @@ MonoBehaviour:
   - effects: []
   dialogueImages:
   - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
-    lines: 0
+    lines: 1
 --- !u!1 &765108859 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
@@ -549,7 +549,7 @@ MonoBehaviour:
   - effects: []
   dialogueImages:
   - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
-    lines: 0
+    lines: 1
 --- !u!1001 &885547151
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -514,7 +514,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1341564249771989289, guid: 7cc3a50acd8625f4ca31d81d59d21b48, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1341564249771989289, guid: 7cc3a50acd8625f4ca31d81d59d21b48, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -698,7 +698,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1078748364567200179, guid: ce7220ac87c84e942a7318a566f381b5, type: 3}
       propertyPath: m_RootOrder
-      value: 22
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 1078748364567200179, guid: ce7220ac87c84e942a7318a566f381b5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6964,7 +6964,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1341564249771989289, guid: 7cc3a50acd8625f4ca31d81d59d21b48, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1341564249771989289, guid: 7cc3a50acd8625f4ca31d81d59d21b48, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -7030,7 +7030,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -7160,7 +7160,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5292674153310849216, guid: 191e370b30819a14fbabfc9641cdefc1, type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 5292674153310849216, guid: 191e370b30819a14fbabfc9641cdefc1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -7502,7 +7502,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1341564249771989289, guid: 7cc3a50acd8625f4ca31d81d59d21b48, type: 3}
       propertyPath: m_RootOrder
-      value: 31
+      value: 33
       objectReference: {fileID: 0}
     - target: {fileID: 1341564249771989289, guid: 7cc3a50acd8625f4ca31d81d59d21b48, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -7568,7 +7568,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1341564249771989289, guid: 7cc3a50acd8625f4ca31d81d59d21b48, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 1341564249771989289, guid: 7cc3a50acd8625f4ca31d81d59d21b48, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -7834,7 +7834,7 @@ Transform:
   m_LocalScale: {x: 0.16703407, y: 0.20622748, z: 0.6681363}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1052261944
 PrefabInstance:
@@ -8080,7 +8080,7 @@ Transform:
   m_LocalScale: {x: 0.16703407, y: 0.20622748, z: 0.6681363}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1078044051
 GameObject:
@@ -11031,6 +11031,35 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1175478143 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1668069042}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1175478144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175478143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: Our manga collection may have been confiscated, but the anime club will
+      never die!
+  container:
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 47
+      upper: 68
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid6_front
+    lines: 1
 --- !u!1001 &1203651835
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11072,7 +11101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -11088,6 +11117,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &1241282249 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1203651835}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1241282250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241282249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: Hey, do you think in the right light Ms. Teecher looks...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 1
 --- !u!1 &1245677628
 GameObject:
   m_ObjectHideFlags: 0
@@ -14121,7 +14174,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -14221,7 +14274,7 @@ Transform:
   m_LocalScale: {x: 1.2020909, y: 1.6132319, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1286512380
 PrefabInstance:
@@ -14362,7 +14415,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1352963683
 PrefabInstance:
@@ -14567,6 +14620,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cc3a50acd8625f4ca31d81d59d21b48, type: 3}
+--- !u!1 &1405776283 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1846866370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1405776284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405776283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: I can't believe we're gonna fail that math test...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid2_front
+    lines: 1
 --- !u!1 &1457636063
 GameObject:
   m_ObjectHideFlags: 0
@@ -14686,7 +14763,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1341564249771989289, guid: 7cc3a50acd8625f4ca31d81d59d21b48, type: 3}
       propertyPath: m_RootOrder
-      value: 30
+      value: 31
       objectReference: {fileID: 0}
     - target: {fileID: 1341564249771989289, guid: 7cc3a50acd8625f4ca31d81d59d21b48, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -14850,8 +14927,46 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 29
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1579452312 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1261382552}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1579452313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579452312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: Dude that Danny character...
+  - text: ...
+  - text: '...
+
+'
+  - text: Is so...
+  - text: ...HOT!
+  container:
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 3
+      upper: 6
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid7_front
+    lines: 5
 --- !u!1001 &1587640706
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20313,7 +20428,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1341564249771989289, guid: 7cc3a50acd8625f4ca31d81d59d21b48, type: 3}
       propertyPath: m_RootOrder
-      value: 28
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 1341564249771989289, guid: 7cc3a50acd8625f4ca31d81d59d21b48, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -20457,7 +20572,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1078748364567200179, guid: ce7220ac87c84e942a7318a566f381b5, type: 3}
       propertyPath: m_RootOrder
-      value: 23
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 1078748364567200179, guid: ce7220ac87c84e942a7318a566f381b5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -20587,7 +20702,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -20644,7 +20759,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5292674153310849216, guid: 191e370b30819a14fbabfc9641cdefc1, type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5292674153310849216, guid: 191e370b30819a14fbabfc9641cdefc1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -20834,7 +20949,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1341564249771989289, guid: 7cc3a50acd8625f4ca31d81d59d21b48, type: 3}
       propertyPath: m_RootOrder
-      value: 29
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1341564249771989289, guid: 7cc3a50acd8625f4ca31d81d59d21b48, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -20859,6 +20974,45 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1341564249771989289, guid: 7cc3a50acd8625f4ca31d81d59d21b48, type: 3}
   m_PrefabInstance: {fileID: 2120025989}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2137657614 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 4998140645328083482}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2137657618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137657614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: Before school gets out, they turn the lights out down that hallway.
+  - text: They say it's to save energy, but I don't think it's worth it since like
+      7... maybe 8 kids went into that hallway and never came out.
+  container:
+  - effects:
+    - name: Color
+      color: {r: 0.49803922, g: 0, b: 1, a: 1}
+      lower: 40
+      upper: 55
+  - effects:
+    - name: Color
+      color: {r: 1, g: 0, b: 0, a: 1}
+      lower: 94
+      upper: 106
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 94
+      upper: 106
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 2
 --- !u!1001 &1078748365977882909
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20953,7 +21107,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1341564249771989289, guid: 7cc3a50acd8625f4ca31d81d59d21b48, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1341564249771989289, guid: 7cc3a50acd8625f4ca31d81d59d21b48, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -21072,7 +21226,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5292674153310849216, guid: 191e370b30819a14fbabfc9641cdefc1, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 5292674153310849216, guid: 191e370b30819a14fbabfc9641cdefc1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
