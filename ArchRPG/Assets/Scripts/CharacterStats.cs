@@ -461,6 +461,7 @@ public class CharacterStatJsonConverter
         //set the position and progress of the player
         position = p.GetSavedPosition();
         progress = p.GetProgress();
+        money = p.GetMoney();
 
         //initialize all array savedatas to sizes equal to the party
         HPs = new int[p.GetPartySize()+1];
@@ -634,6 +635,7 @@ public class CharacterStatJsonConverter
         p.SetLVL(levels[0]);
         p.SetPos(positions[0]);
         p.SetSavedPosition(position);
+        p.SetMoney(money);
 
         //update other stats as well as the experience level
         p.UpdateStats();
@@ -807,6 +809,7 @@ public class CharacterStatJsonConverter
     public Vector2 position;        //current position in the world (ignored except for after battles)
 
     public int progress;            //how far in the game the player is
+    public int money;               //stores how much money the player has
 
     public int[] HPs;                               //the current hp levels of the party members
     public int[] SPs;                               //the current sp levels of the party members
