@@ -246,12 +246,17 @@
             ]
         }
     ],
-    "active_scene": "",
+    "active_scene": "SampleScene",
     "names": [
         "Player",
         "Clyve",
         "Jim"
     ],
     "e_abilities": [],
-    "enemy_names": []
+    "enemy_names": [
+        "Eldritch Gunner",
+        "",
+        "",
+        ""
+    ]
 }

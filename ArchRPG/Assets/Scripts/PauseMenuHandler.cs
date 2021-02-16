@@ -45,6 +45,7 @@ public class PauseMenuHandler : MonoBehaviour
     private bool ability_select;
     private bool save_select;
     private bool save_load;     //false is save true is load
+    private bool choice;        //false = first choice selected, true = second choice selected
     private GameObject cursor;
     private List<GameObject> menus;
     private PlayerData data;
@@ -63,6 +64,17 @@ public class PauseMenuHandler : MonoBehaviour
         cursor_position = 0;
         active_menu = index;
         menus[index].SetActive(false);
+    }
+
+    public void CloseAllMenus()
+    {
+        audio_handler.PlaySound("Sound/SFX/select");
+        GetComponent<PlayerMovement>().interaction_protection = false;
+        cursor.SetActive(false);
+        for (int i = 0; i < menus.Count; i++)
+        {
+            CloseMenu(i);
+        }
     }
 
     public void ActivateCursor() { cursor.SetActive(true); }
@@ -2575,6 +2587,14 @@ public class PauseMenuHandler : MonoBehaviour
         }
     }
 
+    public void SetChoiceText(string text, bool choice_text = false)
+    {
+        if (!choice_text) menus[7].transform.GetChild(0).GetComponent<Text>().text = text;
+        else menus[7].transform.GetChild(1).GetComponent<Text>().text = text;
+    }
+
+    public bool GetChoice() { return choice; }
+
     public void BasePauseMenuRoutine()
     {
         if (!base_pause_character_select)
@@ -3685,6 +3705,35 @@ public class PauseMenuHandler : MonoBehaviour
         }
     }
 
+    public void ChoiceMenuRoutine()
+    {
+        if (cursor_position == 0) choice = false;
+        else choice = true;
+        if(Input.GetAxisRaw("Horizontal") > 0.0f && cursor_position < 1)
+        {
+            if (!menu_input)
+            {
+                cursor_position++;
+                audio_handler.PlaySound("Sound/SFX/cursor");
+            }
+            menu_input = true;
+        }
+        else if(Input.GetAxisRaw("Horizontal") < 0.0f && cursor_position > 0)
+        {
+            if (!menu_input)
+            {
+                cursor_position--;
+                audio_handler.PlaySound("Sound/SFX/cursor");
+            }
+            menu_input = true;
+        }
+        else
+        {
+            menu_input = false;
+        }
+        cursor.transform.position = cursor_positions[9].positions[cursor_position].transform.position;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -3714,7 +3763,7 @@ public class PauseMenuHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Menu"))
+        if (Input.GetButtonDown("Menu") && active_menu != 7)
         {
             base_pause_character_select = false;
             if (!menu_mode)
@@ -3728,13 +3777,7 @@ public class PauseMenuHandler : MonoBehaviour
             }
             else
             {
-                audio_handler.PlaySound("Sound/SFX/select");
-                GetComponent<PlayerMovement>().interaction_protection = false;
-                cursor.SetActive(false);
-                for(int i=0; i<menus.Count; i++)
-                {
-                    CloseMenu(i);
-                }
+                CloseAllMenus();
             }
             menu_mode = !menu_mode;
         }
@@ -3764,6 +3807,9 @@ public class PauseMenuHandler : MonoBehaviour
                     break;
                 case 6:
                     SaveMenuRoutine();
+                    break;
+                case 7:
+                    ChoiceMenuRoutine();
                     break;
                 default:
                     break;

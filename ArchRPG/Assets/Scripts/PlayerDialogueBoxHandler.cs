@@ -104,6 +104,7 @@ public class PlayerDialogueBoxHandler : MonoBehaviour
 
     public int GetWriteCount() { return write_queue.Count; }
     public bool GetActive() { return active; }
+    public bool GetWriting() { return writing; }
 
     //public version of writing function
     public void WriteDriver()
