@@ -252,7 +252,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -309,7 +309,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -366,7 +366,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1418,7 +1418,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1506,6 +1506,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &834459469 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1076977365}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &834459470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834459469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: The school couldn't afford to set up proper mulch out here, so they settled
+      for dry manure.  It has a remarkably similar consistency!
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 1
 --- !u!1001 &1076977365
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1563,6 +1588,56 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &1277844350 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 262726503}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1277844351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277844350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They call me the Lord of Tetherball.  Not because I'm particularly talented
+      at the game, but because I get hit so much with the ball...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 1
+--- !u!1 &1435986317 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 744455921}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1435986318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1435986317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: I've been trapped out here for a week, and Danny up and breaks the wall! 
+      What a hero!
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 1
 --- !u!1 &1443948483
 GameObject:
   m_ObjectHideFlags: 0
@@ -1681,7 +1756,7 @@ MonoBehaviour:
     - name: Quake
       color: {r: 0, g: 0, b: 0, a: 0}
       lower: 15
-      upper: 18
+      upper: 17
 --- !u!61 &1443948487
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3303,6 +3378,32 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1541818117 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 451794910}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1541818118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1541818117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: So wearing pants doesn't matter anymore does it?
+  - text: I'm super down for that!
+  container:
+  - effects: []
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 2
 --- !u!1 &1624084365
 GameObject:
   m_ObjectHideFlags: 0
@@ -3349,6 +3450,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1760309266 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 463214050}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1760309267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760309266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: Yo I love recess!
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 1
 --- !u!1 &1819056196
 GameObject:
   m_ObjectHideFlags: 0
