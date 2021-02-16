@@ -748,14 +748,14 @@ public class CharacterStatJsonConverter
         {
             p.SetStatus(i, statuses[0].status_effects[i]);
         }
-
+        
         //update unlocked party members
         for(int i=0; i<unlocked_characters.Length; i++)
         {
             if(unlocked_characters[i])
             p.UnlockPartyMember(i);
         }
-
+        
         //add party members
         p.ClearParty();
         for(int i=1; i<names.GetLength(0); i++)
