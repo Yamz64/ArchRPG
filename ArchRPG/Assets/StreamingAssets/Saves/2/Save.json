@@ -3,7 +3,12 @@
         "x": -23.5,
         "y": 2.5
     },
-    "unlocked_characters": [],
+    "unlocked_characters": [
+        true,
+        true,
+        false,
+        false
+    ],
     "progress": 0,
     "money": 50,
     "HPs": [

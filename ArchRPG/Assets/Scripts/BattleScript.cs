@@ -2569,11 +2569,11 @@ public class BattleScript : MonoBehaviour
             {
                 enen = new ThrashCan();
             }
-            else if (loader.enemy_names[i] == "KillerCone")
+            else if (loader.enemy_names[i] == "Killer Cone")
             {
                 enen = new KillerCone();
             }
-            else if (loader.enemy_names[i] == "LockerLurker")
+            else if (loader.enemy_names[i] == "Locker Lurker")
             {
                 enen = new LockerLurker();
             }

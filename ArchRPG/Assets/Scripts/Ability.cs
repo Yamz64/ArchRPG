@@ -529,6 +529,7 @@ namespace EnemyAbilities
             position = 0;
             target = 0;
             damage = 0;
+            type = 2;
         }
 
         public override void UseAttack(unit user, unit target)
