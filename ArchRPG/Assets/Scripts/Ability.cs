@@ -817,7 +817,7 @@ namespace JimAbilities
         public override void UseAttack(unit user, unit target)
         {
             user.setSP(user.getSP() - cost);
-            if (target.status == "Vomiting") target.status = "";
+            if (target.statuses[0] != -1) target.statuses[0] = -1;
         }
     }
 

@@ -11,6 +11,22 @@ public class unit
     {
         attacks = new List<Ability>();
         abilities = new List<Ability>();
+        statuses = new List<int>();
+        for (int i = 0; i < 9; i++)
+        {
+            statuses.Add(-1);
+        }
+        statusIndex = new List<string>();
+        statusIndex.Add("Vomiting");
+        statusIndex.Add("Aspirating");
+        statusIndex.Add("Weeping");
+        statusIndex.Add("Eye Bleed");
+        statusIndex.Add("Blunt Trauma");
+        statusIndex.Add("Hyperactive");
+        statusIndex.Add("Zealous");
+        statusIndex.Add("Neurotic");
+        statusIndex.Add("Restrained");
+        statusIndex.Add("Consumed");
     }
     public void copyUnitStats(unit ver)
     {
@@ -102,7 +118,8 @@ public class unit
     public int[] weaknesses;    //an array of integer codes for the weaknesses that a unit may have
     public int[] resistances;   //an array of integer codes for the resistances that a unit may have
     public List<int> statuses;
-    public List<int> statusCounters;
+    public List<string> statusIndex;
+
 
     public string ImageFilePath;//Use to determine what image to display for the unit
     public Image view;          //Image of unit
@@ -276,16 +293,42 @@ public class unit
             if (currentSP > 0 || enemy == true)
             {
                 if (!enemy)
+                {
                     setSP(currentSP - ata.cost);
+                }
                 if (currentSP == 0 && !enemy)
                 {
                     outOfSP = true;
                 }
                 //Calculate damage of the attack
-                int val = ata.damage + (ATK / 100);
+                int val;
+                if (statuses[6] != -1)
+                {
+                    val = ata.damage + ((int)(ATK * 1.25) / 100);
+                }
+                else
+                {
+                    val = ata.damage + (ATK / 100);
+                }
                 if (ata.damageType == 0)
                 {
-                    val -= target.DEF / 200;
+                    //Check if DEF is reduced by a status like Blunt Trauma
+                    if (target.statuses[4] == -1 && target.statuses[7] == -1)
+                    {
+                        val -= target.DEF / 200;
+                    }
+                    else if (target.statuses[4] != -1 && target.statuses[7] == -1)
+                    {
+                        val -= (int)(target.DEF * 0.75) / 200;
+                    }
+                    else if (target.statuses[4] == -1 && target.statuses[7] != -1)
+                    {
+                        val -= (int)(target.DEF * 0.5) / 200;
+                    }
+                    else
+                    {
+                        val -= (int)(target.DEF * 0.25) / 200;
+                    }
                 }
                 else
                 {
@@ -297,12 +340,23 @@ public class unit
                     val += (val / 2);
                 }
                 bool miss = false;
+                /*
                 if (status == "Confused")
                 {
                     int dum = UnityEngine.Random.Range(1, 101);
                     if (dum > 50)
                     {
                         miss = true;
+                    }
+                }
+                */
+                //Check if damage is reduced from the weeping status
+                if (statuses[2] != -1)
+                {
+                    int dum = UnityEngine.Random.Range(1, 4);
+                    if (dum == 1)
+                    {
+                        val = val / 5;
                     }
                 }
                 if (miss == false)
@@ -520,6 +574,15 @@ public class unit
             ran = UnityEngine.Random.Range(5, 9);
             statuses[9] = ran;
         }
+        status = "";
+
+        for (int i = 0; i < statuses.Count; i++)
+        {
+            if (statuses[i] != -1)
+            {
+                status += statusIndex[i] + "\n";
+            }
+        }
 
         statusText.text = status;
         statusBackW.gameObject.SetActive(true);
@@ -552,6 +615,20 @@ public class unit
             statusBackW.gameObject.SetActive(false);
             statusBackColor.gameObject.SetActive(false);
             statusText.gameObject.SetActive(false);
+        }
+        else
+        {
+            status = "";
+
+            for (int i = 0; i < statuses.Count; i++)
+            {
+                if (statuses[i] != -1)
+                {
+                    status += statusIndex[i] + "\n";
+                }
+            }
+
+            statusText.text = status;
         }
     }
 

@@ -2241,117 +2241,149 @@ public class BattleScript : MonoBehaviour
             actions.Sort((a, b) => { return b.getSPD().CompareTo(a.getSPD()); });
             for (int z = 0; z < actions.Count; z++)
             {
-
+                string sc = actions[z].getType();
                 yield return new WaitForSeconds(0.5f);
                 int ind = actions[z].getID();
                 //Use the selected attack
-                if (actions[z].getType() == "attack" && state == battleState.ATTACK)
+                if ((temp[ind].GetComponent<UnitMono>().mainUnit.statuses[8] != -1
+                    || temp[ind].GetComponent<UnitMono>().mainUnit.statuses[9] != -1))
                 {
-                    if (enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.currentHP > 0)
-                    {
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
-                            temp[ind].GetComponent<UnitMono>().mainUnit.attacks[actions[z].getIndex()].name;
-                        yield return playerAttack(actions[z].getIndex(), actions[z].getTarget(),
-                            temp[ind].GetComponent<UnitMono>().mainUnit, enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit);
-                    }
-                    else
-                    {
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " tried attacking " +
-                            enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName + ", but they weren't there";
-                    }
-                }
-                else if (actions[z].getType() == "ability" && state == battleState.ATTACK)
-                {
-                    if (enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.currentHP > 0)
-                    {
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
-                            temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
-                        yield return playerAbility(actions[z].getIndex(), actions[z].getTarget(),
-                            temp[ind].GetComponent<UnitMono>().mainUnit, enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit);
-                    }
-                    else
-                    {
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " tried attacking " +
-                            enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName + ", but they weren't there";
-                    }
-                }
-                else if (actions[z].getType() == "ability1" && state == battleState.ATTACK)
-                {
-                    if (partyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.currentHP > 0)
-                    {
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
-                            temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
-                        yield return playerAbility(actions[z].getIndex(), actions[z].getTarget(),
-                            temp[ind].GetComponent<UnitMono>().mainUnit, partyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit);
-                    }
-                }
-                //Use basic attack
-                else if (actions[z].getType() == "basic attack" && state == battleState.ATTACK)
-                {
-                    if (enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.currentHP > 0)
-                    {
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked the enemy";
-                        yield return basicAttack(temp[ind].GetComponent<UnitMono>().mainUnit, enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit);
-                    }
-                    else
-                    {
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " tried attacking " +
-                            enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName + ", but they weren't there";
-                    }
-                }
-                //Use item
-                else if (actions[z].getType() == "item" && state == battleState.ATTACK)
-                {
-                    dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
-                        data.GetItem(actions[z].getIndex()).name;
-                    data.UseItem(actions[z].getIndex(), temp[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit);
-                    StartCoroutine(flashHeal(temp[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit));
-                    UpdateInventoryItems();
-                    UpdateInventoryImageandDesc();
-
-                }
-                //Swap unit locations
-                else if (actions[z].getType() == "swap" && state == battleState.ATTACK)
-                {
-                    if (temp[actions[z].getTarget()] != null)
-                    {
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " swapped places with "
-                            + temp[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName;
-                    }
-                    else
-                    {
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " moved to position "
-                            + (actions[z].getTarget() + 1);
-                    }
-                    PerformSwaps();
-                }
-                //Enemy performs an attack
-                else if (actions[z].getType() == "enemyAttack" && state == battleState.ATTACK)
-                {
-                    if (partyUnits[actions[z].getTarget()] != null)
-                    {
-                        if (partyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.currentHP > 0)
-                        {
-                            dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
-                                enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
-                            yield return enemyAttack(actions[z].getIndex(), actions[z].getTarget(),
-                                enemyUnits[ind].GetComponent<UnitMono>().mainUnit, partyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit);
-                        }
-                        else
-                        {
-                            dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " tried attacking " +
-                                partyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName + ", but they weren't there";
-                        }
-                    }
-                    else
-                    {
-                        dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
-                            (actions[z].getTarget() + 1) + ", but nobody was there";
-                    }
+                    dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " is unable to move";
                 }
                 else
                 {
-                    dialogue.text = "Invalid action selected";
+                    if (sc == "attack" || sc == "ability" || sc == "ability1" || sc == "item" || sc == "swap")
+                    {
+                        if (temp[ind].GetComponent<UnitMono>().mainUnit.statuses[0] != -1)
+                        {
+                            int dum = UnityEngine.Random.Range(1, 4);
+                            if (dum == 1)
+                            {
+                                temp[ind].GetComponent<UnitMono>().mainUnit.takeDamage(10);
+                                dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " took damage from vomiting";
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (enemyUnits[ind].GetComponent<UnitMono>().mainUnit.statuses[0] != -1)
+                        {
+                            int dum = UnityEngine.Random.Range(1, 4);
+                            if (dum == 1)
+                            {
+                                enemyUnits[ind].GetComponent<UnitMono>().mainUnit.takeDamage(10);
+                                dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " took damage from vomiting";
+                            }
+                        }
+                    }
+                    if (actions[z].getType() == "attack" && state == battleState.ATTACK)
+                    {
+                        if (enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                        {
+                            dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                                temp[ind].GetComponent<UnitMono>().mainUnit.attacks[actions[z].getIndex()].name;
+                            yield return playerAttack(actions[z].getIndex(), actions[z].getTarget(),
+                                temp[ind].GetComponent<UnitMono>().mainUnit, enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit);
+                        }
+                        else
+                        {
+                            dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " tried attacking " +
+                                enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName + ", but they weren't there";
+                        }
+                    }
+                    else if (actions[z].getType() == "ability" && state == battleState.ATTACK)
+                    {
+                        if (enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                        {
+                            dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                                temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                            yield return playerAbility(actions[z].getIndex(), actions[z].getTarget(),
+                                temp[ind].GetComponent<UnitMono>().mainUnit, enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit);
+                        }
+                        else
+                        {
+                            dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " tried attacking " +
+                                enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName + ", but they weren't there";
+                        }
+                    }
+                    else if (actions[z].getType() == "ability1" && state == battleState.ATTACK)
+                    {
+                        if (partyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                        {
+                            dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                                temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                            yield return playerAbility(actions[z].getIndex(), actions[z].getTarget(),
+                                temp[ind].GetComponent<UnitMono>().mainUnit, partyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit);
+                        }
+                    }
+                    //Use basic attack
+                    else if (actions[z].getType() == "basic attack" && state == battleState.ATTACK)
+                    {
+                        if (enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                        {
+                            dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked the enemy";
+                            yield return basicAttack(temp[ind].GetComponent<UnitMono>().mainUnit, enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit);
+                        }
+                        else
+                        {
+                            dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " tried attacking " +
+                                enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName + ", but they weren't there";
+                        }
+                    }
+                    //Use item
+                    else if (actions[z].getType() == "item" && state == battleState.ATTACK)
+                    {
+                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                            data.GetItem(actions[z].getIndex()).name;
+                        data.UseItem(actions[z].getIndex(), temp[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit);
+                        StartCoroutine(flashHeal(temp[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit));
+                        UpdateInventoryItems();
+                        UpdateInventoryImageandDesc();
+
+                    }
+                    //Swap unit locations
+                    else if (actions[z].getType() == "swap" && state == battleState.ATTACK)
+                    {
+                        if (temp[actions[z].getTarget()] != null)
+                        {
+                            dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " swapped places with "
+                                + temp[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName;
+                        }
+                        else
+                        {
+                            dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " moved to position "
+                                + (actions[z].getTarget() + 1);
+                        }
+                        PerformSwaps();
+                    }
+                    //Enemy performs an attack
+                    else if (actions[z].getType() == "enemyAttack" && state == battleState.ATTACK)
+                    {
+                        if (partyUnits[actions[z].getTarget()] != null)
+                        {
+                            if (partyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                            {
+                                dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                                yield return enemyAttack(actions[z].getIndex(), actions[z].getTarget(),
+                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit, partyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit);
+                            }
+                            else
+                            {
+                                dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " tried attacking " +
+                                    partyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName + ", but they weren't there";
+                            }
+                        }
+                        else
+                        {
+                            dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
+                                (actions[z].getTarget() + 1) + ", but nobody was there";
+                        }
+                    }
+                    else
+                    {
+                        dialogue.text = "Invalid action selected";
+                    }
                 }
                 yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
             }
@@ -2359,10 +2391,7 @@ public class BattleScript : MonoBehaviour
             {
                 if (partyUnits[i] != null)
                 {
-                    if (partyUnits[i].GetComponent<UnitMono>().mainUnit.status != "")
-                    {
-                        partyUnits[i].GetComponent<UnitMono>().mainUnit.statusTurn();
-                    }
+                    partyUnits[i].GetComponent<UnitMono>().mainUnit.statusTurn();
                 }
             }
 
