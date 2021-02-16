@@ -716,6 +716,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trash Can (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1078748364567200182, guid: ce7220ac87c84e942a7318a566f381b5, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce7220ac87c84e942a7318a566f381b5, type: 3}
 --- !u!1001 &352176841
@@ -6998,7 +7002,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_Name
-      value: OverworldCharacter
+      value: Norm
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14857,6 +14861,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cc3a50acd8625f4ca31d81d59d21b48, type: 3}
+--- !u!1 &1563842035 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1078748364567200182, guid: ce7220ac87c84e942a7318a566f381b5, type: 3}
+  m_PrefabInstance: {fileID: 350411103}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1563842036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563842035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 216d950d517a4824ba2728f3341cff1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item:
+    name: Browned Banana
+    description: You found it in the trash, and it's kinda gross, but you get the
+      feeling someone might want this.
+    image_file_path: 
+    amount: 1
+    limit: 1
+    type: 0
+  get_item_text: You got a Browned Banana from the Trash!
+  used_text: The trashcan is empty.
+  get_item_effect:
+    effects: []
+  used_item_effect:
+    effects: []
 --- !u!1 &1573655564
 GameObject:
   m_ObjectHideFlags: 0
@@ -21132,6 +21167,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1341564249771989289, guid: 7cc3a50acd8625f4ca31d81d59d21b48, type: 3}
   m_PrefabInstance: {fileID: 1341564250436091446}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1396058554763065159
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -17.233149
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.7154415
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 693.28986
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_RootOrder
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331183, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_Name
+      value: MapManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
 --- !u!1001 &4998140645328083482
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,0 +1,17 @@
+{
+    "map_data": [
+        {
+            "name": "SchoolHallwayScene",
+            "objects": [
+                {
+                    "o": "Trash Can (1)",
+                    "interacted": true
+                },
+                {
+                    "o": "Norm",
+                    "interacted": false
+                }
+            ]
+        }
+    ]
+}

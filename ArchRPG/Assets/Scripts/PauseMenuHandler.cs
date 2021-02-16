@@ -75,6 +75,7 @@ public class PauseMenuHandler : MonoBehaviour
         {
             CloseMenu(i);
         }
+        active_menu = 0;
     }
 
     public void ActivateCursor() { cursor.SetActive(true); }

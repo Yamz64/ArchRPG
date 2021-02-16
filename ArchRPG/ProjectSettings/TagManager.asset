@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Walls
   - Ground
+  - MapManager
   layers:
   - Default
   - TransparentFX
