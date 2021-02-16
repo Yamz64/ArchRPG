@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4998140645680048164}
   - component: {fileID: 4998140645680048167}
   - component: {fileID: 4998140645680048166}
-  m_Layer: 0
-  m_Name: Background Kid
+  m_Layer: 8
+  m_Name: OverworldCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
