@@ -2647,7 +2647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9f02236fa70694887aa49faaaab203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  question: Yes or no
+  question: Yes or no...............
   answer_1: You chose yes
   answer_2: You chose no
 --- !u!61 &534682233
@@ -3069,7 +3069,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &933197942
 MonoBehaviour:
   m_ObjectHideFlags: 0
