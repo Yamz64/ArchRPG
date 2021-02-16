@@ -3758,6 +3758,10 @@ public class PauseMenuHandler : MonoBehaviour
 
         //define audio handler
         audio_handler = GetComponent<PlayerOverworldAudioHandler>();
+
+        //unlock party members
+        data.UnlockPartyMember(0);
+        data.UnlockPartyMember(1);
     }
 
     // Update is called once per frame
