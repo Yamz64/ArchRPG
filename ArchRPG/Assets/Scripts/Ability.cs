@@ -648,6 +648,87 @@ namespace EnemyAbilities
             statusEffect = "Blunt Trauma";
         }
     }
+
+    //RYAN PLZ EDIT
+    public class Tag : Ability
+    {
+        public Tag()
+        {
+            name = "Tag!";
+            cost = 0;
+            target = 0;
+            damage = 30;
+            damageType = 0;
+        }
+
+        //has to put frontliners to the back
+    }
+
+    //RYAN PLZ EDIT
+    public class JoinCrowd : Ability
+    {
+        public JoinCrowd()
+        {
+            name = "Join the Crowd!";
+            cost = 0;
+            target = 0;
+            damage = 0;
+            sanity_damage = 5;
+            statusEffect = "Consumed";
+        }
+
+        //has to pull backliners to the front
+    }
+    
+    public class LunchMoney : Ability
+    {
+        public LunchMoney()
+        {
+            name = "Lunch Money";
+            cost = 0;
+            target = 0;
+            damage = 15;
+            damageType = 0;
+        }
+
+        //has to cause the player to lose money (Jame will impliment this at some point)
+    }
+
+    public class WarmUps : Ability
+    {
+        public WarmUps()
+        {
+            name = "Warm Ups";
+            cost = 0;
+            target = 0;
+        }
+
+        public override void UseAttack(unit user, unit target)
+        {
+            target = user;
+
+            int status = Random.Range(0, 2);
+            if (status == 0) user.status = "Hyperactive";
+            else user.status = "Zealous";
+        }
+    }
+
+    //RYAN PLZ EDIT
+    public class DarkSmoke : Ability
+    {
+        public DarkSmoke()
+        {
+            name = "Dark Smoke";
+            cost = 0;
+            damage = 10;
+            damageType = 4;
+            target = 1;
+            use_pow = true;
+            statusEffect = "Weeping";
+        }
+
+        //this attack needs to hit *everyone* I don't know how to add this
+    }
 }
 
 namespace PlayerAbilities
