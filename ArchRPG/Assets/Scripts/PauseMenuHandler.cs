@@ -82,6 +82,11 @@ public class PauseMenuHandler : MonoBehaviour
 
     public void DeactivateCursor() { cursor.SetActive(false); }
 
+    public void UpdateMoneyCount()
+    {
+        menus[0].transform.GetChild(11).GetComponent<Text>().text = "$" + data.GetMoney().ToString();
+    }
+
     public void UpdatePartyInfo()
     {
         //get a list of objects to update the info for
@@ -3778,6 +3783,7 @@ public class PauseMenuHandler : MonoBehaviour
                 cursor.SetActive(true);
                 highlighted_party_member = 0;
                 OpenMenu(0);
+                UpdateMoneyCount();
                 UpdatePartyInfo();
                 Time.timeScale = 0;
             }
