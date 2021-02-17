@@ -423,6 +423,7 @@ public class BattleScript : MonoBehaviour
         }
     }
 
+    /*
     //Update list of attacks in attack menu
     public void UpdateAttackList()
     {
@@ -446,6 +447,7 @@ public class BattleScript : MonoBehaviour
             }
         }
     }
+    */
 
     //Update list of attacks in attack menu
     public void UpdateAbilityList()
@@ -501,6 +503,7 @@ public class BattleScript : MonoBehaviour
         }
     }
 
+    /*
     //Update image and descriptions based on selected attack
     public void UpdateAttackImageandDesc()
     {
@@ -530,6 +533,7 @@ public class BattleScript : MonoBehaviour
             transform.GetChild(1).Find("AttackMenu").GetChild(2).GetChild(5).GetComponent<Text>().text = "";
         }
     }
+    */
 
     //Update image and descriptions based on selected ability
     public void UpdateAbilityImageandDesc()
@@ -832,166 +836,174 @@ public class BattleScript : MonoBehaviour
         }
     }
 
-    public void keep()
+    /*
+    //Used to navigate the basic attack menu
+    public void AttackMenuRoutine()
     {
-        /*
-        //Used to navigate the basic attack menu
-        public void AttackMenuRoutine()
+        //change position of cursor in the menu if in item select mode
+        if (attack_select_menu == false && state == battleState.PLAYER)
         {
-            //change position of cursor in the menu if in item select mode
-            if (attack_select_menu == false && state == battleState.PLAYER)
+            //If input is up and cursor is not at the top yet
+            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
             {
-                //If input is up and cursor is not at the top yet
-                if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+                if (!menu_input)
                 {
-                    if (!menu_input)
-                    {
-                        useSound(0);
-                        cursor_position--;
-                        highlighted_attack--;
-                        UpdateAttackImageandDesc();
-                    }
-                    menu_input = true;
+                    useSound(0);
+                    cursor_position--;
+                    highlighted_attack--;
+                    UpdateAttackImageandDesc();
                 }
-                //If input is down and cursor is not at bottom of basic menu
-                else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[1].positions.Count - 1 - 2
-                     && highlighted_attack < partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.attacks.Count)
-                {
-                    if (!menu_input)
-                    {
-                        useSound(0);
-                        cursor_position++;
-                        highlighted_attack++;
-                        UpdateAttackImageandDesc();
-                    }
-                    menu_input = true;
-                }
-                //If input is up and the current top of the menu is not the very top (has scrolled down)
-                else if (Input.GetAxisRaw("Vertical") > 0.0f && attack_offset > 0 && cursor_position == 0)
-                {
-                    if (!menu_input)
-                    {
-                        useSound(0);
-                        attack_offset--;
-                        highlighted_attack--;
-                        UpdateAttackList();
-                        UpdateAttackImageandDesc();
-                    }
-                    menu_input = true;
-                }
-                //If input is down and the menu is up to the scrolling point
-                else if (Input.GetAxisRaw("Vertical") < 0.0f && (cursor_positions[1].positions.Count - 2 + attack_offset) <
-                    partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.attacks.Count && 
-                    cursor_position == cursor_positions[1].positions.Count - 1 - 2)
-                {
-                    if (!menu_input)
-                    {
-                        useSound(0);
-                        attack_offset++;
-                        highlighted_attack++;
-                        UpdateAttackList();
-                        UpdateAttackImageandDesc();
-                    }
-                    menu_input = true;
-                }
-                //If the player chooses an attack
-                else if (Input.GetButtonDown("Interact") && highlighted_attack < partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.attacks.Count)
-                {
-                    if (!menu_input)
-                    {
-                        useSound(1);
-                        OpenUseAttackMenu();
-                    }
-                    menu_input = true;
-                }
-                //If the player presses the cancel key
-                else if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Menu"))
-                {
-                    CloseMenu(1);
-                    menu_input = false;
-                }
-                else
-                {
-                    menu_input = false;
-                }
+                menu_input = true;
             }
-            //Use attack menu is open
-            else if (enemy_select_menu == false && state == battleState.PLAYER)
+            //If input is down and cursor is not at bottom of basic menu
+            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[1].positions.Count - 1 - 2
+                    && highlighted_attack < partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.attacks.Count)
             {
-                //If input is up and in the attack select menu
-                if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 3)
+                if (!menu_input)
                 {
-                    if (!menu_input)
-                    {
-                        useSound(0);
-                        cursor_position--;
-                    }
-                    menu_input = true;
+                    useSound(0);
+                    cursor_position++;
+                    highlighted_attack++;
+                    UpdateAttackImageandDesc();
                 }
-                //If input is down and in the attack select menu
-                else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[1].positions.Count - 1)
+                menu_input = true;
+            }
+            //If input is up and the current top of the menu is not the very top (has scrolled down)
+            else if (Input.GetAxisRaw("Vertical") > 0.0f && attack_offset > 0 && cursor_position == 0)
+            {
+                if (!menu_input)
                 {
-                    if (!menu_input)
-                    {
-                        useSound(0);
-                        cursor_position++;
-                    }
-                    menu_input = true;
+                    useSound(0);
+                    attack_offset--;
+                    highlighted_attack--;
+                    UpdateAttackList();
+                    UpdateAttackImageandDesc();
                 }
-                //If player clicks on an option
-                else if (Input.GetButtonDown("Interact"))
+                menu_input = true;
+            }
+            //If input is down and the menu is up to the scrolling point
+            else if (Input.GetAxisRaw("Vertical") < 0.0f && (cursor_positions[1].positions.Count - 2 + attack_offset) <
+                partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.attacks.Count && 
+                cursor_position == cursor_positions[1].positions.Count - 1 - 2)
+            {
+                if (!menu_input)
                 {
-                    switch (cursor_position)
-                    {
-                        //Player uses the attack
-                        case 4:
-                            if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.currentSP <=
-                                partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.attacks[highlighted_attack].cost)
+                    useSound(0);
+                    attack_offset++;
+                    highlighted_attack++;
+                    UpdateAttackList();
+                    UpdateAttackImageandDesc();
+                }
+                menu_input = true;
+            }
+            //If the player chooses an attack
+            else if (Input.GetButtonDown("Interact") && highlighted_attack < partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.attacks.Count)
+            {
+                if (!menu_input)
+                {
+                    useSound(1);
+                    OpenUseAttackMenu();
+                }
+                menu_input = true;
+            }
+            //If the player presses the cancel key
+            else if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Menu"))
+            {
+                CloseMenu(1);
+                menu_input = false;
+            }
+            else
+            {
+                menu_input = false;
+            }
+        }
+        //Use attack menu is open
+        else if (enemy_select_menu == false && state == battleState.PLAYER)
+        {
+            //If input is up and in the attack select menu
+            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 3)
+            {
+                if (!menu_input)
+                {
+                    useSound(0);
+                    cursor_position--;
+                }
+                menu_input = true;
+            }
+            //If input is down and in the attack select menu
+            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[1].positions.Count - 1)
+            {
+                if (!menu_input)
+                {
+                    useSound(0);
+                    cursor_position++;
+                }
+                menu_input = true;
+            }
+            //If player clicks on an option
+            else if (Input.GetButtonDown("Interact"))
+            {
+                switch (cursor_position)
+                {
+                    //Player uses the attack
+                    case 4:
+                        if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.currentSP <=
+                            partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.attacks[highlighted_attack].cost)
+                        {
+                            dialogue.text = "Insufficient SP";
+                        }
+                        else
+                        {
+                            //If more than one enemy exists
+                            if (activeEnemies > 1 || enemyUnits.Count - enemyDeaths > 1)
                             {
-                                dialogue.text = "Insufficient SP";
+                                useSound(1);
+                                //Make attack menu invisible
+                                Image[] opts = transform.GetChild(1).Find("AttackMenu").GetComponentsInChildren<Image>();
+                                foreach (Image child in opts)
+                                {
+                                    Color temp = child.color;
+                                    temp.a = 0.0f;
+                                    child.color = temp;
+                                }
+
+                                Text[] ts = transform.GetChild(1).Find("AttackMenu").GetComponentsInChildren<Text>();
+                                foreach (Text child in ts)
+                                {
+                                    Color temp = child.color;
+                                    temp.a = 0.0f;
+                                    child.color = temp;
+                                }
+                                OpenSelectEnemyMenu();
+                                enemy_select_menu = true;
                             }
+                            //Only one enemy
                             else
                             {
-                                //If more than one enemy exists
-                                if (activeEnemies > 1 || enemyUnits.Count - enemyDeaths > 1)
-                                {
-                                    useSound(1);
-                                    //Make attack menu invisible
-                                    Image[] opts = transform.GetChild(1).Find("AttackMenu").GetComponentsInChildren<Image>();
-                                    foreach (Image child in opts)
-                                    {
-                                        Color temp = child.color;
-                                        temp.a = 0.0f;
-                                        child.color = temp;
-                                    }
+                                useSound(1);
+                                actions.Add(new action(currentUnit, "attack", highlighted_attack, currentEnemy,
+                                    partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI()));
+                                currentEnemy = 0;
+                                highlighted_attack = 0;
+                                currentUnit += 1;
+                                moves += 1;
 
-                                    Text[] ts = transform.GetChild(1).Find("AttackMenu").GetComponentsInChildren<Text>();
-                                    foreach (Text child in ts)
-                                    {
-                                        Color temp = child.color;
-                                        temp.a = 0.0f;
-                                        child.color = temp;
-                                    }
-                                    OpenSelectEnemyMenu();
-                                    enemy_select_menu = true;
+                                CloseUseAttackMenu();
+                                CloseMenu(1);
+                                menu_input = false;
+
+                                //Perform player attacks
+                                if (moves >= activeUnits)
+                                {
+                                    moves = 0;
+                                    currentUnit = 0;
+                                    state = battleState.ATTACK;
+                                    StartCoroutine(performActions());
                                 }
-                                //Only one enemy
                                 else
                                 {
-                                    useSound(1);
-                                    actions.Add(new action(currentUnit, "attack", highlighted_attack, currentEnemy,
-                                        partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI()));
-                                    currentEnemy = 0;
-                                    highlighted_attack = 0;
-                                    currentUnit += 1;
-                                    moves += 1;
-
-                                    CloseUseAttackMenu();
-                                    CloseMenu(1);
-                                    menu_input = false;
-
-                                    //Perform player attacks
-                                    if (moves >= activeUnits)
+                                    while (partyUnits[currentUnit] == null && currentUnit < partyUnits.Count) currentUnit++;
+                                    if (currentUnit >= partyUnits.Count)
                                     {
                                         moves = 0;
                                         currentUnit = 0;
@@ -1000,141 +1012,141 @@ public class BattleScript : MonoBehaviour
                                     }
                                     else
                                     {
-                                        while (partyUnits[currentUnit] == null && currentUnit < partyUnits.Count) currentUnit++;
-                                        if (currentUnit >= partyUnits.Count)
-                                        {
-                                            moves = 0;
-                                            currentUnit = 0;
-                                            state = battleState.ATTACK;
-                                            StartCoroutine(performActions());
-                                        }
-                                        else
-                                        {
-                                            playerTurn();
-                                        }
+                                        playerTurn();
                                     }
                                 }
                             }
-                            break;
+                        }
+                        break;
 
-                        case 5:
-                            CloseUseAttackMenu();
-                            playerTurn();
-                            break;
-                        default:
-                            break;
+                    case 5:
+                        CloseUseAttackMenu();
+                        playerTurn();
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Menu"))
+            {
+                useSound(0);
+                CloseUseAttackMenu();
+            }
+            else
+            {
+                menu_input = false;
+            }
+        }
+        //Enemy select menu is open
+        else if (state == battleState.PLAYER)
+        {
+            //If input is right and not at very edge
+            if (Input.GetAxisRaw("Horizontal") > 0.0f && currentEnemy < enemyUnits.Count - 1)
+            {
+                if (!menu_input)
+                {
+                    if (enemyUnits[currentEnemy + 1].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
+                    {
+                        int temp = currentEnemy;
+                        while (enemyUnits[currentEnemy].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && currentEnemy < enemyUnits.Count)
+                        {
+                            currentEnemy++;
+                        }
+                        if (currentEnemy < enemyUnits.Count)
+                        {
+                            useSound(0);
+                            enemySelect(currentEnemy);
+                        }
+                        else
+                        {
+                            currentEnemy = temp;
+                        }
+                    }
+                    else
+                    {
+                        useSound(0);
+                        currentEnemy++;
+                        enemySelect(currentEnemy);
                     }
                 }
-                else if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Menu"))
+                menu_input = true;
+            }
+            //If input is left and not at very edge
+            else if (Input.GetAxisRaw("Horizontal") < 0.0f && currentEnemy > 0)
+            {
+                if (!menu_input)
                 {
-                    useSound(0);
-                    CloseUseAttackMenu();
+                    if (enemyUnits[currentEnemy - 1].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
+                    {
+                        int temp = currentEnemy;
+                        while (enemyUnits[currentEnemy].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && currentEnemy >= 0)
+                        {
+                            currentEnemy--;
+                        }
+                        if (currentEnemy >= 0)
+                        {
+                            useSound(0);
+                            enemySelect(currentEnemy);
+                        }
+                        else
+                        {
+                            currentEnemy = temp;
+                        }
+                    }
+                    else
+                    {
+                        useSound(0);
+                        currentEnemy--;
+                        enemySelect(currentEnemy);
+                    }
+                }
+                menu_input = true;
+            }
+            //Add attack to list, make menus right colors again
+            else if (Input.GetButtonDown("Interact"))
+            {
+                useSound(1);
+                actions.Add(new action(currentUnit, "attack", highlighted_attack, currentEnemy,
+                    partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI()));
+                currentEnemy = 0;
+                highlighted_attack = 0;
+                currentUnit += 1;
+                moves += 1;
+
+                Image[] opts = transform.GetChild(1).Find("AttackMenu").GetComponentsInChildren<Image>();
+                foreach (Image child in opts)
+                {
+                    Color temp = child.color;
+                    temp.a = 1.0f;
+                    child.color = temp;
+                }
+                Text[] ts = transform.GetChild(1).Find("AttackMenu").GetComponentsInChildren<Text>();
+                foreach (Text child in ts)
+                {
+                    Color temp = child.color;
+                    temp.a = 1.0f;
+                    child.color = temp;
+                }
+
+                cursor.SetActive(true);
+                CloseSelectEnemyMenu();
+                CloseUseAttackMenu();
+                CloseMenu(1);
+                enemy_select_menu = false;
+                menu_input = false;
+
+                //If this unit is the last one in the party to move
+                if (moves >= activeUnits)
+                {
+                    moves = 0;
+                    currentUnit = 0;
+                    state = battleState.ATTACK;
+                    StartCoroutine(performActions());
                 }
                 else
                 {
-                    menu_input = false;
-                }
-            }
-            //Enemy select menu is open
-            else if (state == battleState.PLAYER)
-            {
-                //If input is right and not at very edge
-                if (Input.GetAxisRaw("Horizontal") > 0.0f && currentEnemy < enemyUnits.Count - 1)
-                {
-                    if (!menu_input)
-                    {
-                        if (enemyUnits[currentEnemy + 1].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
-                        {
-                            int temp = currentEnemy;
-                            while (enemyUnits[currentEnemy].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && currentEnemy < enemyUnits.Count)
-                            {
-                                currentEnemy++;
-                            }
-                            if (currentEnemy < enemyUnits.Count)
-                            {
-                                useSound(0);
-                                enemySelect(currentEnemy);
-                            }
-                            else
-                            {
-                                currentEnemy = temp;
-                            }
-                        }
-                        else
-                        {
-                            useSound(0);
-                            currentEnemy++;
-                            enemySelect(currentEnemy);
-                        }
-                    }
-                    menu_input = true;
-                }
-                //If input is left and not at very edge
-                else if (Input.GetAxisRaw("Horizontal") < 0.0f && currentEnemy > 0)
-                {
-                    if (!menu_input)
-                    {
-                        if (enemyUnits[currentEnemy - 1].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
-                        {
-                            int temp = currentEnemy;
-                            while (enemyUnits[currentEnemy].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && currentEnemy >= 0)
-                            {
-                                currentEnemy--;
-                            }
-                            if (currentEnemy >= 0)
-                            {
-                                useSound(0);
-                                enemySelect(currentEnemy);
-                            }
-                            else
-                            {
-                                currentEnemy = temp;
-                            }
-                        }
-                        else
-                        {
-                            useSound(0);
-                            currentEnemy--;
-                            enemySelect(currentEnemy);
-                        }
-                    }
-                    menu_input = true;
-                }
-                //Add attack to list, make menus right colors again
-                else if (Input.GetButtonDown("Interact"))
-                {
-                    useSound(1);
-                    actions.Add(new action(currentUnit, "attack", highlighted_attack, currentEnemy,
-                        partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI()));
-                    currentEnemy = 0;
-                    highlighted_attack = 0;
-                    currentUnit += 1;
-                    moves += 1;
-
-                    Image[] opts = transform.GetChild(1).Find("AttackMenu").GetComponentsInChildren<Image>();
-                    foreach (Image child in opts)
-                    {
-                        Color temp = child.color;
-                        temp.a = 1.0f;
-                        child.color = temp;
-                    }
-                    Text[] ts = transform.GetChild(1).Find("AttackMenu").GetComponentsInChildren<Text>();
-                    foreach (Text child in ts)
-                    {
-                        Color temp = child.color;
-                        temp.a = 1.0f;
-                        child.color = temp;
-                    }
-
-                    cursor.SetActive(true);
-                    CloseSelectEnemyMenu();
-                    CloseUseAttackMenu();
-                    CloseMenu(1);
-                    enemy_select_menu = false;
-                    menu_input = false;
-
-                    //If this unit is the last one in the party to move
-                    if (moves >= activeUnits)
+                    while (partyUnits[currentUnit] == null && currentUnit < partyUnits.Count) currentUnit++;
+                    if (currentUnit >= partyUnits.Count)
                     {
                         moves = 0;
                         currentUnit = 0;
@@ -1143,55 +1155,44 @@ public class BattleScript : MonoBehaviour
                     }
                     else
                     {
-                        while (partyUnits[currentUnit] == null && currentUnit < partyUnits.Count) currentUnit++;
-                        if (currentUnit >= partyUnits.Count)
-                        {
-                            moves = 0;
-                            currentUnit = 0;
-                            state = battleState.ATTACK;
-                            StartCoroutine(performActions());
-                        }
-                        else
-                        {
-                            playerTurn();
-                        }
+                        playerTurn();
                     }
-                }
-                //Make menus visible again to select new attack
-                else if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Menu"))
-                {
-                    useSound(0);
-                    Image[] opts = transform.GetChild(1).Find("AttackMenu").GetComponentsInChildren<Image>();
-                    foreach (Image child in opts)
-                    {
-                        Color temp = child.color;
-                        temp.a = 1.0f;
-                        child.color = temp;
-                    }
-                    Text[] ts = transform.GetChild(1).Find("AttackMenu").GetComponentsInChildren<Text>();
-                    foreach (Text child in ts)
-                    {
-                        Color temp = child.color;
-                        temp.a = 1.0f;
-                        child.color = temp;
-                    }
-
-                    CloseSelectEnemyMenu();
-                    CloseUseAttackMenu();
-                    cursor_position = highlighted_attack + attack_offset;
-                    menu_input = false;
-                }
-                else
-                {
-                    menu_input = false;
                 }
             }
+            //Make menus visible again to select new attack
+            else if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Menu"))
+            {
+                useSound(0);
+                Image[] opts = transform.GetChild(1).Find("AttackMenu").GetComponentsInChildren<Image>();
+                foreach (Image child in opts)
+                {
+                    Color temp = child.color;
+                    temp.a = 1.0f;
+                    child.color = temp;
+                }
+                Text[] ts = transform.GetChild(1).Find("AttackMenu").GetComponentsInChildren<Text>();
+                foreach (Text child in ts)
+                {
+                    Color temp = child.color;
+                    temp.a = 1.0f;
+                    child.color = temp;
+                }
 
-            //update cursor position
-            cursor.transform.position = cursor_positions[active_menu].positions[cursor_position].position;
+                CloseSelectEnemyMenu();
+                CloseUseAttackMenu();
+                cursor_position = highlighted_attack + attack_offset;
+                menu_input = false;
+            }
+            else
+            {
+                menu_input = false;
+            }
         }
-        */
+
+        //update cursor position
+        cursor.transform.position = cursor_positions[active_menu].positions[cursor_position].position;
     }
+    */
 
     //Used to navigate the basic attack menu
     public void AbilityMenuRoutine()
@@ -2326,6 +2327,7 @@ public class BattleScript : MonoBehaviour
                 if (sc == "attack" || sc == "ability" || sc == "ability1" || sc == "item" || sc == "swap" || sc == "basic attack")
                 {
                     bool newd = false;
+                    bool newds = false;
                     if (temp[ind].GetComponent<UnitMono>().mainUnit.statuses[0] != -1)
                     {
                         int dum = UnityEngine.Random.Range(1, 4);
@@ -2341,6 +2343,35 @@ public class BattleScript : MonoBehaviour
                     if (newd)
                     {
                         dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " threw up too much.";
+                        yield return unitDeath(temp[ind].GetComponent<UnitMono>().mainUnit);
+                        partyDeaths++;
+                        yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                        if (partyDeaths == activeUnits)
+                        {
+                            state = battleState.LOSE;
+                            yield return battleEnd();
+                        }
+                        continue;
+                    }
+
+                    //Check if unit is consumed
+                    if (temp[ind].GetComponent<UnitMono>().mainUnit.statuses[9] != -1)
+                    {
+                        int perc = temp[ind].GetComponent<UnitMono>().mainUnit.maxHP / 12;
+                        int dum = UnityEngine.Random.Range(1, 4);
+                        Debug.Log("Dum == " + dum);
+                        if (dum == 1)
+                        {
+                            newd = temp[ind].GetComponent<UnitMono>().mainUnit.takeDamage(perc);
+                            newds = temp[ind].GetComponent<UnitMono>().mainUnit.takeSanityDamage(5);
+                            dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " is being consumed.";
+                            yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
+                            yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                        }
+                    }
+                    if (newd)
+                    {
+                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " has been consumed";
                         yield return unitDeath(temp[ind].GetComponent<UnitMono>().mainUnit);
                         partyDeaths++;
                         yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
@@ -2381,6 +2412,34 @@ public class BattleScript : MonoBehaviour
                         }
                         continue;
                     }
+
+                    //Check if unit is consumed
+                    if (enemyUnits[ind].GetComponent<UnitMono>().mainUnit.statuses[9] != -1)
+                    {
+                        int perc = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.maxHP / 12;
+                        int dum = UnityEngine.Random.Range(1, 4);
+                        Debug.Log("Dum == " + dum);
+                        if (dum == 1)
+                        {
+                            newd = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.takeDamage(perc);
+                            dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " is being consumed.";
+                            yield return flashDamage(enemyUnits[ind].GetComponent<UnitMono>().mainUnit);
+                            yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                        }
+                    }
+                    if (newd)
+                    {
+                        dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " has been consumed";
+                        yield return unitDeath(enemyUnits[ind].GetComponent<UnitMono>().mainUnit);
+                        partyDeaths++;
+                        yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                        if (partyDeaths == activeUnits)
+                        {
+                            state = battleState.LOSE;
+                            yield return battleEnd();
+                        }
+                        continue;
+                    }
                 }
 
                 //Check if the player is stopped by a status
@@ -2407,6 +2466,7 @@ public class BattleScript : MonoBehaviour
                 }
                 
                 //Use attack
+                /*
                 if (actions[z].getType() == "attack" && state == battleState.ATTACK)
                 {
                     if (enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.currentHP > 0)
@@ -2422,8 +2482,9 @@ public class BattleScript : MonoBehaviour
                             enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName + ", but they weren't there";
                     }
                 }
+                */
                 //Use offensive ability
-                else if (actions[z].getType() == "ability" && state == battleState.ATTACK)
+                if (actions[z].getType() == "ability" && state == battleState.ATTACK)
                 {
                     if (enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                     {
@@ -2732,7 +2793,7 @@ public class BattleScript : MonoBehaviour
         {
             if (partyUnits[i] != null)
             {
-                partyUnits[i].GetComponent<UnitMono>().mainUnit.addAttack(mover);
+                //partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(mover);
                 //partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(new BasicBack());
                 //partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(new BasicFront());
             }
@@ -2809,6 +2870,7 @@ public class BattleScript : MonoBehaviour
     }
 
     //Deal damage to enemy, check if it is dead, and act accordingly (win battle or enemy turn)
+    /*
     IEnumerator playerAttack(int ata, int val, unit uni, unit target)
     {
         bool dead = false;
@@ -2892,6 +2954,7 @@ public class BattleScript : MonoBehaviour
         }
 
     }
+    */
 
     //Deal damage to enemy, check if it is dead, and act accordingly (win battle or enemy turn)
     //ata - the index of the ability
@@ -3167,7 +3230,7 @@ public class BattleScript : MonoBehaviour
 
                     yield return new WaitForSeconds(1f);
 
-                    dead = enemyUnits[x].GetComponent<UnitMono>().mainUnit.useAttack(ran, partyUnits[r].GetComponent<UnitMono>().mainUnit);
+                    dead = enemyUnits[x].GetComponent<UnitMono>().mainUnit.useAbility(ran, partyUnits[r].GetComponent<UnitMono>().mainUnit);
                 }
                 else if (attacks[ran].target == 1)
                 {
@@ -3175,15 +3238,15 @@ public class BattleScript : MonoBehaviour
 
                     yield return new WaitForSeconds(1f);
 
-                    dead = enemyUnits[x].GetComponent<UnitMono>().mainUnit.useAttack(ran, partyUnits[r].GetComponent<UnitMono>().mainUnit);
+                    dead = enemyUnits[x].GetComponent<UnitMono>().mainUnit.useAbility(ran, partyUnits[r].GetComponent<UnitMono>().mainUnit);
                     if ((r == 1 || r == 3) && partyUnits[r - 1] != null && partyUnits[r - 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                     {
-                        dead2 = enemyUnits[x].GetComponent<UnitMono>().mainUnit.useAttack(ran, partyUnits[r - 1].GetComponent<UnitMono>().mainUnit);
+                        dead2 = enemyUnits[x].GetComponent<UnitMono>().mainUnit.useAbility(ran, partyUnits[r - 1].GetComponent<UnitMono>().mainUnit);
                         r2 = r - 1;
                     }
                     else if ((r == 0 || r == 2) && partyUnits[r + 1] != null && partyUnits[r + 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                     {
-                        dead2 = enemyUnits[x].GetComponent<UnitMono>().mainUnit.useAttack(ran, partyUnits[r + 1].GetComponent<UnitMono>().mainUnit);
+                        dead2 = enemyUnits[x].GetComponent<UnitMono>().mainUnit.useAbility(ran, partyUnits[r + 1].GetComponent<UnitMono>().mainUnit);
                         r2 = r + 1;
                     }
                 }
@@ -3193,15 +3256,15 @@ public class BattleScript : MonoBehaviour
 
                     yield return new WaitForSeconds(1f);
 
-                    dead = enemyUnits[x].GetComponent<UnitMono>().mainUnit.useAttack(ran, partyUnits[r].GetComponent<UnitMono>().mainUnit);
+                    dead = enemyUnits[x].GetComponent<UnitMono>().mainUnit.useAbility(ran, partyUnits[r].GetComponent<UnitMono>().mainUnit);
                     if ((r == 0 || r == 1) && partyUnits[r + 2] != null && partyUnits[r + 2].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                     {
-                        dead2 = enemyUnits[x].GetComponent<UnitMono>().mainUnit.useAttack(ran, partyUnits[r + 2].GetComponent<UnitMono>().mainUnit);
+                        dead2 = enemyUnits[x].GetComponent<UnitMono>().mainUnit.useAbility(ran, partyUnits[r + 2].GetComponent<UnitMono>().mainUnit);
                         r2 = r + 2;
                     }
                     else if ((r == 2 || r == 3) && partyUnits[r - 2] != null && partyUnits[r - 2].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                     {
-                        dead2 = enemyUnits[x].GetComponent<UnitMono>().mainUnit.useAttack(ran, partyUnits[r - 2].GetComponent<UnitMono>().mainUnit);
+                        dead2 = enemyUnits[x].GetComponent<UnitMono>().mainUnit.useAbility(ran, partyUnits[r - 2].GetComponent<UnitMono>().mainUnit);
                         r2 = r - 2;
                     }
                 }
@@ -3639,7 +3702,7 @@ public class BattleScript : MonoBehaviour
     public void AttackButton(int ata, unit uni, unit target)
     {
         if (state != battleState.PLAYER) return;
-        StartCoroutine(playerAttack(ata, ata, uni, target));
+        StartCoroutine(playerAbility(ata, ata, uni, target));
     }
 
     //Player chooses to heal themself

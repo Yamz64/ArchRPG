@@ -11,7 +11,8 @@ public class unit
     {
         weaknesses = new bool[5];
         resistances = new bool[5];
-        attacks = new List<Ability>();
+        //attacks = new List<Ability>();
+
         abilities = new List<Ability>();
         statuses = new List<int>();
         for (int i = 0; i < 10; i++)
@@ -102,7 +103,7 @@ public class unit
     public bool enemy;          //Whether the unit is an enemy unit or not
     public bool outOfSP;        //Bool to say whether a unit has no more SP for attacks (party)
     public int position;        //0 == Frontline, 1 == Backline
-    public List<Ability> attacks;
+    //public List<Ability> attacks;
     public List<Ability> abilities;   //List of attacks the unit can perform
     public Weapon unitWeapon;   //The weapon the unit is holding
     public Armor unitArmor;     //The armor the unit is wearing
@@ -248,6 +249,7 @@ public class unit
     }
 
     //Get the attack at the given index
+    /*
     public Ability getAttack(int index)
     {
         if (index < attacks.Count)
@@ -259,6 +261,7 @@ public class unit
             return null;
         }
     }
+    */
 
     public Ability getAbility(int index)
     {
@@ -273,17 +276,19 @@ public class unit
     }
 
     //Add an attack to the unit's list of attacks
+    /*
     public void addAttack(Ability move)
     {
         attacks.Add(move);
     }
+    */
 
     public void addAbility(Ability move)
     {
         abilities.Add(move);
     }
 
-    //Use the attack at the given index against the given target
+    /*
     public bool useAttack(int index, unit target)
     {
         Ability ata = getAttack(index);
@@ -349,7 +354,7 @@ public class unit
                         miss = true;
                     }
                 }
-                */
+                
                 //Check if damage is reduced from the weeping status
                 if (statuses[2] != -1)
                 {
@@ -384,6 +389,8 @@ public class unit
         return false;
     }
 
+    */
+    //Use the ability at the given index and calculate damage
     public bool useAbility(int index, unit target)
     {
         Ability ata = getAbility(index);
@@ -392,8 +399,6 @@ public class unit
             //If SP isn't 0 or the unit is an enemy
             if (currentSP > 0 || enemy == true)
             {
-                //Flash to show unit is attacking
-                //StartCoroutine(flashDealDamage());
                 if (!enemy)
                     setSP(currentSP - ata.cost);
                 if (currentSP == 0 && !enemy)
@@ -401,20 +406,78 @@ public class unit
                     outOfSP = true;
                 }
                 //Calculate damage of the attack
-                int val = ata.damage + (ATK / 100);
-                if (ata.damageType == 0)
+                int val = ata.damage;
+                int valS = ata.sanity_damage;
+                if (!ata.use_pow)
                 {
-                    val -= target.DEF / 200;
+                    if (statuses[6] == -1)
+                    {
+                        val += (ATK / 100);
+                    }
+                    else
+                    {
+                        val += (int)(ATK * 1.25) / 100;
+                    }
+
+                    //Check if DEF is reduced by a status like Blunt Trauma
+                    if (target.statuses[4] == -1 && target.statuses[7] == -1)
+                    {
+                        val -= target.DEF / 300;
+                    }
+                    //Blunt Trauma
+                    else if (target.statuses[4] != -1 && target.statuses[7] == -1)
+                    {
+                        val -= (int)(target.DEF * 0.75) / 300;
+                    }
+                    //Neurotic
+                    else if (target.statuses[4] == -1 && target.statuses[7] != -1)
+                    {
+                        val -= (int)(target.DEF * 1.5) / 300;
+                    }
+                    //Both
+                    else
+                    {
+                        val -= (int)(target.DEF * 1.25) / 300;
+                    }
                 }
                 else
                 {
-                    val -= target.WILL / 200;
+                    //Check if POW is affected
+                    if (statuses[6] == -1)
+                    {
+                        val += (POW / 100);
+                    }
+                    else
+                    {
+                        val += (int)(POW * 1.25) / 100;
+                    }
+
+                    //Check if WILL is affected
+                    if (target.statuses[7] == -1)
+                    {
+                        valS -= target.WILL / 300;
+                        val -= target.WILL / 300;
+                    }
+                    else
+                    {
+                        valS -= (int)(target.WILL * 0.75) / 300;
+                        val -= (int)(target.WILL * 0.75) / 300;
+                    }
                 }
+                //Check if the unit gets a crit
                 int crit = UnityEngine.Random.Range(1, 101);
                 if (crit <= LCK)
                 {
                     val += (val / 2);
                     Debug.Log("Got a crit!");
+                }
+                if (statuses[2] != -1)
+                {
+                    int dum = UnityEngine.Random.Range(1, 4);
+                    if (dum == 1)
+                    {
+                        val = val / 5;
+                    }
                 }
                 bool miss = false;
                 if (status == "Confused")
@@ -430,6 +493,10 @@ public class unit
                     //Check if target is dead from attack
                     bool d = target.takeDamage(val);
                     target.setHP(target.currentHP);
+
+                    bool s = target.takeSanityDamage(valS);
+                    target.setSAN(target.sanity);
+                   
                     if (d == false)
                     {
                         if (!ata.statusEffect.Equals(""))
@@ -465,6 +532,21 @@ public class unit
         {
             hpBar.GetComponent<Image>().fillAmount = (float)currentHP / maxHP;
             hpReadOut.text = currentHP + " / " + maxHP;
+            return false;
+        }
+    }
+
+    public bool takeSanityDamage(int dam)
+    {
+        //StartCoroutine(flashDamage());
+        sanity -= dam;
+        if (sanity <= 0)
+        {
+            sanity = 0;
+            return true;
+        }
+        else
+        {
             return false;
         }
     }
@@ -1461,7 +1543,7 @@ public class ShirleyUnit : unit
 
         if (level >= 2)
         {
-            attacks.Add(new ShirleyAbilities.OpenFire());
+            abilities.Add(new ShirleyAbilities.OpenFire());
         }
         if (level >= 4)
         {
@@ -2496,7 +2578,7 @@ public class NormUnit : unit
 
         if (level >= 2)
         {
-            attacks.Add(new NormAbilities.PoopThrow());
+            abilities.Add(new NormAbilities.PoopThrow());
         }
         if (level >= 5)
         {
@@ -3313,12 +3395,12 @@ public class NewKidUnit : unit
         AGI = 40;
         LCK = 1;
 
-        attacks = new List<Ability>();
+        //attacks = new List<Ability>();
         abilities = new List<Ability>();
         abilities.Add(new AOEStatus1());
         abilities.Add(new Basic());
         abilities.Add(new AOELine());
-        attacks = abilities;
+        //attacks = abilities;
     }
 }
 
@@ -3347,7 +3429,7 @@ public class KillerCone : unit
         abilities.Add(new EnemyAbilities.LookBothWays());
         abilities.Add(new EnemyAbilities.ConeClaw());
         abilities.Add(new EnemyAbilities.CurbStomp());
-        attacks = abilities;
+        //attacks = abilities;
 
 
     }
@@ -3377,7 +3459,7 @@ public class ThrashCan : unit
         abilities.Add(new EnemyAbilities.PutInCan());
         abilities.Add(new EnemyAbilities.TakeOutTrash());
         abilities.Add(new EnemyAbilities.SpewingGarbage());
-        attacks = abilities;
+        //attacks = abilities;
     }
 }
 
@@ -3404,7 +3486,7 @@ public class LockerLurker : unit
         abilities.Add(new EnemyAbilities.MetallicWail());
         abilities.Add(new EnemyAbilities.LockerStuffer());
         abilities.Add(new EnemyAbilities.DoorSlam());
-        attacks = abilities;
+        //attacks = abilities;
     }
 }
 
@@ -3459,7 +3541,7 @@ public class Enemy2 : unit
         abilities = new List<Ability>();
         abilities.Add(new Basic());
         abilities.Add(new status1());
-        attacks = abilities;
+        //attacks = abilities;
     }
 }
 
