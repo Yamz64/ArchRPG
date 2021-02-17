@@ -14882,7 +14882,7 @@ MonoBehaviour:
     name: Browned Banana
     description: You found it in the trash, and it's kinda gross, but you get the
       feeling someone might want this.
-    image_file_path: 
+    image_file_path: ItemSprites/Banana
     amount: 1
     limit: 1
     type: 0
