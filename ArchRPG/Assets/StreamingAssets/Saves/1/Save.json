@@ -182,8 +182,7 @@
             "luck_buff": 0
         }
     ],
-    "inventory": []
-    ,
+    "inventory": [],
     "statuses": [
         {
             "status_effects": [
@@ -228,12 +227,17 @@
             ]
         }
     ],
-    "active_scene": "",
+    "active_scene": "SampleScene",
     "names": [
         "Player",
         "Clyve",
         "Jim"
     ],
     "e_abilities": [],
-    "enemy_names": []
+    "enemy_names": [
+        "Eldritch Gunner",
+        "",
+        "",
+        ""
+    ]
 }

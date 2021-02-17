@@ -3779,10 +3779,12 @@ public class PauseMenuHandler : MonoBehaviour
                 highlighted_party_member = 0;
                 OpenMenu(0);
                 UpdatePartyInfo();
+                Time.timeScale = 0;
             }
             else
             {
                 CloseAllMenus();
+                Time.timeScale = 1;
             }
             menu_mode = !menu_mode;
         }
