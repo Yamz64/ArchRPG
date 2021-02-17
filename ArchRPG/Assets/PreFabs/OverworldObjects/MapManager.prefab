@@ -44,9 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   current_map:
-    name: SchoolHallwayScene
-    objects:
-    - o: Trash Can (1)
-      interacted: 0
-    - o: Norm
-      interacted: 0
+    name: 
+    objects: []

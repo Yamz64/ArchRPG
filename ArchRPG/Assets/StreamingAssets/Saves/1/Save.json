@@ -1,7 +1,7 @@
 {
     "position": {
-        "x": -23.5,
-        "y": 2.5
+        "x": -7.5,
+        "y": -6.0
     },
     "unlocked_characters": [
         true,
@@ -255,9 +255,9 @@
     "active_scene": "",
     "names": [
         "Player",
-        "Shirley",
+        "Clyve",
         "Jim"
     ],
     "e_abilities": [],
-    "enemy_names": ["Student Body"]
+    "enemy_names": []
 }
