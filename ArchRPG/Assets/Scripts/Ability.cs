@@ -530,12 +530,16 @@ namespace EnemyAbilities
             target = 0;
             damage = 0;
             type = 2;
+            statusEffect = "Neurotic";
         }
 
         public override void UseAttack(unit user, unit target)
         {
+            Debug.Log("doing ability");
             target = user;
-            user.status = "Neurotic";
+            user.giveStatus("Neurotic");
+            Debug.Log("Has status[7] -- " + (user.statuses[7] != -1));
+            
         }
     }
 
@@ -680,6 +684,7 @@ namespace EnemyAbilities
             name = "Join the Crowd!";
             cost = 0;
             target = 1;
+            enemyTarget = 2;
             damage = 0;
             swapper = 1;
             sanity_damage = 5;
