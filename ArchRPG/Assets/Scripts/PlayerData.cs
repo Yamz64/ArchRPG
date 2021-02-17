@@ -122,6 +122,8 @@ public class PlayerData : CharacterStats
                 c.SetPos(i);
                 break;
             }
+            c.SetLVL(GetLVL());
+            c.UpdateStats();
             party_stats.Add(c);
         }
     }
