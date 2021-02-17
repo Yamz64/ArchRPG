@@ -9,6 +9,8 @@ public class unit
 {
     public unit()
     {
+        weaknesses = new int[4];
+        resistances = new int[4];
         attacks = new List<Ability>();
         abilities = new List<Ability>();
         statuses = new List<int>();
