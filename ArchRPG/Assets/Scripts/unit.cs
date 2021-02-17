@@ -106,14 +106,13 @@ public class unit
     public Armor unitArmor;     //The armor the unit is wearing
     public Trinket unitTrinket; //The trinket that the unit has
 
-    //< Status Effects >//
     //damage types
     /*
      * 0 - Physical
      * 1 - Fire
      * 2 - Electric
      * 3 - Chemical
-     * 4 - Wierd
+     * 4 - Weird
     */
     public int[] weaknesses;    //an array of integer codes for the weaknesses that a unit may have
     public int[] resistances;   //an array of integer codes for the resistances that a unit may have
@@ -140,7 +139,6 @@ public class unit
     //Function to set up the HUD with important data
     public void setHUD()        
     {
-        //Debug.Log("View for p null? == " + (view == null));
         view.sprite = Resources.Load<Sprite>(ImageFilePath);
         nameText.text = unitName;
         levelText.text = "Lvl : " + level;
@@ -366,17 +364,10 @@ public class unit
                     target.setHP(target.currentHP);
                     if (d == false)
                     {
-                        if (ata.statusEffect.Equals(""))
+                        if (!ata.statusEffect.Equals(""))
                         {
-                            /*
-                            int r = UnityEngine.Random.Range(1, 101);
-                            if (r > target.RES || r == 1)
-                            {
-                                target.giveStatus(ata.damageType);
-                            }
-                            */
+                            target.giveStatus(ata.statusEffect);
                         }
-                        else {    target.giveStatus(ata.statusEffect);    }
                     }
                     return d;
                 }
@@ -439,15 +430,10 @@ public class unit
                     target.setHP(target.currentHP);
                     if (d == false)
                     {
-                        if (ata.statusEffect.Equals(""))
+                        if (!ata.statusEffect.Equals(""))
                         {
-                            int r = UnityEngine.Random.Range(1, 101);
-                            if (r > target.RES || r == 1)
-                            {
-                                target.giveStatus(ata.damageType);
-                            }
+                            target.giveStatus(ata.statusEffect);
                         }
-                        else    {    target.giveStatus(ata.statusEffect);    }
                     }
                     return d;
                 }
@@ -525,53 +511,53 @@ public class unit
     public void giveStatus(string id)
     {
         int ran;
-        Debug.Log("Statuses size == " + statuses.Count);
-        if (id == "Vomiting" && statuses[0] == -1)
+        Debug.Log("Statuses == " + id);
+        if (id.Equals("Vomiting") && statuses[0] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[0] = ran;
         }
-        else if (id == "Aspirating" && statuses[1] == -1)
+        else if (id.Equals("Aspirating") && statuses[1] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[1] = ran;
         }
-        else if (id == "Weeping" && statuses[2] == -1)
+        else if (id.Equals("Weeping") && statuses[2] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[2] = ran;
         }
-        else if (id == "Eye Bleeding" && statuses[3] == -1)
+        else if (id.Equals("Eye Bleeding") && statuses[3] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[3] = ran;
         }
-        else if (id == "Blunt Trauma" && statuses[4] == -1)
+        else if (id.Equals("Blunt Trauma") && statuses[4] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[4] = ran;
         }
-        else if (id == "Hyperactive" && statuses[5] == -1)
+        else if (id.Equals("Hyperactive") && statuses[5] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[5] = ran;
         }
-        else if (id == "Zealous" && statuses[6] == -1)
+        else if (id.Equals("Zealous") && statuses[6] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[6] = ran;
         }
-        else if (id == "Neurotic" && statuses[7] == -1)
+        else if (id.Equals("Neurotic") && statuses[7] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[7] = ran;
         }
-        else if (id == "Restrained" && statuses[8] == -1)
+        else if (id.Equals("Restrained") && statuses[8] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[8] = ran;
         }
-        else if (id == "Consumed" && statuses[9] == -1)
+        else if (id.Equals("Consumed") && statuses[9] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[9] = ran;
@@ -676,6 +662,7 @@ public class unit
         BBackground.color = ori;
     }
 
+    //Flash blue to show unit has levelled up
     public IEnumerator flashLevel()
     {
         Color ori = BBackground.color;
@@ -3352,11 +3339,15 @@ public class KillerCone : unit
         AGI = 8;
         LCK = 1;
 
+        
+
         abilities = new List<Ability>();
         abilities.Add(new EnemyAbilities.LookBothWays());
         abilities.Add(new EnemyAbilities.ConeClaw());
         abilities.Add(new EnemyAbilities.CurbStomp());
         attacks = abilities;
+
+
     }
 }
 

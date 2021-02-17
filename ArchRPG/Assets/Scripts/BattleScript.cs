@@ -409,7 +409,7 @@ public class BattleScript : MonoBehaviour
         //loop through the item viewer and set the corresponding item name to the corresponding viewer position along with the amount
         for (int i = 0; i < item_viewer_name.Count; i++)
         {
-            Debug.Log("Data == NULL? --> " + (data.GetInventorySize()));
+            //Debug.Log("Data == NULL? --> " + (data.GetInventorySize()));
             if (i + inventory_offset < data.GetInventorySize())
             {
                 item_viewer_name[i].text = data.GetItem(i + inventory_offset).name;
@@ -2127,25 +2127,25 @@ public class BattleScript : MonoBehaviour
     }
 
     //Swap 2 units in order of selection
-    public void PerformSwaps()
+    public void PerformSwaps(int indi = 0)
     {
         //if (swaps.Count == swapInds.Count)
         //{
             //Swap sibling indices to get backline in front of frontline
-            int a1 = allyStations[swapInds[0]].GetSiblingIndex();   //Get hierarchy positions
-            int a2 = allyStations[swapInds[1]].GetSiblingIndex();
-            allyStations[swapInds[1]].SetSiblingIndex(swapInds[0]);          //Swap in hierarchy to have front/back appearance
-            allyStations[swapInds[0]].SetSiblingIndex(swapInds[1]);
-            //allyStations[swapInds[0]] = pSpots[1];                  //Swap locations
+            int a1 = allyStations[swapInds[indi]].GetSiblingIndex();       //Get hierarchy positions
+            int a2 = allyStations[swapInds[indi+1]].GetSiblingIndex();
+            allyStations[swapInds[indi+1]].SetSiblingIndex(swapInds[0]);     //Swap in hierarchy to have front/back appearance
+            allyStations[swapInds[indi]].SetSiblingIndex(swapInds[1]);
+            //allyStations[swapInds[0]] = pSpots[1];                    //Swap locations
             //allyStations[swapInds[1]] = pSpots[0];
 
-            partyUnits[swapInds[0]].transform.position = pSpots[1].position;
-            if (partyUnits[swapInds[1]] != null)
+            partyUnits[swapInds[indi]].transform.position = pSpots[indi+1].position;
+            if (partyUnits[swapInds[indi+1]] != null)
             {
-                partyUnits[swapInds[1]].transform.position = pSpots[0].position;
+                partyUnits[swapInds[indi+1]].transform.position = pSpots[indi].position;
             }
-            partyUnits[swapInds[0]] = ppgs[1];      //Switch indices to match with visible order
-            partyUnits[swapInds[1]] = ppgs[0];
+            partyUnits[swapInds[indi]] = ppgs[indi+1];      //Switch indices to match with visible order
+            partyUnits[swapInds[indi+1]] = ppgs[indi];
         //}
         /*
         else
@@ -2167,76 +2167,134 @@ public class BattleScript : MonoBehaviour
         }
         */
 
-        if (partyUnits[swapInds[0]] != null)
+        if (partyUnits[swapInds[indi]] != null)
         {
-            if (swapInds[0] == 0 || swapInds[0] == 1)
+            if (swapInds[indi] == 0 || swapInds[indi] == 1)
             {
-                partyUnits[swapInds[0]].GetComponent<UnitMono>().mainUnit.position = 0;
+                partyUnits[swapInds[indi]].GetComponent<UnitMono>().mainUnit.position = 0;
                 //partyUnits[swapInds[0]].GetComponent<UnitMono>().mainUnit.view.depth = 0;
             }
             else
             {
-                partyUnits[swapInds[0]].GetComponent<UnitMono>().mainUnit.position = 1;
+                partyUnits[swapInds[indi]].GetComponent<UnitMono>().mainUnit.position = 1;
                 //partyUnits[swapInds[0]].GetComponent<UnitMono>().mainUnit.view.canvas.sortingOrder = 1;
             }
         }
-        if (partyUnits[swapInds[1]] != null)
+        if (partyUnits[swapInds[indi+1]] != null)
         {
-            if (swapInds[1] == 0 || swapInds[1] == 1)
+            if (swapInds[indi+1] == 0 || swapInds[indi+1] == 1)
             {
-                partyUnits[swapInds[1]].GetComponent<UnitMono>().mainUnit.position = 0;
+                partyUnits[swapInds[indi+1]].GetComponent<UnitMono>().mainUnit.position = 0;
                 //partyUnits[swapInds[1]].GetComponent<UnitMono>().mainUnit.view.canvas.sortingOrder = 0;
             }
             else
             {
-                partyUnits[swapInds[1]].GetComponent<UnitMono>().mainUnit.position = 1;
+                partyUnits[swapInds[indi+1]].GetComponent<UnitMono>().mainUnit.position = 1;
                 //partyUnits[swapInds[1]].GetComponent<UnitMono>().mainUnit.view.canvas.sortingOrder = 1;
             }
         }
-        swapInds.RemoveAt(0);
-        swapInds.RemoveAt(0);
-        pSpots.RemoveAt(0);
-        pSpots.RemoveAt(0);
-        ppgs.RemoveAt(0);
-        ppgs.RemoveAt(0);
+        swapInds.RemoveAt(indi);
+        swapInds.RemoveAt(indi);
+        pSpots.RemoveAt(indi);
+        pSpots.RemoveAt(indi);
+        ppgs.RemoveAt(indi);
+        ppgs.RemoveAt(indi);
     }
 
     //Start the enemy attack routine
     public void enemyAttacks()
     {
-        //int v = 0;
+        //For each of the enemies present
         for (int i = 0; i < enemyUnits.Count; i++)
         {
+            //If the enemy is there
             if (enemyUnits[i] != null)
             {
+                //If the enemy isn't dead
                 if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                 {
-                    int x = 0;
-                    int r = Random.Range(0, partyUnits.Count);
-                    while (partyUnits[r] == null)
+                    bool self = false;
+                    bool self2 = false;
+                    for (int j = 0; j < enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities.Count; j++)
                     {
-                        r = Random.Range(0, partyUnits.Count);
-                    }
-                    //Select the appropriate ability based on enemy position
-                    if (r == 0 || r == 1)
-                    {
-                        while (enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].enemyTarget != 0 &&
-                            enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].enemyTarget != 1)
+                        if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[j].type == 1)
                         {
-                            x = Random.Range(0, enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities.Count);
+                            self = true;
+                        }
+                        if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[j].type == 2)
+                        {
+                            self2 = true;
                         }
                     }
-                    else if (r == 2 || r == 3)
+                    List<bool> choices = new List<bool>();
+                    choices.Add(true);
+                    choices.Add(self);
+                    choices.Add(self2);
+                    int vals = Random.Range(0, 3);
+                    while (choices[vals] == false)
                     {
-                        while (enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].enemyTarget != 0 &&
-                            enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].enemyTarget != 2)
-                        {
-                            x = Random.Range(0, enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities.Count);
-                        }
+                        vals = Random.Range(0, 3);
                     }
+                    if (vals == 0)
+                    {
+                        Debug.Log("Target a party unit");
+                        int x = 0;
+                        int r = Random.Range(0, partyUnits.Count);
+                        while (partyUnits[r] == null)
+                        {
+                            r = Random.Range(0, partyUnits.Count);
+                        }
+                        //Select the appropriate ability based on enemy position
+                        if (r == 0 || r == 1)
+                        {
+                            while ((enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].enemyTarget != 0 &&
+                                enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].enemyTarget != 1) ||
+                                enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].type != 0)
+                            {
+                                x = Random.Range(0, enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities.Count);
+                            }
+                        }
+                        else if (r == 2 || r == 3)
+                        {
+                            while ((enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].enemyTarget != 0 &&
+                                enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].enemyTarget != 2) ||
+                                enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].type != 0)
+                            {
+                                x = Random.Range(0, enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities.Count);
+                            }
+                        }
 
-                    action now = new action(i, "enemyAttack", x, r, enemyUnits[i].GetComponent<UnitMono>().mainUnit.getAGI());
-                    actions.Add(now);
+                        action now = new action(i, "enemyAttack", x, r, enemyUnits[i].GetComponent<UnitMono>().mainUnit.getAGI());
+                        actions.Add(now);
+                    }
+                    else if (vals == 1)
+                    {
+                        Debug.Log("Target an enemy side unit");
+                        int x = 0;
+                        int r = Random.Range(0, enemyUnits.Count);
+                        while (enemyUnits[r].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
+                        {
+                            r = Random.Range(0, enemyUnits.Count);
+                        }
+
+                        while (enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].type != 1)
+                        {
+                            x = Random.Range(0, enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities.Count);
+                        }
+                        action now = new action(i, "enemyAbility", x, r, enemyUnits[i].GetComponent<UnitMono>().mainUnit.getAGI());
+                        actions.Add(now);
+                    }
+                    else if (vals == 2)
+                    {
+                        Debug.Log("Target a (yourself) unit");
+                        int x = 0;
+                        while (enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].type != 2)
+                        {
+                            x = Random.Range(0, enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities.Count);
+                        }
+                        action now = new action(i, "enemyAbility", x, i, enemyUnits[i].GetComponent<UnitMono>().mainUnit.getAGI());
+                        actions.Add(now);
+                    }
                 }
             }
         }
@@ -2263,6 +2321,7 @@ public class BattleScript : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
                 int ind = actions[z].getID();
 
+                //Check if player should take damage from a status effect
                 if (sc == "attack" || sc == "ability" || sc == "ability1" || sc == "item" || sc == "swap")
                 {
                     bool newd = false;
@@ -2274,6 +2333,7 @@ public class BattleScript : MonoBehaviour
                         {
                             newd = temp[ind].GetComponent<UnitMono>().mainUnit.takeDamage(10);
                             dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " took damage from vomiting.";
+                            yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
                             yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
                         }
                     }
@@ -2281,10 +2341,17 @@ public class BattleScript : MonoBehaviour
                     {
                         dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " threw up too much.";
                         yield return unitDeath(temp[ind].GetComponent<UnitMono>().mainUnit);
+                        partyDeaths++;
                         yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                        if (partyDeaths == activeUnits)
+                        {
+                            state = battleState.LOSE;
+                            yield return battleEnd();
+                        }
                         continue;
                     }
                 }
+                //Check if an enemy should take damage from a status effect
                 else
                 {
                     bool newd = false;
@@ -2296,17 +2363,26 @@ public class BattleScript : MonoBehaviour
                         {
                             newd = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.takeDamage(10);
                             dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " took damage from vomiting";
+                            yield return flashDamage(enemyUnits[ind].GetComponent<UnitMono>().mainUnit);
+                            yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
                         }
                     }
                     if (newd)
                     {
                         dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " threw up too much.";
                         yield return unitDeath(enemyUnits[ind].GetComponent<UnitMono>().mainUnit);
+                        enemyDeaths++;
                         yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                        if (enemyDeaths == activeEnemies)
+                        {
+                            state = battleState.WIN;
+                            yield return battleEnd();
+                        }
                         continue;
                     }
                 }
 
+                //Check if the player is stopped by a status
                 if (sc == "attack" || sc == "ability" || sc == "ability1" || sc == "item" || sc == "swap")
                 { 
                     if ((temp[ind].GetComponent<UnitMono>().mainUnit.statuses[8] != -1
@@ -2317,6 +2393,7 @@ public class BattleScript : MonoBehaviour
                         continue;
                     }
                 }
+                //Same for the enemy
                 else
                 {
                     if ((enemyUnits[ind].GetComponent<UnitMono>().mainUnit.statuses[8] != -1
@@ -2328,6 +2405,7 @@ public class BattleScript : MonoBehaviour
                     }
                 }
                 
+                //Use attack
                 if (actions[z].getType() == "attack" && state == battleState.ATTACK)
                 {
                     if (enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.currentHP > 0)
@@ -2343,6 +2421,7 @@ public class BattleScript : MonoBehaviour
                             enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName + ", but they weren't there";
                     }
                 }
+                //Use offensive ability
                 else if (actions[z].getType() == "ability" && state == battleState.ATTACK)
                 {
                     if (enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.currentHP > 0)
@@ -2358,6 +2437,7 @@ public class BattleScript : MonoBehaviour
                             enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName + ", but they weren't there";
                     }
                 }
+                //Use Buff/Support ability (player)
                 else if (actions[z].getType() == "ability1" && state == battleState.ATTACK)
                 {
                     if (partyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.currentHP > 0)
@@ -2430,6 +2510,30 @@ public class BattleScript : MonoBehaviour
                     {
                         dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
                             (actions[z].getTarget() + 1) + ", but nobody was there";
+                    }
+                }
+                else if (actions[z].getType() == "enemyAbility" && state == battleState.ATTACK)
+                {
+                    Debug.Log("Did enemy ability");
+                    if (enemyUnits[actions[z].getTarget()] != null)
+                    {
+                        if (enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                        {
+                            dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                                enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                            yield return enemyAbility(actions[z].getIndex(), actions[z].getTarget(),
+                                enemyUnits[ind].GetComponent<UnitMono>().mainUnit, enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit);
+                        }
+                        else
+                        {
+                            dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " tried supporting " +
+                                enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName + ", but they weren't there";
+                        }
+                    }
+                    else
+                    {
+                        dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " tried using ability," +
+                            " but nobody was there";
                     }
                 }
                 else
@@ -2821,7 +2925,7 @@ public class BattleScript : MonoBehaviour
                     {
                         if (enemyUnits[val - 1] != null && enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                         {
-                            deadL = uni.useAttack(ata, enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit);
+                            deadL = uni.useAbility(ata, enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit);
                             StartCoroutine(flashDamage(enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit));
                             StartCoroutine(flashDealDamage(uni));
                         }
@@ -2830,14 +2934,14 @@ public class BattleScript : MonoBehaviour
                     {
                         if (enemyUnits[val + 1] != null && enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                         {
-                            deadR = uni.useAttack(ata, enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit);
+                            deadR = uni.useAbility(ata, enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit);
                             StartCoroutine(flashDamage(enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit));
                             StartCoroutine(flashDealDamage(uni));
                         }
                     }
                 }
             }
-            else if (dead == false)
+            else if (dead == false && uni.abilities[ata].OutputText(uni, target) == null)
             {
                 dialogue.text = uni.unitName + " missed the enemy";
                 yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
@@ -2879,6 +2983,7 @@ public class BattleScript : MonoBehaviour
         else if (uni.abilities[ata].type == 1 || uni.abilities[ata].type == 2)
         {
             uni.abilities[ata].UseAttack(uni, target);
+            yield return flashHeal(target);
         }
         if (uni.abilities[ata].OutputText(uni, target) != null)
         {
@@ -3086,6 +3191,10 @@ public class BattleScript : MonoBehaviour
     }
 
     //An enemy attack function, used with enemies that have a list of abilities
+    //ata - index of attack
+    //val - index of enemy
+    //uni - enemy using attack
+    //target - target of attack
     IEnumerator enemyAttack(int ata, int val, unit uni, unit target)
     {
         bool dead = false;
@@ -3102,6 +3211,90 @@ public class BattleScript : MonoBehaviour
         StartCoroutine(flashDamage(target));
         StartCoroutine(flashDealDamage(uni));
 
+        if (uni.abilities[ata].swapper == 1)
+        {
+            Transform pp1 = new GameObject().transform;
+            Transform pp2 = new GameObject().transform;
+
+            GameObject po1 = new GameObject();
+            GameObject po2 = new GameObject();
+
+            pp1.position = allyStations[val].position;
+            po1 = partyUnits[val];
+            if (val == 2 || val == 3)
+            {
+                if (val - 2 == 0 || val - 2 == 1) po1.GetComponent<UnitMono>().mainUnit.position = 0;
+                else po1.GetComponent<UnitMono>().mainUnit.position = 1;
+                pp2.position = allyStations[val - 2].position;
+                po2 = partyUnits[val - 2];
+                if (po2 != null)
+                {
+                    if (val == 0 || val == 1) po2.GetComponent<UnitMono>().mainUnit.position = 0;
+                    else po2.GetComponent<UnitMono>().mainUnit.position = 1;
+                }
+                pSpots.Add(pp1);
+                pSpots.Add(pp2);
+                ppgs.Add(po1);
+                ppgs.Add(po2);
+
+                swaps.Add(partyUnits[val].gameObject);
+
+                if (partyUnits[val - 2] != null)
+                {
+                    swaps.Add(partyUnits[val - 2].gameObject);
+                }
+                else
+                {
+                    swaps.Add(null);
+                }
+
+                swapInds.Add(val);
+                swapInds.Add(val - 2);
+                PerformSwaps(swapInds.Count - 2);
+            }
+        }
+        else if (uni.abilities[ata].swapper == 2)
+        {
+            Transform pp1 = new GameObject().transform;
+            Transform pp2 = new GameObject().transform;
+
+            GameObject po1 = new GameObject();
+            GameObject po2 = new GameObject();
+
+            pp1.position = allyStations[val].position;
+            po1 = partyUnits[val];
+            if (val == 0 || val == 1)
+            {
+                if (val + 2 == 0 || val + 2 == 1) po1.GetComponent<UnitMono>().mainUnit.position = 0;
+                else po1.GetComponent<UnitMono>().mainUnit.position = 1;
+                pp2.position = allyStations[val - 2].position;
+                po2 = partyUnits[val + 2];
+                if (po2 != null)
+                {
+                    if (val == 0 || val == 1) po2.GetComponent<UnitMono>().mainUnit.position = 0;
+                    else po2.GetComponent<UnitMono>().mainUnit.position = 1;
+                }
+                pSpots.Add(pp1);
+                pSpots.Add(pp2);
+                ppgs.Add(po1);
+                ppgs.Add(po2);
+
+                swaps.Add(partyUnits[val].gameObject);
+
+                if (partyUnits[val + 2] != null)
+                {
+                    swaps.Add(partyUnits[val + 2].gameObject);
+                }
+                else
+                {
+                    swaps.Add(null);
+                }
+
+                swapInds.Add(val);
+                swapInds.Add(val + 2);
+                PerformSwaps(swapInds.Count - 2);
+            }
+        }
         //If it is a horizontal AOE attack
         if (uni.abilities[ata].target == 1)
         {
@@ -3215,6 +3408,18 @@ public class BattleScript : MonoBehaviour
                 StartCoroutine( battleEnd() );
             }
         }
+    }
+
+    //An enemy uses a non-offensive ability
+    IEnumerator enemyAbility(int ata, int val, unit uni, unit target)
+    {
+        uni.abilities[ata].UseAttack(uni, target);
+        if (uni.abilities[ata].OutputText(uni, target) != null)
+        {
+            dialogue.text = uni.abilities[ata].OutputText(uni, target);
+            yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+        }
+        yield return new WaitForSeconds(0f);
     }
 
     //Use to give a unit experience and, if possible, level them up. Display text as well
