@@ -64,13 +64,13 @@ public class Attack : Ability
     }
     
     public int damage;  //int denotes the amount of damage the attack will do
-    /*
-     * 0 = Physical
-     * 1 = Psychic
-     * 2 = Acid
-     * 3 = Fire 
-     * 4 = Electric
-     *
+    /* DAMAGE TYPES
+     * 0 - Physical
+     * 1 - Fire
+     * 2 - Electric
+     * 3 - Chemical
+     * 4 - Weird
+    
     public int damageType;          //The type of damage dealt by the attack
     public string image_file_path;  //Give path to image that goes with attack
     public string desc1;            //Give info on attack name, cost, and basic details
