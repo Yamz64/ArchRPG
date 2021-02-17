@@ -387,7 +387,6 @@ public class PlayerData : CharacterStats
                 SetRES(6);
                 SetSPD(3);
                 SetLCK(0);
-                AddAbility(new PlayerAbilities.Scrutinize());
                 break;
             case 2:
                 //apply the base stats per level
@@ -427,7 +426,6 @@ public class PlayerData : CharacterStats
                 SetRES(13);
                 SetSPD(12);
                 SetLCK(0);
-                AddAbility(new PlayerAbilities.Diagnosis());
                 break;
             case 5:
                 //apply the base stats per level
@@ -645,6 +643,11 @@ public class PlayerData : CharacterStats
         if(temp_weapon != null) SetWeapon(temp_weapon);
         if(temp_armor != null) SetArmor(temp_armor);
         if(temp_trinket != null) SetTrinket(temp_trinket);
+
+        //add abilties
+        ClearAbilities();
+        if(GetLVL() >= 1) AddAbility(new PlayerAbilities.Scrutinize());
+        if (GetLVL() >= 4) AddAbility(new PlayerAbilities.Diagnosis());
     }
 
     private bool loaded;

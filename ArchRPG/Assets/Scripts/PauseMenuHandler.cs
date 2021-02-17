@@ -2429,14 +2429,14 @@ public class PauseMenuHandler : MonoBehaviour
         //--UPDATE THE SP VALUE--
         if (highlighted_party_member == 0) {
             if (cursor_position + ability_offset < data.GetAbilityCount())
-                menus[4].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "(" + data.GetAbility(cursor_position + ability_offset).cost.ToString() + ")";
+                menus[4].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "(" + data.GetAbility(cursor_position + ability_offset).cost.ToString() + " SP)";
             else menus[4].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "";
         }
         else
         {
             if (cursor_position + ability_offset < data.GetPartyMember(highlighted_party_member - 1).GetAbilityCount())
                 menus[4].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "(" +
-                    data.GetPartyMember(highlighted_party_member - 1).GetAbility(cursor_position + ability_offset).cost.ToString() + ")";
+                    data.GetPartyMember(highlighted_party_member - 1).GetAbility(cursor_position + ability_offset).cost.ToString() + " SP)";
             else menus[4].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "";
         }
 
@@ -2444,14 +2444,14 @@ public class PauseMenuHandler : MonoBehaviour
         if (highlighted_party_member == 0)
         {
             if (cursor_position + ability_offset < data.GetAbilityCount())
-                menus[4].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = data.GetAbility(cursor_position + ability_offset).desc1;
+                menus[4].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = data.GetAbility(cursor_position + ability_offset).desc2;
             else menus[4].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "";
         }
         else
         {
             if (cursor_position + ability_offset < data.GetPartyMember(highlighted_party_member - 1).GetAbilityCount())
                 menus[4].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = 
-                    data.GetPartyMember(highlighted_party_member - 1).GetAbility(cursor_position + ability_offset).desc1;
+                    data.GetPartyMember(highlighted_party_member - 1).GetAbility(cursor_position + ability_offset).desc2;
             else menus[4].transform.GetChild(9).GetChild(2).GetComponent<Text>().text = "";
         }
     }

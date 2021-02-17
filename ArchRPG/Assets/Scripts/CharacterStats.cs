@@ -117,6 +117,8 @@ public class CharacterStats
     {
         abilities.Add(a);
     }
+    public virtual void ClearAbilities() { abilities = new List<Ability>(); }
+    public virtual void RemoveAbility(int index) { abilities.RemoveAt(index); }
 
     public virtual void UpdateStats()
     {
@@ -768,8 +770,7 @@ public class CharacterStatJsonConverter
             temp.SetName(names[i]);
             temp.SetLVL(levels[i]);
             temp.SetPos(positions[i]);
-
-            temp.UpdateStats();
+            
             temp.SetHP(HPs[i]);
             temp.SetSP(SPs[i]);
             temp.SetSAN(SANs[i]);
@@ -930,7 +931,6 @@ class Clyve : CharacterStats
                 SetRES(7);
                 SetSPD(5);
                 SetLCK(0);
-                AddAbility(new ClyveAbilities.NoShower());
                 break;
             case 2:
                 //apply the base stats per level
@@ -955,7 +955,6 @@ class Clyve : CharacterStats
                 SetRES(14);
                 SetSPD(3);
                 SetLCK(0);
-                AddAbility(new ClyveAbilities.ShoeRemoval());
                 break;
             case 4:
                 //apply the base stats per level
@@ -1169,6 +1168,11 @@ class Clyve : CharacterStats
         if (temp_weapon != null) SetWeapon(temp_weapon);
         if (temp_armor != null) SetArmor(temp_armor);
         if (temp_trinket != null) SetTrinket(temp_trinket);
+
+        //add abilties
+        ClearAbilities();
+        if (GetLVL() >= 1) AddAbility(new ClyveAbilities.NoShower());
+        if (GetLVL() >= 3) AddAbility(new ClyveAbilities.ShoeRemoval());
     }
 }
 
@@ -1238,7 +1242,6 @@ class Jim : CharacterStats
                 SetRES(5);
                 SetSPD(6);
                 SetLCK(0);
-                AddAbility(new JimAbilities.Antacid());
                 break;
             case 3:
                 //apply the base stats per level
@@ -1251,7 +1254,6 @@ class Jim : CharacterStats
                 SetRES(7);
                 SetSPD(9);
                 SetLCK(0);
-                AddAbility(new JimAbilities.Bandaid());
                 break;
             case 4:
                 //apply the base stats per level
@@ -1465,6 +1467,11 @@ class Jim : CharacterStats
         if (temp_weapon != null) SetWeapon(temp_weapon);
         if (temp_armor != null) SetArmor(temp_armor);
         if (temp_trinket != null) SetTrinket(temp_trinket);
+
+        //add abilities
+        ClearAbilities();
+        if (GetLVL() >= 2) AddAbility(new JimAbilities.Antacid());
+        if (GetLVL() >= 3) AddAbility(new JimAbilities.Bandaid());
     }
 }
 
@@ -1534,7 +1541,6 @@ class Norm : CharacterStats
                 SetRES(9);
                 SetSPD(8);
                 SetLCK(0);
-                AddAbility(new NormAbilities.PoopThrow());
                 break;
             case 3:
                 //apply the base stats per level
@@ -1571,7 +1577,6 @@ class Norm : CharacterStats
                 SetRES(18);
                 SetSPD(20);
                 SetLCK(0);
-                AddAbility(new NormAbilities.EatBanana());
                 break;
             case 6:
                 //apply the base stats per level
@@ -1761,6 +1766,11 @@ class Norm : CharacterStats
         if (temp_weapon != null) SetWeapon(temp_weapon);
         if (temp_armor != null) SetArmor(temp_armor);
         if (temp_trinket != null) SetTrinket(temp_trinket);
+
+        //add abilities
+        ClearAbilities();
+        if (GetLVL() >= 2) AddAbility(new NormAbilities.PoopThrow());
+        if (GetLVL() >= 5) AddAbility(new NormAbilities.EatBanana());
     }
 }
 
@@ -1828,7 +1838,6 @@ class Shirley : CharacterStats
                 SetRES(7);
                 SetSPD(8);
                 SetLCK(0);
-                AddAbility(new ShirleyAbilities.OpenFire());
                 break;
             case 3:
                 //apply the base stats per level
@@ -1853,7 +1862,6 @@ class Shirley : CharacterStats
                 SetRES(11);
                 SetSPD(16);
                 SetLCK(2);
-                AddAbility(new ShirleyAbilities.Frontline());
                 break;
             case 5:
                 //apply the base stats per level
@@ -2055,6 +2063,11 @@ class Shirley : CharacterStats
         if (temp_weapon != null) SetWeapon(temp_weapon);
         if (temp_armor != null) SetArmor(temp_armor);
         if (temp_trinket != null) SetTrinket(temp_trinket);
+
+        //add abilities
+        ClearAbilities();
+        if (GetLVL() >= 2) AddAbility(new ShirleyAbilities.OpenFire());
+        if (GetLVL() >= 4) AddAbility(new ShirleyAbilities.Frontline());
     }
 }
 
