@@ -1,6 +1,6 @@
 {
     "position": {
-        "x": -23.5,
+        "x": 0.5,
         "y": 2.5
     },
     "unlocked_characters": [
@@ -227,17 +227,12 @@
             ]
         }
     ],
-    "active_scene": "SampleScene",
+    "active_scene": "",
     "names": [
         "Player",
         "Clyve",
         "Jim"
     ],
     "e_abilities": [],
-    "enemy_names": [
-        "Eldritch Gunner",
-        "",
-        "",
-        ""
-    ]
+    "enemy_names": []
 }

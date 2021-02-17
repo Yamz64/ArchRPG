@@ -18,6 +18,7 @@ public class ClassAAnimationHelper : MonoBehaviour
         //handle initialization of text objects
         cam_lock = true;
         PlayerMovement player_physics = player.GetComponent<PlayerMovement>();
+        NPCAnimationHandler danny_animation = danny.GetComponent<NPCAnimationHandler>();
         PlayerDialogueBoxHandler text_box = player.GetComponent<PlayerDialogueBoxHandler>();
         player_physics.direction = 0;
         List<string> dialogue = new List<string>();
@@ -286,12 +287,17 @@ public class ClassAAnimationHelper : MonoBehaviour
 
         //move Danny to the front of the room
         player_physics.interaction_protection = true;
+        danny_animation.moving = true;
+        danny_animation.direction = 1;
         StartCoroutine(CutsceneHelper.TranslateCharacter(danny, new Vector2(-8.5f, 2.0f), .4f));
         yield return new WaitForSeconds(.4f);
         yield return new WaitForEndOfFrame();
+        danny_animation.direction = 0;
         StartCoroutine(CutsceneHelper.TranslateCharacter(danny, new Vector2(-8.5f, 8.5f), 1.3f));
         yield return new WaitForSeconds(1.3f);
         yield return new WaitForEndOfFrame();
+        danny_animation.moving = false;
+        danny_animation.direction = 2;
 
         //resume conversation with Danny's current event
         dialogue.Clear();
@@ -516,6 +522,7 @@ public class ClassAAnimationHelper : MonoBehaviour
 
         //Danny leaves the classroom
         player_physics.interaction_protection = true;
+        danny_animation.moving = true;
         StartCoroutine(CutsceneHelper.TranslateCharacter(danny, new Vector2(-8.5f, -2.5f), 2.2f));
         yield return new WaitForSeconds(2.2f);
         yield return new WaitForEndOfFrame();
