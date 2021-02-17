@@ -3768,7 +3768,7 @@ public class PauseMenuHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Menu") && active_menu != 7)
+        if (Input.GetButtonDown("Menu") && active_menu != 7 && !pause_menu_protection)
         {
             base_pause_character_select = false;
             if (!menu_mode)
