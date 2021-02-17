@@ -830,7 +830,7 @@ namespace PlayerAbilities
             name = "Diagnosis";
 
             desc1 = "Check their general health\nCost: 3";
-            desc2 = "You provide your “professional” medical opinion regarding the state of the enemy’s health.";
+            desc2 = "You remove your glasses so that you can closely inspect your enemies with your near-sightedness - reveals an enemy's health status";
             cost = 3;
             position = 0;
             type = 0;
