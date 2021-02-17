@@ -1,33 +1,40 @@
 {
     "position": {
-        "x": -6.5,
-        "y": 3.9
+        "x": -23.5,
+        "y": 2.5
     },
+    "unlocked_characters": [
+        true,
+        true,
+        false,
+        false
+    ],
     "progress": 0,
+    "money": 50,
     "HPs": [
-        50,
-        23,
-        19
+        47,
+        40,
+        21
     ],
     "SPs": [
-        50,
-        15,
-        18
+        18,
+        21,
+        26
     ],
     "SANs": [
         0,
-        100,
-        100
+        0,
+        0
     ],
     "XPs": [
-        10,
-        10,
-        10
+        0,
+        0,
+        0
     ],
     "levels": [
-        10,
-        10,
-        10
+        2,
+        2,
+        2
     ],
     "positions": [
         0,
@@ -175,32 +182,53 @@
             "luck_buff": 0
         }
     ],
-    "inventory": [
+    "inventory": []
+    ,
+    "statuses": [
         {
-            "name": "TestWeapon",
-            "description": "A weapon of code!  Made for debugging so it's not really good...",
-            "image_file_path": "ItemSprites/Weapon_1",
-            "amount": 1,
-            "limit": 1,
-            "type": 1
+            "status_effects": [
+                -1,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1
+            ]
         },
         {
-            "name": "TestArmor",
-            "description": "A suit of armor made of code!  Awkward and clunky, just like a programmer's first draft...",
-            "image_file_path": "ItemSprites/Armor_1",
-            "amount": 1,
-            "limit": 1,
-            "type": 2
+            "status_effects": [
+                -1,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1
+            ]
         },
         {
-            "name": "TestTrinket",
-            "description": "The jewel on the ring is valued at 1 bit!  Not one bitcoin, like an actual bit of memory...",
-            "image_file_path": "ItemSprites/Trinket_1",
-            "amount": 1,
-            "limit": 1,
-            "type": 3
+            "status_effects": [
+                -1,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1
+            ]
         }
     ],
+    "active_scene": "",
     "names": [
         "Player",
         "Clyve",
