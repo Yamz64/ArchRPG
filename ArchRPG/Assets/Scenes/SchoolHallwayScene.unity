@@ -20943,6 +20943,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2023536432 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 379590592}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2023536436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023536432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50bc020bf95ff4140a6ff33db35d323d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  question: Norm looks hungry.  Give him some food?
+  answer_1: OOO OOO OOO
+  answer_1_failure: You don't have anything Norm would be particularly interested
+    in.
+  answer_2: Oo...
 --- !u!1001 &2120025989
 PrefabInstance:
   m_ObjectHideFlags: 0
