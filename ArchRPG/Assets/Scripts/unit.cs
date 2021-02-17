@@ -3422,6 +3422,7 @@ public class StudentBody : unit
         RES = 8;
         AGI = 18;
         LCK = 12;
+        enemy = true;
 
         abilities = new List<Ability>();
         abilities.Add(new EnemyAbilities.Tag());

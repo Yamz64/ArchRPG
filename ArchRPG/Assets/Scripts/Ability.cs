@@ -666,7 +666,7 @@ namespace EnemyAbilities
         {
             name = "Tag!";
             cost = 0;
-            target = 1;
+            target = 0;
             enemyTarget = 1;
             damage = 30;
             damageType = 0;
@@ -715,6 +715,7 @@ namespace EnemyAbilities
             name = "Warm Ups";
             cost = 0;
             target = 0;
+            type = 2;
         }
 
         public override void UseAttack(unit user, unit target)
@@ -828,7 +829,7 @@ namespace PlayerAbilities
         {
             name = "Diagnosis";
 
-            desc1 = "See how close they are to death\nCost: 3";
+            desc1 = "Check their general health\nCost: 3";
             desc2 = "You remove your glasses so that you can closely inspect your enemies with your near-sightedness - reveals an enemy's health status";
             cost = 3;
             position = 0;
@@ -1004,10 +1005,11 @@ namespace ShirleyAbilities
         public Frontline()
         {
             name = "To the Frontlines!";
-            desc1 = "Induce Zealous on a team member\nCost = 6";
-            desc1 = "After letting out a zealous warcry, Shirley commands a party member to the frontline, they seem really fired up though.  Buffs ally with Zealous";
+            desc1 = "Induce Zealous on an ally\nCost = 6";
+            desc2 = "After letting out a zealous warcry, Shirley commands a party member to the frontline, they seem really fired up though.  Buffs ally with Zealous";
             cost = 6;
             damage = 0;
+            swapper = 1;
             type = 1;
             position = 0;
             statusEffect = "Zealous";
