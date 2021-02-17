@@ -9,8 +9,8 @@ public class unit
 {
     public unit()
     {
-        weaknesses = new int[4];
-        resistances = new int[4];
+        weaknesses = new bool[5];
+        resistances = new bool[5];
         attacks = new List<Ability>();
         abilities = new List<Ability>();
         statuses = new List<int>();
@@ -116,8 +116,8 @@ public class unit
      * 3 - Chemical
      * 4 - Weird
     */
-    public int[] weaknesses;    //an array of integer codes for the weaknesses that a unit may have
-    public int[] resistances;   //an array of integer codes for the resistances that a unit may have
+    public bool[] weaknesses;    //an array of integer codes for the weaknesses that a unit may have
+    public bool[] resistances;   //an array of integer codes for the resistances that a unit may have
     public List<int> statuses;
     public List<string> statusIndex;
 
