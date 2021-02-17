@@ -780,25 +780,28 @@ namespace PlayerAbilities
             {
                 //determine what it is weak to first
                 string weakness = "";
-                switch (target.weaknesses[i])
+                if (target.weaknesses[i] == true)
                 {
-                    case 0:
-                        weakness = "Physical";
-                        break;
-                    case 1:
-                        weakness = "Fire";
-                        break;
-                    case 2:
-                        weakness = "Electric";
-                        break;
-                    case 3:
-                        weakness = "Chemical";
-                        break;
-                    case 4:
-                        weakness = "Weird";
-                        break;
-                    default:
-                        break;
+                    switch (i)
+                    {
+                        case 0:
+                            weakness = "Physical";
+                            break;
+                        case 1:
+                            weakness = "Fire";
+                            break;
+                        case 2:
+                            weakness = "Electric";
+                            break;
+                        case 3:
+                            weakness = "Chemical";
+                            break;
+                        case 4:
+                            weakness = "Weird";
+                            break;
+                        default:
+                            break;
+                    }
                 }
 
                 //the end of the list
