@@ -2980,8 +2980,13 @@ public class BattleScript : MonoBehaviour
             int preh = target.currentHP;
             string preS = target.status;
             int preC = target.statusCounter;
+            bool minus = false;
+            if (uni.abilities[ata].target != 0)
+            {
+                minus = true;
+            }
 
-            dead = uni.useAbility(ata, target);
+            dead = uni.useAbility(ata, target, minus);
 
             if (preh != target.currentHP || preS != target.status || preC != target.statusCounter)
             {
@@ -2993,7 +2998,7 @@ public class BattleScript : MonoBehaviour
                     {
                         if (enemyUnits[val - 1] != null && enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                         {
-                            deadL = uni.useAbility(ata, enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit);
+                            deadL = uni.useAbility(ata, enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit, minus);
                             StartCoroutine(flashDamage(enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit));
                             StartCoroutine(flashDealDamage(uni));
                         }
@@ -3002,7 +3007,7 @@ public class BattleScript : MonoBehaviour
                     {
                         if (enemyUnits[val + 1] != null && enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                         {
-                            deadR = uni.useAbility(ata, enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit);
+                            deadR = uni.useAbility(ata, enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit, minus);
                             StartCoroutine(flashDamage(enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit));
                             StartCoroutine(flashDealDamage(uni));
                         }
@@ -3046,6 +3051,10 @@ public class BattleScript : MonoBehaviour
             {
                 state = battleState.WIN;
                 StartCoroutine(battleEnd());
+            }
+            if (minus)
+            {
+                uni.setSP(uni.currentSP - uni.abilities[ata].cost);
             }
         }
         else if (uni.abilities[ata].type == 1 || uni.abilities[ata].type == 2)
@@ -3145,7 +3154,7 @@ public class BattleScript : MonoBehaviour
         }
     }
 
-    //Use a basic attack against the target, and act accordin
+    //Use a basic attack against the target
     IEnumerator basicAttack(unit uni, unit target)
     {
         //dialogue.text = "Player used " + ata.name;
@@ -3153,7 +3162,7 @@ public class BattleScript : MonoBehaviour
         yield return new WaitForSeconds(1f);
         bool dead = target.takeDamage(5 + (uni.ATK / 100) - (target.DEF / 200));
         target.setHP(target.currentHP);
-        uni.setSP(uni.currentSP - 2);
+        //uni.setSP(uni.currentSP - 2);
         StartCoroutine(flashDamage(target));
         StartCoroutine(flashDealDamage(uni));
 

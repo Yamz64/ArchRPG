@@ -677,7 +677,7 @@ namespace EnemyAbilities
         //has to put frontliners to the back
     }
 
-    //RYAN PLZ EDIT
+    //RYAN PLZ EDIT -- Done
     public class JoinCrowd : Ability
     {
         public JoinCrowd()
@@ -767,7 +767,7 @@ namespace PlayerAbilities
 
         public override string OutputText(unit user, unit target)
         {
-            user.setSP(user.getSP() - cost);
+            //user.setSP(user.getSP() - cost);
 
             //see if the target has any weaknesses
             //no
@@ -845,7 +845,7 @@ namespace PlayerAbilities
 
         public override string OutputText(unit user, unit target)
         {
-            user.setSP(user.getSP() - cost);
+            //user.setSP(user.getSP() - cost);
 
             //determine target's percentage of remaining health
             float percent = target.getHP() / target.maxHP;

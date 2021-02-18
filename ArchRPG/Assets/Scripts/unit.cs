@@ -391,7 +391,7 @@ public class unit
 
     */
     //Use the ability at the given index and calculate damage
-    public bool useAbility(int index, unit target)
+    public bool useAbility(int index, unit target, bool subtract = false)
     {
         Ability ata = getAbility(index);
         if (ata.position == 0 || (ata.position - 1 == position))
@@ -399,7 +399,7 @@ public class unit
             //If SP isn't 0 or the unit is an enemy
             if (currentSP > 0 || enemy == true)
             {
-                if (!enemy)
+                if (!enemy && !subtract)
                     setSP(currentSP - ata.cost);
                 if (currentSP == 0 && !enemy)
                 {
