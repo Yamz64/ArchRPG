@@ -1241,7 +1241,7 @@ public class BattleScript : MonoBehaviour
             //If input is down and the menu is up to the scrolling point
             else if (Input.GetAxisRaw("Vertical") < 0.0f && (cursor_positions[1].positions.Count - 2 + ability_offset) <
                 partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities.Count &&
-                cursor_position == cursor_positions[2].positions.Count - 1 - 2)
+                cursor_position == cursor_positions[1].positions.Count - 1 - 2)
             {
                 if (!menu_input)
                 {
@@ -1267,6 +1267,8 @@ public class BattleScript : MonoBehaviour
             //If the player presses the cancel key
             else if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Menu"))
             {
+                highlighted_ability = 0;
+                ability_offset = 0;
                 CloseMenu(1);
                 menu_input = true;
             }
@@ -2138,8 +2140,8 @@ public class BattleScript : MonoBehaviour
             int a2 = allyStations[swapInds[indi+1]].GetSiblingIndex();
             allyStations[swapInds[indi+1]].SetSiblingIndex(swapInds[0]);     //Swap in hierarchy to have front/back appearance
             allyStations[swapInds[indi]].SetSiblingIndex(swapInds[1]);
-            //allyStations[swapInds[0]] = pSpots[1];                    //Swap locations
-            //allyStations[swapInds[1]] = pSpots[0];
+            allyStations[swapInds[0]] = pSpots[1];                    //Swap locations
+            allyStations[swapInds[1]] = pSpots[0];
 
             partyUnits[swapInds[indi]].transform.position = pSpots[indi+1].position;
             if (partyUnits[swapInds[indi+1]] != null)
@@ -2793,9 +2795,11 @@ public class BattleScript : MonoBehaviour
         {
             if (partyUnits[i] != null)
             {
-                //partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(mover);
-                //partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(new BasicBack());
-                //partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(new BasicFront());
+                partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(mover);
+                partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(new BasicBack());
+                partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(new BasicFront());
+                partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(new TestAbility());
+                partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(new TestAbility1());
             }
         }
         //partyUnits[0].GetComponent<UnitMono>().mainUnit.addAttack(new TestAbility1());
@@ -3013,7 +3017,7 @@ public class BattleScript : MonoBehaviour
 
             yield return new WaitForSeconds(1f);
 
-            //If enemy is dead, battle is won
+            //If enemy is 
             if (dead && target.currentHP <= 0)
             {
                 enemyDeaths++;
@@ -3445,7 +3449,11 @@ public class BattleScript : MonoBehaviour
                 PerformSwaps(swapInds.Count - 2);
             }
         }
-        Debug.Log("Got past the swap");
+
+        if (uni.abilities[ata].moneySteal > 0)
+        {
+            ////////////JAMEZ Please edit
+        }
         //If it is a horizontal AOE attack
         if (uni.abilities[ata].target == 1)
         {

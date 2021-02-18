@@ -51,6 +51,7 @@ public class Ability
     public string desc2;            //Give actual description and more details (damage type, targets, etc.)
     public bool fast = false;       //if this is applied to the ability then it behaves as if the user had double speed
     public bool use_pow = false;    //if applied to the ability then the attack uses pow to scale the damage rather than atk
+    public int moneySteal = 0;
 }
 
 //Sub class to deal with attacks (abilities that deal damage)
@@ -703,6 +704,7 @@ namespace EnemyAbilities
             target = 0;
             damage = 15;
             damageType = 0;
+            moneySteal = 10;
         }
 
         //has to cause the player to lose money (Jame will impliment this at some point)
