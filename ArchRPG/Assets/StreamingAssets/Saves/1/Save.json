@@ -9,6 +9,11 @@
         false,
         false
     ],
+    "dead": [
+        false,
+        false,
+        false
+    ],
     "progress": 0,
     "money": 50,
     "HPs": [

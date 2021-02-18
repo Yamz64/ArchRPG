@@ -77,6 +77,7 @@ public class PauseMenuHandler : MonoBehaviour
             CloseMenu(i);
         }
         active_menu = 0;
+        menu_mode = false;
     }
 
     public void ActivateCursor() { cursor.SetActive(true); }
@@ -3799,13 +3800,13 @@ public class PauseMenuHandler : MonoBehaviour
                 UpdateMoneyCount();
                 UpdatePartyInfo();
                 Time.timeScale = 0;
+                menu_mode = true;
             }
             else
             {
                 CloseAllMenus();
                 Time.timeScale = 1;
             }
-            menu_mode = !menu_mode;
         }
 
         if (menu_mode && !pause_menu_protection)

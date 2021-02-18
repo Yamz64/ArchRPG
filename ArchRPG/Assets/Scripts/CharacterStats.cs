@@ -394,6 +394,7 @@ public class CharacterStats
 
     public CharacterStats()
     {
+        dead = false;
         abilities = new List<Ability>();
         status_effects = new List<int>();
 
@@ -525,6 +526,9 @@ public class CharacterStatJsonConverter
             unlocked_characters[i] = p.GetUnlockedMember(i);
         }
 
+        dead = new bool[p.GetPartySize() + 1];
+        dead[0] = p.GetDead();
+
         //set all lists of things to be saved from party members
         for (int i=1; i<p.GetPartySize()+1; i++)
         {
@@ -545,6 +549,8 @@ public class CharacterStatJsonConverter
                 party_status.status_effects.Add(p.GetPartyMember(i - 1).GetStatus(j));
             }
             statuses.Add(party_status);
+
+            dead[i] = p.GetPartyMember(i - 1).GetDead();
         }
 
         //populate a list of items in the player's inventory
@@ -802,7 +808,9 @@ public class CharacterStatJsonConverter
             if(unlocked_characters[i])
             p.UnlockPartyMember(i);
         }
-        
+
+        p.SetDead(dead[0]);
+
         //add party members
         p.ClearParty();
         for(int i=1; i<names.GetLength(0); i++)
@@ -863,6 +871,8 @@ public class CharacterStatJsonConverter
                 temp.SetStatus(j, statuses[i].status_effects[j]);
             }
 
+            temp.SetDead(dead[i]);
+
             p.AddPartyMember(temp);
         }
     }
@@ -870,6 +880,7 @@ public class CharacterStatJsonConverter
     public Vector2 position;            //current position in the world (ignored except for after battles)
 
     public bool[] unlocked_characters;  //list of unlocked characters
+    public bool[] dead;                 //which party members are dead
 
     public int progress;                //how far in the game the player is
     public int money;                   //stores how much money the player has
