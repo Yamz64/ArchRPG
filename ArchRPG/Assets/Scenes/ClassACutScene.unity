@@ -5311,6 +5311,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1877936869}
   - component: {fileID: 1877936870}
+  - component: {fileID: 1877936871}
   m_Layer: 0
   m_Name: Danny2
   m_TagString: Untagged
@@ -5383,6 +5384,45 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1877936871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877936868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c646bbf8df891804496ae5799aa0b7a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedup: 0
+  moving: 0
+  was_moving: 0
+  idle_anim_delay: 0.1
+  walk_anim_delay: 0.1
+  idle_sprites_up:
+  - {fileID: 4178881350079944091, guid: a328ee70c77a86b46825a249d5d7c3b3, type: 3}
+  idle_sprites_side:
+  - {fileID: 2303008969691994475, guid: a328ee70c77a86b46825a249d5d7c3b3, type: 3}
+  idle_sprites_down:
+  - {fileID: 5248140964593904557, guid: a328ee70c77a86b46825a249d5d7c3b3, type: 3}
+  walk_sprites_up:
+  - {fileID: -3400163862627521908, guid: a328ee70c77a86b46825a249d5d7c3b3, type: 3}
+  - {fileID: 3962230825898759413, guid: a328ee70c77a86b46825a249d5d7c3b3, type: 3}
+  - {fileID: 329688177771148289, guid: a328ee70c77a86b46825a249d5d7c3b3, type: 3}
+  - {fileID: 3962230825898759413, guid: a328ee70c77a86b46825a249d5d7c3b3, type: 3}
+  walk_sprites_side:
+  - {fileID: -3996987623480050482, guid: a328ee70c77a86b46825a249d5d7c3b3, type: 3}
+  - {fileID: 8576345925094741357, guid: a328ee70c77a86b46825a249d5d7c3b3, type: 3}
+  - {fileID: 5454192909858993739, guid: a328ee70c77a86b46825a249d5d7c3b3, type: 3}
+  - {fileID: 8576345925094741357, guid: a328ee70c77a86b46825a249d5d7c3b3, type: 3}
+  walk_sprites_down:
+  - {fileID: 4321004936469943392, guid: a328ee70c77a86b46825a249d5d7c3b3, type: 3}
+  - {fileID: -5733676346732314443, guid: a328ee70c77a86b46825a249d5d7c3b3, type: 3}
+  - {fileID: -382620354759485529, guid: a328ee70c77a86b46825a249d5d7c3b3, type: 3}
+  - {fileID: -5733676346732314443, guid: a328ee70c77a86b46825a249d5d7c3b3, type: 3}
+  direction: 2
 --- !u!1001 &1954835109
 PrefabInstance:
   m_ObjectHideFlags: 0
