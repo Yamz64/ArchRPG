@@ -12,6 +12,15 @@
                     "interacted": false
                 }
             ]
+        },
+        {
+            "name": "CafeScene",
+            "objects": [
+                {
+                    "o": "Shirley",
+                    "interacted": false
+                }
+            ]
         }
     ]
 }
