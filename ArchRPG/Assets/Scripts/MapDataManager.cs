@@ -4,30 +4,35 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.SceneManagement;
 
-public class MapDataManager : MonoBehaviour
+[System.Serializable]
+public class ObjectInfo
 {
-    [System.Serializable]
-    public class ObjectInfo
+    public string o;
+    public bool interacted;
+}
+[System.Serializable]
+public class MapGameData
+{
+    public string name;
+    public List<ObjectInfo> objects;
+}
+[System.Serializable]
+public class MapSaveData
+{
+    public MapSaveData() { map_data = new List<MapGameData>(); }
+    public void Save(bool full_save = false)
     {
-        public string o;
-        public bool interacted;
-    }
-    [System.Serializable]
-    public class MapGameData
-    {
-        public string name;
-        public List<ObjectInfo> objects;
-    }
-    [System.Serializable]
-    public class MapSaveData
-    {
-        public MapSaveData() { map_data = new List<MapGameData>(); }
-        public void Save()
-        {
-            string data = JsonUtility.ToJson(this, true);
+        string data = JsonUtility.ToJson(this, true);
+        if (!full_save)
             File.WriteAllText(Application.streamingAssetsPath + "/Saves/" + (PlayerPrefs.GetInt("_active_save_file_") + 1).ToString() + "/MapData.json", data);
+        else
+        {
+            File.WriteAllText(Application.streamingAssetsPath + "/Saves/" + (PlayerPrefs.GetInt("_active_save_file_") + 1).ToString() + "/MapDataOld.json", data);
         }
-        public void Load()
+    }
+    public void Load(bool full_save = false)
+    {
+        if (!full_save)
         {
             StreamReader reader = new StreamReader(Application.streamingAssetsPath + "/Saves/" + (PlayerPrefs.GetInt("_active_save_file_") + 1).ToString() + "/MapData.json");
             string json = reader.ReadToEnd();
@@ -36,9 +41,24 @@ public class MapDataManager : MonoBehaviour
             //convert json info to data in this class instance
             JsonUtility.FromJsonOverwrite(json, this);
         }
-        public List<MapGameData> map_data;
-    }
+        else
+        {
+            StreamReader reader = new StreamReader(Application.streamingAssetsPath + "/Saves/" + (PlayerPrefs.GetInt("_active_save_file_") + 1).ToString() + "/MapDataOld.json");
+            string json = reader.ReadToEnd();
+            reader.Close();
 
+            //convert json info to data in this class instance
+            JsonUtility.FromJsonOverwrite(json, this);
+
+            //save to current data
+            Save(false);
+        }
+    }
+    public List<MapGameData> map_data;
+}
+
+public class MapDataManager : MonoBehaviour
+{
     public void Save()
     {
         MapSaveData data = new MapSaveData();
