@@ -3193,7 +3193,7 @@ public class BattleScript : MonoBehaviour
         partyUnits[0].GetComponent<UnitMono>().mainUnit.setHP(partyUnits[0].GetComponent<UnitMono>().mainUnit.currentHP);
 
         state = battleState.ENEMY;
-        StartCoroutine(enemyAttack(0));
+        //StartCoroutine(enemyAttack(0));
         yield return new WaitForSeconds(2f);
     }
 
@@ -3205,10 +3205,11 @@ public class BattleScript : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         state = battleState.ENEMY;
-        StartCoroutine(enemyAttack(0));
+        //StartCoroutine(enemyAttack(0));
         yield return new WaitForSeconds(1f);
     }
 
+    /*
     //Deal damage to player, check if they're dead, and act accordingly (lose battle or player turn)
     //Prototype version of function below
     IEnumerator enemyAttack(int x)
@@ -3351,6 +3352,7 @@ public class BattleScript : MonoBehaviour
             StopCoroutine("enemyAttack");
         }
     }
+    */
 
     //An enemy attack function, used with enemies that have a list of abilities
     //ata - index of attack
@@ -3461,7 +3463,9 @@ public class BattleScript : MonoBehaviour
 
         if (uni.abilities[ata].moneySteal > 0)
         {
-            ////////////JAMEZ Please edit
+            data.SetMoney(data.GetMoney() - uni.abilities[ata].moneySteal);
+            dialogue.text = uni.unitName + " stole $" + uni.abilities[ata].moneySteal + " buckaroos";
+            yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
         }
         //If it is a horizontal AOE attack
         if (uni.abilities[ata].target == 1)
