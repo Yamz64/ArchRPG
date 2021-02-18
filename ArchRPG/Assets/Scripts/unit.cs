@@ -9,6 +9,7 @@ public class unit
 {
     public unit()
     {
+        sprites = new Sprite[2];
         weaknesses = new bool[5];
         resistances = new bool[5];
         //attacks = new List<Ability>();
@@ -123,7 +124,8 @@ public class unit
     public List<string> statusIndex;
 
 
-    public string ImageFilePath;//Use to determine what image to display for the unit
+    public Sprite[] sprites;
+    public string ImageFilePath;    //Use to determine what image to display for the unit
     public Image view;          //Image of unit
     public Text nameText;       //Text object to project name to
     public Image BBackground;   //Background for the text
@@ -139,10 +141,15 @@ public class unit
     public Image statusBackColor;   //Colored background of the status bar
     public Text statusText;     //Text to say what status effect the unit has
 
+    public void loadSprites()
+    {
+        sprites = Resources.LoadAll<Sprite>(ImageFilePath);
+    }
+
     //Function to set up the HUD with important data
     public void setHUD()        
     {
-        view.sprite = Resources.Load<Sprite>(ImageFilePath);
+        view.sprite = Resources.Load<Sprite>(ImageFilePath); ;
         nameText.text = unitName;
         levelText.text = "Lvl : " + level;
         hpBar.fillAmount = (float)currentHP / maxHP;
@@ -152,6 +159,15 @@ public class unit
             if (maxSP <= 0) { maxSP = 1; }
             spBar.fillAmount = (float)currentSP / maxSP;
             spReadOut.text = currentSP + " / " + maxSP;
+        }
+    }
+
+    public void changeSprite(int num)
+    {
+        Debug.Log("Sprite num == " + sprites.Length);
+        if (sprites.Length > num)
+        {
+            view.sprite = sprites[num];
         }
     }
 
@@ -787,6 +803,7 @@ public class PlayerUnit : unit
         unitName = "Player";
         level = lev;
         ImageFilePath = "CharacterSprites/PC";
+        loadSprites();
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
         resistances[4] = true;
 
@@ -1305,6 +1322,7 @@ public class ClyveUnit : unit
     {
         unitName = "Clyve";
         ImageFilePath = "CharacterSprites/Clyve";
+        loadSprites();
         level = lev;
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
         weaknesses[1] = true;
@@ -1825,6 +1843,7 @@ public class JimUnit : unit
     {
         unitName = "Accident Jim";
         ImageFilePath = "CharacterSprites/Accident Jim";
+        loadSprites();
         level = lev;
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
         resistances[4] = true;
@@ -2342,6 +2361,7 @@ public class NormUnit : unit
     {
         unitName = "Norm";
         ImageFilePath = "CharacterSprites/Norm2";
+        loadSprites();
         level = lev;
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
         weaknesses[4] = true;
@@ -2860,6 +2880,7 @@ public class ShirleyUnit : unit
     {
         unitName = "Shirley";
         ImageFilePath = "CharacterSprites/Shirley";
+        loadSprites();
         level = lev;
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
 
@@ -3428,7 +3449,7 @@ public class KillerCone : unit
     {
         ImageFilePath = "EnemySprites/Killer Cone_sheet";
         unitName = "KillerCone";
-
+        loadSprites();
         level = 3;
         maxHP = currentHP = 15;
         expGain = 15;
@@ -3461,7 +3482,7 @@ public class ThrashCan : unit
     {
         ImageFilePath = "EnemySprites/Prototype/EnemyTestPicture";
         unitName = "ThrashCan";
-
+        loadSprites();
         level = 3;
         maxHP = currentHP = (int)(0.67 * Math.Pow(level, 2)) + 19;
         expGain = 30;
@@ -3491,7 +3512,7 @@ public class LockerLurker : unit
     {
         ImageFilePath = "EnemySprites/locker_lurker";
         unitName = "LockerLurker";
-
+        loadSprites();
         level = 4;
         maxHP = currentHP = 30;
         expGain = 50;
@@ -3518,7 +3539,7 @@ public class StudentBody : unit
     {
         ImageFilePath = "EnemySprites/Student Body Sheet";
         unitName = "StudentBody";
-
+        loadSprites();
         level = 5;
         maxHP = currentHP = 75;
         ATK = 50;
@@ -3545,10 +3566,10 @@ public class Enemy2 : unit
 {
     public Enemy2()
     {
-        ImageFilePath = "EnemySprites/EnemyTestPicture2";
+        ImageFilePath = "EnemySprites/Prototype/EnemyTestPicture";
         unitID = -2;
         unitName = "Debuffer";
-
+        loadSprites();
         level = 4;
         maxHP = currentHP = (14 * level) + 2;
         expGain = 40;
@@ -3573,10 +3594,10 @@ public class Enemy3 : unit
 {
     public Enemy3()
     {
-        ImageFilePath = "EnemySprites/EnemySprite1";
+        ImageFilePath = "EnemySprites/Prototype/EnemyTestPicture";
         unitID = -3;
         unitName = "NormalEnemy";
-
+        loadSprites();
         level = 3;
         maxHP = currentHP = (24 * level);
         expGain = 10;

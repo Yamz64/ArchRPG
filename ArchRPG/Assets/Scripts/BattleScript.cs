@@ -61,8 +61,6 @@ public class BattleScript : MonoBehaviour
 
     //Int to track how many items away from the bottom before the menu can start scrolling
     public int inventory_offset;
-    //Int to track how many attacks away from the bottom before the menu can start scrolling
-    public int attack_offset;
     //Int to track how many abilities away from the bottom before the menu can start scrolling
     public int ability_offset;
     //Int to track how many actions away from the bottom before the menu can start scrolling
@@ -70,16 +68,13 @@ public class BattleScript : MonoBehaviour
 
     //Current item (index) being highlighted by cursor
     public int highlighted_item;
-    //Current attack (index) being highlighted by cursor
-    public int highlighted_attack;
     //Current ability being highlighted
     public int highlighted_ability;
     //Current action in base menu (index) being highlighed by cursor
     public int highlighted_action;
     //Bool to check whether the menu is accepting input
     private bool menu_input;
-    //Bool to check whether the player has the attack menu open
-    private bool attack_select_menu;
+
     //Bool to check whether the player has the ability menu open
     private bool ability_select_menu;
     //Bool to check whether the player is selecting an enemy to attack
@@ -136,10 +131,6 @@ public class BattleScript : MonoBehaviour
 
     //Number of enemies that have died
     int enemyDeaths = 0;
-
-    //Variables used to make sure only one action is taken per turn
-    //private float time = 2;
-    //private float timer = 2;
 
     //Variables to use in the swap menu
     private int i1 = 5;                     //Check if first swap unit has been selected
@@ -241,6 +232,7 @@ public class BattleScript : MonoBehaviour
         item_select_menu = false;
     }
 
+    /*
     //Open menu to choose whether an attack is used
     public void OpenUseAttackMenu()
     {
@@ -249,7 +241,7 @@ public class BattleScript : MonoBehaviour
         cursor_position = 4;
         attack_select_menu = true;
     }
-
+    
     //Close the use attack menu
     public void CloseUseAttackMenu()
     {
@@ -257,6 +249,7 @@ public class BattleScript : MonoBehaviour
         cursor_position = highlighted_attack - attack_offset;
         attack_select_menu = false;
     }
+    */
 
     //Open menu to choose whether an ability is used
     public void OpenUseAbilityMenu()
@@ -2555,6 +2548,7 @@ public class BattleScript : MonoBehaviour
                 //Enemy performs an attack
                 else if (actions[z].getType() == "enemyAttack" && state == battleState.ATTACK)
                 {
+                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.changeSprite(1);
                     if (partyUnits[actions[z].getTarget()] != null)
                     {
                         if (partyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.currentHP > 0)
@@ -2575,10 +2569,11 @@ public class BattleScript : MonoBehaviour
                         dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
                             (actions[z].getTarget() + 1) + ", but nobody was there";
                     }
+                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.changeSprite(0);
                 }
                 else if (actions[z].getType() == "enemyAbility" && state == battleState.ATTACK)
                 {
-                    Debug.Log("Did enemy ability");
+                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.changeSprite(1);
                     if (enemyUnits[actions[z].getTarget()] != null)
                     {
                         if (enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.currentHP > 0)
@@ -2599,6 +2594,7 @@ public class BattleScript : MonoBehaviour
                         dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " tried using ability," +
                             " but nobody was there";
                     }
+                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.changeSprite(0);
                 }
                 else
                 {
