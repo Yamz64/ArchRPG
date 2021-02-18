@@ -3397,7 +3397,7 @@ public class NewKidUnit : unit
     {
         unitID = 5;
         unitName = "New Kid";
-        ImageFilePath = "EnemySprites/Zim";
+        ImageFilePath = "EnemySprites/Student Body Sheet";
 
         level = 5;
 
@@ -3459,7 +3459,7 @@ public class ThrashCan : unit
 {
     public ThrashCan()
     {
-        ImageFilePath = "EnemySprites/EnemyTestPicture";
+        ImageFilePath = "EnemySprites/Prototype/EnemyTestPicture";
         unitName = "ThrashCan";
 
         level = 3;
@@ -3516,7 +3516,7 @@ public class StudentBody : unit
 {
     public StudentBody()
     {
-        ImageFilePath = "EnemySprites/EnemyTestPicture";
+        ImageFilePath = "EnemySprites/Student Body Sheet";
         unitName = "StudentBody";
 
         level = 5;

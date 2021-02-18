@@ -1,7 +1,22 @@
 fileFormatVersion: 2
-guid: e72402030d491c94ba8aeb57aa82bfb3
+guid: db4e8019fa1a8584d80341ff78d86da9
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 1132749581425962454
+    second: Student Body Sheet_0
+  - first:
+      213: 2535651642115166018
+    second: Student Body Sheet_0
+  - first:
+      213: 8569902527309560919
+    second: Student Body Sheet_2
+  - first:
+      213: 8750385887217897366
+    second: Student Body Sheet_1
+  - first:
+      213: 4834130981422760419
+    second: Student Body Sheet_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -41,7 +56,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -159,7 +174,49 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Student Body Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1200
+        height: 1200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24f096aebb1703320800000000000000
+      internalID: 2535651642115166018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Student Body Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 0
+        width: 1200
+        height: 1200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69fc6375a9d9f6970800000000000000
+      internalID: 8750385887217897366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
