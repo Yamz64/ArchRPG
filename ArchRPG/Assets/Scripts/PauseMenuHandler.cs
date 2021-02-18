@@ -4,6 +4,7 @@ using System.IO;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PauseMenuHandler : MonoBehaviour
 {
@@ -2540,7 +2541,7 @@ public class PauseMenuHandler : MonoBehaviour
         {
             //see if the file exists
             //no
-            if (!File.Exists(Application.streamingAssetsPath + "/Saves/" + (i + 1).ToString() + "/Save.json"))
+            if (!File.Exists(Application.streamingAssetsPath + "/Saves/" + (i + 1).ToString() + "/Old.json"))
             {
                 //set all images to invisible
                 for(int j=1; j<5; j++)
@@ -2555,7 +2556,7 @@ public class PauseMenuHandler : MonoBehaviour
             else
             {
                 //load the file
-                CharacterStatJsonConverter save = new CharacterStatJsonConverter(i);
+                CharacterStatJsonConverter save = new CharacterStatJsonConverter(i, true);
                 
                 //set the images
                 for(int j=1; j<5; j++)
@@ -3688,17 +3689,29 @@ public class PauseMenuHandler : MonoBehaviour
                     if (!save_load)
                     {
                         CharacterStatJsonConverter save = new CharacterStatJsonConverter(data);
-                        save.Save(cursor_position);
+                        save.active_scene = SceneManager.GetActiveScene().name;
+                        save.position = transform.position;
+                        save.Save(cursor_position, true);
                         PlayerPrefs.SetInt("_active_save_file_", cursor_position);
+                        
+                        MapSaveData map = new MapSaveData();
+                        map.Load();
+                        map.Save(true);
                         UpdateSaveMenu();
                     }
                     //load
                     else
                     {
-                        CharacterStatJsonConverter save = new CharacterStatJsonConverter(cursor_position);
+                        CharacterStatJsonConverter save = new CharacterStatJsonConverter(cursor_position, true);
+                        save.Save(cursor_position);
                         Debug.Log("Loaded data from save file " + cursor_position);
                         PlayerPrefs.SetInt("_active_save_file_", cursor_position);
+
+                        MapSaveData map = new MapSaveData();
+                        map.Load(true);
                         UpdateSaveMenu();
+
+                        SceneManager.LoadScene(save.active_scene);
                     }
                 }
                 menu_input = true;

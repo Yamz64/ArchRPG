@@ -549,7 +549,7 @@ public class CharacterStatJsonConverter
     }
 
     //constructor without any player data
-    public CharacterStatJsonConverter(int save_file) { Load(save_file); }
+    public CharacterStatJsonConverter(int save_file, bool full_save = false) { Load(save_file, full_save); }
 
     public void SaveEnemyNames(string n1 = null, string n2 = null, string n3 = null, string n4 = null)
     {
@@ -560,33 +560,66 @@ public class CharacterStatJsonConverter
         enemy_names[3] = n4;
     }
 
-    public void Save(int save_file)
+    public void Save(int save_file, bool full_save = false)
     {
-        if (save_file < 0 || save_file > 3)
+        if (!full_save)
         {
-            Mathf.Clamp(save_file, 0, 3);
-            Debug.Log("Input was outside the bounds of 0-3, so it was clamped, please use a value corresponding to save file 0-3!");
-        }
-        string data = JsonUtility.ToJson(this, true);
+            if (save_file < 0 || save_file > 3)
+            {
+                Mathf.Clamp(save_file, 0, 3);
+                Debug.Log("Input was outside the bounds of 0-3, so it was clamped, please use a value corresponding to save file 0-3!");
+            }
+            string data = JsonUtility.ToJson(this, true);
 
-        File.WriteAllText(Application.streamingAssetsPath + "/Saves/" + (save_file + 1).ToString() + "/Save.json", data);
-        Debug.Log("saved");
+            File.WriteAllText(Application.streamingAssetsPath + "/Saves/" + (save_file + 1).ToString() + "/Save.json", data);
+            Debug.Log("saved");
+        }
+        else
+        {
+            if (save_file < 0 || save_file > 3)
+            {
+                Mathf.Clamp(save_file, 0, 3);
+                Debug.Log("Input was outside the bounds of 0-3, so it was clamped, please use a value corresponding to save file 0-3!");
+            }
+            string data = JsonUtility.ToJson(this, true);
+
+            File.WriteAllText(Application.streamingAssetsPath + "/Saves/" + (save_file + 1).ToString() + "/Old.json", data);
+            Debug.Log("saved");
+        }
     }
 
-    public void Load(int save_file)
+    public void Load(int save_file, bool full_save = false)
     {
-        if (save_file < 0 || save_file > 3)
+        if (!full_save)
         {
-            Mathf.Clamp(save_file, 0, 3);
-            Debug.Log("Input was outside the bounds of 0-3, so it was clamped, please use a value corresponding to save file 0-3!");
-        }
-        //read info from json
-        StreamReader reader = new StreamReader(Application.streamingAssetsPath + "/Saves/" + (save_file + 1).ToString() + "/Save.json");
-        string json = reader.ReadToEnd();
-        reader.Close();
+            if (save_file < 0 || save_file > 3)
+            {
+                Mathf.Clamp(save_file, 0, 3);
+                Debug.Log("Input was outside the bounds of 0-3, so it was clamped, please use a value corresponding to save file 0-3!");
+            }
+            //read info from json
+            StreamReader reader = new StreamReader(Application.streamingAssetsPath + "/Saves/" + (save_file + 1).ToString() + "/Save.json");
+            string json = reader.ReadToEnd();
+            reader.Close();
 
-        //convert json info to data in this class instance
-        JsonUtility.FromJsonOverwrite(json, this);
+            //convert json info to data in this class instance
+            JsonUtility.FromJsonOverwrite(json, this);
+        }
+        else
+        {
+            if (save_file < 0 || save_file > 3)
+            {
+                Mathf.Clamp(save_file, 0, 3);
+                Debug.Log("Input was outside the bounds of 0-3, so it was clamped, please use a value corresponding to save file 0-3!");
+            }
+            //read info from json
+            StreamReader reader = new StreamReader(Application.streamingAssetsPath + "/Saves/" + (save_file + 1).ToString() + "/Old.json");
+            string json = reader.ReadToEnd();
+            reader.Close();
+
+            //convert json info to data in this class instance
+            JsonUtility.FromJsonOverwrite(json, this);
+        }
     }
 
     public GameObject updateUnit(GameObject id, int num)
