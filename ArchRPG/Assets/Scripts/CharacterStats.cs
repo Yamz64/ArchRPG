@@ -7,6 +7,7 @@ using UnityEngine;
 public class CharacterStats
 {
     //--ACCESSORS--
+    public bool GetDead() { return dead; }
     public int GetHP()  { return HP; }
     public int GetHPMAX() { return HP_max; }
     public int GetSAN() { return SAN; }
@@ -37,10 +38,18 @@ public class CharacterStats
     public Ability GetAbility(int index) { return abilities[index]; }
 
     //--MODIFIERS--
+    public void SetDead(bool d) { dead = d; }
     public void SetHP(int h) {
-        HP = h;
-        if (HP > HP_max) HP = HP_max;
-        if (HP <= 0) HP = 0;
+        if (!dead)
+        {
+            HP = h;
+            if (HP > HP_max) HP = HP_max;
+        }
+        if (HP <= 0)
+        {
+            HP = 0;
+            dead = true;
+        }
     }
     public void SetHPMax(int h) { HP_max = h; }
     public void SetSAN(int s) {
@@ -444,6 +453,9 @@ public class CharacterStats
      * 9 - Consumed
     */
     private List<int> status_effects;
+
+    //flag to determine if the character is dead
+    private bool dead;
 }
 
 [System.Serializable]
