@@ -3426,7 +3426,7 @@ public class KillerCone : unit
 {
     public KillerCone()
     {
-        ImageFilePath = "EnemySprites/EnemyTestPicture";
+        ImageFilePath = "EnemySprites/Killer Cone_sheet";
         unitName = "KillerCone";
 
         level = 3;
@@ -3489,7 +3489,7 @@ public class LockerLurker : unit
 {
     public LockerLurker()
     {
-        ImageFilePath = "EnemySprites/EnemyTestPicture";
+        ImageFilePath = "EnemySprites/locker_lurker";
         unitName = "LockerLurker";
 
         level = 4;
