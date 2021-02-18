@@ -768,11 +768,13 @@ namespace PlayerAbilities
         public override string OutputText(unit user, unit target)
         {
             //user.setSP(user.getSP() - cost);
+            List<string> actual = new List<string>();
 
             //see if the target has any weaknesses
             //no
+            //Debug.Log("Target name == " + target.unitName);
             if (target.weaknesses == null) return target.unitName + " has no weaknesses!";
-            if (target.weaknesses.GetLength(0) == 0) return target.unitName + " has no weaknesses!";
+            //if (target.weaknesses.GetLength(0) == 0) return target.unitName + " has no weaknesses!";
 
             //yes
             string output = target.unitName + " is weak to ";
@@ -780,6 +782,7 @@ namespace PlayerAbilities
             //construct the output
             for(int i=0; i<target.weaknesses.GetLength(0); i++)
             {
+                //Debug.Log("i == " + i);
                 //determine what it is weak to first
                 string weakness = "";
                 if (target.weaknesses[i] == true)
@@ -804,8 +807,10 @@ namespace PlayerAbilities
                         default:
                             break;
                     }
+                    actual.Add(weakness);
                 }
 
+                /*
                 //the end of the list
                 if(i == target.weaknesses.GetLength(0) - 1)
                 {
@@ -822,6 +827,35 @@ namespace PlayerAbilities
                     else
                         output += ", " + weakness;
                 }
+                */
+            }
+            if (actual.Count == 0)
+            {
+                return target.unitName + " has no weaknesses!";
+            }
+            else
+            {
+                output = target.unitName + " is weak to";
+                for (int i = 0; i < actual.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        output += " " + actual[i];
+                    }
+                    else if (i == actual.Count - 1 && actual.Count > 2)
+                    {
+                        output += ", and " + actual[i];
+                    }
+                    else if (i == actual.Count - 1)
+                    {
+                        output += " and " + actual[i];
+                    }
+                    else
+                    {
+                        output += ", " + actual[i];
+                    }
+                }
+                output += " damage.";
             }
 
             return output;

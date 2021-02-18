@@ -2791,19 +2791,13 @@ public class BattleScript : MonoBehaviour
         {
             if (partyUnits[i] != null)
             {
-                partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(mover);
-                partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(new BasicBack());
-                partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(new BasicFront());
-                partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(new TestAbility());
-                partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(new TestAbility1());
+                //partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(mover);
+                //partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(new BasicBack());
+                //partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(new BasicFront());
+                //partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(new TestAbility());
+                //partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(new TestAbility1());
             }
         }
-        //partyUnits[0].GetComponent<UnitMono>().mainUnit.addAttack(new TestAbility1());
-        //partyUnits[0].GetComponent<UnitMono>().mainUnit.addAttack(new TestAbility2());
-        //partyUnits[0].GetComponent<UnitMono>().mainUnit.addAttack(new TestAbility3());
-        //partyUnits[0].GetComponent<UnitMono>().mainUnit.addAttack(new TestAbility4());
-        //partyUnits[0].GetComponent<UnitMono>().mainUnit.addAttack(new TestAbility5());
-
 
         data.AddItem(new HotDog());
         data.AddItem(new HotDog());

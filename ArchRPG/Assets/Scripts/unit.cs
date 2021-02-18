@@ -53,6 +53,10 @@ public class unit
         AGI = ver.AGI;
         LCK = ver.LCK;
         abilities = ver.abilities;
+        weaknesses = ver.weaknesses;
+        resistances = ver.resistances;
+        statuses = ver.statuses;
+        sprites = ver.sprites;
         position = ver.position;
     }
 
@@ -3448,7 +3452,7 @@ public class KillerCone : unit
     public KillerCone()
     {
         ImageFilePath = "EnemySprites/Killer Cone_sheet";
-        unitName = "KillerCone";
+        unitName = "Killer Cone";
         loadSprites();
         level = 3;
         maxHP = currentHP = 15;
@@ -3464,6 +3468,8 @@ public class KillerCone : unit
 
         weaknesses[1] = true;
         weaknesses[3] = true;
+
+        Debug.Log("Is killer Cone: 1 -- " + weaknesses[1] + ", 3 -- " + weaknesses[3]);
         
 
         abilities = new List<Ability>();
@@ -3481,7 +3487,7 @@ public class ThrashCan : unit
     public ThrashCan()
     {
         ImageFilePath = "EnemySprites/Prototype/EnemyTestPicture";
-        unitName = "ThrashCan";
+        unitName = "Thrash Can";
         loadSprites();
         level = 3;
         maxHP = currentHP = (int)(0.67 * Math.Pow(level, 2)) + 19;
@@ -3511,7 +3517,7 @@ public class LockerLurker : unit
     public LockerLurker()
     {
         ImageFilePath = "EnemySprites/locker_lurker";
-        unitName = "LockerLurker";
+        unitName = "Locker Lurker";
         loadSprites();
         level = 4;
         maxHP = currentHP = 30;
@@ -3538,7 +3544,7 @@ public class StudentBody : unit
     public StudentBody()
     {
         ImageFilePath = "EnemySprites/Student Body Sheet";
-        unitName = "StudentBody";
+        unitName = "Student Body";
         loadSprites();
         level = 5;
         maxHP = currentHP = 75;
