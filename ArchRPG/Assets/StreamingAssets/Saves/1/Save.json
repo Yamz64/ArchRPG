@@ -1,7 +1,7 @@
 {
     "position": {
-        "x": 6.366109371185303,
-        "y": 12.089101791381836
+        "x": 0.5,
+        "y": 2.5
     },
     "unlocked_characters": [
         true,
@@ -232,17 +232,12 @@
             ]
         }
     ],
-    "active_scene": "SchoolHallwayScene",
+    "active_scene": "",
     "names": [
         "Player",
         "Clyve",
         "Jim"
     ],
     "e_abilities": [],
-    "enemy_names": [
-        "Killer Cone",
-        "Killer Cone",
-        "",
-        ""
-    ]
+    "enemy_names": []
 }
