@@ -53,31 +53,7 @@ public class Ability
     public bool use_pow = false;    //if applied to the ability then the attack uses pow to scale the damage rather than atk
     public int moneySteal = 0;
 }
-
-//Sub class to deal with attacks (abilities that deal damage)
-public class Attack : Ability
-{
-    /*
-    public virtual void UseAttack(unit user, unit target)
-    {
-        target.setHP(target.currentHP - damage);
-        user.setMP(user.currentMP - cost);
-    }
-    
-    public int damage;  //int denotes the amount of damage the attack will do
-    /* DAMAGE TYPES
-     * 0 - Physical
-     * 1 - Fire
-     * 2 - Electric
-     * 3 - Chemical
-     * 4 - Weird
-    
-    public int damageType;          //The type of damage dealt by the attack
-    public string image_file_path;  //Give path to image that goes with attack
-    public string desc1;            //Give info on attack name, cost, and basic details
-    public string desc2;            //Give actual description and more details (damage type, targets, etc.)
-    */
-}   
+ 
 
 public class TestAbility : Ability
 {
@@ -767,12 +743,10 @@ namespace PlayerAbilities
 
         public override string OutputText(unit user, unit target)
         {
-            //user.setSP(user.getSP() - cost);
             List<string> actual = new List<string>();
 
             //see if the target has any weaknesses
             //no
-            //Debug.Log("Target name == " + target.unitName);
             if (target.weaknesses == null) return target.unitName + " has no weaknesses!";
             //if (target.weaknesses.GetLength(0) == 0) return target.unitName + " has no weaknesses!";
 
@@ -782,7 +756,6 @@ namespace PlayerAbilities
             //construct the output
             for(int i=0; i<target.weaknesses.GetLength(0); i++)
             {
-                //Debug.Log("i == " + i);
                 //determine what it is weak to first
                 string weakness = "";
                 if (target.weaknesses[i] == true)

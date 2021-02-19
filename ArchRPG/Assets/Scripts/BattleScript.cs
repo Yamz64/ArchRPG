@@ -1207,7 +1207,7 @@ public class BattleScript : MonoBehaviour
             }
             //If input is down and cursor is not at bottom of basic menu
             else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[1].positions.Count - 1 - 2 &&
-                highlighted_ability < partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities.Count)
+                highlighted_ability+1 < partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities.Count)
             {
                 if (!menu_input)
                 {
@@ -1232,7 +1232,7 @@ public class BattleScript : MonoBehaviour
                 menu_input = true;
             }
             //If input is down and the menu is up to the scrolling point
-            else if (Input.GetAxisRaw("Vertical") < 0.0f && (cursor_positions[1].positions.Count - 2 + ability_offset) <
+            else if (Input.GetAxisRaw("Vertical") < 0.0f && (cursor_positions[1].positions.Count - 1 - 2 + ability_offset) <
                 partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities.Count &&
                 cursor_position == cursor_positions[1].positions.Count - 1 - 2)
             {
@@ -1814,7 +1814,8 @@ public class BattleScript : MonoBehaviour
                 menu_input = true;
             }
             //If input is down and not at bottom of the menu
-            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[2].positions.Count - 1 - 3)
+            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[2].positions.Count - 1 - 3
+                && highlighted_item+1 < data.GetInventorySize())
             {
                 if (!menu_input)
                 {
