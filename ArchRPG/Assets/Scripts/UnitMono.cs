@@ -7,9 +7,7 @@ public class UnitMono : MonoBehaviour
 {
     private void Awake()
     {
-        //Debug.Log("Unit before start: " + (mainUnit == null));
         mainUnit = new unit();
-        //Debug.Log("Unit after start: " + (mainUnit == null));
 
         mainUnit.status = "";
 
@@ -17,10 +15,8 @@ public class UnitMono : MonoBehaviour
         mainUnit.enemy = enemy;
         mainUnit.position = position;
         mainUnit.abilities = new List<Ability>();
-        //Debug.Log("ab null --> " + (mainUnit.abilities == null));
 
         mainUnit.view = view;
-        //Debug.Log("View from mono null? == " + (mainUnit.view == null));
         mainUnit.nameText = nameText;
         mainUnit.BBackground = BBackground;
         mainUnit.WBackground = WBackground;

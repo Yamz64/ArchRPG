@@ -457,7 +457,6 @@ public class BattleScript : MonoBehaviour
             if (i + ability_offset < partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities.Count)
             {
                 ability_viewer[i].text = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAbility(i + ability_offset).name;
-                Debug.Log("Ability == " + partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAbility(i + ability_offset).name);
             }
             else
             {
@@ -2235,7 +2234,6 @@ public class BattleScript : MonoBehaviour
                     }
                     if (vals == 0)
                     {
-                        Debug.Log("Target a party unit");
                         int x = 0;
                         int r = Random.Range(0, partyUnits.Count);
                         while (partyUnits[r] == null)
@@ -2267,7 +2265,6 @@ public class BattleScript : MonoBehaviour
                     }
                     else if (vals == 1)
                     {
-                        Debug.Log("Target an enemy side unit");
                         int x = 0;
                         int r = Random.Range(0, enemyUnits.Count);
                         while (enemyUnits[r].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
@@ -2284,7 +2281,6 @@ public class BattleScript : MonoBehaviour
                     }
                     else if (vals == 2)
                     {
-                        Debug.Log("Target a (yourself) unit");
                         int x = 0;
                         while (enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].type != 2)
                         {
@@ -2327,7 +2323,6 @@ public class BattleScript : MonoBehaviour
                     if (temp[ind].GetComponent<UnitMono>().mainUnit.statuses[0] != -1)
                     {
                         int dum = UnityEngine.Random.Range(1, 4);
-                        Debug.Log("Dum == " + dum);
                         if (dum == 1)
                         {
                             newd = temp[ind].GetComponent<UnitMono>().mainUnit.takeDamage(10);
@@ -2355,7 +2350,6 @@ public class BattleScript : MonoBehaviour
                     {
                         int perc = temp[ind].GetComponent<UnitMono>().mainUnit.maxHP / 12;
                         int dum = UnityEngine.Random.Range(1, 4);
-                        Debug.Log("Dum == " + dum);
                         if (dum == 1)
                         {
                             newd = temp[ind].GetComponent<UnitMono>().mainUnit.takeDamage(perc);
@@ -2386,7 +2380,6 @@ public class BattleScript : MonoBehaviour
                     if (enemyUnits[ind].GetComponent<UnitMono>().mainUnit.statuses[0] != -1)
                     {
                         int dum = UnityEngine.Random.Range(1, 4);
-                        Debug.Log("Dum == " + dum);
                         if (dum == 1)
                         {
                             newd = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.takeDamage(10);
@@ -2414,7 +2407,6 @@ public class BattleScript : MonoBehaviour
                     {
                         int perc = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.maxHP / 12;
                         int dum = UnityEngine.Random.Range(1, 4);
-                        Debug.Log("Dum == " + dum);
                         if (dum == 1)
                         {
                             newd = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.takeDamage(perc);
@@ -2573,6 +2565,7 @@ public class BattleScript : MonoBehaviour
                     yield return new WaitForSeconds(0.5f);
                     enemyUnits[ind].GetComponent<UnitMono>().mainUnit.changeSprite(0);
                 }
+                //Enemy performs a non-offensive ability
                 else if (actions[z].getType() == "enemyAbility" && state == battleState.ATTACK)
                 {
                     enemyUnits[ind].GetComponent<UnitMono>().mainUnit.changeSprite(1);
@@ -2700,8 +2693,8 @@ public class BattleScript : MonoBehaviour
             GameObject unitGo = Instantiate(partyPrefabs[i], allyStations[i]);
             unitGo = loader.updateUnit(unitGo, i);
             p.copyUnitUI(unitGo.GetComponent<UnitMono>().mainUnit);
-            p.setHUD();
             unitGo.GetComponent<UnitMono>().mainUnit.copyUnitStats(p);
+            p.setHUD();
             if (i == 2 || i == 3)
             {
                 unitGo.GetComponent<UnitMono>().mainUnit.position = 1;
@@ -3060,7 +3053,6 @@ public class BattleScript : MonoBehaviour
 
                 GameObject po1 = new GameObject();
                 GameObject po2 = new GameObject();
-                Debug.Log("Val == " + val);
                 pp1.position = allyStations[val].position;
                 po1 = partyUnits[val];
                 if (val == 2 || val == 3)
@@ -3092,7 +3084,6 @@ public class BattleScript : MonoBehaviour
 
                     swapInds.Add(val);
                     swapInds.Add(val - 2);
-                    Debug.Log("Swap elements == " + swapInds.Count);
                     PerformSwaps(swapInds.Count - 2);
                 }
             }
@@ -3375,7 +3366,6 @@ public class BattleScript : MonoBehaviour
 
             GameObject po1 = new GameObject();
             GameObject po2 = new GameObject();
-            Debug.Log("Val == " + val);
             pp1.position = allyStations[val].position;
             po1 = partyUnits[val];
             if (val == 2 || val == 3)
@@ -3407,7 +3397,6 @@ public class BattleScript : MonoBehaviour
 
                 swapInds.Add(val);
                 swapInds.Add(val - 2);
-                Debug.Log("Swap elements == " + swapInds.Count);
                 PerformSwaps(swapInds.Count - 2);
             }
         }
@@ -3643,10 +3632,9 @@ public class BattleScript : MonoBehaviour
                 }
             }
         }
-        loader.Save(0);
+        loader.Save(PlayerPrefs.GetInt("_active_save_file_"));
         yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
         yield return fadeOut();
-        Debug.Log("Should be fading in");
         StartCoroutine(NextScene());
     }
 
@@ -3713,6 +3701,7 @@ public class BattleScript : MonoBehaviour
         bot.BBackground.color = ori;
     }
 
+    //Flash purple to show a buff (usually for enemy)
     public IEnumerator flashBuff(unit bot)
     {
         Color ori = bot.BBackground.color;
@@ -3725,6 +3714,7 @@ public class BattleScript : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         bot.BBackground.color = ori;
     }
+
     //Player chooses to attack
     public void AttackButton(int ata, unit uni, unit target)
     {
@@ -3754,7 +3744,6 @@ public class BattleScript : MonoBehaviour
         item_select_menu = false;
 
         //Load in json data
-        //Debug.Log("Save File == " + PlayerPrefs.GetInt("_active_active_save_file_"));
         loader = new CharacterStatJsonConverter(PlayerPrefs.GetInt("_active_save_file_"));
 
         //define the cursor's gameObject

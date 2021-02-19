@@ -64,9 +64,7 @@ public class unit
 
     public void copyUnitUI(unit ver)
     {
-        //Debug.Log("View1 from ver null? == " + (view == null));
         view = ver.view;
-        //Debug.Log("View from ver null? == " + (view == null));
         nameText = ver.nameText;       
         BBackground = ver.BBackground;   
         WBackground = ver.WBackground;   
@@ -102,7 +100,7 @@ public class unit
     public int RES;             //Resistance stat of unit
     public int AGI;             //Agility stat of unit
     public int LCK;             //Luck stat of unit
-    public string status;  //String to say what status effect the unit has
+    public string status;       //String to say what status effect the unit has
     public int statusCounter = 0;   //Int to track how many more turns the unit will have the status for
 
 
@@ -169,6 +167,22 @@ public class unit
             if (maxSP <= 0) { maxSP = 1; }
             spBar.fillAmount = (float)currentSP / maxSP;
             spReadOut.text = currentSP + " / " + maxSP;
+        }
+        int sdnum = 0;
+        statusText.text = "";
+        for (int i = 0; i < statuses.Count; i++)
+        {
+            if (statuses[i] != -1)
+            {
+                statusText.text += statusIndex[i] + "\n";
+                sdnum++;
+            }
+        }
+        if (sdnum > 0)
+        {
+            statusBackW.gameObject.SetActive(true);
+            statusBackColor.gameObject.SetActive(true);
+            statusText.gameObject.SetActive(true);
         }
     }
 
@@ -631,7 +645,6 @@ public class unit
     public void giveStatus(string id)
     {
         int ran;
-        Debug.Log("Statuses == " + id);
         if (id.Equals("Vomiting") && statuses[0] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
@@ -1853,6 +1866,7 @@ public class JimUnit : unit
         loadSprites();
         level = lev;
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
+        statuses[4] = 99;
         resistances[4] = true;
 
         switch (level)
@@ -3471,8 +3485,6 @@ public class KillerCone : unit
 
         weaknesses[1] = true;
         weaknesses[3] = true;
-
-        Debug.Log("Is killer Cone: 1 -- " + weaknesses[1] + ", 3 -- " + weaknesses[3]);
         
 
         abilities = new List<Ability>();
@@ -3480,8 +3492,6 @@ public class KillerCone : unit
         abilities.Add(new EnemyAbilities.ConeClaw());
         abilities.Add(new EnemyAbilities.CurbStomp());
         //attacks = abilities;
-
-
     }
 }
 

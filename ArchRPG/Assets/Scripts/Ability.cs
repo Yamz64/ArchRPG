@@ -512,11 +512,8 @@ namespace EnemyAbilities
 
         public override void UseAttack(unit user, unit target)
         {
-            Debug.Log("doing ability");
             target = user;
             user.giveStatus("Neurotic");
-            Debug.Log("Has status[7] -- " + (user.statuses[7] != -1));
-            
         }
     }
 
