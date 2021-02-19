@@ -1980,6 +1980,7 @@ public class BattleScript : MonoBehaviour
     {
         if (state == battleState.PLAYER)
         {
+            OpenSelectUnitMenu();
             //If second unit hasn't been selected
             if (i2 == 5)
             {
@@ -2328,6 +2329,10 @@ public class BattleScript : MonoBehaviour
                 //Check if player should take damage from a status effect
                 if (sc == "attack" || sc == "ability" || sc == "ability1" || sc == "item" || sc == "swap" || sc == "basic attack")
                 {
+                    if (temp[ind].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
+                    {
+                        continue;
+                    }
                     bool newd = false;
                     bool newds = false;
                     if (temp[ind].GetComponent<UnitMono>().mainUnit.statuses[0] != -1)
@@ -2386,6 +2391,10 @@ public class BattleScript : MonoBehaviour
                 //Check if an enemy should take damage from a status effect
                 else
                 {
+                    if (enemyUnits[ind].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
+                    {
+                        continue;
+                    }
                     bool newd = false;
                     if (enemyUnits[ind].GetComponent<UnitMono>().mainUnit.statuses[0] != -1)
                     {
@@ -2613,6 +2622,13 @@ public class BattleScript : MonoBehaviour
                 if (partyUnits[i] != null)
                 {
                     partyUnits[i].GetComponent<UnitMono>().mainUnit.statusTurn();
+                }
+            }
+            for (int i = 0; i < enemyUnits.Count; i++)
+            {
+                if (enemyUnits[i] != null)
+                {
+                    enemyUnits[i].GetComponent<UnitMono>().mainUnit.statusTurn();
                 }
             }
 

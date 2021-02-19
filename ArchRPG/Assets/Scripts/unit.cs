@@ -174,7 +174,7 @@ public class unit
         {
             if (statuses[i] != -1)
             {
-                statusText.text += statusIndex[i] + "\n";
+                statusText.text += statusIndex[i] + ":" + statuses[i] + "\n";
                 sdnum++;
             }
         }
@@ -704,7 +704,7 @@ public class unit
         {
             if (statuses[i] != -1)
             {
-                status += statusIndex[i] + "\n";
+                status += statusIndex[i] + ":" + statuses[i] + "\n";
             }
         }
 
@@ -724,7 +724,7 @@ public class unit
             {
                 if (unitName != "Accident Jim" || i != 4)
                 {
-                    statuses[i]--;
+                    statuses[i] -= 1;
                     if (statuses[i] == 0)
                     {
                         statuses[i] = -1;
@@ -751,7 +751,7 @@ public class unit
             {
                 if (statuses[i] != -1)
                 {
-                    status += statusIndex[i] + "\n";
+                    status += statusIndex[i] + ":" + statuses[i] + "\n";
                 }
             }
 
