@@ -645,52 +645,52 @@ public class unit
     public void giveStatus(string id)
     {
         int ran;
-        if (id.Equals("Vomiting") && statuses[0] == -1)
+        if (id.Equals("Vomiting")           && statuses[0] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[0] = ran;
         }
-        else if (id.Equals("Aspirating") && statuses[1] == -1)
+        else if (id.Equals("Aspirating")    && statuses[1] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[1] = ran;
         }
-        else if (id.Equals("Weeping") && statuses[2] == -1)
+        else if (id.Equals("Weeping")       && statuses[2] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[2] = ran;
         }
-        else if (id.Equals("Eye Bleeding") && statuses[3] == -1)
+        else if (id.Equals("Eye Bleeding")  && statuses[3] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[3] = ran;
         }
-        else if (id.Equals("Blunt Trauma") && statuses[4] == -1)
+        else if (id.Equals("Blunt Trauma")  && statuses[4] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[4] = ran;
         }
-        else if (id.Equals("Hyperactive") && statuses[5] == -1)
+        else if (id.Equals("Hyperactive")   && statuses[5] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[5] = ran;
         }
-        else if (id.Equals("Zealous") && statuses[6] == -1)
+        else if (id.Equals("Zealous")       && statuses[6] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[6] = ran;
         }
-        else if (id.Equals("Neurotic") && statuses[7] == -1)
+        else if (id.Equals("Neurotic")      && statuses[7] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[7] = ran;
         }
-        else if (id.Equals("Restrained") && statuses[8] == -1)
+        else if (id.Equals("Restrained")    && statuses[8] == -1)
         {
-            ran = UnityEngine.Random.Range(5, 9);
+            ran = UnityEngine.Random.Range(1, 3);
             statuses[8] = ran;
         }
-        else if (id.Equals("Consumed") && statuses[9] == -1)
+        else if (id.Equals("Consumed")      && statuses[9] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[9] = ran;

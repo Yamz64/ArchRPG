@@ -18,26 +18,30 @@ public class action
         index = 0;
         target = 0;
         speed = 0;
+        priority = false;
     }
-    public action(int who, string todo, int what, int where, int agi)
+    public action(int who, string todo, int what, int where, int agi, bool p = false)
     {
         id = who;
         type = todo;
         index = what;
         target = where;
         speed = agi;
+        priority = p;
     }
     public int getID() { return id; }
     public string getType() { return type; }
     public int getIndex() { return index; }
     public int getTarget() { return target; }
     public int getSPD() { return speed; }
+    public bool getFast() { return priority; }
 
     int id = 0;
     string type;
     int index = 0;
     int target = 0;
     int speed = 0;
+    bool priority = false;
 }
 
 public class BattleScript : MonoBehaviour
@@ -1336,7 +1340,8 @@ public class BattleScript : MonoBehaviour
                                 {
                                     useSound(1);
                                     actions.Add(new action(currentUnit, "ability", highlighted_ability, currentEnemy,
-                                        partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI()));
+                                        partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI(),
+                                        partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].fast));
                                     currentEnemy = 0;
                                     highlighted_ability = 0;
                                     currentUnit += 1;
@@ -1399,7 +1404,8 @@ public class BattleScript : MonoBehaviour
                                 {
                                     useSound(1);
                                     actions.Add(new action(currentUnit, "ability1", highlighted_ability, currentUnit,
-                                        partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI()));
+                                        partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI(),
+                                        partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].fast));
                                     currentEnemy = 0;
                                     highlighted_ability = 0;
                                     currentUnit += 1;
@@ -1438,7 +1444,8 @@ public class BattleScript : MonoBehaviour
                             {
                                 useSound(1);
                                 actions.Add(new action(currentUnit, "ability1", highlighted_ability, currentUnit,
-                                    partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI()));
+                                    partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI(),
+                                    partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].fast));
                                 currentEnemy = 0;
                                 highlighted_ability = 0;
                                 currentUnit += 1;
@@ -1563,7 +1570,8 @@ public class BattleScript : MonoBehaviour
             {
                 useSound(1);
                 actions.Add(new action(currentUnit, "ability", highlighted_ability, currentEnemy,
-                    partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI()));
+                    partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI(),
+                    partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].fast));
                 currentEnemy = 0;
                 highlighted_ability = 0;
                 currentUnit += 1;
@@ -1708,7 +1716,8 @@ public class BattleScript : MonoBehaviour
             {
                 useSound(1);
                 actions.Add(new action(currentUnit, "ability1", highlighted_ability, currentAlly,
-                    partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI()));
+                    partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI(),
+                    partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].fast));
                 currentAlly = 0;
                 highlighted_ability = 0;
                 currentUnit += 1;
@@ -2309,6 +2318,7 @@ public class BattleScript : MonoBehaviour
                 temp.Add(partyUnits[i]);
             }
             actions.Sort((a, b) => { return b.getSPD().CompareTo(a.getSPD()); });
+            actions.Sort((a, b) => { return b.getFast().CompareTo(a.getFast()); });
             for (int z = 0; z < actions.Count; z++)
             {
                 string sc = actions[z].getType();
@@ -3144,7 +3154,7 @@ public class BattleScript : MonoBehaviour
         //dialogue.text = "Player used " + ata.name;
 
         yield return new WaitForSeconds(1f);
-        bool dead = target.takeDamage(5 + (uni.ATK / 100) - (target.DEF / 200));
+        bool dead = target.takeDamage(5 + (uni.ATK / 100) - (target.DEF / 300));
         target.setHP(target.currentHP);
         //uni.setSP(uni.currentSP - 2);
         StartCoroutine(flashDamage(target));
