@@ -578,6 +578,7 @@ public class CharacterStatJsonConverter
         enemy_names[3] = n4;
     }
 
+    //full save means that the save is being archived to the actual save file as opposed to referencing changes between scenes
     public void Save(int save_file, bool full_save = false)
     {
         if (!full_save)
@@ -606,6 +607,7 @@ public class CharacterStatJsonConverter
         }
     }
 
+    //full save means that the save being loaded is the archived save file as opposed to referencing changes between scenes
     public void Load(int save_file, bool full_save = false)
     {
         if (!full_save)

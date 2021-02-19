@@ -8133,9 +8133,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy_names:
-  - KillerCone
-  - ThrashCan
-  - LockerLurker
+  - Killer Cone
+  - Thrash Can
+  - Locker Lurker
   roll_delay: 2
   roll_min: 1
   enemy_encounter_chance: 50
