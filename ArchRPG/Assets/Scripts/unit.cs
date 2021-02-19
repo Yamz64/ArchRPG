@@ -52,6 +52,8 @@ public class unit
         RES = ver.RES;
         AGI = ver.AGI;
         LCK = ver.LCK;
+        expGain = ver.expGain;
+        rewards = ver.rewards;
         abilities = ver.abilities;
         weaknesses = ver.weaknesses;
         resistances = ver.resistances;
@@ -114,6 +116,9 @@ public class unit
     public Armor unitArmor;     //The armor the unit is wearing
     public Trinket unitTrinket; //The trinket that the unit has
 
+    public int expGain;         //Amount of exp awarded for defeating the unit
+    public List<Item> rewards;  //A list of possible rewards awarded for defeating the unit
+
     //damage types
     /*
      * 0 - Physical
@@ -145,6 +150,7 @@ public class unit
     public Image statusBackColor;   //Colored background of the status bar
     public Text statusText;     //Text to say what status effect the unit has
 
+    //Load the sprites for the unit
     public void loadSprites()
     {
         sprites = Resources.LoadAll<Sprite>(ImageFilePath);
@@ -166,9 +172,9 @@ public class unit
         }
     }
 
+    //Change the sprite to the given index
     public void changeSprite(int num)
     {
-        Debug.Log("Sprite num == " + sprites.Length);
         if (sprites.Length > num)
         {
             view.sprite = sprites[num];
@@ -792,9 +798,6 @@ public class unit
         yield return new WaitForSeconds(0.5f);
         BBackground.color = ori;
     }
-
-    public int expGain;         //Amount of exp awarded for defeating the unit
-    public List<Item> rewards;  //A list of possible rewards awarded for defeating the unit
 
     public int giveEXP() { return expGain; }
     public List<Item> giveRewards()    { return rewards; }

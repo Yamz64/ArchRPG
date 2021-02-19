@@ -2570,6 +2570,7 @@ public class BattleScript : MonoBehaviour
                         dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
                             (actions[z].getTarget() + 1) + ", but nobody was there";
                     }
+                    yield return new WaitForSeconds(0.5f);
                     enemyUnits[ind].GetComponent<UnitMono>().mainUnit.changeSprite(0);
                 }
                 else if (actions[z].getType() == "enemyAbility" && state == battleState.ATTACK)
@@ -2595,6 +2596,7 @@ public class BattleScript : MonoBehaviour
                         dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " tried using ability," +
                             " but nobody was there";
                     }
+                    yield return new WaitForSeconds(0.5f);
                     enemyUnits[ind].GetComponent<UnitMono>().mainUnit.changeSprite(0);
                 }
                 else
@@ -3577,6 +3579,7 @@ public class BattleScript : MonoBehaviour
     IEnumerator enemyAbility(int ata, int val, unit uni, unit target)
     {
         uni.abilities[ata].UseAttack(uni, target);
+        StartCoroutine(flashBuff(target));
         if (uni.abilities[ata].OutputText(uni, target) != null)
         {
             dialogue.text = uni.abilities[ata].OutputText(uni, target);
@@ -3710,6 +3713,18 @@ public class BattleScript : MonoBehaviour
         bot.BBackground.color = ori;
     }
 
+    public IEnumerator flashBuff(unit bot)
+    {
+        Color ori = bot.BBackground.color;
+        Color green = bot.BBackground.color;
+        green.b = 1.0f;
+        green.g = 0.0f;
+        green.r = 0.5f;
+        yield return new WaitForSeconds(0.5f);
+        bot.BBackground.color = green;
+        yield return new WaitForSeconds(0.5f);
+        bot.BBackground.color = ori;
+    }
     //Player chooses to attack
     public void AttackButton(int ata, unit uni, unit target)
     {
