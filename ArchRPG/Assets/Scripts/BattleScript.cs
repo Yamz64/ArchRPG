@@ -3154,7 +3154,92 @@ public class BattleScript : MonoBehaviour
         //dialogue.text = "Player used " + ata.name;
 
         yield return new WaitForSeconds(1f);
-        bool dead = target.takeDamage(5 + (uni.ATK / 100) - (target.DEF / 300));
+        int val = 5;
+        //if (!ata.use_pow)
+        //{
+            if (uni.statuses[6] == -1)
+            {
+                val += (int)(val * (float)(uni.ATK / 100));
+            }
+            else
+            {
+                val += (int)(val * (float)((uni.ATK * 1.25) / 100));
+            }
+
+            //Check if DEF is reduced by a status like Blunt Trauma
+            if (target.statuses[4] == -1 && target.statuses[7] == -1)
+            {
+                val -= (int)(val * (float)(target.DEF / 300));
+            }
+            //Blunt Trauma
+            else if (target.statuses[4] != -1 && target.statuses[7] == -1)
+            {
+                val -= (int)(val * (float)((target.DEF * 0.75) / 300));
+            }
+            //Neurotic
+            else if (target.statuses[4] == -1 && target.statuses[7] != -1)
+            {
+                val -= (int)(val * (float)((target.DEF * 1.5) / 300));
+            }
+            //Both
+            else
+            {
+                val -= (int)(val * (float)((target.DEF * 1.25) / 300));
+            }
+        //}
+        /*
+        else
+        {
+            //Check if POW is affected
+            if (statuses[6] == -1)
+            {
+                val += (int)(val * (float)(POW / 100));
+            }
+            else
+            {
+                val += (int)(val * (float)((POW * 1.25) / 100));
+            }
+
+            //Check if WILL is affected
+            if (target.statuses[7] == -1)
+            {
+                //valS -= (int)(valS * (float)(target.WILL / 300));
+                val -= (int)(val * (float)(target.WILL / 300));
+            }
+            else
+            {
+                //valS -= (int)(valS * (float)((target.WILL * 0.75) / 300));
+                val -= (int)(val * (float)((target.WILL * 0.75) / 300));
+            }
+        }
+        /*
+        //Check if target is weak or resistant to a certain damage type
+        /*
+        if (target.weaknesses[ata.damageType] == true)
+        {
+            val = (int)(val * 1.5);
+        }
+        else if (target.resistances[ata.damageType] == true)
+        {
+            val = (int)(val * 0.5);
+        }
+        */
+        //Check if the unit gets a crit
+        int crit = UnityEngine.Random.Range(1, 101);
+        if (crit <= uni.LCK)
+        {
+            val += (val / 2);
+            Debug.Log("Got a crit!");
+        }
+        if (uni.statuses[2] != -1)
+        {
+            int dum = UnityEngine.Random.Range(1, 4);
+            if (dum == 1)
+            {
+                val = val / 5;
+            }
+        }
+        bool dead = target.takeDamage(val);
         target.setHP(target.currentHP);
         //uni.setSP(uni.currentSP - 2);
         StartCoroutine(flashDamage(target));

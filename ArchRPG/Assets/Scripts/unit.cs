@@ -431,6 +431,9 @@ public class unit
 
     */
     //Use the ability at the given index and calculate damage
+    //index -- of ability
+    //target
+    //subtract -- whether to use SP or not
     public bool useAbility(int index, unit target, bool subtract = false)
     {
         Ability ata = getAbility(index);
@@ -452,32 +455,32 @@ public class unit
                 {
                     if (statuses[6] == -1)
                     {
-                        val += (ATK / 100);
+                        val += (int)(val * (float)(ATK / 100));
                     }
                     else
                     {
-                        val += (int)(ATK * 1.25) / 100;
+                        val += (int)(val * (float)((ATK * 1.25) / 100));
                     }
 
                     //Check if DEF is reduced by a status like Blunt Trauma
                     if (target.statuses[4] == -1 && target.statuses[7] == -1)
                     {
-                        val -= target.DEF / 300;
+                        val -= (int)(val * (float)(target.DEF / 300));
                     }
                     //Blunt Trauma
                     else if (target.statuses[4] != -1 && target.statuses[7] == -1)
                     {
-                        val -= (int)(target.DEF * 0.75) / 300;
+                        val -= (int)(val * (float)((target.DEF * 0.75) / 300));
                     }
                     //Neurotic
                     else if (target.statuses[4] == -1 && target.statuses[7] != -1)
                     {
-                        val -= (int)(target.DEF * 1.5) / 300;
+                        val -= (int)(val * (float)((target.DEF * 1.5) / 300));
                     }
                     //Both
                     else
                     {
-                        val -= (int)(target.DEF * 1.25) / 300;
+                        val -= (int)(val * (float)((target.DEF * 1.25) / 300));
                     }
                 }
                 else
@@ -485,23 +488,23 @@ public class unit
                     //Check if POW is affected
                     if (statuses[6] == -1)
                     {
-                        val += (POW / 100);
+                        val += (int)(val * (float)(POW / 100));
                     }
                     else
                     {
-                        val += (int)(POW * 1.25) / 100;
+                        val += (int)(val * (float)((POW * 1.25) / 100));
                     }
 
                     //Check if WILL is affected
                     if (target.statuses[7] == -1)
                     {
-                        valS -= target.WILL / 300;
-                        val -= target.WILL / 300;
+                        valS -= (int)(valS * (float)(target.WILL / 300));
+                        val -= (int)(val * (float)(target.WILL / 300));
                     }
                     else
                     {
-                        valS -= (int)(target.WILL * 0.75) / 300;
-                        val -= (int)(target.WILL * 0.75) / 300;
+                        valS -= (int)(valS * (float)((target.WILL * 0.75) / 300));
+                        val -= (int)(val * (float)((target.WILL * 0.75) / 300));
                     }
                 }
                 //Check if target is weak or resistant to a certain damage type
@@ -509,7 +512,7 @@ public class unit
                 {
                     val = (int)(val * 1.5);
                 }
-                else if (target.weaknesses[ata.damageType] == true)
+                else if (target.resistances[ata.damageType] == true)
                 {
                     val = (int)(val * 0.5);
                 }
