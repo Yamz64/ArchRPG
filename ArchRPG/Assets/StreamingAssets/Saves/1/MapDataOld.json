@@ -5,10 +5,19 @@
             "objects": [
                 {
                     "o": "Trash Can (1)",
-                    "interacted": false
+                    "interacted": true
                 },
                 {
                     "o": "Norm",
+                    "interacted": false
+                }
+            ]
+        },
+        {
+            "name": "CafeScene",
+            "objects": [
+                {
+                    "o": "Shirley",
                     "interacted": false
                 }
             ]

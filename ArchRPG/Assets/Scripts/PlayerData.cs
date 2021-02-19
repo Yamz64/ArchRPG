@@ -373,6 +373,8 @@ public class PlayerData : CharacterStats
         RemoveArmor();
         RemoveTrinket();
 
+        SetSANMax(100);
+
         switch (GetLVL())
         {
             case 1:

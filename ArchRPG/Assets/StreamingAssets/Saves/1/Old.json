@@ -1,11 +1,16 @@
 {
     "position": {
-        "x": -9.610001564025879,
-        "y": -10.338484764099121
+        "x": -3.6100001335144045,
+        "y": -0.31654930114746096
     },
     "unlocked_characters": [
         true,
         true,
+        false,
+        false
+    ],
+    "dead": [
+        false,
         false,
         false
     ],
@@ -22,9 +27,9 @@
         26
     ],
     "SANs": [
-        0,
-        0,
-        0
+        100,
+        100,
+        100
     ],
     "XPs": [
         0,
@@ -182,8 +187,7 @@
             "luck_buff": 0
         }
     ],
-    "inventory": [
-    ],
+    "inventory": [],
     "statuses": [
         {
             "status_effects": [

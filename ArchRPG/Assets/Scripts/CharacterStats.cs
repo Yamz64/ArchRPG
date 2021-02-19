@@ -632,7 +632,7 @@ public class CharacterStatJsonConverter
                 Mathf.Clamp(save_file, 0, 3);
                 Debug.Log("Input was outside the bounds of 0-3, so it was clamped, please use a value corresponding to save file 0-3!");
             }
-            //read info from json
+            //read info from archived json
             StreamReader reader = new StreamReader(Application.streamingAssetsPath + "/Saves/" + (save_file + 1).ToString() + "/Old.json");
             string json = reader.ReadToEnd();
             reader.Close();
@@ -825,8 +825,7 @@ public class CharacterStatJsonConverter
             temp.SetName(names[i]);
             temp.SetLVL(levels[i]);
             temp.SetPos(positions[i]);
-
-            temp.UpdateStats();
+            
             temp.SetHP(HPs[i]);
             temp.SetSP(SPs[i]);
             temp.SetSAN(SANs[i]);
@@ -874,7 +873,7 @@ public class CharacterStatJsonConverter
             }
 
             temp.SetDead(dead[i]);
-
+            
             p.AddPartyMember(temp);
         }
     }
@@ -2136,7 +2135,7 @@ class Eldritch : CharacterStats
     {
         SetImageFilepath("CharacterSprites/TestCharacter");
 
-        SetName("????");
+        SetName("Eldritch");
         SetDesc("????");
 
         SetLVL(1);

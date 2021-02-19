@@ -3692,6 +3692,13 @@ public class PauseMenuHandler : MonoBehaviour
                         CharacterStatJsonConverter save = new CharacterStatJsonConverter(data);
                         save.active_scene = SceneManager.GetActiveScene().name;
                         save.position = transform.position;
+
+                        //check to see if one of the party members are insane, if they are, they become eldritch
+                        for(int i=0; i<data.GetPartySize(); i++)
+                        {
+                            if (data.GetPartyMember(i).GetSAN() <= 0) save.names[i + 1] = "Eldritch";
+                        }
+
                         save.Save(cursor_position, true);
                         PlayerPrefs.SetInt("_active_save_file_", cursor_position);
                         
@@ -3704,6 +3711,34 @@ public class PauseMenuHandler : MonoBehaviour
                     else
                     {
                         CharacterStatJsonConverter save = new CharacterStatJsonConverter(cursor_position, true);
+
+                        //check to see if a current party member is dead while in the save they are not
+                        for(int i=0; i<data.GetPartySize(); i++)
+                        {
+                            string name = data.GetPartyMember(i).GetName();
+
+                            //find party member of the name in the save data
+                            for(int j=0; j<save.names.Length; j++)
+                            {
+                                if(save.names[j] == name)
+                                {
+                                    //check to see if they are dead currently but alive in previous save
+                                    if(data.GetPartyMember(i).GetDead() == true && !save.dead[j])
+                                    {
+                                        //replace them with an eldritch party member
+                                        save.names[j] = "Eldritch";
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+
+                        //check to see if one of the party members are insane, if they are, they become eldritch
+                        for (int i = 0; i < data.GetPartySize(); i++)
+                        {
+                            if (data.GetPartyMember(i).GetSAN() <= 0) save.names[i + 1] = "Eldritch";
+                        }
+
                         save.Save(cursor_position);
                         Debug.Log("Loaded data from save file " + cursor_position);
                         PlayerPrefs.SetInt("_active_save_file_", cursor_position);
