@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SchoolHallwayMusicManager : MonoBehaviour
 {
@@ -42,8 +43,10 @@ public class SchoolHallwayMusicManager : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        DontDestroyOnLoad(this.gameObject);
+
         normal = GetComponents<AudioSource>()[0];
         spooky = GetComponents<AudioSource>()[1];
 
@@ -65,30 +68,36 @@ public class SchoolHallwayMusicManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (normal.volume == 0) normal.Stop();
-        else if(!normal.isPlaying) normal.Play();
-        if (spooky.volume == 0) spooky.Stop();
-        else if(!spooky.isPlaying) spooky.Play();
-
-        //player is above the point to transition to spooky
-        if(GameObject.FindGameObjectWithTag("Player").transform.position.y >= y_pos)
+        if (SceneManager.GetActiveScene().name != "SchoolHallwayScene" && SceneManager.GetActiveScene().name != "ClassAScene" &&
+            SceneManager.GetActiveScene().name != "ClassACutscene" && SceneManager.GetActiveScene().name != "CafeScene")
+            Destroy(gameObject);
+        if (SceneManager.GetActiveScene().name == "SchoolHallwayScene")
         {
-            //transition to spooky if it already hasn't
-            if (!to_normal)
+            if (normal.volume == 0) normal.Stop();
+            else if (!normal.isPlaying) normal.Play();
+            if (spooky.volume == 0) spooky.Stop();
+            else if (!spooky.isPlaying) spooky.Play();
+
+            //player is above the point to transition to spooky
+            if (GameObject.FindGameObjectWithTag("Player").transform.position.y >= y_pos)
             {
-                StopAllCoroutines();
-                StartCoroutine(Fade(true));
-                to_normal = true;
+                //transition to spooky if it already hasn't
+                if (!to_normal)
+                {
+                    StopAllCoroutines();
+                    StartCoroutine(Fade(true));
+                    to_normal = true;
+                }
             }
-        }
-        else
-        {
-
-            if (to_normal)
+            else
             {
-                StopAllCoroutines();
-                StartCoroutine(Fade(false));
-                to_normal = false;
+
+                if (to_normal)
+                {
+                    StopAllCoroutines();
+                    StartCoroutine(Fade(false));
+                    to_normal = false;
+                }
             }
         }
     }
