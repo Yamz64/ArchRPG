@@ -33,7 +33,7 @@ public class SchoolyardAnimation : InteractableBaseClass
         yield return new WaitForEndOfFrame();
         yield return new WaitUntil(() => player.GetActive() == false);
         CharacterStatJsonConverter data = new CharacterStatJsonConverter(GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDataMono>().data);
-        data.SaveEnemyNames("StudentBody");
+        data.SaveEnemyNames("Student Body");
         data.active_scene = SceneManager.GetActiveScene().name;
         data.position = GameObject.FindGameObjectWithTag("Player").transform.position;
         data.Save(PlayerPrefs.GetInt("_active_save_file_"));
