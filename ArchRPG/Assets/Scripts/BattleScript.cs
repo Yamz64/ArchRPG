@@ -669,6 +669,7 @@ public class BattleScript : MonoBehaviour
                     //Skip to next turn
                     case 3:
                         useSound(0);
+                        OpenSelectUnitMenu();
                         OpenMenu(3);
                         transform.GetChild(1).Find("SwapMenu").GetChild(2).GetComponent<Text>().text = "Swap:\n\n";
                         break;
@@ -1980,54 +1981,55 @@ public class BattleScript : MonoBehaviour
     {
         if (state == battleState.PLAYER)
         {
-            OpenSelectUnitMenu();
             //If second unit hasn't been selected
             if (i2 == 5)
             {
                 transform.GetChild(1).Find("SwapMenu").GetChild(2).GetComponent<Text>().text = "Swap:\n\n" +
                     partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.unitName;
-                if (partyUnits[cursor_position] != null)
+                if (partyUnits[currentAlly] != null)
                 {
                     transform.GetChild(1).Find("SwapMenu").GetChild(3).GetComponent<Text>().text = "With:\n\n"
-                        + partyUnits[cursor_position].GetComponent<UnitMono>().mainUnit.unitName;
+                        + partyUnits[currentAlly].GetComponent<UnitMono>().mainUnit.unitName;
                 }
                 else
                 {
                     transform.GetChild(1).Find("SwapMenu").GetChild(3).GetComponent<Text>().text = "With:\n\nSpace "
-                        + (cursor_position + 1);
+                        + (currentAlly + 1);
                 }
             }
             //If input is down and the cursor is not at the bottom yet
-            if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < 2)
+            if (Input.GetAxisRaw("Vertical") < 0.0f && currentAlly < 2)
             {
                 useSound(0);
-                cursor_position += 2;
+                currentAlly += 2;
+                unitSelect(currentAlly);
             }
             //If input is up and the cursor is not at the top yet
-            else if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 1 && cursor_position < 4)
+            else if (Input.GetAxisRaw("Vertical") > 0.0f && currentAlly > 1 && currentAlly < 4)
             {
                 useSound(0);
-                cursor_position -= 2;
+                currentAlly -= 2;
+                unitSelect(currentAlly);
             }
             //If input is right and the cursor is not at the right side yet
-            else if (Input.GetAxisRaw("Horizontal") > 0.0f && cursor_position >= 0 && cursor_position != 1 && cursor_position < 3)
+            else if (Input.GetAxisRaw("Horizontal") > 0.0f && currentAlly >= 0 && currentAlly != 1 && currentAlly < 3)
             {
                 useSound(0);
-                cursor_position++;
-                cursor.transform.Rotate(0.0f, 0.0f, 180.0f);
+                currentAlly += 1;
+                unitSelect(currentAlly);
             }
             //If input is left and the cursor is not at the left side yet
-            else if (Input.GetAxisRaw("Horizontal") < 0.0f && cursor_position > 0 && cursor_position != 2 && cursor_position <= 3)
+            else if (Input.GetAxisRaw("Horizontal") < 0.0f && currentAlly > 0 && currentAlly != 2 && currentAlly <= 3)
             {
                 useSound(0);
-                cursor_position--;
-                cursor.transform.Rotate(0.0f, 0.0f, 180.0f);
+                currentAlly -= 1;
+                unitSelect(currentAlly);
             }
             //If player clicks on a unit, record it as the first unit or second unit, 
             //and then swap once there are 2 of them
             else if (Input.GetButtonDown("Interact"))
             {
-                if (i2 == 5 && currentUnit != cursor_position)
+                if (i2 == 5 && currentUnit != currentAlly)
                 {
                     useSound(1);
                     Transform pp1 = new GameObject().transform;
@@ -2038,10 +2040,10 @@ public class BattleScript : MonoBehaviour
 
                     pp1.position = allyStations[currentUnit].position;
                     po1 = partyUnits[currentUnit];
-                    if (cursor_position == 0 || cursor_position == 1) po1.GetComponent<UnitMono>().mainUnit.position = 0;
+                    if (currentAlly == 0 || currentAlly == 1) po1.GetComponent<UnitMono>().mainUnit.position = 0;
                     else po1.GetComponent<UnitMono>().mainUnit.position = 1;
-                    pp2.position = allyStations[cursor_position].position;
-                    po2 = partyUnits[cursor_position];
+                    pp2.position = allyStations[currentAlly].position;
+                    po2 = partyUnits[currentAlly];
                     if (po2 != null)
                     {
                         if (currentUnit == 0 || currentUnit == 1) po2.GetComponent<UnitMono>().mainUnit.position = 0;
@@ -2056,7 +2058,7 @@ public class BattleScript : MonoBehaviour
                    
 
                     i1 = currentUnit;
-                    i2 = cursor_position;
+                    i2 = currentAlly;
                     actions.Add(new action(currentUnit, "swap", i1, i2, partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI()));
 
                     swaps.Add(partyUnits[i1].gameObject);
@@ -2081,8 +2083,10 @@ public class BattleScript : MonoBehaviour
                     {
                         cursor.transform.Rotate(0.0f, 0.0f, 180.0f);
                     }
+                    currentAlly = 0;
                     currentUnit += 1;
                     moves += 1;
+                    CloseSelectUnitMenu();
 
                     CloseMenu(3);
                     menu_input = false;
@@ -2122,6 +2126,7 @@ public class BattleScript : MonoBehaviour
                     {
                         cursor.transform.Rotate(0.0f, 0.0f, 180.0f);
                     }
+                    CloseSelectUnitMenu();
                     CloseMenu(3);
                     menu_input = false;
                     active_menu = 0;
@@ -3895,7 +3900,7 @@ public class BattleScript : MonoBehaviour
     {
         if (!enemy_select_menu && state != battleState.ATTACK
              && state != battleState.WIN && state != battleState.LOSE && state != battleState.HUH
-              && state != battleState.FLEE && state != battleState.START) cursor.SetActive(true);
+              && state != battleState.FLEE && state != battleState.START && active_menu != 3) cursor.SetActive(true);
         else cursor.SetActive(false);
         if (state == battleState.PLAYER && currentUnit < partyUnits.Count && partyUnits[currentUnit] != null)
         {

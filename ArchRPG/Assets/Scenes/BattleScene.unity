@@ -277,11 +277,9 @@ MonoBehaviour:
     - {fileID: 1429065270}
     - {fileID: 1173619641}
   inventory_offset: 0
-  attack_offset: 0
   ability_offset: 0
   action_offset: 0
   highlighted_item: 0
-  highlighted_attack: 0
   highlighted_ability: 0
   highlighted_action: 0
   background: {fileID: 2099335486}

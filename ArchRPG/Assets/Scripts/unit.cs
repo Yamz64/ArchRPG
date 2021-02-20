@@ -453,10 +453,12 @@ public class unit
                 int valS = ata.sanity_damage;
                 if (!ata.use_pow)
                 {
+                    
                     if (statuses[6] == -1)
                     {
                         val += (int)(val * (float)(ATK / 100));
                     }
+                    //Zealous
                     else
                     {
                         val += (int)(val * (float)((ATK * 1.25) / 100));
@@ -490,6 +492,7 @@ public class unit
                     {
                         val += (int)(val * (float)(POW / 100));
                     }
+                    //Zealous
                     else
                     {
                         val += (int)(val * (float)((POW * 1.25) / 100));
@@ -518,7 +521,7 @@ public class unit
                 }
                 //Check if the unit gets a crit
                 int crit = UnityEngine.Random.Range(1, 101);
-                if (crit <= LCK)
+                if (crit < LCK/3)
                 {
                     val += (val / 2);
                     Debug.Log("Got a crit!");
@@ -576,9 +579,20 @@ public class unit
         currentHP -= dam;
         if (currentHP <= 0)
         {
-            hpBar.GetComponent<Image>().fillAmount = 0.0f / maxHP;
-            hpReadOut.text = 0 + " / " + maxHP;
-            return true;
+            int chance = UnityEngine.Random.Range(0, 101);
+            if (chance < (LCK / 2) + 20)
+            {
+                currentHP = 1;
+                hpBar.GetComponent<Image>().fillAmount = (float)currentHP / maxHP;
+                hpReadOut.text = currentHP + " / " + maxHP;
+                return false;
+            }
+            else
+            {
+                hpBar.GetComponent<Image>().fillAmount = 0.0f / maxHP;
+                hpReadOut.text = 0 + " / " + maxHP;
+                return true;
+            }
         }
         else
         {
@@ -695,7 +709,7 @@ public class unit
         }
         else if (id.Equals("Consumed")      && statuses[9] == -1)
         {
-            ran = UnityEngine.Random.Range(5, 9);
+            ran = UnityEngine.Random.Range(1, 3);
             statuses[9] = ran;
         }
         status = "";
