@@ -655,11 +655,38 @@ public class CharacterStatJsonConverter
             g.exp = XPs[num];
             g.level = levels[num];
             if (weapons[num] != null)
+            {
                 g.unitWeapon = weapons[num];
+                g.ATK += g.unitWeapon.damage_buff;
+                g.DEF += g.unitWeapon.defense_buff;
+                g.POW += g.unitWeapon.power_buff;
+                g.WILL += g.unitWeapon.will_buff;
+                g.RES += g.unitWeapon.resistance_buff;
+                g.AGI += g.unitWeapon.speed_buff;
+                g.LCK += g.unitWeapon.luck_buff;
+            }
             if (armors[num] != null)
+            {
                 g.unitArmor = armors[num];
+                g.ATK += g.unitArmor.damage_buff;
+                g.DEF += g.unitArmor.defense_buff;
+                g.POW += g.unitArmor.power_buff;
+                g.WILL += g.unitArmor.will_buff;
+                g.RES += g.unitArmor.resistance_buff;
+                g.AGI += g.unitArmor.speed_buff;
+                g.LCK += g.unitArmor.luck_buff;
+            }
             if (trinkets[num] != null)
+            {
                 g.unitTrinket = trinkets[num];
+                g.ATK += g.unitTrinket.damage_buff;
+                g.DEF += g.unitTrinket.defense_buff;
+                g.POW += g.unitTrinket.power_buff;
+                g.WILL += g.unitTrinket.will_buff;
+                g.RES += g.unitTrinket.resistance_buff;
+                g.AGI += g.unitTrinket.speed_buff;
+                g.LCK += g.unitTrinket.luck_buff;
+            }
             g.unitName = names[num];
             g.statuses = statuses[num].status_effects;
             

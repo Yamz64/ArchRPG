@@ -453,7 +453,6 @@ public class unit
                 int valS = ata.sanity_damage;
                 if (!ata.use_pow)
                 {
-                    
                     if (statuses[6] == -1)
                     {
                         val += (int)(val * (float)(ATK / 100));
