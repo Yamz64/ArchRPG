@@ -79,6 +79,9 @@ public class unit
             spBar = ver.spBar;
             spSideText = ver.spSideText;
             spReadOut = ver.spReadOut;
+            sanBar = ver.sanBar;
+            sanSideText = ver.sanSideText;
+            sanReadOut = ver.sanReadOut;
         }
         statusBackW = ver.statusBackW;
         statusBackColor = ver.statusBackColor;
@@ -94,7 +97,7 @@ public class unit
     public int currentHP;       //Current Hit points
     public int maxSP;           //Maximum SP possible
     public int currentSP;       //Current Skill Points
-    public int sanity;          //The sanity of the unit
+    public int sanity = 100;          //The sanity of the unit
     public int ATK;             //Attack stat of unit
     public int DEF;             //Defense stat of unit
     public int POW;             //Power stat of unit
@@ -146,6 +149,9 @@ public class unit
     public Image spBar;         //Bar to project mana/skill points to
     public Text spSideText;     //SP Icon
     public Text spReadOut;      //Text showing exact number of skillpoints
+    public Image sanBar;        //Bar to project sanity to
+    public Text sanSideText;    //SAN Icon
+    public Text sanReadOut;     //Text showing exact sanity readout
     public Image statusBackW;   //White background of the status bar
     public Image statusBackColor;   //Colored background of the status bar
     public Text statusText;     //Text to say what status effect the unit has
@@ -169,6 +175,9 @@ public class unit
             if (maxSP <= 0) { maxSP = 1; }
             spBar.fillAmount = (float)currentSP / maxSP;
             spReadOut.text = currentSP + " / " + maxSP;
+
+            sanBar.fillAmount = (float)sanity / 100;
+            sanReadOut.text = sanity + " / 100";
         }
         int sdnum = 0;
         statusText.text = "";
@@ -262,6 +271,8 @@ public class unit
         {
             sanity = 100;
         }
+        sanBar.GetComponent<Image>().fillAmount = sanity / 100;
+        sanReadOut.text = sanity + " / 100";
     }
 
     public void SetATK(int a)    { ATK = a; }

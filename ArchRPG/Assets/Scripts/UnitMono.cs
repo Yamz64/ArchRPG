@@ -29,6 +29,9 @@ public class UnitMono : MonoBehaviour
             mainUnit.spBar = spBar;
             mainUnit.spSideText = spSideText;
             mainUnit.spReadOut = spReadOut;
+            mainUnit.sanBar = sanBar;
+            mainUnit.sanSideText = sanSideText;
+            mainUnit.sanReadOut = sanReadOut;
         }
         mainUnit.statusBackW = statusBackW;
         mainUnit.statusBackColor = statusBackColor;
@@ -63,6 +66,9 @@ public class UnitMono : MonoBehaviour
     public Image spBar;         //Bar to project mana/skill points to
     public Text spSideText;     //SP Icon
     public Text spReadOut;      //Text showing exact number of skillpoints
+    public Image sanBar;        //Bar to project sanity to
+    public Text sanSideText;    //SAN Icon
+    public Text sanReadOut;     //Text showing exact sanity readout
     public Image statusBackW;   //White background of the status bar
     public Image statusBackColor;   //Colored background of the status bar
     public Text statusText;     //Text to say what status effect the unit has   

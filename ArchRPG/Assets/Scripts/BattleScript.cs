@@ -2942,6 +2942,9 @@ public class BattleScript : MonoBehaviour
             bot.spBar.CrossFadeAlpha(0, 2f, false);
             bot.spSideText.CrossFadeAlpha(0, 2f, false);
             bot.spReadOut.CrossFadeAlpha(0, 2f, false);
+            bot.sanBar.CrossFadeAlpha(0, 2f, false);
+            bot.sanSideText.CrossFadeAlpha(0, 2f, false);
+            bot.sanReadOut.CrossFadeAlpha(0, 2f, false);
         }
     }
 
