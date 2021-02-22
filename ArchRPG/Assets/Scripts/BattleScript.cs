@@ -418,6 +418,23 @@ public class BattleScript : MonoBehaviour
                 item_viewer_name[i].transform.GetChild(0).GetComponent<Text>().text = "";
             }
         }
+
+        if (highlighted_item >= 10)
+        {
+            transform.GetChild(1).Find("ItemMenu").Find("ScrollUp").gameObject.SetActive(true);
+        }
+        else
+        {
+            transform.GetChild(1).Find("ItemMenu").Find("ScrollUp").gameObject.SetActive(false);
+        }
+        if (inventory_offset + 8 < data.GetInventorySize() && data.GetInventorySize() > 10)
+        {
+            transform.GetChild(1).Find("ItemMenu").Find("ScrollDown").gameObject.SetActive(true);
+        }
+        else
+        {
+            transform.GetChild(1).Find("ItemMenu").Find("ScrollDown").gameObject.SetActive(false);
+        }
     }
 
     /*
@@ -1884,7 +1901,8 @@ public class BattleScript : MonoBehaviour
             }
             //If input is down and the # of positions is less than the inventory size and the cursor has reached the bottom
             else if (Input.GetAxisRaw("Vertical") < 0.0f && (cursor_positions[2].positions.Count - 3 + inventory_offset) <
-                data.GetInventorySize() && cursor_position == cursor_positions[2].positions.Count - 1 - 3)
+                data.GetInventorySize() && cursor_position == cursor_positions[2].positions.Count - 1 - 3
+                && highlighted_item + 1 < data.GetInventorySize())
             {
                 if (!menu_input)
                 {
@@ -2859,11 +2877,13 @@ public class BattleScript : MonoBehaviour
         {
             if (partyUnits[i] != null)
             {
+                /*
                 partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(mover);
                 partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(new BasicBack());
                 partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(new BasicFront());
                 partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(new TestAbility());
                 partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(new TestAbility1());
+                */
             }
         }
 
