@@ -19,11 +19,11 @@
     "HPs": [
         47,
         23,
-        7
+        19
     ],
     "SPs": [
-        16,
-        11,
+        18,
+        15,
         18
     ],
     "SANs": [
@@ -33,7 +33,7 @@
     ],
     "XPs": [
         0,
-        15,
+        0,
         0
     ],
     "levels": [
@@ -235,11 +235,9 @@
     "active_scene": "",
     "names": [
         "Player",
-        "Shirley",
+        "Clyve",
         "Jim"
     ],
     "e_abilities": [],
-    "enemy_names": [
-        "Killer Cone"
-    ]
+    "enemy_names": []
 }

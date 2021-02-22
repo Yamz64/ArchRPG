@@ -5,7 +5,7 @@
             "objects": [
                 {
                     "o": "Trash Can (1)",
-                    "interacted": true
+                    "interacted": false
                 },
                 {
                     "o": "Norm",
