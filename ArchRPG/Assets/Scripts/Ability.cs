@@ -43,7 +43,7 @@ public class Ability
         * 4 = Fire 
         * 5 = Electric
         */
-    public string statusEffect = "";
+    public string statusEffect = "";//String that matches a specific status effect to inflict
     public int damageType;          //The type of damage dealt by the attack
     public int level_cost;          //cost to purchase this ability on levelup (only applies to eldritch abilities)
     public string image_file_path = "";  //Give path to image that goes with attack
@@ -51,7 +51,7 @@ public class Ability
     public string desc2;            //Give actual description and more details (damage type, targets, etc.)
     public bool fast = false;       //if this is applied to the ability then it behaves as if the user had double speed
     public bool use_pow = false;    //if applied to the ability then the attack uses pow to scale the damage rather than atk
-    public int moneySteal = 0;
+    public int moneySteal = 0;      //Amount of money the ability should steal (enemy only)
 }
  
 

@@ -1,0 +1,481 @@
+fileFormatVersion: 2
+guid: 8db386e6e08cf70458f759033d945026
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6668195396034420026
+    second: PositionIcons 1_0
+  - first:
+      213: 2767035607874201730
+    second: PositionIcons 1_1
+  - first:
+      213: 2825106350295846423
+    second: PositionIcons 1_2
+  - first:
+      213: 1485464859471582363
+    second: PositionIcons 1_3
+  - first:
+      213: 3665593340394710769
+    second: PositionIcons 1_4
+  - first:
+      213: 8117133999964266637
+    second: PositionIcons 1_5
+  - first:
+      213: 8146469972174124465
+    second: PositionIcons 1_6
+  - first:
+      213: 6596596148952336403
+    second: PositionIcons 1_7
+  - first:
+      213: -1892516456846407389
+    second: PositionIcons 1_8
+  - first:
+      213: 3767274034256377538
+    second: PositionIcons 1_9
+  - first:
+      213: 6806125808312246683
+    second: PositionIcons 1_10
+  - first:
+      213: 5752578226373496290
+    second: PositionIcons 1_11
+  - first:
+      213: 668655293069249710
+    second: PositionIcons 1_12
+  - first:
+      213: 2490364907325994360
+    second: PositionIcons 1_13
+  - first:
+      213: -6689403408237052602
+    second: PositionIcons 1_14
+  - first:
+      213: -749426086361888443
+    second: PositionIcons 1_15
+  - first:
+      213: -5333099541993888656
+    second: PositionIcons 1_16
+  - first:
+      213: 348594838579344235
+    second: PositionIcons 1_17
+  - first:
+      213: 4961096647394214605
+    second: PositionIcons 1_18
+  - first:
+      213: -5453258272400944939
+    second: PositionIcons 1_19
+  - first:
+      213: -4723782988655195235
+    second: PositionIcons 1_20
+  - first:
+      213: 4996770652705307370
+    second: PositionIcons 1_21
+  - first:
+      213: 4432648574064866837
+    second: PositionIcons 1_22
+  - first:
+      213: -1752901151247718719
+    second: PositionIcons 1_23
+  - first:
+      213: 7138189987356810922
+    second: PositionIcons 1_24
+  - first:
+      213: 4060531715131148752
+    second: PositionIcons 1_25
+  - first:
+      213: 196639487671893283
+    second: PositionIcons 1_26
+  - first:
+      213: 8157296364416250174
+    second: PositionIcons 1_27
+  - first:
+      213: -7229363673923845014
+    second: PositionIcons 1_28
+  - first:
+      213: -8765009382130503749
+    second: PositionIcons 1_29
+  - first:
+      213: 6723144448357090559
+    second: PositionIcons 1_30
+  - first:
+      213: -2678808215526313034
+    second: PositionIcons 1_31
+  - first:
+      213: -6064705516104774877
+    second: PositionIcons 1_32
+  - first:
+      213: 4054904627760738241
+    second: PositionIcons 1_33
+  - first:
+      213: 8724396138502163758
+    second: PositionIcons 1_34
+  - first:
+      213: 5962564515610833862
+    second: PositionIcons 1_35
+  - first:
+      213: -8430403356994946128
+    second: PositionIcons 1_36
+  - first:
+      213: -6813019997236152911
+    second: PositionIcons 1_37
+  - first:
+      213: -5188132096931990633
+    second: PositionIcons 1_38
+  - first:
+      213: -4798022528220751563
+    second: PositionIcons 1_39
+  - first:
+      213: 2940278753118887206
+    second: PositionIcons 1_40
+  - first:
+      213: -4922837017717909144
+    second: PositionIcons 1_41
+  - first:
+      213: 5186409633802068129
+    second: PositionIcons 1_42
+  - first:
+      213: 5788688466759319453
+    second: PositionIcons 1_43
+  - first:
+      213: -3612243430085901453
+    second: PositionIcons 1_44
+  - first:
+      213: -2872837374856911661
+    second: PositionIcons 1_45
+  - first:
+      213: 7901245494032750725
+    second: PositionIcons 1_46
+  - first:
+      213: -317772581332579137
+    second: PositionIcons 1_47
+  - first:
+      213: -7634901643203476191
+    second: PositionIcons 1_48
+  - first:
+      213: 4825934216174085421
+    second: PositionIcons 1_49
+  - first:
+      213: -5088976265069576224
+    second: PositionIcons 1_50
+  - first:
+      213: -8335666458514085624
+    second: PositionIcons 1_51
+  - first:
+      213: 5925069710953997210
+    second: PositionIcons 1_52
+  - first:
+      213: -2602507944121768670
+    second: PositionIcons 1_53
+  - first:
+      213: -5423720345014471246
+    second: PositionIcons 1_54
+  - first:
+      213: 8026315597004993153
+    second: PositionIcons 1_55
+  - first:
+      213: 8576304673769636127
+    second: PositionIcons 1_56
+  - first:
+      213: 8428860871344144461
+    second: PositionIcons 1_57
+  - first:
+      213: -401722772237253492
+    second: PositionIcons 1_58
+  - first:
+      213: -1437759497587999783
+    second: PositionIcons 1_59
+  - first:
+      213: -3359369194912128964
+    second: PositionIcons 1_60
+  - first:
+      213: 797973104144670783
+    second: PositionIcons 1_61
+  - first:
+      213: 6472965182166927591
+    second: PositionIcons 1_62
+  - first:
+      213: -5675469585482780063
+    second: PositionIcons 1_63
+  - first:
+      213: 5590529737037541258
+    second: PositionIcons 1_64
+  - first:
+      213: -1461702316435790007
+    second: PositionIcons 1_65
+  - first:
+      213: 7385398669093435571
+    second: PositionIcons 1_66
+  - first:
+      213: -6309818146363616709
+    second: PositionIcons 1_67
+  - first:
+      213: -3717381820089174517
+    second: PositionIcons 1_68
+  - first:
+      213: 2802297827741819952
+    second: PositionIcons 1_69
+  - first:
+      213: 2484416302319701877
+    second: PositionIcons 1_70
+  - first:
+      213: 9213750814537399989
+    second: PositionIcons 1_71
+  - first:
+      213: -8367360461593146572
+    second: PositionIcons 1_72
+  - first:
+      213: -2359280430713039967
+    second: PositionIcons 1_73
+  - first:
+      213: -2852835166649107898
+    second: PositionIcons 1_74
+  - first:
+      213: 2552242274950910693
+    second: PositionIcons 1_75
+  - first:
+      213: 7507075265203445662
+    second: PositionIcons 1_76
+  - first:
+      213: -2548641239151392412
+    second: PositionIcons 1_77
+  - first:
+      213: -4767929461200285447
+    second: PositionIcons 1_78
+  - first:
+      213: 6831802236842520426
+    second: PositionIcons 1_79
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 350
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: tvOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Lumin
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PositionIcons 1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 700
+        width: 350
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3dd68112603a8c50800000000000000
+      internalID: 6668195396034420026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PositionIcons 1_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 350
+        width: 350
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 288e238993c766620800000000000000
+      internalID: 2767035607874201730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PositionIcons 1_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 350
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71e851ee14bc43720800000000000000
+      internalID: 2825106350295846423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

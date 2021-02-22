@@ -551,6 +551,19 @@ public class BattleScript : MonoBehaviour
             //update item description
             transform.GetChild(1).Find("AbilityMenu").GetChild(2).GetChild(4).GetComponent<Text>().text = ability.desc1;
             transform.GetChild(1).Find("AbilityMenu").GetChild(2).GetChild(5).GetComponent<Text>().text = ability.desc2;
+            Sprite[] icons = Resources.LoadAll<Sprite>("UISprites/PositionIcons 1");
+            if (ability.position == 1)
+            {
+                transform.GetChild(1).Find("AbilityMenu").GetChild(2).GetChild(6).GetComponent<Image>().sprite = icons[0];
+            }
+            else if (ability.position == 2)
+            {
+                transform.GetChild(1).Find("AbilityMenu").GetChild(2).GetChild(6).GetComponent<Image>().sprite = icons[1];
+            }
+            else
+            {
+                transform.GetChild(1).Find("AbilityMenu").GetChild(2).GetChild(6).GetComponent<Image>().sprite = icons[2];
+            }
         }
         else
         {
@@ -558,6 +571,7 @@ public class BattleScript : MonoBehaviour
             transform.GetChild(1).Find("AbilityMenu").GetChild(2).GetChild(3).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
             transform.GetChild(1).Find("AbilityMenu").GetChild(2).GetChild(4).GetComponent<Text>().text = "";
             transform.GetChild(1).Find("AbilityMenu").GetChild(2).GetChild(5).GetComponent<Text>().text = "";
+            transform.GetChild(1).Find("AbilityMenu").GetChild(2).GetChild(6).GetComponent<Image>().sprite = null;
         }
     }
 
@@ -2139,6 +2153,7 @@ public class BattleScript : MonoBehaviour
     }
 
     //Swap 2 units in order of selection
+    //indi -- index to start from (indi and indi+1)
     public void PerformSwaps(int indi = 0)
     {
         //if (swaps.Count == swapInds.Count)
@@ -2677,6 +2692,7 @@ public class BattleScript : MonoBehaviour
     //Create battle characters, set up HUD's, display text, and start player turn
     IEnumerator setupBattle()
     {
+        //Load in all party members
         for (int i = 0; i < loader.names.Length; i++)
         {
             unit p;
@@ -2710,6 +2726,7 @@ public class BattleScript : MonoBehaviour
                 continue;
             }
 
+            //Account for possible HP differences
             p.currentHP = loader.HPs[i];
             if (p.currentHP > p.maxHP)
             {
@@ -2721,6 +2738,7 @@ public class BattleScript : MonoBehaviour
                 p.maxSP = p.currentSP;
             }
 
+            //Combine/customize prefabs (UI base and unit base)
             GameObject unitGo = Instantiate(partyPrefabs[i], allyStations[i]);
             unitGo = loader.updateUnit(unitGo, i);
             p.copyUnitUI(unitGo.GetComponent<UnitMono>().mainUnit);
@@ -2736,6 +2754,7 @@ public class BattleScript : MonoBehaviour
         }
         while (partyUnits.Count != 4) partyUnits.Add(null);
 
+        //Find number of enemies, and choose correct spawn loadout
         for (int i = 0; i < loader.enemy_names.Length; i++)
         {
             if (!loader.enemy_names[i].Equals("")) activeEnemies += 1;
@@ -2750,6 +2769,8 @@ public class BattleScript : MonoBehaviour
             yield return battleEnd();
         }
 
+
+        //Load in all enemies possible
         bool boss = false;
 
         int z = 0;
@@ -3877,11 +3898,6 @@ public class BattleScript : MonoBehaviour
         //Define audio object
         audio_handler = GetComponent<PlayerOverworldAudioHandler>();
 
-        //Set p1 and p2 to default locations
-        //p1 = new GameObject().transform;
-        //p2 = new GameObject().transform;
-        //p3 = new GameObject().transform;
-        //p4 = new GameObject().transform;
         swaps = new List<GameObject>();
 
         pSpots = new List<Transform>();
@@ -3910,9 +3926,6 @@ public class BattleScript : MonoBehaviour
                 case 0:
                     BaseActionMenuRoutine();
                     break;
-                //case 1:
-                //    AttackMenuRoutine();
-                //    break;
                 case 1:
                     AbilityMenuRoutine();
                     break;

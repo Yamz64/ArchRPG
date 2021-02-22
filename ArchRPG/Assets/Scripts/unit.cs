@@ -32,6 +32,7 @@ public class unit
         statusIndex.Add("Restrained");
         statusIndex.Add("Consumed");
     }
+    //Copy the numerical statistics of a unit
     public void copyUnitStats(unit ver)
     {
         level = ver.level;
@@ -62,6 +63,7 @@ public class unit
         position = ver.position;
     }
 
+    //Copy the UI components from a prefab
     public void copyUnitUI(unit ver)
     {
         view = ver.view;
@@ -127,11 +129,11 @@ public class unit
     */
     public bool[] weaknesses;    //an array of integer codes for the weaknesses that a unit may have
     public bool[] resistances;   //an array of integer codes for the resistances that a unit may have
-    public List<int> statuses;
-    public List<string> statusIndex;
+    public List<int> statuses;   //List of ints in order to track how long each status lasts for
+    public List<string> statusIndex;    //List of strings for each status effect
 
 
-    public Sprite[] sprites;
+    public Sprite[] sprites;        //Array of sprites (for attack animations)
     public string ImageFilePath;    //Use to determine what image to display for the unit
     public Image view;          //Image of unit
     public Text nameText;       //Text object to project name to
