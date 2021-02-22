@@ -467,6 +467,23 @@ public class BattleScript : MonoBehaviour
                 ability_viewer[i].text = "";
             }
         }
+        if (highlighted_ability >= 4)
+        {
+            transform.GetChild(1).Find("AbilityMenu").Find("ScrollUp").gameObject.SetActive(true);
+        }
+        else
+        {
+            transform.GetChild(1).Find("AbilityMenu").Find("ScrollUp").gameObject.SetActive(false);
+        }
+        if (ability_offset + 4 < partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities.Count && 
+            partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities.Count > 4)
+        {
+            transform.GetChild(1).Find("AbilityMenu").Find("ScrollDown").gameObject.SetActive(true);
+        }
+        else
+        {
+            transform.GetChild(1).Find("AbilityMenu").Find("ScrollDown").gameObject.SetActive(false);
+        }
     }
 
     //Update image/description based on selected item
@@ -551,6 +568,8 @@ public class BattleScript : MonoBehaviour
             //update item description
             transform.GetChild(1).Find("AbilityMenu").GetChild(2).GetChild(4).GetComponent<Text>().text = ability.desc1;
             transform.GetChild(1).Find("AbilityMenu").GetChild(2).GetChild(5).GetComponent<Text>().text = ability.desc2;
+
+            //Update ability line icon
             Sprite[] icons = Resources.LoadAll<Sprite>("UISprites/PositionIcons 1");
             if (ability.position == 1)
             {
@@ -1252,7 +1271,8 @@ public class BattleScript : MonoBehaviour
             //If input is down and the menu is up to the scrolling point
             else if (Input.GetAxisRaw("Vertical") < 0.0f && (cursor_positions[1].positions.Count - 1 - 2 + ability_offset) <
                 partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities.Count &&
-                cursor_position == cursor_positions[1].positions.Count - 1 - 2)
+                cursor_position == cursor_positions[1].positions.Count - 1 - 2 &&
+                highlighted_ability + 1 < partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities.Count)
             {
                 if (!menu_input)
                 {
@@ -2839,11 +2859,11 @@ public class BattleScript : MonoBehaviour
         {
             if (partyUnits[i] != null)
             {
-                //partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(mover);
-                //partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(new BasicBack());
-                //partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(new BasicFront());
-                //partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(new TestAbility());
-                //partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(new TestAbility1());
+                partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(mover);
+                partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(new BasicBack());
+                partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(new BasicFront());
+                partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(new TestAbility());
+                partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(new TestAbility1());
             }
         }
 
