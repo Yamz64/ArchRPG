@@ -655,7 +655,7 @@ public class BattleScript : MonoBehaviour
                             currentUnit += 1;
                             moves += 1;
 
-                            if (moves >= activeUnits)
+                            if (moves >= (activeUnits-partyDeaths))
                             {
                                 moves = 0;
                                 currentUnit = 0;
@@ -665,6 +665,7 @@ public class BattleScript : MonoBehaviour
                             else
                             {
                                 while (partyUnits[currentUnit] == null && currentUnit < partyUnits.Count) currentUnit++;
+                                while (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.currentHP <= 0) currentUnit++;
                                 if (currentUnit >= partyUnits.Count)
                                 {
                                     moves = 0;
@@ -836,7 +837,7 @@ public class BattleScript : MonoBehaviour
                 menu_input = false;
                 active_menu = 0;
 
-                if (moves >= activeUnits)
+                if (moves >= (activeUnits-partyDeaths))
                 {
                     moves = 0;
                     currentUnit = 0;
@@ -845,7 +846,9 @@ public class BattleScript : MonoBehaviour
                 }
                 else
                 {
+
                     while (partyUnits[currentUnit] == null && currentUnit < partyUnits.Count) currentUnit++;
+                    while (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.currentHP <= 0) currentUnit++;
                     if (currentUnit >= partyUnits.Count)
                     {
                         moves = 0;
@@ -2938,6 +2941,7 @@ public class BattleScript : MonoBehaviour
             bot.sanSideText.CrossFadeAlpha(0, 2f, false);
             bot.sanReadOut.CrossFadeAlpha(0, 2f, false);
         }
+        yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
     }
 
     //Player turn, display relevant text
@@ -3753,14 +3757,16 @@ public class BattleScript : MonoBehaviour
     IEnumerator levelUp(int expGained, unit uni)
     {
         dialogue.text = uni.unitName + " gained " + expGained + " exp";
+        Debug.Log("Unit.exp == " + uni.exp);
         bool boost = uni.gainEXP(expGained);
+        Debug.Log("Unit.exp now == " + uni.exp);
         yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
         if (boost == true)
         {
             dialogue.text = uni.unitName + " levelled up!";
             StartCoroutine(flashLevel(uni));
-            uni.setHUD();
-            yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact"))); ;
+            uni.setHUD(true);
+            yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
         }
     }
 

@@ -167,9 +167,13 @@ public class unit
     }
 
     //Function to set up the HUD with important data
-    public void setHUD()        
+    public void setHUD(bool pic = false)        
     {
-        view.sprite = Resources.Load<Sprite>(ImageFilePath); ;
+        Debug.Log("view sprite == " + view.sprite);
+        if (!pic)
+        view.sprite = Resources.Load<Sprite>(ImageFilePath);
+
+        Debug.Log("view sprite now == " + view.sprite);
         nameText.text = unitName;
         levelText.text = "Lvl : " + level;
         hpBar.fillAmount = (float)currentHP / maxHP;
@@ -1904,7 +1908,7 @@ public class JimUnit : unit
         ImageFilePath = "CharacterSprites/Accident Jim";
         loadSprites();
         level = lev;
-        currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
+        currentLevelTop = 5 * lev;      //(int)(2.5 * Mathf.Pow(lev, 4));
         statuses[4] = 99;
         resistances[4] = true;
 
@@ -2166,7 +2170,8 @@ public class JimUnit : unit
 
     public void updateUnit(int levl = 1)
     {
-        currentLevelTop = (int)(2.5 * Mathf.Pow(levl, 4));
+        level = levl;
+        currentLevelTop = 5 * levl;
         switch (levl)
         {
             case 1:
