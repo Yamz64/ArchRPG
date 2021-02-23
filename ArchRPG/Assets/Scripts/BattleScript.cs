@@ -140,15 +140,7 @@ public class BattleScript : MonoBehaviour
     private int i1 = 5;                     //Check if first swap unit has been selected
     private int i2 = 5;                     //Check if second swap unit has been selected
     private List<Transform> pSpots;
-    //private Transform p1;                   //Location of first swap unit
-    //private Transform p2;                   //Location of second swap unit
-    //private Transform p3;
-    //private Transform p4;
     private List<GameObject> ppgs;
-    //private GameObject p1p;                 //First swap unit
-    //private GameObject p2p;                 //Second swap unit
-    //private GameObject p3p;                 //First swap unit
-    //private GameObject p4p;                 //Second swap unit
     private List<GameObject> swaps;         //List of units to swap
     private List<int> swapInds;             //Indices of units to swap
 
