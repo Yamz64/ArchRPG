@@ -143,15 +143,19 @@ public class unit
     public Image BBackground;       //Background for the text
     public Image WBackground;       //Forms border around UI data
     public Text levelText;          //Text object to project level to
+
     public Image hpBar;             //Bar to project hit points to
     public Text hpSideText;         //HP Icon
     public Text hpReadOut;          //Text showing exact number of hitpoints
+
     public Image spBar;             //Bar to project mana/skill points to
     public Text spSideText;         //SP Icon
     public Text spReadOut;          //Text showing exact number of skillpoints
+
     public Image sanBar;            //Bar to project sanity to
     public Text sanSideText;        //SAN Icon
     public Text sanReadOut;         //Text showing exact sanity readout
+
     public Image statusBackW;       //White background of the status bar
     public Image statusBackColor;   //Colored background of the status bar
     public Text statusText;         //Text to say what status effect the unit has
@@ -259,20 +263,23 @@ public class unit
     //Set the sanity (within bounds)
     public void setSAN(int sn)
     {
-        if (sn >= 0 && sn <= 100)
+        if (!enemy)
         {
-            sanity = sn;
+            if (sn >= 0 && sn <= 100)
+            {
+                sanity = sn;
+            }
+            else if (sn < 0)
+            {
+                sanity = 0;
+            }
+            else if (sn > 100)
+            {
+                sanity = 100;
+            }
+            sanBar.GetComponent<Image>().fillAmount = sanity / 100;
+            sanReadOut.text = sanity + " / 100";
         }
-        else if (sn < 0)
-        {
-            sanity = 0;
-        }
-        else if (sn > 100)
-        {
-            sanity = 100;
-        }
-        sanBar.GetComponent<Image>().fillAmount = sanity / 100;
-        sanReadOut.text = sanity + " / 100";
     }
 
     public void SetATK(int a)    { ATK = a; }
@@ -561,8 +568,11 @@ public class unit
                     bool d = target.takeDamage(val);
                     target.setHP(target.currentHP);
 
-                    bool s = target.takeSanityDamage(valS);
-                    target.setSAN(target.sanity);
+                    if (valS > 0)
+                    {
+                        bool s = target.takeSanityDamage(valS);
+                        target.setSAN(target.sanity);
+                    }
                    
                     if (d == false)
                     {

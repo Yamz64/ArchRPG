@@ -159,9 +159,9 @@ public class Trinket : Item
 //--DERIVED ITEMS--
 public class HotDog : Item
 {
-    public HotDog(int i = 0)
+    public HotDog()
     {
-        name = "Hot Dog" + i;
+        name = "Hot Dog";
         description = "A tube of unidentified, but delicious meat!  Heals 50 HP when eaten!";
         image_file_path = "ItemSprites/HotDog";
         amount = 1;
