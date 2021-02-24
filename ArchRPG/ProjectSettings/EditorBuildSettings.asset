@@ -12,6 +12,15 @@ EditorBuildSettings:
     path: Assets/Scenes/BattleScene.unity
     guid: 2c77e403033d8d14bac7dff3c95af986
   - enabled: 1
+    path: Assets/Scenes/BedroomScene.unity
+    guid: 571ecced5020d9a46a8024b9d36b419c
+  - enabled: 1
+    path: Assets/Scenes/LivingRoomScene.unity
+    guid: 4e7d7d796350445488c5de11555ad645
+  - enabled: 1
+    path: Assets/Scenes/Street1Scene.unity
+    guid: bfc021edd967850479cc364acec8beab
+  - enabled: 1
     path: Assets/Scenes/ClassACutScene.unity
     guid: 468efaef72374fb4dae680e522888230
   - enabled: 1
