@@ -1,7 +1,7 @@
 {
     "position": {
-        "x": 0.5,
-        "y": 2.5
+        "x": -7.5,
+        "y": -6.0
     },
     "unlocked_characters": [
         true,
@@ -239,5 +239,5 @@
         "Jim"
     ],
     "e_abilities": [],
-    "enemy_names": ["Killer Cone"]
+    "enemy_names": []
 }
