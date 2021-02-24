@@ -2743,11 +2743,15 @@ public class BattleScript : MonoBehaviour
                     {
                         dialogue.text = temp[actions[z].getID()].GetComponent<UnitMono>().mainUnit.unitName + " attempted to flee.";
                         yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
-                        unit go = temp[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit;
-                        int chance = (int)(20 / Mathf.Floor((float)((1.4 * go.level + 10) / 2)) * (go.AGI / 200)
-                            * (go.level / highEne) + 0.02);
+                        unit go = temp[actions[z].getID()].GetComponent<UnitMono>().mainUnit;
+                        double chance = ((20 / Mathf.Floor((float)((1.4 * go.level + 10) / 2))) * ((float)go.AGI / 200)
+                            * ((float)go.level / highEne) + 0.02);
+                        if (chance <= 0) chance = 0;
+                        if (chance >= 1) chance = 1;
+                        int chance2 = (int)(chance * 100);
+                        Debug.Log("Chance of escape == " + chance2);
                         int ran = Random.Range(0, 100);
-                        if (ran < chance)
+                        if (ran < chance2)
                         {
                             dialogue.text = go.unitName + " and the party escaped from the enemy";
                             yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
