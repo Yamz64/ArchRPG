@@ -3004,3 +3004,80 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!1001 &4903930487389685728
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6035087276220563050, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
+      propertyPath: valid_scenes.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6035087276220563050, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
+      propertyPath: music_instance
+      value: 
+      objectReference: {fileID: 7237148743188496616, guid: dad71b85795bee34195ba2e8bd084c11, type: 3}
+    - target: {fileID: 6035087276220563050, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
+      propertyPath: track_name
+      value: House
+      objectReference: {fileID: 0}
+    - target: {fileID: 6035087276220563050, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
+      propertyPath: valid_scenes.Array.data[0]
+      value: LivingRoomScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 6035087276220563050, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
+      propertyPath: valid_scenes.Array.data[1]
+      value: BedroomScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 7527172466602869493, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.1867185
+      objectReference: {fileID: 0}
+    - target: {fileID: 7527172466602869493, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.088402
+      objectReference: {fileID: 0}
+    - target: {fileID: 7527172466602869493, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -47.96138
+      objectReference: {fileID: 0}
+    - target: {fileID: 7527172466602869493, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7527172466602869493, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7527172466602869493, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7527172466602869493, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7527172466602869493, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7527172466602869493, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7527172466602869493, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7527172466602869493, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673704983470722225, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
+      propertyPath: m_Name
+      value: InstantiateGeneralMusic
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
