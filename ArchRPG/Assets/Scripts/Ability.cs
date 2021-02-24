@@ -52,6 +52,8 @@ public class Ability
     public bool fast = false;       //if this is applied to the ability then it behaves as if the user had double speed
     public bool use_pow = false;    //if applied to the ability then the attack uses pow to scale the damage rather than atk
     public int moneySteal = 0;      //Amount of money the ability should steal (enemy only)
+    public int priority;
+    public string bigStatus = "";
 }
  
 
@@ -693,6 +695,7 @@ namespace EnemyAbilities
             type = 2;
         }
 
+        //Modify to do one if other, and does effects
         public override void UseAttack(unit user, unit target)
         {
             target = user;
@@ -703,7 +706,7 @@ namespace EnemyAbilities
         }
     }
 
-    //RYAN PLZ EDIT
+    //RYAN PLZ EDIT -- Done
     public class DarkSmoke : Ability
     {
         public DarkSmoke()

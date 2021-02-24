@@ -713,6 +713,7 @@ public class CharacterStatJsonConverter
             armors[num] = go.unitArmor;
             trinkets[num] = go.unitTrinket;
             names[num] = go.unitName;
+            statuses[num].status_effects = go.statuses;
         }
     }
 
