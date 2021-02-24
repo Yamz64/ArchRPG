@@ -88,6 +88,9 @@ public class BattleScript : MonoBehaviour
     //Bool to check whether the player has the item menu open
     private bool item_select_menu;
 
+    //The chances of the party being able to flee
+    public int fleeChance = 0;
+
     private GameObject cursor;                      //The animated cursor 
     private List<GameObject> menus;                 //The list of menu objects
     private PlayerData data;                        //Object to hold player data
@@ -150,6 +153,7 @@ public class BattleScript : MonoBehaviour
     //The current unit in the party that is choosing an action
     public int currentUnit = 0;
 
+    //Current ally being selected for using an ability on/swapping
     public int currentAlly = 0;
 
     //The number of moves that should be done by the party
@@ -727,7 +731,7 @@ public class BattleScript : MonoBehaviour
                 }
             }
 
-            else if ((Input.GetButtonDown("Menu") || Input.GetButtonDown("Cancel")) &&
+            else if (Input.GetButtonDown("Menu") &&
                 transform.GetChild(1).Find("UnitInfo").GetChild(2).GetComponent<Text>().text == "")
             {
                 unit now = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit;
@@ -738,11 +742,41 @@ public class BattleScript : MonoBehaviour
                     + "\nLuck: " + now.getLUCK() + "\nPosition == " + now.position;
                 transform.GetChild(1).Find("UnitInfo").gameObject.SetActive(true);
             }
-            else if ((Input.GetButtonDown("Menu") || Input.GetButtonDown("Cancel")) &&
+            else if ((Input.GetButtonDown("Menu")) &&
                 transform.GetChild(1).Find("UnitInfo").GetChild(2).GetComponent<Text>().text != "")
             {
                 transform.GetChild(1).Find("UnitInfo").GetChild(2).GetComponent<Text>().text = "";
                 transform.GetChild(1).Find("UnitInfo").gameObject.SetActive(false);
+            }
+            else if (Input.GetButtonDown("Cancel") && currentUnit > 0)
+            {
+                int i = currentUnit - 1;
+                if (partyUnits[i] == null || partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
+                {
+                    while ((partyUnits[i] == null || partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP <= 0) && i > 0)
+                    {
+                        i--;
+                    }
+                    if (partyUnits[i] == null || partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
+                    {
+
+                    }
+                    else
+                    {
+                        currentUnit = i;
+                        actions.RemoveAt(actions.Count - 1);
+                        moves -= 1;
+                        playerTurn();
+                    }
+                }
+                else
+                {
+                    currentUnit = i;
+                    actions.RemoveAt(actions.Count - 1);
+                    moves -= 1;
+                    playerTurn();
+                }
+                
             }
 
             //update the cursor position
