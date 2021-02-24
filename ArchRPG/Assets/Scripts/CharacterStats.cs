@@ -2161,7 +2161,7 @@ class Eldritch : CharacterStats
 {
     public Eldritch()
     {
-        SetImageFilepath("CharacterSprites/TestCharacter");
+        SetImageFilepath("CharacterSprites/Corrupted PC");
 
         SetName("Eldritch");
         SetDesc("????");
