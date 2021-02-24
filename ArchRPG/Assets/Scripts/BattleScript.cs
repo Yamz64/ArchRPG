@@ -91,6 +91,8 @@ public class BattleScript : MonoBehaviour
     //The chances of the party being able to flee
     public int fleeChance = 0;
 
+    unit pc;
+
     private GameObject cursor;                      //The animated cursor 
     private List<GameObject> menus;                 //The list of menu objects
     private PlayerData data;                        //Object to hold player data
@@ -161,6 +163,8 @@ public class BattleScript : MonoBehaviour
 
     //The enemy currently being highlighted
     public int currentEnemy = 0;
+
+    public int highEne = 0;
 
     //Use to load in unit info from json file
     CharacterStatJsonConverter loader;
@@ -721,8 +725,34 @@ public class BattleScript : MonoBehaviour
                         transform.GetChild(1).Find("SwapMenu").GetChild(2).GetComponent<Text>().text = "Swap:\n\n";
                         break;
                     case 4:
-                        state = battleState.FLEE;
-                        StartCoroutine( battleEnd() );
+
+                        actions.Add(new action(currentUnit, "Flee", 0, 0, partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.AGI));
+                        currentUnit += 1;
+                        moves += 1;
+
+                        if (moves >= (activeUnits - partyDeaths))
+                        {
+                            moves = 0;
+                            currentUnit = 0;
+                            state = battleState.ATTACK;
+                            StartCoroutine(performActions());
+                        }
+                        else
+                        {
+                            while (partyUnits[currentUnit] == null && currentUnit < partyUnits.Count) currentUnit++;
+                            while (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.currentHP <= 0) currentUnit++;
+                            if (currentUnit >= partyUnits.Count)
+                            {
+                                moves = 0;
+                                currentUnit = 0;
+                                state = battleState.ATTACK;
+                                StartCoroutine(performActions());
+                            }
+                            else
+                            {
+                                playerTurn();
+                            }
+                        }
                         break;
                     case 5:
                         break;
@@ -2474,7 +2504,8 @@ public class BattleScript : MonoBehaviour
                 int ind = actions[z].getID();
 
                 //Check if player should take damage from a status effect
-                if (sc == "attack" || sc == "ability" || sc == "ability1" || sc == "item" || sc == "swap" || sc == "basic attack")
+                if (sc == "attack" || sc == "ability" || sc == "ability1" || sc == "item" || sc == "swap" || sc == "basic attack"
+                    || sc == "Flee")
                 {
                     if (temp[ind].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
                     {
@@ -2597,7 +2628,8 @@ public class BattleScript : MonoBehaviour
                 }
 
                 //Check if the player is stopped by a status
-                if (sc == "attack" || sc == "ability" || sc == "ability1" || sc == "item" || sc == "swap" || sc == "basic attack")
+                if (sc == "attack" || sc == "ability" || sc == "ability1" || sc == "item" || sc == "swap" || sc == "basic attack"
+                    || sc == "Flee")
                 { 
                     if ((temp[ind].GetComponent<UnitMono>().mainUnit.statuses[8] != -1
                     || temp[ind].GetComponent<UnitMono>().mainUnit.statuses[9] != -1))
@@ -2703,6 +2735,31 @@ public class BattleScript : MonoBehaviour
                             + (actions[z].getTarget() + 1);
                     }
                     PerformSwaps();
+                }
+
+                else if (actions[z].getType() == "Flee" && state == battleState.ATTACK)
+                {
+                    if (temp[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                    {
+                        dialogue.text = temp[actions[z].getID()].GetComponent<UnitMono>().mainUnit.unitName + " attempted to flee.";
+                        yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                        unit go = temp[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit;
+                        int chance = (int)(20 / Mathf.Floor((float)((1.4 * go.level + 10) / 2)) * (go.AGI / 200)
+                            * (go.level / highEne) + 0.02);
+                        int ran = Random.Range(0, 100);
+                        if (ran < chance)
+                        {
+                            dialogue.text = go.unitName + " and the party escaped from the enemy";
+                            yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                            state = battleState.FLEE;
+                            yield return battleEnd();
+                        }
+                        else
+                        {
+                            dialogue.text = go.unitName + " failed and were unable to escape";
+                            yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                        }
+                    }
                 }
                 //Enemy performs an attack
                 else if (actions[z].getType() == "enemyAttack" && state == battleState.ATTACK)
@@ -2826,6 +2883,7 @@ public class BattleScript : MonoBehaviour
             if (loader.names[i] == "Player")
             {
                 p = new PlayerUnit(loader.levels[i]);
+                pc = p;
             }
             else if (loader.names[i] == "Jim")
             {
@@ -2876,6 +2934,10 @@ public class BattleScript : MonoBehaviour
                 unitGo.GetComponent<UnitMono>().mainUnit.position = 1;
             }
             partyUnits.Add(unitGo.gameObject);
+            if (loader.names[i] == "Player")
+            {
+                pc = unitGo.gameObject.GetComponent<UnitMono>().mainUnit;
+            }
             partyNames.Add(unitGo.GetComponent<UnitMono>().mainUnit.unitName);
             activeUnits += 1;
         }
@@ -2935,6 +2997,10 @@ public class BattleScript : MonoBehaviour
             eGo.GetComponent<UnitMono>().mainUnit.copyUnitStats(enen);
             eGo.GetComponent<UnitMono>().mainUnit.unitName = enen.unitName;
             enemyUnits.Add(eGo.gameObject);
+            if (eGo.GetComponent<UnitMono>().mainUnit.level > highEne)
+            {
+                highEne = eGo.GetComponent<UnitMono>().mainUnit.level;
+            }
             z++;
         }
 
@@ -3198,7 +3264,7 @@ public class BattleScript : MonoBehaviour
             {
                 enemyDeaths++;
                 StartCoroutine(unitDeath(target));
-                yield return levelUp(target.giveEXP(), uni);
+                yield return levelUp(target.giveEXP());
             }
             else if (dead && target.currentHP > 0)
             {
@@ -3209,13 +3275,13 @@ public class BattleScript : MonoBehaviour
             {
                 enemyDeaths++;
                 StartCoroutine(unitDeath(enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit));
-                yield return levelUp(enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.giveEXP(), uni);
+                yield return levelUp(enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.giveEXP());
             }
             if (deadR && enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
             {
                 enemyDeaths++;
                 StartCoroutine(unitDeath(enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit));
-                yield return levelUp(enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.giveEXP(), uni);
+                yield return levelUp(enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.giveEXP());
             }
 
             if (enemyDeaths == enemyUnits.Count)
@@ -3427,7 +3493,7 @@ public class BattleScript : MonoBehaviour
         {
             enemyDeaths++;
             StartCoroutine(unitDeath(target));
-            yield return levelUp(target.giveEXP(), uni);
+            yield return levelUp(target.giveEXP());
             if (enemyDeaths == enemyUnits.Count)
             {
                 state = battleState.WIN;
@@ -3848,18 +3914,36 @@ public class BattleScript : MonoBehaviour
     }
 
     //Use to give a unit experience and, if possible, level them up. Display text as well
-    IEnumerator levelUp(int expGained, unit uni)
+    IEnumerator levelUp(int expGained)
     {
-        dialogue.text = uni.unitName + " gained " + expGained + " exp";
-        Debug.Log("Unit.exp == " + uni.exp);
-        bool boost = uni.gainEXP(expGained);
-        Debug.Log("Unit.exp now == " + uni.exp);
+        dialogue.text = "Gained " + expGained + " exp";
+        for (int i = 0; i < partyUnits.Count; i++)
+        {
+            if (partyUnits[i] != null)
+            {
+                if (partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP > 0 &&
+                    partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName != "Player")
+                {
+                    partyUnits[i].GetComponent<UnitMono>().mainUnit.gainEXP(expGained);
+                }
+            }
+        }
+        bool boost = pc.gainEXP(expGained);
         yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
         if (boost == true)
         {
-            dialogue.text = uni.unitName + " levelled up!";
-            StartCoroutine(flashLevel(uni));
-            uni.setHUD(true);
+            dialogue.text = "Levelled up!";
+            for (int i = 0; i < partyUnits.Count; i++)
+            {
+                if (partyUnits[i] != null)
+                {
+                    if (partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                    {
+                        StartCoroutine(flashLevel(partyUnits[i].GetComponent<UnitMono>().mainUnit));
+                        partyUnits[i].GetComponent<UnitMono>().mainUnit.setHUD(true);
+                    }
+                }
+            }
             yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
         }
     }

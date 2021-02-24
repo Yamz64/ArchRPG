@@ -1913,7 +1913,7 @@ public class JimUnit : unit
         ImageFilePath = "CharacterSprites/Accident Jim";
         loadSprites();
         level = lev;
-        currentLevelTop = 5 * lev;      //(int)(2.5 * Mathf.Pow(lev, 4));
+        currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));       //(int)(2.5 * Mathf.Pow(lev, 4));
         statuses[4] = 99;
         resistances[4] = true;
 
@@ -2176,7 +2176,7 @@ public class JimUnit : unit
     public void updateUnit(int levl = 1)
     {
         level = levl;
-        currentLevelTop = 5 * levl;
+        currentLevelTop = (int)(2.5 * Mathf.Pow(levl, 4));
         switch (levl)
         {
             case 1:
@@ -3522,7 +3522,7 @@ public class KillerCone : unit
         loadSprites();
         level = 3;
         maxHP = currentHP = 15;
-        expGain = 15;
+        expGain = 30;
         enemy = true;
         ATK = 15;
         DEF = 40;
