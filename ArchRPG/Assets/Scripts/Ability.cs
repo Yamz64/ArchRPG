@@ -52,8 +52,11 @@ public class Ability
     public bool fast = false;       //if this is applied to the ability then it behaves as if the user had double speed
     public bool use_pow = false;    //if applied to the ability then the attack uses pow to scale the damage rather than atk
     public int moneySteal = 0;      //Amount of money the ability should steal (enemy only)
-    public int priority;
-    public string bigStatus = "";
+    public int priority = 0;        //The chance of an enemy using a move
+    public int defaultPriority = 0;
+    public int nextPriority = 0;
+    public int statCounter;         //If != 0, how long until the move can not be used for
+    public string bigStatus = "";   //A status effect that an ability will do extra with
 }
  
 
@@ -510,6 +513,7 @@ namespace EnemyAbilities
             damage = 0;
             type = 2;
             statusEffect = "Neurotic";
+            priority = defaultPriority = 4;
         }
 
         public override void UseAttack(unit user, unit target)
@@ -529,6 +533,7 @@ namespace EnemyAbilities
             target = 0;
             damage = 4;
             damageType = 0;
+            priority = defaultPriority = nextPriority = 5;
         }
     }
 
@@ -543,6 +548,7 @@ namespace EnemyAbilities
             damage = 12;
             damageType = 1;
             statusEffect = "Blunt Trauma";
+            priority = defaultPriority = nextPriority = 1;
         }
     }
 
@@ -559,6 +565,8 @@ namespace EnemyAbilities
             damage = 8;
             damageType = 3;
             statusEffect = "Vomiting";
+            priority = defaultPriority = 7;
+            nextPriority = 3;
         }
     }
 
@@ -573,6 +581,7 @@ namespace EnemyAbilities
             enemyTarget = 1;
             damage = 0;
             statusEffect = "Restrained";
+            priority = defaultPriority = 2;
         }
     }
 
@@ -586,11 +595,13 @@ namespace EnemyAbilities
             target = 0;
             enemyTarget = 0;
             damage = 15;
+            priority = defaultPriority = 3;
+            nextPriority = 5;
         }
 
         public override void UseAttack(unit user, unit target)
         {
-            if (target.status == "Restrained") damage = 25;
+            if (target.statuses[8] != -1) damage = 25;
         }
     }
 
@@ -607,6 +618,8 @@ namespace EnemyAbilities
             damageType = 4;
             use_pow = true;
             statusEffect = "Weeping";
+            priority = defaultPriority = 6;
+            nextPriority = 4;
         }
     }
 
@@ -619,6 +632,8 @@ namespace EnemyAbilities
             target = 0;
             damage = 0;
             statusEffect = "Restrained";
+            priority = defaultPriority = 1;
+            nextPriority = 0;
         }
     }
 
@@ -632,6 +647,7 @@ namespace EnemyAbilities
             damage = 18;
             damageType = 0;
             statusEffect = "Blunt Trauma";
+            priority = defaultPriority = 3;
         }
     }
 
@@ -647,6 +663,7 @@ namespace EnemyAbilities
             damage = 30;
             damageType = 0;
             swapper = 2;
+            priority = defaultPriority = 5;
         }
 
         //has to put frontliners to the back
@@ -665,6 +682,7 @@ namespace EnemyAbilities
             swapper = 1;
             sanity_damage = 5;
             statusEffect = "Consumed";
+            priority = defaultPriority = 2;
         }
 
         //has to pull backliners to the front
@@ -680,6 +698,7 @@ namespace EnemyAbilities
             damage = 15;
             damageType = 0;
             moneySteal = 10;
+            priority = defaultPriority = 1;
         }
 
         //has to cause the player to lose money (Jame will impliment this at some point)
@@ -693,16 +712,28 @@ namespace EnemyAbilities
             cost = 0;
             target = 0;
             type = 2;
+            priority = defaultPriority = 3;
+            nextPriority = 2;
         }
 
-        //Modify to do one if other, and does effects
         public override void UseAttack(unit user, unit target)
         {
             target = user;
 
-            int status = Random.Range(0, 2);
-            if (status == 0) user.status = "Hyperactive";
-            else user.status = "Zealous";
+            if (target.statuses[5] == -1 && target.statuses[6] == -1)
+            {
+                int status = Random.Range(0, 2);
+                if (status == 0) user.statuses[5] = Random.Range(5,9);
+                else user.statuses[6] = Random.Range(5, 9);
+            }
+            else if (target.statuses[5] == -1)
+            {
+                user.statuses[5] = Random.Range(5, 9);
+            }
+            else if (target.statuses[6] == -1)
+            {
+                user.statuses[6] = Random.Range(5, 9);
+            }
         }
     }
 
@@ -718,6 +749,7 @@ namespace EnemyAbilities
             target = 3;
             use_pow = true;
             statusEffect = "Weeping";
+            priority = defaultPriority = 3;
         }
 
         //this attack needs to hit *everyone* I don't know how to add this

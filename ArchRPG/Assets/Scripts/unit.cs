@@ -797,6 +797,11 @@ public class unit
 
             statusText.text = status;
         }
+
+        for (int i = 0; i < abilities.Count; i++)
+        {
+            if (abilities[i].statCounter > 0) abilities[i].statCounter -= 1;
+        }
     }
 
     //Flash red in response to damage

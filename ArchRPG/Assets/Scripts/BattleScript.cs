@@ -2309,17 +2309,21 @@ public class BattleScript : MonoBehaviour
                 {
                     bool self = false;
                     bool self2 = false;
+                    //Check if the enemy has any support abilities
                     for (int j = 0; j < enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities.Count; j++)
                     {
-                        if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[j].type == 1)
+                        if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[j].type == 1 &&
+                            enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[j].priority > 0)
                         {
                             self = true;
                         }
-                        if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[j].type == 2)
+                        if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[j].type == 2 &&
+                            enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[j].priority > 0)
                         {
                             self2 = true;
                         }
                     }
+                    //Randomly choose a type of ability to do
                     List<bool> choices = new List<bool>();
                     choices.Add(true);
                     choices.Add(self);
@@ -2329,13 +2333,39 @@ public class BattleScript : MonoBehaviour
                     {
                         vals = Random.Range(0, 3);
                     }
+
+                    //If attack is chosen
                     if (vals == 0)
                     {
                         int x = 0;
+                        //Randomly choose target
                         int r = Random.Range(0, partyUnits.Count);
                         while (partyUnits[r] == null)
                         {
                             r = Random.Range(0, partyUnits.Count);
+                        }
+                        //Edit ability priorities based on status effects
+                        for (int d = 0; d < 10; d++)
+                        {
+                            for (int c = 0; c < enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities.Count; c++)
+                            {
+                                if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.statuses[d] != -1 &&
+                                    enemyUnits[i].GetComponent<UnitMono>().mainUnit.statusIndex[d] ==
+                                    enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[c].statusEffect)
+                                {
+                                    enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[c].priority =
+                                        enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[c].nextPriority;
+                                }
+                            }
+                        }
+                        //Add ability index (priority) number of times to list
+                        List<int> probos = new List<int>();
+                        for (int d = 0; d < enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities.Count; d++)
+                        {
+                            for (int c = 0; c < enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[d].priority; c++)
+                            {
+                                probos.Add(d);
+                            }
                         }
                         //Select the appropriate ability based on enemy position
                         if (r == 0 || r == 1)
@@ -2344,7 +2374,7 @@ public class BattleScript : MonoBehaviour
                                 enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].enemyTarget != 1) ||
                                 enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].type != 0)
                             {
-                                x = Random.Range(0, enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities.Count);
+                                x = probos[Random.Range(0, probos.Count)];
                             }
                         }
                         else if (r == 2 || r == 3)
@@ -2353,7 +2383,7 @@ public class BattleScript : MonoBehaviour
                                 enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].enemyTarget != 2) ||
                                 enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].type != 0)
                             {
-                                x = Random.Range(0, enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities.Count);
+                                x = probos[Random.Range(0, probos.Count)];
                             }
                         }
 
@@ -2364,14 +2394,22 @@ public class BattleScript : MonoBehaviour
                     {
                         int x = 0;
                         int r = Random.Range(0, enemyUnits.Count);
-                        while (enemyUnits[r].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
+                        while (partyUnits[r].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
                         {
                             r = Random.Range(0, enemyUnits.Count);
                         }
 
+                        List<int> probos = new List<int>();
+                        for (int d = 0; d < enemyUnits[r].GetComponent<UnitMono>().mainUnit.abilities.Count; d++)
+                        {
+                            for (int c = 0; c < enemyUnits[r].GetComponent<UnitMono>().mainUnit.abilities[d].priority; c++)
+                            {
+                                probos.Add(d);
+                            }
+                        }
                         while (enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].type != 1)
                         {
-                            x = Random.Range(0, enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities.Count);
+                            x = probos[Random.Range(0, probos.Count)];
                         }
                         action now = new action(i, "enemyAbility", x, r, enemyUnits[i].GetComponent<UnitMono>().mainUnit.getAGI());
                         actions.Add(now);
@@ -2379,12 +2417,26 @@ public class BattleScript : MonoBehaviour
                     else if (vals == 2)
                     {
                         int x = 0;
+                        List<int> probos = new List<int>();
+                        for (int d = 0; d < enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities.Count; d++)
+                        {
+                            for (int c = 0; c < enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[d].priority; c++)
+                            {
+                                probos.Add(d);
+                            }
+                        }
                         while (enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].type != 2)
                         {
-                            x = Random.Range(0, enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities.Count);
+                            x = probos[Random.Range(0, probos.Count)];
                         }
                         action now = new action(i, "enemyAbility", x, i, enemyUnits[i].GetComponent<UnitMono>().mainUnit.getAGI());
                         actions.Add(now);
+                    }
+                    //Reset ability priorities
+                    for (int d = 0; d < enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities.Count; d++)
+                    {
+                        enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[d].priority =
+                            enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[d].defaultPriority;
                     }
                 }
             }
