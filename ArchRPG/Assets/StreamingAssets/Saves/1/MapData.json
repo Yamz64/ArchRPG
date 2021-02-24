@@ -21,6 +21,15 @@
                     "interacted": false
                 }
             ]
+        },
+        {
+            "name": "Street1Scene",
+            "objects": [
+                {
+                    "o": "Clyve",
+                    "interacted": false
+                }
+            ]
         }
     ]
 }
