@@ -520,6 +520,7 @@ namespace EnemyAbilities
         {
             target = user;
             user.giveStatus("Neurotic");
+            statCounter = 5;
         }
     }
 
@@ -734,6 +735,7 @@ namespace EnemyAbilities
             {
                 user.statuses[6] = Random.Range(5, 9);
             }
+            statCounter = 4;
         }
     }
 

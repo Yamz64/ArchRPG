@@ -2313,12 +2313,14 @@ public class BattleScript : MonoBehaviour
                     for (int j = 0; j < enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities.Count; j++)
                     {
                         if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[j].type == 1 &&
-                            enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[j].priority > 0)
+                            enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[j].priority > 0 &&
+                            enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[j].statCounter == 0)
                         {
                             self = true;
                         }
                         if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[j].type == 2 &&
-                            enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[j].priority > 0)
+                            enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[j].priority > 0 &&
+                            enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[j].statCounter == 0)
                         {
                             self2 = true;
                         }
@@ -2400,11 +2402,14 @@ public class BattleScript : MonoBehaviour
                         }
 
                         List<int> probos = new List<int>();
-                        for (int d = 0; d < enemyUnits[r].GetComponent<UnitMono>().mainUnit.abilities.Count; d++)
+                        for (int d = 0; d < enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities.Count; d++)
                         {
-                            for (int c = 0; c < enemyUnits[r].GetComponent<UnitMono>().mainUnit.abilities[d].priority; c++)
+                            if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[d].statCounter == 0)
                             {
-                                probos.Add(d);
+                                for (int c = 0; c < enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[d].priority; c++)
+                                {
+                                    probos.Add(d);
+                                }
                             }
                         }
                         while (enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].type != 1)
@@ -2420,9 +2425,12 @@ public class BattleScript : MonoBehaviour
                         List<int> probos = new List<int>();
                         for (int d = 0; d < enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities.Count; d++)
                         {
-                            for (int c = 0; c < enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[d].priority; c++)
+                            if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[d].statCounter == 0)
                             {
-                                probos.Add(d);
+                                for (int c = 0; c < enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[d].priority; c++)
+                                {
+                                    probos.Add(d);
+                                }
                             }
                         }
                         while (enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].type != 2)
