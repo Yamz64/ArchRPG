@@ -1767,108 +1767,86 @@ public class BattleScript : MonoBehaviour
         else if (state == battleState.PLAYER && enemy_select_menu == false)
         {
             //If input is down and the cursor is not at the bottom yet
-            if (Input.GetAxisRaw("Vertical") < 0.0f && currentAlly < 2 && partyUnits[currentAlly+2] != null)
+            if (Input.GetAxisRaw("Vertical") < 0.0f && currentAlly < 2)
             {
                 if (!menu_input)
                 {
-                    if (partyUnits[currentAlly + 2].GetComponent<UnitMono>().mainUnit.currentHP > 0)
-                    {
-                        useSound(0);
-                        currentAlly += 2;
-                        unitSelect(currentAlly);
-                    }
+                    useSound(0);
+                    currentAlly += 2;
+                    unitSelect(currentAlly);
                 }
                 menu_input = true;
             }
             //If input is up and the cursor is not at the top yet
-            else if (Input.GetAxisRaw("Vertical") > 0.0f && currentAlly > 1 && currentAlly < 4 && partyUnits[currentAlly-2] != null)
+            else if (Input.GetAxisRaw("Vertical") > 0.0f && currentAlly > 1 && currentAlly < 4)
             {
                 if (!menu_input)
                 {
-                    if (partyUnits[currentAlly - 2].GetComponent<UnitMono>().mainUnit.currentHP > 0)
-                    {
-                        useSound(0);
-                        currentAlly -= 2;
-                        unitSelect(currentAlly);
-                    }
+                    useSound(0);
+                    currentAlly -= 2;
+                    unitSelect(currentAlly);
                 }
                 menu_input = true;
             }
             //If input is right and the cursor is not at the right side yet
-            else if (Input.GetAxisRaw("Horizontal") > 0.0f && currentAlly >= 0 && currentAlly != 1 && currentAlly < 3 && 
-                partyUnits[currentAlly + 2] != null)
+            else if (Input.GetAxisRaw("Horizontal") > 0.0f && currentAlly >= 0 && currentAlly != 1 && currentAlly < 3)
             {
                 if (!menu_input)
                 {
-                    if (partyUnits[currentAlly + 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
-                    {
-                        useSound(0);
-                        currentAlly += 1;
-                        unitSelect(currentAlly);
-                    }
+                    useSound(0);
+                    currentAlly += 1;
+                    unitSelect(currentAlly);
                 }
                 menu_input = true;
             }
             //If input is left and the cursor is not at the left side yet
-            else if (Input.GetAxisRaw("Horizontal") < 0.0f && currentAlly > 0 && currentAlly != 2 && currentAlly <= 3 && 
-                partyUnits[currentAlly-1] != null)
+            else if (Input.GetAxisRaw("Horizontal") < 0.0f && currentAlly > 0 && currentAlly != 2 && currentAlly <= 3)
             {
                 if (!menu_input)
                 {
-                    if (partyUnits[currentAlly - 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
-                    {
-                        useSound(0);
-                        currentAlly -= 1;
-                        unitSelect(currentAlly);
-                    }
+                    useSound(0);
+                    currentAlly -= 1;
+                    unitSelect(currentAlly);
                 }
                 menu_input = true;
             }
             else if (Input.GetButtonDown("Interact"))
             {
-                useSound(1);
-                actions.Add(new action(currentUnit, "ability1", highlighted_ability, currentAlly,
-                    partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI(),
-                    partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].fast));
-                currentAlly = 0;
-                highlighted_ability = 0;
-                currentUnit += 1;
-                moves += 1;
+                if (partyUnits[currentAlly] != null)
+                {
+                    useSound(1);
+                    actions.Add(new action(currentUnit, "ability1", highlighted_ability, currentAlly,
+                        partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI(),
+                        partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].fast));
+                    currentAlly = 0;
+                    highlighted_ability = 0;
+                    currentUnit += 1;
+                    moves += 1;
 
-                Image[] opts = transform.GetChild(1).Find("AbilityMenu").GetComponentsInChildren<Image>();
-                foreach (Image child in opts)
-                {
-                    Color temp = child.color;
-                    temp.a = 1.0f;
-                    child.color = temp;
-                }
-                Text[] ts = transform.GetChild(1).Find("AbilityMenu").GetComponentsInChildren<Text>();
-                foreach (Text child in ts)
-                {
-                    Color temp = child.color;
-                    temp.a = 1.0f;
-                    child.color = temp;
-                }
+                    Image[] opts = transform.GetChild(1).Find("AbilityMenu").GetComponentsInChildren<Image>();
+                    foreach (Image child in opts)
+                    {
+                        Color temp = child.color;
+                        temp.a = 1.0f;
+                        child.color = temp;
+                    }
+                    Text[] ts = transform.GetChild(1).Find("AbilityMenu").GetComponentsInChildren<Text>();
+                    foreach (Text child in ts)
+                    {
+                        Color temp = child.color;
+                        temp.a = 1.0f;
+                        child.color = temp;
+                    }
 
-                cursor.SetActive(true);
-                CloseSelectUnitMenu();
-                CloseUseAbilityMenu();
-                CloseMenu(1);
-                unit_select_menu = false;
-                menu_input = true;
+                    cursor.SetActive(true);
+                    CloseSelectUnitMenu();
+                    CloseUseAbilityMenu();
+                    CloseMenu(1);
+                    unit_select_menu = false;
+                    menu_input = true;
 
-                //If this unit is the last one in the party to move
-                if (moves >= activeUnits)
-                {
-                    moves = 0;
-                    currentUnit = 0;
-                    state = battleState.ATTACK;
-                    StartCoroutine(performActions());
-                }
-                else
-                {
-                    while (partyUnits[currentUnit] == null && currentUnit < partyUnits.Count) currentUnit++;
-                    if (currentUnit >= partyUnits.Count)
+                    //If this unit is the last one in the party to move
+                    if (moves >= activeUnits)
                     {
                         moves = 0;
                         currentUnit = 0;
@@ -1877,8 +1855,23 @@ public class BattleScript : MonoBehaviour
                     }
                     else
                     {
-                        playerTurn();
+                        while (partyUnits[currentUnit] == null && currentUnit < partyUnits.Count) currentUnit++;
+                        if (currentUnit >= partyUnits.Count)
+                        {
+                            moves = 0;
+                            currentUnit = 0;
+                            state = battleState.ATTACK;
+                            StartCoroutine(performActions());
+                        }
+                        else
+                        {
+                            playerTurn();
+                        }
                     }
+                }
+                else
+                {
+                    dialogue.text = "Invalid space selected. Try again";
                 }
             }
             //Make menus visible again to select new attack
@@ -2881,75 +2874,84 @@ public class BattleScript : MonoBehaviour
     //Create battle characters, set up HUD's, display text, and start player turn
     IEnumerator setupBattle()
     {
+        currentUnit = 4;
         //Load in all party members
         for (int i = 0; i < loader.names.Length; i++)
         {
-            unit p;
-            if (loader.names[i] == "Player" && !loader.dead[i])
+            if (loader.HPs[i] > 0)
             {
-                p = new PlayerUnit(loader.levels[i]);
-                pc = p;
-            }
-            else if (loader.names[i] == "Player" && loader.dead[i])
-            {
-                p = new EldritchPartyUnit(loader.levels[i]);
-                pc = p;
-            }
-            else if (loader.names[i] == "Jim" && !loader.dead[i])
-            {
-                p = new JimUnit(loader.levels[i]);
-            }
-            else if (loader.names[i] == "Clyve" && !loader.dead[i])
-            {
-                p = new ClyveUnit(loader.levels[i]);
-            }
-            else if (loader.names[i] == "Norm" && !loader.dead[i])
-            {
-                p = new NormUnit(loader.levels[i]);
-            }
-            else if (loader.names[i] == "Shirley" && !loader.dead[i])
-            {
-                p = new ShirleyUnit(loader.levels[i]);
-            }
-            else if (loader.names[i] == "Eldritch" || loader.dead[i])
-            {
-                p = new EldritchPartyUnit(loader.levels[i]);
+                unit p;
+                if (loader.names[i] == "Player" && !loader.dead[i])
+                {
+                    p = new PlayerUnit(loader.levels[i]);
+                    pc = p;
+                }
+                else if (loader.names[i] == "Player" && loader.dead[i])
+                {
+                    p = new EldritchPartyUnit(loader.levels[i]);
+                    pc = p;
+                }
+                else if (loader.names[i] == "Jim" && !loader.dead[i])
+                {
+                    p = new JimUnit(loader.levels[i]);
+                }
+                else if (loader.names[i] == "Clyve" && !loader.dead[i])
+                {
+                    p = new ClyveUnit(loader.levels[i]);
+                }
+                else if (loader.names[i] == "Norm" && !loader.dead[i])
+                {
+                    p = new NormUnit(loader.levels[i]);
+                }
+                else if (loader.names[i] == "Shirley" && !loader.dead[i])
+                {
+                    p = new ShirleyUnit(loader.levels[i]);
+                }
+                else if (loader.names[i] == "Eldritch" || loader.dead[i])
+                {
+                    p = new EldritchPartyUnit(loader.levels[i]);
+                }
+                else
+                {
+                    partyUnits.Add(null);
+                    continue;
+                }
+                if (i < currentUnit) currentUnit = i;
+
+                //Account for possible HP differences
+                p.currentHP = loader.HPs[i];
+                if (p.currentHP > p.maxHP)
+                {
+                    p.maxHP = p.currentHP;
+                }
+                p.currentSP = loader.SPs[i];
+                if (p.currentSP > p.maxSP)
+                {
+                    p.maxSP = p.currentSP;
+                }
+
+                //Combine/customize prefabs (UI base and unit base)
+                GameObject unitGo = Instantiate(partyPrefabs[i], allyStations[i]);
+                unitGo = loader.updateUnit(unitGo, i);
+                p.copyUnitUI(unitGo.GetComponent<UnitMono>().mainUnit);
+                unitGo.GetComponent<UnitMono>().mainUnit.copyUnitStats(p);
+                p.setHUD();
+                if (i == 2 || i == 3)
+                {
+                    unitGo.GetComponent<UnitMono>().mainUnit.position = 1;
+                }
+                partyUnits.Add(unitGo.gameObject);
+                if (loader.names[i] == "Player")
+                {
+                    pc = unitGo.gameObject.GetComponent<UnitMono>().mainUnit;
+                }
+                partyNames.Add(unitGo.GetComponent<UnitMono>().mainUnit.unitName);
+                activeUnits += 1;
             }
             else
             {
                 partyUnits.Add(null);
-                continue;
             }
-
-            //Account for possible HP differences
-            p.currentHP = loader.HPs[i];
-            if (p.currentHP > p.maxHP)
-            {
-                p.maxHP = p.currentHP;
-            }
-            p.currentSP = loader.SPs[i];
-            if (p.currentSP > p.maxSP)
-            {
-                p.maxSP = p.currentSP;
-            }
-
-            //Combine/customize prefabs (UI base and unit base)
-            GameObject unitGo = Instantiate(partyPrefabs[i], allyStations[i]);
-            unitGo = loader.updateUnit(unitGo, i);
-            p.copyUnitUI(unitGo.GetComponent<UnitMono>().mainUnit);
-            unitGo.GetComponent<UnitMono>().mainUnit.copyUnitStats(p);
-            p.setHUD();
-            if (i == 2 || i == 3)
-            {
-                unitGo.GetComponent<UnitMono>().mainUnit.position = 1;
-            }
-            partyUnits.Add(unitGo.gameObject);
-            if (loader.names[i] == "Player")
-            {
-                pc = unitGo.gameObject.GetComponent<UnitMono>().mainUnit;
-            }
-            partyNames.Add(unitGo.GetComponent<UnitMono>().mainUnit.unitName);
-            activeUnits += 1;
         }
         while (partyUnits.Count != 4) partyUnits.Add(null);
 
