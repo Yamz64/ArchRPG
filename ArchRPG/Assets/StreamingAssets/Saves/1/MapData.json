@@ -27,7 +27,7 @@
             "objects": [
                 {
                     "o": "Clyve",
-                    "interacted": false
+                    "interacted": true
                 }
             ]
         }
