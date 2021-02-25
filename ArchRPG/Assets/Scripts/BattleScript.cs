@@ -36,12 +36,12 @@ public class action
     public int getSPD() { return speed; }
     public bool getFast() { return priority; }
 
-    int id = 0;
-    string type;
-    int index = 0;
-    int target = 0;
-    int speed = 0;
-    bool priority = false;
+    int id = 0;                         //Index (who is doing the action)
+    string type;                        //String (represents what the action is)
+    int index = 0;                      //Numerical index of the ability/some other value
+    int target = 0;                     //Index (target of any effects the action has)
+    int speed = 0;                      //Speed at which the action happens
+    bool priority = false;              //Whether the action should happen first
 }
 
 public class BattleScript : MonoBehaviour
@@ -164,6 +164,7 @@ public class BattleScript : MonoBehaviour
     //The enemy currently being highlighted
     public int currentEnemy = 0;
 
+    //The highest level from the enemies
     public int highEne = 0;
 
     //Use to load in unit info from json file
@@ -2884,28 +2885,33 @@ public class BattleScript : MonoBehaviour
         for (int i = 0; i < loader.names.Length; i++)
         {
             unit p;
-            if (loader.names[i] == "Player")
+            if (loader.names[i] == "Player" && !loader.dead[i])
             {
                 p = new PlayerUnit(loader.levels[i]);
                 pc = p;
             }
-            else if (loader.names[i] == "Jim")
+            else if (loader.names[i] == "Player" && loader.dead[i])
+            {
+                p = new EldritchPartyUnit(loader.levels[i]);
+                pc = p;
+            }
+            else if (loader.names[i] == "Jim" && !loader.dead[i])
             {
                 p = new JimUnit(loader.levels[i]);
             }
-            else if (loader.names[i] == "Clyve")
+            else if (loader.names[i] == "Clyve" && !loader.dead[i])
             {
                 p = new ClyveUnit(loader.levels[i]);
             }
-            else if (loader.names[i] == "Norm")
+            else if (loader.names[i] == "Norm" && !loader.dead[i])
             {
                 p = new NormUnit(loader.levels[i]);
             }
-            else if (loader.names[i] == "Shirley")
+            else if (loader.names[i] == "Shirley" && !loader.dead[i])
             {
                 p = new ShirleyUnit(loader.levels[i]);
             }
-            else if (loader.names[i] == "Eldritch")
+            else if (loader.names[i] == "Eldritch" || loader.dead[i])
             {
                 p = new EldritchPartyUnit(loader.levels[i]);
             }

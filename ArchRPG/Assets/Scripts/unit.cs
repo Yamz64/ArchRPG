@@ -3480,6 +3480,7 @@ public class EldritchPartyUnit : unit
     public EldritchPartyUnit(int lev = 1)
     {
         unitName = "Eldritch Abomination";
+        ImageFilePath = "CharacterSprites/Corrupted PC";
         level = lev;
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
         maxHP = currentHP = (14 * lev) + 2;
