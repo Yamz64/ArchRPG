@@ -91,7 +91,7 @@ public class BattleScript : MonoBehaviour
     //The chances of the party being able to flee
     public int fleeChance = 0;
 
-    unit pc;
+    unit pc;    //Use as basis for levelling the party
 
     private GameObject cursor;                      //The animated cursor 
     private List<GameObject> menus;                 //The list of menu objects
@@ -144,8 +144,8 @@ public class BattleScript : MonoBehaviour
     //Variables to use in the swap menu
     private int i1 = 5;                     //Check if first swap unit has been selected
     private int i2 = 5;                     //Check if second swap unit has been selected
-    private List<Transform> pSpots;
-    private List<GameObject> ppgs;
+    private List<Transform> pSpots;         //List of locations to swap
+    private List<GameObject> ppgs;          //List of game objects to use when swapping
     private List<GameObject> swaps;         //List of units to swap
     private List<int> swapInds;             //Indices of units to swap
 
@@ -3929,6 +3929,7 @@ public class BattleScript : MonoBehaviour
                     partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName != "Player")
                 {
                     partyUnits[i].GetComponent<UnitMono>().mainUnit.gainEXP(expGained);
+                    partyUnits[i].GetComponent<UnitMono>().mainUnit.updateUnit(partyUnits[i].GetComponent<UnitMono>().mainUnit.level);
                 }
             }
         }
