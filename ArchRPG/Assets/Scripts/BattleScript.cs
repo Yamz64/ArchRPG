@@ -2736,7 +2736,7 @@ public class BattleScript : MonoBehaviour
                     }
                     PerformSwaps();
                 }
-
+                //Attempt to flee from battle
                 else if (actions[z].getType() == "Flee" && state == battleState.ATTACK)
                 {
                     if (temp[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.currentHP > 0)

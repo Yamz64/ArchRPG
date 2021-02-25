@@ -53,8 +53,8 @@ public class Ability
     public bool use_pow = false;    //if applied to the ability then the attack uses pow to scale the damage rather than atk
     public int moneySteal = 0;      //Amount of money the ability should steal (enemy only)
     public int priority = 0;        //The chance of an enemy using a move
-    public int defaultPriority = 0;
-    public int nextPriority = 0;
+    public int defaultPriority = 0; //Default priority value
+    public int nextPriority = 0;    //Priority value to change to under certain circumstances
     public int statCounter;         //If != 0, how long until the move can not be used for
     public string bigStatus = "";   //A status effect that an ability will do extra with
 }

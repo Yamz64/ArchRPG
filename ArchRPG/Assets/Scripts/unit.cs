@@ -582,7 +582,11 @@ public class unit
                     {
                         if (!ata.statusEffect.Equals(""))
                         {
-                            target.giveStatus(ata.statusEffect);
+                            int ran = UnityEngine.Random.Range(1, 101);
+                            if (ran >= target.RES || ran == 1 || ata.type != 0)
+                            {
+                                target.giveStatus(ata.statusEffect);
+                            }
                         }
                     }
                     return d;
