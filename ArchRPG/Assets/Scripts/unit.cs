@@ -228,6 +228,7 @@ public class unit
 
     public void SetHPMax(int hp) { maxHP = hp; }
     public void SetSPMax(int sp) { maxSP = sp; }
+
     //Set the HP (Within bounds)
     public void setHP(int hp)
     {
@@ -300,16 +301,23 @@ public class unit
         exp += val;
         if (exp >= currentLevelTop)
         {
-            //StartCoroutine(flashLevel());
-            if (level < 20) level += 1;
-            currentLevelTop = (int)(2.5 * Mathf.Pow(level, 4));
-            exp = 0;
+            while (exp >= currentLevelTop && level < 20)
+            {
+                level += 1;
+                exp = exp - currentLevelTop;
+                currentLevelTop = (int)(2.5 * Mathf.Pow(level, 4));
+            }
             return true;
         }
         else
         {
             return false;
         }
+    }
+
+    public virtual void updateUnit(int levl = 1)
+    {
+
     }
 
     //Get the attack at the given index
@@ -1136,7 +1144,7 @@ public class PlayerUnit : unit
         }
     }
 
-    public void updateUnit(int levl = 1)
+    public override void updateUnit(int levl = 1)
     {
         level = levl;
         currentLevelTop = (int)(2.5 * Mathf.Pow(level, 4));
@@ -1656,7 +1664,7 @@ public class ClyveUnit : unit
         }
     }
 
-    public void updateUnit(int levl = 1)
+    public override void updateUnit(int levl = 1)
     {
         level = levl;
         currentLevelTop = (int)(2.5 * Mathf.Pow(levl, 4));
@@ -2177,7 +2185,7 @@ public class JimUnit : unit
         }
     }
 
-    public void updateUnit(int levl = 1)
+    public override void updateUnit(int levl = 1)
     {
         level = levl;
         currentLevelTop = (int)(2.5 * Mathf.Pow(levl, 4));
@@ -2696,7 +2704,7 @@ public class NormUnit : unit
         }
     }
 
-    public void updateUnit(int levl = 1)
+    public override void updateUnit(int levl = 1)
     {
         level = levl;
         currentLevelTop = (int)(2.5 * Mathf.Pow(levl, 4));
@@ -3215,7 +3223,7 @@ public class ShirleyUnit : unit
         }
     }
 
-    public void updateUnit(int levl = 1)
+    public override void updateUnit(int levl = 1)
     {
         level = levl;
         currentLevelTop = (int)(2.5 * Mathf.Pow(levl, 4));
@@ -3483,6 +3491,21 @@ public class EldritchPartyUnit : unit
         RES = (2 * lev) + 3;
         AGI = 3 * lev;
         LCK = (int)(0.01 / 3 * Mathf.Pow(lev, 3));
+    }
+
+    public override void updateUnit(int levl = 1)
+    {
+        level = levl;
+        currentLevelTop = (int)(2.5 * Mathf.Pow(levl, 4));
+        maxHP = currentHP = (14 * levl) + 2;
+        maxSP = currentSP = (7 * levl) + 10;
+        ATK = (int)((2.5 * levl) + 0.5);
+        POW = (7 * levl) + 1;
+        DEF = (3 * levl) + 1;
+        WILL = (int)((2.5 * levl) + 0.5);
+        RES = (2 * levl) + 3;
+        AGI = 3 * levl;
+        LCK = (int)(0.01 / 3 * Mathf.Pow(levl, 3));
     }
 }
 
