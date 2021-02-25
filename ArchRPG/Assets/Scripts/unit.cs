@@ -3576,7 +3576,7 @@ public class ThrashCan : unit
 {
     public ThrashCan()
     {
-        ImageFilePath = "EnemySprites/Prototype/EnemyTestPicture";
+        ImageFilePath = "EnemySprites/trashcan";
         unitName = "Thrash Can";
         loadSprites();
         level = 3;
