@@ -472,6 +472,7 @@ public class CharacterStatJsonConverter
     //constructor given the current player data
     public CharacterStatJsonConverter(PlayerData p)
     {
+        flee = false;
         statuses = new List<StatusEffectContainer>();
         //set the position and progress of the player
         position = p.GetSavedPosition();
@@ -908,6 +909,7 @@ public class CharacterStatJsonConverter
 
     public Vector2 position;            //current position in the world (ignored except for after battles)
 
+    public bool flee;                   //marked as true if the party just fleed from combat
     public bool[] unlocked_characters;  //list of unlocked characters
     public bool[] dead;                 //which party members are dead
 
