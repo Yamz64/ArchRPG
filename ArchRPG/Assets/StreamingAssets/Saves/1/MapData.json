@@ -28,6 +28,10 @@
                 {
                     "o": "Clyve",
                     "interacted": true
+                },
+                {
+                    "o": "CrossingGuard",
+                    "interacted": false
                 }
             ]
         }

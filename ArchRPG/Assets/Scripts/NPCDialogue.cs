@@ -26,9 +26,10 @@ public class NPCDialogue : InteractableBaseClass
     public List<DialogueImages> dialogueImages; 
     private List<string> converted_text;
     private List<string> converted_images;
-    private PlayerDialogueBoxHandler player;
+    [HideInInspector]
+    public PlayerDialogueBoxHandler player;
 
-    private void Start()
+    public void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDialogueBoxHandler>();
         converted_text = new List<string>();

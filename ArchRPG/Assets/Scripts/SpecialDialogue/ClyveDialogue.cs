@@ -30,50 +30,50 @@ public class ClyveDialogue : InteractableBaseClass
 
         //effect
         temp.name = "_NO_EFFECT_";
-        temp_effect.effects.Add(temp);
-        effect_queue.Add(temp_effect);
+        temp_effect.effects.Add(new TextEffectClass(temp));
+        effect_queue.Add(new EffectContainer(temp_effect));
 
         temp_effect.effects.Clear();
         temp.name = "Wave";
         temp.lower = 59;
         temp.upper = 62;
-        temp_effect.effects.Add(temp);
-        effect_queue.Add(temp_effect);
+        temp_effect.effects.Add(new TextEffectClass(temp));
+        effect_queue.Add(new EffectContainer(temp_effect));
 
         temp_effect.effects.Clear();
         temp.name = "Wave";
         temp.lower = 0;
         temp.upper = 5;
-        temp_effect.effects.Add(temp);
-        effect_queue.Add(temp_effect);
+        temp_effect.effects.Add(new TextEffectClass(temp));
+        effect_queue.Add(new EffectContainer(temp_effect));
 
         temp_effect.effects.Clear();
         temp.name = "Wave";
         temp.lower = 59;
         temp.upper = 62;
-        temp_effect.effects.Add(temp);
-        effect_queue.Add(temp_effect);
+        temp_effect.effects.Add(new TextEffectClass(temp));
+        effect_queue.Add(new EffectContainer(temp_effect));
 
         temp_effect.effects.Clear();
         temp.name = "Wave";
         temp.lower = 59;
         temp.upper = 62;
-        temp_effect.effects.Add(temp);
-        effect_queue.Add(temp_effect);
+        temp_effect.effects.Add(new TextEffectClass(temp));
+        effect_queue.Add(new EffectContainer(temp_effect));
 
         temp_effect.effects.Clear();
         temp.name = "Wave";
         temp.lower = 59;
         temp.upper = 62;
-        temp_effect.effects.Add(temp);
-        effect_queue.Add(temp_effect);
+        temp_effect.effects.Add(new TextEffectClass(temp));
+        effect_queue.Add(new EffectContainer(temp_effect));
 
         temp_effect.effects.Clear();
         temp.name = "Wave";
         temp.lower = 59;
         temp.upper = 62;
-        temp_effect.effects.Add(temp);
-        effect_queue.Add(temp_effect);
+        temp_effect.effects.Add(new TextEffectClass(temp));
+        effect_queue.Add(new EffectContainer(temp_effect));
 
         player.SetEffectQueue(effect_queue);
 

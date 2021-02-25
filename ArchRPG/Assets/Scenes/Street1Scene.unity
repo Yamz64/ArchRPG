@@ -180,6 +180,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce7220ac87c84e942a7318a566f381b5, type: 3}
+--- !u!1 &108475741 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1084098510}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &108475745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108475741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: YOOOOOO
+  - text: Jim ate shit man.
+  - text: That traffic cone curb stomped him!
+  container:
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 6
+  - effects: []
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 3
+  player: {fileID: 0}
 --- !u!1001 &117126099
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -294,6 +327,50 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &204729734 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 2021670971}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &204729738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204729734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: Yeah I set up that hockey prank. They'll be talking about it for years!
+  - text: No you didn't.
+  - text: Ok, so it wasn't on purpose, but I still did it!
+  - text: I thought it was that Danny kid.
+  - text: Ok, so maybe he orchestrated it, but I was there when it happened!
+  - text: No you weren't.
+  - text: Ok, so maybe I wasn't, but I did hear about it from Danny's mom, and she's
+      pretty hot!
+  - text: No she isn't!
+  container:
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects:
+    - name: Color
+      color: {r: 1, g: 0, b: 0, a: 1}
+      lower: 17
+      upper: 21
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 8
+  player: {fileID: 0}
 --- !u!1001 &253742754
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -351,6 +428,121 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &255144949 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1778858344}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &255144953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255144949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1e73fd5a2289914699f1e9ce94b6c2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: You're that kid that sent that crazy letter to the paper right?
+  - text: You stay off myproperty, I don't want any crazies like you near my roses,
+      you hear?
+  container:
+  - effects: []
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 2
+  player: {fileID: 0}
+--- !u!82 &255144954
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255144949}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: c1b8714525ac1494a9b9661aa99586e5, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.002
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &330337778
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3024,6 +3216,7 @@ MonoBehaviour:
   dialogueImages:
   - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
     lines: 2
+  player: {fileID: 0}
 --- !u!1001 &465241254
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7079,9 +7272,33 @@ MonoBehaviour:
       When you get a status effect,
   - text: it may make it easier or harder to win one of those schoolyard brawls that
       you kids seem to enjoy having.
-  - text: 
-  container: []
-  dialogueImages: []
+  - text: If you wish to learn more about status effects, I set up a board to teach
+      everyone what I learned in meical school...
+  - text: ...without paying hundreds of thousands of dollars to some institution
+      that didn't even give me a degree!
+  - text: Take that college tuition fees!
+  container:
+  - effects:
+    - name: Color
+      color: {r: 0.2752552, g: 0, b: 1, a: 1}
+      lower: 49
+      upper: 62
+    - name: Wave
+      color: {r: 0.2752552, g: 0, b: 1, a: 1}
+      lower: 49
+      upper: 62
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 26
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 5
+  player: {fileID: 0}
 --- !u!1 &624589058
 GameObject:
   m_ObjectHideFlags: 0
@@ -7365,6 +7582,51 @@ MonoBehaviour:
   dialogueImages:
   - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
     lines: 7
+  player: {fileID: 0}
+--- !u!1 &794482831 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 168671777}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &794482835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794482831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: Yeah I set up that hockey prank. They'll be talking about it for years!
+  - text: No you didn't.
+  - text: Ok, so it wasn't on purpose, but I still did it!
+  - text: I thought it was that Danny kid.
+  - text: Ok, so maybe he orchestrated it, but I was there when it happened!
+  - text: No you weren't.
+  - text: Ok, so maybe I wasn't, but I did hear about it from Danny's mom, and she's
+      pretty hot!
+  - text: No she isn't!
+  container:
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects:
+    - name: Color
+      color: {r: 1, g: 0, b: 0, a: 1}
+      lower: 17
+      upper: 21
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 8
+  player: {fileID: 0}
 --- !u!1001 &800717503
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7422,6 +7684,44 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce7220ac87c84e942a7318a566f381b5, type: 3}
+--- !u!1 &875574797 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1530608648}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &875574801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875574797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: Woah <Player>, you sure you wanna go help Jim?
+  - text: This isn't one of those video games everyone plays, you could get hurt
+      or worse!
+  - text: Your friend there, he could actually die. No respawning here!
+  container:
+  - effects:
+    - name: Color
+      color: {r: 0, g: 1, b: 0, a: 1}
+      lower: 4
+      upper: 11
+  - effects: []
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 35
+      upper: 46
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 3
+  player: {fileID: 0}
 --- !u!1001 &877491998
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7479,6 +7779,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &899794336 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1599449202}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &899794340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899794336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: 'Yeah that whole thing at the hockey rink was a total bummer. '
+  - text: I was really hoping we would pass that math test, but I guess that's not
+      gonna happen.
+  container:
+  - effects: []
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 2
+  player: {fileID: 0}
 --- !u!1001 &963800566
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8084,7 +8412,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_Name
-      value: OverworldCharacter (17)
+      value: CrossingGuard
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8248,6 +8576,7 @@ MonoBehaviour:
   dialogueImages:
   - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
     lines: 2
+  player: {fileID: 0}
 --- !u!1001 &1424644214
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8342,6 +8671,7 @@ MonoBehaviour:
   dialogueImages:
   - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
     lines: 2
+  player: {fileID: 0}
 --- !u!1001 &1427870412
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8433,6 +8763,8 @@ MonoBehaviour:
     objects:
     - o: Clyve
       interacted: 0
+    - o: CrossingGuard
+      interacted: 0
 --- !u!4 &1460531289
 Transform:
   m_ObjectHideFlags: 0
@@ -8504,6 +8836,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &1503859159 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 675131971}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1503859163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1503859159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: Holy crap this is exciting!
+  - text: I've never seen a road cone come to life before.
+  - text: I've also never seen one beat up a wimpy kid before!
+  - text: I don't know who to root for!
+  container:
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 4
+  player: {fileID: 0}
 --- !u!1001 &1530608648
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30893,6 +31256,44 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1742092479 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1469577447}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1742092483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742092479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: I didn't mind when they were just leaving dead rodents and lost pets. I
+      would feed those to my dog,
+  - text: but now they're breaking gnomes! I'm gonna have to clean up this mess!
+  - text: My dog can't eat this!
+  container:
+  - effects: []
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 21
+      upper: 27
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 13
+      upper: 17
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 3
+  player: {fileID: 0}
 --- !u!1001 &1778858344
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31048,6 +31449,7 @@ MonoBehaviour:
   dialogueImages:
   - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
     lines: 3
+  player: {fileID: 0}
 --- !u!1 &1953536038
 GameObject:
   m_ObjectHideFlags: 0
@@ -37683,7 +38085,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.x
@@ -37784,6 +38186,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e88c37388c8ddd5409d1ae78f22d62f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2087096599 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 253742754}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2087096603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087096599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: Hi there!
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &2107549505
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37849,6 +38276,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f43982e2a230d947830355b5f90e117, type: 3}
+--- !u!1 &2108454267 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1372984942}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2108454271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108454267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09cf1fdf3c70456408179b28ef0238c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2135361892
 GameObject:
   m_ObjectHideFlags: 0
