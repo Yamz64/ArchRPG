@@ -282,7 +282,7 @@ public class unit
             {
                 sanity = 100;
             }
-            sanBar.GetComponent<Image>().fillAmount = sanity / 100;
+            sanBar.GetComponent<Image>().fillAmount = (float)sanity / 100;
             sanReadOut.text = sanity + " / 100";
         }
     }
@@ -648,10 +648,14 @@ public class unit
         if (sanity <= 0)
         {
             sanity = 0;
+            sanBar.GetComponent<Image>().fillAmount = 0.0f / 100;
+            sanReadOut.text = sanity + " / 100";
             return true;
         }
         else
         {
+            sanBar.GetComponent<Image>().fillAmount = (float)sanity / 100;
+            sanReadOut.text = sanity + " / 100";
             return false;
         }
     }

@@ -3060,10 +3060,18 @@ public class BattleScript : MonoBehaviour
         data.AddItem(new HotDog());
         data.AddItem(new HotDog());
 
+        if (currentUnit == 4)
+        {
+            dialogue.text = "But the party wasn't there...";
+            yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+            state = battleState.HUH;
+            StartCoroutine(battleEnd());
+        }
+
         if (activeEnemies <= 0)
         {
             dialogue.text = "But nobody was there...";
-            yield return new WaitForSeconds(2f);
+            yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
             state = battleState.HUH;
             StartCoroutine( battleEnd() );
         }

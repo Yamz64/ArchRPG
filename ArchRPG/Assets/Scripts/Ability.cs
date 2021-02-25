@@ -615,7 +615,7 @@ namespace EnemyAbilities
             cost = 0;
             target = 0;
             damage = 4;
-            sanity_damage = 0;
+            sanity_damage = 4;
             damageType = 4;
             use_pow = true;
             statusEffect = "Weeping";
