@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class RNGEncounter : MonoBehaviour
 {
+    private enum EncounterType { SINGLE, HOARD };
+    [SerializeField]
+    private EncounterType encounter_type;
+
     [SerializeField]
     public List<string> enemy_names;
 
@@ -68,79 +72,39 @@ public class RNGEncounter : MonoBehaviour
                     {
                         if (Random.Range(0.0f, 100.0f) <= enemy_encounter_chance)
                         {
-                            //save current player's condition and load the battle scene
                             CharacterStatJsonConverter data = new CharacterStatJsonConverter(GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDataMono>().data);
-                            switch (enemy_names.Count)
+                            if (encounter_type == EncounterType.SINGLE)
                             {
-                                //1 enemy
-                                case 1:
-                                    data.SaveEnemyNames(enemy_names[0]);
-                                    break;
-                                //2 enemies (pick how many spawn and then pick a random of the 2
-                                case 2:
-                                    int enemy_num = Random.Range(0, 2);
-                                    if(enemy_num == 0)
-                                    {
-                                        int first_type = Random.Range(0, 2);
-                                        data.SaveEnemyNames(enemy_names[first_type]);
-                                    }
-                                    else
-                                    {
-                                        int first_type = Random.Range(0, 2);
-                                        int second_type = Random.Range(0, 2);
-                                        data.SaveEnemyNames(enemy_names[first_type], enemy_names[second_type]);
-                                    }
-                                    break;
-                                case 3:
-                                    enemy_num = Random.Range(0, 3);
-                                    if (enemy_num == 0)
-                                    {
-                                        int first_type = Random.Range(0, 3);
-                                        data.SaveEnemyNames(enemy_names[first_type]);
-                                    }
-                                    else if(enemy_num == 1)
-                                    {
-                                        int first_type = Random.Range(0, 2);
-                                        int second_type = Random.Range(0, 2);
-                                        data.SaveEnemyNames(enemy_names[first_type], enemy_names[second_type]);
-                                    }
-                                    else
-                                    {
-                                        int first_type = Random.Range(0, 3);
-                                        int second_type = Random.Range(0, 3);
-                                        int third_type = Random.Range(0, 3);
-                                        data.SaveEnemyNames(enemy_names[first_type], enemy_names[second_type], enemy_names[third_type]);
-                                    }
-                                    break;
-                                case 4:
-                                    enemy_num = Random.Range(0, 4);
-                                    if (enemy_num == 0)
-                                    {
-                                        int first_type = Random.Range(0, 4);
-                                        data.SaveEnemyNames(enemy_names[first_type]);
-                                    }
-                                    else if (enemy_num == 1)
-                                    {
-                                        int first_type = Random.Range(0, 2);
-                                        int second_type = Random.Range(0, 2);
-                                        data.SaveEnemyNames(enemy_names[first_type], enemy_names[second_type]);
-                                    }
-                                    else if(enemy_num == 2)
-                                    {
-                                        int first_type = Random.Range(0, 3);
-                                        int second_type = Random.Range(0, 3);
-                                        int third_type = Random.Range(0, 3);
-                                        data.SaveEnemyNames(enemy_names[first_type], enemy_names[second_type], enemy_names[third_type]);
-                                    }
-                                    else
-                                    {
-                                        int first_type = Random.Range(0, 4);
-                                        int second_type = Random.Range(0, 4);
-                                        int third_type = Random.Range(0, 4);
-                                        int fourth_type = Random.Range(0, 4);
-                                        data.SaveEnemyNames(enemy_names[first_type], enemy_names[second_type], enemy_names[third_type], enemy_names[fourth_type]);
-                                    }
-                                    break;
+                                data.SaveEnemyNames(enemy_names[0]);
+                            }
+                            else
+                            {
+                                //first figure out how many enemies to spawn
+                                int enemy_count = Random.Range(1, 5);
+                                string[] chosen_enemies = new string[enemy_count];
+
+                                //pick random enemies from the list of spawnable enemies and save them to the chosen enemies
+                                for (int i = 0; i < enemy_count; i++)
+                                {
+                                    int rand_enemy = Random.Range(0, enemy_names.Count);
+                                    chosen_enemies[i] = enemy_names[rand_enemy];
+                                }
+
+                                switch (enemy_count)
+                                {
+                                    case 1:
+                                        data.SaveEnemyNames(chosen_enemies[0]);
+                                        break;
+                                    case 2:
+                                        data.SaveEnemyNames(chosen_enemies[0], chosen_enemies[1]);
+                                        break;
+                                    case 3:
+                                        data.SaveEnemyNames(chosen_enemies[0], chosen_enemies[1], chosen_enemies[2]);
+                                        break;
+                                    case 4:
+                                        data.SaveEnemyNames(chosen_enemies[0], chosen_enemies[1], chosen_enemies[2], chosen_enemies[3]);
+                                        break;
+                                }
                             }
 
                             //start battle transition and load into the battle
