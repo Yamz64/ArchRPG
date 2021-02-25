@@ -12,6 +12,8 @@ public class SchoolyardAnimation : InteractableBaseClass
         public string text;
     }
 
+    public bool interacted;
+
     [SerializeField]
     public List<ExpandedString> text;
     [SerializeField]
@@ -55,11 +57,15 @@ public class SchoolyardAnimation : InteractableBaseClass
 
     public override void Interact()
     {
-        player.OpenTextBox();
-        player.SetWriteQueue(converted_text);
-        player.SetEffectQueue(container);
-        player.SetImageQueue(image_queue);
-        player.WriteDriver();
-        StartCoroutine(InitiateFight());
+        if (!interacted)
+        {
+            interacted = true;
+            player.OpenTextBox();
+            player.SetWriteQueue(converted_text);
+            player.SetEffectQueue(container);
+            player.SetImageQueue(image_queue);
+            player.WriteDriver();
+            StartCoroutine(InitiateFight());
+        }
     }
 }
