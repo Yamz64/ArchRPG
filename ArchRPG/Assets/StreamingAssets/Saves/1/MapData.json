@@ -27,7 +27,7 @@
             "objects": [
                 {
                     "o": "Clyve",
-                    "interacted": true
+                    "interacted": false
                 },
                 {
                     "o": "CrossingGuard",
@@ -35,7 +35,11 @@
                 },
                 {
                     "o": "TutorialTrafficCone",
-                    "interacted": true
+                    "interacted": false
+                },
+                {
+                    "o": "Jim",
+                    "interacted": false
                 }
             ]
         }
