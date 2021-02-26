@@ -171,6 +171,9 @@ public class BattleScript : MonoBehaviour
     CharacterStatJsonConverter loader;
 
     //Use to play specific sounds with the audio handler
+    //num -- which sound to play
+    //lop -- whether to loop the sound or not
+    //i -- which audio source will play the sound
     public void useSound(int num, bool lop = false, int i = 0)
     {
         if (num == 0)
@@ -762,7 +765,7 @@ public class BattleScript : MonoBehaviour
                 }
             }
 
-            else if (Input.GetButtonDown("Menu") &&
+            else if (Input.GetButtonDown("Cancel") &&
                 transform.GetChild(1).Find("UnitInfo").GetChild(2).GetComponent<Text>().text == "")
             {
                 unit now = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit;
@@ -773,13 +776,13 @@ public class BattleScript : MonoBehaviour
                     + "\nLuck: " + now.getLUCK() + "\nPosition == " + now.position;
                 transform.GetChild(1).Find("UnitInfo").gameObject.SetActive(true);
             }
-            else if ((Input.GetButtonDown("Menu")) &&
+            else if ((Input.GetButtonDown("Cancel")) &&
                 transform.GetChild(1).Find("UnitInfo").GetChild(2).GetComponent<Text>().text != "")
             {
                 transform.GetChild(1).Find("UnitInfo").GetChild(2).GetComponent<Text>().text = "";
                 transform.GetChild(1).Find("UnitInfo").gameObject.SetActive(false);
             }
-            else if (Input.GetButtonDown("Cancel") && currentUnit > 0)
+            else if (Input.GetButtonDown("Menu") && currentUnit > 0)
             {
                 int i = currentUnit - 1;
                 if (partyUnits[i] == null || partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
@@ -2743,7 +2746,7 @@ public class BattleScript : MonoBehaviour
                         if (chance <= 0) chance = 0;
                         if (chance >= 1) chance = 1;
                         int chance2 = (int)(chance * 100);
-                        Debug.Log("Chance of escape == " + chance2);
+                        //Debug.Log("Chance of escape == " + chance2);
                         int ran = Random.Range(0, 100);
                         if (ran < chance2)
                         {
@@ -3128,7 +3131,6 @@ public class BattleScript : MonoBehaviour
     //Player turn, display relevant text
     void playerTurn()
     {
-        Debug.Log("Current == " + currentUnit);
         dialogue.text = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.unitName + "'s Turn";
     }
 
@@ -3978,7 +3980,6 @@ public class BattleScript : MonoBehaviour
         StopCoroutine("playerAttack");
         StopCoroutine("basicAttack");
         StopCoroutine("enemyAttack");
-        Debug.Log("Flee == " + loader.flee);
         if (state == battleState.WIN && enemyUnits.Count == 1)
         {
             dialogue.text = "The " + enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName + " has been defeated";
@@ -4014,7 +4015,6 @@ public class BattleScript : MonoBehaviour
                 }
             }
         }
-        Debug.Log("Flee now == " + loader.flee);
         loader.Save(PlayerPrefs.GetInt("_active_save_file_"));
         yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
         yield return fadeOut();

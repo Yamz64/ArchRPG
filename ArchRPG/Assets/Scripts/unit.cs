@@ -169,11 +169,11 @@ public class unit
     //Function to set up the HUD with important data
     public void setHUD(bool pic = false)        
     {
-        Debug.Log("view sprite == " + view.sprite);
+        //Debug.Log("view sprite == " + view.sprite);
         if (!pic)
         view.sprite = Resources.Load<Sprite>(ImageFilePath);
 
-        Debug.Log("view sprite now == " + view.sprite);
+        //Debug.Log("view sprite now == " + view.sprite);
         nameText.text = unitName;
         levelText.text = "Lvl : " + level;
         hpBar.fillAmount = (float)currentHP / maxHP;

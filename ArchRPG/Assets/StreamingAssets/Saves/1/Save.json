@@ -224,7 +224,7 @@
                 -1,
                 -1,
                 -1,
-                98,
+                99,
                 -1,
                 -1,
                 -1,
@@ -240,5 +240,5 @@
         "Jim"
     ],
     "e_abilities": [],
-    "enemy_names": []
+    "enemy_names": ["Killer Cone"]
 }
