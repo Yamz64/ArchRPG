@@ -53,7 +53,8 @@ public class RNGEncounter : MonoBehaviour
         if (danger)
         {
             //if the player is moving decrement the amount of time it takes to encounter an enemy
-            if(GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>().velocity.magnitude != 0)
+            if(GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>().velocity.magnitude != 0 && 
+                !GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().intangible)
             {
                 //if it is not time to see if the player has encountered an enemy decrement the amount of time to reach the enemy
                 if(roll_delay < roll_max)

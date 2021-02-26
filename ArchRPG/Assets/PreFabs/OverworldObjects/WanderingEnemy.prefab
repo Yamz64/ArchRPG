@@ -198,8 +198,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41a17be775004374fa79420f6db613f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  encounter_type: 0
   move_speed: 4
   aggro_range: 5
   attack_delay: 1
   enemy_names:
   - Eldritch Gunner
+  initiated_combat: 0

@@ -18,7 +18,8 @@ public class OverworldEncounter : MonoBehaviour
 
     private float stored_delay;
 
-    private bool initiated_combat;
+    [HideInInspector]
+    public bool initiated_combat;
 
     private Rigidbody2D rb;
     private NPCAnimationHandler anim;
@@ -54,7 +55,8 @@ public class OverworldEncounter : MonoBehaviour
     void Update()
     {
         //see if the player is within the aggro_range
-        if (Vector2.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position) < aggro_range)
+        if (Vector2.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position) < aggro_range &&
+            !GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().intangible)
         {
             anim.speedup = true;
             //begin decrementing a timer after which the enemy will chase down the player
@@ -75,47 +77,51 @@ public class OverworldEncounter : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            CharacterStatJsonConverter data = new CharacterStatJsonConverter(GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDataMono>().data);
-            if (encounter_type == EncounterType.SINGLE)
+            if (!other.GetComponent<PlayerMovement>().intangible)
             {
-                data.SaveEnemyNames(enemy_names[0]);
-            }
-            else
-            {
-                //first figure out how many enemies to spawn
-                int enemy_count = Random.Range(1, 5);
-                string[] chosen_enemies = new string[enemy_count];
-
-                //pick random enemies from the list of spawnable enemies and save them to the chosen enemies
-                for(int i=0; i<enemy_count; i++)
+                CharacterStatJsonConverter data = new CharacterStatJsonConverter(GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDataMono>().data);
+                if (encounter_type == EncounterType.SINGLE)
                 {
-                    int rand_enemy = Random.Range(0, enemy_names.Count);
-                    chosen_enemies[i] = enemy_names[rand_enemy];
+                    data.SaveEnemyNames(enemy_names[0]);
+                }
+                else
+                {
+                    //first figure out how many enemies to spawn
+                    int enemy_count = Random.Range(1, 5);
+                    string[] chosen_enemies = new string[enemy_count];
+
+                    //pick random enemies from the list of spawnable enemies and save them to the chosen enemies
+                    for (int i = 0; i < enemy_count; i++)
+                    {
+                        int rand_enemy = Random.Range(0, enemy_names.Count);
+                        chosen_enemies[i] = enemy_names[rand_enemy];
+                    }
+
+                    switch (enemy_count)
+                    {
+                        case 1:
+                            data.SaveEnemyNames(chosen_enemies[0]);
+                            break;
+                        case 2:
+                            data.SaveEnemyNames(chosen_enemies[0], chosen_enemies[1]);
+                            break;
+                        case 3:
+                            data.SaveEnemyNames(chosen_enemies[0], chosen_enemies[1], chosen_enemies[2]);
+                            break;
+                        case 4:
+                            data.SaveEnemyNames(chosen_enemies[0], chosen_enemies[1], chosen_enemies[2], chosen_enemies[3]);
+                            break;
+                    }
                 }
 
-                switch (enemy_count)
+                data.active_scene = SceneManager.GetActiveScene().name;
+                data.position = GameObject.FindGameObjectWithTag("Player").transform.position;
+                data.Save(PlayerPrefs.GetInt("_active_save_file_"));
+                if (!initiated_combat)
                 {
-                    case 1:
-                        data.SaveEnemyNames(chosen_enemies[0]);
-                        break;
-                    case 2:
-                        data.SaveEnemyNames(chosen_enemies[0], chosen_enemies[1]);
-                        break;
-                    case 3:
-                        data.SaveEnemyNames(chosen_enemies[0], chosen_enemies[1], chosen_enemies[2]);
-                        break;
-                    case 4:
-                        data.SaveEnemyNames(chosen_enemies[0], chosen_enemies[1], chosen_enemies[2], chosen_enemies[3]);
-                        break;
+                    StartCoroutine(CombatSequence());
+                    initiated_combat = true;
                 }
-            }
-            
-            data.active_scene = SceneManager.GetActiveScene().name;
-            data.Save(PlayerPrefs.GetInt("_active_save_file_"));
-            if (!initiated_combat)
-            {
-                StartCoroutine(CombatSequence());
-                initiated_combat = true;
             }
         }
     }

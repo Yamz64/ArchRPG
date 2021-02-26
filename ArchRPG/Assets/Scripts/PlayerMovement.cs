@@ -4,17 +4,37 @@ using UnityEngine;
 
 public class PlayerMovement : CharacterAnimationHandler
 {
+    public float i_frame_count;
     public bool interaction_protection;
+    [HideInInspector]
+    public bool intangible;
     public int direction;
     public float move_speed;
     public float interaction_distance;
 
     private Rigidbody2D rb;
 
+    IEnumerator i_frame_sequence()
+    {
+        intangible = true;
+        GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, .5f);
+        yield return new WaitForSeconds(i_frame_count);
+        intangible = false;
+        GetComponent<SpriteRenderer>().color = Color.white;
+    }
+
     private new void Start()
     {
+        intangible = false;
         rb = GetComponent<Rigidbody2D>();
         base.Start();
+
+        //see if the player just fleed, and if they did, put them in i_frames
+        CharacterStatJsonConverter data = new CharacterStatJsonConverter(PlayerPrefs.GetInt("_active_save_file_"));
+        if (data.flee)
+        {
+            StartCoroutine(i_frame_sequence());
+        }
     }
 
     public void Update()

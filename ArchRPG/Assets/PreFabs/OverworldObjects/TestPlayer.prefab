@@ -7540,7 +7540,9 @@ MonoBehaviour:
   - {fileID: -291799078283980262, guid: 40fa4be8adfabd143985c5fe86a13a65, type: 3}
   - {fileID: -4569180058710301178, guid: 40fa4be8adfabd143985c5fe86a13a65, type: 3}
   - {fileID: -291799078283980262, guid: 40fa4be8adfabd143985c5fe86a13a65, type: 3}
+  i_frame_count: 1.5
   interaction_protection: 0
+  intangible: 0
   direction: 2
   move_speed: 5
   interaction_distance: 1

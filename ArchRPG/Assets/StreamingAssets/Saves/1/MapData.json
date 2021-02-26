@@ -32,6 +32,10 @@
                 {
                     "o": "CrossingGuard",
                     "interacted": false
+                },
+                {
+                    "o": "TutorialTrafficCone",
+                    "interacted": true
                 }
             ]
         }
