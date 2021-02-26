@@ -854,7 +854,8 @@ public class CharacterStatJsonConverter
             temp.SetName(names[i]);
             temp.SetLVL(levels[i]);
             temp.SetPos(positions[i]);
-            
+            temp.UpdateStats();
+
             temp.SetHP(HPs[i]);
             temp.SetSP(SPs[i]);
             temp.SetSAN(SANs[i]);
