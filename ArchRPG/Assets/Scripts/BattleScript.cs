@@ -2733,7 +2733,7 @@ public class BattleScript : MonoBehaviour
                 //Attempt to flee from battle
                 else if (actions[z].getType() == "Flee" && state == battleState.ATTACK)
                 {
-                    if (temp[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                    if (temp[actions[z].getID()].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                     {
                         dialogue.text = temp[actions[z].getID()].GetComponent<UnitMono>().mainUnit.unitName + " attempted to flee.";
                         yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
@@ -2878,6 +2878,7 @@ public class BattleScript : MonoBehaviour
         //Load in all party members
         for (int i = 0; i < loader.names.Length; i++)
         {
+            partyNames.Add(loader.names[i]);
             if (loader.HPs[i] > 0)
             {
                 unit p;
@@ -2945,7 +2946,7 @@ public class BattleScript : MonoBehaviour
                 {
                     pc = unitGo.gameObject.GetComponent<UnitMono>().mainUnit;
                 }
-                partyNames.Add(unitGo.GetComponent<UnitMono>().mainUnit.unitName);
+                //partyNames.Add(unitGo.GetComponent<UnitMono>().mainUnit.unitName);
                 activeUnits += 1;
             }
             else
@@ -3127,6 +3128,7 @@ public class BattleScript : MonoBehaviour
     //Player turn, display relevant text
     void playerTurn()
     {
+        Debug.Log("Current == " + currentUnit);
         dialogue.text = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.unitName + "'s Turn";
     }
 
@@ -3976,6 +3978,7 @@ public class BattleScript : MonoBehaviour
         StopCoroutine("playerAttack");
         StopCoroutine("basicAttack");
         StopCoroutine("enemyAttack");
+        Debug.Log("Flee == " + loader.flee);
         if (state == battleState.WIN && enemyUnits.Count == 1)
         {
             dialogue.text = "The " + enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName + " has been defeated";
@@ -4006,10 +4009,12 @@ public class BattleScript : MonoBehaviour
                     if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName == partyNames[x])
                     {
                         loader.storeUnit(partyUnits[i], x);
+                        break;
                     }
                 }
             }
         }
+        Debug.Log("Flee now == " + loader.flee);
         loader.Save(PlayerPrefs.GetInt("_active_save_file_"));
         yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
         yield return fadeOut();
