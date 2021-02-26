@@ -3991,6 +3991,7 @@ public class BattleScript : MonoBehaviour
         else if (state == battleState.FLEE)
         {
             dialogue.text = "The party managed to escape";
+            loader.flee = true;
         }
         else if (state == battleState.HUH)
         {
