@@ -1,12 +1,12 @@
 {
     "position": {
-        "x": 0.0,
-        "y": 0.0
+        "x": -11.5,
+        "y": 6.0
     },
     "flee": false,
     "unlocked_characters": [
-        true,
-        true,
+        false,
+        false,
         false,
         false
     ],
@@ -18,66 +18,24 @@
     "progress": 0,
     "money": 50,
     "HPs": [
-        19,
-        0,
         19
     ],
     "SPs": [
-        14,
-        12,
         18
     ],
     "SANs": [
-        100,
-        100,
         100
     ],
     "XPs": [
-        98,
-        98,
-        98
+        110
     ],
     "levels": [
-        3,
-        3,
-        3
+        1
     ],
     "positions": [
-        0,
-        1,
-        2
+        0
     ],
     "weapons": [
-        {
-            "name": "",
-            "description": "",
-            "image_file_path": "",
-            "amount": 0,
-            "limit": 0,
-            "type": 0,
-            "damage_buff": 0,
-            "power_buff": 0,
-            "defense_buff": 0,
-            "will_buff": 0,
-            "resistance_buff": 0,
-            "speed_buff": 0,
-            "luck_buff": 0
-        },
-        {
-            "name": "",
-            "description": "",
-            "image_file_path": "",
-            "amount": 0,
-            "limit": 0,
-            "type": 0,
-            "damage_buff": 0,
-            "power_buff": 0,
-            "defense_buff": 0,
-            "will_buff": 0,
-            "resistance_buff": 0,
-            "speed_buff": 0,
-            "luck_buff": 0
-        },
         {
             "name": "",
             "description": "",
@@ -109,69 +67,9 @@
             "resistance_buff": 0,
             "speed_buff": 0,
             "luck_buff": 0
-        },
-        {
-            "name": "",
-            "description": "",
-            "image_file_path": "",
-            "amount": 0,
-            "limit": 0,
-            "type": 0,
-            "damage_buff": 0,
-            "power_buff": 0,
-            "defense_buff": 0,
-            "will_buff": 0,
-            "resistance_buff": 0,
-            "speed_buff": 0,
-            "luck_buff": 0
-        },
-        {
-            "name": "",
-            "description": "",
-            "image_file_path": "",
-            "amount": 0,
-            "limit": 0,
-            "type": 0,
-            "damage_buff": 0,
-            "power_buff": 0,
-            "defense_buff": 0,
-            "will_buff": 0,
-            "resistance_buff": 0,
-            "speed_buff": 0,
-            "luck_buff": 0
         }
     ],
     "trinkets": [
-        {
-            "name": "",
-            "description": "",
-            "image_file_path": "",
-            "amount": 0,
-            "limit": 0,
-            "type": 0,
-            "damage_buff": 0,
-            "power_buff": 0,
-            "defense_buff": 0,
-            "will_buff": 0,
-            "resistance_buff": 0,
-            "speed_buff": 0,
-            "luck_buff": 0
-        },
-        {
-            "name": "",
-            "description": "",
-            "image_file_path": "",
-            "amount": 0,
-            "limit": 0,
-            "type": 0,
-            "damage_buff": 0,
-            "power_buff": 0,
-            "defense_buff": 0,
-            "will_buff": 0,
-            "resistance_buff": 0,
-            "speed_buff": 0,
-            "luck_buff": 0
-        },
         {
             "name": "",
             "description": "",
@@ -203,41 +101,11 @@
                 -1,
                 -1
             ]
-        },
-        {
-            "status_effects": [
-                -1,
-                -1,
-                -1,
-                -1,
-                4,
-                -1,
-                -1,
-                -1,
-                -1,
-                -1
-            ]
-        },
-        {
-            "status_effects": [
-                -1,
-                -1,
-                -1,
-                -1,
-                -1,
-                -1,
-                -1,
-                -1,
-                -1,
-                -1
-            ]
         }
     ],
     "active_scene": "",
     "names": [
-        "Player",
-        "Clyve",
-        "Jim"
+        "Player"
     ],
     "e_abilities": [],
     "enemy_names": []
