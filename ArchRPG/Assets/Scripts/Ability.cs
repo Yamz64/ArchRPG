@@ -57,6 +57,8 @@ public class Ability
     public int nextPriority = 0;    //Priority value to change to under certain circumstances
     public int statCounter;         //If != 0, how long until the move can not be used for
     public string bigStatus = "";   //A status effect that an ability will do extra with
+    public int alteredStatus = 0;
+    public int alteredCrit = 0;
 }
  
 
@@ -901,6 +903,18 @@ namespace PlayerAbilities
             return "The " + target.unitName + " is wounded!";
         }
     }
+
+    public class Analysis : Ability
+    {
+        public Analysis()
+        {
+            name = "Analysis";
+            desc1 = "";
+            desc2 = "After putting aside your clear superiority, you come up with an unbiased view of the enemies weakness and how to exploit it.";
+            cost = 4;
+            position = 1;
+        }
+    }
 }
 
 namespace ClyveAbilities
@@ -989,6 +1003,11 @@ namespace JimAbilities
     }
 }
 
+namespace LucyAbilities
+{
+
+}
+
 namespace NormAbilities
 {
     public class PoopThrow : Ability
@@ -1025,6 +1044,49 @@ namespace NormAbilities
             target = user;
             user.setHP(user.getHP() + 25);
             if (user.getHP() > user.maxHP) user.setHP(user.maxHP);
+        }
+    }
+}
+
+namespace RalphAbilities
+{
+    public class PistolWhip : Ability
+    {
+        public PistolWhip()
+        {
+            name = "Pistol Whip";
+            desc1 = "Frontline Melee Attack\nCost = 2";
+            desc2 = "Little Ralphy knows that if he actually fired his glock then there " +
+                "would be a lot of paperwork that would ensure, but if he uses it to pistol " +
+                "whip people, then there’s less paperwork!";
+            cost = 2;
+            damage = 16;
+            damageType = 0;
+            position = 1;
+            statusEffect = "Blunt Trauma";
+        }
+    }
+
+    public class SmokeBreak : Ability
+    {
+        public SmokeBreak()
+        {
+            name = "Smoke Break";
+            desc1 = "Backline Support Ability\nCost = 1";
+            desc2 = "Despite various warnings from the AMA, his ‘parents’, " +
+                "and movie ads about smoking causing cancer, Little Ralphy shares " +
+                "a cig with a party member to reduce stress.";
+            cost = 1;
+            damage = 0;
+            type = 1;
+            position = 2;
+        }
+
+        public override void UseAttack(unit user, unit target)
+        {
+            user.setSP(user.getSP() - cost);
+            target.sanity += 2;
+            //roll random number for cancer
         }
     }
 }
