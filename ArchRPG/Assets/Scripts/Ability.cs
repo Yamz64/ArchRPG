@@ -26,7 +26,7 @@ public class Ability
     public virtual string OutputText(unit user, unit target) { return null; }
 
     public bool eldritch = false;   //Whether the ability is eldritch or not
-    public int target = 0;          //0-Single, 1-Across, 2-Down, 3-All
+    public int target = 0;          //0-Single, 1-Across, 2-Down, 3-All, 4-2 Adjacent enemies
     public int enemyTarget = 0;     //Targets for the ability: 0-Any, 1-Front, 2-Back
     public string name;             //The name of the ability
     public int type;                //int denotes who to use ability on --> 0 == enemy, 1 == ally, 2 == self
@@ -35,14 +35,14 @@ public class Ability
     public int cost = 0;            //int denotes the cost of using the ability (if any)
     public int damage;              //int denotes the amount of damage the attack will do
     public int sanity_damage;       //int denotes the amount of sanity damage the attack will do
-    /*
-        * 0 = Physical
-        * 1 = Special
-        * 2 = Psychic
-        * 3 = Acid
-        * 4 = Fire 
-        * 5 = Electric
-        */
+    //--MISC STATS--
+    /* DAMAGE TYPES
+     * 0 - Physical
+     * 1 - Fire
+     * 2 - Electric
+     * 3 - Chemical
+     * 4 - Weird
+    */
     public string statusEffect = "";//String that matches a specific status effect to inflict
     public int damageType;          //The type of damage dealt by the attack
     public int level_cost;          //cost to purchase this ability on levelup (only applies to eldritch abilities)
@@ -909,7 +909,7 @@ namespace PlayerAbilities
         public Analysis()
         {
             name = "Analysis";
-            desc1 = "";
+            desc1 = "Opens the enemy up to more effective attacks\nCost = 4";
             desc2 = "After putting aside your clear superiority, you come up with an unbiased view of the enemies weakness and how to exploit it.";
             cost = 4;
             position = 1;
@@ -950,6 +950,22 @@ namespace ClyveAbilities
             position = 0;
             damageType = 3;
             statusEffect = "Weeping";
+        }
+    }
+
+    public class Halitosis : Ability
+    {
+        public Halitosis()
+        {
+            name = "Halitosis";
+            desc1 = "AOE status effect attack\nCost = 6";
+            desc2 = "It is quite clear the Clyve hasn’t brushed his teeth… like ever, it’s remarkable he still has his teeth.";
+            cost = 6;
+            position = 1;
+            damage = 5;
+            damageType = 3;
+            target = 1;
+            statusEffect = "Vomiting";
         }
     }
 }
@@ -1001,11 +1017,83 @@ namespace JimAbilities
             if (target.getHP() > target.maxHP) target.setHP(target.maxHP);
         }
     }
+
+    public class UncannyRemedy : Ability
+    {
+        public UncannyRemedy()
+        {
+            name = "Uncanny Remedy";
+            desc1 = "Full party weak heal (scales with POW)\nCost = 5";
+            desc2 = "The pain is suddenly, gone? It seems Jim’s concussed brain has tapped into some strange curative magic.";
+            cost = 5;
+            position = 2;
+            type = 1;
+            target = 3;
+        }
+
+        public override void UseAttack(unit user, List<unit> targets)
+        {
+            user.setSP(user.currentSP - cost);
+            for (int i = 0; i < targets.Count; i++)
+            {
+                if (targets[i] != null)
+                {
+                    if (targets[i].currentHP > 0)
+                    {
+                        targets[i].healDamage((int)(5.0 * (float)user.POW / 10));
+                    }
+                }
+            }
+        }
+    }
 }
 
 namespace LucyAbilities
 {
+    public class FungalRat : Ability
+    {
+        public FungalRat()
+        {
+            name = "Fungal Rat";
+            desc1 = "Single target debuff attack\nCost = 4";
+            desc2 = "These rats have been bred to be the perfect host " +
+                "for a parasitic fungus, the result is unsightly and churns the stomach to look at.";
+            cost = 4;
+            position = 2;
+            statusEffect = "Aspiration";
+            damage = 0;
+            damageType = 3;
+        }
+    }
 
+    public class RodentialKindling : Ability
+    {
+        public RodentialKindling()
+        {
+            name = "Rodential Kindling";
+            desc1 = "Single target debuff attack\nCost = 6";
+            desc2 = "Lucy commands a breed of rat with particularly flammable " +
+                "skin oil and dry fur to pile onto a target and make them more flammable.";
+            cost = 6;
+            position = 2;
+            statusEffect = "Flammable";
+            damageType = 1;
+        }
+    }
+
+    public class FeedTheMasses : Ability
+    {
+        public FeedTheMasses()
+        {
+            name = "Feed the Masses";
+            desc1 = "A strong debuff attack\nCost = 8";
+            desc2 = "Lucy commands her “children” to feed on a " +
+                "target, their appetite is particularly voracious today.";
+            cost = 8;
+            position = 2;
+            statusEffect = "Consumed";
+        }
+    }
 }
 
 namespace NormAbilities
@@ -1044,6 +1132,20 @@ namespace NormAbilities
             target = user;
             user.setHP(user.getHP() + 25);
             if (user.getHP() > user.maxHP) user.setHP(user.maxHP);
+        }
+    }
+
+    public class PrimatePowerbomb : Ability
+    {
+        public PrimatePowerbomb()
+        {
+            name = "Primate Powerbomb";
+            desc1 = "Powerful Physical attack to hit 2 enemies\nCost = 8";
+            desc2 = "Norm has always been a large fan of professional wrestling, and decides to practice some of his moves.";
+            cost = 8;
+            target = 4;
+            position = 1;
+            damage = 15;
         }
     }
 }
@@ -1089,6 +1191,21 @@ namespace RalphAbilities
             //roll random number for cancer
         }
     }
+
+    public class Taser : Ability
+    {
+        public Taser()
+        {
+            name = "Taser";
+            desc1 = "A stunning electrical attack\nCost = 10";
+            desc2 = "Stop right there- oh shit my finger slipped… Welp that’s gonna’ be a lot of paperwork...";
+            cost = 10;
+            damage = 10;
+            damageType = 2;
+            position = 1;
+            statusEffect = "Restrained";
+        }
+    }
 }
 
 namespace ShirleyAbilities
@@ -1121,6 +1238,37 @@ namespace ShirleyAbilities
             type = 1;
             position = 0;
             statusEffect = "Zealous";
+        }
+    }
+
+    public class BugleCall : Ability
+    {
+        public BugleCall()
+        {
+            name = "Bugle Call";
+            desc1 = "Backline support ability\nCost = 7";
+            desc2 = "You’re not sure where Shirley got a bugle from, " +
+                "in fact it might just be a car funnel taped to a kazoo, " +
+                "all you know is that you’re real confident you’re gonna win this!";
+            cost = 7;
+            type = 1;
+            target = 4;
+            position = 2;
+        }
+
+        public override void UseAttack(unit user, List<unit> targets)
+        {
+            user.setSP(user.currentSP - cost);
+            for (int i = 0; i < targets.Count; i++)
+            {
+                if (targets[i] != null)
+                {
+                    if (targets[i].currentHP > 0)
+                    {
+                        //Give the party units confidence
+                    }
+                }
+            }
         }
     }
 }
