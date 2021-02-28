@@ -42,6 +42,15 @@
                     "interacted": false
                 }
             ]
+        },
+        {
+            "name": "Schoolyard",
+            "objects": [
+                {
+                    "o": "Danny2",
+                    "interacted": false
+                }
+            ]
         }
     ]
 }

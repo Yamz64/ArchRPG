@@ -8,10 +8,10 @@ public static class CutsceneHelper
     {
         Vector2 start_pos = character.transform.position;
         float progress = 0;
-        while (progress < 1)
+        while (progress < time)
         {
-            progress += 1 / (60f * time);
-            character.transform.position = Vector3.Lerp(start_pos, destination, progress);
+            progress += 1f / 60f;
+            character.transform.position = Vector3.Lerp(start_pos, destination, progress/time);
             yield return new WaitForSeconds(1f / 60f);
         }
         character.transform.position = destination;
