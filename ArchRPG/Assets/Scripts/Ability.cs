@@ -817,6 +817,7 @@ namespace EnemyAbilities
         {
             name = "Sniff Out Crime";
             sanity_damage = 3;
+            use_pow = true;
             priority = defaultPriority = 3;
             statusEffect = "Analyzed";
         }

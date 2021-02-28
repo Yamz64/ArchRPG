@@ -2535,19 +2535,45 @@ public class BattleScript : MonoBehaviour
                         continue;
                     }
 
+                    if (temp[ind].GetComponent<UnitMono>().mainUnit.statuses[1] != -1)
+                    {
+                        int perc = temp[ind].GetComponent<UnitMono>().mainUnit.maxHP / 16;
+                        //int dum = UnityEngine.Random.Range(1, 4);
+                        //if (dum == 1)
+                        //{
+                        newd = temp[ind].GetComponent<UnitMono>().mainUnit.takeDamage(perc);
+                            dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " took damage from aspirating.";
+                            yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
+                            yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                        //}
+                    }
+                    if (newd)
+                    {
+                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " threw up too much blood.";
+                        yield return unitDeath(temp[ind].GetComponent<UnitMono>().mainUnit);
+                        partyDeaths++;
+                        yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                        if (partyDeaths == activeUnits)
+                        {
+                            state = battleState.LOSE;
+                            yield return battleEnd();
+                        }
+                        continue;
+                    }
+
                     //Check if unit is consumed
                     if (temp[ind].GetComponent<UnitMono>().mainUnit.statuses[9] != -1)
                     {
                         int perc = temp[ind].GetComponent<UnitMono>().mainUnit.maxHP / 12;
-                        int dum = UnityEngine.Random.Range(1, 4);
-                        if (dum == 1)
-                        {
+                        //int dum = UnityEngine.Random.Range(1, 4);
+                        //if (dum == 1)
+                        //{
                             newd = temp[ind].GetComponent<UnitMono>().mainUnit.takeDamage(perc);
                             newds = temp[ind].GetComponent<UnitMono>().mainUnit.takeSanityDamage(5);
                             dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " is being consumed.";
                             yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
                             yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
-                        }
+                        //}
                     }
                     if (newd)
                     {
@@ -2561,6 +2587,20 @@ public class BattleScript : MonoBehaviour
                             yield return battleEnd();
                         }
                         continue;
+                    }
+
+                    if (temp[ind].GetComponent<UnitMono>().mainUnit.statuses[13] != -1)
+                    {
+                        newd = temp[ind].GetComponent<UnitMono>().mainUnit.takeSanityDamage(3);
+                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " is suffering from Hysteria.";
+                        yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
+                        yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                    }
+                    if (newd)
+                    {
+                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " is on the verge of Insanity.";
+                        yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
+                        yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
                     }
                 }
                 //Check if an enemy should take damage from a status effect
@@ -2648,24 +2688,6 @@ public class BattleScript : MonoBehaviour
                     }
                 }
                 
-                //Use attack
-                /*
-                if (actions[z].getType() == "attack" && state == battleState.ATTACK)
-                {
-                    if (enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.currentHP > 0)
-                    {
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
-                            temp[ind].GetComponent<UnitMono>().mainUnit.attacks[actions[z].getIndex()].name;
-                        yield return playerAttack(actions[z].getIndex(), actions[z].getTarget(),
-                            temp[ind].GetComponent<UnitMono>().mainUnit, enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit);
-                    }
-                    else
-                    {
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " tried attacking " +
-                            enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName + ", but they weren't there";
-                    }
-                }
-                */
                 //Use offensive ability
                 if (actions[z].getType() == "ability" && state == battleState.ATTACK)
                 {

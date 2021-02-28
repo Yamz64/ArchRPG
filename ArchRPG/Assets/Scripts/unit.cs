@@ -16,7 +16,7 @@ public class unit
 
         abilities = new List<Ability>();
         statuses = new List<int>();
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 15; i++)
         {
             statuses.Add(-1);
         }
@@ -31,6 +31,11 @@ public class unit
         statusIndex.Add("Neurotic");
         statusIndex.Add("Restrained");
         statusIndex.Add("Consumed");
+        statusIndex.Add("Confident");
+        statusIndex.Add("Diseased");
+        statusIndex.Add("Flammable");
+        statusIndex.Add("Hysteria");
+        statusIndex.Add("Analyzed");
     }
     //Copy the numerical statistics of a unit
     public void copyUnitStats(unit ver)
@@ -530,15 +535,20 @@ public class unit
                     }
 
                     //Check if WILL is affected
-                    if (target.statuses[7] == -1)
+                    if (target.statuses[7] == target.statuses[10])
                     {
                         valS -= (int)(valS * (float)(target.WILL / 300));
                         val -= (int)(val * (float)(target.WILL / 300));
                     }
-                    else
+                    else if (target.statuses[7] != -1)
                     {
                         valS -= (int)(valS * (float)((target.WILL * 0.75) / 300));
                         val -= (int)(val * (float)((target.WILL * 0.75) / 300));
+                    }
+                    else
+                    {
+                        valS -= (int)(valS * (float)((target.WILL * 1.25) / 300));
+                        val -= (int)(val * (float)((target.WILL * 1.25) / 300));
                     }
                 }
                 //Check if target is weak or resistant to a certain damage type
@@ -551,7 +561,10 @@ public class unit
                     val = (int)(val * 0.5);
                 }
                 int critBuff = ata.alteredCrit;
-                
+                if (target.statuses[14] != -1)
+                {
+                    critBuff += 15;
+                }
                 //Check if the unit gets a crit
                 int crit = UnityEngine.Random.Range(1, 101);
                 if (crit < (LCK/3) + critBuff)
