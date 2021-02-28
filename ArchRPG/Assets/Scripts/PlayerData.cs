@@ -23,6 +23,7 @@ public class PlayerData : CharacterStats
             SetPos(temp.GetPos());
             SetSavedPosition(temp.GetSavedPosition());
             SetMoney(temp.GetMoney());
+            SetProgress(temp.GetProgress());
             
             for(int i=0; i<temp.GetInventorySize(); i++)
             {

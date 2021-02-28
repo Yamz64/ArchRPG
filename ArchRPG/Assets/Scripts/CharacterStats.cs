@@ -727,6 +727,7 @@ public class CharacterStatJsonConverter
         p.SetPos(positions[0]);
         p.SetSavedPosition(position);
         p.SetMoney(money);
+        p.SetProgress(progress);
 
         //update other stats as well as the experience level
         p.UpdateStats();

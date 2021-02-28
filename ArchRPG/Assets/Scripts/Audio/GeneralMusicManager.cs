@@ -29,8 +29,7 @@ public class GeneralMusicManager : MonoBehaviour
                     break;
                 }
             }
-
-            Debug.Log(valid);
+            
             if (!valid) Destroy(gameObject);
         }
     }
