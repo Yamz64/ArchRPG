@@ -550,9 +550,11 @@ public class unit
                 {
                     val = (int)(val * 0.5);
                 }
+                int critBuff = ata.alteredCrit;
+                
                 //Check if the unit gets a crit
                 int crit = UnityEngine.Random.Range(1, 101);
-                if (crit < LCK/3)
+                if (crit < (LCK/3) + critBuff)
                 {
                     val += (val / 2);
                     Debug.Log("Got a crit!");
@@ -753,6 +755,31 @@ public class unit
         {
             ran = UnityEngine.Random.Range(1, 3);
             statuses[9] = ran;
+        }
+        else if (id.Equals("Confident")     && statuses[10] == -1)
+        {
+            ran = UnityEngine.Random.Range(5, 9);
+            statuses[10] = ran;
+        }
+        else if (id.Equals("Diseased")      && statuses[11] == -1)
+        {
+            ran = UnityEngine.Random.Range(5, 9);
+            statuses[11] = ran;
+        }
+        else if (id.Equals("Flammable")     && statuses[12] == -1)
+        {
+            ran = UnityEngine.Random.Range(3, 6);
+            statuses[12] = ran;
+        }
+        else if (id.Equals("Hysteria")      && statuses[13] == -1)
+        {
+            ran = UnityEngine.Random.Range(7, 11);
+            statuses[13] = ran;
+        }
+        else if (id.Equals("Analyzed")      && statuses[14] == -1)
+        {
+            ran = UnityEngine.Random.Range(5, 9);
+            statuses[14] = ran;
         }
         status = "";
 
@@ -1145,6 +1172,10 @@ public class PlayerUnit : unit
         if (level >= 4)
         {
             abilities.Add(new PlayerAbilities.Diagnosis());
+        }
+        if (level >= 7)
+        {
+            abilities.Add(new PlayerAbilities.Analysis());
         }
     }
 
@@ -1665,6 +1696,10 @@ public class ClyveUnit : unit
         if (level >= 3)
         {
             abilities.Add(new ClyveAbilities.ShoeRemoval());
+        }
+        if (level >= 6)
+        {
+            abilities.Add(new ClyveAbilities.Halitosis());
         }
     }
 
@@ -2187,6 +2222,10 @@ public class JimUnit : unit
         {
             abilities.Add(new JimAbilities.Bandaid());
         }
+        if (level >= 6)
+        {
+            abilities.Add(new JimAbilities.UncannyRemedy());
+        }
     }
 
     public override void updateUnit(int levl = 1)
@@ -2446,7 +2485,7 @@ public class LucyUnit : unit
     public LucyUnit(int lev = 1)
     {
         unitName = "Lucy";
-        ImageFilePath = "CharacterSprites/Teacher2";
+        ImageFilePath = "CharacterSprites/Lucy";
         loadSprites();
         level = lev;
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
@@ -2698,13 +2737,17 @@ public class LucyUnit : unit
                 break;
         }
 
-        if (level >= 2)
+        if (level >= 1)
         {
-            abilities.Add(new NormAbilities.PoopThrow());
+            abilities.Add(new LucyAbilities.FungalRat());
         }
         if (level >= 5)
         {
-            abilities.Add(new NormAbilities.EatBanana());
+            abilities.Add(new LucyAbilities.RodentialKindling());
+        }
+        if (level >= 8)
+        {
+            abilities.Add(new LucyAbilities.FeedTheMasses());
         }
     }
 
@@ -3225,6 +3268,10 @@ public class NormUnit : unit
         {
             abilities.Add(new NormAbilities.EatBanana());
         }
+        if (level >= 8)
+        {
+            abilities.Add(new NormAbilities.PrimatePowerbomb());
+        }
     }
 
     public override void updateUnit(int levl = 1)
@@ -3484,11 +3531,11 @@ public class RalphUnit : unit
     public RalphUnit(int lev = 1)
     {
         unitName = "Little Ralphy";
-        ImageFilePath = "CharacterSprites/Crossing Guard";
+        ImageFilePath = "CharacterSprites/Ralph";
         loadSprites();
         level = lev;
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
-        weaknesses[4] = true;
+        weaknesses[2] = true;
 
         switch (level)
         {
@@ -3736,13 +3783,17 @@ public class RalphUnit : unit
                 break;
         }
 
-        if (level >= 2)
+        if (level >= 1)
         {
-            abilities.Add(new NormAbilities.PoopThrow());
+            abilities.Add(new RalphAbilities.PistolWhip());
         }
-        if (level >= 5)
+        if (level >= 4)
         {
-            abilities.Add(new NormAbilities.EatBanana());
+            abilities.Add(new RalphAbilities.SmokeBreak());
+        }
+        if (level >= 6)
+        {
+            abilities.Add(new RalphAbilities.Taser());
         }
     }
 
@@ -4263,6 +4314,10 @@ public class ShirleyUnit : unit
         {
             abilities.Add(new ShirleyAbilities.Frontline());
         }
+        if (level >= 6)
+        {
+            abilities.Add(new ShirleyAbilities.BugleCall());
+        }
     }
 
     public override void updateUnit(int levl = 1)
@@ -4697,6 +4752,64 @@ public class StudentBody : unit
         abilities.Add(new EnemyAbilities.LunchMoney());
         abilities.Add(new EnemyAbilities.WarmUps());
         abilities.Add(new EnemyAbilities.DarkSmoke());
+    }
+}
+
+public class Vermin : unit
+{
+    public Vermin()
+    {
+        ImageFilePath = "EnemySprites/e_mobile_sprout";
+        unitName = "Vermin";
+        loadSprites();
+        weaknesses[1] = true;
+        level = 6;
+        maxHP = currentHP = 35;
+        expGain = 60;
+        enemy = true;
+        //Currently uses Locker stats
+        ATK = 40;
+        DEF = 40;
+        POW = 30;
+        WILL = 6;
+        RES = 6;
+        AGI = 5;
+        LCK = 2;
+
+        abilities = new List<Ability>();
+        abilities.Add(new EnemyAbilities.CritterCrunch());
+        abilities.Add(new EnemyAbilities.GrimeTime());
+        abilities.Add(new EnemyAbilities.Infestation());
+    }
+}
+
+public class Hound : unit
+{
+    public Hound()
+    {
+        ImageFilePath = "EnemySprites/e_mobile_sprout";
+        unitName = "The Hound";
+        loadSprites();
+        weaknesses[4] = true;
+        level = 6;
+        maxHP = currentHP = 35;
+        expGain = 60;
+        enemy = true;
+        //Currently uses Locker stats
+        ATK = 40;
+        DEF = 40;
+        POW = 30;
+        WILL = 6;
+        RES = 6;
+        AGI = 5;
+        LCK = 2;
+
+        abilities = new List<Ability>();
+        abilities.Add(new EnemyAbilities.DetainAndRestrain());
+        abilities.Add(new EnemyAbilities.SniffOutCrime());
+        abilities.Add(new EnemyAbilities.NasalInflammation());
+        abilities.Add(new EnemyAbilities.ProboscisPunch());
+        abilities.Add(new EnemyAbilities.IncendiarySnot());
     }
 }
 

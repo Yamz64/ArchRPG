@@ -2911,6 +2911,14 @@ public class BattleScript : MonoBehaviour
                 {
                     p = new ShirleyUnit(loader.levels[i]);
                 }
+                else if (loader.names[i] == "Ralph" && !loader.dead[i])
+                {
+                    p = new RalphUnit(loader.levels[i]);
+                }
+                else if (loader.names[i] == "Lucy" && !loader.dead[i])
+                {
+                    p = new LucyUnit(loader.levels[i]);
+                }
                 else if (loader.names[i] == "Eldritch" || loader.dead[i])
                 {
                     p = new EldritchPartyUnit(loader.levels[i]);
@@ -2997,6 +3005,15 @@ public class BattleScript : MonoBehaviour
             else if (loader.enemy_names[i] == "New Kid" || loader.enemy_names[i] == "Student Body")
             {
                 enen = new StudentBody();
+                boss = true;
+            }
+            else if (loader.enemy_names[i] == "Vermin")
+            {
+                enen = new Vermin();
+            }
+            else if (loader.enemy_names[i] == "Hound" || loader.enemy_names[i] == "The Hound")
+            {
+                enen = new Hound();
                 boss = true;
             }
             else if (!loader.enemy_names[i].Equals(""))

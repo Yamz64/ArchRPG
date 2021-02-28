@@ -59,6 +59,8 @@ public class Ability
     public string bigStatus = "";   //A status effect that an ability will do extra with
     public int alteredStatus = 0;
     public int alteredCrit = 0;
+    public int multiHitMin = 0;
+    public int multiHitMax = 0;
 }
  
 
@@ -654,7 +656,7 @@ namespace EnemyAbilities
         }
     }
 
-    //RYAN PLZ EDIT -- Done
+    //Student Body
     public class Tag : Ability
     {
         public Tag()
@@ -672,7 +674,6 @@ namespace EnemyAbilities
         //has to put frontliners to the back
     }
 
-    //RYAN PLZ EDIT -- Done
     public class JoinCrowd : Ability
     {
         public JoinCrowd()
@@ -741,7 +742,6 @@ namespace EnemyAbilities
         }
     }
 
-    //RYAN PLZ EDIT -- Done
     public class DarkSmoke : Ability
     {
         public DarkSmoke()
@@ -758,6 +758,108 @@ namespace EnemyAbilities
 
         //this attack needs to hit *everyone* I don't know how to add this
         //target == 3, all units will be hit
+    }
+
+    //Vermin
+    public class CritterCrunch : Ability
+    {
+        public CritterCrunch()
+        {
+            name = "Critter Crunch";
+            priority = defaultPriority = 4;
+            damage = 5;
+            alteredCrit = 10;
+        }
+    }
+
+    public class GrimeTime : Ability
+    {
+        public GrimeTime()
+        {
+            name = "Grime Time";
+            priority = defaultPriority = 3;
+            nextPriority = 0;
+            statusEffect = "Diseased";
+        }
+    }
+
+    public class Infestation : Ability
+    {
+        public Infestation()
+        {
+            name = "Infestation";
+            damageType = 3;
+            damage = 8;
+            multiHitMax = 3;
+            multiHitMin = 1;
+            priority = defaultPriority = 2;
+            nextPriority = 1;
+            statusEffect = "Hysteria";
+        }
+    }
+
+    //The Hound
+    public class DetainAndRestrain : Ability
+    {
+        public DetainAndRestrain()
+        {
+            name = "Detain and Restrain";
+            damage = 12;
+            priority = defaultPriority = 2;
+            nextPriority = 0;
+            statusEffect = "Restrained";
+        }
+    }
+
+    public class SniffOutCrime : Ability
+    {
+        public SniffOutCrime()
+        {
+            name = "Sniff Out Crime";
+            sanity_damage = 3;
+            priority = defaultPriority = 3;
+            statusEffect = "Analyzed";
+        }
+    }
+
+    public class NasalInflammation : Ability
+    {
+        public NasalInflammation()
+        {
+            name = "Nasal Inflammation";
+            target = 3;
+            damage = 10;
+            damageType = 1;
+            use_pow = true;
+            priority = defaultPriority = 2;
+        }
+    }
+
+    public class ProboscisPunch : Ability
+    {
+        public ProboscisPunch()
+        {
+            name = "Proboscis Punch";
+            damage = 10;
+            priority = defaultPriority = 4;
+            statusEffect = "Blunt Trauma";
+            //Shuffles
+        }
+    }
+
+    public class IncendiarySnot : Ability
+    {
+        public IncendiarySnot()
+        {
+            name = "Incendiary Snot";
+            target = 1;
+            damage = 5;
+            damageType = 4;
+            use_pow = true;
+            statusEffect = "Flammable";
+            priority = defaultPriority = 2;
+            nextPriority = 0;
+        }
     }
 }
 
