@@ -4377,6 +4377,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WanderingEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7182115991402305297, guid: 0c91a21f74f9d7f4e8246f595de4e9c2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7182115991402305311, guid: 0c91a21f74f9d7f4e8246f595de4e9c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.5

@@ -13,5 +13,14 @@ public class SavePointBehavior : InteractableBaseClass
         player.GetComponent<PauseMenuHandler>().ActivateCursor();
         player.GetComponent<PauseMenuHandler>().UpdateSaveMenu();
         player.GetComponent<PlayerMovement>().interaction_protection = true;
+
+        //heal everyone in the party and the player do not heal dead party members unless it's the player
+        PlayerData data = player.GetComponent<PlayerDataMono>().data;
+        data.SetHP(data.GetHPMAX());
+        for(int i=0; i<data.GetPartySize(); i++)
+        {
+            if (data.GetPartyMember(i).GetHP() > 0)
+            data.GetPartyMember(i).SetHP(data.GetHPMAX());
+        }
     }
 }
