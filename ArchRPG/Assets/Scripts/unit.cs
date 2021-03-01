@@ -486,19 +486,15 @@ public class unit
             //If SP isn't 0 or the unit is an enemy
             if (currentSP > 0 || enemy == true)
             {
-                int hitter = 1;
-                if (ata.multiHitMax > 0)
-                {
-                    hitter = UnityEngine.Random.Range(ata.multiHitMin, ata.multiHitMax + 1);
-                }
+                //int hitter = 1;
                 if (!enemy && !subtract)
                     setSP(currentSP - ata.cost);
                 if (currentSP == 0 && !enemy)
                 {
                     outOfSP = true;
                 }
-                for (int g = 0; g < hitter; g++)
-                {
+                //for (int g = 0; g < hitter; g++)
+                //{
                     //Calculate damage of the attack
                     int val = ata.damage;
                     int valS = ata.sanity_damage;
@@ -643,16 +639,13 @@ public class unit
                                 }
                             }
                         }
-                        else
-                        {
-                            return d;
-                        }
+                        return d;
                     }
-                    //else
-                    //{
-                    //    return false;
-                    //}
-                }
+                    else
+                    {
+                        return false;
+                    }
+                //}
             }
             return false;
         }
