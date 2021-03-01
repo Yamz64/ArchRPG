@@ -2577,7 +2577,8 @@ public class LucyUnit : unit
         loadSprites();
         level = lev;
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
-        weaknesses[4] = true;
+        resistances[4] = true;
+        weaknesses[1] = true;
 
         switch (level)
         {
@@ -3653,6 +3654,7 @@ public class RalphUnit : unit
         loadSprites();
         level = lev;
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
+        resistances[1] = true;
         weaknesses[2] = true;
 
         switch (level)
@@ -4191,6 +4193,7 @@ public class ShirleyUnit : unit
         loadSprites();
         level = lev;
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
+        weaknesses[1] = true;
 
         switch (level)
         {
