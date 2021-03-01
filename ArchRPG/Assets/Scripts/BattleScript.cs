@@ -2510,6 +2510,7 @@ public class BattleScript : MonoBehaviour
                     }
                     bool newd = false;
                     bool newds = false;
+                    //Check for vomiting
                     if (temp[ind].GetComponent<UnitMono>().mainUnit.statuses[0] != -1)
                     {
                         int dum = UnityEngine.Random.Range(1, 4);
@@ -2535,6 +2536,7 @@ public class BattleScript : MonoBehaviour
                         continue;
                     }
 
+                    //Check for aspiration
                     if (temp[ind].GetComponent<UnitMono>().mainUnit.statuses[1] != -1)
                     {
                         int perc = temp[ind].GetComponent<UnitMono>().mainUnit.maxHP / 16;
@@ -2589,6 +2591,7 @@ public class BattleScript : MonoBehaviour
                         continue;
                     }
 
+                    //Check for Hysteria
                     if (temp[ind].GetComponent<UnitMono>().mainUnit.statuses[13] != -1)
                     {
                         newd = temp[ind].GetComponent<UnitMono>().mainUnit.takeSanityDamage(3);

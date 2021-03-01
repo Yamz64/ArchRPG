@@ -306,12 +306,19 @@ public class unit
         exp += val;
         if (exp >= currentLevelTop)
         {
+            int baseHp = maxHP;
+            int baseSp = maxSP;
             while (exp >= currentLevelTop && level < 20)
             {
                 level += 1;
+                updateUnit(level);
                 exp = exp - currentLevelTop;
                 currentLevelTop = (int)(2.5 * Mathf.Pow(level, 4));
             }
+            int dif = maxHP - baseHp;
+            currentHP += dif;
+            dif = maxSP - baseSp;
+            currentSP += dif;
             return true;
         }
         else
@@ -479,142 +486,157 @@ public class unit
             //If SP isn't 0 or the unit is an enemy
             if (currentSP > 0 || enemy == true)
             {
+                int hitter = 1;
+                if (ata.multiHitMax > 0)
+                {
+                    hitter = UnityEngine.Random.Range(ata.multiHitMin, ata.multiHitMax + 1);
+                }
                 if (!enemy && !subtract)
                     setSP(currentSP - ata.cost);
                 if (currentSP == 0 && !enemy)
                 {
                     outOfSP = true;
                 }
-                //Calculate damage of the attack
-                int val = ata.damage;
-                int valS = ata.sanity_damage;
-                if (!ata.use_pow)
+                for (int g = 0; g < hitter; g++)
                 {
-                    if (statuses[6] == -1)
+                    //Calculate damage of the attack
+                    int val = ata.damage;
+                    int valS = ata.sanity_damage;
+                    if (!ata.use_pow)
                     {
-                        val += (int)(val * (float)(ATK / 100));
-                    }
-                    //Zealous
-                    else
-                    {
-                        val += (int)(val * (float)((ATK * 1.25) / 100));
-                    }
-
-                    //Check if DEF is reduced by a status like Blunt Trauma
-                    if (target.statuses[4] == -1 && target.statuses[7] == -1)
-                    {
-                        val -= (int)(val * (float)(target.DEF / 300));
-                    }
-                    //Blunt Trauma
-                    else if (target.statuses[4] != -1 && target.statuses[7] == -1)
-                    {
-                        val -= (int)(val * (float)((target.DEF * 0.75) / 300));
-                    }
-                    //Neurotic
-                    else if (target.statuses[4] == -1 && target.statuses[7] != -1)
-                    {
-                        val -= (int)(val * (float)((target.DEF * 1.5) / 300));
-                    }
-                    //Both
-                    else
-                    {
-                        val -= (int)(val * (float)((target.DEF * 1.25) / 300));
-                    }
-                }
-                else
-                {
-                    //Check if POW is affected
-                    if (statuses[6] == -1)
-                    {
-                        val += (int)(val * (float)(POW / 100));
-                    }
-                    //Zealous
-                    else
-                    {
-                        val += (int)(val * (float)((POW * 1.25) / 100));
-                    }
-
-                    //Check if WILL is affected
-                    if (target.statuses[7] == target.statuses[10])
-                    {
-                        valS -= (int)(valS * (float)(target.WILL / 300));
-                        val -= (int)(val * (float)(target.WILL / 300));
-                    }
-                    else if (target.statuses[7] != -1)
-                    {
-                        valS -= (int)(valS * (float)((target.WILL * 0.75) / 300));
-                        val -= (int)(val * (float)((target.WILL * 0.75) / 300));
-                    }
-                    else
-                    {
-                        valS -= (int)(valS * (float)((target.WILL * 1.25) / 300));
-                        val -= (int)(val * (float)((target.WILL * 1.25) / 300));
-                    }
-                }
-                //Check if target is weak or resistant to a certain damage type
-                if (target.weaknesses[ata.damageType] == true)
-                {
-                    val = (int)(val * 1.5);
-                }
-                else if (target.resistances[ata.damageType] == true)
-                {
-                    val = (int)(val * 0.5);
-                }
-                int critBuff = ata.alteredCrit;
-                if (target.statuses[14] != -1)
-                {
-                    critBuff += 15;
-                }
-                //Check if the unit gets a crit
-                int crit = UnityEngine.Random.Range(1, 101);
-                if (crit < (LCK/3) + critBuff)
-                {
-                    val += (val / 2);
-                    Debug.Log("Got a crit!");
-                }
-                if (statuses[2] != -1)
-                {
-                    int dum = UnityEngine.Random.Range(1, 4);
-                    if (dum == 1)
-                    {
-                        val = val / 5;
-                    }
-                }
-                bool miss = false;
-                if (status == "Confused")
-                {
-                    int dum = UnityEngine.Random.Range(1, 101);
-                    if (dum > 50)
-                    {
-                        miss = true;
-                    }
-                }
-                if (miss == false)
-                {
-                    //Check if target is dead from attack
-                    bool d = target.takeDamage(val);
-                    target.setHP(target.currentHP);
-
-                    if (valS > 0)
-                    {
-                        bool s = target.takeSanityDamage(valS);
-                        target.setSAN(target.sanity);
-                    }
-                   
-                    if (d == false)
-                    {
-                        if (!ata.statusEffect.Equals(""))
+                        if (statuses[6] == -1)
                         {
-                            int ran = UnityEngine.Random.Range(1, 101);
-                            if (ran >= target.RES || ran == 1 || ata.type != 0)
-                            {
-                                target.giveStatus(ata.statusEffect);
-                            }
+                            val += (int)(val * (float)(ATK / 100));
+                        }
+                        //Zealous
+                        else
+                        {
+                            val += (int)(val * (float)((ATK * 1.25) / 100));
+                        }
+
+                        //Check if DEF is reduced by a status like Blunt Trauma
+                        if (target.statuses[4] == -1 && target.statuses[7] == -1)
+                        {
+                            val -= (int)(val * (float)(target.DEF / 300));
+                        }
+                        //Blunt Trauma
+                        else if (target.statuses[4] != -1 && target.statuses[7] == -1)
+                        {
+                            val -= (int)(val * (float)((target.DEF * 0.75) / 300));
+                        }
+                        //Neurotic
+                        else if (target.statuses[4] == -1 && target.statuses[7] != -1)
+                        {
+                            val -= (int)(val * (float)((target.DEF * 1.5) / 300));
+                        }
+                        //Both
+                        else
+                        {
+                            val -= (int)(val * (float)((target.DEF * 1.25) / 300));
                         }
                     }
-                    return d;
+                    else
+                    {
+                        //Check if POW is affected
+                        if (statuses[6] == -1)
+                        {
+                            val += (int)(val * (float)(POW / 100));
+                        }
+                        //Zealous
+                        else
+                        {
+                            val += (int)(val * (float)((POW * 1.25) / 100));
+                        }
+
+                        //Check if WILL is affected
+                        if (target.statuses[7] == target.statuses[10])
+                        {
+                            valS -= (int)(valS * (float)(target.WILL / 300));
+                            val -= (int)(val * (float)(target.WILL / 300));
+                        }
+                        else if (target.statuses[7] != -1)
+                        {
+                            valS -= (int)(valS * (float)((target.WILL * 0.75) / 300));
+                            val -= (int)(val * (float)((target.WILL * 0.75) / 300));
+                        }
+                        else
+                        {
+                            valS -= (int)(valS * (float)((target.WILL * 1.25) / 300));
+                            val -= (int)(val * (float)((target.WILL * 1.25) / 300));
+                        }
+                    }
+                    //Check if target is weak or resistant to a certain damage type
+                    if (target.weaknesses[ata.damageType] == true)
+                    {
+                        val = (int)(val * 1.5);
+                    }
+                    else if (target.resistances[ata.damageType] == true)
+                    {
+                        val = (int)(val * 0.5);
+                    }
+                    int critBuff = ata.alteredCrit;
+                    if (target.statuses[14] != -1)
+                    {
+                        critBuff += 15;
+                    }
+                    //Check if the unit gets a crit
+                    int crit = UnityEngine.Random.Range(1, 101);
+                    if (crit < (LCK / 3) + critBuff)
+                    {
+                        val += (val / 2);
+                        Debug.Log("Got a crit!");
+                    }
+                    if (statuses[2] != -1)
+                    {
+                        int dum = UnityEngine.Random.Range(1, 4);
+                        if (dum == 1)
+                        {
+                            val = val / 5;
+                        }
+                    }
+                    bool miss = false;
+                    if (status == "Confused")
+                    {
+                        int dum = UnityEngine.Random.Range(1, 101);
+                        if (dum > 50)
+                        {
+                            miss = true;
+                        }
+                    }
+                    if (miss == false)
+                    {
+                        //Check if target is dead from attack
+                        bool d = target.takeDamage(val);
+                        target.setHP(target.currentHP);
+
+                        if (valS > 0)
+                        {
+                            bool s = target.takeSanityDamage(valS);
+                            target.setSAN(target.sanity);
+                        }
+
+                        if (d == false)
+                        {
+                            if (!ata.statusEffect.Equals(""))
+                            {
+                                int ran = UnityEngine.Random.Range(1, 101);
+                                int statBuff = ata.alteredStatus;
+                                if (ran >= target.RES + statBuff || ran == 1 || ata.type != 0)
+                                {
+                                    target.giveStatus(ata.statusEffect);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            return d;
+                        }
+                    }
+                    //else
+                    //{
+                    //    return false;
+                    //}
                 }
-                else   {    return false;    }
             }
             return false;
         }
