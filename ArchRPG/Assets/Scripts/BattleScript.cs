@@ -3538,6 +3538,7 @@ public class BattleScript : MonoBehaviour
             {
                 val += (int)(val * (float)(uni.POW / 100));
             }
+            //Target has zealous
             else
             {
                 val += (int)(val * (float)((uni.POW * 1.25) / 100));
@@ -3548,10 +3549,12 @@ public class BattleScript : MonoBehaviour
             {
                 val -= (int)(val * (float)(target.WILL / 300));
             }
+            //Target has neurotic
             else if (target.statuses[7] != -1)
             {
                 val -= (int)(val * (float)((target.WILL * 0.75) / 300));
             }
+            //Target has confidence
             else
             {
                 val -= (int)(val * (float)((target.WILL * 1.25) / 300));
@@ -4071,13 +4074,16 @@ public class BattleScript : MonoBehaviour
         StopCoroutine("playerAttack");
         StopCoroutine("basicAttack");
         StopCoroutine("enemyAttack");
-        if (state == battleState.WIN && enemyUnits.Count == 1)
+        if (state == battleState.WIN)
         {
-            dialogue.text = "The " + enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName + " has been defeated";
-        }
-        if (state == battleState.WIN && enemyUnits.Count > 1)
-        {
-            dialogue.text = "The group of enemies have been defeated";
+            if (enemyUnits.Count == 1)
+            {
+                dialogue.text = "The " + enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName + " has been defeated";
+            }
+            else if (enemyUnits.Count > 1)
+            {
+                dialogue.text = "The group of enemies have been defeated";
+            }
         }
         else if (state == battleState.LOSE)
         {

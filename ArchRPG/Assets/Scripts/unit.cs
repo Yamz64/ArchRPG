@@ -554,11 +554,13 @@ public class unit
                             valS -= (int)(valS * (float)(target.WILL / 300));
                             val -= (int)(val * (float)(target.WILL / 300));
                         }
+                        //If target has neurotic
                         else if (target.statuses[7] != -1)
                         {
                             valS -= (int)(valS * (float)((target.WILL * 0.75) / 300));
                             val -= (int)(val * (float)((target.WILL * 0.75) / 300));
                         }
+                        //If target has confidence
                         else
                         {
                             valS -= (int)(valS * (float)((target.WILL * 1.25) / 300));
@@ -574,7 +576,15 @@ public class unit
                     {
                         val = (int)(val * 0.5);
                     }
+                    
+                    //If flammable + fire damage
+                    if (target.statuses[12] != -1 && ata.damageType == 1)
+                    {
+                        val = (int)(val * 1.25);
+                    }
+
                     int critBuff = ata.alteredCrit;
+                    //If target has analyzed
                     if (target.statuses[14] != -1)
                     {
                         critBuff += 15;
@@ -586,6 +596,7 @@ public class unit
                         val += (val / 2);
                         Debug.Log("Got a crit!");
                     }
+                    //If unit has weeping
                     if (statuses[2] != -1)
                     {
                         int dum = UnityEngine.Random.Range(1, 4);
@@ -595,6 +606,7 @@ public class unit
                         }
                     }
                     bool miss = false;
+                    /*
                     if (status == "Confused")
                     {
                         int dum = UnityEngine.Random.Range(1, 101);
@@ -603,6 +615,7 @@ public class unit
                             miss = true;
                         }
                     }
+                    */
                     if (miss == false)
                     {
                         //Check if target is dead from attack
@@ -615,10 +628,13 @@ public class unit
                             target.setSAN(target.sanity);
                         }
 
+                        //Not dead
                         if (d == false)
                         {
+                            //There is a status effect
                             if (!ata.statusEffect.Equals(""))
                             {
+                                //Roll numbers to check if status effect is given
                                 int ran = UnityEngine.Random.Range(1, 101);
                                 int statBuff = ata.alteredStatus;
                                 if (ran >= target.RES + statBuff || ran == 1 || ata.type != 0)
@@ -1463,6 +1479,21 @@ public class PlayerUnit : unit
             default:
                 break;
         }
+
+        abilities.Clear();
+
+        if (level >= 1)
+        {
+            abilities.Add(new PlayerAbilities.Scrutinize());
+        }
+        if (level >= 4)
+        {
+            abilities.Add(new PlayerAbilities.Diagnosis());
+        }
+        if (level >= 7)
+        {
+            abilities.Add(new PlayerAbilities.Analysis());
+        }
     }
 }
 
@@ -1988,6 +2019,20 @@ public class ClyveUnit : unit
                 break;
         }
 
+        abilities.Clear();
+
+        if (level >= 1)
+        {
+            abilities.Add(new ClyveAbilities.NoShower());
+        }
+        if (level >= 3)
+        {
+            abilities.Add(new ClyveAbilities.ShoeRemoval());
+        }
+        if (level >= 6)
+        {
+            abilities.Add(new ClyveAbilities.Halitosis());
+        }
     }
 }
 
@@ -2512,6 +2557,21 @@ public class JimUnit : unit
             default:
                 break;
         }
+
+        abilities.Clear();
+
+        if (level >= 2)
+        {
+            abilities.Add(new JimAbilities.Antacid());
+        }
+        if (level >= 3)
+        {
+            abilities.Add(new JimAbilities.Bandaid());
+        }
+        if (level >= 6)
+        {
+            abilities.Add(new JimAbilities.UncannyRemedy());
+        }
     }
 }
 
@@ -3034,6 +3094,21 @@ public class LucyUnit : unit
                 break;
             default:
                 break;
+        }
+
+        abilities.Clear();
+
+        if (level >= 1)
+        {
+            abilities.Add(new LucyAbilities.FungalRat());
+        }
+        if (level >= 5)
+        {
+            abilities.Add(new LucyAbilities.RodentialKindling());
+        }
+        if (level >= 8)
+        {
+            abilities.Add(new LucyAbilities.FeedTheMasses());
         }
     }
 }
@@ -3558,6 +3633,21 @@ public class NormUnit : unit
             default:
                 break;
         }
+
+        abilities.Clear();
+
+        if (level >= 2)
+        {
+            abilities.Add(new NormAbilities.PoopThrow());
+        }
+        if (level >= 5)
+        {
+            abilities.Add(new NormAbilities.EatBanana());
+        }
+        if (level >= 8)
+        {
+            abilities.Add(new NormAbilities.PrimatePowerbomb());
+        }
     }
 }
 
@@ -4081,6 +4171,21 @@ public class RalphUnit : unit
             default:
                 break;
         }
+
+        abilities.Clear();
+
+        if (level >= 1)
+        {
+            abilities.Add(new RalphAbilities.PistolWhip());
+        }
+        if (level >= 4)
+        {
+            abilities.Add(new RalphAbilities.SmokeBreak());
+        }
+        if (level >= 6)
+        {
+            abilities.Add(new RalphAbilities.Taser());
+        }
     }
 }
 
@@ -4603,6 +4708,21 @@ public class ShirleyUnit : unit
                 break;
             default:
                 break;
+        }
+
+        abilities.Clear();
+
+        if (level >= 2)
+        {
+            abilities.Add(new ShirleyAbilities.OpenFire());
+        }
+        if (level >= 4)
+        {
+            abilities.Add(new ShirleyAbilities.Frontline());
+        }
+        if (level >= 6)
+        {
+            abilities.Add(new ShirleyAbilities.BugleCall());
         }
     }
 }
