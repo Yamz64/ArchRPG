@@ -2583,243 +2583,243 @@ public class LucyUnit : unit
         {
             case 1:
                 //apply the base stats per level
-                SetHPMax(59);
-                SetSPMax(7);
-                SetATK(6);
-                SetPOW(3);
-                SetDEF(5);
-                SetWIL(4);
-                SetRES(3);
+                SetHPMax(25);
+                SetSPMax(16);
+                SetATK(8);
+                SetPOW(4);
+                SetDEF(4);
+                SetWIL(6);
+                SetRES(5);
                 SetSPD(4);
                 SetLCK(0);
                 break;
             case 2:
                 //apply the base stats per level
-                SetHPMax(83);
-                SetSPMax(10);
-                SetATK(11);
-                SetPOW(5);
-                SetDEF(9);
-                SetWIL(7);
+                SetHPMax(41);
+                SetSPMax(23);
+                SetATK(14);
+                SetPOW(8);
+                SetDEF(8);
+                SetWIL(13);
                 SetRES(9);
-                SetSPD(8);
+                SetSPD(9);
                 SetLCK(0);
                 break;
             case 3:
                 //apply the base stats per level
-                SetHPMax(107);
-                SetSPMax(12);
-                SetATK(16);
-                SetPOW(8);
-                SetDEF(13);
-                SetWIL(10);
+                SetHPMax(56);
+                SetSPMax(30);
+                SetATK(20);
+                SetPOW(12);
+                SetDEF(12);
+                SetWIL(19);
                 SetRES(12);
-                SetSPD(12);
+                SetSPD(13);
                 SetLCK(0);
                 break;
             case 4:
                 //apply the base stats per level
-                SetHPMax(131);
-                SetSPMax(15);
-                SetATK(21);
-                SetPOW(10);
-                SetDEF(17);
-                SetWIL(13);
-                SetRES(15);
-                SetSPD(16);
+                SetHPMax(72);
+                SetSPMax(38);
+                SetATK(26);
+                SetPOW(17);
+                SetDEF(16);
+                SetWIL(26);
+                SetRES(16);
+                SetSPD(18);
                 SetLCK(0);
                 break;
             case 5:
                 //apply the base stats per level
-                SetHPMax(155);
-                SetSPMax(17);
-                SetATK(26);
-                SetPOW(13);
-                SetDEF(21);
-                SetWIL(16);
-                SetRES(18);
-                SetSPD(20);
+                SetHPMax(87);
+                SetSPMax(45);
+                SetATK(31);
+                SetPOW(21);
+                SetDEF(20);
+                SetWIL(32);
+                SetRES(19);
+                SetSPD(22);
                 SetLCK(0);
                 break;
             case 6:
                 //apply the base stats per level
-                SetHPMax(179);
-                SetSPMax(20);
-                SetATK(31);
-                SetPOW(15);
-                SetDEF(25);
-                SetWIL(19);
-                SetRES(21);
-                SetSPD(24);
-                SetLCK(0);
+                SetHPMax(103);
+                SetSPMax(52);
+                SetATK(37);
+                SetPOW(25);
+                SetDEF(24);
+                SetWIL(39);
+                SetRES(23);
+                SetSPD(27);
+                SetLCK(1);
                 break;
             case 7:
                 //apply the base stats per level
-                SetHPMax(203);
-                SetSPMax(22);
-                SetATK(36);
-                SetPOW(18);
-                SetDEF(29);
-                SetWIL(22);
-                SetRES(24);
-                SetSPD(28);
+                SetHPMax(118);
+                SetSPMax(59);
+                SetATK(43);
+                SetPOW(29);
+                SetDEF(28);
+                SetWIL(45);
+                SetRES(26);
+                SetSPD(31);
                 SetLCK(1);
                 break;
             case 8:
                 //apply the base stats per level
-                SetHPMax(227);
-                SetSPMax(25);
-                SetATK(41);
-                SetPOW(20);
-                SetDEF(33);
-                SetWIL(25);
-                SetRES(27);
-                SetSPD(32);
+                SetHPMax(134);
+                SetSPMax(67);
+                SetATK(49);
+                SetPOW(34);
+                SetDEF(32);
+                SetWIL(52);
+                SetRES(30);
+                SetSPD(36);
                 SetLCK(2);
                 break;
             case 9:
                 //apply the base stats per level
-                SetHPMax(251);
-                SetSPMax(27);
-                SetATK(46);
-                SetPOW(23);
-                SetDEF(37);
-                SetWIL(28);
-                SetRES(30);
-                SetSPD(36);
-                SetLCK(3);
-                break;
-            case 10:
-                //apply the base stats per level
-                SetHPMax(275);
-                SetSPMax(30);
-                SetATK(51);
-                SetPOW(25);
-                SetDEF(41);
-                SetWIL(31);
+                SetHPMax(149);
+                SetSPMax(74);
+                SetATK(54);
+                SetPOW(38);
+                SetDEF(36);
+                SetWIL(58);
                 SetRES(33);
                 SetSPD(40);
                 SetLCK(4);
                 break;
+            case 10:
+                //apply the base stats per level
+                SetHPMax(165);
+                SetSPMax(81);
+                SetATK(60);
+                SetPOW(42);
+                SetDEF(40);
+                SetWIL(65);
+                SetRES(37);
+                SetSPD(45);
+                SetLCK(5);
+                break;
             case 11:
                 //apply the base stats per level
-                SetHPMax(299);
-                SetSPMax(32);
-                SetATK(56);
-                SetPOW(28);
-                SetDEF(45);
-                SetWIL(34);
-                SetRES(36);
-                SetSPD(44);
-                SetLCK(5);
+                SetHPMax(180);
+                SetSPMax(88);
+                SetATK(66);
+                SetPOW(46);
+                SetDEF(44);
+                SetWIL(71);
+                SetRES(40);
+                SetSPD(49);
+                SetLCK(7);
                 break;
             case 12:
                 //apply the base stats per level
-                SetHPMax(323);
-                SetSPMax(35);
-                SetATK(61);
-                SetPOW(30);
-                SetDEF(49);
-                SetWIL(37);
-                SetRES(39);
-                SetSPD(48);
-                SetLCK(7);
+                SetHPMax(196);
+                SetSPMax(96);
+                SetATK(72);
+                SetPOW(51);
+                SetDEF(48);
+                SetWIL(78);
+                SetRES(44);
+                SetSPD(54);
+                SetLCK(9);
                 break;
             case 13:
                 //apply the base stats per level
-                SetHPMax(347);
-                SetSPMax(37);
-                SetATK(66);
-                SetPOW(33);
-                SetDEF(53);
-                SetWIL(40);
-                SetRES(42);
-                SetSPD(52);
-                SetLCK(9);
+                SetHPMax(211);
+                SetSPMax(103);
+                SetATK(77);
+                SetPOW(55);
+                SetDEF(52);
+                SetWIL(84);
+                SetRES(47);
+                SetSPD(58);
+                SetLCK(12);
                 break;
             case 14:
                 //apply the base stats per level
-                SetHPMax(371);
-                SetSPMax(40);
-                SetATK(71);
-                SetPOW(35);
-                SetDEF(57);
-                SetWIL(43);
-                SetRES(45);
-                SetSPD(56);
-                SetLCK(11);
+                SetHPMax(227);
+                SetSPMax(110);
+                SetATK(83);
+                SetPOW(59);
+                SetDEF(56);
+                SetWIL(91);
+                SetRES(51);
+                SetSPD(63);
+                SetLCK(15);
                 break;
             case 15:
                 //apply the base stats per level
-                SetHPMax(395);
-                SetSPMax(42);
-                SetATK(76);
-                SetPOW(38);
-                SetDEF(61);
-                SetWIL(46);
-                SetRES(48);
-                SetSPD(60);
-                SetLCK(14);
+                SetHPMax(242);
+                SetSPMax(117);
+                SetATK(89);
+                SetPOW(63);
+                SetDEF(60);
+                SetWIL(97);
+                SetRES(54);
+                SetSPD(67);
+                SetLCK(18);
                 break;
             case 16:
                 //apply the base stats per level
-                SetHPMax(419);
-                SetSPMax(45);
-                SetATK(81);
-                SetPOW(40);
-                SetDEF(65);
-                SetWIL(49);
-                SetRES(51);
-                SetSPD(64);
-                SetLCK(17);
+                SetHPMax(258);
+                SetSPMax(125);
+                SetATK(95);
+                SetPOW(68);
+                SetDEF(64);
+                SetWIL(104);
+                SetRES(58);
+                SetSPD(72);
+                SetLCK(23);
                 break;
             case 17:
                 //apply the base stats per level
-                SetHPMax(443);
-                SetSPMax(47);
-                SetATK(86);
-                SetPOW(43);
-                SetDEF(69);
-                SetWIL(52);
-                SetRES(54);
-                SetSPD(68);
-                SetLCK(20);
+                SetHPMax(273);
+                SetSPMax(132);
+                SetATK(100);
+                SetPOW(72);
+                SetDEF(68);
+                SetWIL(110);
+                SetRES(61);
+                SetSPD(76);
+                SetLCK(27);
                 break;
             case 18:
                 //apply the base stats per level
-                SetHPMax(467);
-                SetSPMax(50);
-                SetATK(91);
-                SetPOW(45);
-                SetDEF(73);
-                SetWIL(55);
-                SetRES(57);
-                SetSPD(72);
-                SetLCK(24);
+                SetHPMax(289);
+                SetSPMax(139);
+                SetATK(106);
+                SetPOW(76);
+                SetDEF(72);
+                SetWIL(117);
+                SetRES(65);
+                SetSPD(81);
+                SetLCK(32);
                 break;
             case 19:
                 //apply the base stats per level
-                SetHPMax(491);
-                SetSPMax(52);
-                SetATK(96);
-                SetPOW(48);
-                SetDEF(77);
-                SetWIL(58);
-                SetRES(60);
-                SetSPD(76);
-                SetLCK(28);
+                SetHPMax(304);
+                SetSPMax(146);
+                SetATK(112);
+                SetPOW(80);
+                SetDEF(76);
+                SetWIL(123);
+                SetRES(68);
+                SetSPD(85);
+                SetLCK(38);
                 break;
             case 20:
                 //apply the base stats per level
-                SetHPMax(515);
-                SetSPMax(55);
-                SetATK(101);
-                SetPOW(50);
-                SetDEF(81);
-                SetWIL(61);
-                SetRES(63);
-                SetSPD(80);
-                SetLCK(33);
+                SetHPMax(320);
+                SetSPMax(154);
+                SetATK(118);
+                SetPOW(85);
+                SetDEF(80);
+                SetWIL(130);
+                SetRES(72);
+                SetSPD(90);
+                SetLCK(45);
                 break;
             default:
                 break;
@@ -2843,247 +2843,247 @@ public class LucyUnit : unit
     {
         level = levl;
         currentLevelTop = (int)(2.5 * Mathf.Pow(levl, 4));
-        switch (levl)
+        switch (level)
         {
             case 1:
                 //apply the base stats per level
-                SetHPMax(59);
-                SetSPMax(7);
-                SetATK(6);
-                SetPOW(3);
-                SetDEF(5);
-                SetWIL(4);
-                SetRES(3);
+                SetHPMax(25);
+                SetSPMax(16);
+                SetATK(8);
+                SetPOW(4);
+                SetDEF(4);
+                SetWIL(6);
+                SetRES(5);
                 SetSPD(4);
                 SetLCK(0);
                 break;
             case 2:
                 //apply the base stats per level
-                SetHPMax(83);
-                SetSPMax(10);
-                SetATK(11);
-                SetPOW(5);
-                SetDEF(9);
-                SetWIL(7);
+                SetHPMax(41);
+                SetSPMax(23);
+                SetATK(14);
+                SetPOW(8);
+                SetDEF(8);
+                SetWIL(13);
                 SetRES(9);
-                SetSPD(8);
+                SetSPD(9);
                 SetLCK(0);
                 break;
             case 3:
                 //apply the base stats per level
-                SetHPMax(107);
-                SetSPMax(12);
-                SetATK(16);
-                SetPOW(8);
-                SetDEF(13);
-                SetWIL(10);
+                SetHPMax(56);
+                SetSPMax(30);
+                SetATK(20);
+                SetPOW(12);
+                SetDEF(12);
+                SetWIL(19);
                 SetRES(12);
-                SetSPD(12);
+                SetSPD(13);
                 SetLCK(0);
                 break;
             case 4:
                 //apply the base stats per level
-                SetHPMax(131);
-                SetSPMax(15);
-                SetATK(21);
-                SetPOW(10);
-                SetDEF(17);
-                SetWIL(13);
-                SetRES(15);
-                SetSPD(16);
+                SetHPMax(72);
+                SetSPMax(38);
+                SetATK(26);
+                SetPOW(17);
+                SetDEF(16);
+                SetWIL(26);
+                SetRES(16);
+                SetSPD(18);
                 SetLCK(0);
                 break;
             case 5:
                 //apply the base stats per level
-                SetHPMax(155);
-                SetSPMax(17);
-                SetATK(26);
-                SetPOW(13);
-                SetDEF(21);
-                SetWIL(16);
-                SetRES(18);
-                SetSPD(20);
+                SetHPMax(87);
+                SetSPMax(45);
+                SetATK(31);
+                SetPOW(21);
+                SetDEF(20);
+                SetWIL(32);
+                SetRES(19);
+                SetSPD(22);
                 SetLCK(0);
                 break;
             case 6:
                 //apply the base stats per level
-                SetHPMax(179);
-                SetSPMax(20);
-                SetATK(31);
-                SetPOW(15);
-                SetDEF(25);
-                SetWIL(19);
-                SetRES(21);
-                SetSPD(24);
-                SetLCK(0);
+                SetHPMax(103);
+                SetSPMax(52);
+                SetATK(37);
+                SetPOW(25);
+                SetDEF(24);
+                SetWIL(39);
+                SetRES(23);
+                SetSPD(27);
+                SetLCK(1);
                 break;
             case 7:
                 //apply the base stats per level
-                SetHPMax(203);
-                SetSPMax(22);
-                SetATK(36);
-                SetPOW(18);
-                SetDEF(29);
-                SetWIL(22);
-                SetRES(24);
-                SetSPD(28);
+                SetHPMax(118);
+                SetSPMax(59);
+                SetATK(43);
+                SetPOW(29);
+                SetDEF(28);
+                SetWIL(45);
+                SetRES(26);
+                SetSPD(31);
                 SetLCK(1);
                 break;
             case 8:
                 //apply the base stats per level
-                SetHPMax(227);
-                SetSPMax(25);
-                SetATK(41);
-                SetPOW(20);
-                SetDEF(33);
-                SetWIL(25);
-                SetRES(27);
-                SetSPD(32);
+                SetHPMax(134);
+                SetSPMax(67);
+                SetATK(49);
+                SetPOW(34);
+                SetDEF(32);
+                SetWIL(52);
+                SetRES(30);
+                SetSPD(36);
                 SetLCK(2);
                 break;
             case 9:
                 //apply the base stats per level
-                SetHPMax(251);
-                SetSPMax(27);
-                SetATK(46);
-                SetPOW(23);
-                SetDEF(37);
-                SetWIL(28);
-                SetRES(30);
-                SetSPD(36);
-                SetLCK(3);
-                break;
-            case 10:
-                //apply the base stats per level
-                SetHPMax(275);
-                SetSPMax(30);
-                SetATK(51);
-                SetPOW(25);
-                SetDEF(41);
-                SetWIL(31);
+                SetHPMax(149);
+                SetSPMax(74);
+                SetATK(54);
+                SetPOW(38);
+                SetDEF(36);
+                SetWIL(58);
                 SetRES(33);
                 SetSPD(40);
                 SetLCK(4);
                 break;
+            case 10:
+                //apply the base stats per level
+                SetHPMax(165);
+                SetSPMax(81);
+                SetATK(60);
+                SetPOW(42);
+                SetDEF(40);
+                SetWIL(65);
+                SetRES(37);
+                SetSPD(45);
+                SetLCK(5);
+                break;
             case 11:
                 //apply the base stats per level
-                SetHPMax(299);
-                SetSPMax(32);
-                SetATK(56);
-                SetPOW(28);
-                SetDEF(45);
-                SetWIL(34);
-                SetRES(36);
-                SetSPD(44);
-                SetLCK(5);
+                SetHPMax(180);
+                SetSPMax(88);
+                SetATK(66);
+                SetPOW(46);
+                SetDEF(44);
+                SetWIL(71);
+                SetRES(40);
+                SetSPD(49);
+                SetLCK(7);
                 break;
             case 12:
                 //apply the base stats per level
-                SetHPMax(323);
-                SetSPMax(35);
-                SetATK(61);
-                SetPOW(30);
-                SetDEF(49);
-                SetWIL(37);
-                SetRES(39);
-                SetSPD(48);
-                SetLCK(7);
+                SetHPMax(196);
+                SetSPMax(96);
+                SetATK(72);
+                SetPOW(51);
+                SetDEF(48);
+                SetWIL(78);
+                SetRES(44);
+                SetSPD(54);
+                SetLCK(9);
                 break;
             case 13:
                 //apply the base stats per level
-                SetHPMax(347);
-                SetSPMax(37);
-                SetATK(66);
-                SetPOW(33);
-                SetDEF(53);
-                SetWIL(40);
-                SetRES(42);
-                SetSPD(52);
-                SetLCK(9);
+                SetHPMax(211);
+                SetSPMax(103);
+                SetATK(77);
+                SetPOW(55);
+                SetDEF(52);
+                SetWIL(84);
+                SetRES(47);
+                SetSPD(58);
+                SetLCK(12);
                 break;
             case 14:
                 //apply the base stats per level
-                SetHPMax(371);
-                SetSPMax(40);
-                SetATK(71);
-                SetPOW(35);
-                SetDEF(57);
-                SetWIL(43);
-                SetRES(45);
-                SetSPD(56);
-                SetLCK(11);
+                SetHPMax(227);
+                SetSPMax(110);
+                SetATK(83);
+                SetPOW(59);
+                SetDEF(56);
+                SetWIL(91);
+                SetRES(51);
+                SetSPD(63);
+                SetLCK(15);
                 break;
             case 15:
                 //apply the base stats per level
-                SetHPMax(395);
-                SetSPMax(42);
-                SetATK(76);
-                SetPOW(38);
-                SetDEF(61);
-                SetWIL(46);
-                SetRES(48);
-                SetSPD(60);
-                SetLCK(14);
+                SetHPMax(242);
+                SetSPMax(117);
+                SetATK(89);
+                SetPOW(63);
+                SetDEF(60);
+                SetWIL(97);
+                SetRES(54);
+                SetSPD(67);
+                SetLCK(18);
                 break;
             case 16:
                 //apply the base stats per level
-                SetHPMax(419);
-                SetSPMax(45);
-                SetATK(81);
-                SetPOW(40);
-                SetDEF(65);
-                SetWIL(49);
-                SetRES(51);
-                SetSPD(64);
-                SetLCK(17);
+                SetHPMax(258);
+                SetSPMax(125);
+                SetATK(95);
+                SetPOW(68);
+                SetDEF(64);
+                SetWIL(104);
+                SetRES(58);
+                SetSPD(72);
+                SetLCK(23);
                 break;
             case 17:
                 //apply the base stats per level
-                SetHPMax(443);
-                SetSPMax(47);
-                SetATK(86);
-                SetPOW(43);
-                SetDEF(69);
-                SetWIL(52);
-                SetRES(54);
-                SetSPD(68);
-                SetLCK(20);
+                SetHPMax(273);
+                SetSPMax(132);
+                SetATK(100);
+                SetPOW(72);
+                SetDEF(68);
+                SetWIL(110);
+                SetRES(61);
+                SetSPD(76);
+                SetLCK(27);
                 break;
             case 18:
                 //apply the base stats per level
-                SetHPMax(467);
-                SetSPMax(50);
-                SetATK(91);
-                SetPOW(45);
-                SetDEF(73);
-                SetWIL(55);
-                SetRES(57);
-                SetSPD(72);
-                SetLCK(24);
+                SetHPMax(289);
+                SetSPMax(139);
+                SetATK(106);
+                SetPOW(76);
+                SetDEF(72);
+                SetWIL(117);
+                SetRES(65);
+                SetSPD(81);
+                SetLCK(32);
                 break;
             case 19:
                 //apply the base stats per level
-                SetHPMax(491);
-                SetSPMax(52);
-                SetATK(96);
-                SetPOW(48);
-                SetDEF(77);
-                SetWIL(58);
-                SetRES(60);
-                SetSPD(76);
-                SetLCK(28);
+                SetHPMax(304);
+                SetSPMax(146);
+                SetATK(112);
+                SetPOW(80);
+                SetDEF(76);
+                SetWIL(123);
+                SetRES(68);
+                SetSPD(85);
+                SetLCK(38);
                 break;
             case 20:
                 //apply the base stats per level
-                SetHPMax(515);
-                SetSPMax(55);
-                SetATK(101);
-                SetPOW(50);
-                SetDEF(81);
-                SetWIL(61);
-                SetRES(63);
-                SetSPD(80);
-                SetLCK(33);
+                SetHPMax(320);
+                SetSPMax(154);
+                SetATK(118);
+                SetPOW(85);
+                SetDEF(80);
+                SetWIL(130);
+                SetRES(72);
+                SetSPD(90);
+                SetLCK(45);
                 break;
             default:
                 break;
@@ -3659,243 +3659,243 @@ public class RalphUnit : unit
         {
             case 1:
                 //apply the base stats per level
-                SetHPMax(59);
-                SetSPMax(7);
-                SetATK(6);
-                SetPOW(3);
-                SetDEF(5);
+                SetHPMax(34);
+                SetSPMax(13);
+                SetATK(10);
+                SetPOW(4);
+                SetDEF(9);
                 SetWIL(4);
-                SetRES(3);
-                SetSPD(4);
+                SetRES(4);
+                SetSPD(7);
                 SetLCK(0);
                 break;
             case 2:
                 //apply the base stats per level
-                SetHPMax(83);
-                SetSPMax(10);
-                SetATK(11);
-                SetPOW(5);
-                SetDEF(9);
-                SetWIL(7);
-                SetRES(9);
-                SetSPD(8);
+                SetHPMax(55);
+                SetSPMax(16);
+                SetATK(18);
+                SetPOW(9);
+                SetDEF(17);
+                SetWIL(8);
+                SetRES(6);
+                SetSPD(11);
                 SetLCK(0);
                 break;
             case 3:
                 //apply the base stats per level
-                SetHPMax(107);
-                SetSPMax(12);
-                SetATK(16);
-                SetPOW(8);
-                SetDEF(13);
-                SetWIL(10);
-                SetRES(12);
-                SetSPD(12);
+                SetHPMax(76);
+                SetSPMax(19);
+                SetATK(25);
+                SetPOW(13);
+                SetDEF(24);
+                SetWIL(12);
+                SetRES(8);
+                SetSPD(15);
                 SetLCK(0);
                 break;
             case 4:
                 //apply the base stats per level
-                SetHPMax(131);
-                SetSPMax(15);
-                SetATK(21);
-                SetPOW(10);
-                SetDEF(17);
-                SetWIL(13);
-                SetRES(15);
-                SetSPD(16);
+                SetHPMax(97);
+                SetSPMax(22);
+                SetATK(33);
+                SetPOW(18);
+                SetDEF(32);
+                SetWIL(16);
+                SetRES(10);
+                SetSPD(20);
                 SetLCK(0);
                 break;
             case 5:
                 //apply the base stats per level
-                SetHPMax(155);
-                SetSPMax(17);
-                SetATK(26);
-                SetPOW(13);
-                SetDEF(21);
-                SetWIL(16);
-                SetRES(18);
-                SetSPD(20);
+                SetHPMax(118);
+                SetSPMax(25);
+                SetATK(40);
+                SetPOW(22);
+                SetDEF(39);
+                SetWIL(20);
+                SetRES(12);
+                SetSPD(24);
                 SetLCK(0);
                 break;
             case 6:
                 //apply the base stats per level
-                SetHPMax(179);
-                SetSPMax(20);
-                SetATK(31);
-                SetPOW(15);
-                SetDEF(25);
-                SetWIL(19);
-                SetRES(21);
-                SetSPD(24);
+                SetHPMax(139);
+                SetSPMax(28);
+                SetATK(48);
+                SetPOW(27);
+                SetDEF(47);
+                SetWIL(24);
+                SetRES(14);
+                SetSPD(28);
                 SetLCK(0);
                 break;
             case 7:
                 //apply the base stats per level
-                SetHPMax(203);
-                SetSPMax(22);
-                SetATK(36);
-                SetPOW(18);
-                SetDEF(29);
-                SetWIL(22);
-                SetRES(24);
-                SetSPD(28);
+                SetHPMax(160);
+                SetSPMax(31);
+                SetATK(55);
+                SetPOW(31);
+                SetDEF(54);
+                SetWIL(28);
+                SetRES(16);
+                SetSPD(32);
                 SetLCK(1);
                 break;
             case 8:
                 //apply the base stats per level
-                SetHPMax(227);
-                SetSPMax(25);
-                SetATK(41);
-                SetPOW(20);
-                SetDEF(33);
-                SetWIL(25);
-                SetRES(27);
-                SetSPD(32);
-                SetLCK(2);
+                SetHPMax(181);
+                SetSPMax(34);
+                SetATK(63);
+                SetPOW(36);
+                SetDEF(62);
+                SetWIL(32);
+                SetRES(18);
+                SetSPD(37);
+                SetLCK(1);
                 break;
             case 9:
                 //apply the base stats per level
-                SetHPMax(251);
-                SetSPMax(27);
-                SetATK(46);
-                SetPOW(23);
-                SetDEF(37);
-                SetWIL(28);
-                SetRES(30);
-                SetSPD(36);
-                SetLCK(3);
+                SetHPMax(202);
+                SetSPMax(37);
+                SetATK(70);
+                SetPOW(40);
+                SetDEF(69);
+                SetWIL(36);
+                SetRES(20);
+                SetSPD(41);
+                SetLCK(2);
                 break;
             case 10:
                 //apply the base stats per level
-                SetHPMax(275);
-                SetSPMax(30);
-                SetATK(51);
-                SetPOW(25);
-                SetDEF(41);
-                SetWIL(31);
-                SetRES(33);
-                SetSPD(40);
-                SetLCK(4);
+                SetHPMax(223);
+                SetSPMax(40);
+                SetATK(78);
+                SetPOW(45);
+                SetDEF(77);
+                SetWIL(40);
+                SetRES(22);
+                SetSPD(45);
+                SetLCK(3);
                 break;
             case 11:
                 //apply the base stats per level
-                SetHPMax(299);
-                SetSPMax(32);
-                SetATK(56);
-                SetPOW(28);
-                SetDEF(45);
-                SetWIL(34);
-                SetRES(36);
-                SetSPD(44);
-                SetLCK(5);
+                SetHPMax(244);
+                SetSPMax(43);
+                SetATK(85);
+                SetPOW(49);
+                SetDEF(84);
+                SetWIL(44);
+                SetRES(24);
+                SetSPD(49);
+                SetLCK(4);
                 break;
             case 12:
                 //apply the base stats per level
-                SetHPMax(323);
-                SetSPMax(35);
-                SetATK(61);
-                SetPOW(30);
-                SetDEF(49);
-                SetWIL(37);
-                SetRES(39);
-                SetSPD(48);
-                SetLCK(7);
+                SetHPMax(265);
+                SetSPMax(46);
+                SetATK(93);
+                SetPOW(54);
+                SetDEF(92);
+                SetWIL(48);
+                SetRES(26);
+                SetSPD(54);
+                SetLCK(5);
                 break;
             case 13:
                 //apply the base stats per level
-                SetHPMax(347);
-                SetSPMax(37);
-                SetATK(66);
-                SetPOW(33);
-                SetDEF(53);
-                SetWIL(40);
-                SetRES(42);
-                SetSPD(52);
-                SetLCK(9);
+                SetHPMax(286);
+                SetSPMax(49);
+                SetATK(100);
+                SetPOW(58);
+                SetDEF(99);
+                SetWIL(52);
+                SetRES(28);
+                SetSPD(58);
+                SetLCK(7);
                 break;
             case 14:
                 //apply the base stats per level
-                SetHPMax(371);
-                SetSPMax(40);
-                SetATK(71);
-                SetPOW(35);
-                SetDEF(57);
-                SetWIL(43);
-                SetRES(45);
-                SetSPD(56);
-                SetLCK(11);
+                SetHPMax(307);
+                SetSPMax(52);
+                SetATK(108);
+                SetPOW(63);
+                SetDEF(107);
+                SetWIL(56);
+                SetRES(30);
+                SetSPD(62);
+                SetLCK(9);
                 break;
             case 15:
                 //apply the base stats per level
-                SetHPMax(395);
-                SetSPMax(42);
-                SetATK(76);
-                SetPOW(38);
-                SetDEF(61);
-                SetWIL(46);
-                SetRES(48);
-                SetSPD(60);
-                SetLCK(14);
+                SetHPMax(328);
+                SetSPMax(55);
+                SetATK(115);
+                SetPOW(67);
+                SetDEF(114);
+                SetWIL(60);
+                SetRES(32);
+                SetSPD(66);
+                SetLCK(11);
                 break;
             case 16:
                 //apply the base stats per level
-                SetHPMax(419);
-                SetSPMax(45);
-                SetATK(81);
-                SetPOW(40);
-                SetDEF(65);
-                SetWIL(49);
-                SetRES(51);
-                SetSPD(64);
-                SetLCK(17);
+                SetHPMax(349);
+                SetSPMax(58);
+                SetATK(123);
+                SetPOW(72);
+                SetDEF(122);
+                SetWIL(64);
+                SetRES(34);
+                SetSPD(71);
+                SetLCK(13);
                 break;
             case 17:
                 //apply the base stats per level
-                SetHPMax(443);
-                SetSPMax(47);
-                SetATK(86);
-                SetPOW(43);
-                SetDEF(69);
-                SetWIL(52);
-                SetRES(54);
-                SetSPD(68);
-                SetLCK(20);
+                SetHPMax(370);
+                SetSPMax(61);
+                SetATK(130);
+                SetPOW(76);
+                SetDEF(129);
+                SetWIL(68);
+                SetRES(36);
+                SetSPD(75);
+                SetLCK(16);
                 break;
             case 18:
                 //apply the base stats per level
-                SetHPMax(467);
-                SetSPMax(50);
-                SetATK(91);
-                SetPOW(45);
-                SetDEF(73);
-                SetWIL(55);
-                SetRES(57);
-                SetSPD(72);
-                SetLCK(24);
+                SetHPMax(391);
+                SetSPMax(64);
+                SetATK(138);
+                SetPOW(81);
+                SetDEF(137);
+                SetWIL(72);
+                SetRES(38);
+                SetSPD(79);
+                SetLCK(19);
                 break;
             case 19:
                 //apply the base stats per level
-                SetHPMax(491);
-                SetSPMax(52);
-                SetATK(96);
-                SetPOW(48);
-                SetDEF(77);
-                SetWIL(58);
-                SetRES(60);
-                SetSPD(76);
-                SetLCK(28);
+                SetHPMax(412);
+                SetSPMax(67);
+                SetATK(145);
+                SetPOW(85);
+                SetDEF(144);
+                SetWIL(76);
+                SetRES(40);
+                SetSPD(83);
+                SetLCK(22);
                 break;
             case 20:
                 //apply the base stats per level
-                SetHPMax(515);
-                SetSPMax(55);
-                SetATK(101);
-                SetPOW(50);
-                SetDEF(81);
-                SetWIL(61);
-                SetRES(63);
-                SetSPD(80);
-                SetLCK(33);
+                SetHPMax(433);
+                SetSPMax(70);
+                SetATK(153);
+                SetPOW(90);
+                SetDEF(152);
+                SetWIL(80);
+                SetRES(42);
+                SetSPD(88);
+                SetLCK(26);
                 break;
             default:
                 break;
@@ -3919,247 +3919,247 @@ public class RalphUnit : unit
     {
         level = levl;
         currentLevelTop = (int)(2.5 * Mathf.Pow(levl, 4));
-        switch (levl)
+        switch (level)
         {
             case 1:
                 //apply the base stats per level
-                SetHPMax(59);
-                SetSPMax(7);
-                SetATK(6);
-                SetPOW(3);
-                SetDEF(5);
+                SetHPMax(34);
+                SetSPMax(13);
+                SetATK(10);
+                SetPOW(4);
+                SetDEF(9);
                 SetWIL(4);
-                SetRES(3);
-                SetSPD(4);
+                SetRES(4);
+                SetSPD(7);
                 SetLCK(0);
                 break;
             case 2:
                 //apply the base stats per level
-                SetHPMax(83);
-                SetSPMax(10);
-                SetATK(11);
-                SetPOW(5);
-                SetDEF(9);
-                SetWIL(7);
-                SetRES(9);
-                SetSPD(8);
+                SetHPMax(55);
+                SetSPMax(16);
+                SetATK(18);
+                SetPOW(9);
+                SetDEF(17);
+                SetWIL(8);
+                SetRES(6);
+                SetSPD(11);
                 SetLCK(0);
                 break;
             case 3:
                 //apply the base stats per level
-                SetHPMax(107);
-                SetSPMax(12);
-                SetATK(16);
-                SetPOW(8);
-                SetDEF(13);
-                SetWIL(10);
-                SetRES(12);
-                SetSPD(12);
+                SetHPMax(76);
+                SetSPMax(19);
+                SetATK(25);
+                SetPOW(13);
+                SetDEF(24);
+                SetWIL(12);
+                SetRES(8);
+                SetSPD(15);
                 SetLCK(0);
                 break;
             case 4:
                 //apply the base stats per level
-                SetHPMax(131);
-                SetSPMax(15);
-                SetATK(21);
-                SetPOW(10);
-                SetDEF(17);
-                SetWIL(13);
-                SetRES(15);
-                SetSPD(16);
+                SetHPMax(97);
+                SetSPMax(22);
+                SetATK(33);
+                SetPOW(18);
+                SetDEF(32);
+                SetWIL(16);
+                SetRES(10);
+                SetSPD(20);
                 SetLCK(0);
                 break;
             case 5:
                 //apply the base stats per level
-                SetHPMax(155);
-                SetSPMax(17);
-                SetATK(26);
-                SetPOW(13);
-                SetDEF(21);
-                SetWIL(16);
-                SetRES(18);
-                SetSPD(20);
+                SetHPMax(118);
+                SetSPMax(25);
+                SetATK(40);
+                SetPOW(22);
+                SetDEF(39);
+                SetWIL(20);
+                SetRES(12);
+                SetSPD(24);
                 SetLCK(0);
                 break;
             case 6:
                 //apply the base stats per level
-                SetHPMax(179);
-                SetSPMax(20);
-                SetATK(31);
-                SetPOW(15);
-                SetDEF(25);
-                SetWIL(19);
-                SetRES(21);
-                SetSPD(24);
+                SetHPMax(139);
+                SetSPMax(28);
+                SetATK(48);
+                SetPOW(27);
+                SetDEF(47);
+                SetWIL(24);
+                SetRES(14);
+                SetSPD(28);
                 SetLCK(0);
                 break;
             case 7:
                 //apply the base stats per level
-                SetHPMax(203);
-                SetSPMax(22);
-                SetATK(36);
-                SetPOW(18);
-                SetDEF(29);
-                SetWIL(22);
-                SetRES(24);
-                SetSPD(28);
+                SetHPMax(160);
+                SetSPMax(31);
+                SetATK(55);
+                SetPOW(31);
+                SetDEF(54);
+                SetWIL(28);
+                SetRES(16);
+                SetSPD(32);
                 SetLCK(1);
                 break;
             case 8:
                 //apply the base stats per level
-                SetHPMax(227);
-                SetSPMax(25);
-                SetATK(41);
-                SetPOW(20);
-                SetDEF(33);
-                SetWIL(25);
-                SetRES(27);
-                SetSPD(32);
-                SetLCK(2);
+                SetHPMax(181);
+                SetSPMax(34);
+                SetATK(63);
+                SetPOW(36);
+                SetDEF(62);
+                SetWIL(32);
+                SetRES(18);
+                SetSPD(37);
+                SetLCK(1);
                 break;
             case 9:
                 //apply the base stats per level
-                SetHPMax(251);
-                SetSPMax(27);
-                SetATK(46);
-                SetPOW(23);
-                SetDEF(37);
-                SetWIL(28);
-                SetRES(30);
-                SetSPD(36);
-                SetLCK(3);
+                SetHPMax(202);
+                SetSPMax(37);
+                SetATK(70);
+                SetPOW(40);
+                SetDEF(69);
+                SetWIL(36);
+                SetRES(20);
+                SetSPD(41);
+                SetLCK(2);
                 break;
             case 10:
                 //apply the base stats per level
-                SetHPMax(275);
-                SetSPMax(30);
-                SetATK(51);
-                SetPOW(25);
-                SetDEF(41);
-                SetWIL(31);
-                SetRES(33);
-                SetSPD(40);
-                SetLCK(4);
+                SetHPMax(223);
+                SetSPMax(40);
+                SetATK(78);
+                SetPOW(45);
+                SetDEF(77);
+                SetWIL(40);
+                SetRES(22);
+                SetSPD(45);
+                SetLCK(3);
                 break;
             case 11:
                 //apply the base stats per level
-                SetHPMax(299);
-                SetSPMax(32);
-                SetATK(56);
-                SetPOW(28);
-                SetDEF(45);
-                SetWIL(34);
-                SetRES(36);
-                SetSPD(44);
-                SetLCK(5);
+                SetHPMax(244);
+                SetSPMax(43);
+                SetATK(85);
+                SetPOW(49);
+                SetDEF(84);
+                SetWIL(44);
+                SetRES(24);
+                SetSPD(49);
+                SetLCK(4);
                 break;
             case 12:
                 //apply the base stats per level
-                SetHPMax(323);
-                SetSPMax(35);
-                SetATK(61);
-                SetPOW(30);
-                SetDEF(49);
-                SetWIL(37);
-                SetRES(39);
-                SetSPD(48);
-                SetLCK(7);
+                SetHPMax(265);
+                SetSPMax(46);
+                SetATK(93);
+                SetPOW(54);
+                SetDEF(92);
+                SetWIL(48);
+                SetRES(26);
+                SetSPD(54);
+                SetLCK(5);
                 break;
             case 13:
                 //apply the base stats per level
-                SetHPMax(347);
-                SetSPMax(37);
-                SetATK(66);
-                SetPOW(33);
-                SetDEF(53);
-                SetWIL(40);
-                SetRES(42);
-                SetSPD(52);
-                SetLCK(9);
+                SetHPMax(286);
+                SetSPMax(49);
+                SetATK(100);
+                SetPOW(58);
+                SetDEF(99);
+                SetWIL(52);
+                SetRES(28);
+                SetSPD(58);
+                SetLCK(7);
                 break;
             case 14:
                 //apply the base stats per level
-                SetHPMax(371);
-                SetSPMax(40);
-                SetATK(71);
-                SetPOW(35);
-                SetDEF(57);
-                SetWIL(43);
-                SetRES(45);
-                SetSPD(56);
-                SetLCK(11);
+                SetHPMax(307);
+                SetSPMax(52);
+                SetATK(108);
+                SetPOW(63);
+                SetDEF(107);
+                SetWIL(56);
+                SetRES(30);
+                SetSPD(62);
+                SetLCK(9);
                 break;
             case 15:
                 //apply the base stats per level
-                SetHPMax(395);
-                SetSPMax(42);
-                SetATK(76);
-                SetPOW(38);
-                SetDEF(61);
-                SetWIL(46);
-                SetRES(48);
-                SetSPD(60);
-                SetLCK(14);
+                SetHPMax(328);
+                SetSPMax(55);
+                SetATK(115);
+                SetPOW(67);
+                SetDEF(114);
+                SetWIL(60);
+                SetRES(32);
+                SetSPD(66);
+                SetLCK(11);
                 break;
             case 16:
                 //apply the base stats per level
-                SetHPMax(419);
-                SetSPMax(45);
-                SetATK(81);
-                SetPOW(40);
-                SetDEF(65);
-                SetWIL(49);
-                SetRES(51);
-                SetSPD(64);
-                SetLCK(17);
+                SetHPMax(349);
+                SetSPMax(58);
+                SetATK(123);
+                SetPOW(72);
+                SetDEF(122);
+                SetWIL(64);
+                SetRES(34);
+                SetSPD(71);
+                SetLCK(13);
                 break;
             case 17:
                 //apply the base stats per level
-                SetHPMax(443);
-                SetSPMax(47);
-                SetATK(86);
-                SetPOW(43);
-                SetDEF(69);
-                SetWIL(52);
-                SetRES(54);
-                SetSPD(68);
-                SetLCK(20);
+                SetHPMax(370);
+                SetSPMax(61);
+                SetATK(130);
+                SetPOW(76);
+                SetDEF(129);
+                SetWIL(68);
+                SetRES(36);
+                SetSPD(75);
+                SetLCK(16);
                 break;
             case 18:
                 //apply the base stats per level
-                SetHPMax(467);
-                SetSPMax(50);
-                SetATK(91);
-                SetPOW(45);
-                SetDEF(73);
-                SetWIL(55);
-                SetRES(57);
-                SetSPD(72);
-                SetLCK(24);
+                SetHPMax(391);
+                SetSPMax(64);
+                SetATK(138);
+                SetPOW(81);
+                SetDEF(137);
+                SetWIL(72);
+                SetRES(38);
+                SetSPD(79);
+                SetLCK(19);
                 break;
             case 19:
                 //apply the base stats per level
-                SetHPMax(491);
-                SetSPMax(52);
-                SetATK(96);
-                SetPOW(48);
-                SetDEF(77);
-                SetWIL(58);
-                SetRES(60);
-                SetSPD(76);
-                SetLCK(28);
+                SetHPMax(412);
+                SetSPMax(67);
+                SetATK(145);
+                SetPOW(85);
+                SetDEF(144);
+                SetWIL(76);
+                SetRES(40);
+                SetSPD(83);
+                SetLCK(22);
                 break;
             case 20:
                 //apply the base stats per level
-                SetHPMax(515);
-                SetSPMax(55);
-                SetATK(101);
-                SetPOW(50);
-                SetDEF(81);
-                SetWIL(61);
-                SetRES(63);
-                SetSPD(80);
-                SetLCK(33);
+                SetHPMax(433);
+                SetSPMax(70);
+                SetATK(153);
+                SetPOW(90);
+                SetDEF(152);
+                SetWIL(80);
+                SetRES(42);
+                SetSPD(88);
+                SetLCK(26);
                 break;
             default:
                 break;
