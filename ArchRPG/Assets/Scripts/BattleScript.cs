@@ -2694,6 +2694,7 @@ public class BattleScript : MonoBehaviour
                 //Use offensive ability
                 if (actions[z].getType() == "ability" && state == battleState.ATTACK)
                 {
+                    int toget = actions[z].getTarget();
                     if (enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                     {
                         dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
@@ -2703,8 +2704,26 @@ public class BattleScript : MonoBehaviour
                     }
                     else
                     {
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " tried attacking " +
-                            enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName + ", but they weren't there";
+                        if (toget > 0)
+                        {
+                            while (enemyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && toget > 0)
+                            {
+                                toget--;
+                            }
+                            if (toget == 0 && enemyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
+                            {
+                                while (enemyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && toget < enemyUnits.Count)
+                                {
+                                    toget++;
+                                }
+                            }
+                        }
+                        //dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " tried attacking " +
+                        //    enemyUnits[toget].GetComponent<UnitMono>().mainUnit.unitName + ", but they weren't there";
+                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                            temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                        yield return playerAbility(actions[z].getIndex(), toget,
+                            temp[ind].GetComponent<UnitMono>().mainUnit, enemyUnits[toget].GetComponent<UnitMono>().mainUnit);
                     }
                 }
                 //Use Buff/Support ability (player)
@@ -2728,8 +2747,25 @@ public class BattleScript : MonoBehaviour
                     }
                     else
                     {
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " tried attacking " +
-                            enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName + ", but they weren't there";
+                        int toget = actions[z].getTarget();
+                        if (toget > 0)
+                        {
+                            while (enemyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && toget > 0)
+                            {
+                                toget--;
+                            }
+                            if (toget == 0 && enemyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
+                            {
+                                while (enemyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && toget < enemyUnits.Count)
+                                {
+                                    toget++;
+                                }
+                            }
+                        }
+                        //dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " tried attacking " +
+                        //    enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName + ", but they weren't there";
+                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked the enemy";
+                        yield return basicAttack(temp[ind].GetComponent<UnitMono>().mainUnit, enemyUnits[toget].GetComponent<UnitMono>().mainUnit);
                     }
                 }
                 //Use item
@@ -3462,8 +3498,8 @@ public class BattleScript : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
         int val = 5;
-        //if (!ata.use_pow)
-        //{
+        if (uni.ATK > uni.POW)
+        {
             if (uni.statuses[6] == -1)
             {
                 val += (int)(val * (float)(uni.ATK / 100));
@@ -3493,33 +3529,35 @@ public class BattleScript : MonoBehaviour
             {
                 val -= (int)(val * (float)((target.DEF * 1.25) / 300));
             }
-        //}
-        /*
+        }
+        
         else
         {
             //Check if POW is affected
-            if (statuses[6] == -1)
+            if (uni.statuses[6] == -1)
             {
-                val += (int)(val * (float)(POW / 100));
+                val += (int)(val * (float)(uni.POW / 100));
             }
             else
             {
-                val += (int)(val * (float)((POW * 1.25) / 100));
+                val += (int)(val * (float)((uni.POW * 1.25) / 100));
             }
 
             //Check if WILL is affected
-            if (target.statuses[7] == -1)
+            if (target.statuses[7] == target.statuses[10])
             {
-                //valS -= (int)(valS * (float)(target.WILL / 300));
                 val -= (int)(val * (float)(target.WILL / 300));
+            }
+            else if (target.statuses[7] != -1)
+            {
+                val -= (int)(val * (float)((target.WILL * 0.75) / 300));
             }
             else
             {
-                //valS -= (int)(valS * (float)((target.WILL * 0.75) / 300));
-                val -= (int)(val * (float)((target.WILL * 0.75) / 300));
+                val -= (int)(val * (float)((target.WILL * 1.25) / 300));
             }
         }
-        /*
+        
         //Check if target is weak or resistant to a certain damage type
         /*
         if (target.weaknesses[ata.damageType] == true)
@@ -3982,6 +4020,7 @@ public class BattleScript : MonoBehaviour
     //Use to give a unit experience and, if possible, level them up. Display text as well
     IEnumerator levelUp(int expGained)
     {
+        List<int> abiSizes = new List<int>();
         dialogue.text = "Gained " + expGained + " exp";
         for (int i = 0; i < partyUnits.Count; i++)
         {
@@ -3990,16 +4029,21 @@ public class BattleScript : MonoBehaviour
                 if (partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP > 0 &&
                     partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName != "Player")
                 {
+                    abiSizes.Add(partyUnits[i].GetComponent<UnitMono>().mainUnit.abilities.Count);
                     partyUnits[i].GetComponent<UnitMono>().mainUnit.gainEXP(expGained);
                     partyUnits[i].GetComponent<UnitMono>().mainUnit.updateUnit(partyUnits[i].GetComponent<UnitMono>().mainUnit.level);
                 }
+            }
+            else
+            {
+                abiSizes.Add(0);
             }
         }
         bool boost = pc.gainEXP(expGained);
         yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
         if (boost == true)
         {
-            dialogue.text = "Levelled up!";
+            dialogue.text = "Leveled up!";
             for (int i = 0; i < partyUnits.Count; i++)
             {
                 if (partyUnits[i] != null)
@@ -4008,6 +4052,11 @@ public class BattleScript : MonoBehaviour
                     {
                         StartCoroutine(flashLevel(partyUnits[i].GetComponent<UnitMono>().mainUnit));
                         partyUnits[i].GetComponent<UnitMono>().mainUnit.setHUD(true);
+                        if (partyUnits[i].GetComponent<UnitMono>().mainUnit.abilities.Count > abiSizes[i])
+                        {
+                            yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                            dialogue.text = partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName + " gained a new ability!";
+                        }
                     }
                 }
             }
