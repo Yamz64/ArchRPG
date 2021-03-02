@@ -368,7 +368,7 @@ public static class EldritchAbilities
     }
 
     //***~RYAN~***
-    //This ability damages all eneies and allies with moderate weird POW
+    //This ability damages all enemies and allies with moderate weird POW
     public class RuinousWave : Ability
     {
         public RuinousWave()
@@ -387,7 +387,8 @@ public static class EldritchAbilities
     }
 
     //***~RYAN~***
-    //This ability heals you to full but also inflicts everyone with a random status effect (this needs to work so that when new status effects are added they are included if possible)
+    //This ability heals you to full but also inflicts everyone with a 
+    //random status effect (this needs to work so that when new status effects are added they are included if possible)
     public class BeeseechTheAbyss : Ability
     {
         public BeeseechTheAbyss()

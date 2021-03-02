@@ -3307,7 +3307,7 @@ public class BattleScript : MonoBehaviour
     //target - the target of the ability
     IEnumerator playerAbility(int ata, int val, unit uni, unit target)
     {
-        if (uni.abilities[ata].type == 0)
+        if (uni.abilities[ata].type == 0 && !uni.abilities[ata].eldritch)
         {
             bool dead = false;
             bool deadL = false;
@@ -3405,7 +3405,7 @@ public class BattleScript : MonoBehaviour
                 uni.setSP(uni.currentSP - uni.abilities[ata].cost);
             }
         }
-        else if (uni.abilities[ata].type == 1 || uni.abilities[ata].type == 2)
+        else if (uni.abilities[ata].type == 1 || uni.abilities[ata].type == 2 && !uni.abilities[ata].eldritch)
         {
             uni.abilities[ata].UseAttack(uni, target);
             if (uni.abilities[ata].swapper == 1)
