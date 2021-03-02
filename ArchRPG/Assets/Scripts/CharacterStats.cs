@@ -472,6 +472,7 @@ public class CharacterStatJsonConverter
     //constructor given the current player data
     public CharacterStatJsonConverter(PlayerData p)
     {
+        p.UpdatePartySan();
         flee = false;
         statuses = new List<StatusEffectContainer>();
         //set the position and progress of the player
@@ -521,9 +522,11 @@ public class CharacterStatJsonConverter
         statuses.Add(player_status);
 
         //add unlocked characters from the player
+        unlocked_sans = new int[p.GetUnlockCount()];
         unlocked_characters = new bool[p.GetUnlockCount()];
         for(int i=0; i<p.GetUnlockCount(); i++)
         {
+            unlocked_sans[i] = p.GetUnlockedSan(i);
             unlocked_characters[i] = p.GetUnlockedMember(i);
         }
 
@@ -912,6 +915,7 @@ public class CharacterStatJsonConverter
     public Vector2 position;            //current position in the world (ignored except for after battles)
 
     public bool flee;                   //marked as true if the party just fleed from combat
+    public int[] unlocked_sans;         //the sanities of unlocked party members
     public bool[] unlocked_characters;  //list of unlocked characters
     public bool[] dead;                 //which party members are dead
 

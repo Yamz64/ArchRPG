@@ -11,6 +11,7 @@ public class PlayerData : CharacterStats
         inventory = new List<Item>();
         party_stats = new List<CharacterStats>();
         added_party_members = new bool[u_char_count];
+        added_party_sans = new int[u_char_count];
         if(l == false)
         {
             CharacterStatJsonConverter data = new CharacterStatJsonConverter(PlayerPrefs.GetInt("_active_save_file_"));
@@ -133,6 +134,37 @@ public class PlayerData : CharacterStats
     public void UnlockPartyMember(int index)
     {
         added_party_members[index] = true;
+    }
+    public int GetUnlockedSan(int index) { return added_party_sans[index]; }
+    public void SetUnlockedSan(int index, int SAN) { added_party_sans[index] = SAN; }
+    public void UpdatePartySan()
+    {
+        for(int i=0; i<party_stats.Count; i++)
+        {
+            switch (party_stats[i].GetName())
+            {
+                case "Clyve":
+                    SetUnlockedSan(0, party_stats[i].GetSAN());
+                    break;
+                case "Jim":
+                    SetUnlockedSan(1, party_stats[i].GetSAN());
+                    break;
+                case "Norm":
+                    SetUnlockedSan(2, party_stats[i].GetSAN());
+                    break;
+                case "Shirley":
+                    SetUnlockedSan(3, party_stats[i].GetSAN());
+                    break;
+                case "Little Ralphy":
+                    SetUnlockedSan(4, party_stats[i].GetSAN());
+                    break;
+                case "Lucy":
+                    SetUnlockedSan(5, party_stats[i].GetSAN());
+                    break;
+                default:
+                    break;
+            }
+        }
     }
     public void RemovePartyMember(int index) { party_stats.RemoveAt(index); }
     public int GetPartySize() { return party_stats.Count; }
@@ -674,4 +706,5 @@ public class PlayerData : CharacterStats
      * 5 - Lucy
     */
     private bool[] added_party_members;
+    private int[] added_party_sans;
 }
