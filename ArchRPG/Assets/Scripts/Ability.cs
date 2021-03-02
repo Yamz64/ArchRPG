@@ -6,6 +6,25 @@ using System.Reflection;
 //base class for handling abilities
 public class Ability
 {
+    public Ability()
+    {
+        statIndex = new List<string>();
+        statIndex.Add("Vomiting");
+        statIndex.Add("Aspirating");
+        statIndex.Add("Weeping");
+        statIndex.Add("Eye Bleed");
+        statIndex.Add("Blunt Trauma");
+        statIndex.Add("Hyperactive");
+        statIndex.Add("Zealous");
+        statIndex.Add("Neurotic");
+        statIndex.Add("Restrained");
+        statIndex.Add("Consumed");
+        statIndex.Add("Confident");
+        statIndex.Add("Diseased");
+        statIndex.Add("Flammable");
+        statIndex.Add("Hysteria");
+        statIndex.Add("Analyzed");
+    }
     public virtual void Use(){
         //Used the ability
     }
@@ -61,6 +80,9 @@ public class Ability
     public int alteredCrit = 0;
     public int multiHitMin = 0;
     public int multiHitMax = 0;
+
+
+    public List<string> statIndex;
 }
  
 
@@ -389,6 +411,7 @@ public static class EldritchAbilities
                 int ran = Random.Range(0, valid.Count);
                 targets[ran].giveStatus("Weeping");
             }
+            user.currentSP -= cost;
         }
     }
 
@@ -426,6 +449,27 @@ public static class EldritchAbilities
             position = 0;
             target = 3;
             type = 2;
+        }
+
+        public void useAttack(unit user, List<unit> targets)
+        {
+            user.currentHP = user.maxHP;
+            for (int i = 0; i < targets.Count; i++)
+            {
+                if (targets[i] != null)
+                {
+                    if (targets[i].enemy == false && targets[i].currentHP > 0 && targets[i].unitName != user.unitName)
+                    {
+                        int ran = Random.Range(0, statIndex.Count);
+                        while(targets[i].statuses[ran] != -1)
+                        {
+                            ran = Random.Range(0, statIndex.Count);
+                        }
+                        targets[i].giveStatus(statIndex[ran]);
+                    }
+                }
+            }
+            user.currentSP -= cost;
         }
     }
 }
