@@ -7,7 +7,7 @@ public class PlayerData : CharacterStats
     //--CONSTRUCTOR--
     public PlayerData(bool l = false)
     {
-        int u_char_count = 4;
+        int u_char_count = 6;
         inventory = new List<Item>();
         party_stats = new List<CharacterStats>();
         added_party_members = new bool[u_char_count];
@@ -670,6 +670,8 @@ public class PlayerData : CharacterStats
      * 1 - Jim
      * 2 - Norm
      * 3 - Shirley
+     * 4 - Ralphy
+     * 5 - Lucy
     */
     private bool[] added_party_members;
 }

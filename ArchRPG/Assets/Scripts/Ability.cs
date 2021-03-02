@@ -389,11 +389,11 @@ public static class EldritchAbilities
     //***~RYAN~***
     //This ability heals you to full but also inflicts everyone with a 
     //random status effect (this needs to work so that when new status effects are added they are included if possible)
-    public class BeeseechTheAbyss : Ability
+    public class BeseechTheAbyss : Ability
     {
-        public BeeseechTheAbyss()
+        public BeseechTheAbyss()
         {
-            name = "BeeseechTheAbyss";
+            name = "BeseechTheAbyss";
             desc2 = "You clasp your hands together and invoke the dark names of higher poewrs to provie assistance, who knows they might deem you and your followers worthy of aid.";
             cost = 15;
             level_cost = 16;
