@@ -3544,6 +3544,10 @@ public class PauseMenuHandler : MonoBehaviour
         {
             //get all eldritch abilities ahead of time
             List<Ability> e_abilities = EldritchAbilities.GetEldritchAbilities();
+
+            //first see if the selected ability is outside the bounds of the list
+            if (levelup_offset * 4 + cursor_position >= e_abilities.Count) return;
+
             //see if the player has enough EP to purchase skills
             //no
             if(data.GetEP() < e_abilities[levelup_offset * 4 + cursor_position].level_cost)

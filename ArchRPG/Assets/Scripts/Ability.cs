@@ -349,156 +349,56 @@ public static class EldritchAbilities
         return e_abilities;
     }
 
-    public class TestEAbility : Ability
+    //***~RYAN~***
+    //This ability needs to buff the player with both zealous and confident, but inflict weeping on a party member
+    public class OtherworldyGaze : Ability
     {
-        public TestEAbility()
+        public OtherworldyGaze()
         {
-            eldritch = true;
-            name = "TestEAbility";
-            type = 2;
+            name = "OtherworldyGaze";
+            desc2 = "You stare into the great beyond and uncover truths unbeknownst to that of your underlings...";
+            cost = 8;
+            level_cost = 3;
             position = 0;
-            cost = 10;
-            level_cost = 10;
-            damage = 40;
-            damageType = 0;
-            image_file_path = "AbilitySprites/Eldritch";
-            desc1 = "This is eldritch test ability";
-        } 
-    }
-
-    public class TestEAbility1 : Ability
-    {
-        public TestEAbility1()
-        {
-            eldritch = true;
-            name = "TestEAbility1";
-            type = 2;
-            position = 0;
-            cost = 10;
-            level_cost = 20;
-            damage = 40;
-            damageType = 0;
-            image_file_path = "AbilitySprites/Eldritch";
-            desc1 = "This is eldritch test ability 1";
+            target = 0;
+            damage = 0;
+            type = 1;
+            statusEffect = "Weeping";
         }
     }
 
-    public class TestEAbility2 : Ability
+    //***~RYAN~***
+    //This ability damages all eneies and allies with moderate weird POW
+    public class RuinousWave : Ability
     {
-        public TestEAbility2()
+        public RuinousWave()
         {
-            eldritch = true;
-            name = "TestEAbility2";
-            type = 2;
-            position = 0;
-            cost = 10;
-            level_cost = 30;
-            damage = 40;
-            damageType = 0;
-            image_file_path = "AbilitySprites/Eldritch";
-            desc1 = "This is eldritch test ability 2";
+            name = "RuinousWave";
+            desc2 = "You manifest the darkest dregs of your psyche and let out a destructive wave to damage those of inferior understanding.";
+            cost = 12;
+            level_cost = 8;
+            position = 1;
+            target = 3;
+            damage = 20;
+            type = 0;
+            damageType = 4;
+            use_pow = true;
         }
     }
 
-    public class TestEAbility3 : Ability
+    //***~RYAN~***
+    //This ability heals you to full but also inflicts everyone with a random status effect (this needs to work so that when new status effects are added they are included if possible)
+    public class BeeseechTheAbyss : Ability
     {
-        public TestEAbility3()
+        public BeeseechTheAbyss()
         {
-            eldritch = true;
-            name = "TestEAbility3";
-            type = 2;
+            name = "BeeseechTheAbyss";
+            desc2 = "You clasp your hands together and invoke the dark names of higher poewrs to provie assistance, who knows they might deem you and your followers worthy of aid.";
+            cost = 15;
+            level_cost = 16;
             position = 0;
-            cost = 10;
-            level_cost = 40;
-            damage = 40;
-            damageType = 0;
-            image_file_path = "AbilitySprites/Eldritch";
-            desc1 = "This is eldritch test ability 3";
-        }
-    }
-
-    public class TestEAbility4 : Ability
-    {
-        public TestEAbility4()
-        {
-            eldritch = true;
-            name = "TestEAbility4";
-            type = 2;
-            position = 0;
-            cost = 10;
-            level_cost = 50;
-            damage = 40;
-            damageType = 0;
-            image_file_path = "AbilitySprites/Eldritch";
-            desc1 = "This is eldritch test ability 4";
-        }
-    }
-
-    public class TestEAbility5 : Ability
-    {
-        public TestEAbility5()
-        {
-            eldritch = true;
-            name = "TestEAbility5";
-            type = 2;
-            position = 0;
-            cost = 10;
-            level_cost = 60;
-            damage = 40;
-            damageType = 0;
-            image_file_path = "AbilitySprites/Eldritch";
-            desc1 = "This is eldritch test ability 5";
-        }
-    }
-
-    public class TestEAbility6 : Ability
-    {
-        public TestEAbility6()
-        {
-            eldritch = true;
-            name = "TestEAbility6";
-            type = 2;
-            position = 0;
-            cost = 10;
-            level_cost = 70;
-            damage = 40;
-            damageType = 0;
-            image_file_path = "AbilitySprites/Eldritch";
-            desc1 = "This is eldritch test ability 6";
-        }
-    }
-
-    public class TestEAbility7 : Ability
-    {
-        public TestEAbility7()
-        {
-            eldritch = true;
-            name = "TestEAbility7";
-            type = 2;
-            position = 0;
-            cost = 10;
-            level_cost = 80;
-            damage = 40;
-            damageType = 0;
-            image_file_path = "AbilitySprites/Eldritch";
-            desc1 = "This is eldritch test ability 7";
-        }
-    }
-
-    public class TestEAbility8 : Ability
-    {
-        public TestEAbility8()
-        {
-            eldritch = true;
-            name = "TestEAbility8";
-            type = 2;
-            position = 0;
-            cost = 10;
-            level_cost = 90;
-            damage = 40;
-            damageType = 0;
-            image_file_path = "AbilitySprites/Eldritch";
-            desc1 = "This is eldritch test ability 8";
+            target = 3;
+            type = 0;
         }
     }
 }

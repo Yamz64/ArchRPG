@@ -1263,6 +1263,7 @@ class Clyve : CharacterStats
         ClearAbilities();
         if (GetLVL() >= 1) AddAbility(new ClyveAbilities.NoShower());
         if (GetLVL() >= 3) AddAbility(new ClyveAbilities.ShoeRemoval());
+        if (GetLVL() >= 6) AddAbility(new ClyveAbilities.Halitosis());
     }
 }
 
@@ -1562,6 +1563,7 @@ class Jim : CharacterStats
         ClearAbilities();
         if (GetLVL() >= 2) AddAbility(new JimAbilities.Antacid());
         if (GetLVL() >= 3) AddAbility(new JimAbilities.Bandaid());
+        if (GetLVL() >= 6) AddAbility(new JimAbilities.UncannyRemedy());
     }
 }
 
@@ -1861,6 +1863,7 @@ class Norm : CharacterStats
         ClearAbilities();
         if (GetLVL() >= 2) AddAbility(new NormAbilities.PoopThrow());
         if (GetLVL() >= 5) AddAbility(new NormAbilities.EatBanana());
+        if (GetLVL() >= 8) AddAbility(new NormAbilities.PrimatePowerbomb());
     }
 }
 
@@ -2158,6 +2161,7 @@ class Shirley : CharacterStats
         ClearAbilities();
         if (GetLVL() >= 2) AddAbility(new ShirleyAbilities.OpenFire());
         if (GetLVL() >= 4) AddAbility(new ShirleyAbilities.Frontline());
+        if (GetLVL() >= 6) AddAbility(new ShirleyAbilities.BugleCall());
     }
 }
 
@@ -2453,8 +2457,9 @@ class Ralph : CharacterStats
 
         //add abilities
         ClearAbilities();
-        if (GetLVL() >= 2) AddAbility(new ShirleyAbilities.OpenFire());
-        if (GetLVL() >= 4) AddAbility(new ShirleyAbilities.Frontline());
+        if (GetLVL() >= 1) AddAbility(new RalphAbilities.PistolWhip());
+        if (GetLVL() >= 4) AddAbility(new RalphAbilities.SmokeBreak());
+        if (GetLVL() >= 6) AddAbility(new RalphAbilities.Taser());
     }
 }
 
@@ -2750,8 +2755,9 @@ class Lucy : CharacterStats
 
         //add abilities
         ClearAbilities();
-        if (GetLVL() >= 2) AddAbility(new ShirleyAbilities.OpenFire());
-        if (GetLVL() >= 4) AddAbility(new ShirleyAbilities.Frontline());
+        if (GetLVL() >= 1) AddAbility(new LucyAbilities.FungalRat());
+        if (GetLVL() >= 5) AddAbility(new LucyAbilities.RodentialKindling());
+        if (GetLVL() >= 8) AddAbility(new LucyAbilities.FeedTheMasses());
     }
 }
 

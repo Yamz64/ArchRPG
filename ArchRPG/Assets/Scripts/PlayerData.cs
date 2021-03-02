@@ -651,6 +651,7 @@ public class PlayerData : CharacterStats
         ClearAbilities();
         if(GetLVL() >= 1) AddAbility(new PlayerAbilities.Scrutinize());
         if (GetLVL() >= 4) AddAbility(new PlayerAbilities.Diagnosis());
+        if (GetLVL() >= 7) AddAbility(new PlayerAbilities.Analysis());
     }
 
     private bool loaded;
