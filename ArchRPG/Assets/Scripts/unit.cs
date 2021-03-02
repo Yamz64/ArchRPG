@@ -112,7 +112,7 @@ public class unit
     public int AGI;                 //Agility stat of unit
     public int LCK;                 //Luck stat of unit
     public string status;           //String to say what status effect the unit has
-    public int statusCounter = 0;   //Int to track how many more turns the unit will have the status for
+    //public int statusCounter = 0;   //Int to track how many more turns the unit will have the status for
 
 
     public bool player;             //Whether the unit is the main player character
@@ -724,6 +724,7 @@ public class unit
     }
 
     //Give the matching status to this unit
+    /*
     public void giveStatus(int id)
     {
         if (status == "")
@@ -746,7 +747,7 @@ public class unit
             statusText.gameObject.SetActive(true);
         }
     }
-
+    */
     //Give the named status to this unit
     public void giveStatus(string id)
     {

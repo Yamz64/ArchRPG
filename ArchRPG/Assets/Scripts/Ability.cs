@@ -1163,7 +1163,7 @@ namespace LucyAbilities
                 "for a parasitic fungus, the result is unsightly and churns the stomach to look at.";
             cost = 4;
             position = 2;
-            statusEffect = "Aspiration";
+            statusEffect = "Aspirating";
             damage = 0;
             damageType = 3;
         }

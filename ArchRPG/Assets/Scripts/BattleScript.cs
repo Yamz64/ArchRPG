@@ -3319,7 +3319,12 @@ public class BattleScript : MonoBehaviour
 
             int preh = target.currentHP;
             string preS = target.status;
-            int preC = target.statusCounter;
+            List<int> precS = new List<int>();
+            for (int f = 0; f < target.statuses.Count; f++)
+            {
+                precS.Add(target.statuses[f]);
+            }
+            //int preC = target.statusCounter;
             bool minus = false;
             if (uni.abilities[ata].target != 0)
             {
@@ -3327,8 +3332,11 @@ public class BattleScript : MonoBehaviour
             }
 
             dead = uni.useAbility(ata, target, minus);
-
-            if (preh != target.currentHP || preS != target.status || preC != target.statusCounter)
+            //Debug.Log("precs == stat --> " + (precS == target.statuses));
+            //Debug.Log("precS[1] == " + precS[1]);
+            //Debug.Log("target[1] == " + target.statuses[1]);
+            //If no effects from the ability on the target
+            if (preh != target.currentHP || precS != target.statuses)
             {
                 StartCoroutine(flashDamage(target));
                 StartCoroutine(flashDealDamage(uni));
@@ -3354,7 +3362,7 @@ public class BattleScript : MonoBehaviour
                     }
                 }
             }
-            else if (dead == false && uni.abilities[ata].OutputText(uni, target) == null)
+            else if (dead == false && uni.abilities[ata].OutputText(uni, target) == null && precS != target.statuses)
             {
                 dialogue.text = uni.unitName + " missed the enemy";
                 yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
