@@ -2465,7 +2465,7 @@ class Lucy : CharacterStats
         SetImageFilepath("CharacterSprites/Lucy");
 
         SetName("Lucy");
-        SetDesc(" ");
+        SetDesc("You seem to recall a girl that joined your class for a single day, but never showed up after that. It turns out that she ran away in disgust with humanity to live in the subway and breed... rats?");
 
         SetLVL(1);
 
