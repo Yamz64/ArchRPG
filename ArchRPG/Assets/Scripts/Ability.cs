@@ -362,8 +362,33 @@ public static class EldritchAbilities
             position = 0;
             target = 0;
             damage = 0;
-            type = 1;
+            type = 2;
             statusEffect = "Weeping";
+        }
+        public void useAttack(unit user, List<unit> targets)
+        {
+            user.giveStatus("Zealous");
+            user.giveStatus("Confident");
+            List<int> valid = new List<int>();
+            for (int i = 0; i < targets.Count; i++)
+            {
+                if (targets[i] != null)
+                {
+                    if (targets[i].currentHP > 0 && targets[i].unitName != user.unitName && targets[i].enemy == false)
+                    {
+                        valid.Add(i);
+                    }
+                    else if (targets[i].enemy == true)
+                    {
+                        break;
+                    }
+                }
+            }
+            if (valid.Count > 0)
+            {
+                int ran = Random.Range(0, valid.Count);
+                targets[ran].giveStatus("Weeping");
+            }
         }
     }
 
@@ -379,6 +404,7 @@ public static class EldritchAbilities
             level_cost = 8;
             position = 1;
             target = 3;
+            enemyTarget = 3;
             damage = 20;
             type = 0;
             damageType = 4;
@@ -399,7 +425,7 @@ public static class EldritchAbilities
             level_cost = 16;
             position = 0;
             target = 3;
-            type = 0;
+            type = 2;
         }
     }
 }

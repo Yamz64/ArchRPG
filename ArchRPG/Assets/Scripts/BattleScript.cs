@@ -3307,11 +3307,13 @@ public class BattleScript : MonoBehaviour
     //target - the target of the ability
     IEnumerator playerAbility(int ata, int val, unit uni, unit target)
     {
-        if (uni.abilities[ata].type == 0 && !uni.abilities[ata].eldritch)
+        if (uni.abilities[ata].type == 0)
         {
             bool dead = false;
             bool deadL = false;
             bool deadR = false;
+            bool dTemp = false;
+            int expHere = 0;
 
             //dialogue.text = "Player used " + ata.name;
 
@@ -3332,10 +3334,8 @@ public class BattleScript : MonoBehaviour
             }
 
             dead = uni.useAbility(ata, target, minus);
-            //Debug.Log("precs == stat --> " + (precS == target.statuses));
-            //Debug.Log("precS[1] == " + precS[1]);
-            //Debug.Log("target[1] == " + target.statuses[1]);
-            //If no effects from the ability on the target
+
+            //If some effect from ability
             if (preh != target.currentHP || precS != target.statuses)
             {
                 StartCoroutine(flashDamage(target));
@@ -3361,6 +3361,23 @@ public class BattleScript : MonoBehaviour
                         }
                     }
                 }
+                else if (uni.abilities[ata].target == 3)
+                {
+                    for (int b = 0; b < enemyUnits.Count; b++)
+                    {
+                        if (enemyUnits[b].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                        {
+                            dTemp = uni.useAbility(ata, enemyUnits[b].GetComponent<UnitMono>().mainUnit, minus);
+                            StartCoroutine(flashDamage(enemyUnits[b].GetComponent<UnitMono>().mainUnit));
+                            StartCoroutine(flashDealDamage(uni));
+                            if (dTemp)
+                            {
+                                StartCoroutine(unitDeath(enemyUnits[b].GetComponent<UnitMono>().mainUnit));
+                                expHere += enemyUnits[b].GetComponent<UnitMono>().mainUnit.expGain;
+                            }
+                        }
+                    }
+                }
             }
             else if (dead == false && uni.abilities[ata].OutputText(uni, target) == null && precS != target.statuses)
             {
@@ -3375,7 +3392,8 @@ public class BattleScript : MonoBehaviour
             {
                 enemyDeaths++;
                 StartCoroutine(unitDeath(target));
-                yield return levelUp(target.giveEXP());
+                expHere += target.expGain;
+                //yield return levelUp(target.giveEXP());
             }
             else if (dead && target.currentHP > 0)
             {
@@ -3386,13 +3404,19 @@ public class BattleScript : MonoBehaviour
             {
                 enemyDeaths++;
                 StartCoroutine(unitDeath(enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit));
-                yield return levelUp(enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.giveEXP());
+                expHere += enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.expGain;
+                //yield return levelUp(enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.giveEXP());
             }
             if (deadR && enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
             {
                 enemyDeaths++;
                 StartCoroutine(unitDeath(enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit));
-                yield return levelUp(enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.giveEXP());
+                expHere += enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.expGain;
+                //yield return levelUp(enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.giveEXP());
+            }
+            if (expHere > 0)
+            {
+                yield return levelUp(expHere);
             }
 
             if (enemyDeaths == enemyUnits.Count)
@@ -3492,6 +3516,60 @@ public class BattleScript : MonoBehaviour
                 }
             }
             yield return flashHeal(target);
+        }
+        else
+        {
+            int expHere = 0;
+            List<unit> tore = new List<unit>();
+            List<unit> ori = new List<unit>();
+            for (int g = 0; g < partyUnits.Count; g++)
+            {
+                if (partyUnits[g] != null)
+                {
+                    tore.Add(partyUnits[g].GetComponent<UnitMono>().mainUnit);
+                    ori.Add(partyUnits[g].GetComponent<UnitMono>().mainUnit);
+                }
+                else
+                {
+                    tore.Add(null);
+                    ori.Add(null);
+                }
+            }
+            for (int g = 0; g < enemyUnits.Count; g++)
+            {
+                tore.Add(enemyUnits[g].GetComponent<UnitMono>().mainUnit);
+                ori.Add(enemyUnits[g].GetComponent<UnitMono>().mainUnit);
+            }
+            uni.abilities[ata].UseAttack(uni, tore);
+            for (int g = 0; g < tore.Count; g++)
+            {
+                if (tore[g] != null)
+                {
+                    if (tore[g].currentHP < ori[g].currentHP)
+                    {
+                        StartCoroutine(flashDamage(tore[g]));
+                        StartCoroutine(flashDealDamage(uni));
+                    }
+                    if (tore[g].currentHP <= 0 && ori[g].currentHP > 0)
+                    {
+                        StartCoroutine(unitDeath(tore[g]));
+                        if (tore[g].enemy == true)
+                        {
+                            expHere += tore[g].expGain;
+                            enemyDeaths++;
+                        }
+                        else
+                        {
+                            partyDeaths++;
+                        }
+                    }
+                }
+            }
+            if (expHere > 0)
+            {
+                yield return levelUp(expHere);
+            }
+            
         }
         if (uni.abilities[ata].OutputText(uni, target) != null)
         {
