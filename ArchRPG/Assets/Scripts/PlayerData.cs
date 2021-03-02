@@ -135,8 +135,8 @@ public class PlayerData : CharacterStats
     {
         added_party_members[index] = true;
     }
-    public int GetUnlockedSan(int index) { return added_party_sans[index]; }
-    public void SetUnlockedSan(int index, int SAN) { added_party_sans[index] = SAN; }
+    public int GetUnlockedSAN(int index) { return added_party_sans[index]; }
+    public void SetUnlockedSAN(int index, int SAN) { added_party_sans[index] = SAN; }
     public void UpdatePartySan()
     {
         for(int i=0; i<party_stats.Count; i++)
@@ -144,22 +144,22 @@ public class PlayerData : CharacterStats
             switch (party_stats[i].GetName())
             {
                 case "Clyve":
-                    SetUnlockedSan(0, party_stats[i].GetSAN());
+                    SetUnlockedSAN(0, party_stats[i].GetSAN());
                     break;
                 case "Jim":
-                    SetUnlockedSan(1, party_stats[i].GetSAN());
+                    SetUnlockedSAN(1, party_stats[i].GetSAN());
                     break;
                 case "Norm":
-                    SetUnlockedSan(2, party_stats[i].GetSAN());
+                    SetUnlockedSAN(2, party_stats[i].GetSAN());
                     break;
                 case "Shirley":
-                    SetUnlockedSan(3, party_stats[i].GetSAN());
+                    SetUnlockedSAN(3, party_stats[i].GetSAN());
                     break;
                 case "Little Ralphy":
-                    SetUnlockedSan(4, party_stats[i].GetSAN());
+                    SetUnlockedSAN(4, party_stats[i].GetSAN());
                     break;
                 case "Lucy":
-                    SetUnlockedSan(5, party_stats[i].GetSAN());
+                    SetUnlockedSAN(5, party_stats[i].GetSAN());
                     break;
                 default:
                     break;

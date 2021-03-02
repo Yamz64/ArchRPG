@@ -25,6 +25,7 @@ public class PauseMenuHandler : MonoBehaviour
     public int equipped_offset;
     public int ability_offset;
     public int levelup_offset;
+    public int swap_offset;
 
     public int highlighted_item;
     public int highlighted_party_member;
@@ -2592,6 +2593,105 @@ public class PauseMenuHandler : MonoBehaviour
                 //set the time
                 menus[6].transform.GetChild(3 + i).GetChild(6).GetComponent<Text>().text = "";
             }
+        }
+    }
+
+    public void UpdatePartySwap()
+    {
+        data.UpdatePartySan();
+        //--FIRST UPDATE INFO FOR THE CURRENT PARTY MEMBERS--
+        for(int i=0; i<menus[8].transform.GetChild(0).childCount; i++)
+        {
+            GameObject info = menus[8].transform.GetChild(0).GetChild(i).gameObject;
+
+            //determine if the player has a party member
+            if (i < data.GetPartySize())
+            {
+                //update the image, name HP, SP, and SAN
+                info.GetComponent<Image>().color = Color.white;
+                info.GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetPartyMember(i).GetImageFilepath());
+                info.transform.GetChild(1).GetComponent<Text>().text = data.GetPartyMember(i).GetName();
+                info.transform.GetChild(2).GetComponent<Image>().color = Color.green;
+                info.transform.GetChild(2).GetComponent<Image>().fillAmount = (float)data.GetPartyMember(i).GetHP() / data.GetPartyMember(i).GetHPMAX();
+                info.transform.GetChild(3).GetComponent<Image>().color = Color.cyan;
+                info.transform.GetChild(3).GetComponent<Image>().fillAmount = (float)data.GetPartyMember(i).GetSP() / data.GetPartyMember(i).GetSPMax();
+                info.transform.GetChild(4).GetComponent<Image>().color = Color.white;
+                info.transform.GetChild(4).GetComponent<Image>().fillAmount = (float)data.GetPartyMember(i).GetSAN() / data.GetPartyMember(i).GetSANMax();
+            }
+            else
+            {
+                info.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                info.transform.GetChild(1).GetComponent<Text>().text = "";
+                info.transform.GetChild(2).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                info.transform.GetChild(3).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                info.transform.GetChild(4).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+            }
+        }
+
+        //--UPDATE LIST OF AVAILABLE PARTY MEMBERS TO SWAP--
+        for(int i=0; i<menus[8].transform.GetChild(1).childCount; i++)
+        {
+            GameObject card = menus[8].transform.GetChild(1).GetChild(i).gameObject;
+
+            //attempt to display a party member: if it is not unlocked move onto the next one
+            //first see if the value is out of bounds if so then set values on card to null values and continue
+            if(i + swap_offset >= data.GetUnlockCount())
+            {
+                card.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                card.transform.GetChild(1).GetComponent<Text>().text = "";
+                card.transform.GetChild(2).GetComponent<Text>().text = "";
+                card.transform.GetChild(2).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                card.transform.GetChild(3).GetComponent<Text>().text = "";
+                continue;
+            }
+            //attempt to find the first available unlocked member if there are no more available then do the above step
+            int unlocked_char = i;
+            while (!data.GetUnlockedMember(unlocked_char + swap_offset)) {
+                unlocked_char++;
+                if (unlocked_char + swap_offset >= data.GetUnlockCount()) break;
+            }
+            if(unlocked_char + swap_offset >= data.GetUnlockCount())
+            {
+                card.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                card.transform.GetChild(1).GetComponent<Text>().text = "";
+                card.transform.GetChild(2).GetComponent<Text>().text = "";
+                card.transform.GetChild(2).GetChild(0).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                card.transform.GetChild(3).GetComponent<Text>().text = "";
+                continue;
+            }
+            //found unlocked member: determine the correct member and update the card data accordingly
+            CharacterStats temp = new CharacterStats();
+            switch(unlocked_char + swap_offset)
+            {
+                case 0:
+                    temp = new Clyve();
+                    break;
+                case 1:
+                    temp = new Jim();
+                    break;
+                case 2:
+                    temp = new Norm();
+                    break;
+                case 3:
+                    temp = new Shirley();
+                    break;
+                case 4:
+                    temp = new Ralph();
+                    break;
+                case 5:
+                    temp = new Lucy();
+                    break;
+                default:
+                    temp = new Clyve();
+                    break;
+            }
+            card.GetComponent<Image>().color = Color.white;
+            card.GetComponent<Image>().sprite = Resources.Load<Sprite>(temp.GetImageFilepath());
+            card.transform.GetChild(1).GetComponent<Text>().text = temp.GetName();
+            card.transform.GetChild(2).GetComponent<Text>().text = "SAN";
+            card.transform.GetChild(2).GetChild(0).GetComponent<Image>().color = Color.white;
+            card.transform.GetChild(2).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetUnlockedSAN(unlocked_char + swap_offset) / temp.GetSANMax();
+            card.transform.GetChild(3).GetComponent<Text>().text = temp.GetDesc();
         }
     }
 

@@ -526,7 +526,7 @@ public class CharacterStatJsonConverter
         unlocked_characters = new bool[p.GetUnlockCount()];
         for(int i=0; i<p.GetUnlockCount(); i++)
         {
-            unlocked_sans[i] = p.GetUnlockedSan(i);
+            unlocked_sans[i] = p.GetUnlockedSAN(i);
             unlocked_characters[i] = p.GetUnlockedMember(i);
         }
 
