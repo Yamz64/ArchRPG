@@ -99,6 +99,7 @@ public class unit
     public int currentLevelTop;     //Limit for next level
     public int exp;                 //The amount of experience the unit has
     public int maxHP;               //Maximum HP possible
+    public int defMaxHP;            //Default Max HP (if actual is edited)
     public int currentHP;           //Current Hit points
     public int maxSP;               //Maximum SP possible
     public int currentSP;           //Current Skill Points
@@ -231,7 +232,7 @@ public class unit
     public int getAGI()     { return AGI; }
     public int getLUCK()    { return LCK; }
 
-    public void SetHPMax(int hp) { maxHP = hp; }
+    public void SetHPMax(int hp) { maxHP = defMaxHP = hp; }
     public void SetSPMax(int sp) { maxSP = sp; }
 
     //Set the HP (Within bounds)
@@ -809,6 +810,12 @@ public class unit
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[11] = ran;
+            if (maxHP > 20)
+            {
+                maxHP -= 20;
+                if (currentHP > maxHP) currentHP = maxHP;
+            }
+            
         }
         else if (id.Equals("Flammable")     && statuses[12] == -1)
         {
@@ -856,6 +863,10 @@ public class unit
                     {
                         statuses[i] = -1;
                         no += 1;
+                        if (i == 11)
+                        {
+                            maxHP = defMaxHP;
+                        }
                     }
                 }
             }
