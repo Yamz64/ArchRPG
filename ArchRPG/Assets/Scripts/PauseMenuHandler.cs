@@ -2648,10 +2648,14 @@ public class PauseMenuHandler : MonoBehaviour
             }
             //attempt to find the first available unlocked member if there are no more available then do the above step
             int unlocked_char = i + character_offset;
-            while (!data.GetUnlockedMember(unlocked_char + swap_offset) ) {
-                unlocked_char++;
-                character_offset++;
-                if (unlocked_char + swap_offset >= data.GetUnlockCount()) break;
+            if (unlocked_char + swap_offset < data.GetUnlockCount())
+            {
+                while (!data.GetUnlockedMember(unlocked_char + swap_offset))
+                {
+                    unlocked_char++;
+                    character_offset++;
+                    if (unlocked_char + swap_offset >= data.GetUnlockCount()) break;
+                }
             }
             if(unlocked_char + swap_offset >= data.GetUnlockCount())
             {
