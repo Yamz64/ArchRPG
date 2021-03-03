@@ -433,6 +433,20 @@ public static class EldritchAbilities
             damageType = 4;
             use_pow = true;
         }
+
+        public void useAttack(unit user, List<unit> targets)
+        {
+            for (int i = 0; i < targets.Count; i++)
+            {
+                if (targets[i] != null)
+                {
+                    if (targets[i].currentHP > 0 && targets[i].unitName != user.unitName)
+                    {
+                        targets[i].takeDamage(user.takeDamageCalc(targets[i], 20, 4, true));
+                    }
+                }
+            }
+        }
     }
 
     //***~RYAN~***

@@ -687,6 +687,116 @@ public class unit
         }
     }
 
+    public int takeDamageCalc(unit target, int dam, int typer, bool powe = false)
+    {
+        int val = dam;
+        if (!powe)
+        {
+            if (statuses[6] == -1)
+            {
+                val += (int)(val * (float)(ATK / 100));
+            }
+            //Zealous
+            else
+            {
+                val += (int)(val * (float)((ATK * 1.25) / 100));
+            }
+
+            //Check if DEF is reduced by a status like Blunt Trauma
+            if (target.statuses[4] == -1 && target.statuses[7] == -1)
+            {
+                val -= (int)(val * (float)(target.DEF / 300));
+            }
+            //Blunt Trauma
+            else if (target.statuses[4] != -1 && target.statuses[7] == -1)
+            {
+                val -= (int)(val * (float)((target.DEF * 0.75) / 300));
+            }
+            //Neurotic
+            else if (target.statuses[4] == -1 && target.statuses[7] != -1)
+            {
+                val -= (int)(val * (float)((target.DEF * 1.5) / 300));
+            }
+            //Both
+            else
+            {
+                val -= (int)(val * (float)((target.DEF * 1.25) / 300));
+            }
+        }
+        else
+        {
+            //Check if POW is affected
+            if (statuses[6] == -1)
+            {
+                val += (int)(val * (float)(POW / 100));
+            }
+            //Zealous
+            else
+            {
+                val += (int)(val * (float)((POW * 1.25) / 100));
+            }
+
+            //Check if WILL is affected
+            if (target.statuses[7] == target.statuses[10])
+            {
+                //valS -= (int)(valS * (float)(target.WILL / 300));
+                val -= (int)(val * (float)(target.WILL / 300));
+            }
+            //If target has neurotic
+            else if (target.statuses[7] != -1)
+            {
+                //valS -= (int)(valS * (float)((target.WILL * 0.75) / 300));
+                val -= (int)(val * (float)((target.WILL * 0.75) / 300));
+            }
+            //If target has confidence
+            else
+            {
+                //valS -= (int)(valS * (float)((target.WILL * 1.25) / 300));
+                val -= (int)(val * (float)((target.WILL * 1.25) / 300));
+            }
+        }
+        //Check if target is weak or resistant to a certain damage type
+        if (target.weaknesses[typer] == true)
+        {
+            val = (int)(val * 1.5);
+        }
+        else if (target.resistances[typer] == true)
+        {
+            val = (int)(val * 0.5);
+        }
+
+        //If flammable + fire damage
+        if (target.statuses[12] != -1 && typer == 1)
+        {
+            val = (int)(val * 1.25);
+        }
+
+        int critBuff = 0;
+        //If target has analyzed
+        if (target.statuses[14] != -1)
+        {
+            critBuff += 15;
+        }
+        //Check if the unit gets a crit
+        int crit = UnityEngine.Random.Range(1, 101);
+        if (crit < (LCK / 3) + critBuff)
+        {
+            val += (val / 2);
+            //Debug.Log("Got a crit!");
+        }
+        //If unit has weeping
+        if (statuses[2] != -1)
+        {
+            int dum = UnityEngine.Random.Range(1, 4);
+            if (dum == 1)
+            {
+                val = val / 5;
+            }
+        }
+
+        return val;
+    }
+
     //Take sanity damage, return true if sanity reaches 0
     public bool takeSanityDamage(int dam)
     {
