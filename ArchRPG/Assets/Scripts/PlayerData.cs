@@ -43,8 +43,15 @@ public class PlayerData : CharacterStats
 
             for(int i=0; i<u_char_count; i++)
             {
-                if(temp.GetUnlockedMember(i))
-                UnlockPartyMember(i);
+                if (temp.GetUnlockedMember(i))
+                {
+                    UnlockPartyMember(i);
+                    SetUnlockedSAN(i, temp.GetUnlockedSAN(i));
+                }
+                else
+                {
+                    SetUnlockedSAN(i, 0);
+                }
             }
 
             if (temp.GetWeapon() != null)

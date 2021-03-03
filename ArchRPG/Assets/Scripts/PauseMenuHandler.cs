@@ -48,6 +48,7 @@ public class PauseMenuHandler : MonoBehaviour
     private bool save_select;
     private bool save_load;     //false is save true is load
     private bool choice;        //false = first choice selected, true = second choice selected
+    private bool swap;          //false choose character to swap , true choose character to swap to
     private GameObject cursor;
     private List<GameObject> menus;
     private PlayerData data;
@@ -2548,12 +2549,12 @@ public class PauseMenuHandler : MonoBehaviour
                 //set all images to invisible
                 for(int j=1; j<5; j++)
                 {
-                    menus[6].transform.GetChild(3 + i).GetChild(j).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                    menus[6].transform.GetChild(4 + i).GetChild(j).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
                 }
                 //set the current level to nothing
-                menus[6].transform.GetChild(3 + i).GetChild(5).GetComponent<Text>().text = "";
+                menus[6].transform.GetChild(4 + i).GetChild(5).GetComponent<Text>().text = "";
                 //set the time to nothing
-                menus[6].transform.GetChild(3 + i).GetChild(6).GetComponent<Text>().text = "";
+                menus[6].transform.GetChild(4 + i).GetChild(6).GetComponent<Text>().text = "";
             }
             else
             {
@@ -2566,8 +2567,8 @@ public class PauseMenuHandler : MonoBehaviour
                     //set the first index always to the player
                     if(j - 1 == 0)
                     {
-                        menus[6].transform.GetChild(3 + i).GetChild(j).GetComponent<Image>().color = Color.white;
-                        menus[6].transform.GetChild(3 + i).GetChild(j).GetComponent<Image>().sprite = Resources.Load<Sprite>("CharacterSprites/PC");
+                        menus[6].transform.GetChild(4 + i).GetChild(j).GetComponent<Image>().color = Color.white;
+                        menus[6].transform.GetChild(4 + i).GetChild(j).GetComponent<Image>().sprite = Resources.Load<Sprite>("CharacterSprites/PC");
                     }
                     else
                     {
@@ -2575,23 +2576,23 @@ public class PauseMenuHandler : MonoBehaviour
                         //no
                         if(j > save.names.GetLength(0))
                         {
-                            menus[6].transform.GetChild(3 + i).GetChild(j).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                            menus[6].transform.GetChild(4 + i).GetChild(j).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
                         }
                         //yes
                         else
                         {
-                            menus[6].transform.GetChild(3 + i).GetChild(j).GetComponent<Image>().color = Color.white;
+                            menus[6].transform.GetChild(4 + i).GetChild(j).GetComponent<Image>().color = Color.white;
                             System.Type t = System.Type.GetType(save.names[j - 1]);
                             CharacterStats temp = (CharacterStats)System.Activator.CreateInstance(t);
-                            menus[6].transform.GetChild(3 + i).GetChild(j).GetComponent<Image>().sprite = Resources.Load<Sprite>(temp.GetImageFilepath());
+                            menus[6].transform.GetChild(4 + i).GetChild(j).GetComponent<Image>().sprite = Resources.Load<Sprite>(temp.GetImageFilepath());
                         }
                     }
                 }
 
                 //set the current level
-                menus[6].transform.GetChild(3 + i).GetChild(5).GetComponent<Text>().text = "Lvl " + save.levels[0];
+                menus[6].transform.GetChild(4 + i).GetChild(5).GetComponent<Text>().text = "Lvl " + save.levels[0];
                 //set the time
-                menus[6].transform.GetChild(3 + i).GetChild(6).GetComponent<Text>().text = "";
+                menus[6].transform.GetChild(4 + i).GetChild(6).GetComponent<Text>().text = "";
             }
         }
     }
@@ -2629,6 +2630,7 @@ public class PauseMenuHandler : MonoBehaviour
         }
 
         //--UPDATE LIST OF AVAILABLE PARTY MEMBERS TO SWAP--
+        int character_offset = 0;   //helps handle skipped party members
         for(int i=0; i<menus[8].transform.GetChild(1).childCount; i++)
         {
             GameObject card = menus[8].transform.GetChild(1).GetChild(i).gameObject;
@@ -2645,9 +2647,10 @@ public class PauseMenuHandler : MonoBehaviour
                 continue;
             }
             //attempt to find the first available unlocked member if there are no more available then do the above step
-            int unlocked_char = i;
-            while (!data.GetUnlockedMember(unlocked_char + swap_offset)) {
+            int unlocked_char = i + character_offset;
+            while (!data.GetUnlockedMember(unlocked_char + swap_offset) ) {
                 unlocked_char++;
+                character_offset++;
                 if (unlocked_char + swap_offset >= data.GetUnlockCount()) break;
             }
             if(unlocked_char + swap_offset >= data.GetUnlockCount())
@@ -3752,6 +3755,12 @@ public class PauseMenuHandler : MonoBehaviour
                             save_select = true;
                             break;
                         case 2:
+                            CloseMenu(6);
+                            OpenMenu(0);
+                            OpenMenu(8);
+                            UpdatePartySwap();
+                            swap_offset = 0;
+                            cursor_position = 0;
                             break;
                         default:
                             break;
@@ -3893,6 +3902,175 @@ public class PauseMenuHandler : MonoBehaviour
         cursor.transform.position = cursor_positions[9].positions[cursor_position].transform.position;
     }
 
+    public void SwapMenuRoutine()
+    {
+        if (!swap)
+        {
+            if(Input.GetAxisRaw("Horizontal") > 0.0f && cursor_position < 2)
+            {
+                if (!menu_input)
+                {
+                    cursor_position++;
+                    audio_handler.PlaySound("Sound/SFX/cursor");
+                }
+                menu_input = true;
+            }
+            else if(Input.GetAxisRaw("Horizontal") < 0.0f && cursor_position > 0)
+            {
+                if (!menu_input)
+                {
+                    cursor_position--;
+                    audio_handler.PlaySound("Sound/SFX/cursor");
+                }
+                menu_input = true;
+            }
+            else if (Input.GetButtonDown("Interact"))
+            {
+                if (!menu_input)
+                {
+                    if (cursor_position < data.GetPartySize())
+                    {
+                        highlighted_party_member = cursor_position;
+                        cursor_position = 0;
+                        swap = true;
+                        audio_handler.PlaySound("Sound/SFX/select");
+                    }
+                }
+            }
+            else
+            {
+                menu_input = false;
+            }
+            cursor.transform.position = cursor_positions[10].positions[cursor_position].transform.position;
+        }
+        else
+        {
+            //determine how many characters are to be displayed
+            int display_count = 0;
+            for(int i=0; i<data.GetUnlockCount(); i++)
+            {
+                if (data.GetUnlockedMember(i)) display_count++;
+            }
+            //MOVE DOWN
+            if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < 3)
+            {
+                if (!menu_input)
+                {
+                    cursor_position++;
+                    audio_handler.PlaySound("Sound/SFX/cursor");
+                }
+                menu_input = true;
+            }
+            //MOVE UP
+            else if(Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+            {
+                if (!menu_input)
+                {
+                    cursor_position--;
+                    audio_handler.PlaySound("Sound/SFX/cursor");
+                }
+                menu_input = true;
+            }
+            //SCROLL DOWN
+            else if(Input.GetAxisRaw("Vertical") < 0.0f && swap_offset + 4 < display_count)
+            {
+                if (!menu_input)
+                {
+                    swap_offset++;
+                    UpdatePartySwap();
+                    audio_handler.PlaySound("Sound/SFX/cursor");
+                }
+                menu_input = true;
+            }
+            //SCROLL UP
+            else if(Input.GetAxisRaw("Vertical") > 0.0f && swap_offset > 0)
+            {
+                if (!menu_input)
+                {
+                    swap_offset--;
+                    UpdatePartySwap();
+                    audio_handler.PlaySound("Sound/SFX/cursor");
+                }
+                menu_input = true;
+            }
+            //INPUT
+            else if (Input.GetButtonDown("Interact"))
+            {
+                if (!menu_input)
+                {
+                    //first find what the player has selected
+                    int selected = cursor_position + swap_offset;
+                    while (!data.GetUnlockedMember(selected)) { selected++; }
+
+                    CharacterStats temp = new CharacterStats();
+                    switch (selected)
+                    {
+                        case 0:
+                            temp = new Clyve();
+                            break;
+                        case 1:
+                            temp = new Jim();
+                            break;
+                        case 2:
+                            temp = new Norm();
+                            break;
+                        case 3:
+                            temp = new Shirley();
+                            break;
+                        case 4:
+                            temp = new Ralph();
+                            break;
+                        case 5:
+                            temp = new Lucy();
+                            break;
+                        default:
+                            temp = new Clyve();
+                            break;
+                    }
+                    //check to see if the selected member is the same as the one being swapped- if so then return to selecting a particular member in the party to swap
+                    if(data.GetPartyMember(highlighted_party_member).GetName() == temp.GetName())
+                    {
+                        cursor_position = 0;
+                        highlighted_party_member = 0;
+                        swap = false;
+                        return;
+                    }
+
+                    //check to see if the selected member is in the party- if so then do nothing
+                    for(int i=0; i<data.GetPartySize(); i++)
+                    {
+                        if (i == highlighted_party_member) continue;
+                        if (data.GetPartyMember(i).GetName() == temp.GetName()) return;
+                    }
+
+                    //if the above 2 cases don't happen then swap the current party member out for the new party member
+                    temp.SetSAN(data.GetUnlockedSAN(selected));
+                    temp.SetPos(data.GetPartyMember(highlighted_party_member).GetPos());
+                    temp.SetLVL(data.GetLVL());
+                    temp.UpdateStats();
+                    if (!temp.GetDead())
+                    {
+                        temp.SetHP(temp.GetHPMAX());
+                        temp.SetSP(temp.GetSPMax());
+                    }
+                    data.RemovePartyMember(highlighted_party_member);
+                    data.AddPartyMember(temp);
+                    UpdatePartySwap();
+                    cursor_position = 0;
+                    swap_offset = 0;
+                    swap = false;
+                    audio_handler.PlaySound("Sound/SFX/select");
+                }
+                menu_input = true;
+            }
+            else
+            {
+                menu_input = false;
+            }
+            cursor.transform.position = cursor_positions[11].positions[cursor_position].transform.position;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -3976,6 +4154,9 @@ public class PauseMenuHandler : MonoBehaviour
                     break;
                 case 7:
                     ChoiceMenuRoutine();
+                    break;
+                case 8:
+                    SwapMenuRoutine();
                     break;
                 default:
                     break;

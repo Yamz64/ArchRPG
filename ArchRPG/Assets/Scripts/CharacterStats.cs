@@ -840,8 +840,15 @@ public class CharacterStatJsonConverter
         //update unlocked party members
         for(int i=0; i<unlocked_characters.Length; i++)
         {
-            if(unlocked_characters[i])
-            p.UnlockPartyMember(i);
+            if (unlocked_characters[i])
+            {
+                p.UnlockPartyMember(i);
+                p.SetUnlockedSAN(i, unlocked_sans[i]);
+            }
+            else
+            {
+                p.SetUnlockedSAN(i, 0);
+            }
         }
 
         p.SetDead(dead[0]);
