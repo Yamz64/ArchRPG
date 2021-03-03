@@ -1,12 +1,22 @@
 {
     "position": {
-        "x": -97.5,
-        "y": 7.5
+        "x": -11.5,
+        "y": 6.0
     },
     "flee": false,
+    "unlocked_sans": [
+        100,
+        100,
+        0,
+        0,
+        0,
+        0
+    ],
     "unlocked_characters": [
         true,
         true,
+        false,
+        false,
         false,
         false
     ],
