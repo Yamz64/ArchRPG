@@ -141,6 +141,7 @@ public class PlayerData : CharacterStats
     public void UnlockPartyMember(int index)
     {
         added_party_members[index] = true;
+        SetUnlockedSAN(index, 100);
     }
     public int GetUnlockedSAN(int index) { return added_party_sans[index]; }
     public void SetUnlockedSAN(int index, int SAN) { added_party_sans[index] = SAN; }
