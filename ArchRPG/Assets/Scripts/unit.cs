@@ -373,6 +373,26 @@ public class unit
         abilities.Add(move);
     }
 
+    public void addEldritch(string id)
+    {
+        if (id == "OtherworldlyGaze")
+        {
+            abilities.Add(new EldritchAbilities.OtherworldyGaze());
+        }
+        else if (id == "RuinousWave")
+        {
+            abilities.Add(new EldritchAbilities.RuinousWave());
+        }
+        else if (id == "BeseechTheAbyss")
+        {
+            abilities.Add(new EldritchAbilities.BeseechTheAbyss());
+        }
+        else
+        {
+            Debug.Log("Incorrect eldritch name");
+        }
+    }
+
     /*
     public bool useAttack(int index, unit target)
     {

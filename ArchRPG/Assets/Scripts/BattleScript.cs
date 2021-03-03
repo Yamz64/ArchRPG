@@ -482,6 +482,11 @@ public class BattleScript : MonoBehaviour
             if (i + ability_offset < partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities.Count)
             {
                 ability_viewer[i].text = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAbility(i + ability_offset).name;
+                if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAbility(i + ability_offset).eldritch)
+                {
+                    Color g = new Color(0.0f, 1.0f, 0.0f);
+                    ability_viewer[i].color = g;
+                }
             }
             else
             {
@@ -1428,7 +1433,8 @@ public class BattleScript : MonoBehaviour
                             if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].type == 0)
                             {
                                 //If more than one enemy exists
-                                if (activeEnemies > 1 || enemyUnits.Count - enemyDeaths > 1)
+                                if (activeEnemies > 1 || enemyUnits.Count - enemyDeaths > 1 || 
+                                    partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].target != 3)
                                 {
                                     useSound(1);
                                     //Make attack menu invisible
@@ -3014,11 +3020,16 @@ public class BattleScript : MonoBehaviour
                 {
                     unitGo.GetComponent<UnitMono>().mainUnit.position = 1;
                 }
-                partyUnits.Add(unitGo.gameObject);
                 if (loader.names[i] == "Player")
                 {
                     pc = unitGo.gameObject.GetComponent<UnitMono>().mainUnit;
+                    for (int h = 0; h < loader.e_abilities.Length; h++)
+                    {
+                        unitGo.gameObject.GetComponent<UnitMono>().mainUnit.addEldritch(loader.e_abilities[h]);
+                    }
                 }
+                partyUnits.Add(unitGo.gameObject);
+                
                 //partyNames.Add(unitGo.GetComponent<UnitMono>().mainUnit.unitName);
                 activeUnits += 1;
             }
