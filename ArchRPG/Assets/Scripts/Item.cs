@@ -157,29 +157,49 @@ public class Trinket : Item
 }
 
 //--DERIVED ITEMS--
-public class HotDog : Item
+public static class Consumables
 {
-    public HotDog()
+    public static List<Item> GetItems()
     {
-        name = "Hot Dog";
-        description = "A tube of unidentified, but delicious meat!  Heals 50 HP when eaten!";
-        image_file_path = "ItemSprites/HotDog";
-        amount = 1;
-        limit = 30;
+        System.Type item = typeof(Item);
+        System.Type[] temp = item.GetNestedTypes();
+
+        List<Item> items = new List<Item>();
+        for (int i = 0; i < temp.GetLength(0); i++)
+        {
+            System.Type type = temp[i];
+            Item instance = (Item)System.Activator.CreateInstance(type);
+            items.Add(instance);
+        }
+
+        return items;
     }
 
-    public override void Use()
+    public class HotDog : Item
     {
-        character.SetHP(character.GetHP() + 50);
-        Remove();
+        public HotDog()
+        {
+            name = "Hot Dog";
+            description = "A tube of unidentified, but delicious meat!  Heals 50 HP when eaten!";
+            image_file_path = "ItemSprites/HotDog";
+            amount = 1;
+            limit = 30;
+        }
+
+        public override void Use()
+        {
+            character.SetHP(character.GetHP() + 50);
+            Remove();
+        }
+
+        public override void Use(unit user)
+        {
+            user.healDamage(50);
+            user.setHP(user.getHP());
+            Remove();
+        }
     }
 
-    public override void Use(unit user)
-    {
-        user.healDamage(50);
-        user.setHP(user.getHP());
-        Remove();
-    }
 }
 
 public static class Weapons

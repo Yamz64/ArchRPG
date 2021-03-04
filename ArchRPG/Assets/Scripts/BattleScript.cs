@@ -3199,11 +3199,11 @@ public class BattleScript : MonoBehaviour
             }
         }
 
-        data.AddItem(new HotDog());
-        data.AddItem(new HotDog());
-        data.AddItem(new HotDog());
-        data.AddItem(new HotDog());
-        data.AddItem(new HotDog());
+        data.AddItem(new Consumables.HotDog());
+        data.AddItem(new Consumables.HotDog());
+        data.AddItem(new Consumables.HotDog());
+        data.AddItem(new Consumables.HotDog());
+        data.AddItem(new Consumables.HotDog());
 
         if (currentUnit == 4)
         {
