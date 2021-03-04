@@ -6,6 +6,18 @@ using UnityEngine;
 [System.Serializable]
 public class Item
 {
+    public Item() { }
+    public Item(Item i)
+    {
+        name = i.name;
+        description = i.description;
+        image_file_path = i.image_file_path;
+        amount = i.amount;
+        limit = i.limit;
+        type = i.type;
+        character = i.character;
+    }
+
     public void Add() {
         if(amount >= limit)
         {
@@ -92,6 +104,24 @@ public class Weapon : Item
 [System.Serializable]
 public class Armor : Item
 {
+    public Armor() { }
+
+    public Armor(Armor a)
+    {
+        name = a.name;
+        image_file_path = a.image_file_path;
+        description = a.description;
+        limit = a.limit;
+        amount = a.amount;
+        damage_buff = a.damage_buff;
+        power_buff = a.power_buff;
+        defense_buff = a.defense_buff;
+        will_buff = a.will_buff;
+        resistance_buff = a.resistance_buff;
+        speed_buff = a.speed_buff;
+        luck_buff = a.luck_buff;
+    }
+
     public virtual void SetArmor(CharacterStats c)
     {
         character = c;
@@ -126,6 +156,24 @@ public class Armor : Item
 [System.Serializable]
 public class Trinket : Item
 {
+    public Trinket() { }
+
+    public Trinket(Trinket t)
+    {
+        name = t.name;
+        image_file_path = t.image_file_path;
+        description = t.description;
+        limit = t.limit;
+        amount = t.amount;
+        damage_buff = t.damage_buff;
+        power_buff = t.power_buff;
+        defense_buff = t.defense_buff;
+        will_buff = t.will_buff;
+        resistance_buff = t.resistance_buff;
+        speed_buff = t.speed_buff;
+        luck_buff = t.luck_buff;
+    }
+
     public virtual void SetTrinket(CharacterStats c)
     {
         character = c;
@@ -161,7 +209,7 @@ public static class Consumables
 {
     public static List<Item> GetItems()
     {
-        System.Type item = typeof(Item);
+        System.Type item = typeof(Consumables);
         System.Type[] temp = item.GetNestedTypes();
 
         List<Item> items = new List<Item>();
@@ -199,7 +247,6 @@ public static class Consumables
             Remove();
         }
     }
-
 }
 
 public static class Weapons

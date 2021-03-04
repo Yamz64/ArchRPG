@@ -53,6 +53,9 @@ public class PauseMenuHandler : MonoBehaviour
     private List<GameObject> menus;
     private PlayerData data;
     private PlayerOverworldAudioHandler audio_handler;
+    private List<Item> store_items;
+
+    public void SetStoreItems(List<Item> items) { store_items = items; }
 
     public void OpenMenu(int index)
     {
