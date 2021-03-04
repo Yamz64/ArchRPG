@@ -49,13 +49,18 @@ public class PauseMenuHandler : MonoBehaviour
     private bool save_load;     //false is save true is load
     private bool choice;        //false = first choice selected, true = second choice selected
     private bool swap;          //false choose character to swap , true choose character to swap to
+    private bool store_select;  //false = the player is choosing to buy or sell, true = the player is selecting an item
+    private bool selling;       //false = the player is buying, true = the player is selling
     private GameObject cursor;
     private List<GameObject> menus;
     private PlayerData data;
     private PlayerOverworldAudioHandler audio_handler;
     private List<Item> store_items;
+    private List<int> store_costs;
 
     public void SetStoreItems(List<Item> items) { store_items = items; }
+
+    public void SetStoreCosts(List<int> costs) { store_costs = costs; }
 
     public void OpenMenu(int index)
     {
@@ -63,6 +68,7 @@ public class PauseMenuHandler : MonoBehaviour
         active_menu = index;
         menus[index].SetActive(true);
         if (index == 6) save_select = false;
+        if(index == 9) { store_select = false; selling = false; inventory_offset = 0; }
     }
 
     public void CloseMenu(int index)
@@ -2705,6 +2711,92 @@ public class PauseMenuHandler : MonoBehaviour
         }
     }
 
+    public void UpdateStoreMenu()
+    {
+        //first determine if the player is buying or selling
+        //buying
+        if (!selling)
+        {
+            //populate the item list with objects to buy
+            for(int i=0; i<menus[9].transform.GetChild(2).childCount; i++)
+            {
+                GameObject item_ui = menus[9].transform.GetChild(2).GetChild(i).gameObject;
+                //determine if the current position is out of bounds
+                if(i + inventory_offset >= store_items.Count)
+                {
+                    //set the name and cost to nothing
+                    item_ui.GetComponent<Text>().text = "";
+                    item_ui.transform.GetChild(0).GetComponent<Text>().text = "";
+                    continue;
+                }
+
+                //if it isn't out of bounds set the name and cost
+                item_ui.GetComponent<Text>().text = store_items[i + inventory_offset].name;
+                item_ui.transform.GetChild(0).GetComponent<Text>().text = "$" + store_costs[i + inventory_offset];
+            }
+
+            //set the item description and image
+            //see if out of bounds
+            //yes
+            if(cursor_position + inventory_offset >= store_items.Count)
+            {
+                //clear the description and set the image to nothing
+                menus[9].transform.GetChild(3).GetComponent<Text>().text = "";
+                menus[9].transform.GetChild(4).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+            }
+            //no
+            else
+            {
+                //set the description to the item's description and set the image to the item's image
+                menus[9].transform.GetChild(3).GetComponent<Text>().text = store_items[cursor_position + inventory_offset].description;
+                menus[9].transform.GetChild(4).GetComponent<Image>().color = Color.white;
+                menus[9].transform.GetChild(4).GetComponent<Image>().sprite = Resources.Load<Sprite>(store_items[cursor_position + inventory_offset].image_file_path);
+            }
+        }
+        //selling
+        else
+        {
+            //populate the list of items with your inventory
+            for(int i=0; i<menus[9].transform.GetChild(2).childCount; i++)
+            {
+                GameObject item_ui = menus[9].transform.GetChild(2).GetChild(i).gameObject;
+                //determine if the position is out of bounds
+                if(i + inventory_offset >= data.GetInventorySize())
+                {
+                    //set the name and cost to nothing
+                    item_ui.GetComponent<Text>().text = "";
+                    item_ui.transform.GetChild(0).GetComponent<Text>().text = "";
+                    continue;
+                }
+
+                //if it isn't out of bounds set the name and cost
+                item_ui.GetComponent<Text>().text = data.GetItem(i + inventory_offset).name;
+                item_ui.transform.GetChild(0).GetComponent<Text>().text = "$" + data.GetItem(i + inventory_offset).cost;
+
+                //set the item description and image
+                //see if out of bounds
+                //yes
+                if (cursor_position + inventory_offset >= data.GetInventorySize())
+                {
+                    //clear the description and set the image to nothing
+                    menus[9].transform.GetChild(3).GetComponent<Text>().text = "";
+                    menus[9].transform.GetChild(4).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                }
+                //no
+                else
+                {
+                    //set the description to the item's description and set the image to the item's image
+                    menus[9].transform.GetChild(3).GetComponent<Text>().text = data.GetItem(cursor_position + inventory_offset).description;
+                    menus[9].transform.GetChild(4).GetComponent<Image>().color = Color.white;
+                    menus[9].transform.GetChild(4).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetItem(cursor_position + inventory_offset).image_file_path);
+                }
+            }
+        }
+
+        //Update the money count
+        menus[9].transform.GetChild(5).GetComponent<Text>().text = "$" + data.GetMoney().ToString();
+    }
+
     public void SetChoiceText(string text, bool choice_text = false)
     {
         if (!choice_text) menus[7].transform.GetChild(0).GetComponent<Text>().text = text;
@@ -4078,6 +4170,115 @@ public class PauseMenuHandler : MonoBehaviour
         }
     }
 
+    public void StoreMenuRoutine()
+    {
+        if (!store_select)
+        {
+            if(Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+            {
+                if (!menu_input)
+                {
+                    cursor_position--;
+                    audio_handler.PlaySound("Sound/SFX/cursor");
+                }
+                menu_input = true;
+            }
+            else if(Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < 1)
+            {
+                if (!menu_input)
+                {
+                    cursor_position++;
+                    audio_handler.PlaySound("Sound/SFX/cursor");
+                }
+                menu_input = true;
+            }
+            else if (Input.GetButtonDown("Interact"))
+            {
+                if (!menu_input)
+                {
+                    if (cursor_position == 0) selling = false;
+                    if (cursor_position == 1) selling = true;
+                    store_select = true;
+                    UpdateStoreMenu();
+                    audio_handler.PlaySound("Sound/SFX/select");
+                    cursor_position = 0;
+                }
+            }
+            else
+            {
+                menu_input = false;
+            }
+            cursor.transform.position = cursor_positions[12].positions[cursor_position].transform.position;
+        }
+        else
+        {
+            //--UP--
+            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+            {
+                if (!menu_input)
+                {
+                    cursor_position--;
+                    UpdateStoreMenu();
+                    audio_handler.PlaySound("Sound/SFX/cursor");
+                }
+                menu_input = true;
+            }
+            //--DOWN--
+            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < 8)
+            {
+                if (!menu_input)
+                {
+                    cursor_position++;
+                    UpdateStoreMenu();
+                    audio_handler.PlaySound("Sound/SFX/cursor");
+                }
+                menu_input = true;
+            }
+            //--SCROLL UP--
+            else if(Input.GetAxisRaw("Vertical") > 0.0f && inventory_offset > 0)
+            {
+                if (!menu_input)
+                {
+                    inventory_offset--;
+                    UpdateStoreMenu();
+                    audio_handler.PlaySound("Sound/SFX/cursor");
+                }
+                menu_input = true;
+            }
+            else if(Input.GetAxisRaw("Vertical") < 0.0f)
+            {
+                //buying
+                if (!menu_input)
+                {
+                    if (!selling)
+                    {
+                        if (cursor_position + inventory_offset < store_items.Count - 1)
+                        {
+                            inventory_offset++;
+                            audio_handler.PlaySound("Sound/SFX/cursor");
+                        }
+                    }
+                    //selling
+                    else
+                    {
+                        if (cursor_position + inventory_offset < data.GetInventorySize() - 1)
+                        {
+                            inventory_offset++;
+                            audio_handler.PlaySound("Sound/SFX/cursor");
+                        }
+                    }
+                }
+                menu_input = true;
+                UpdateStoreMenu();
+            }
+            else
+            {
+                menu_input = false;
+            }
+            cursor.transform.position = cursor_positions[13].positions[cursor_position].transform.position;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -4164,6 +4365,9 @@ public class PauseMenuHandler : MonoBehaviour
                     break;
                 case 8:
                     SwapMenuRoutine();
+                    break;
+                case 9:
+                    StoreMenuRoutine();
                     break;
                 default:
                     break;

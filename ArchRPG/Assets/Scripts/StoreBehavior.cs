@@ -20,12 +20,14 @@ public class StoreBehavior : InteractableBaseClass
     public List<StoreItem> items;
 
     private List<Item> converted_items;
+    private List<int> costs;
 
     // Start is called before the first frame update
     void Start()
     {
         //try to find if an existing item matching the name and type of item in the store exists and add that item's information to the list of converted items
         converted_items = new List<Item>();
+        costs = new List<int>();
         for(int i=0; i<items.Count; i++)
         {
             switch (items[i].type) {
@@ -43,6 +45,7 @@ public class StoreBehavior : InteractableBaseClass
                             }
                         }
                         if (!found) continue;
+                        costs.Add(items[i].cost);
                     }
                     break;
                 case ItemType.Weapon:
@@ -59,6 +62,7 @@ public class StoreBehavior : InteractableBaseClass
                             }
                         }
                         if (!found) continue;
+                        costs.Add(items[i].cost);
                     }
                     break;
                 case ItemType.Armor:
@@ -75,6 +79,7 @@ public class StoreBehavior : InteractableBaseClass
                             }
                         }
                         if (!found) continue;
+                        costs.Add(items[i].cost);
                     }
                     break;
                 case ItemType.Trinket:
@@ -91,6 +96,7 @@ public class StoreBehavior : InteractableBaseClass
                             }
                         }
                         if (!found) continue;
+                        costs.Add(items[i].cost);
                     }
                     break;
             }
@@ -99,6 +105,14 @@ public class StoreBehavior : InteractableBaseClass
 
     public override void Interact()
     {
-        
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.GetComponent<PauseMenuHandler>().menu_mode = true;
+        player.GetComponent<PauseMenuHandler>().menu_input = true;
+        player.GetComponent<PauseMenuHandler>().SetStoreItems(converted_items);
+        player.GetComponent<PauseMenuHandler>().SetStoreCosts(costs);
+        player.GetComponent<PauseMenuHandler>().OpenMenu(9);
+        player.GetComponent<PauseMenuHandler>().ActivateCursor();
+        player.GetComponent<PauseMenuHandler>().UpdateStoreMenu();
+        player.GetComponent<PlayerMovement>().interaction_protection = true;
     }
 }

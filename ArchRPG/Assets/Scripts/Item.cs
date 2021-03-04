@@ -45,6 +45,7 @@ public class Item
     public int amount;
     public int limit;
     public int type;                    //0 = item, 1 = weapon, 2 = armor, 3 = trinket
+    public int cost;                    //the cost of the item being sold;
     public CharacterStats character;
 }
 
@@ -232,6 +233,7 @@ public static class Consumables
             image_file_path = "ItemSprites/HotDog";
             amount = 1;
             limit = 30;
+            cost = 2;
         }
 
         public override void Use()
@@ -277,6 +279,7 @@ public static class Weapons
             limit = 1;
             amount = 1;
             type = 1;
+            cost = 5;
             damage_buff = 80;
             power_buff = 20;
             defense_buff = 0;
@@ -316,6 +319,7 @@ public static class Armors
             limit = 1;
             amount = 1;
             type = 2;
+            cost = 7;
             damage_buff = 0;
             power_buff = 0;
             defense_buff = 50;
@@ -355,6 +359,7 @@ public static class Trinkets
             limit = 1;
             amount = 1;
             type = 3;
+            cost = 10;
             damage_buff = 0;
             power_buff = 10;
             will_buff = 50;
