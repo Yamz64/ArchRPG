@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/BattleScene.unity
     guid: 2c77e403033d8d14bac7dff3c95af986
   - enabled: 1
+    path: Assets/Scenes/BedroomCutscene.unity
+    guid: 05a10eaf5bbf48846a1ab0b4b82943de
+  - enabled: 1
     path: Assets/Scenes/BedroomScene.unity
     guid: 571ecced5020d9a46a8024b9d36b419c
   - enabled: 1
