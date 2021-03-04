@@ -398,7 +398,7 @@ public class CharacterStats
         abilities = new List<Ability>();
         status_effects = new List<int>();
 
-        for(int i=0; i<10; i++)
+        for(int i=0; i<15; i++)
         {
             status_effects.Add(-1);
         }

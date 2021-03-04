@@ -1052,7 +1052,7 @@ namespace ClyveAbilities
             position = 1;
             damage = 5;
             damageType = 3;
-            target = 1;
+            target = 3;
             statusEffect = "Vomiting";
         }
     }
