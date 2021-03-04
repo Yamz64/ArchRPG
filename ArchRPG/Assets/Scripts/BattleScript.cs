@@ -19,8 +19,9 @@ public class action
         target = 0;
         speed = 0;
         priority = false;
+        targetName = "op";
     }
-    public action(int who, string todo, int what, int where, int agi, bool p = false)
+    public action(int who, string todo, int what, int where, int agi, bool p = false, string st = "")
     {
         id = who;
         type = todo;
@@ -28,6 +29,7 @@ public class action
         target = where;
         speed = agi;
         priority = p;
+        targetName = st;
     }
     public int getID() { return id; }
     public string getType() { return type; }
@@ -35,6 +37,7 @@ public class action
     public int getTarget() { return target; }
     public int getSPD() { return speed; }
     public bool getFast() { return priority; }
+    public string getName() { return targetName; }
 
     int id = 0;                         //Index (who is doing the action)
     string type;                        //String (represents what the action is)
@@ -42,6 +45,7 @@ public class action
     int target = 0;                     //Index (target of any effects the action has)
     int speed = 0;                      //Speed at which the action happens
     bool priority = false;              //Whether the action should happen first
+    string targetName = "";
 }
 
 public class BattleScript : MonoBehaviour
@@ -166,6 +170,8 @@ public class BattleScript : MonoBehaviour
 
     //The highest level from the enemies
     public int highEne = 0;
+
+    bool working = false;
 
     //Use to load in unit info from json file
     CharacterStatJsonConverter loader;
@@ -1437,7 +1443,7 @@ public class BattleScript : MonoBehaviour
                                 if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].type == 0)
                                 {
                                     //If more than one enemy exists
-                                    if (activeEnemies > 1 || enemyUnits.Count - enemyDeaths > 1 ||
+                                    if ((activeEnemies > 1 || enemyUnits.Count - enemyDeaths > 1) &&
                                         partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].target != 3)
                                     {
                                         useSound(1);
@@ -1609,52 +1615,7 @@ public class BattleScript : MonoBehaviour
                         }
                         else
                         {
-                            dialogue.text = "Cannot use ability at current position.";
-                            CloseUseAbilityMenu();
-                            Image[] opts = transform.GetChild(1).Find("AbilityMenu").GetComponentsInChildren<Image>();
-                            foreach (Image child in opts)
-                            {
-                                Color temp = child.color;
-                                temp.a = 0.0f;
-                                child.color = temp;
-                            }
-
-                            Text[] ts = transform.GetChild(1).Find("AbilityMenu").GetComponentsInChildren<Text>();
-                            foreach (Text child in ts)
-                            {
-                                Color temp = child.color;
-                                temp.a = 0.0f;
-                                child.color = temp;
-                            }
-
-                            float timer = 0;
-                            while (timer < 1.0f)
-                            {
-                                timer += Time.deltaTime;
-                            }
-
-                            bool notP = false;
-                            while (!notP)
-                            {
-                                if (Input.GetButtonDown("Interact"))
-                                {
-                                    notP = true;
-                                }
-                            }
-                            //yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
-                            foreach (Image child in opts)
-                            {
-                                Color temp = child.color;
-                                temp.a = 1.0f;
-                                child.color = temp;
-                            }
-
-                            foreach (Text child in ts)
-                            {
-                                Color temp = child.color;
-                                temp.a = 1.0f;
-                                child.color = temp;
-                            }
+                            StartCoroutine(WrongLine());
                             menu_input = false;
                             playerTurn();
                         }
@@ -1884,7 +1845,8 @@ public class BattleScript : MonoBehaviour
                     useSound(1);
                     actions.Add(new action(currentUnit, "ability1", highlighted_ability, currentAlly,
                         partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI(),
-                        partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].fast));
+                        partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].fast,
+                        partyUnits[currentAlly].GetComponent<UnitMono>().mainUnit.unitName));
                     currentAlly = 0;
                     highlighted_ability = 0;
                     currentUnit += 1;
@@ -2794,12 +2756,42 @@ public class BattleScript : MonoBehaviour
                 //Use Buff/Support ability (player)
                 else if (actions[z].getType() == "ability1" && state == battleState.ATTACK)
                 {
-                    if (partyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                    int pose = actions[z].getTarget();
+                    if (partyUnits[pose] == null)
+                    {
+                        for (int i = 0; i < 4; i++)
+                        {
+                            if (partyUnits[i] != null)
+                            {
+                                if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName == actions[z].getName())
+                                {
+                                    pose = i;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    else if (partyUnits[pose].GetComponent<UnitMono>().mainUnit.unitName != actions[z].getName())
+                    {
+                        for (int i = 0; i < 4; i++)
+                        {
+                            if (partyUnits[i] != null)
+                            {
+                                if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName == actions[z].getName())
+                                {
+                                    pose = i;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    if (partyUnits[pose].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                     {
                         dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
                             temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
-                        yield return playerAbility(actions[z].getIndex(), actions[z].getTarget(),
-                            temp[ind].GetComponent<UnitMono>().mainUnit, partyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit);
+                        yield return playerAbility(actions[z].getIndex(), pose,
+                            temp[ind].GetComponent<UnitMono>().mainUnit, partyUnits[pose].GetComponent<UnitMono>().mainUnit);
                     }
                 }
                 //Use basic attack
@@ -4326,6 +4318,45 @@ public class BattleScript : MonoBehaviour
         SceneManager.LoadScene(loader.active_scene);
     }
 
+    IEnumerator WrongLine()
+    {
+        working = true;
+        dialogue.text = "Cannot use ability at current position.";
+        CloseUseAbilityMenu();
+        Image[] opts = transform.GetChild(1).Find("AbilityMenu").GetComponentsInChildren<Image>();
+        foreach (Image child in opts)
+        {
+            Color temp = child.color;
+            temp.a = 0.0f;
+            child.color = temp;
+        }
+
+        Text[] ts = transform.GetChild(1).Find("AbilityMenu").GetComponentsInChildren<Text>();
+        foreach (Text child in ts)
+        {
+            Color temp = child.color;
+            temp.a = 0.0f;
+            child.color = temp;
+        }
+
+        yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+        foreach (Image child in opts)
+        {
+            Color temp = child.color;
+            temp.a = 1.0f;
+            child.color = temp;
+        }
+
+        foreach (Text child in ts)
+        {
+            Color temp = child.color;
+            temp.a = 1.0f;
+            child.color = temp;
+        }
+        //menu_input = false;
+        working = false;
+    }
+
     //Flash red in response to damage
     public IEnumerator flashDamage(unit bot)
     {
@@ -4460,9 +4491,13 @@ public class BattleScript : MonoBehaviour
     {
         if (!enemy_select_menu && state != battleState.ATTACK
              && state != battleState.WIN && state != battleState.LOSE && state != battleState.HUH
-              && state != battleState.FLEE && state != battleState.START && active_menu != 3) cursor.SetActive(true);
+              && state != battleState.FLEE && state != battleState.START && active_menu != 3)
+        {
+            cursor.SetActive(true);
+        }
         else cursor.SetActive(false);
-        if (state == battleState.PLAYER && currentUnit < partyUnits.Count && partyUnits[currentUnit] != null)
+
+        if (state == battleState.PLAYER && currentUnit < partyUnits.Count && partyUnits[currentUnit] != null && !working)
         {
             //handle cursor movement in the various menus
             switch (active_menu)
