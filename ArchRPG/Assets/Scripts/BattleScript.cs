@@ -3371,6 +3371,8 @@ public class BattleScript : MonoBehaviour
     {
         if (uni.abilities[ata].type == 0)
         {
+            bool good = false;
+            bool bad = false;
             bool dead = false;
             bool deadL = false;
             bool deadR = false;
@@ -3400,8 +3402,29 @@ public class BattleScript : MonoBehaviour
             //If some effect from ability
             if (preh != target.currentHP || precS != target.statuses)
             {
+                if (target.weaknesses[uni.abilities[ata].damageType]) good = true;
+                if (target.resistances[uni.abilities[ata].damageType]) bad = true;
                 StartCoroutine(flashDamage(target));
-                StartCoroutine(flashDealDamage(uni));
+                yield return flashDealDamage(uni);
+                if (target.critted)
+                {
+                    dialogue.text = "The attack hit a weak spot!";
+                    yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                    target.critted = false;
+                }
+                if (good)
+                {
+                    //yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                    dialogue.text = "It did a lot of damage!";
+                    yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                    good = false;
+                }
+                else if (bad)
+                {
+                    dialogue.text = "It didn't do too much damage.";
+                    yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                    bad = false;
+                }
                 if (uni.abilities[ata].target == 1)
                 {
                     if (val - 1 >= 0)
@@ -3409,8 +3432,31 @@ public class BattleScript : MonoBehaviour
                         if (enemyUnits[val - 1] != null && enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                         {
                             deadL = uni.useAbility(ata, enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit, minus);
+
+                            if (enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.weaknesses[uni.abilities[ata].damageType]) good = true;
+                            if (enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.resistances[uni.abilities[ata].damageType]) bad = true;
+
                             StartCoroutine(flashDamage(enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit));
-                            StartCoroutine(flashDealDamage(uni));
+                            yield return flashDealDamage(uni);
+                            if (enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.critted)
+                            {
+                                dialogue.text = "The attack hit a weak spot!";
+                                yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                                enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.critted = false;
+                            }
+                            if (good)
+                            {
+                                //yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                                dialogue.text = "It did a lot of damage!";
+                                yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                                good = false;
+                            }
+                            else if (bad)
+                            {
+                                dialogue.text = "It didn't do too much damage.";
+                                yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                                bad = false;
+                            }
                         }
                     }
                     if (val + 1 <= 3 && val + 1 < enemyUnits.Count)
@@ -3418,8 +3464,31 @@ public class BattleScript : MonoBehaviour
                         if (enemyUnits[val + 1] != null && enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                         {
                             deadR = uni.useAbility(ata, enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit, minus);
+
+                            if (enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.weaknesses[uni.abilities[ata].damageType]) good = true;
+                            if (enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.resistances[uni.abilities[ata].damageType]) bad = true;
+
                             StartCoroutine(flashDamage(enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit));
-                            StartCoroutine(flashDealDamage(uni));
+                            yield return flashDealDamage(uni);
+                            if (enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.critted)
+                            {
+                                dialogue.text = "The attack hit a weak spot!";
+                                yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                                enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.critted = false;
+                            }
+                            if (good)
+                            {
+                                //yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                                dialogue.text = "It did a lot of damage!";
+                                yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                                good = false;
+                            }
+                            else if (bad)
+                            {
+                                dialogue.text = "It didn't do too much damage.";
+                                yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                                bad = false;
+                            }
                         }
                     }
                 }
@@ -3430,8 +3499,31 @@ public class BattleScript : MonoBehaviour
                         if (enemyUnits[b].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                         {
                             dTemp = uni.useAbility(ata, enemyUnits[b].GetComponent<UnitMono>().mainUnit, minus);
+
+                            if (enemyUnits[b].GetComponent<UnitMono>().mainUnit.weaknesses[uni.abilities[ata].damageType]) good = true;
+                            if (enemyUnits[b].GetComponent<UnitMono>().mainUnit.resistances[uni.abilities[ata].damageType]) bad = true;
+
                             StartCoroutine(flashDamage(enemyUnits[b].GetComponent<UnitMono>().mainUnit));
-                            StartCoroutine(flashDealDamage(uni));
+                            yield return flashDealDamage(uni);
+                            if (enemyUnits[b].GetComponent<UnitMono>().mainUnit.critted)
+                            {
+                                dialogue.text = "The attack hit a weak spot!";
+                                yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                                enemyUnits[b].GetComponent<UnitMono>().mainUnit.critted = false;
+                            }
+                            if (good)
+                            {
+                                //yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                                dialogue.text = "It did a lot of damage!";
+                                yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                                good = false;
+                            }
+                            else if (bad)
+                            {
+                                dialogue.text = "It didn't do too much damage.";
+                                yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                                bad = false;
+                            }
                             if (dTemp)
                             {
                                 StartCoroutine(unitDeath(enemyUnits[b].GetComponent<UnitMono>().mainUnit));
@@ -3680,11 +3772,17 @@ public class BattleScript : MonoBehaviour
     IEnumerator basicAttack(unit uni, unit target)
     {
         //dialogue.text = "Player used " + ata.name;
+        bool crite = false;
+        //bool good = false;
+        //bool bad = false;
 
         yield return new WaitForSeconds(1f);
         int val = 5;
         if (uni.ATK > uni.POW)
         {
+            val = uni.takeDamageCalc(target, val, 0);
+
+            /*
             if (uni.statuses[6] == -1)
             {
                 val += (int)(val * (float)(uni.ATK / 100));
@@ -3714,10 +3812,13 @@ public class BattleScript : MonoBehaviour
             {
                 val -= (int)(val * (float)((target.DEF * 1.25) / 300));
             }
+            */
         }
         
         else
         {
+            val = uni.takeDamageCalc(target, val, 0, true);
+            /*
             //Check if POW is affected
             if (uni.statuses[6] == -1)
             {
@@ -3744,6 +3845,7 @@ public class BattleScript : MonoBehaviour
             {
                 val -= (int)(val * (float)((target.WILL * 1.25) / 300));
             }
+            */
         }
         
         //Check if target is weak or resistant to a certain damage type
@@ -3762,6 +3864,7 @@ public class BattleScript : MonoBehaviour
         if (crit <= uni.LCK)
         {
             val += (val / 2);
+            crite = true;
             Debug.Log("Got a crit!");
         }
         if (uni.statuses[2] != -1)
@@ -3776,7 +3879,14 @@ public class BattleScript : MonoBehaviour
         target.setHP(target.currentHP);
         //uni.setSP(uni.currentSP - 2);
         StartCoroutine(flashDamage(target));
-        StartCoroutine(flashDealDamage(uni));
+        yield return flashDealDamage(uni);
+
+        if (crite)
+        {
+            //yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+            dialogue.text = "It's a critical hit!";
+            yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+        }
 
         yield return new WaitForSeconds(1f);
 
@@ -3973,6 +4083,8 @@ public class BattleScript : MonoBehaviour
     //target - target of attack
     IEnumerator enemyAttack(int ata, int val, unit uni, unit target)
     {
+        bool good = false;
+        bool bad = false;
         bool dead = false;
         bool dead2 = false;
         int r2 = 0;
@@ -3991,8 +4103,31 @@ public class BattleScript : MonoBehaviour
         for (int g = 0; g < looper && !dead; g++)
         {
             dead = uni.useAbility(ata, target);
+
+            if (target.weaknesses[uni.abilities[ata].damageType]) good = true;
+            if (target.resistances[uni.abilities[ata].damageType]) bad = true;
+
             StartCoroutine(flashDamage(target));
-            StartCoroutine(flashDealDamage(uni));
+            yield return flashDealDamage(uni);
+            if (target.critted)
+            {
+                dialogue.text = "The attack hit a weak spot!";
+                yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                target.critted = false;
+            }
+            if (good)
+            {
+                //yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                dialogue.text = "It did a lot of damage!";
+                yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                good = false;
+            }
+            else if (bad)
+            {
+                dialogue.text = "It didn't do too much damage.";
+                yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                bad = false;
+            }
 
             if (uni.abilities[ata].swapper == 1)
             {
@@ -4092,8 +4227,31 @@ public class BattleScript : MonoBehaviour
                     partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                 {
                     dead2 = uni.useAbility(ata, partyUnits[val - 1].GetComponent<UnitMono>().mainUnit);
+
+                    if (partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.weaknesses[uni.abilities[ata].damageType]) good = true;
+                    if (partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.resistances[uni.abilities[ata].damageType]) bad = true;
+
                     StartCoroutine(flashDamage(partyUnits[val - 1].GetComponent<UnitMono>().mainUnit));
-                    StartCoroutine(flashDealDamage(uni));
+                    yield return flashDealDamage(uni);
+                    if (partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.critted)
+                    {
+                        dialogue.text = "The attack hit a weak spot!";
+                        yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                        partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.critted = false;
+                    }
+                    if (good)
+                    {
+                        //yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                        dialogue.text = "It did a lot of damage!";
+                        yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                        good = false;
+                    }
+                    else if (bad)
+                    {
+                        dialogue.text = "It didn't do too much damage.";
+                        yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                        bad = false;
+                    }
                     r2 = val - 1;
                 }
                 //If target is on the left
@@ -4101,8 +4259,31 @@ public class BattleScript : MonoBehaviour
                     partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                 {
                     dead2 = uni.useAbility(ata, partyUnits[val + 1].GetComponent<UnitMono>().mainUnit);
+
+                    if (partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.weaknesses[uni.abilities[ata].damageType]) good = true;
+                    if (partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.resistances[uni.abilities[ata].damageType]) bad = true;
+
                     StartCoroutine(flashDamage(partyUnits[val + 1].GetComponent<UnitMono>().mainUnit));
-                    StartCoroutine(flashDealDamage(uni));
+                    yield return flashDealDamage(uni);
+                    if (partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.critted)
+                    {
+                        dialogue.text = "The attack hit a weak spot!";
+                        yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                        partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.critted = false;
+                    }
+                    if (good)
+                    {
+                        //yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                        dialogue.text = "It did a lot of damage!";
+                        yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                        good = false;
+                    }
+                    else if (bad)
+                    {
+                        dialogue.text = "It didn't do too much damage.";
+                        yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                        bad = false;
+                    }
                     r2 = val + 1;
                 }
             }
@@ -4137,8 +4318,31 @@ public class BattleScript : MonoBehaviour
                     partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                     {
                         bool now = uni.useAbility(ata, partyUnits[i].GetComponent<UnitMono>().mainUnit);
+
+                        if (partyUnits[i].GetComponent<UnitMono>().mainUnit.weaknesses[uni.abilities[ata].damageType]) good = true;
+                        if (partyUnits[i].GetComponent<UnitMono>().mainUnit.resistances[uni.abilities[ata].damageType]) bad = true;
+
                         StartCoroutine(flashDamage(partyUnits[i].GetComponent<UnitMono>().mainUnit));
-                        StartCoroutine(flashDealDamage(uni));
+                        yield return flashDealDamage(uni);
+                        if (partyUnits[i].GetComponent<UnitMono>().mainUnit.critted)
+                        {
+                            dialogue.text = "The attack hit a weak spot!";
+                            yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                            partyUnits[i].GetComponent<UnitMono>().mainUnit.critted = false;
+                        }
+                        if (good)
+                        {
+                            //yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                            dialogue.text = "It did a lot of damage!";
+                            yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                            good = false;
+                        }
+                        else if (bad)
+                        {
+                            dialogue.text = "It didn't do too much damage.";
+                            yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                            bad = false;
+                        }
                         rs.Add(i);
                         deads.Add(now);
                     }

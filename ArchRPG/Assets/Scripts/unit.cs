@@ -141,6 +141,8 @@ public class unit
     public List<int> statuses;          //List of ints in order to track how long each status lasts for
     public List<string> statusIndex;    //List of strings for each status effect
 
+    public bool critted = false;
+
 
     public Sprite[] sprites;        //Array of sprites (for attack animations)
     public string ImageFilePath;    //Use to determine what image to display for the unit
@@ -611,6 +613,7 @@ public class unit
                     if (crit < (LCK / 3) + critBuff)
                     {
                         val += (val / 2);
+                        critted = true;
                         Debug.Log("Got a crit!");
                     }
                     //If unit has weeping
@@ -1641,7 +1644,9 @@ public class ClyveUnit : unit
         loadSprites();
         level = lev;
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
+        //Fire
         weaknesses[1] = true;
+        //Chemical
         resistances[3] = true;
 
         switch (level)
@@ -2181,6 +2186,7 @@ public class JimUnit : unit
         level = lev;
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));       //(int)(2.5 * Mathf.Pow(lev, 4));
         statuses[4] = 99;
+        //Weird
         resistances[4] = true;
 
         switch (level)
@@ -2719,7 +2725,9 @@ public class LucyUnit : unit
         loadSprites();
         level = lev;
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
+        //Weird
         resistances[4] = true;
+        //Fire
         weaknesses[1] = true;
 
         switch (level)
@@ -3258,6 +3266,7 @@ public class NormUnit : unit
         loadSprites();
         level = lev;
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
+        //Weird
         weaknesses[4] = true;
 
         switch (level)
@@ -3796,7 +3805,9 @@ public class RalphUnit : unit
         loadSprites();
         level = lev;
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
+        //Fire
         resistances[1] = true;
+        //Electric
         weaknesses[2] = true;
 
         switch (level)
