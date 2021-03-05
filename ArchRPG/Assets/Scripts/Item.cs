@@ -15,6 +15,7 @@ public class Item
         amount = i.amount;
         limit = i.limit;
         type = i.type;
+        cost = i.cost;
         character = i.character;
     }
 
@@ -62,6 +63,8 @@ public class Weapon : Item
         description = w.description;
         limit = w.limit;
         amount = w.amount;
+        type = w.type;
+        cost = w.cost;
         damage_buff = w.damage_buff;
         power_buff = w.power_buff;
         defense_buff = w.defense_buff;
@@ -114,6 +117,8 @@ public class Armor : Item
         description = a.description;
         limit = a.limit;
         amount = a.amount;
+        type = a.type;
+        cost = a.cost;
         damage_buff = a.damage_buff;
         power_buff = a.power_buff;
         defense_buff = a.defense_buff;
@@ -166,6 +171,8 @@ public class Trinket : Item
         description = t.description;
         limit = t.limit;
         amount = t.amount;
+        type = t.type;
+        cost = t.cost;
         damage_buff = t.damage_buff;
         power_buff = t.power_buff;
         defense_buff = t.defense_buff;

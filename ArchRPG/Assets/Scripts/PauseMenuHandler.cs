@@ -4349,6 +4349,18 @@ public class PauseMenuHandler : MonoBehaviour
                                 menus[9].transform.GetChild(6).position = new Vector2(menus[9].transform.GetChild(6).position.x, 0.0f);
                                 menus[9].transform.GetChild(6).gameObject.SetActive(true);
                             }
+                            else
+                            {
+                                for (int i = 0; i < trans_amount; i++)
+                                {
+                                    Item temp = data.GetItem(cursor_position + inventory_offset);
+                                    data.SetMoney(data.GetMoney() + temp.cost);
+                                    data.RemoveItem(cursor_position + inventory_offset);
+                                }
+                                trans_menu = false;
+                                trans_amount = 1;
+                                menus[9].transform.GetChild(6).gameObject.SetActive(false);
+                            }
                         }
                     }
                     else
@@ -4362,8 +4374,20 @@ public class PauseMenuHandler : MonoBehaviour
                                 menus[9].transform.GetChild(6).position = new Vector2(menus[9].transform.GetChild(6).position.x, 0.0f);
                                 menus[9].transform.GetChild(6).gameObject.SetActive(true);
                             }
+                            else
+                            {
+                                for(int i=0; i<trans_amount; i++)
+                                {
+                                    data.AddItem(store_items[cursor_position + inventory_offset]);
+                                    data.SetMoney(data.GetMoney() - store_costs[cursor_position + inventory_offset]);
+                                }
+                                trans_menu = false;
+                                trans_amount = 1;
+                                menus[9].transform.GetChild(6).gameObject.SetActive(false);
+                            }
                         }
                     }
+                    UpdateStoreMenu();
                 }
                 menu_input = true;
             }
