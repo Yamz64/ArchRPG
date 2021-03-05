@@ -22,15 +22,16 @@ public class StoreBehavior : InteractableBaseClass
     private List<Item> converted_items;
     private List<int> costs;
 
-    // Start is called before the first frame update
-    void Start()
+    public void StoreStart()
     {
+
         //try to find if an existing item matching the name and type of item in the store exists and add that item's information to the list of converted items
         converted_items = new List<Item>();
         costs = new List<int>();
-        for(int i=0; i<items.Count; i++)
+        for (int i = 0; i < items.Count; i++)
         {
-            switch (items[i].type) {
+            switch (items[i].type)
+            {
                 case ItemType.Consumable:
                     {
                         List<Item> temp_consume = Consumables.GetItems();
@@ -103,7 +104,7 @@ public class StoreBehavior : InteractableBaseClass
         }
     }
 
-    public override void Interact()
+    public void OpenStore()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<PauseMenuHandler>().menu_mode = true;
@@ -114,5 +115,16 @@ public class StoreBehavior : InteractableBaseClass
         player.GetComponent<PauseMenuHandler>().ActivateCursor();
         player.GetComponent<PauseMenuHandler>().UpdateStoreMenu();
         player.GetComponent<PlayerMovement>().interaction_protection = true;
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        StoreStart();
+    }
+
+    public override void Interact()
+    {
+        OpenStore();
     }
 }

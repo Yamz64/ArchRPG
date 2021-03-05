@@ -256,6 +256,82 @@ public static class Consumables
             Remove();
         }
     }
+
+    public class Aderall : Item
+    {
+        public Aderall()
+        {
+            name = "Aderall";
+            description = "A medication usually used to treat ADHD. Cures spasms and removes hyperactive.";
+            image_file_path = "";
+            amount = 1;
+            limit = 99;
+            cost = 10;
+        }
+
+        public override void Use()
+        {
+            character.SetStatus(5, 0);
+            Remove();
+        }
+    }
+
+    public class Beer : Item
+    {
+        public Beer()
+        {
+            name = "Beer";
+            description = "A medication for curing sadness. Drink responsibly! Causes vomiting and Zealous!";
+            image_file_path = "";
+            amount = 1;
+            limit = 99;
+            cost = 5;
+        }
+
+        public override void Use()
+        {
+            character.SetStatus(0, Random.Range(5, 8));
+            character.SetStatus(6, Random.Range(5, 8));
+        }
+    }
+
+    public class Cocaine : Item
+    {
+        public Cocaine()
+        {
+            name = "Cocaine";
+            description = "Very dangerous, very addictive, and very illegal!  Inflicts hyperactive and hysteria!";
+            image_file_path = "";
+            amount = 1;
+            limit = 99;
+            cost = 20;
+        }
+
+        public override void Use()
+        {
+            character.SetStatus(5, Random.Range(5, 8));
+            character.SetStatus(12, Random.Range(7, 10));
+        }
+    }
+
+    public class Xanax : Item
+    {
+        public Xanax()
+        {
+            name = "Xanax";
+            description = "Used by doctors to cure depression... still very addictive. Cures hysteria and inflicts restrained!";
+            image_file_path = "";
+            amount = 1;
+            limit = 99;
+            cost = 15;
+        }
+
+        public override void Use()
+        {
+            character.SetStatus(5, 0);
+            character.SetStatus(8, Random.Range(1, 2));
+        }
+    }
 }
 
 public static class Weapons

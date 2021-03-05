@@ -51,6 +51,15 @@
                     "interacted": false
                 }
             ]
+        },
+        {
+            "name": "ConvenienceStore",
+            "objects": [
+                {
+                    "o": "ADHDKid",
+                    "interacted": false
+                }
+            ]
         }
     ]
 }

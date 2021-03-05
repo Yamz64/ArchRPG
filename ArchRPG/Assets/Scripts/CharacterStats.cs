@@ -452,6 +452,10 @@ public class CharacterStats
      * 7 - Neurotic
      * 8 - Restrained
      * 9 - Consumed
+     * 10 - Diseased
+     * 11 - Flammable
+     * 12 - Hysteria
+     * 13 - Analyzed
     */
     private List<int> status_effects;
 
