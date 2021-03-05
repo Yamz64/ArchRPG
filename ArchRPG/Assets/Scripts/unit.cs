@@ -523,7 +523,15 @@ public class unit
                     //Calculate damage of the attack
                     int val = ata.damage;
                     int valS = ata.sanity_damage;
-                    if (!ata.use_pow)
+                    if (position == 0 && !enemy)
+                    {
+                        val += (int)(val * 0.2);
+                    }
+                    if (target.position == 1 && !target.enemy)
+                    {
+                        val -= (int)(val * 0.2);
+                    }
+                if (!ata.use_pow)
                     {
                         if (statuses[6] == -1)
                         {
@@ -5094,7 +5102,7 @@ public class Hound : unit
 {
     public Hound()
     {
-        ImageFilePath = "EnemySprites/e_mobile_sprout";
+        ImageFilePath = "EnemySprites/The Hound";
         unitName = "The Hound";
         loadSprites();
         weaknesses[4] = true;
