@@ -32,6 +32,8 @@ public class PauseMenuHandler : MonoBehaviour
 
     public int highlighted_swap;
 
+    public int trans_amount;
+
     public bool menu_input;
 
     [SerializeField]
@@ -51,6 +53,7 @@ public class PauseMenuHandler : MonoBehaviour
     private bool swap;          //false choose character to swap , true choose character to swap to
     private bool store_select;  //false = the player is choosing to buy or sell, true = the player is selecting an item
     private bool selling;       //false = the player is buying, true = the player is selling
+    private bool trans_menu;    //false = the player doesn't have the transaction amount menu open, true = the player has the transaction amount menu open
     private GameObject cursor;
     private List<GameObject> menus;
     private PlayerData data;
@@ -68,7 +71,14 @@ public class PauseMenuHandler : MonoBehaviour
         active_menu = index;
         menus[index].SetActive(true);
         if (index == 6) save_select = false;
-        if(index == 9) { store_select = false; selling = false; inventory_offset = 0; }
+        if(index == 9) {
+            store_select = false;
+            selling = false;
+            inventory_offset = 0;
+            trans_amount = 0;
+            trans_menu = false;
+            menus[9].transform.GetChild(6).gameObject.SetActive(false);
+        }
     }
 
     public void CloseMenu(int index)
@@ -2795,6 +2805,9 @@ public class PauseMenuHandler : MonoBehaviour
 
         //Update the money count
         menus[9].transform.GetChild(5).GetComponent<Text>().text = "$" + data.GetMoney().ToString();
+
+        //update the amount to buy/sell
+        menus[9].transform.GetChild(6).transform.GetChild(0).GetComponent<Text>().text = "Amount\n" + trans_amount.ToString();
     }
 
     public void SetChoiceText(string text, bool choice_text = false)
@@ -4217,7 +4230,15 @@ public class PauseMenuHandler : MonoBehaviour
             {
                 if (!menu_input)
                 {
+                    if(!trans_menu)
                     cursor_position--;
+                    if (trans_menu)
+                    {
+                        if(selling && trans_amount < data.GetItem(cursor_position + inventory_offset).amount)
+                        trans_amount++;
+                        if (!selling && store_costs[cursor_position + inventory_offset] * (trans_amount + 1) <= data.GetMoney())
+                        trans_amount++;
+                    }
                     UpdateStoreMenu();
                     audio_handler.PlaySound("Sound/SFX/cursor");
                 }
@@ -4228,7 +4249,13 @@ public class PauseMenuHandler : MonoBehaviour
             {
                 if (!menu_input)
                 {
+                    if(!trans_menu)
                     cursor_position++;
+                    if (trans_menu)
+                    {
+                        if(trans_amount > 0)
+                        trans_amount--;
+                    }
                     UpdateStoreMenu();
                     audio_handler.PlaySound("Sound/SFX/cursor");
                 }
@@ -4239,7 +4266,15 @@ public class PauseMenuHandler : MonoBehaviour
             {
                 if (!menu_input)
                 {
+                    if(!trans_menu)
                     inventory_offset--;
+                    if (trans_menu)
+                    {
+                        if(selling && trans_amount < data.GetItem(cursor_position + inventory_offset).amount)
+                        trans_amount++;
+                        if (!selling && store_costs[cursor_position + inventory_offset] * (trans_amount + 1) <= data.GetMoney())
+                        trans_amount++;
+                    }
                     UpdateStoreMenu();
                     audio_handler.PlaySound("Sound/SFX/cursor");
                 }
@@ -4254,7 +4289,13 @@ public class PauseMenuHandler : MonoBehaviour
                     {
                         if (cursor_position + inventory_offset < store_items.Count - 1)
                         {
+                            if(!trans_menu)
                             inventory_offset++;
+                            if (trans_menu)
+                            {
+                                if (trans_amount > 0)
+                                trans_amount--;
+                            }
                             audio_handler.PlaySound("Sound/SFX/cursor");
                         }
                     }
@@ -4263,13 +4304,68 @@ public class PauseMenuHandler : MonoBehaviour
                     {
                         if (cursor_position + inventory_offset < data.GetInventorySize() - 1)
                         {
+                            if(!trans_menu)
                             inventory_offset++;
+                            if (trans_menu)
+                            {
+                                if (trans_amount > 0)
+                                trans_amount--;
+                            }
                             audio_handler.PlaySound("Sound/SFX/cursor");
                         }
                     }
                 }
                 menu_input = true;
                 UpdateStoreMenu();
+            }
+            else if(Input.GetAxisRaw("Vertical") > 0.0f)
+            {
+                if (!menu_input)
+                {
+                    if (trans_menu)
+                    {
+                        if (selling && trans_amount < data.GetItem(cursor_position + inventory_offset).amount)
+                            trans_amount++;
+                        if (!selling && store_costs[cursor_position + inventory_offset] * (trans_amount + 1) <= data.GetMoney())
+                            trans_amount++;
+                    }
+                    UpdateStoreMenu();
+                    audio_handler.PlaySound("Sound/SFX/cursor");
+                }
+                menu_input = true;
+            }
+            else if (Input.GetButtonDown("Interact"))
+            {
+                if (!menu_input)
+                {
+                    if (selling)
+                    {
+                        if (data.GetInventorySize() != 0 && cursor_position + inventory_offset < data.GetInventorySize())
+                        {
+                            if (!trans_menu)
+                            {
+                                trans_menu = true;
+                                trans_amount = 1;
+                                menus[9].transform.GetChild(6).position = new Vector2(menus[9].transform.GetChild(6).position.x, 0.0f);
+                                menus[9].transform.GetChild(6).gameObject.SetActive(true);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (store_items.Count != 0 && cursor_position + inventory_offset < store_items.Count)
+                        {
+                            if (!trans_menu)
+                            {
+                                trans_menu = true;
+                                trans_amount = 1;
+                                menus[9].transform.GetChild(6).position = new Vector2(menus[9].transform.GetChild(6).position.x, 0.0f);
+                                menus[9].transform.GetChild(6).gameObject.SetActive(true);
+                            }
+                        }
+                    }
+                }
+                menu_input = true;
             }
             else
             {
