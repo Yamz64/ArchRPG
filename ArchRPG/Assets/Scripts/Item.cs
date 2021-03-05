@@ -257,11 +257,11 @@ public static class Consumables
         }
     }
 
-    public class Aderall : Item
+    public class Adderall : Item
     {
-        public Aderall()
+        public Adderall()
         {
-            name = "Aderall";
+            name = "Adderall";
             description = "A medication usually used to treat ADHD. Cures spasms and removes hyperactive.";
             image_file_path = "";
             amount = 1;

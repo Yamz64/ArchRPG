@@ -61,6 +61,13 @@ public class PauseMenuHandler : MonoBehaviour
     private List<Item> store_items;
     private List<int> store_costs;
 
+    private IEnumerator LateProtection()
+    {
+        yield return new WaitUntil(() => !GetComponent<PlayerDialogueBoxHandler>().GetActive());
+        yield return new WaitForEndOfFrame();
+        GetComponent<PlayerMovement>().interaction_protection = true;
+    }
+
     public void SetStoreItems(List<Item> items) { store_items = items; }
 
     public void SetStoreCosts(List<int> costs) { store_costs = costs; }
@@ -3774,6 +3781,7 @@ public class PauseMenuHandler : MonoBehaviour
                 GetComponent<PlayerDialogueBoxHandler>().SetWriteQueue(queue);
                 GetComponent<PlayerDialogueBoxHandler>().SetEffectQueue(new List<EffectContainer>());
                 GetComponent<PlayerDialogueBoxHandler>().WriteDriver();
+                StartCoroutine(LateProtection());
             }
             //yes
             else
@@ -4346,7 +4354,8 @@ public class PauseMenuHandler : MonoBehaviour
                             {
                                 trans_menu = true;
                                 trans_amount = 1;
-                                menus[9].transform.GetChild(6).position = new Vector2(menus[9].transform.GetChild(6).position.x, 0.0f);
+                                Debug.Log(Mathf.Lerp(408f, -408f, (float)cursor_position / 9f));
+                                menus[9].transform.GetChild(6).position = new Vector2(menus[9].transform.GetChild(6).position.x, menus[9].transform.position.y + Mathf.Lerp(3.77f, -3.77f, (float)cursor_position/9f));
                                 menus[9].transform.GetChild(6).gameObject.SetActive(true);
                             }
                             else
@@ -4371,15 +4380,28 @@ public class PauseMenuHandler : MonoBehaviour
                             {
                                 trans_menu = true;
                                 trans_amount = 1;
-                                menus[9].transform.GetChild(6).position = new Vector2(menus[9].transform.GetChild(6).position.x, 0.0f);
+                                menus[9].transform.GetChild(6).position = new Vector2(menus[9].transform.GetChild(6).position.x, menus[9].transform.position.y + Mathf.Lerp(3.77f, -3.77f, cursor_position/9f));
                                 menus[9].transform.GetChild(6).gameObject.SetActive(true);
                             }
                             else
                             {
-                                for(int i=0; i<trans_amount; i++)
+                                if (store_costs[cursor_position + inventory_offset] > data.GetMoney())
                                 {
-                                    data.AddItem(store_items[cursor_position + inventory_offset]);
-                                    data.SetMoney(data.GetMoney() - store_costs[cursor_position + inventory_offset]);
+                                    List<string> queue = new List<string>();
+                                    queue.Add("Not enough money to buy this item!");
+                                    GetComponent<PlayerDialogueBoxHandler>().OpenTextBox();
+                                    GetComponent<PlayerDialogueBoxHandler>().SetWriteQueue(queue);
+                                    GetComponent<PlayerDialogueBoxHandler>().SetEffectQueue(new List<EffectContainer>());
+                                    GetComponent<PlayerDialogueBoxHandler>().WriteDriver();
+                                    StartCoroutine(LateProtection());
+                                }
+                                else
+                                {
+                                    for (int i = 0; i < trans_amount; i++)
+                                    {
+                                        data.AddItem(store_items[cursor_position + inventory_offset]);
+                                        data.SetMoney(data.GetMoney() - store_costs[cursor_position + inventory_offset]);
+                                    }
                                 }
                                 trans_menu = false;
                                 trans_amount = 1;
