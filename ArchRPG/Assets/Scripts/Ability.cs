@@ -829,7 +829,7 @@ namespace EnemyAbilities
             damage = 10;
             priority = defaultPriority = 4;
             statusEffect = "Blunt Trauma";
-            //Shuffles
+            swapper = 2;
         }
     }
 

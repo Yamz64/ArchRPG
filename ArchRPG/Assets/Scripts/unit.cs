@@ -143,6 +143,8 @@ public class unit
 
     public bool critted = false;
 
+    public bool lived = false;
+
 
     public Sprite[] sprites;        //Array of sprites (for attack animations)
     public string ImageFilePath;    //Use to determine what image to display for the unit
@@ -690,6 +692,7 @@ public class unit
             int chance = UnityEngine.Random.Range(0, 101);
             if (chance < (LCK / 2) + 20)
             {
+                lived = true;
                 currentHP = 1;
                 hpBar.GetComponent<Image>().fillAmount = (float)currentHP / maxHP;
                 hpReadOut.text = currentHP + " / " + maxHP;

@@ -2996,6 +2996,7 @@ public class BattleScript : MonoBehaviour
     IEnumerator setupBattle()
     {
         currentUnit = 4;
+        while (partyUnits.Count != 4) partyUnits.Add(null);
         //Load in all party members
         for (int i = 0; i < loader.names.Length; i++)
         {
@@ -3043,7 +3044,7 @@ public class BattleScript : MonoBehaviour
                 }
                 else
                 {
-                    partyUnits.Add(null);
+                    //partyUnits.Add(null);
                     continue;
                 }
                 if (i < currentUnit) currentUnit = i;
@@ -3061,7 +3062,7 @@ public class BattleScript : MonoBehaviour
                 }
 
                 //Combine/customize prefabs (UI base and unit base)
-                GameObject unitGo = Instantiate(partyPrefabs[i], allyStations[i]);
+                GameObject unitGo = Instantiate(partyPrefabs[loader.positions[i]], allyStations[loader.positions[i]]);
                 unitGo = loader.updateUnit(unitGo, i);
                 p.copyUnitUI(unitGo.GetComponent<UnitMono>().mainUnit);
                 unitGo.GetComponent<UnitMono>().mainUnit.copyUnitStats(p);
@@ -3079,17 +3080,17 @@ public class BattleScript : MonoBehaviour
                         unitGo.gameObject.GetComponent<UnitMono>().mainUnit.addEldritch(loader.e_abilities[h]);
                     }
                 }
-                partyUnits.Add(unitGo.gameObject);
+                partyUnits[loader.positions[i]] = unitGo.gameObject;
                 
                 //partyNames.Add(unitGo.GetComponent<UnitMono>().mainUnit.unitName);
                 activeUnits += 1;
             }
             else
             {
-                partyUnits.Add(null);
+                //partyUnits.Add(null);
+                continue;
             }
         }
-        while (partyUnits.Count != 4) partyUnits.Add(null);
 
         //Find number of enemies, and choose correct spawn loadout
         for (int i = 0; i < loader.enemy_names.Length; i++)
@@ -3885,10 +3886,10 @@ public class BattleScript : MonoBehaviour
         {
             //yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
             dialogue.text = "It's a critical hit!";
-            yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+            //yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         //If enemy is dead, battle is won
         if (dead)
@@ -4129,6 +4130,13 @@ public class BattleScript : MonoBehaviour
                 bad = false;
             }
 
+            if (target.lived)
+            {
+                dialogue.text = target.unitName +  " barely survived...";
+                yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                target.lived = false;
+            }
+
             if (uni.abilities[ata].swapper == 1)
             {
                 Transform pp1 = new GameObject().transform;
@@ -4252,6 +4260,12 @@ public class BattleScript : MonoBehaviour
                         yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
                         bad = false;
                     }
+                    if (partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.lived)
+                    {
+                        dialogue.text = partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.unitName + " barely survived...";
+                        yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                        partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.lived = false;
+                    }
                     r2 = val - 1;
                 }
                 //If target is on the left
@@ -4283,6 +4297,12 @@ public class BattleScript : MonoBehaviour
                         dialogue.text = "It didn't do too much damage.";
                         yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
                         bad = false;
+                    }
+                    if (partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.lived)
+                    {
+                        dialogue.text = partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.unitName + " barely survived...";
+                        yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                        partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.lived = false;
                     }
                     r2 = val + 1;
                 }
@@ -4342,6 +4362,12 @@ public class BattleScript : MonoBehaviour
                             dialogue.text = "It didn't do too much damage.";
                             yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
                             bad = false;
+                        }
+                        if (partyUnits[i].GetComponent<UnitMono>().mainUnit.lived)
+                        {
+                            dialogue.text = partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName + " barely survived...";
+                            yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                            partyUnits[i].GetComponent<UnitMono>().mainUnit.lived = false;
                         }
                         rs.Add(i);
                         deads.Add(now);
@@ -4426,6 +4452,7 @@ public class BattleScript : MonoBehaviour
         {
             if (partyUnits[i] != null)
             {
+                //Debug.Log("i == " + i);
                 if (partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP > 0 &&
                     partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName != "Player")
                 {
@@ -4448,6 +4475,7 @@ public class BattleScript : MonoBehaviour
             {
                 if (partyUnits[i] != null)
                 {
+                   // Debug.Log("i == " + i);
                     if (partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                     {
                         StartCoroutine(flashLevel(partyUnits[i].GetComponent<UnitMono>().mainUnit));
