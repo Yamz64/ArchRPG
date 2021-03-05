@@ -2394,10 +2394,19 @@ public class BattleScript : MonoBehaviour
                     {
                         int x = 0;
                         //Randomly choose target
-                        int r = Random.Range(0, partyUnits.Count);
-                        while (partyUnits[r] == null)
+                        List<int> tochoos = new List<int>();
+                        for (int f = 0; f < partyUnits.Count; f++)
                         {
-                            r = Random.Range(0, partyUnits.Count);
+                            tochoos.Add(f);
+                            if (f < 2)
+                            {
+                                tochoos.Add(f);
+                            }
+                        }
+                        int r = Random.Range(0, tochoos.Count);
+                        while (partyUnits[tochoos[r]] == null)
+                        {
+                            r = Random.Range(0, tochoos.Count);
                         }
                         //Edit ability priorities based on status effects
                         for (int d = 0; d < 10; d++)
@@ -4550,6 +4559,7 @@ public class BattleScript : MonoBehaviour
         SceneManager.LoadScene(loader.active_scene);
     }
 
+    //Use to display text when an ability is chosen at the wrong line
     IEnumerator WrongLine()
     {
         working = true;
