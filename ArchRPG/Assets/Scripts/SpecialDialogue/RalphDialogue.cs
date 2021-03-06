@@ -119,7 +119,7 @@ public class RalphDialogue : InteractableBaseClass
                     //--DIALOGUE--
                     player.OpenTextBox();
                     dialogue_queue.Clear();
-                    dialogue_queue.Add("Gee thanks kid- I mean, thank you fellow student! No I can get my fix!");
+                    dialogue_queue.Add("Gee thanks kid- I mean, thank you fellow student! Now I can get my fix!");
 
                     //--EFFECTS--
                     effect_queue.Clear();
