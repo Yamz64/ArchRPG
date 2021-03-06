@@ -714,16 +714,18 @@ namespace EnemyAbilities
                 int status = Random.Range(0, 2);
                 if (status == 0) user.statuses[5] = Random.Range(5,9);
                 else user.statuses[6] = Random.Range(5, 9);
+                statCounter = 4;
             }
             else if (target.statuses[5] == -1)
             {
                 user.statuses[5] = Random.Range(5, 9);
+                statCounter = 4;
             }
             else if (target.statuses[6] == -1)
             {
                 user.statuses[6] = Random.Range(5, 9);
+                statCounter = 4;
             }
-            statCounter = 4;
         }
     }
 

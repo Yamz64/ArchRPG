@@ -2406,10 +2406,10 @@ public class BattleScript : MonoBehaviour
                                 tochoos.Add(f);
                             }
                         }
-                        int r = Random.Range(0, tochoos.Count);
-                        while (partyUnits[tochoos[r]] == null)
+                        int r = tochoos[Random.Range(0, tochoos.Count)];
+                        while (partyUnits[r] == null)
                         {
-                            r = Random.Range(0, tochoos.Count);
+                            r = tochoos[Random.Range(0, tochoos.Count)];
                         }
                         //Edit ability priorities based on status effects
                         for (int d = 0; d < 10; d++)
@@ -4505,6 +4505,10 @@ public class BattleScript : MonoBehaviour
                     abiSizes.Add(partyUnits[i].GetComponent<UnitMono>().mainUnit.abilities.Count);
                     partyUnits[i].GetComponent<UnitMono>().mainUnit.gainEXP(expGained);
                     partyUnits[i].GetComponent<UnitMono>().mainUnit.updateUnit(partyUnits[i].GetComponent<UnitMono>().mainUnit.level);
+                }
+                else
+                {
+                    abiSizes.Add(0);
                 }
             }
             else
