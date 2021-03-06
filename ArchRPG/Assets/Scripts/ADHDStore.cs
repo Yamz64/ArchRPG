@@ -46,6 +46,11 @@ public class ADHDStore : StoreBehavior
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDialogueBoxHandler>();
 
+        //see if Ralph has been tipped off, if so then delete this object
+        GameObject Ralph = GameObject.Find("Ralph");
+        if (Ralph.activeInHierarchy) Destroy(gameObject);
+
+        //mark as interacted if interacted
         MapDataManager map_manager = GameObject.FindGameObjectWithTag("MapManager").GetComponent<MapDataManager>();
         for (int i = 0; i < map_manager.current_map.objects.Count; i++)
         {

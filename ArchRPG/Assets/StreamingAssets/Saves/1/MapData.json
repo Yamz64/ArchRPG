@@ -58,6 +58,19 @@
                 {
                     "o": "ADHDKid",
                     "interacted": false
+                },
+                {
+                    "o": "Ralph",
+                    "interacted": false
+                }
+            ]
+        },
+        {
+            "name": "Subway",
+            "objects": [
+                {
+                    "o": "Ralph",
+                    "interacted": false
                 }
             ]
         }
