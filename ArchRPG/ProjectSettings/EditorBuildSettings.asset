@@ -38,4 +38,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Schoolyard.unity
     guid: d7876e9d69fcd1f40b3eed46fe8834be
+  - enabled: 1
+    path: Assets/Scenes/ConvenienceStore.unity
+    guid: 3d185ca21482291438ae8d6762af804e
+  - enabled: 1
+    path: Assets/Scenes/Pizzeria.unity
+    guid: 7d194f58a2ae8f84c9a3f8169d2d728b
+  - enabled: 1
+    path: Assets/Scenes/Subway.unity
+    guid: bfd3b73016eb0a845828e8dc070e4995
   m_configObjects: {}
