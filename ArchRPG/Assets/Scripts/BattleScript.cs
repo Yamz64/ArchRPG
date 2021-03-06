@@ -173,6 +173,9 @@ public class BattleScript : MonoBehaviour
 
     bool working = false;
 
+    //Bool to check whether text is displayed that have button delays
+    bool skipper = false;
+
     //Use to load in unit info from json file
     CharacterStatJsonConverter loader;
 
@@ -2947,7 +2950,11 @@ public class BattleScript : MonoBehaviour
                 {
                     dialogue.text = "Invalid action selected";
                 }
-                yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                if (!skipper)
+                {
+                    yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                }
+                else skipper = false;
             }
             for (int i = 0; i < partyUnits.Count; i++)
             {
@@ -3420,6 +3427,7 @@ public class BattleScript : MonoBehaviour
                 {
                     dialogue.text = "The attack hit a weak spot!";
                     yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                    skipper = true;
                     target.critted = false;
                 }
                 if (good)
@@ -3427,12 +3435,14 @@ public class BattleScript : MonoBehaviour
                     //yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
                     dialogue.text = "It did a lot of damage!";
                     yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                    skipper = true;
                     good = false;
                 }
                 else if (bad)
                 {
                     dialogue.text = "It didn't do too much damage.";
                     yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                    skipper = true;
                     bad = false;
                 }
                 if (uni.abilities[ata].target == 1)
@@ -3452,6 +3462,7 @@ public class BattleScript : MonoBehaviour
                             {
                                 dialogue.text = "The attack hit a weak spot!";
                                 yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                                skipper = true;
                                 enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.critted = false;
                             }
                             if (good)
@@ -3459,12 +3470,14 @@ public class BattleScript : MonoBehaviour
                                 //yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
                                 dialogue.text = "It did a lot of damage!";
                                 yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                                skipper = true;
                                 good = false;
                             }
                             else if (bad)
                             {
                                 dialogue.text = "It didn't do too much damage.";
                                 yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                                skipper = true;
                                 bad = false;
                             }
                         }
@@ -3484,6 +3497,7 @@ public class BattleScript : MonoBehaviour
                             {
                                 dialogue.text = "The attack hit a weak spot!";
                                 yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                                skipper = true;
                                 enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.critted = false;
                             }
                             if (good)
@@ -3491,12 +3505,14 @@ public class BattleScript : MonoBehaviour
                                 //yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
                                 dialogue.text = "It did a lot of damage!";
                                 yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                                skipper = true;
                                 good = false;
                             }
                             else if (bad)
                             {
                                 dialogue.text = "It didn't do too much damage.";
                                 yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                                skipper = true;
                                 bad = false;
                             }
                         }
@@ -3519,6 +3535,7 @@ public class BattleScript : MonoBehaviour
                             {
                                 dialogue.text = "The attack hit a weak spot!";
                                 yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                                skipper = true;
                                 enemyUnits[b].GetComponent<UnitMono>().mainUnit.critted = false;
                             }
                             if (good)
@@ -3526,12 +3543,14 @@ public class BattleScript : MonoBehaviour
                                 //yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
                                 dialogue.text = "It did a lot of damage!";
                                 yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                                skipper = true;
                                 good = false;
                             }
                             else if (bad)
                             {
                                 dialogue.text = "It didn't do too much damage.";
                                 yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                                skipper = true;
                                 bad = false;
                             }
                             if (dTemp)
@@ -3547,9 +3566,10 @@ public class BattleScript : MonoBehaviour
             {
                 dialogue.text = uni.unitName + " missed the enemy";
                 yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                skipper = true;
             }
 
-            yield return new WaitForSeconds(1f);
+            //yield return new WaitForSeconds(0.5f);
 
             //If enemy is 
             if (dead && target.currentHP <= 0)
@@ -3875,7 +3895,7 @@ public class BattleScript : MonoBehaviour
         {
             val += (val / 2);
             crite = true;
-            Debug.Log("Got a crit!");
+            //Debug.Log("Got a crit!");
         }
         if (uni.statuses[2] != -1)
         {
@@ -3895,7 +3915,8 @@ public class BattleScript : MonoBehaviour
         {
             //yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
             dialogue.text = "It's a critical hit!";
-            //yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+            yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+            skipper = true;
         }
 
         yield return new WaitForSeconds(0.5f);
@@ -4123,6 +4144,7 @@ public class BattleScript : MonoBehaviour
             {
                 dialogue.text = "The attack hit a weak spot!";
                 yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                skipper = true;
                 target.critted = false;
             }
             if (good)
@@ -4130,12 +4152,14 @@ public class BattleScript : MonoBehaviour
                 //yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
                 dialogue.text = "It did a lot of damage!";
                 yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                skipper = true;
                 good = false;
             }
             else if (bad)
             {
                 dialogue.text = "It didn't do too much damage.";
                 yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                skipper = true;
                 bad = false;
             }
 
@@ -4143,6 +4167,7 @@ public class BattleScript : MonoBehaviour
             {
                 dialogue.text = target.unitName +  " barely survived...";
                 yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                skipper = true;
                 target.lived = false;
             }
 
@@ -4254,6 +4279,7 @@ public class BattleScript : MonoBehaviour
                     {
                         dialogue.text = "The attack hit a weak spot!";
                         yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                        skipper = true;
                         partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.critted = false;
                     }
                     if (good)
@@ -4261,18 +4287,21 @@ public class BattleScript : MonoBehaviour
                         //yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
                         dialogue.text = "It did a lot of damage!";
                         yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                        skipper = true;
                         good = false;
                     }
                     else if (bad)
                     {
                         dialogue.text = "It didn't do too much damage.";
                         yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                        skipper = true;
                         bad = false;
                     }
                     if (partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.lived)
                     {
                         dialogue.text = partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.unitName + " barely survived...";
                         yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                        skipper = true;
                         partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.lived = false;
                     }
                     r2 = val - 1;
@@ -4292,6 +4321,7 @@ public class BattleScript : MonoBehaviour
                     {
                         dialogue.text = "The attack hit a weak spot!";
                         yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                        skipper = true;
                         partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.critted = false;
                     }
                     if (good)
@@ -4299,18 +4329,21 @@ public class BattleScript : MonoBehaviour
                         //yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
                         dialogue.text = "It did a lot of damage!";
                         yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                        skipper = true;
                         good = false;
                     }
                     else if (bad)
                     {
                         dialogue.text = "It didn't do too much damage.";
                         yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                        skipper = true;
                         bad = false;
                     }
                     if (partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.lived)
                     {
                         dialogue.text = partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.unitName + " barely survived...";
                         yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                        skipper = true;
                         partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.lived = false;
                     }
                     r2 = val + 1;
@@ -4357,6 +4390,7 @@ public class BattleScript : MonoBehaviour
                         {
                             dialogue.text = "The attack hit a weak spot!";
                             yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                            skipper = true;
                             partyUnits[i].GetComponent<UnitMono>().mainUnit.critted = false;
                         }
                         if (good)
@@ -4364,18 +4398,21 @@ public class BattleScript : MonoBehaviour
                             //yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
                             dialogue.text = "It did a lot of damage!";
                             yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                            skipper = true;
                             good = false;
                         }
                         else if (bad)
                         {
                             dialogue.text = "It didn't do too much damage.";
                             yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                            skipper = true;
                             bad = false;
                         }
                         if (partyUnits[i].GetComponent<UnitMono>().mainUnit.lived)
                         {
                             dialogue.text = partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName + " barely survived...";
                             yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                            skipper = true;
                             partyUnits[i].GetComponent<UnitMono>().mainUnit.lived = false;
                         }
                         rs.Add(i);

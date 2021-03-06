@@ -372,6 +372,78 @@ public static class Weapons
             luck_buff = 10;
         }
     }
+
+    public class Protractor : Weapon
+    {
+        public Protractor()
+        {
+            name = "Protractor";
+
+            description = "This plastic graded semicircle is a monument to mathematical precision... some of the numbers are worn off.";
+            limit = 1;
+            amount = 1;
+            type = 1;
+            power_buff = 1;
+        }
+    }
+
+    public class GnomeShard : Weapon
+    {
+        public GnomeShard()
+        {
+            name = "Gnome Shard";
+
+            description = "The remains of a garden gnome homicide, you feel like you’re tampering with evidence here. It stares at you blankly.";
+            limit = 1;
+            amount = 1;
+            type = 1;
+            damage_buff = 3;
+        }
+    }
+
+    public class RatBomb : Weapon
+    {
+        public RatBomb()
+        {
+            name = "Rat Bomb";
+
+            description = "This isn’t actually a rat bomb, this is more like a bomb that a rat left behind...";
+            limit = 1;
+            amount = 1;
+            type = 1;
+            damage_buff = 5;
+            //Will need to add chem damage
+        }
+    }
+
+    public class ReplicaFlintlock : Weapon
+    {
+        public ReplicaFlintlock()
+        {
+            name = "Replica Flintlock";
+
+            description = "";
+            limit = 1;
+            amount = 1;
+            type = 1;
+            damage_buff = 2;
+            speed_buff = 1;
+        }
+    }
+
+    public class NightStick : Weapon
+    {
+        public NightStick()
+        {
+            name = "Night Stick";
+
+            limit = 1;
+            amount = 1;
+            type = 1;
+            damage_buff = 6;
+            luck_buff = 4;
+        }
+    }
 }
 
 public static class Armors
@@ -412,6 +484,51 @@ public static class Armors
             luck_buff = 10;
         }
     }
+
+    public class RadFlatCap : Armor
+    {
+        public RadFlatCap()
+        {
+            name = "Rad Flat Cap";
+
+            description = "This hat bears the insignia of a radical, the mathematical one of course… you feel real cool in this hat.";
+            limit = 1;
+            amount = 1;
+            type = 2;
+            will_buff = 2;
+            defense_buff = 2;
+        }
+    }
+
+    public class StrResTrashBag : Armor
+    {
+        public StrResTrashBag()
+        {
+            name = "Strech Resistant Trash Bag";
+
+            description = "You figure by fitting your arms and legs through 4 conveniently ripped holes in this trash bag and donning it, " +
+                "this would make good protection against any attack that might stretch you out...";
+            limit = 1;
+            amount = 1;
+            type = 2;
+            defense_buff = 4;
+            speed_buff = -2;
+        }
+    }
+
+    public class CommemorativeTShirt : Armor
+    {
+        public CommemorativeTShirt()
+        {
+            name = "Commemorative T-Shirt";
+
+            limit = 1;
+            amount = 1;
+            type = 2;
+            defense_buff = 4;
+            will_buff = 6;
+        }
+    }
 }
 
 public static class Trinkets
@@ -449,6 +566,37 @@ public static class Trinkets
             resistance_buff = 10;
             speed_buff = -15;
             luck_buff = 20;
+        }
+    }
+
+    public class MrWhiskers : Trinket
+    {
+        public MrWhiskers()
+        {
+            name = "Mr Whiskers";
+
+            description = "You figure if you don’t return your neighbor’s cat, it can never escape again, and thus your fish " +
+                "will always be safe from his nemesis.";
+            limit = 1;
+            amount = 1;
+            type = 3;
+            luck_buff = 5;
+            speed_buff = 5;
+        }
+    }
+
+    public class ClayAmulet : Trinket
+    {
+        public ClayAmulet()
+        {
+            name = "Clay Amulet";
+
+            description = "They say the humanities are what keeps us human, but the arts and crafts class is what keeps some " +
+                "students sane.  Clearly, some student rejected their humanity by throwing this project away...";
+            limit = 1;
+            amount = 1;
+            type = 3;
+            will_buff = 3;
         }
     }
 }
