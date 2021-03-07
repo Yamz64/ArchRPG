@@ -285,6 +285,7 @@ MonoBehaviour:
     lines: 1
   - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
     lines: 1
+  player: {fileID: 0}
 --- !u!1001 &254381286
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2139,6 +2140,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4998140645680048167, guid: 52110445f037b614787b39ff46091263, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 62e7c5b41b19fb24f899871166b35391, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
 --- !u!1 &1210323832
@@ -5184,6 +5189,7 @@ MonoBehaviour:
   dialogueImages:
   - sprite_path: CharacterSprites/PC
     lines: 2
+  player: {fileID: 0}
 --- !u!1001 &1841506356
 PrefabInstance:
   m_ObjectHideFlags: 0
