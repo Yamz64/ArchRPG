@@ -71,6 +71,10 @@
                 {
                     "o": "Ralph",
                     "interacted": false
+                },
+                {
+                    "o": "Lucy",
+                    "interacted": false
                 }
             ]
         }
