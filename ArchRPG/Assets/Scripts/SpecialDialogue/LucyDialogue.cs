@@ -173,11 +173,13 @@ public class LucyDialogue : InteractableBaseClass
         else
         {
             //search player's inventory for the brown rat item
+            int rat_int = 0;
             bool has_rat = false;
             for (int i = 0; i < player.GetComponent<PlayerDataMono>().data.GetInventorySize(); i++)
             {
                 if(player.GetComponent<PlayerDataMono>().data.GetItem(i).name == "Brown Rat")
                 {
+                    rat_int = i;
                     has_rat = true;
                     break;
                 }
@@ -302,7 +304,7 @@ public class LucyDialogue : InteractableBaseClass
                 player.SetImageQueue(image_queue);
                 player.WriteDriver();
 
-                //wait until the dialogue is finished before marking Lucy as interacted and destroying her
+                //wait until the dialogue is finished before marking Lucy as interacted, removing the rat, and destroying her
                 yield return new WaitForEndOfFrame();
                 yield return new WaitUntil(() => !player.GetActive());
 
@@ -315,6 +317,8 @@ public class LucyDialogue : InteractableBaseClass
                         break;
                     }
                 }
+
+                player.GetComponent<PlayerDataMono>().data.RemoveItem(rat_int);
                 Destroy(gameObject);
             }
         }
