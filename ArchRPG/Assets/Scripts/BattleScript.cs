@@ -3438,12 +3438,13 @@ public class BattleScript : MonoBehaviour
                     skipper = true;
                     good = false;
                 }
-                else if (bad)
+                else if (bad || uni.reduced)
                 {
                     dialogue.text = "It didn't do too much damage.";
                     yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
                     skipper = true;
                     bad = false;
+                    uni.reduced = false;
                 }
                 if (uni.abilities[ata].target == 1)
                 {
@@ -3473,12 +3474,13 @@ public class BattleScript : MonoBehaviour
                                 skipper = true;
                                 good = false;
                             }
-                            else if (bad)
+                            else if (bad || uni.reduced)
                             {
                                 dialogue.text = "It didn't do too much damage.";
                                 yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
                                 skipper = true;
                                 bad = false;
+                                uni.reduced = false;
                             }
                         }
                     }
@@ -3508,12 +3510,13 @@ public class BattleScript : MonoBehaviour
                                 skipper = true;
                                 good = false;
                             }
-                            else if (bad)
+                            else if (bad || uni.reduced)
                             {
                                 dialogue.text = "It didn't do too much damage.";
                                 yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
                                 skipper = true;
                                 bad = false;
+                                uni.reduced = false;
                             }
                         }
                     }
@@ -3546,12 +3549,13 @@ public class BattleScript : MonoBehaviour
                                 skipper = true;
                                 good = false;
                             }
-                            else if (bad)
+                            else if (bad || uni.reduced)
                             {
                                 dialogue.text = "It didn't do too much damage.";
                                 yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
                                 skipper = true;
                                 bad = false;
+                                uni.reduced = false;
                             }
                             if (dTemp)
                             {
@@ -3804,7 +3808,7 @@ public class BattleScript : MonoBehaviour
         //dialogue.text = "Player used " + ata.name;
         bool crite = false;
         //bool good = false;
-        //bool bad = false;
+        bool bad = false;
 
         yield return new WaitForSeconds(1f);
         int val = 5;
@@ -3903,6 +3907,7 @@ public class BattleScript : MonoBehaviour
             if (dum == 1)
             {
                 val = val / 5;
+                bad = true;
             }
         }
         bool dead = target.takeDamage(val);
@@ -3917,6 +3922,11 @@ public class BattleScript : MonoBehaviour
             dialogue.text = "It's a critical hit!";
             yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
             skipper = true;
+        }
+        if (bad == true)
+        {
+            dialogue.text = "It didn't do too much damage..";
+            yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
         }
 
         yield return new WaitForSeconds(0.5f);

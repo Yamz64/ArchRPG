@@ -145,6 +145,8 @@ public class unit
 
     public bool lived = false;
 
+    public bool reduced = false;
+
 
     public Sprite[] sprites;        //Array of sprites (for attack animations)
     public string ImageFilePath;    //Use to determine what image to display for the unit
@@ -633,6 +635,7 @@ public class unit
                     if (dum == 1)
                     {
                         val = val / 5;
+                        reduced = true;
                     }
                 }
                 bool miss = false;
