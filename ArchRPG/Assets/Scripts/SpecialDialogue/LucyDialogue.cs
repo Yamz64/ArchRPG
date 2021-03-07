@@ -168,9 +168,157 @@ public class LucyDialogue : InteractableBaseClass
             player.SetEffectQueue(effect_queue);
             player.SetImageQueue(image_queue);
             player.WriteDriver();
+            interacted = true;
         }
-        yield return new WaitForEndOfFrame();
+        else
+        {
+            //search player's inventory for the brown rat item
+            bool has_rat = false;
+            for (int i = 0; i < player.GetComponent<PlayerDataMono>().data.GetInventorySize(); i++)
+            {
+                if(player.GetComponent<PlayerDataMono>().data.GetItem(i).name == "Brown Rat")
+                {
+                    has_rat = true;
+                    break;
+                }
+            }
+            if (!has_rat)
+            {
+                //--DIALOGUE--
+                dialogue_queue.Add("You there, make yourself useful and find me a Rattus Norvegicus specimen.");
+                dialogue_queue.Add("A what?");
+                dialogue_queue.Add("That would be a brown rat, and please hurry, I do not have all day.");
 
+                //--EFFECT--
+                temp.name = "_NO_EFFECT_";
+                temp_effect.effects.Add(new TextEffectClass(temp));
+                effect_queue.Add(new EffectContainer(temp_effect));
+
+                temp_effect.effects.Clear();
+                temp.name = "_NO_EFFECT_";
+                temp_effect.effects.Add(new TextEffectClass(temp));
+                effect_queue.Add(new EffectContainer(temp_effect));
+
+                temp_effect.effects.Clear();
+                temp.name = "Color";
+                temp.lower = 12;
+                temp.upper = 20;
+                temp.color = new Color(153, 102, 0);
+                temp_effect.effects.Add(new TextEffectClass(temp));
+                effect_queue.Add(new EffectContainer(temp_effect));
+
+                //--IMAGE--
+                image_queue.Add("CharacterSprites/Lucy");
+                image_queue.Add("CharacterSprites/PC");
+                image_queue.Add("CharacterSprites/Lucy");
+
+                player.SetWriteQueue(dialogue_queue);
+                player.SetEffectQueue(effect_queue);
+                player.SetImageQueue(image_queue);
+                player.WriteDriver();
+            }
+            else
+            {
+                //--DIALOGUE--
+                dialogue_queue.Add("*Sniff Sniff*");
+                dialogue_queue.Add("Hey I have your-");
+                dialogue_queue.Add("Hand it over, I can sense the Brown Rat in your presence!");
+                dialogue_queue.Add("Gave Brown Rat");
+                dialogue_queue.Add("Excellent! Although the rat seems quite fond of you,");
+                dialogue_queue.Add("and like any reasonable animal, rats breed in environments that they are comfortable in.");
+                dialogue_queue.Add("I find myself obliged to join your company to expedite the breeding process!");
+                if (player.GetComponent<PlayerDataMono>().data.GetPartySize() < 3)
+                {
+                    player.GetComponent<PlayerDataMono>().data.AddPartyMember(new Lucy());
+                    player.GetComponent<PlayerDataMono>().data.UnlockPartyMember(5);
+                    dialogue_queue.Add("Lucy joins the party!");
+                }
+                else
+                {
+                    player.GetComponent<PlayerDataMono>().data.UnlockPartyMember(5);
+                    dialogue_queue.Add("You do not have enough room in your party");
+                }
+
+                //--EFFECT--
+                temp.name = "Wave";
+                temp.lower = 0;
+                temp.upper = 11;
+                temp_effect.effects.Add(new TextEffectClass(temp));
+                effect_queue.Add(new EffectContainer(temp_effect));
+
+                temp_effect.effects.Clear();
+                temp.name = "_NO_EFFECT_";
+                temp_effect.effects.Add(new TextEffectClass(temp));
+                effect_queue.Add(new EffectContainer(temp_effect));
+
+                temp_effect.effects.Clear();
+                temp.name = "Color";
+                temp.lower = 23;
+                temp.upper = 30;
+                temp.color = new Color(153, 102, 0);
+                temp_effect.effects.Add(new TextEffectClass(temp));
+                effect_queue.Add(new EffectContainer(temp_effect));
+                
+                temp_effect.effects.Clear();
+                temp.name = "Color";
+                temp.lower = 4;
+                temp.upper = 11;
+                temp.color = new Color(153, 102, 0);
+                temp_effect.effects.Add(new TextEffectClass(temp));
+                effect_queue.Add(new EffectContainer(temp_effect));
+
+                temp_effect.effects.Clear();
+                temp.name = "_NO_EFFECT_";
+                temp_effect.effects.Add(new TextEffectClass(temp));
+                effect_queue.Add(new EffectContainer(temp_effect));
+
+                temp_effect.effects.Clear();
+                temp.name = "_NO_EFFECT_";
+                temp_effect.effects.Add(new TextEffectClass(temp));
+                effect_queue.Add(new EffectContainer(temp_effect));
+
+                temp_effect.effects.Clear();
+                temp.name = "_NO_EFFECT_";
+                temp_effect.effects.Add(new TextEffectClass(temp));
+                effect_queue.Add(new EffectContainer(temp_effect));
+
+                temp_effect.effects.Clear();
+                temp.name = "_NO_EFFECT_";
+                temp_effect.effects.Add(new TextEffectClass(temp));
+                effect_queue.Add(new EffectContainer(temp_effect));
+
+                //--IMAGE--
+                image_queue.Add("CharacterSprites/Lucy");
+                image_queue.Add("CharacterSprites/PC");
+                image_queue.Add("CharacterSprites/Lucy");
+                image_queue.Add(null);
+                image_queue.Add("CharacterSprites/Lucy");
+                image_queue.Add("CharacterSprites/Lucy");
+                image_queue.Add("CharacterSprites/Lucy");
+                image_queue.Add(null);
+                
+                player.SetWriteQueue(dialogue_queue);
+                player.SetEffectQueue(effect_queue);
+                player.SetImageQueue(image_queue);
+                player.WriteDriver();
+
+                //wait until the dialogue is finished before marking Lucy as interacted and destroying her
+                yield return new WaitForEndOfFrame();
+                yield return new WaitUntil(() => !player.GetActive());
+
+                MapDataManager map_manager = GameObject.FindGameObjectWithTag("MapManager").GetComponent<MapDataManager>();
+                for (int i = 0; i < map_manager.current_map.objects.Count; i++)
+                {
+                    if (map_manager.current_map.objects[i].o == gameObject.name)
+                    {
+                        map_manager.current_map.objects[i].interacted = true;
+                        break;
+                    }
+                }
+                Destroy(gameObject);
+            }
+        }
+        yield return new WaitForSeconds(0);
     }
 
     // Start is called before the first frame update
@@ -184,7 +332,8 @@ public class LucyDialogue : InteractableBaseClass
         {
             if (map_manager.current_map.objects[i].o == gameObject.name)
             {
-                if (map_manager.current_map.objects[i].interacted) interacted = true;
+                if (map_manager.current_map.objects[i].interacted)
+                    Destroy(gameObject);
                 break;
             }
         }
