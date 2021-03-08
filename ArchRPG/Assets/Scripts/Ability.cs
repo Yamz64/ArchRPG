@@ -1151,6 +1151,7 @@ namespace LucyAbilities
             desc2 = "These rats have been bred to be the perfect host " +
                 "for a parasitic fungus, the result is unsightly and churns the stomach to look at.";
             cost = 4;
+            target = 0;
             position = 2;
             statusEffect = "Aspirating";
             damage = 0;
@@ -1167,6 +1168,7 @@ namespace LucyAbilities
             desc2 = "Lucy commands a breed of rat with particularly flammable " +
                 "skin oil and dry fur to pile onto a target and make them more flammable.";
             cost = 6;
+            target = 0;
             position = 2;
             statusEffect = "Flammable";
             damageType = 1;
@@ -1182,6 +1184,7 @@ namespace LucyAbilities
             desc2 = "Lucy commands her “children” to feed on a " +
                 "target, their appetite is particularly voracious today.";
             cost = 8;
+            target = 0;
             position = 2;
             statusEffect = "Consumed";
         }
@@ -1310,6 +1313,7 @@ namespace ShirleyAbilities
             desc1 = "Shoot at the enemy to deal 10 dmg\nCost: 4";
             desc2 = "Shirley quickly draws an Aston Model 1842 flintlock pistol replica, fires at the enemy, and stows it away.  This ability is very quick.";
             cost = 4;
+            target = 0;
             damage = 10;
             damageType = 0;
             position = 2;
