@@ -3029,11 +3029,16 @@ public class BattleScript : MonoBehaviour
     IEnumerator setupBattle()
     {
         currentUnit = 4;
+        for (int i = 0; i < 4; i++)
+        {
+            partyNames.Add("Null");
+        }
         while (partyUnits.Count != 4) partyUnits.Add(null);
         //Load in all party members
         for (int i = 0; i < loader.names.Length; i++)
         {
-            partyNames.Add(loader.names[i]);
+            partyNames[loader.positions[i]] = loader.names[i];
+            Debug.Log("Party name at " + i + " is " + loader.names[i]);
             if (loader.HPs[i] > 0)
             {
                 unit p;
@@ -4618,6 +4623,7 @@ public class BattleScript : MonoBehaviour
                 {
                     if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName == partyNames[x])
                     {
+                        Debug.Log("Storing unit " + partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName + " at position " + x);
                         loader.storeUnit(partyUnits[i], x);
                         break;
                     }
