@@ -44,6 +44,7 @@ public class unit
         currentLevelTop = (int)(2.5 * Mathf.Pow(level, 4));
         maxHP = ver.maxHP;
         currentHP = ver.currentHP;
+        ImageFilePath = ver.ImageFilePath;
         if (!ver.enemy)
         {
             maxSP = ver.maxSP;
@@ -4949,9 +4950,9 @@ public class NewKidUnit : unit
 
         //attacks = new List<Ability>();
         abilities = new List<Ability>();
-        abilities.Add(new AOEStatus1());
-        abilities.Add(new Basic());
-        abilities.Add(new AOELine());
+        abilities.Add(new TestAbilities.AOEStatus1());
+        abilities.Add(new TestAbilities.Basic());
+        abilities.Add(new TestAbilities.AOELine());
         //attacks = abilities;
     }
 }
@@ -5153,8 +5154,8 @@ public class Enemy2 : unit
         LCK = 1;
 
         abilities = new List<Ability>();
-        abilities.Add(new Basic());
-        abilities.Add(new status1());
+        abilities.Add(new TestAbilities.Basic());
+        abilities.Add(new TestAbilities.status1());
         //attacks = abilities;
     }
 }
@@ -5181,7 +5182,7 @@ public class Enemy3 : unit
         LCK = 0;
 
         abilities = new List<Ability>();
-        abilities.Add(new AOERow());
-        abilities.Add(new AOELine());
+        abilities.Add(new TestAbilities.AOERow());
+        abilities.Add(new TestAbilities.AOELine());
     }
 }

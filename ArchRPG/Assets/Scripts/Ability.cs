@@ -84,272 +84,274 @@ public class Ability
 
     public List<string> statIndex;
 }
- 
 
-public class TestAbility : Ability
+namespace TestAbilities
 {
-    public TestAbility()
+    public class TestAbility : Ability
     {
-        eldritch = false;
-        name = "TestAbility";
-        type = 0;
-        position = 0;
-        cost = 10;
-        damage = 20;
-        damageType = 0;
-        image_file_path = "AbilitySprites/Fist";
-        desc1 = "This is test ability...";
+        public TestAbility()
+        {
+            eldritch = false;
+            name = "TestAbility";
+            type = 0;
+            position = 0;
+            cost = 10;
+            damage = 20;
+            damageType = 0;
+            image_file_path = "AbilitySprites/Fist";
+            desc1 = "This is test ability...";
+        }
     }
-}
 
-public class TestAbility1 : Ability
-{
-    public TestAbility1()
+    public class TestAbility1 : Ability
     {
-        eldritch = false;
-        name = "TestAbility1";
-        type = 0;
-        position = 1;
-        cost = 10;
-        damage = 20;
-        damageType = 0;
-        image_file_path = "AbilitySprites/Fist";
-        desc1 = "This is test ability 1...";
+        public TestAbility1()
+        {
+            eldritch = false;
+            name = "TestAbility1";
+            type = 0;
+            position = 1;
+            cost = 10;
+            damage = 20;
+            damageType = 0;
+            image_file_path = "AbilitySprites/Fist";
+            desc1 = "This is test ability 1...";
+        }
     }
-}
 
-public class TestAbility2 : Ability
-{
-    public TestAbility2()
+    public class TestAbility2 : Ability
     {
-        eldritch = false;
-        name = "TestAbility2";
-        type = 0;
-        position = 2;
-        cost = 10;
-        damage = 20;
-        damageType = 0;
-        image_file_path = "AbilitySprites/Fist";
-        desc1 = "This is test ability 2...";
+        public TestAbility2()
+        {
+            eldritch = false;
+            name = "TestAbility2";
+            type = 0;
+            position = 2;
+            cost = 10;
+            damage = 20;
+            damageType = 0;
+            image_file_path = "AbilitySprites/Fist";
+            desc1 = "This is test ability 2...";
+        }
     }
-}
 
-public class TestAbility3 : Ability
-{
-    public TestAbility3()
+    public class TestAbility3 : Ability
     {
-        eldritch = false;
-        name = "TestAbility3";
-        type = 0;
-        position = 0;
-        cost = 10;
-        damage = 20;
-        damageType = 0;
-        image_file_path = "AbilitySprites/Fist";
-        desc1 = "This is test ability 3...";
+        public TestAbility3()
+        {
+            eldritch = false;
+            name = "TestAbility3";
+            type = 0;
+            position = 0;
+            cost = 10;
+            damage = 20;
+            damageType = 0;
+            image_file_path = "AbilitySprites/Fist";
+            desc1 = "This is test ability 3...";
+        }
     }
-}
 
-public class TestAbility4 : Ability
-{
-    public TestAbility4()
+    public class TestAbility4 : Ability
     {
-        eldritch = false;
-        name = "TestAbility4";
-        type = 0;
-        position = 0;
-        cost = 10;
-        damage = 20;
-        damageType = 0;
-        image_file_path = "AbilitySprites/Fist";
-        desc1 = "This is test ability 4...";
+        public TestAbility4()
+        {
+            eldritch = false;
+            name = "TestAbility4";
+            type = 0;
+            position = 0;
+            cost = 10;
+            damage = 20;
+            damageType = 0;
+            image_file_path = "AbilitySprites/Fist";
+            desc1 = "This is test ability 4...";
+        }
     }
-}
 
-public class TestAbility5 : Ability
-{
-    public TestAbility5()
+    public class TestAbility5 : Ability
     {
-        eldritch = false;
-        name = "TestAbility5";
-        type = 0;
-        position = 0;
-        cost = 10;
-        damage = 20;
-        damageType = 0;
-        image_file_path = "AbilitySprites/Fist";
-        desc1 = "This is test ability 5...";
+        public TestAbility5()
+        {
+            eldritch = false;
+            name = "TestAbility5";
+            type = 0;
+            position = 0;
+            cost = 10;
+            damage = 20;
+            damageType = 0;
+            image_file_path = "AbilitySprites/Fist";
+            desc1 = "This is test ability 5...";
+        }
     }
-}
 
-public class TestAbility6 : Ability
-{
-    public TestAbility6()
+    public class TestAbility6 : Ability
     {
-        eldritch = false;
-        name = "TestAbility6";
-        type = 0;
-        position = 0;
-        cost = 10;
-        damage = 20;
-        damageType = 0;
-        image_file_path = "AbilitySprites/Fist";
-        desc1 = "This is test ability 6...";
+        public TestAbility6()
+        {
+            eldritch = false;
+            name = "TestAbility6";
+            type = 0;
+            position = 0;
+            cost = 10;
+            damage = 20;
+            damageType = 0;
+            image_file_path = "AbilitySprites/Fist";
+            desc1 = "This is test ability 6...";
+        }
     }
-}
 
-public class TestAbility7 : Ability
-{
-    public TestAbility7()
+    public class TestAbility7 : Ability
     {
-        eldritch = false;
-        name = "TestAbility7";
-        type = 0;
-        position = 0;
-        cost = 10;
-        damage = 20;
-        damageType = 0;
-        image_file_path = "AbilitySprites/Fist";
-        desc1 = "This is test ability 7...";
+        public TestAbility7()
+        {
+            eldritch = false;
+            name = "TestAbility7";
+            type = 0;
+            position = 0;
+            cost = 10;
+            damage = 20;
+            damageType = 0;
+            image_file_path = "AbilitySprites/Fist";
+            desc1 = "This is test ability 7...";
+        }
     }
-}
 
-public class TestAbility8 : Ability
-{
-    public TestAbility8()
+    public class TestAbility8 : Ability
     {
-        eldritch = false;
-        name = "TestAbility8";
-        type = 0;
-        position = 0;
-        cost = 10;
-        damage = 20;
-        damageType = 0;
-        image_file_path = "AbilitySprites/Fist";
-        desc1 = "This is test ability 8...";
+        public TestAbility8()
+        {
+            eldritch = false;
+            name = "TestAbility8";
+            type = 0;
+            position = 0;
+            cost = 10;
+            damage = 20;
+            damageType = 0;
+            image_file_path = "AbilitySprites/Fist";
+            desc1 = "This is test ability 8...";
+        }
     }
-}
 
-public class TestAbility9 : Ability
-{
-    public TestAbility9()
+    public class TestAbility9 : Ability
     {
-        eldritch = false;
-        name = "TestAbility9";
-        type = 0;
-        position = 0;
-        cost = 10;
-        damage = 20;
-        damageType = 0;
-        image_file_path = "AbilitySprites/Fist";
-        desc1 = "This is test ability 9...";
+        public TestAbility9()
+        {
+            eldritch = false;
+            name = "TestAbility9";
+            type = 0;
+            position = 0;
+            cost = 10;
+            damage = 20;
+            damageType = 0;
+            image_file_path = "AbilitySprites/Fist";
+            desc1 = "This is test ability 9...";
+        }
     }
-}
 
-public class Basic : Ability
-{
-    public Basic()
+    public class Basic : Ability
     {
-        name = "Base Attack";
-        cost = 1;
-        target = 0;
-        damage = 8;
-        damageType = 0;
+        public Basic()
+        {
+            name = "Base Attack";
+            cost = 1;
+            target = 0;
+            damage = 8;
+            damageType = 0;
+        }
     }
-}
 
-public class BasicFront : Ability
-{
-    public BasicFront()
+    public class BasicFront : Ability
     {
-        name = "Base Frontline Attack";
-        desc1 = "Simple frontline Attack\nCost: 5";
-        desc2 = "Use when you have to get up close and personal with your opponent";
-        cost = 5;
-        target = 0;
-        damage = 5;
-        damageType = 0;
-        position = 1;
+        public BasicFront()
+        {
+            name = "Base Frontline Attack";
+            desc1 = "Simple frontline Attack\nCost: 5";
+            desc2 = "Use when you have to get up close and personal with your opponent";
+            cost = 5;
+            target = 0;
+            damage = 5;
+            damageType = 0;
+            position = 1;
+        }
     }
-}
 
-public class BasicBack : Ability
-{
-    public BasicBack()
+    public class BasicBack : Ability
     {
-        name = "Base Backline Attack";
-        desc1 = "Simple backline Attack\nCost: 5";
-        desc2 = "Use when you need to put some space between you and your opponent";
-        cost = 5;
-        target = 0;
-        damage = 5;
-        damageType = 0;
-        position = 2;
+        public BasicBack()
+        {
+            name = "Base Backline Attack";
+            desc1 = "Simple backline Attack\nCost: 5";
+            desc2 = "Use when you need to put some space between you and your opponent";
+            cost = 5;
+            target = 0;
+            damage = 5;
+            damageType = 0;
+            position = 2;
+        }
     }
-}
 
-//Use to attack all units in front line or back line 
-public class AOERow : Ability
-{
-    public AOERow()
+    //Use to attack all units in front line or back line 
+    public class AOERow : Ability
     {
-        name = "AOE Attack";
-        cost = 0;
-        damage = 5;
-        target = 1;
-        damageType = 0;
+        public AOERow()
+        {
+            name = "AOE Attack";
+            cost = 0;
+            damage = 5;
+            target = 1;
+            damageType = 0;
+        }
     }
-}
 
-//Use to attack all units in a column
-public class AOELine : Ability
-{
-    public AOELine()
+    //Use to attack all units in a column
+    public class AOELine : Ability
     {
-        name = "Line Attack";
-        cost = 0;
-        damage = 5;
-        target = 2;
-        damageType = 0;
+        public AOELine()
+        {
+            name = "Line Attack";
+            cost = 0;
+            damage = 5;
+            target = 2;
+            damageType = 0;
+        }
     }
-}
 
-//Use to attack the whole party
-public class AOEFull : Ability
-{
-    public AOEFull()
+    //Use to attack the whole party
+    public class AOEFull : Ability
     {
-        name = "Burst Attack";
-        cost = 0;
-        damage = 5;
-        target = 3;
-        damageType = 0;
+        public AOEFull()
+        {
+            name = "Burst Attack";
+            cost = 0;
+            damage = 5;
+            target = 3;
+            damageType = 0;
+        }
     }
-}
 
-public class status1 : Ability
-{
-    public status1()
+    public class status1 : Ability
     {
-        name = "Status Attack";
-        cost = 0;
-        target = 0;
-        damage = 0;
-        damageType = 0;
-        statusEffect = "Confused";
+        public status1()
+        {
+            name = "Status Attack";
+            cost = 0;
+            target = 0;
+            damage = 0;
+            damageType = 0;
+            statusEffect = "Confused";
+        }
     }
-}
 
-public class AOEStatus1 : Ability
-{
-    public AOEStatus1()
+    public class AOEStatus1 : Ability
     {
-        name = "Burst Toxin";
-        cost = 0;
-        target = 1;
-        damage = 0;
-        damageType = 0;
-        statusEffect = "Poison";
+        public AOEStatus1()
+        {
+            name = "Burst Toxin";
+            cost = 0;
+            target = 1;
+            damage = 0;
+            damageType = 0;
+            statusEffect = "Poison";
+        }
     }
 }
 
@@ -712,18 +714,18 @@ namespace EnemyAbilities
             if (target.statuses[5] == -1 && target.statuses[6] == -1)
             {
                 int status = Random.Range(0, 2);
-                if (status == 0) user.statuses[5] = Random.Range(5,9);
-                else user.statuses[6] = Random.Range(5, 9);
+                if (status == 0) user.giveStatus("Hyperactive");
+                else user.giveStatus("Zealous");
                 statCounter = 4;
             }
             else if (target.statuses[5] == -1)
             {
-                user.statuses[5] = Random.Range(5, 9);
+                user.giveStatus("Hyperactive");
                 statCounter = 4;
             }
             else if (target.statuses[6] == -1)
             {
-                user.statuses[6] = Random.Range(5, 9);
+                user.giveStatus("Zealous");
                 statCounter = 4;
             }
         }
@@ -1328,6 +1330,11 @@ namespace ShirleyAbilities
             type = 1;
             position = 0;
             statusEffect = "Zealous";
+        }
+
+        public override void UseAttack(unit user, unit target)
+        {
+            target.giveStatus("Zealous");
         }
     }
 

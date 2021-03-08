@@ -419,7 +419,6 @@ public class BattleScript : MonoBehaviour
         //loop through the item viewer and set the corresponding item name to the corresponding viewer position along with the amount
         for (int i = 0; i < item_viewer_name.Count; i++)
         {
-            //Debug.Log("Data == NULL? --> " + (data.GetInventorySize()));
             if (i + inventory_offset < data.GetInventorySize())
             {
                 item_viewer_name[i].text = data.GetItem(i + inventory_offset).name;
@@ -1512,8 +1511,8 @@ public class BattleScript : MonoBehaviour
                                 }
                                 else if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].type == 1)
                                 {
-                                    if (activeUnits > 1 || partyUnits.Count - partyDeaths > 1
-                                        || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].target != 3)
+                                    if ((activeUnits > 1 || partyUnits.Count - partyDeaths > 1)
+                                        && partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].target != 3)
                                     {
                                         useSound(1);
                                         //Make attack menu invisible
@@ -2281,15 +2280,45 @@ public class BattleScript : MonoBehaviour
     {
         //if (swaps.Count == swapInds.Count)
         //{
-            //Swap sibling indices to get backline in front of frontline
-            int a1 = allyStations[swapInds[indi]].GetSiblingIndex();       //Get hierarchy positions
-            int a2 = allyStations[swapInds[indi+1]].GetSiblingIndex();
-            allyStations[swapInds[indi+1]].SetSiblingIndex(swapInds[0]);     //Swap in hierarchy to have front/back appearance
-            allyStations[swapInds[indi]].SetSiblingIndex(swapInds[1]);
-            allyStations[swapInds[0]] = pSpots[1];                    //Swap locations
-            allyStations[swapInds[1]] = pSpots[0];
+        //Swap sibling indices to get backline in front of frontline
+        //int a1 = allyStations[swapInds[indi]].GetSiblingIndex();       //Get hierarchy positions
+        //int a2 = allyStations[swapInds[indi+1]].GetSiblingIndex();
+        //Debug.Log("Sib1 == " + allyStations[swapInds[indi]].GetSiblingIndex());
+        //Debug.Log("Sib2 == " + allyStations[swapInds[indi + 1]].GetSiblingIndex());
+        if (swapInds[indi] < swapInds[indi + 1])
+        {
+            allyStations[swapInds[indi + 1]].SetSiblingIndex(allyStations[swapInds[indi]].GetSiblingIndex());     //Swap in hierarchy to have front/back appearance
+            //Debug.Log("Sib1, step 1 == " + allyStations[swapInds[indi]].GetSiblingIndex());
+            //Debug.Log("Sib2, step 1 == " + allyStations[swapInds[indi + 1]].GetSiblingIndex());
+            //allyStations[swapInds[indi]].SetSiblingIndex(allyStations[swapInds[indi+1]].GetSiblingIndex());
 
-            partyUnits[swapInds[indi]].transform.position = pSpots[indi+1].position;
+        }
+        else
+        {
+            allyStations[swapInds[indi]].SetSiblingIndex(allyStations[swapInds[indi+1]].GetSiblingIndex());
+            //Debug.Log("Sib1, step 2 == " + allyStations[swapInds[indi]].GetSiblingIndex());
+            //Debug.Log("Sib2, step 2 == " + allyStations[swapInds[indi + 1]].GetSiblingIndex());
+            //allyStations[swapInds[indi + 1]].SetSiblingIndex(allyStations[swapInds[indi]].GetSiblingIndex());     
+        }
+        //Debug.Log("Sib1 == " + allyStations[swapInds[indi]].GetSiblingIndex());
+        //Debug.Log("Sib2 == " + allyStations[swapInds[indi + 1]].GetSiblingIndex());
+        //allyStations[swapInds[0]] = pSpots[1];                    //Swap locations
+        //allyStations[swapInds[1]] = pSpots[0];
+        /*
+        if (partyUnits[swapInds[indi]] != null)
+        {
+            Debug.Log("unit name for swap == " + partyUnits[swapInds[indi]].GetComponent<UnitMono>().mainUnit.unitName
+                 + ", IMPath == " + partyUnits[swapInds[indi]].GetComponent<UnitMono>().mainUnit.ImageFilePath);
+
+        }
+        if (partyUnits[swapInds[indi + 1]] != null)
+        {
+            Debug.Log("unit name for swap222 == " + partyUnits[swapInds[indi + 1]].GetComponent<UnitMono>().mainUnit.unitName
+                + ", IMPath == " + partyUnits[swapInds[indi + 1]].GetComponent<UnitMono>().mainUnit.ImageFilePath);
+        }
+        */
+
+        partyUnits[swapInds[indi]].transform.position = pSpots[indi+1].position;
             if (partyUnits[swapInds[indi+1]] != null)
             {
                 partyUnits[swapInds[indi+1]].transform.position = pSpots[indi].position;
@@ -2432,12 +2461,12 @@ public class BattleScript : MonoBehaviour
                             for (int c = 0; c < enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[d].priority; c++)
                             {
                                 probos.Add(d);
-                                Debug.Log("Ability of enemy == " + enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[d].name);
                             }
                         }
                         //Select the appropriate ability based on enemy position
                         if (r == 0 || r == 1)
                         {
+                            //Keep loop going while ability doesn't match position or while ability isn't offensive
                             while ((enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].enemyTarget != 0 &&
                                 enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].enemyTarget != 1) ||
                                 enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].type != 0)
@@ -2523,7 +2552,7 @@ public class BattleScript : MonoBehaviour
         cursor.SetActive(false);
         transform.GetChild(1).Find("ActionMenu").gameObject.SetActive(false);
         enemyAttacks();
-        Debug.Log("State == " + state);
+        //Debug.Log("State == " + state);
         if (state != battleState.WIN && state != battleState.LOSE && state != battleState.FLEE)
         {
             List<GameObject> temp = new List<GameObject>();
@@ -2769,7 +2798,7 @@ public class BattleScript : MonoBehaviour
                 else if (actions[z].getType() == "ability1" && state == battleState.ATTACK)
                 {
                     int pose = actions[z].getTarget();
-                    if (partyUnits[pose] == null)
+                    if (partyUnits[pose] == null || partyUnits[pose].GetComponent<UnitMono>().mainUnit.unitName != actions[z].getName())
                     {
                         for (int i = 0; i < 4; i++)
                         {
@@ -2961,6 +2990,7 @@ public class BattleScript : MonoBehaviour
                 if (partyUnits[i] != null)
                 {
                     partyUnits[i].GetComponent<UnitMono>().mainUnit.statusTurn();
+                    partyUnits[i].GetComponent<UnitMono>().mainUnit.setHUD();
                 }
             }
             for (int i = 0; i < enemyUnits.Count; i++)
@@ -3622,14 +3652,18 @@ public class BattleScript : MonoBehaviour
             if (uni.abilities[ata].target == 0)
             {
                 uni.abilities[ata].UseAttack(uni, target);
+                StartCoroutine(flashHeal(target));
             }
             else if (uni.abilities[ata].target == 1)
             {
+                uni.abilities[ata].UseAttack(uni, target);
+                StartCoroutine(flashHeal(target));
                 if ((val == 1 || val == 3) && val-1 >= 0 && partyUnits[val-1] != null)
                 {
                     if (partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                     {
                         uni.abilities[ata].UseAttack(uni, partyUnits[val-1].GetComponent<UnitMono>().mainUnit);
+                        StartCoroutine(flashHeal(partyUnits[val - 1].GetComponent<UnitMono>().mainUnit));
                     }
                 }
                 else if ((val == 0 || val == 2) && val + 1 >= 0 && partyUnits[val + 1] != null)
@@ -3637,6 +3671,7 @@ public class BattleScript : MonoBehaviour
                     if (partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                     {
                         uni.abilities[ata].UseAttack(uni, partyUnits[val + 1].GetComponent<UnitMono>().mainUnit);
+                        StartCoroutine(flashHeal(partyUnits[val - 1].GetComponent<UnitMono>().mainUnit));
                     }
                 }
             }
@@ -3648,6 +3683,7 @@ public class BattleScript : MonoBehaviour
                     if (partyUnits[x] != null)
                     {
                         todos.Add(partyUnits[x].GetComponent<UnitMono>().mainUnit);
+                        StartCoroutine(flashHeal(partyUnits[x].GetComponent<UnitMono>().mainUnit));
                     }
                     else
                     {
@@ -3656,6 +3692,7 @@ public class BattleScript : MonoBehaviour
                 }
                 uni.abilities[ata].UseAttack(uni, todos);
             }
+            //Pull target forward
             if (uni.abilities[ata].swapper == 1)
             {
                 Transform pp1 = new GameObject().transform;
@@ -3663,12 +3700,16 @@ public class BattleScript : MonoBehaviour
 
                 GameObject po1 = new GameObject();
                 GameObject po2 = new GameObject();
+                //pp1 == target to pull forward
                 pp1.position = allyStations[val].position;
                 po1 = partyUnits[val];
+                //Confirm in the right spot
                 if (val == 2 || val == 3)
                 {
+                    //change position value
                     if (val - 2 == 0 || val - 2 == 1) po1.GetComponent<UnitMono>().mainUnit.position = 0;
                     else po1.GetComponent<UnitMono>().mainUnit.position = 1;
+
                     pp2.position = allyStations[val - 2].position;
                     po2 = partyUnits[val - 2];
                     if (po2 != null)
@@ -3697,6 +3738,7 @@ public class BattleScript : MonoBehaviour
                     PerformSwaps(swapInds.Count - 2);
                 }
             }
+            //Push target backwards
             else if (uni.abilities[ata].swapper == 2)
             {
                 Transform pp1 = new GameObject().transform;
@@ -3739,7 +3781,6 @@ public class BattleScript : MonoBehaviour
                     PerformSwaps(swapInds.Count - 2);
                 }
             }
-            yield return flashHeal(target);
         }
         else
         {
@@ -3899,7 +3940,6 @@ public class BattleScript : MonoBehaviour
         {
             val += (val / 2);
             crite = true;
-            //Debug.Log("Got a crit!");
         }
         if (uni.statuses[2] != -1)
         {
@@ -4119,7 +4159,7 @@ public class BattleScript : MonoBehaviour
 
     //An enemy attack function, used with enemies that have a list of abilities
     //ata - index of attack
-    //val - index of enemy
+    //val - index of enemy (target)
     //uni - enemy using attack
     //target - target of attack
     IEnumerator enemyAttack(int ata, int val, unit uni, unit target)
@@ -4181,6 +4221,7 @@ public class BattleScript : MonoBehaviour
                 target.lived = false;
             }
 
+            //Pull forward
             if (uni.abilities[ata].swapper == 1)
             {
                 Transform pp1 = new GameObject().transform;
@@ -4222,6 +4263,7 @@ public class BattleScript : MonoBehaviour
                     PerformSwaps(swapInds.Count - 2);
                 }
             }
+            //Push Back
             else if (uni.abilities[ata].swapper == 2)
             {
                 Transform pp1 = new GameObject().transform;
@@ -4508,7 +4550,6 @@ public class BattleScript : MonoBehaviour
         {
             if (partyUnits[i] != null)
             {
-                //Debug.Log("i == " + i);
                 if (partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP > 0 &&
                     partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName != "Player")
                 {
@@ -4535,7 +4576,6 @@ public class BattleScript : MonoBehaviour
             {
                 if (partyUnits[i] != null)
                 {
-                   // Debug.Log("i == " + i);
                     if (partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                     {
                         StartCoroutine(flashLevel(partyUnits[i].GetComponent<UnitMono>().mainUnit));
