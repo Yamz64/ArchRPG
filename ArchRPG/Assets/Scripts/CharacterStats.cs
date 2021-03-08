@@ -2186,7 +2186,7 @@ class Ralph : CharacterStats
     {
         SetImageFilepath("CharacterSprites/Ralph");
 
-        SetName("Little Ralphy");
+        SetName("Ralph");
         SetDesc("It's kinda strange that Ralph has a mustache, chest hair, and that he constantly asks other kids if they have any drugs. You think it's because he's held back every year, but you're not so sure");
 
         SetLVL(1);
