@@ -70,6 +70,7 @@ public class JimDialogue : InteractableBaseClass
             if (map_manager.current_map.objects[i].o == gameObject.name)
             {
                 map_manager.current_map.objects[i].interacted = true;
+                map_manager.Save();
                 break;
             }
         }

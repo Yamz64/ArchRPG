@@ -145,6 +145,7 @@ public class RalphDialogue : InteractableBaseClass
                         if (map_manager.current_map.objects[i].o == gameObject.name)
                         {
                             map_manager.current_map.objects[i].interacted = true;
+                            map_manager.Save();
                             break;
                         }
                     }
@@ -188,8 +189,11 @@ public class RalphDialogue : InteractableBaseClass
             dialogue_queue.Add("Whatever");
             if(player.GetComponent<PlayerDataMono>().data.GetPartySize() < 3)
             {
-                player.GetComponent<PlayerDataMono>().data.AddPartyMember(new Ralph());
-                player.GetComponent<PlayerDataMono>().data.UnlockPartyMember(4);
+                PlayerData data = player.GetComponent<PlayerDataMono>().data;
+                data.AddPartyMember(new Ralph());
+                data.GetPartyMember(data.GetPartySize() - 1).SetHP(data.GetPartyMember(data.GetPartySize() - 1).GetHPMAX());
+                data.GetPartyMember(data.GetPartySize() - 1).SetSP(data.GetPartyMember(data.GetPartySize() - 1).GetSPMax());
+                data.UnlockPartyMember(4);
                 dialogue_queue.Add("Ralph joins the party!");
             }
             else
@@ -256,6 +260,18 @@ public class RalphDialogue : InteractableBaseClass
 
             yield return new WaitForEndOfFrame();
             yield return new WaitUntil(() => !player.GetActive());
+            //mark ralph as interacted
+            MapDataManager map_manager = GameObject.FindGameObjectWithTag("MapManager").GetComponent<MapDataManager>();
+            for (int i = 0; i < map_manager.current_map.objects.Count; i++)
+            {
+                if (map_manager.current_map.objects[i].o == gameObject.name)
+                {
+                    map_manager.current_map.objects[i].interacted = true;
+                    map_manager.Save();
+                    break;
+                }
+            }
+
             Destroy(gameObject);
         }
     }
@@ -265,20 +281,20 @@ public class RalphDialogue : InteractableBaseClass
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDialogueBoxHandler>();
         pause = GameObject.FindGameObjectWithTag("Player").GetComponent<PauseMenuHandler>();
+        
+        MapDataManager map_manager = GameObject.FindGameObjectWithTag("MapManager").GetComponent<MapDataManager>();
+        for (int i = 0; i < map_manager.current_map.objects.Count; i++)
+        {
+            if (map_manager.current_map.objects[i].o == gameObject.name)
+            {
+                if (map_manager.current_map.objects[i].interacted)
+                    Destroy(gameObject);
+                break;
+            }
+        }
 
         if (SceneManager.GetActiveScene().name == "Subway")
         {
-            MapDataManager map_manager = GameObject.FindGameObjectWithTag("MapManager").GetComponent<MapDataManager>();
-            for (int i = 0; i < map_manager.current_map.objects.Count; i++)
-            {
-                if (map_manager.current_map.objects[i].o == gameObject.name)
-                {
-                    if (map_manager.current_map.objects[i].interacted)
-                        Destroy(gameObject);
-                    break;
-                }
-            }
-
             //see if the ADHD kid has been interacted with and save that in a bool flag for quick access
             met_adhd = false;
             MapSaveData data = new MapSaveData();
