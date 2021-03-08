@@ -2278,14 +2278,12 @@ public class BattleScript : MonoBehaviour
     //indi -- index to start from (indi and indi+1)
     public void PerformSwaps(int indi = 0)
     {
-        //if (swaps.Count == swapInds.Count)
-        //{
         //Swap sibling indices to get backline in front of frontline
         //int a1 = allyStations[swapInds[indi]].GetSiblingIndex();       //Get hierarchy positions
         //int a2 = allyStations[swapInds[indi+1]].GetSiblingIndex();
         //Debug.Log("Sib1 == " + allyStations[swapInds[indi]].GetSiblingIndex());
         //Debug.Log("Sib2 == " + allyStations[swapInds[indi + 1]].GetSiblingIndex());
-        if (swapInds[indi] < swapInds[indi + 1])
+        if (swapInds[indi] > swapInds[indi + 1])
         {
             allyStations[swapInds[indi + 1]].SetSiblingIndex(allyStations[swapInds[indi]].GetSiblingIndex());     //Swap in hierarchy to have front/back appearance
             //Debug.Log("Sib1, step 1 == " + allyStations[swapInds[indi]].GetSiblingIndex());
@@ -2319,32 +2317,13 @@ public class BattleScript : MonoBehaviour
         */
 
         partyUnits[swapInds[indi]].transform.position = pSpots[indi+1].position;
-            if (partyUnits[swapInds[indi+1]] != null)
-            {
-                partyUnits[swapInds[indi+1]].transform.position = pSpots[indi].position;
-            }
-            partyUnits[swapInds[indi]] = ppgs[indi+1];      //Switch indices to match with visible order
-            partyUnits[swapInds[indi+1]] = ppgs[indi];
-        //}
-        /*
-        else
+        if (partyUnits[swapInds[indi+1]] != null)
         {
-            int a1 = allyStations[swapInds[0]].GetSiblingIndex();
-            int a2 = allyStations[swapInds[1]].GetSiblingIndex();
-            allyStations[swapInds[1]].SetSiblingIndex(a1);
-            allyStations[swapInds[0]].SetSiblingIndex(a2);
-            allyStations[swapInds[0]] = p4;
-            allyStations[swapInds[1]] = p3;
-
-            partyUnits[swapInds[0]].transform.position = p4.position;
-            if (partyUnits[swapInds[1]] != null)
-            {
-                partyUnits[swapInds[1]].transform.position = p3.position;
-            }
-            partyUnits[swapInds[0]] = p4p;
-            partyUnits[swapInds[1]] = p3p;
+            partyUnits[swapInds[indi+1]].transform.position = pSpots[indi].position;
         }
-        */
+        partyUnits[swapInds[indi]] = ppgs[indi+1];      //Switch indices to match with visible order
+        partyUnits[swapInds[indi+1]] = ppgs[indi];
+
 
         if (partyUnits[swapInds[indi]] != null)
         {

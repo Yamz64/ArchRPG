@@ -282,6 +282,7 @@ MonoBehaviour:
   highlighted_item: 0
   highlighted_ability: 0
   highlighted_action: 0
+  fleeChance: 0
   background: {fileID: 2099335486}
   dialogue: {fileID: 1606678685}
   partyPrefabs:
@@ -317,6 +318,7 @@ MonoBehaviour:
   currentAlly: 0
   moves: 0
   currentEnemy: 0
+  highEne: 0
 --- !u!114 &43254541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -859,7 +861,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 30.599966, y: -506}
+  m_AnchoredPosition: {x: 30, y: -506}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &173307080
@@ -1434,7 +1436,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -559, y: -506}
+  m_AnchoredPosition: {x: -560, y: -506}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &375501835
@@ -5901,7 +5903,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -559.6, y: -246}
+  m_AnchoredPosition: {x: -560, y: -246}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1489905313
