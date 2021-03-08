@@ -1431,9 +1431,13 @@ public class BattleScript : MonoBehaviour
                 {
                     //Player uses the attack
                     case 4:
+                        bool match = false;
+                        if ((currentUnit == 0 || currentUnit == 1) && 
+                            partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].position == 1) match = true;
+                        else if ((currentUnit == 2 || currentUnit == 3) &&
+                            partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].position == 2) match = true;
                         if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].position == 0 ||
-                            partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].position - 1 ==
-                            currentUnit/2)
+                            match)
                         {
                             if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.currentSP <
                                 partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].cost)
@@ -2751,19 +2755,21 @@ public class BattleScript : MonoBehaviour
                     }
                     else
                     {
-                        if (toget > 0)
+                        while (enemyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && toget > 0)
                         {
-                            while (enemyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && toget > 0)
+                            toget--;
+                        }
+                        if (toget == 0 && enemyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
+                        {
+                            while (enemyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && toget < enemyUnits.Count-1)
                             {
-                                toget--;
+                                toget++;
                             }
-                            if (toget == 0 && enemyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
-                            {
-                                while (enemyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && toget < enemyUnits.Count)
-                                {
-                                    toget++;
-                                }
-                            }
+                        }
+                        if (enemyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
+                        {
+                            state = battleState.WIN;
+                            yield return battleEnd();
                         }
                         //dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " tried attacking " +
                         //    enemyUnits[toget].GetComponent<UnitMono>().mainUnit.unitName + ", but they weren't there";
@@ -2825,19 +2831,21 @@ public class BattleScript : MonoBehaviour
                     else
                     {
                         int toget = actions[z].getTarget();
-                        if (toget > 0)
+                        while (enemyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && toget > 0)
                         {
-                            while (enemyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && toget > 0)
+                            toget--;
+                        }
+                        if (toget == 0 && enemyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
+                        {
+                            while (enemyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && toget < enemyUnits.Count-1)
                             {
-                                toget--;
+                                toget++;
                             }
-                            if (toget == 0 && enemyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
-                            {
-                                while (enemyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && toget < enemyUnits.Count)
-                                {
-                                    toget++;
-                                }
-                            }
+                        }
+                        if (enemyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
+                        {
+                            state = battleState.WIN;
+                            yield return battleEnd();
                         }
                         //dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " tried attacking " +
                         //    enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName + ", but they weren't there";
