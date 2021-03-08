@@ -24,6 +24,12 @@ public class OverworldEncounter : MonoBehaviour
     private Rigidbody2D rb;
     private NPCAnimationHandler anim;
 
+    public void SetEncounterType(bool type)
+    {
+        if (!type) encounter_type = EncounterType.SINGLE;
+        else encounter_type = EncounterType.HOARD;
+    }
+
     IEnumerator CombatSequence()
     {
         TransitionHandler handler = GameObject.FindGameObjectWithTag("Player").GetComponent<TransitionHandler>();
