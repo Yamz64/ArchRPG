@@ -293,6 +293,7 @@ public class BattleScript : MonoBehaviour
         {
             i += 1;
         }
+        currentEnemy = i;
         dialogue.text = "Select Target";
         cursor.SetActive(false);
         enemySelect(i);
@@ -1653,28 +1654,34 @@ public class BattleScript : MonoBehaviour
             {
                 if (!menu_input)
                 {
-                    if (enemyUnits[currentEnemy + 1].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
+                    //If there is more than one enemy remaining
+                    if (enemyUnits.Count - enemyDeaths > 1)
                     {
-                        int temp = currentEnemy;
-                        while (enemyUnits[currentEnemy].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && currentEnemy < enemyUnits.Count)
+                        //If the enemy to the right is alive
+                        if (enemyUnits[currentEnemy + 1].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
                         {
+                            int temp = currentEnemy;
                             currentEnemy++;
-                        }
-                        if (currentEnemy < enemyUnits.Count)
-                        {
-                            useSound(0);
-                            enemySelect(currentEnemy);
+                            while (enemyUnits[currentEnemy].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && currentEnemy < enemyUnits.Count)
+                            {
+                                currentEnemy++;
+                            }
+                            if (currentEnemy < enemyUnits.Count)
+                            {
+                                useSound(0);
+                                enemySelect(currentEnemy);
+                            }
+                            else
+                            {
+                                currentEnemy = temp;
+                            }
                         }
                         else
                         {
-                            currentEnemy = temp;
+                            useSound(0);
+                            currentEnemy++;
+                            enemySelect(currentEnemy);
                         }
-                    }
-                    else
-                    {
-                        useSound(0);
-                        currentEnemy++;
-                        enemySelect(currentEnemy);
                     }
                 }
                 menu_input = true;
@@ -1684,28 +1691,32 @@ public class BattleScript : MonoBehaviour
             {
                 if (!menu_input)
                 {
-                    if (enemyUnits[currentEnemy - 1].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
+                    if (enemyUnits.Count - enemyDeaths > 1)
                     {
-                        int temp = currentEnemy;
-                        while (enemyUnits[currentEnemy].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && currentEnemy >= 0)
+                        if (enemyUnits[currentEnemy - 1].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
                         {
+                            int temp = currentEnemy;
                             currentEnemy--;
-                        }
-                        if (currentEnemy >= 0)
-                        {
-                            useSound(0);
-                            enemySelect(currentEnemy);
+                            while (enemyUnits[currentEnemy].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && currentEnemy >= 0)
+                            {
+                                currentEnemy--;
+                            }
+                            if (currentEnemy >= 0)
+                            {
+                                useSound(0);
+                                enemySelect(currentEnemy);
+                            }
+                            else
+                            {
+                                currentEnemy = temp;
+                            }
                         }
                         else
                         {
-                            currentEnemy = temp;
+                            useSound(0);
+                            currentEnemy--;
+                            enemySelect(currentEnemy);
                         }
-                    }
-                    else
-                    {
-                        useSound(0);
-                        currentEnemy--;
-                        enemySelect(currentEnemy);
                     }
                 }
                 menu_input = true;
