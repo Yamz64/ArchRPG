@@ -24,7 +24,7 @@ public class SubwaySequence : InteractableBaseClass
         List<string> image_queue = new List<string>();
 
         //Instance the hound on top of the subway car above the player
-        GameObject the_hound = (GameObject)Instantiate(hound, new Vector3(GameObject.FindGameObjectWithTag("Player").transform.position.x, 44.5f, 0.0f), Quaternion.identity);
+        GameObject the_hound = (GameObject)Instantiate(hound, new Vector3(GameObject.FindGameObjectWithTag("Player").transform.position.x, 45f, 0.0f), Quaternion.identity);
 
         //say some dialogue
         dialogue_queue.Add("What do I smell... with my nose?");
