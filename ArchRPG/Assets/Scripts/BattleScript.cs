@@ -3616,7 +3616,7 @@ public class BattleScript : MonoBehaviour
                 expHere += target.expGain;
                 //yield return levelUp(target.giveEXP());
             }
-            else if (dead && target.currentHP > 0)
+            else if (dead && preh == target.currentHP || precS == target.statuses)
             {
                 dialogue.text = "Used attack in wrong row";
                 yield return new WaitForSeconds(1f);
