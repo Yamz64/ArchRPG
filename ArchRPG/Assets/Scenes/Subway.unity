@@ -299,7 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9bf00e5e3c487e4f890e9dcf42011c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hound_attack: {fileID: 9000983858900481118, guid: 44e73bac9973a824bac7fa75bd12194d, type: 3}
+  hound_attack: {fileID: 6215540361834850823, guid: 44e73bac9973a824bac7fa75bd12194d, type: 3}
   hound: {fileID: 2781794623174145705, guid: 138fe2953d4a60b4aa563c29e37fa167, type: 3}
 --- !u!61 &152589564
 BoxCollider2D:
