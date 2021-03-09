@@ -75,6 +75,10 @@
                 {
                     "o": "Lucy",
                     "interacted": false
+                },
+                {
+                    "o": "SubwayColliders",
+                    "interacted": false
                 }
             ]
         }
