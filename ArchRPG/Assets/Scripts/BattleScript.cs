@@ -4612,6 +4612,49 @@ public class BattleScript : MonoBehaviour
             {
                 dialogue.text = "The group of enemies have been defeated";
             }
+            int avg = 0;
+            int num = 0;
+            for (int i = 0; i < partyUnits.Count; i++)
+            {
+                if (partyUnits[i] != null)
+                {
+                    avg += partyUnits[i].GetComponent<UnitMono>().mainUnit.LCK;
+                    num++;
+                }
+            }
+            int mone = 0;
+            List<Item> rewards = new List<Item>();
+            avg = avg / num;
+            for (int i = 0; i < enemyUnits.Count; i++)
+            {
+                mone += enemyUnits[i].GetComponent<UnitMono>().mainUnit.capital;
+                int ranu = Random.Range(0, 101);
+                if (ranu < avg)
+                {
+                    if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.rewards.Count > 0)
+                    {
+                        for (int f = 0; f < enemyUnits[i].GetComponent<UnitMono>().mainUnit.rewards.Count; f++)
+                        {
+                            rewards.Add(enemyUnits[i].GetComponent<UnitMono>().mainUnit.rewards[f]);
+                        }
+                    }
+                }
+            }
+            if (mone > 0)
+            {
+                dialogue.text = "Received $" + mone + " buckaroos";
+                yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+            }
+            if (rewards.Count > 0)
+            {
+                dialogue.text = "Received " + rewards.Count + " items";
+                yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+            }
+            data.SetMoney(data.GetMoney() + mone);
+            for (int f = 0; f < rewards.Count; f++)
+            {
+                data.AddItem(rewards[f]);
+            }
         }
         else if (state == battleState.LOSE)
         {
@@ -4634,7 +4677,7 @@ public class BattleScript : MonoBehaviour
                 {
                     if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName == partyNames[x])
                     {
-                        Debug.Log("Storing unit " + partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName + " at position " + x);
+                        //Debug.Log("Storing unit " + partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName + " at position " + x);
                         loader.storeUnit(partyUnits[i], x);
                         break;
                     }

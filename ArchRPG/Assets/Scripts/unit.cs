@@ -128,6 +128,7 @@ public class unit
 
     public int expGain;             //Amount of exp awarded for defeating the unit
     public List<Item> rewards;      //A list of possible rewards awarded for defeating the unit
+    public int capital = 0;
 
     //damage types
     /*
