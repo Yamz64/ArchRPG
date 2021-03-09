@@ -4602,6 +4602,7 @@ public class BattleScript : MonoBehaviour
         StopCoroutine("playerAttack");
         StopCoroutine("basicAttack");
         StopCoroutine("enemyAttack");
+        //If win, display text and give money (and rewards after rolling chances)
         if (state == battleState.WIN)
         {
             if (enemyUnits.Count == 1)

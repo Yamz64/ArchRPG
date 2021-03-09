@@ -179,7 +179,7 @@ TextureImporter:
       name: The Hound_0
       rect:
         serializedVersion: 2
-        x: 1200
+        x: 0
         y: 0
         width: 1200
         height: 1200
@@ -197,10 +197,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: The Hound_4
+      name: The Hound_1
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1200
         y: 0
         width: 1200
         height: 1200
@@ -211,8 +211,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a67bb2cb5150b5080800000000000000
-      internalID: -9197752223064672406
+      spriteID: 70ae44a1709024650800000000000000
+      internalID: 6215540361834850823
       vertices: []
       indices: 
       edges: []
