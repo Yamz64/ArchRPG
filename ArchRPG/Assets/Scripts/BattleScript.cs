@@ -3159,6 +3159,7 @@ public class BattleScript : MonoBehaviour
 
         //Load in all enemies possible
         bool boss = false;
+        bool boss2 = false;
 
         int z = 0;
         for (int i = 0; i < loader.enemy_names.Length; i++)
@@ -3188,7 +3189,7 @@ public class BattleScript : MonoBehaviour
             else if (loader.enemy_names[i] == "Hound" || loader.enemy_names[i] == "The Hound")
             {
                 enen = new Hound();
-                boss = true;
+                boss2 = true;
             }
             else if (!loader.enemy_names[i].Equals(""))
             {
@@ -3211,15 +3212,20 @@ public class BattleScript : MonoBehaviour
             z++;
         }
 
-        if (!boss)
+        if (!boss && !boss2)
         {
             //Start background music
             useSound(3, true, 1);
         }
-        else
+        else if (!boss2)
         {
             useSound(4, true, 1);
             background.GetComponent<VideoPlayer>().clip = Resources.Load<VideoClip>("Backgrounds/Background1Edited");
+        }
+        else
+        {
+            useSound(4, true, 1);
+            background.GetComponent<VideoPlayer>().clip = Resources.Load<VideoClip>("Backgrounds/Background2EditedBright");
         }
 
         //Define actions list
