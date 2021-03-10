@@ -3225,7 +3225,7 @@ public class BattleScript : MonoBehaviour
         else
         {
             useSound(4, true, 1);
-            background.GetComponent<VideoPlayer>().clip = Resources.Load<VideoClip>("Backgrounds/Background2EditedBright");
+            background.GetComponent<VideoPlayer>().clip = Resources.Load<VideoClip>("Backgrounds/Background4");
         }
 
         //Define actions list
