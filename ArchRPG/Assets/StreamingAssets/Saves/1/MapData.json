@@ -40,6 +40,14 @@
                 {
                     "o": "Jim",
                     "interacted": true
+                },
+		{
+                    "o": "GnomeShard",
+                    "interacted": false
+                },
+		{
+                    "o": "MrWhiskers",
+                    "interacted": false
                 }
             ]
         },
@@ -81,6 +89,15 @@
                     "interacted": false
                 }
             ]
+        },
+        {
+            "name": "BedroomScene",
+            "objects": [
+		{
+                    "o": "Protractor",
+                    "interacted": false
+                }
+	]
         }
     ]
 }
