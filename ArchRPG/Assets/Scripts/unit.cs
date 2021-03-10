@@ -126,9 +126,9 @@ public class unit
     public Armor unitArmor;         //The armor the unit is wearing
     public Trinket unitTrinket;     //The trinket that the unit has
 
-    public int expGain;             //Amount of exp awarded for defeating the unit
+    public int expGain = 0;             //Amount of exp awarded for defeating the unit
     public List<Item> rewards;      //A list of possible rewards awarded for defeating the unit
-    public int capital = 0;
+    public int capital = 0;         //Amount of money awarded for defeating the unit
 
     //damage types
     /*
@@ -143,10 +143,13 @@ public class unit
     public List<int> statuses;          //List of ints in order to track how long each status lasts for
     public List<string> statusIndex;    //List of strings for each status effect
 
+    //Whether an attack was critical
     public bool critted = false;
 
+    //Whether unit survived a mortal wound
     public bool lived = false;
 
+    //Whether damage was reduced in attack
     public bool reduced = false;
 
 
@@ -4969,6 +4972,8 @@ public class KillerCone : unit
         maxHP = currentHP = 15;
         expGain = 30;
         enemy = true;
+        capital = 2;
+
         ATK = 15;
         DEF = 40;
         POW = 8;
@@ -5000,6 +5005,7 @@ public class ThrashCan : unit
         maxHP = currentHP = (int)(0.67 * Math.Pow(level, 2)) + 19;
         expGain = 30;
         enemy = true;
+        capital = 1;
 
         ATK = 10 * level;
         DEF = (5 * level) + 1;
@@ -5030,6 +5036,8 @@ public class LockerLurker : unit
         maxHP = currentHP = 30;
         expGain = 50;
         enemy = true;
+        capital = 3;
+
         ATK = 40;
         DEF = 40;
         POW = 30;
@@ -5063,6 +5071,7 @@ public class StudentBody : unit
         AGI = 18;
         LCK = 12;
         enemy = true;
+        capital = 6;
 
         weaknesses[4] = true;
 
@@ -5087,6 +5096,8 @@ public class Vermin : unit
         maxHP = currentHP = 35;
         expGain = 60;
         enemy = true;
+        capital = 4;
+
         //Currently uses Locker stats
         ATK = 40;
         DEF = 40;
@@ -5115,6 +5126,8 @@ public class Hound : unit
         maxHP = currentHP = 35;
         expGain = 60;
         enemy = true;
+        capital = 8;
+
         //Currently uses Locker stats
         ATK = 40;
         DEF = 40;

@@ -222,6 +222,50 @@ public class PlayerData : CharacterStats
             inventory[index].Add();
         }
     }
+    public void AddItem(string id)
+    {
+        if (id == "Protractor")
+        {
+            AddItem(new Weapons.Protractor());
+        }
+        else if (id == "GnomeShard" || id == "Gnome Shard")
+        {
+            AddItem(new Weapons.GnomeShard());
+        }
+        else if (id == "RatBomb" || id == "Rat Bomb")
+        {
+            AddItem(new Weapons.RatBomb());
+        }
+        else if (id == "ReplicaFlintlock" || id == "Replica Flintlock")
+        {
+            AddItem(new Weapons.ReplicaFlintlock());
+        }
+        else if (id == "NightStick" || id == "Night Stick")
+        {
+            AddItem(new Weapons.NightStick());
+        }
+        else if (id == "RadFlatCap" || id == "Rad Flat Cap")
+        {
+            AddItem(new Armors.RadFlatCap());
+        }
+        else if (id == "StrResTrashBag" || id == "Stretch Resistant Trash Bag")
+        {
+            AddItem(new Armors.StrResTrashBag());
+        }
+        else if (id == "CommemorativeTShirt" || id == "Commemorative T-Shirt")
+        {
+            AddItem(new Armors.CommemorativeTShirt());
+        }
+        else if (id == "MrWhiskers" || id == "Mr Whiskers" || id == "Mr. Whiskers")
+        {
+            AddItem(new Trinkets.MrWhiskers());
+        }
+        else if (id == "ClayAmulet" || id == "Clay Amulet")
+        {
+            AddItem(new Trinkets.ClayAmulet());
+        }
+
+    }
     public void RemoveItem(int index)
     {
         //first see if there is more than one of an item in the player's inventory if there is then remove only one of those items

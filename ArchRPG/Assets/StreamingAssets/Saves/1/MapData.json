@@ -19,6 +19,10 @@
                 {
                     "o": "Shirley",
                     "interacted": false
+                },
+		{
+                    "o": "Rad Flat Cap",
+                    "interacted": false
                 }
             ]
         },
@@ -40,6 +44,14 @@
                 {
                     "o": "Jim",
                     "interacted": true
+                },
+		{
+                    "o": "Gnome Shard",
+                    "interacted": false
+                },
+		{
+                    "o": "Mr Whiskers",
+                    "interacted": false
                 }
             ]
         },
@@ -48,6 +60,10 @@
             "objects": [
                 {
                     "o": "Danny2",
+                    "interacted": false
+                },
+		{
+                    "o": "Clay Amulet",
                     "interacted": false
                 }
             ]
@@ -61,6 +77,10 @@
                 },
                 {
                     "o": "Ralph",
+                    "interacted": false
+                },
+		{
+                    "o": "Commemorative T-Shirt",
                     "interacted": false
                 }
             ]
@@ -79,8 +99,30 @@
                 {
                     "o": "SubwayColliders",
                     "interacted": false
+                },
+		{
+                    "o": "Strecth Resistant Trash Bag",
+                    "interacted": false
                 }
             ]
+        },
+        {
+            "name": "BedroomScene",
+            "objects": [
+		{
+                    "o": "Protractor",
+                    "interacted": false
+                }
+	]
+        },
+	{
+            "name": "Pizzeria",
+            "objects": [
+		{
+                    "o": "RatBomb",
+                    "interacted": false
+                }
+	]
         }
     ]
 }
