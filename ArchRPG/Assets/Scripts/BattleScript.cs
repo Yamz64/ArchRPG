@@ -1809,6 +1809,7 @@ public class BattleScript : MonoBehaviour
                 menu_input = false;
             }
         }
+        //Unit select menu open
         else if (state == battleState.PLAYER && enemy_select_menu == false)
         {
             //If input is down and the cursor is not at the bottom yet
@@ -3212,16 +3213,19 @@ public class BattleScript : MonoBehaviour
             z++;
         }
 
+        //If normal enemy
         if (!boss && !boss2)
         {
             //Start background music
             useSound(3, true, 1);
         }
+        //If Student Body
         else if (!boss2)
         {
             useSound(4, true, 1);
             background.GetComponent<VideoPlayer>().clip = Resources.Load<VideoClip>("Backgrounds/Background1Edited");
         }
+        //If The Hound
         else
         {
             useSound(4, true, 1);
@@ -3241,6 +3245,7 @@ public class BattleScript : MonoBehaviour
         mover.desc2 = "Does 6 physical damage, used to test out attack system. Works in both lines.";
         mover.statusEffect = "";
 
+        //Loop to add test abilities to all party units
         for (int i = 0; i < partyUnits.Count; i++)
         {
             if (partyUnits[i] != null)
@@ -3279,7 +3284,17 @@ public class BattleScript : MonoBehaviour
         //Display text to player, showing an enemy/enemies have appeared
         else if (activeEnemies == 1)
         {
-            dialogue.text = "The " + enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName + " appears.";
+            //If first part of unit name is already "The "
+            if (enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName[0] != 'T' && enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName[1] != 'e'
+                && enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName[2] != 'e' && enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName[3] != ' ')
+            {
+                dialogue.text = "The " + enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName + " appears.";
+            }
+            else
+            {
+                dialogue.text = enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName + " appears.";
+            }
+
         }
         else if (activeEnemies == 2)
         {
@@ -3425,6 +3440,7 @@ public class BattleScript : MonoBehaviour
     //target - the target of the ability
     IEnumerator playerAbility(int ata, int val, unit uni, unit target)
     {
+        //If offensive ability
         if (uni.abilities[ata].type == 0)
         {
             bool good = false;
@@ -3622,7 +3638,7 @@ public class BattleScript : MonoBehaviour
                 expHere += target.expGain;
                 //yield return levelUp(target.giveEXP());
             }
-            else if (dead && preh == target.currentHP || precS == target.statuses)
+            else if (dead && (preh == target.currentHP || precS == target.statuses))
             {
                 dialogue.text = "Used attack in wrong row";
                 yield return new WaitForSeconds(1f);
@@ -3656,6 +3672,7 @@ public class BattleScript : MonoBehaviour
                 uni.setSP(uni.currentSP - uni.abilities[ata].cost);
             }
         }
+        //If support ability and Not eldritch
         else if (uni.abilities[ata].type == 1 || uni.abilities[ata].type == 2 && !uni.abilities[ata].eldritch)
         {
             if (uni.abilities[ata].target == 0)
@@ -3791,6 +3808,7 @@ public class BattleScript : MonoBehaviour
                 }
             }
         }
+        //If eldritch ability
         else
         {
             int expHere = 0;

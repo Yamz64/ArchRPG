@@ -222,6 +222,7 @@ public class PlayerData : CharacterStats
             inventory[index].Add();
         }
     }
+    //Use to add an item to the inventory based on their name/id
     public void AddItem(string id)
     {
         if (id == "Protractor")

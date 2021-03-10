@@ -62,27 +62,27 @@ public class Ability
      * 3 - Chemical
      * 4 - Weird
     */
-    public string statusEffect = "";//String that matches a specific status effect to inflict
-    public int damageType;          //The type of damage dealt by the attack
-    public int level_cost;          //cost to purchase this ability on levelup (only applies to eldritch abilities)
-    public string image_file_path = "";  //Give path to image that goes with attack
-    public string desc1;            //Give info on attack name, cost, and basic details
-    public string desc2;            //Give actual description and more details (damage type, targets, etc.)
-    public bool fast = false;       //if this is applied to the ability then it behaves as if the user had double speed
-    public bool use_pow = false;    //if applied to the ability then the attack uses pow to scale the damage rather than atk
-    public int moneySteal = 0;      //Amount of money the ability should steal (enemy only)
-    public int priority = 0;        //The chance of an enemy using a move
-    public int defaultPriority = 0; //Default priority value
-    public int nextPriority = 0;    //Priority value to change to under certain circumstances
-    public int statCounter;         //If != 0, how long until the move can not be used for
-    public string bigStatus = "";   //A status effect that an ability will do extra with
-    public int alteredStatus = 0;
-    public int alteredCrit = 0;
-    public int multiHitMin = 0;
-    public int multiHitMax = 0;
+    public string statusEffect = "";        //String that matches a specific status effect to inflict
+    public int damageType;                  //The type of damage dealt by the attack
+    public int level_cost;                  //cost to purchase this ability on levelup (only applies to eldritch abilities)
+    public string image_file_path = "";     //Give path to image that goes with attack
+    public string desc1;                    //Give info on attack name, cost, and basic details
+    public string desc2;                    //Give actual description and more details (damage type, targets, etc.)
+    public bool fast = false;               //if this is applied to the ability then it behaves as if the user had double speed
+    public bool use_pow = false;            //if applied to the ability then the attack uses pow to scale the damage rather than atk
+    public int moneySteal = 0;              //Amount of money the ability should steal (enemy only)
+    public int priority = 0;                //The chance of an enemy using a move
+    public int defaultPriority = 0;         //Default priority value
+    public int nextPriority = 0;            //Priority value to change to under certain circumstances
+    public int statCounter;                 //If != 0, how long until the move can not be used for
+    public string bigStatus = "";           //A status effect that an ability will do extra with
+    public int alteredStatus = 0;           //Int to add to chance of a status effect
+    public int alteredCrit = 0;             //Int to add to chance of getting a critical hit
+    public int multiHitMin = 0;             //Minimum number of hits for a multiHit attack
+    public int multiHitMax = 0;             //Maximum number of hits for a multiHit attack
 
 
-    public List<string> statIndex;
+    public List<string> statIndex;  //List of status effects that can be given
 }
 
 namespace TestAbilities

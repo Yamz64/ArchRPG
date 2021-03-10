@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ItemFound : InteractableBaseClass
 {
-    public string itemName;
-    public string itemDesc;
-    public string itemID;
+    public string itemName; //Name of the item
+    public string itemDesc; //Text that is displayed after "Found ItemName"
+    public string itemID;   //Text ID used to identify item to spawn
 
     private PlayerDialogueBoxHandler player;
     private PauseMenuHandler pause;
@@ -14,12 +14,15 @@ public class ItemFound : InteractableBaseClass
     IEnumerator ItemSequence()
     {
         player.OpenTextBox();
+
+        //Add text to queue
         List<string> textQueue = new List<string>();
         textQueue.Add("You found The " + itemName);
         textQueue.Add(itemDesc);
         textQueue.Add("You put away the " + itemName);
         player.SetWriteQueue(textQueue);
 
+        //Add effects to queue
         List<EffectContainer> effect_queue = new List<EffectContainer>();
         TextEffectClass temp = new TextEffectClass();
         temp.name = "_NO_EFFECT_";
@@ -30,11 +33,10 @@ public class ItemFound : InteractableBaseClass
         player.SetEffectQueue(effect_queue);
 
         player.WriteDriver();
-        //wait until the question is asked before opening the choice menu
         yield return new WaitUntil(() => player.GetWriting() == false);
 
 
-
+        //Make sure item is marked as interacted with
         MapDataManager map_manager = GameObject.FindGameObjectWithTag("MapManager").GetComponent<MapDataManager>();
         for (int i = 0; i < map_manager.current_map.objects.Count; i++)
         {
@@ -46,10 +48,13 @@ public class ItemFound : InteractableBaseClass
             }
         }
 
+        //Add item to Player Inventory
         PlayerData data = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDataMono>().data;
         data.AddItem(itemID);
 
         yield return new WaitUntil(() => !player.GetActive());
+
+        //Destroy the object so it can't be interacted with again
         Destroy(gameObject);
     }
 
@@ -71,7 +76,6 @@ public class ItemFound : InteractableBaseClass
         }
     }
 
-    // Update is called once per frame
     public override void Interact()
     {
         StartCoroutine(ItemSequence());
