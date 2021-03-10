@@ -3689,6 +3689,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &1644584668 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1644584667}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1644584669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644584668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: This man has a crippling gambling addiction.
+  - text: 'He didn''t tell you or anything. But it''s obvious. Just look at him.
+
+'
+  container:
+  - effects: []
+  - effects: []
+  dialogueImages: []
+  player: {fileID: 0}
 --- !u!1001 &1652778508
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3746,6 +3773,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &1652778509 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1652778508}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1652778510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652778509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: He's having a lot of trouble with his grocery list.
+  - text: The only item is "100% milk"
+  container:
+  - effects: []
+  - effects: []
+  dialogueImages: []
+  player: {fileID: 0}
 --- !u!1 &1764906495
 GameObject:
   m_ObjectHideFlags: 0
