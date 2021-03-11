@@ -85,7 +85,7 @@ public class SchoolyardAnimation : InteractableBaseClass
                 {
                     if (!char_info.flee && char_info.enemy_names != null)
                     {
-                        if (char_info.enemy_names[0] == "Student Body") interacted = true;
+                        if (char_info.enemy_names[0] == "Student Body") beaten = true;
                         else
                         {
                             interacted = false;
