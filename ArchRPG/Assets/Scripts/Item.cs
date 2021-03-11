@@ -6,7 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public class Item
 {
-    public Item() { }
+    public Item() { useable = true; }
     public Item(Item i)
     {
         name = i.name;
@@ -17,6 +17,7 @@ public class Item
         type = i.type;
         cost = i.cost;
         character = i.character;
+        useable = i.useable;
     }
 
     public void Add() {
@@ -40,6 +41,7 @@ public class Item
         Debug.Log(user.unitName + " has used the item");
     }
 
+    public bool useable;                //can this item be used
     public string name;
     public string description;
     public string image_file_path;
@@ -54,7 +56,7 @@ public class Item
 [System.Serializable]
 public class Weapon : Item
 {
-    public Weapon() { }
+    public Weapon() { useable = false; }
 
     public Weapon(Weapon w)
     {
@@ -72,6 +74,7 @@ public class Weapon : Item
         resistance_buff = w.resistance_buff;
         speed_buff = w.speed_buff;
         luck_buff = w.luck_buff;
+        useable = false;
     }
 
     public virtual void SetWeapon(CharacterStats c)
@@ -108,7 +111,7 @@ public class Weapon : Item
 [System.Serializable]
 public class Armor : Item
 {
-    public Armor() { }
+    public Armor() { useable = false; }
 
     public Armor(Armor a)
     {
@@ -126,6 +129,7 @@ public class Armor : Item
         resistance_buff = a.resistance_buff;
         speed_buff = a.speed_buff;
         luck_buff = a.luck_buff;
+        useable = false;
     }
 
     public virtual void SetArmor(CharacterStats c)
@@ -162,7 +166,7 @@ public class Armor : Item
 [System.Serializable]
 public class Trinket : Item
 {
-    public Trinket() { }
+    public Trinket() { useable = false; }
 
     public Trinket(Trinket t)
     {
@@ -180,6 +184,7 @@ public class Trinket : Item
         resistance_buff = t.resistance_buff;
         speed_buff = t.speed_buff;
         luck_buff = t.luck_buff;
+        useable = false;
     }
 
     public virtual void SetTrinket(CharacterStats c)
@@ -414,7 +419,7 @@ public static class Weapons
         public Protractor()
         {
             name = "Protractor";
-
+            image_file_path = "ItemSprites/Weapon_0";
             description = "This plastic graded semicircle is a monument to mathematical precision... some of the numbers are worn off.";
             limit = 1;
             amount = 1;
@@ -428,7 +433,7 @@ public static class Weapons
         public GnomeShard()
         {
             name = "Gnome Shard";
-
+            image_file_path = "ItemSprites/Weapon_0";
             description = "The remains of a garden gnome homicide, you feel like you’re tampering with evidence here. It stares at you blankly.";
             limit = 1;
             amount = 1;
@@ -442,7 +447,7 @@ public static class Weapons
         public RatBomb()
         {
             name = "Rat Bomb";
-
+            image_file_path = "ItemSprites/Weapon_0";
             description = "This isn’t actually a rat bomb, this is more like a bomb that a rat left behind...";
             limit = 1;
             amount = 1;
@@ -457,7 +462,7 @@ public static class Weapons
         public ReplicaFlintlock()
         {
             name = "Replica Flintlock";
-
+            image_file_path = "ItemSprites/Weapon_0";
             description = "";
             limit = 1;
             amount = 1;
@@ -472,7 +477,7 @@ public static class Weapons
         public NightStick()
         {
             name = "Night Stick";
-
+            image_file_path = "ItemSprites/Weapon_0";
             limit = 1;
             amount = 1;
             type = 1;
@@ -526,7 +531,7 @@ public static class Armors
         public RadFlatCap()
         {
             name = "Rad Flat Cap";
-
+            image_file_path = "ItemSprites/Armor_0";
             description = "This hat bears the insignia of a radical, the mathematical one of course… you feel real cool in this hat.";
             limit = 1;
             amount = 1;
@@ -541,7 +546,7 @@ public static class Armors
         public StrResTrashBag()
         {
             name = "Strech Resistant Trash Bag";
-
+            image_file_path = "ItemSprites/Armor_0";
             description = "You figure by fitting your arms and legs through 4 conveniently ripped holes in this trash bag and donning it, " +
                 "this would make good protection against any attack that might stretch you out...";
             limit = 1;
@@ -557,6 +562,7 @@ public static class Armors
         public CommemorativeTShirt()
         {
             name = "Commemorative T-Shirt";
+            image_file_path = "ItemSprites/Armor_0";
             description = "Armor that smells like feet-I mean... cheese... yeah cheese...";
             limit = 1;
             amount = 1;
@@ -611,7 +617,7 @@ public static class Trinkets
         public MrWhiskers()
         {
             name = "Mr Whiskers";
-
+            image_file_path = "ItemSprites/Trinket_0";
             description = "You figure if you don’t return your neighbor’s cat, it can never escape again, and thus your fish " +
                 "will always be safe from his nemesis.";
             limit = 1;
@@ -627,7 +633,7 @@ public static class Trinkets
         public ClayAmulet()
         {
             name = "Clay Amulet";
-
+            image_file_path = "ItemSprites/Trinket_1";
             description = "They say the humanities are what keeps us human, but the arts and crafts class is what keeps some " +
                 "students sane.  Clearly, some student rejected their humanity by throwing this project away...";
             limit = 1;

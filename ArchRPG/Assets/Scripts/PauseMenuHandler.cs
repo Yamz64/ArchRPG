@@ -3029,8 +3029,11 @@ public class PauseMenuHandler : MonoBehaviour
                 {
                     if (data.GetInventorySize() > cursor_position)
                     {
-                        audio_handler.PlaySound("Sound/SFX/select");
-                        OpenUseItemMenu();
+                        if (data.GetItem(highlighted_item).useable)
+                        {
+                            audio_handler.PlaySound("Sound/SFX/select");
+                            OpenUseItemMenu();
+                        }
                     }
                 }
                 menu_input = true;
