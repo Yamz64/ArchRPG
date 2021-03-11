@@ -331,7 +331,10 @@ public class PlayerData : CharacterStats
         if (member < party_stats.Count)
         {
             if(party_stats[member].GetWeapon() != null)
-            AddItem(party_stats[member].GetWeapon());
+            {
+                Weapon temp = new Weapon(party_stats[member].GetWeapon());
+                AddItem(temp);
+            }
             party_stats[member].RemoveWeapon();
         }
     }
@@ -386,8 +389,11 @@ public class PlayerData : CharacterStats
     {
         if (member < party_stats.Count)
         {
-            if(party_stats[member].GetArmor() != null)
-            AddItem(party_stats[member].GetArmor());
+            if (party_stats[member].GetWeapon() != null)
+            {
+                Armor temp = new Armor(party_stats[member].GetArmor());
+                AddItem(temp);
+            }
             party_stats[member].RemoveArmor();
         }
     }
@@ -441,8 +447,11 @@ public class PlayerData : CharacterStats
     {
         if (member < party_stats.Count)
         {
-            if(party_stats[member].GetTrinket() != null)
-            AddItem(party_stats[member].GetTrinket());
+            if (party_stats[member].GetWeapon() != null)
+            {
+                Trinket temp = new Trinket(party_stats[member].GetTrinket());
+                AddItem(temp);
+            }
             party_stats[member].RemoveTrinket();
         }
     }

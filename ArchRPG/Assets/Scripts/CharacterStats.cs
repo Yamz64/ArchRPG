@@ -84,19 +84,19 @@ public class CharacterStats
     {
         weapon = w;
         if (weapon != null) 
-        w.SetWeapon(this);
+        weapon.SetWeapon(this);
     }
     public virtual void SetArmor(Armor a)
     {
         armor = a;
         if (weapon != null) 
-        a.SetArmor(this);
+        armor.SetArmor(this);
     }
     public virtual void SetTrinket(Trinket t)
     {
         trinket = t;
         if (weapon != null) 
-        t.SetTrinket(this);
+        trinket.SetTrinket(this);
     }
     public virtual void RemoveWeapon()
     {

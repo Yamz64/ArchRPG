@@ -3193,6 +3193,41 @@ public class PauseMenuHandler : MonoBehaviour
                 }
                 menu_input = true;
             }
+            else if (Input.GetButtonDown("Remove"))
+            {
+                if (!menu_input)
+                {
+                    switch (cursor_position)
+                    {
+                        case 0:
+                            if (highlighted_party_member == 0 && data.GetWeapon() != null) data.RemoveWeapon();
+                            else if (data.GetPartyMember(highlighted_party_member - 1).GetWeapon() != null)
+                            {
+                                data.RemovePartyWeapon(highlighted_party_member - 1);
+                            }
+                            break;
+                        case 1:
+                            if (highlighted_party_member == 0 && data.GetArmor() != null) data.RemoveArmor();
+                            else if (data.GetPartyMember(highlighted_party_member - 1).GetArmor() != null)
+                            {
+                                data.RemovePartyArmor(highlighted_party_member - 1);
+                            }
+                            break;
+                        case 2:
+                            if (highlighted_party_member == 0 && data.GetTrinket() != null) data.RemoveTrinket();
+                            else if (data.GetPartyMember(highlighted_party_member - 1).GetTrinket() != null)
+                            {
+                                data.RemovePartyTrinket(highlighted_party_member - 1);
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                    audio_handler.PlaySound("Sound/SFX/select");
+                    UpdateEquipMenuInfo();
+                }
+                menu_input = true;
+            }
             else
             {
                 menu_input = false;
@@ -4452,6 +4487,10 @@ public class PauseMenuHandler : MonoBehaviour
         //unlock party members
         data.UnlockPartyMember(0);
         data.UnlockPartyMember(1);
+
+        data.AddItem(new Weapons.TestWeapon());
+        data.AddItem(new Armors.TestArmor());
+        data.AddItem(new Trinkets.TestTrinket());
     }
 
     // Update is called once per frame
