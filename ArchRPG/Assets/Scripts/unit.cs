@@ -52,6 +52,7 @@ public class unit
         }
         sanity = ver.sanity;
         enemy = ver.enemy;
+        player = ver.player;
         ATK = ver.ATK;
         DEF = ver.DEF;
         POW = ver.POW;
@@ -1036,10 +1037,6 @@ public class unit
                             maxHP = defMaxHP;
                         }
                     }
-                    else
-                    {
-                        no = true;
-                    }
                 }
             }
             else
@@ -1066,6 +1063,12 @@ public class unit
             }
 
             statusText.text = status;
+            if (statusText.text.Equals(""))
+            {
+                statusBackW.gameObject.SetActive(false);
+                statusBackColor.gameObject.SetActive(false);
+                statusText.gameObject.SetActive(false);
+            }
         }
 
         for (int i = 0; i < abilities.Count; i++)
