@@ -83,7 +83,16 @@ public class SchoolyardAnimation : InteractableBaseClass
             {
                 if (map_manager.current_map.objects[i].interacted)
                 {
-                    if (!char_info.flee) beaten = true;
+                    if (!char_info.flee && char_info.enemy_names != null)
+                    {
+                        if (char_info.enemy_names[0] == "Student Body") interacted = true;
+                        else
+                        {
+                            interacted = false;
+                            map_manager.current_map.objects[i].interacted = false;
+                        }
+
+                    }
                     else
                     {
                         interacted = false;
@@ -118,6 +127,7 @@ public class SchoolyardAnimation : InteractableBaseClass
                 if (map_manager.current_map.objects[i].o == gameObject.name)
                 {
                     map_manager.current_map.objects[i].interacted = true;
+                    map_manager.Save();
                     break;
                 }
             }
