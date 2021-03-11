@@ -4487,10 +4487,6 @@ public class PauseMenuHandler : MonoBehaviour
         //unlock party members
         data.UnlockPartyMember(0);
         data.UnlockPartyMember(1);
-
-        data.AddItem(new Weapons.TestWeapon());
-        data.AddItem(new Armors.TestArmor());
-        data.AddItem(new Trinkets.TestTrinket());
     }
 
     // Update is called once per frame
