@@ -332,6 +332,42 @@ public static class Consumables
             character.SetStatus(8, Random.Range(1, 2));
         }
     }
+
+    public class PizzaSlice : Item
+    {
+        public PizzaSlice()
+        {
+            name = "Pizza Slice";
+            description = "A slice of a balanced food that contains all 6 of the major food groups. Heals 75 HP when eaten!";
+            image_file_path = "";
+            amount = 1;
+            limit = 99;
+            cost = 10;
+        }
+
+        public override void Use()
+        {
+            character.SetHP(character.GetHP() + 75);
+        }
+    }
+
+    public class Soda : Item
+    {
+        public Soda()
+        {
+            name = "Soda";
+            description = "Most of the soda water has congealed at the bottom... Recovers 75 SP when consumed!";
+            image_file_path = "";
+            amount = 1;
+            limit = 99;
+            cost = 6;
+        }
+
+        public override void Use()
+        {
+            character.SetSP(character.GetSP() + 75);
+        }
+    }
 }
 
 public static class Weapons
@@ -521,10 +557,11 @@ public static class Armors
         public CommemorativeTShirt()
         {
             name = "Commemorative T-Shirt";
-
+            description = "Armor that smells like feet-I mean... cheese... yeah cheese...";
             limit = 1;
             amount = 1;
             type = 2;
+            cost = 15;
             defense_buff = 4;
             will_buff = 6;
         }

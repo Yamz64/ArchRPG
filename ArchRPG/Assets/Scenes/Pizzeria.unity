@@ -1761,7 +1761,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  items: []
+  items:
+  - name: Pizza Slice
+    cost: 15
+    type: 0
+  - name: Soda
+    cost: 12
+    type: 0
+  - name: Commemorative T-Shirt
+    cost: 20
+    type: 2
 --- !u!1001 &390584783
 PrefabInstance:
   m_ObjectHideFlags: 0
