@@ -652,53 +652,54 @@ public class CharacterStatJsonConverter
 
     public GameObject updateUnit(GameObject id, int num)
     {
-        unit g = id.GetComponent<UnitMono>().mainUnit;
+        //unit g = id.GetComponent<UnitMono>().mainUnit;
         if (num < HPs.Length)
         {
-            g.maxHP = HPs[num];
-            g.currentHP = HPs[num];
-            g.maxSP = SPs[num];
-            g.currentSP = SPs[num];
-            g.sanity = SANs[num];
-            g.exp = XPs[num];
-            g.level = levels[num];
+            id.GetComponent<UnitMono>().mainUnit.maxHP = HPs[num];
+            id.GetComponent<UnitMono>().mainUnit.currentHP = HPs[num];
+            id.GetComponent<UnitMono>().mainUnit.maxSP = SPs[num];
+            id.GetComponent<UnitMono>().mainUnit.currentSP = SPs[num];
+            id.GetComponent<UnitMono>().mainUnit.sanity = SANs[num];
+            id.GetComponent<UnitMono>().mainUnit.exp = XPs[num];
+            id.GetComponent<UnitMono>().mainUnit.level = levels[num];
             if (weapons[num] != null)
             {
-                g.unitWeapon = weapons[num];
-                g.ATK += g.unitWeapon.damage_buff;
-                g.DEF += g.unitWeapon.defense_buff;
-                g.POW += g.unitWeapon.power_buff;
-                g.WILL += g.unitWeapon.will_buff;
-                g.RES += g.unitWeapon.resistance_buff;
-                g.AGI += g.unitWeapon.speed_buff;
-                g.LCK += g.unitWeapon.luck_buff;
+                id.GetComponent<UnitMono>().mainUnit.unitWeapon = weapons[num];
+                id.GetComponent<UnitMono>().mainUnit.ATK += id.GetComponent<UnitMono>().mainUnit.unitWeapon.damage_buff;
+                id.GetComponent<UnitMono>().mainUnit.DEF += id.GetComponent<UnitMono>().mainUnit.unitWeapon.defense_buff;
+                id.GetComponent<UnitMono>().mainUnit.POW += id.GetComponent<UnitMono>().mainUnit.unitWeapon.power_buff;
+                id.GetComponent<UnitMono>().mainUnit.WILL += id.GetComponent<UnitMono>().mainUnit.unitWeapon.will_buff;
+                id.GetComponent<UnitMono>().mainUnit.RES += id.GetComponent<UnitMono>().mainUnit.unitWeapon.resistance_buff;
+                id.GetComponent<UnitMono>().mainUnit.AGI += id.GetComponent<UnitMono>().mainUnit.unitWeapon.speed_buff;
+                id.GetComponent<UnitMono>().mainUnit.LCK += id.GetComponent<UnitMono>().mainUnit.unitWeapon.luck_buff;
             }
             if (armors[num] != null)
             {
-                g.unitArmor = armors[num];
-                g.ATK += g.unitArmor.damage_buff;
-                g.DEF += g.unitArmor.defense_buff;
-                g.POW += g.unitArmor.power_buff;
-                g.WILL += g.unitArmor.will_buff;
-                g.RES += g.unitArmor.resistance_buff;
-                g.AGI += g.unitArmor.speed_buff;
-                g.LCK += g.unitArmor.luck_buff;
+                id.GetComponent<UnitMono>().mainUnit.unitArmor = armors[num];
+                id.GetComponent<UnitMono>().mainUnit.ATK += id.GetComponent<UnitMono>().mainUnit.unitArmor.damage_buff;
+                id.GetComponent<UnitMono>().mainUnit.DEF += id.GetComponent<UnitMono>().mainUnit.unitArmor.defense_buff;
+                id.GetComponent<UnitMono>().mainUnit.POW += id.GetComponent<UnitMono>().mainUnit.unitArmor.power_buff;
+                id.GetComponent<UnitMono>().mainUnit.WILL += id.GetComponent<UnitMono>().mainUnit.unitArmor.will_buff;
+                id.GetComponent<UnitMono>().mainUnit.RES += id.GetComponent<UnitMono>().mainUnit.unitArmor.resistance_buff;
+                id.GetComponent<UnitMono>().mainUnit.AGI += id.GetComponent<UnitMono>().mainUnit.unitArmor.speed_buff;
+                id.GetComponent<UnitMono>().mainUnit.LCK += id.GetComponent<UnitMono>().mainUnit.unitArmor.luck_buff;
             }
             if (trinkets[num] != null)
             {
-                g.unitTrinket = trinkets[num];
-                g.ATK += g.unitTrinket.damage_buff;
-                g.DEF += g.unitTrinket.defense_buff;
-                g.POW += g.unitTrinket.power_buff;
-                g.WILL += g.unitTrinket.will_buff;
-                g.RES += g.unitTrinket.resistance_buff;
-                g.AGI += g.unitTrinket.speed_buff;
-                g.LCK += g.unitTrinket.luck_buff;
+                id.GetComponent<UnitMono>().mainUnit.unitTrinket = trinkets[num];
+                id.GetComponent<UnitMono>().mainUnit.ATK += id.GetComponent<UnitMono>().mainUnit.unitTrinket.damage_buff;
+                id.GetComponent<UnitMono>().mainUnit.DEF += id.GetComponent<UnitMono>().mainUnit.unitTrinket.defense_buff;
+                id.GetComponent<UnitMono>().mainUnit.POW += id.GetComponent<UnitMono>().mainUnit.unitTrinket.power_buff;
+                id.GetComponent<UnitMono>().mainUnit.WILL += id.GetComponent<UnitMono>().mainUnit.unitTrinket.will_buff;
+                id.GetComponent<UnitMono>().mainUnit.RES += id.GetComponent<UnitMono>().mainUnit.unitTrinket.resistance_buff;
+                id.GetComponent<UnitMono>().mainUnit.AGI += id.GetComponent<UnitMono>().mainUnit.unitTrinket.speed_buff;
+                id.GetComponent<UnitMono>().mainUnit.LCK += id.GetComponent<UnitMono>().mainUnit.unitTrinket.luck_buff;
             }
-            g.unitName = names[num];
-            g.statuses = statuses[num].status_effects;
+            id.GetComponent<UnitMono>().mainUnit.unitName = names[num];
+            id.GetComponent<UnitMono>().mainUnit.statuses = statuses[num].status_effects;
+            id.GetComponent<UnitMono>().mainUnit.giveStatus("");
             
-            id.GetComponent<UnitMono>().mainUnit = g;
+            //id.GetComponent<UnitMono>().mainUnit = g;
             return id;
         }
         else

@@ -64,7 +64,7 @@ public class unit
         abilities = ver.abilities;
         weaknesses = ver.weaknesses;
         resistances = ver.resistances;
-        statuses = ver.statuses;
+        //statuses = ver.statuses;
         sprites = ver.sprites;
         position = ver.position;
     }
@@ -986,25 +986,29 @@ public class unit
             statuses[14] = ran;
         }
         status = "";
-
+        bool has = false;
         for (int i = 0; i < statuses.Count; i++)
         {
             if (statuses[i] != -1)
             {
+                has = true;
                 status += statusIndex[i] + ":" + statuses[i] + "\n";
             }
         }
 
-        statusText.text = status;
-        statusBackW.gameObject.SetActive(true);
-        statusBackColor.gameObject.SetActive(true);
-        statusText.gameObject.SetActive(true);
+        if (has)
+        {
+            statusText.text = status;
+            statusBackW.gameObject.SetActive(true);
+            statusBackColor.gameObject.SetActive(true);
+            statusText.gameObject.SetActive(true);
+        }
     }
 
     //Decrement the status counter, and remove the status when it reaches 0
     public void statusTurn()
     {
-        int no = 0;
+        bool no = false;
         for (int i = 0; i < statuses.Count; i++)
         {
             if (statuses[i] > -1)
@@ -1015,20 +1019,23 @@ public class unit
                     if (statuses[i] == 0)
                     {
                         statuses[i] = -1;
-                        no += 1;
                         if (i == 11)
                         {
                             maxHP = defMaxHP;
                         }
                     }
+                    else
+                    {
+                        no = true;
+                    }
                 }
             }
             else
             {
-                no += 1;
+                no = true;
             }
         }
-        if (no == 10)
+        if (!no)
         {
             statusBackW.gameObject.SetActive(false);
             statusBackColor.gameObject.SetActive(false);

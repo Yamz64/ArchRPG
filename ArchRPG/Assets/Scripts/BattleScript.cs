@@ -3114,6 +3114,11 @@ public class BattleScript : MonoBehaviour
                 //Combine/customize prefabs (UI base and unit base)
                 GameObject unitGo = Instantiate(partyPrefabs[loader.positions[i]], allyStations[loader.positions[i]]);
                 unitGo = loader.updateUnit(unitGo, i);
+                //for (int y = 0; y < unitGo.GetComponent<UnitMono>().mainUnit.statuses.Count; y++)
+                //{
+                //    Debug.Log("Unit statuses[" + y + "] is " + unitGo.GetComponent<UnitMono>().mainUnit.statuses[y]);
+                //}
+               // Debug.Log("Donezo-------------------");
                 p.copyUnitUI(unitGo.GetComponent<UnitMono>().mainUnit);
                 unitGo.GetComponent<UnitMono>().mainUnit.copyUnitStats(p);
                 p.setHUD();
@@ -3130,8 +3135,8 @@ public class BattleScript : MonoBehaviour
                         unitGo.gameObject.GetComponent<UnitMono>().mainUnit.addEldritch(loader.e_abilities[h]);
                     }
                 }
-                partyUnits[loader.positions[i]] = unitGo.gameObject;
-                
+                partyUnits[loader.positions[i]] = unitGo;
+
                 //partyNames.Add(unitGo.GetComponent<UnitMono>().mainUnit.unitName);
                 activeUnits += 1;
             }
@@ -3304,6 +3309,13 @@ public class BattleScript : MonoBehaviour
         else if (activeEnemies >= 3)
         {
             dialogue.text = "A group of enemies appeared";
+        }
+        for (int v = 0; v < 4; v++)
+        {
+            if (partyUnits[v] != null)
+            {
+                partyUnits[v].GetComponent<UnitMono>().mainUnit.setHUD();
+            }
         }
 
         //Start player turn
