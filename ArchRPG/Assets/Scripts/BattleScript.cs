@@ -2584,6 +2584,74 @@ public class BattleScript : MonoBehaviour
                             yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
                             yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
                         }
+                        if (temp[ind + 1] != null)
+                        {
+                            if (temp[ind + 1].GetComponent<UnitMono>().mainUnit.currentHP > 0 &&
+                                temp[ind + 1].GetComponent<UnitMono>().mainUnit.statuses[0] == -1)
+                            {
+                                int rol = UnityEngine.Random.Range(1, 101);
+                                if (rol > temp[ind + 1].GetComponent<UnitMono>().mainUnit.RES)
+                                {
+                                    temp[ind + 1].GetComponent<UnitMono>().mainUnit.giveStatus(temp[ind].GetComponent<UnitMono>().mainUnit.statusIndex[0]);
+                                    dialogue.text = temp[ind + 1].GetComponent<UnitMono>().mainUnit.unitName + " was inflicted with " +
+                                        temp[ind + 1].GetComponent<UnitMono>().mainUnit.statusIndex[0] + " from " + 
+                                        temp[ind].GetComponent<UnitMono>().mainUnit.unitName;
+                                    yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
+                                    yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                                }
+                            }
+                        }
+                        if (temp[ind - 1] != null)
+                        {
+                            if (temp[ind - 1].GetComponent<UnitMono>().mainUnit.currentHP > 0 &&
+                                temp[ind - 1].GetComponent<UnitMono>().mainUnit.statuses[0] == -1)
+                            {
+                                int rol = UnityEngine.Random.Range(1, 101);
+                                if (rol > temp[ind - 1].GetComponent<UnitMono>().mainUnit.RES)
+                                {
+                                    temp[ind - 1].GetComponent<UnitMono>().mainUnit.giveStatus(temp[ind].GetComponent<UnitMono>().mainUnit.statusIndex[0]);
+                                    dialogue.text = temp[ind - 1].GetComponent<UnitMono>().mainUnit.unitName + " was inflicted with " +
+                                        temp[ind - 1].GetComponent<UnitMono>().mainUnit.statusIndex[0] + " from " +
+                                        temp[ind].GetComponent<UnitMono>().mainUnit.unitName;
+                                    yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
+                                    yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                                }
+                            }
+                        }
+                        if (temp[ind + 2] != null)
+                        {
+                            if (temp[ind + 2].GetComponent<UnitMono>().mainUnit.currentHP > 0 &&
+                                temp[ind + 2].GetComponent<UnitMono>().mainUnit.statuses[0] == -1)
+                            {
+                                int rol = UnityEngine.Random.Range(1, 101);
+                                if (rol > temp[ind + 2].GetComponent<UnitMono>().mainUnit.RES)
+                                {
+                                    temp[ind + 2].GetComponent<UnitMono>().mainUnit.giveStatus(temp[ind].GetComponent<UnitMono>().mainUnit.statusIndex[0]);
+                                    dialogue.text = temp[ind + 2].GetComponent<UnitMono>().mainUnit.unitName + " was inflicted with " +
+                                        temp[ind + 2].GetComponent<UnitMono>().mainUnit.statusIndex[0] + " from " +
+                                        temp[ind].GetComponent<UnitMono>().mainUnit.unitName;
+                                    yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
+                                    yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                                }
+                            }
+                        }
+                        if (temp[ind - 2] != null)
+                        {
+                            if (temp[ind - 2].GetComponent<UnitMono>().mainUnit.currentHP > 0 &&
+                                temp[ind - 2].GetComponent<UnitMono>().mainUnit.statuses[0] == -1)
+                            {
+                                int rol = UnityEngine.Random.Range(1, 101);
+                                if (rol > temp[ind - 2].GetComponent<UnitMono>().mainUnit.RES)
+                                {
+                                    temp[ind - 2].GetComponent<UnitMono>().mainUnit.giveStatus(temp[ind].GetComponent<UnitMono>().mainUnit.statusIndex[0]);
+                                    dialogue.text = temp[ind - 2].GetComponent<UnitMono>().mainUnit.unitName + " was inflicted with " +
+                                        temp[ind - 2].GetComponent<UnitMono>().mainUnit.statusIndex[0] + " from " +
+                                        temp[ind].GetComponent<UnitMono>().mainUnit.unitName;
+                                    yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
+                                    yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                                }
+                            }
+                        }
                     }
                     if (newd)
                     {
