@@ -192,7 +192,19 @@ public class unit
 
         //Debug.Log("view sprite now == " + view.sprite);
         nameText.text = unitName;
-        levelText.text = "Lvl : " + level;
+        if (player)
+        {
+            levelText.text = "LEAD : " + level;
+        }
+        else if (enemy)
+        {
+            levelText.text = "LVL : " + level;
+        }
+        else
+        {
+            levelText.text = "";
+        }
+
         hpBar.fillAmount = (float)currentHP / maxHP;
         hpReadOut.text = currentHP + " / " + maxHP;
         if (!enemy)
@@ -1132,6 +1144,7 @@ public class PlayerUnit : unit
         loadSprites();
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
         resistances[4] = true;
+        player = true;
 
         switch (level)
         {
