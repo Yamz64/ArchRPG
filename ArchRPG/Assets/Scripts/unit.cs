@@ -2199,7 +2199,7 @@ public class JimUnit : unit
 {
     public JimUnit(int lev = 1)
     {
-        unitName = "Accident Jim";
+        unitName = "Jim";
         ImageFilePath = "CharacterSprites/Accident Jim";
         loadSprites();
         level = lev;
@@ -3819,7 +3819,7 @@ public class RalphUnit : unit
 {
     public RalphUnit(int lev = 1)
     {
-        unitName = "Little Ralphy";
+        unitName = "Ralph";
         ImageFilePath = "CharacterSprites/Ralph";
         loadSprites();
         level = lev;
