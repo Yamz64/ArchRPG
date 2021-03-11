@@ -16,7 +16,7 @@ public class unit
 
         abilities = new List<Ability>();
         statuses = new List<int>();
-        for (int i = 0; i < 15; i++)
+        for (int i = 0; i < 17; i++)
         {
             statuses.Add(-1);
         }
@@ -36,6 +36,8 @@ public class unit
         statusIndex.Add("Flammable");
         statusIndex.Add("Hysteria");
         statusIndex.Add("Analyzed");
+        statusIndex.Add("Spasms");
+        statusIndex.Add("Cancerous");
     }
     //Copy the numerical statistics of a unit
     public void copyUnitStats(unit ver)
@@ -597,22 +599,35 @@ public class unit
                         val += (int)(val * (float)((POW * 1.25) / 100));
                     }
 
-                    //Check if WILL is affected
+                    //Check if WILL is affected (statuses[16] is cancer)
+                    if (target.statuses[7] == target.statuses[10] && target.statuses[16] != -1)
+                    {
+                        val -= (int)(val * (float)((target.WILL * 0.75) / 300));
+                    }
                     if (target.statuses[7] == target.statuses[10])
                     {
-                        valS -= (int)(valS * (float)(target.WILL / 300));
+                        //valS -= (int)(valS * (float)(target.WILL / 300));
                         val -= (int)(val * (float)(target.WILL / 300));
                     }
                     //If target has neurotic
+                    else if (target.statuses[7] != -1 && target.statuses[16] != -1)
+                    {
+                        //valS -= (int)(valS * (float)((target.WILL * 0.75) / 300));
+                        val -= (int)(val * (float)((target.WILL * 0.5) / 300));
+                    }
                     else if (target.statuses[7] != -1)
                     {
-                        valS -= (int)(valS * (float)((target.WILL * 0.75) / 300));
+                        //valS -= (int)(valS * (float)((target.WILL * 0.75) / 300));
                         val -= (int)(val * (float)((target.WILL * 0.75) / 300));
                     }
                     //If target has confidence
+                    else if (target.statuses[10] != -1 && target.statuses[16] != -1)
+                    {
+                        val -= (int)(val * (float)((target.WILL * 1.00) / 300));
+                    }
                     else
                     {
-                        valS -= (int)(valS * (float)((target.WILL * 1.25) / 300));
+                        //valS -= (int)(valS * (float)((target.WILL * 1.25) / 300));
                         val -= (int)(val * (float)((target.WILL * 1.25) / 300));
                     }
                 }
@@ -791,19 +806,32 @@ public class unit
                 val += (int)(val * (float)((POW * 1.25) / 100));
             }
 
-            //Check if WILL is affected
+            //Check if WILL is affected (statuses[16] is cancer)
+            if (target.statuses[7] == target.statuses[10] && target.statuses[16] != -1)
+            {
+                val -= (int)(val * (float)((target.WILL * 0.75) / 300));
+            }
             if (target.statuses[7] == target.statuses[10])
             {
                 //valS -= (int)(valS * (float)(target.WILL / 300));
                 val -= (int)(val * (float)(target.WILL / 300));
             }
             //If target has neurotic
+            else if (target.statuses[7] != -1 && target.statuses[16] != -1)
+            {
+                //valS -= (int)(valS * (float)((target.WILL * 0.75) / 300));
+                val -= (int)(val * (float)((target.WILL * 0.5) / 300));
+            }
             else if (target.statuses[7] != -1)
             {
                 //valS -= (int)(valS * (float)((target.WILL * 0.75) / 300));
                 val -= (int)(val * (float)((target.WILL * 0.75) / 300));
             }
             //If target has confidence
+            else if (target.statuses[10] != -1 && target.statuses[16] != -1)
+            {
+                val -= (int)(val * (float)((target.WILL * 1.00) / 300));
+            }
             else
             {
                 //valS -= (int)(valS * (float)((target.WILL * 1.25) / 300));
@@ -998,6 +1026,21 @@ public class unit
             ran = UnityEngine.Random.Range(5, 9);
             statuses[14] = ran;
         }
+        else if (id.Equals("Spasms")        && statuses[15] == -1)
+        {
+            ran = UnityEngine.Random.Range(5, 9);
+            statuses[15] = ran;
+        }
+        else if (id.Equals("Cancer") && statuses[16] == -1)
+        {
+            ran = UnityEngine.Random.Range(5, 9);
+            statuses[16] = ran;
+            if (maxHP > 20)
+            {
+                maxHP -= 20;
+                if (currentHP > maxHP) currentHP = maxHP;
+            }
+        }
         status = "";
         bool has = false;
         for (int i = 0; i < statuses.Count; i++)
@@ -1024,7 +1067,7 @@ public class unit
         bool no = false;
         for (int i = 0; i < statuses.Count; i++)
         {
-            if (statuses[i] > -1)
+            if (statuses[i] > -1 && i != 17)
             {
                 if (unitName != "Accident Jim" || i != 4)
                 {
