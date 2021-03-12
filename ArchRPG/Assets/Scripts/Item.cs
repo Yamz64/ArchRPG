@@ -296,7 +296,7 @@ public static class Consumables
         public override void Use()
         {
             character.SetStatus(0, Random.Range(5, 8));
-            character.SetStatus(6, Random.Range(5, 8));
+            character.SetStatus(14, Random.Range(5, 8));
         }
     }
 
