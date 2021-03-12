@@ -4042,15 +4042,15 @@ public class BattleScript : MonoBehaviour
         }
         */
         //Check if the unit gets a crit
-        int crit = UnityEngine.Random.Range(1, 101);
-        if (crit <= uni.LCK)
+        int crit = Random.Range(1, 101);
+        if (crit <= (uni.LCK/4)+3)
         {
             val += (val / 2);
             crite = true;
         }
         if (uni.statuses[2] != -1)
         {
-            int dum = UnityEngine.Random.Range(1, 4);
+            int dum = Random.Range(1, 4);
             if (dum == 1)
             {
                 val = val / 5;

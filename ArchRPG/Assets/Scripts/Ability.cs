@@ -1266,6 +1266,7 @@ namespace RalphAbilities
 
     public class SmokeBreak : Ability
     {
+        bool contract = false;
         public SmokeBreak()
         {
             name = "Smoke Break";
@@ -1283,7 +1284,12 @@ namespace RalphAbilities
         {
             user.setSP(user.getSP() - cost);
             target.sanity += 2;
-            //roll random number for cancer
+            int rol = Random.Range(1, 101);
+            if (rol < target.RES)
+            {
+                if (target.statuses[16] != -1) contract = true;
+                target.giveStatus("Cancer");
+            }
         }
     }
 
