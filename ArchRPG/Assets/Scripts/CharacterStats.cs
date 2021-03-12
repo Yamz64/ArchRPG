@@ -398,7 +398,7 @@ public class CharacterStats
         abilities = new List<Ability>();
         status_effects = new List<int>();
 
-        for(int i=0; i<17; i++)
+        for(int i=0; i<21; i++)
         {
             status_effects.Add(-1);
         }
@@ -448,7 +448,7 @@ public class CharacterStats
      * 3 - Eye Bleeding
      * 4 - Blunt Trauma
      * 5 - Hyperactive
-     * 6 - Zealous
+     * 6 - Inspired
      * 7 - Neurotic
      * 8 - Restrained
      * 9 - Consumed
@@ -456,6 +456,13 @@ public class CharacterStats
      * 11 - Flammable
      * 12 - Hysteria
      * 13 - Analyzed
+     * 14 - Zealous
+     * 15 - Cancerous
+     * 16 - Confident
+     * 17 - Spasms
+     * 18 - Conductive
+     * 19 - Reactive
+     * 20 - Zonked
     */
     private List<int> status_effects;
 
