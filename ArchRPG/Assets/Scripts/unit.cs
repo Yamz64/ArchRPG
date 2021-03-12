@@ -21,23 +21,27 @@ public class unit
             statuses.Add(-1);
         }
         statusIndex = new List<string>();
-        statusIndex.Add("Vomiting");
-        statusIndex.Add("Aspirating");
-        statusIndex.Add("Weeping");
-        statusIndex.Add("Eye Bleed");
-        statusIndex.Add("Blunt Trauma");
-        statusIndex.Add("Hyperactive");
-        statusIndex.Add("Zealous");
-        statusIndex.Add("Neurotic");
-        statusIndex.Add("Restrained");
-        statusIndex.Add("Consumed");
-        statusIndex.Add("Confident");
-        statusIndex.Add("Diseased");
-        statusIndex.Add("Flammable");
-        statusIndex.Add("Hysteria");
-        statusIndex.Add("Analyzed");
-        statusIndex.Add("Spasms");
-        statusIndex.Add("Cancerous");
+        statusIndex.Add("Vomiting");        //0
+        statusIndex.Add("Aspirating");      //1
+        statusIndex.Add("Weeping");         //2
+        statusIndex.Add("Eye Bleed");       //3
+        statusIndex.Add("Blunt Trauma");    //4
+        statusIndex.Add("Hyperactive");     //5
+        statusIndex.Add("Inspired");        //6
+        statusIndex.Add("Neurotic");        //7
+        statusIndex.Add("Restrained");      //8
+        statusIndex.Add("Consumed");        //9
+        statusIndex.Add("Diseased");        //10
+        statusIndex.Add("Flammable");       //11
+        statusIndex.Add("Hysteria");        //12
+        statusIndex.Add("Analyzed");        //13
+        statusIndex.Add("Zealous");         //14
+        statusIndex.Add("Cancerous");       //15
+        statusIndex.Add("Confident");       //16
+        statusIndex.Add("Spasms");          //17
+        statusIndex.Add("Conductive");      //18
+        statusIndex.Add("Reactive");        //19
+        statusIndex.Add("Zonked");          //20
     }
     //Copy the numerical statistics of a unit
     public void copyUnitStats(unit ver)
@@ -555,7 +559,7 @@ public class unit
                 }
                 if (!ata.use_pow)
                 {   
-                    if (statuses[6] == -1)
+                    if (statuses[14] == -1)
                     {
                         val += (int)(val * (float)(ATK / 100));
                     }
@@ -589,7 +593,7 @@ public class unit
                 else
                 {
                     //Check if POW is affected
-                    if (statuses[6] == -1)
+                    if (statuses[14] == -1)
                     {
                         val += (int)(val * (float)(POW / 100));
                     }
@@ -600,19 +604,19 @@ public class unit
                     }
 
                     //Check if WILL is affected (statuses[16] is cancer)
-                    if (target.statuses[7] == target.statuses[10] && target.statuses[16] != -1)
+                    if (target.statuses[7] == target.statuses[15] && target.statuses[16] != -1)
                     {
                         val -= (int)(val * (float)((target.WILL * 0.75) / 300));
                     }
-                    if (target.statuses[7] == target.statuses[10])
+                    if (target.statuses[7] == target.statuses[15])
                     {
-                        //valS -= (int)(valS * (float)(target.WILL / 300));
+                        valS -= (int)(valS * (float)(target.WILL / 300));
                         val -= (int)(val * (float)(target.WILL / 300));
                     }
                     //If target has neurotic
                     else if (target.statuses[7] != -1 && target.statuses[16] != -1)
                     {
-                        //valS -= (int)(valS * (float)((target.WILL * 0.75) / 300));
+                        valS -= (int)(valS * (float)((target.WILL * 0.75) / 300));
                         val -= (int)(val * (float)((target.WILL * 0.5) / 300));
                     }
                     else if (target.statuses[7] != -1)
@@ -621,7 +625,7 @@ public class unit
                         val -= (int)(val * (float)((target.WILL * 0.75) / 300));
                     }
                     //If target has confidence
-                    else if (target.statuses[10] != -1 && target.statuses[16] != -1)
+                    else if (target.statuses[15] != -1 && target.statuses[16] != -1)
                     {
                         val -= (int)(val * (float)((target.WILL * 1.00) / 300));
                     }
@@ -642,7 +646,12 @@ public class unit
                 }
                     
                 //If flammable + fire damage
-                if (target.statuses[12] != -1 && ata.damageType == 1)
+                if (target.statuses[11] != -1 && ata.damageType == 1)
+                {
+                    val = (int)(val * 1.25);
+                }
+
+                if (target.statuses[18] != -1 && ata.damage == 2)
                 {
                     val = (int)(val * 1.25);
                 }
@@ -762,7 +771,7 @@ public class unit
         int val = dam;
         if (!powe)
         {
-            if (statuses[6] == -1)
+            if (statuses[14] == -1)
             {
                 val += (int)(val * (float)(ATK / 100));
             }
@@ -796,7 +805,7 @@ public class unit
         else
         {
             //Check if POW is affected
-            if (statuses[6] == -1)
+            if (statuses[14] == -1)
             {
                 val += (int)(val * (float)(POW / 100));
             }
@@ -807,34 +816,30 @@ public class unit
             }
 
             //Check if WILL is affected (statuses[16] is cancer)
-            if (target.statuses[7] == target.statuses[10] && target.statuses[16] != -1)
+            if (target.statuses[7] == target.statuses[15] && target.statuses[16] != -1)
             {
                 val -= (int)(val * (float)((target.WILL * 0.75) / 300));
             }
             if (target.statuses[7] == target.statuses[10])
             {
-                //valS -= (int)(valS * (float)(target.WILL / 300));
                 val -= (int)(val * (float)(target.WILL / 300));
             }
             //If target has neurotic
-            else if (target.statuses[7] != -1 && target.statuses[16] != -1)
+            else if (target.statuses[7] != -1 && target.statuses[15] != -1)
             {
-                //valS -= (int)(valS * (float)((target.WILL * 0.75) / 300));
                 val -= (int)(val * (float)((target.WILL * 0.5) / 300));
             }
             else if (target.statuses[7] != -1)
             {
-                //valS -= (int)(valS * (float)((target.WILL * 0.75) / 300));
                 val -= (int)(val * (float)((target.WILL * 0.75) / 300));
             }
             //If target has confidence
-            else if (target.statuses[10] != -1 && target.statuses[16] != -1)
+            else if (target.statuses[15] != -1 && target.statuses[16] != -1)
             {
                 val -= (int)(val * (float)((target.WILL * 1.00) / 300));
             }
             else
             {
-                //valS -= (int)(valS * (float)((target.WILL * 1.25) / 300));
                 val -= (int)(val * (float)((target.WILL * 1.25) / 300));
             }
         }
@@ -849,7 +854,12 @@ public class unit
         }
 
         //If flammable + fire damage
-        if (target.statuses[12] != -1 && typer == 1)
+        if (target.statuses[11] != -1 && typer == 1)
+        {
+            val = (int)(val * 1.25);
+        }
+
+        if (target.statuses[18] != -1 && typer == 2)
         {
             val = (int)(val * 1.25);
         }
