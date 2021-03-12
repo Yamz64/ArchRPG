@@ -2723,7 +2723,7 @@ public class BattleScript : MonoBehaviour
                     }
 
                     //Check for Hysteria
-                    if (temp[ind].GetComponent<UnitMono>().mainUnit.statuses[13] != -1)
+                    if (temp[ind].GetComponent<UnitMono>().mainUnit.statuses[12] != -1)
                     {
                         newd = temp[ind].GetComponent<UnitMono>().mainUnit.takeSanityDamage(3);
                         dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " is suffering from Hysteria.";
@@ -2745,6 +2745,7 @@ public class BattleScript : MonoBehaviour
                         continue;
                     }
                     bool newd = false;
+                    //Check for vomiting
                     if (enemyUnits[ind].GetComponent<UnitMono>().mainUnit.statuses[0] != -1)
                     {
                         int dum = UnityEngine.Random.Range(1, 4);
@@ -2765,6 +2766,33 @@ public class BattleScript : MonoBehaviour
                         if (enemyDeaths == activeEnemies)
                         {
                             state = battleState.WIN;
+                            yield return battleEnd();
+                        }
+                        continue;
+                    }
+
+                    //Check for aspiration
+                    if (enemyUnits[ind].GetComponent<UnitMono>().mainUnit.statuses[1] != -1)
+                    {
+                        int perc = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.maxHP / 16;
+                        //int dum = UnityEngine.Random.Range(1, 4);
+                        //if (dum == 1)
+                        //{
+                        newd = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.takeDamage(perc);
+                        dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " took damage from aspirating.";
+                        yield return flashDamage(enemyUnits[ind].GetComponent<UnitMono>().mainUnit);
+                        yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                        //}
+                    }
+                    if (newd)
+                    {
+                        dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " threw up too much blood.";
+                        yield return unitDeath(enemyUnits[ind].GetComponent<UnitMono>().mainUnit);
+                        partyDeaths++;
+                        yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                        if (partyDeaths == activeUnits)
+                        {
+                            state = battleState.LOSE;
                             yield return battleEnd();
                         }
                         continue;
@@ -2795,6 +2823,21 @@ public class BattleScript : MonoBehaviour
                             yield return battleEnd();
                         }
                         continue;
+                    }
+
+                    //Check for Hysteria
+                    if (enemyUnits[ind].GetComponent<UnitMono>().mainUnit.statuses[12] != -1)
+                    {
+                        newd = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.takeSanityDamage(3);
+                        dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " is suffering from Hysteria.";
+                        yield return flashDamage(enemyUnits[ind].GetComponent<UnitMono>().mainUnit);
+                        yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                    }
+                    if (newd)
+                    {
+                        dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " is on the verge of Insanity.";
+                        yield return flashDamage(enemyUnits[ind].GetComponent<UnitMono>().mainUnit);
+                        yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
                     }
                 }
 

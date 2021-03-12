@@ -24,7 +24,7 @@ public class unit
         statusIndex.Add("Vomiting");        //0
         statusIndex.Add("Aspirating");      //1
         statusIndex.Add("Weeping");         //2
-        statusIndex.Add("Eye Bleed");       //3
+        statusIndex.Add("Eye Bleeding");    //3
         statusIndex.Add("Blunt Trauma");    //4
         statusIndex.Add("Hyperactive");     //5
         statusIndex.Add("Inspired");        //6
@@ -596,44 +596,34 @@ public class unit
                     if (statuses[14] == -1)
                     {
                         val += (int)(val * (float)(POW / 100));
+                        valS += (int)(val * (float)(POW / 100));
                     }
                     //Zealous
                     else
                     {
                         val += (int)(val * (float)((POW * 1.25) / 100));
+                        valS += (int)(val * (float)((POW * 1.25) / 100));
                     }
 
                     //Check if WILL is affected (statuses[16] is cancer)
-                    if (target.statuses[7] == target.statuses[15] && target.statuses[16] != -1)
+                    float valD = (float)target.WILL / 300;
+                    //If neurotic
+                    if (target.statuses[7] != -1)
                     {
-                        val -= (int)(val * (float)((target.WILL * 0.75) / 300));
+                        valD = valD * 0.75f;
                     }
-                    if (target.statuses[7] == target.statuses[15])
+                    //If Cancerous
+                    if (target.statuses[15] != -1)
                     {
-                        valS -= (int)(valS * (float)(target.WILL / 300));
-                        val -= (int)(val * (float)(target.WILL / 300));
+                        valD = valD * 0.75f;
                     }
-                    //If target has neurotic
-                    else if (target.statuses[7] != -1 && target.statuses[16] != -1)
+                    //If Confident
+                    if (target.statuses[16] != -1)
                     {
-                        valS -= (int)(valS * (float)((target.WILL * 0.75) / 300));
-                        val -= (int)(val * (float)((target.WILL * 0.5) / 300));
+                        valD = valD * 1.25f;
                     }
-                    else if (target.statuses[7] != -1)
-                    {
-                        //valS -= (int)(valS * (float)((target.WILL * 0.75) / 300));
-                        val -= (int)(val * (float)((target.WILL * 0.75) / 300));
-                    }
-                    //If target has confidence
-                    else if (target.statuses[15] != -1 && target.statuses[16] != -1)
-                    {
-                        val -= (int)(val * (float)((target.WILL * 1.00) / 300));
-                    }
-                    else
-                    {
-                        //valS -= (int)(valS * (float)((target.WILL * 1.25) / 300));
-                        val -= (int)(val * (float)((target.WILL * 1.25) / 300));
-                    }
+                    val -= (int)(val * valD);
+                    valS -= (int)(valS * valD);
                 }
                 //Check if target is weak or resistant to a certain damage type
                 if (target.weaknesses[ata.damageType] == true)
@@ -651,9 +641,9 @@ public class unit
                     val = (int)(val * 1.25);
                 }
 
+                //If conductive
                 if (target.statuses[18] != -1 && ata.damage == 2)
                 {
-                    val = (int)(val * 1.25);
                 }
 
                 int critBuff = ata.alteredCrit;
@@ -771,36 +761,56 @@ public class unit
         int val = dam;
         if (!powe)
         {
-            if (statuses[14] == -1)
+            if (statuses[6] == -1 && statuses[14] == -1)
             {
                 val += (int)(val * (float)(ATK / 100));
             }
-            //Zealous
-            else
+            //Zealous or Inspired
+            else if (statuses[6] != -1 ^ statuses[14] != -1)
             {
                 val += (int)(val * (float)((ATK * 1.25) / 100));
             }
+            else
+            {
+                val += (int)(val * (float)((ATK * 1.50) / 100));
+            }
 
+            float valD = (float)target.DEF / 300;
+            //If Blunt Trauma
+            if (target.statuses[4] != -1)
+            {
+                valD = valD * 0.75f;
+            }
+            //If Neurotic
+            if (target.statuses[7] != -1)
+            {
+                valD = valD * 1.5f;
+            }
+            val -= (int)(val * valD);
+            /*
             //Check if DEF is reduced by a status like Blunt Trauma
             if (target.statuses[4] == -1 && target.statuses[7] == -1)
             {
-                val -= (int)(val * (float)(target.DEF / 300));
+                //val -= (int)(val * (float)(target.DEF / 300));
             }
             //Blunt Trauma
             else if (target.statuses[4] != -1 && target.statuses[7] == -1)
             {
-                val -= (int)(val * (float)((target.DEF * 0.75) / 300));
+                valD = valD * 0.75f;
+                //val -= (int)(val * (float)((target.DEF * 0.75) / 300));
             }
             //Neurotic
             else if (target.statuses[4] == -1 && target.statuses[7] != -1)
             {
-                val -= (int)(val * (float)((target.DEF * 1.5) / 300));
+                valD = valD * 1.5f;
+                //val -= (int)(val * (float)((target.DEF * 1.5) / 300));
             }
             //Both
             else
             {
-                val -= (int)(val * (float)((target.DEF * 1.25) / 300));
+                //val -= (int)(val * (float)((target.DEF * 1.25) / 300));
             }
+            */
         }
         else
         {
@@ -816,6 +826,24 @@ public class unit
             }
 
             //Check if WILL is affected (statuses[16] is cancer)
+            float valD = (float)target.WILL / 300;
+            //If neurotic
+            if (target.statuses[7] != -1)
+            {
+                valD = valD * 0.75f;
+            }
+            //If Cancerous
+            if (target.statuses[15] != -1)
+            {
+                valD = valD * 0.75f;
+            }
+            //If Confident
+            if (target.statuses[16] != -1)
+            {
+                valD = valD * 1.25f;
+            }
+            val -= (int)(val * valD);
+            /*
             if (target.statuses[7] == target.statuses[15] && target.statuses[16] != -1)
             {
                 val -= (int)(val * (float)((target.WILL * 0.75) / 300));
@@ -842,6 +870,7 @@ public class unit
             {
                 val -= (int)(val * (float)((target.WILL * 1.25) / 300));
             }
+            */
         }
         //Check if target is weak or resistant to a certain damage type
         if (target.weaknesses[typer] == true)
@@ -855,11 +884,6 @@ public class unit
 
         //If flammable + fire damage
         if (target.statuses[11] != -1 && typer == 1)
-        {
-            val = (int)(val * 1.25);
-        }
-
-        if (target.statuses[18] != -1 && typer == 2)
         {
             val = (int)(val * 1.25);
         }
@@ -985,7 +1009,7 @@ public class unit
             ran = UnityEngine.Random.Range(5, 9);
             statuses[5] = ran;
         }
-        else if (id.Equals("Zealous")       && statuses[6] == -1)
+        else if (id.Equals("Inspired")      && statuses[6] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[6] = ran;
@@ -1005,51 +1029,71 @@ public class unit
             ran = UnityEngine.Random.Range(1, 3);
             statuses[9] = ran;
         }
-        else if (id.Equals("Confident")     && statuses[10] == -1)
+        else if (id.Equals("Diseased")      && statuses[10] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[10] = ran;
-        }
-        else if (id.Equals("Diseased")      && statuses[11] == -1)
-        {
-            ran = UnityEngine.Random.Range(5, 9);
-            statuses[11] = ran;
             if (maxHP > 20)
             {
                 maxHP -= 20;
                 if (currentHP > maxHP) currentHP = maxHP;
             }
-            
+
         }
-        else if (id.Equals("Flammable")     && statuses[12] == -1)
+        else if (id.Equals("Flammable")     && statuses[11] == -1)
         {
             ran = UnityEngine.Random.Range(3, 6);
-            statuses[12] = ran;
+            statuses[11] = ran;
         }
-        else if (id.Equals("Hysteria")      && statuses[13] == -1)
+        else if (id.Equals("Hysteria")      && statuses[12] == -1)
         {
             ran = UnityEngine.Random.Range(7, 11);
+            statuses[12] = ran;
+        }
+        else if (id.Equals("Analyzed")      && statuses[13] == -1)
+        {
+            ran = UnityEngine.Random.Range(5, 9);
             statuses[13] = ran;
         }
-        else if (id.Equals("Analyzed")      && statuses[14] == -1)
+        else if (id.Equals("Zealous")       && statuses[14] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[14] = ran;
         }
-        else if (id.Equals("Spasms")        && statuses[15] == -1)
+        else if (id.Equals("Cancerous")     && statuses[15] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[15] = ran;
-        }
-        else if (id.Equals("Cancer") && statuses[16] == -1)
-        {
-            ran = UnityEngine.Random.Range(5, 9);
-            statuses[16] = ran;
             if (maxHP > 20)
             {
                 maxHP -= 20;
                 if (currentHP > maxHP) currentHP = maxHP;
             }
+        }
+        else if (id.Equals("Confident")     && statuses[16] == -1)
+        {
+            ran = UnityEngine.Random.Range(5, 9);
+            statuses[16] = ran;
+        }
+        else if (id.Equals("Spasms")        && statuses[17] == -1)
+        {
+            ran = UnityEngine.Random.Range(5, 9);
+            statuses[17] = ran;
+        }
+        else if (id.Equals("Conductive")    && statuses[18] == -1)
+        {
+            ran = UnityEngine.Random.Range(5, 9);
+            statuses[18] = ran;
+        }
+        else if (id.Equals("Reactive")      && statuses[19] == -1)
+        {
+            ran = UnityEngine.Random.Range(5, 9);
+            statuses[19] = ran;
+        }
+        else if (id.Equals("Zonked")        && statuses[20] == -1)
+        {
+            ran = UnityEngine.Random.Range(5, 9);
+            statuses[20] = ran;
         }
         status = "";
         bool has = false;
