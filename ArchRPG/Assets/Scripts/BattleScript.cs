@@ -2584,6 +2584,7 @@ public class BattleScript : MonoBehaviour
                             yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
                             yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
                         }
+                        /*
                         if (temp[ind + 1] != null)
                         {
                             if (temp[ind + 1].GetComponent<UnitMono>().mainUnit.currentHP > 0 &&
@@ -2652,6 +2653,7 @@ public class BattleScript : MonoBehaviour
                                 }
                             }
                         }
+                        */
                     }
                     if (newd)
                     {
@@ -3564,7 +3566,7 @@ public class BattleScript : MonoBehaviour
     IEnumerator playerAbility(int ata, int val, unit uni, unit target)
     {
         //If offensive ability
-        if (uni.abilities[ata].type == 0)
+        if (uni.abilities[ata].type == 0 && uni.abilities[ata].customAbility == 0)
         {
             bool good = false;
             bool bad = false;
@@ -3753,7 +3755,7 @@ public class BattleScript : MonoBehaviour
 
             //yield return new WaitForSeconds(0.5f);
 
-            //If enemy is 
+            //If enemy is actually dead
             if (dead && target.currentHP <= 0)
             {
                 enemyDeaths++;
@@ -3793,6 +3795,85 @@ public class BattleScript : MonoBehaviour
             if (minus)
             {
                 uni.setSP(uni.currentSP - uni.abilities[ata].cost);
+            }
+        }
+
+        else if (uni.abilities[ata].type == 0)
+        {
+            List<bool> priors = new List<bool>();
+            List<unit> actors = new List<unit>();
+            for (int x = 0; x < partyUnits.Count; x++)
+            {
+                if (partyUnits[x] != null)
+                {
+                    actors.Add(partyUnits[x].GetComponent<UnitMono>().mainUnit);
+                    if (partyUnits[x].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                    {
+                        priors.Add(false);
+                    }
+                    else
+                    {
+                        priors.Add(true);
+                    }
+                }
+                else
+                {
+                    priors.Add(false);
+                    actors.Add(null);
+                }
+            }
+            for (int x = 0; x < enemyUnits.Count; x++)
+            {
+                if (enemyUnits[x] != null)
+                {
+                    if (enemyUnits[x].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                    {
+                        actors.Add(enemyUnits[x].GetComponent<UnitMono>().mainUnit);
+                        priors.Add(false);
+                    }
+                    else
+                    {
+                        priors.Add(true);
+                    }
+                }
+                else
+                {
+                    priors.Add(false);
+                    actors.Add(null);
+                }
+            }
+            uni.abilities[ata].UseAttack(uni, actors);
+            for (int x = 0; x < priors.Count; x++)
+            {
+                if (actors[x] != null)
+                {
+                    if (x < 4)
+                    {
+                        if (partyUnits[x].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && !priors[x])
+                        {
+                            partyDeaths++;
+                            yield return unitDeath(partyUnits[x].GetComponent<UnitMono>().mainUnit);
+                            if (partyDeaths == partyUnits.Count)
+                            {
+                                state = battleState.LOSE;
+                                yield return battleEnd();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (enemyUnits[x].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && !priors[x])
+                        {
+                            enemyDeaths++;
+                            yield return unitDeath(enemyUnits[x].GetComponent<UnitMono>().mainUnit);
+                            if (enemyDeaths == enemyUnits.Count)
+                            {
+                                state = battleState.WIN;
+                                yield return battleEnd();
+                            }
+                        }
+                    }
+                }
             }
         }
         //If support ability and Not eldritch

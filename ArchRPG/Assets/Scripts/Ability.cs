@@ -45,8 +45,8 @@ public class Ability
     public virtual string OutputText(unit user, unit target) { return null; }
 
     public bool eldritch = false;   //Whether the ability is eldritch or not
-    public int target = 0;          //0-Single, 1-Across, 2-Down, 3-All, 4-2 Adjacent enemies
-    public int enemyTarget = 0;     //Targets for the ability: 0-Any, 1-Front, 2-Back
+    public int target = 0;          //0-Single, 1-Across, 2-2 Adjacent enemies, 3-All
+    public int enemyTarget = 0;     //Targets for the ability: 0-Any, 1-Front, 2-Back, 3-Self
     public string name;             //The name of the ability
     public int type;                //int denotes who to use ability on --> 0 == enemy, 1 == ally, 2 == self
     public int position = 0;        //int denotes the place the ability can be used 0 = front and backline, 1 = frontline, 2 = backline
@@ -80,6 +80,8 @@ public class Ability
     public int alteredCrit = 0;             //Int to add to chance of getting a critical hit
     public int multiHitMin = 0;             //Minimum number of hits for a multiHit attack
     public int multiHitMax = 0;             //Maximum number of hits for a multiHit attack
+    public int chance2Die = 0;              //Chances of an instant kill
+    public int customAbility = 0;           //Use to check whether an ability has a custom function to use (0 - no, 1 - yes, single target, 2 - yes, multiple)
 
 
     public List<string> statIndex;  //List of status effects that can be given
@@ -373,7 +375,7 @@ public static class EldritchAbilities
         return e_abilities;
     }
 
-    //***~RYAN~***
+    //***~RYAN~*** DONE
     //This ability needs to buff the player with both zealous and confident, but inflict weeping on a party member
     public class OtherworldyGaze : Ability
     {
@@ -417,7 +419,7 @@ public static class EldritchAbilities
         }
     }
 
-    //***~RYAN~***
+    //***~RYAN~*** DONE
     //This ability damages all enemies and allies with moderate weird POW
     public class RuinousWave : Ability
     {
@@ -451,7 +453,7 @@ public static class EldritchAbilities
         }
     }
 
-    //***~RYAN~***
+    //***~RYAN~*** DONE
     //This ability heals you to full but also inflicts everyone with a 
     //random status effect (this needs to work so that when new status effects are added they are included if possible)
     public class BeseechTheAbyss : Ability
@@ -1155,6 +1157,106 @@ namespace ClyveAbilities
             statusEffect = "Vomiting";
         }
     }
+
+    public class FootFungus : Ability
+    {
+        public FootFungus()
+        {
+            name = "Foot Fungus";
+            desc1 = "Inflicts aspirating on two adjacent enemies and does a little chemical ATK";
+            desc2 = "It seems that whatever was the cause of Clyve’s horrible foot stench has gotten far worse.";
+            cost = 8;
+            position = 1;
+            damage = 6;
+            damageType = 3;
+            target = 2;
+            statusEffect = "Aspirating";
+        }
+    }
+    
+    public class SmellOfDeath : Ability
+    {
+        public SmellOfDeath()
+        {
+            name = "Smell of Death";
+            desc1 = "Has a very low random chance to instantly kill all non-boss enemies that increases based on each target’s remaining health.";
+            desc2 = "Clyve realized he’d been carrying his dead hamster in his pocket. Anyone that smells it will surely meet the same fate as that rodent.";
+            cost = 10;
+            position = 1;
+            chance2Die = 10;
+
+        }
+    }
+
+    public class InfernalShower : Ability
+    {
+        public InfernalShower()
+        {
+            name = "Infernal Shower";
+            desc1 = "Buffs everyone with confident and does low fire ATK to all enemies and Clyve.";
+            desc2 = "After a lot of convincing, Clyve takes a searing hot shower to cleanse himself of " +
+                "years of filth and grime. Everyone feels a lot better afterward, and Clyve makes sure to shower the enemy as well.";
+            cost = 12;
+            damage = 8;
+            damageType = 1;
+            target = 3;
+            position = 1;
+            statusEffect = "Confident";
+            customAbility = 2;
+        }
+
+        public override void UseAttack(unit user, List<unit> targets)
+        {
+            user.setSP(user.currentSP - cost);
+            for (int i = 0; i < targets.Count; i++)
+            {
+                int dam = targets[i].takeDamageCalc(targets[i], damage, damageType);
+                if (!targets[i].enemy)
+                {
+                    if (targets[i].unitName == user.unitName)
+                    {
+                        targets[i].takeDamage(dam);
+                    }
+                    targets[i].giveStatus("Confident");
+                }
+                else
+                {
+                    targets[i].takeDamage(dam);
+                }
+            }
+        }
+    }
+
+    public class Dysentery : Ability
+    {
+        public Dysentery()
+        {
+            name = "Dysentery";
+            desc1 = "Inflicts diseased on Clyve and on all enemies.";
+            desc2 = "Not added yet";
+            cost = 10;
+            target = 3;
+            statusEffect = "Diseased";
+            customAbility = 2;
+        }
+        public override void UseAttack(unit user, List<unit> targets)
+        {
+            user.setSP(user.currentSP - cost);
+            for (int i = 0; i < targets.Count; i++)
+            {
+                if (targets[i] != null)
+                {
+                    if (targets[i].currentHP > 0)
+                    {
+                        if (targets[i].unitName == user.unitName || targets[i].enemy)
+                        {
+                            targets[i].giveStatus(statusEffect);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 namespace JimAbilities
@@ -1231,6 +1333,95 @@ namespace JimAbilities
                     }
                 }
             }
+        }
+    }
+
+    //Will need to work on more
+    public class TelekineticProwess : Ability
+    {
+        public TelekineticProwess()
+        {
+            name = "Telekinetic Prowess";
+            desc1 = "Inflicts spasms on 2 adjacent enemies and himself";
+            desc2 = "Jim does some crazy shit and totally flips out and I guess maybe " +
+                "it affects the baddies too? Honestly it’s really hard to tell if he’s doing anything";
+            cost = 7;
+            target = 2;
+            statusEffect = "Spasms";
+        }
+    }
+
+    public class MagicAttunement : Ability
+    {
+        public MagicAttunement()
+        {
+            name = "Magic Attunement";
+            desc1 = "Gives 10 SP/MP to any other character";
+            desc2 = "Jim puts on a funny hat, pulls out some tarot cards, and " +
+                "does an elaborate dance. Not sure if it does anything magic but seeing him try " +
+                "so hard really fills you with the desire to do the same";
+            cost = 9;
+            type = 1;
+        }
+        public override void UseAttack(unit user, unit target)
+        {
+            target.healDamage(10);
+            target.setSP(target.currentSP + 10);
+        }
+    }
+
+    public class MagicalInspiration : Ability
+    {
+        public MagicalInspiration()
+        {
+            name = "Magical Inspiration";
+            desc1 = "Gives one random ally hyperactive, one random ally inspired, and one random ally confident. " +
+                "Can only be used once per combat";
+            desc2 = "Ok Jim definitely has magic powers and they are so cool like holy shit.";
+            cost = 12;
+            position = 1;
+            type = 1;
+            target = 3;
+        }
+
+        public override void UseAttack(unit user, List<unit> targets)
+        {
+            user.setSP(user.currentSP - cost);
+            for (int i = 0; i < 3; i++)
+            {
+                int ran = Random.Range(0, 4);
+                while (targets[ran] == null || targets[ran].currentHP <= 0)
+                {
+                    ran = Random.Range(0, 4);
+                }
+                if (i == 0)
+                {
+                    targets[ran].giveStatus("Hyperactive");
+                }
+                else if (i == 1)
+                {
+                    targets[ran].giveStatus("Inspired");
+                }
+                else if (i == 2)
+                {
+                    targets[ran].giveStatus("Confident");
+                }
+            }
+        }
+    }
+
+    public class MalevolentSlapstick : Ability
+    {
+        public MalevolentSlapstick()
+        {
+            name = "Malevolent Slapstick";
+            desc1 = "Strikes one enemy with incredibly high Weird damage and inflicts vomiting, aspirating, and weeping upon self.";
+            desc2 = "Honestly I don’t wanna tell you what he does because just talking about it makes me want to puke.";
+            cost = 14;
+            type = 0;
+            damage = 15;
+            damageType = 4;
+            customAbility = 1;
         }
     }
 }
@@ -1333,7 +1524,7 @@ namespace NormAbilities
             desc1 = "Powerful Physical attack to hit 2 enemies\nCost = 8";
             desc2 = "Norm has always been a large fan of professional wrestling, and decides to practice some of his moves.";
             cost = 8;
-            target = 4;
+            target = 2;
             position = 1;
             damage = 15;
         }
@@ -1454,7 +1645,7 @@ namespace ShirleyAbilities
                 "all you know is that you’re real confident you’re gonna win this!";
             cost = 7;
             type = 1;
-            target = 4;
+            target = 1;
             position = 2;
         }
 
