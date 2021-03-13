@@ -63,6 +63,7 @@ public class Ability
      * 4 - Weird
     */
     public string statusEffect = "";        //String that matches a specific status effect to inflict
+    public string selfStatus = "";
     public int damageType;                  //The type of damage dealt by the attack
     public int level_cost;                  //cost to purchase this ability on levelup (only applies to eldritch abilities)
     public string image_file_path = "";     //Give path to image that goes with attack
@@ -84,7 +85,7 @@ public class Ability
     public int customAbility = 0;           //Use to check whether an ability has a custom function to use (0 - no, 1 - yes, single target, 2 - yes, multiple)
 
 
-    public List<string> statIndex;  //List of status effects that can be given
+    public List<string> statIndex;          //List of status effects that can be given
 }
 
 namespace TestAbilities
@@ -1237,24 +1238,6 @@ namespace ClyveAbilities
             cost = 10;
             target = 3;
             statusEffect = "Diseased";
-            customAbility = 2;
-        }
-        public override void UseAttack(unit user, List<unit> targets)
-        {
-            user.setSP(user.currentSP - cost);
-            for (int i = 0; i < targets.Count; i++)
-            {
-                if (targets[i] != null)
-                {
-                    if (targets[i].currentHP > 0)
-                    {
-                        if (targets[i].unitName == user.unitName || targets[i].enemy)
-                        {
-                            targets[i].giveStatus(statusEffect);
-                        }
-                    }
-                }
-            }
         }
     }
 }
@@ -1529,6 +1512,73 @@ namespace NormAbilities
             damage = 15;
         }
     }
+
+    //Not sure if single or multi target
+    public class ApeArmbar : Ability
+    {
+        public ApeArmbar()
+        {
+            name = "Ape Armbar";
+            desc1 = "Restrains an enemy deals moderate physical ATK to unrestrained enemies does FAT damage to restrained enemies";
+            desc2 = "Norm engages his opponent with a crushing grapple in his massive wingspan." +
+                " He learned this from his favorite wrestler, Bulk Bogan.";
+            cost = 10;
+            position = 1;
+            damage = 10;
+            statusEffect = "Restrained";
+            bigStatus = "Restrained";
+        }
+    }
+
+    public class OrangutanRage : Ability
+    {
+        public OrangutanRage()
+        {
+            name = "Orangutan Rage";
+            desc1 = "Deals moderate physical ATK inflicts weeping and spasms";
+            desc2 = "Norm enters a primal fury and beats his enemy to a pulp, they are left in a blinding fit of pain afterwards.";
+            cost = 12;
+            damage = 12;
+            statusEffect = "Weeping Spasms";
+        }
+    }
+
+    public class ChimpChop : Ability
+    {
+        public ChimpChop()
+        {
+            name = "CHIMP CHOP";
+            desc1 = "Deals moderate physical ATK hits 4-8 times each hit may cause Blunt Trauma";
+            desc2 = "Norm spins his arms without restraint, brutally beating in the skull of his poor unfortunate victim.";
+            cost = 16;
+            position = 1;
+            damage = 12;
+            statusEffect = "Blunt Trauma";
+            multiHitMin = 4;
+            multiHitMax = 9;
+        }
+    }
+
+    public class MonkeyGrief : Ability
+    {
+        public MonkeyGrief()
+        {
+            name = "Monkey Grief";
+            desc1 = "Inflicts neurotic and weeping on self, heals a small bit of sanity.";
+            desc2 = "Norm didn’t ask for this…";
+            cost = 7;
+            type = 2;
+            statusEffect = "Neurotic Weeping";
+        }
+
+        public override void UseAttack(unit user, unit target)
+        {
+            target = user;
+            user.setSP(user.currentSP - cost);
+            user.giveStatus(statusEffect);
+            user.setSAN(user.sanity + 5);
+        }
+    }
 }
 
 namespace RalphAbilities
@@ -1662,6 +1712,67 @@ namespace ShirleyAbilities
                     }
                 }
             }
+        }
+    }
+
+    public class StrategicPlanning : Ability
+    {
+        public StrategicPlanning()
+        {
+            name = "Strategic Planning";
+            desc1 = "Inflicts 2 adjacent enemies with Analyzed";
+            desc2 = "Turns out all that talking about battle formations and river crossings or " +
+                "whatever actually helped Shirley learn a thing or two about combat. Good for her I guess.";
+            cost = 9;
+            position = 2;
+            target = 2;
+            statusEffect = "Analyzed";
+        }
+    }
+
+    public class ShotgunBlast : Ability
+    {
+        public ShotgunBlast()
+        {
+            name = "Shotgun Blast";
+            desc1 = "Inflicts fire damage on two adjacent enemies and has a chance to inflict vomiting on the enemies hit";
+            desc2 = "You’re not sure if they used shotguns in the civil war but Shirley sure as hell seems like she knows how to use one.";
+            cost = 11;
+            position = 2;
+            target = 2;
+            damage = 20;
+            damageType = 1;
+            statusEffect = "Vomiting";
+        }
+    }
+
+    public class SuppressingFire : Ability
+    {
+        public SuppressingFire()
+        {
+            name = "Suppressing Fire";
+            desc1 = "High fire ATK, inflicts restrained upon an enemy.";
+            desc2 = "You might have been more interested in civil war reenacting if " +
+                "they’d told you that you’d learn to fire a bolt action rifle so fast that your enemies don’t get a chance to stand up.";
+            cost = 15;
+            position = 2;
+            damage = 30;
+            damageType = 1;
+            statusEffect = "Restrained";
+        }
+    }
+
+    public class BayonetCharge : Ability
+    {
+        public BayonetCharge()
+        {
+            name = "Bayonet Charge";
+            desc1 = "Grants zealous on self and Inflicts high physical ATK upon an enemy. Moves Shirley to the front line.";
+            desc2 = "Shirley bravely charges into enemy lines, ready to die for her country, even though it doesn’t know or care about her. Poor kid.";
+            cost = 12;
+            damage = 25;
+            swapper = 1;
+            selfStatus = "Zealous";
         }
     }
 }

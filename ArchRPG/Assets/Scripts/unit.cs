@@ -693,6 +693,18 @@ public class unit
                         target.setSAN(target.sanity);
                     }
 
+                    //There is a status effect
+                    if (!ata.selfStatus.Equals(""))
+                    {
+                        //Roll numbers to check if status effect is given
+                        int ran = UnityEngine.Random.Range(1, 101);
+                        int statBuff = ata.alteredStatus;
+                        if (ran >= target.RES + statBuff || ran == 1 || ata.type != 0)
+                        {
+                            target.giveStatus(ata.selfStatus);
+                        }
+                    }
+
                     //Not dead
                     if (d == false)
                     {
@@ -6112,12 +6124,10 @@ public class OliverSproutUnit : unit
         loadSprites();
         level = lev;
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
-        //Physical
-        resistances[0] = true;
+        //Chemical
+        resistances[3] = true;
         //Weird
-        resistances[4] = true;
-        //Electric
-        weaknesses[2] = true;
+        weaknesses[4] = true;
 
         switch (level)
         {
@@ -6655,10 +6665,8 @@ public class EmberMoonUnit : unit
         loadSprites();
         level = lev;
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
-        //Physical
-        resistances[0] = true;
-        //Weird
-        resistances[4] = true;
+        //Fire
+        resistances[1] = true;
         //Electric
         weaknesses[2] = true;
 
