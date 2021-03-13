@@ -1005,6 +1005,101 @@ namespace PlayerAbilities
             desc2 = "After putting aside your clear superiority, you come up with an unbiased view of the enemies weakness and how to exploit it.";
             cost = 4;
             position = 1;
+            statusEffect = "Analyzed";
+        }
+    }
+
+    public class ManicRant : Ability
+    {
+        public ManicRant()
+        {
+            name = "Manic Rant";
+            desc1 = "Inflicts weeping and restrained on an enemy";
+            desc2 = "You drop a massive truth bomb on an enemy, making them question everything they’ve ever known.";
+            cost = 8;
+            position = 1;
+            statusEffect = "Weeping Restrained";
+        }
+    }
+
+    public class IncoherentRamblings : Ability
+    {
+        public IncoherentRamblings()
+        {
+            name = "Incoherent Ramblings";
+            desc1 = "Minor group sanity heal";
+            desc2 = "You try to make sense of what’s happening around you. It’s comforting that one of us understands what’s going on.";
+            cost = 12;
+            position = 2;
+            type = 1;
+            target = 3;
+        }
+
+        public override void UseAttack(unit user, List<unit> targets)
+        {
+            user.setSP(user.currentSP - cost);
+            for (int i = 0; i < targets.Count; i++)
+            {
+                if (targets[i] != null)
+                {
+                    if (targets[i].currentHP > 0)
+                    {
+                        targets[i].setSAN(targets[i].sanity + 5);
+                        targets[i].setHUD();
+                    }
+                }
+            }
+        }
+    }
+
+    public class CharismaticFervor : Ability
+    {
+        public CharismaticFervor()
+        {
+            name = "Charismatic Fervor";
+            desc1 = "Moderate group sanity heal. Buff everyone with inspired or group sanity debuff, buffs everyone with zealous";
+            desc2 = "Not added yet";
+            cost = 12;
+            position = 2;
+            type = 1;
+            target = 3;
+        }
+
+        public override void UseAttack(unit user, List<unit> targets)
+        {
+            user.setSP(user.currentSP - cost);
+            for (int i = 0; i < targets.Count; i++)
+            {
+                if (targets[i] != null)
+                {
+                    if (targets[i].currentHP > 0)
+                    {
+                        //Need to clarify what the ability does to allies
+
+                    }
+                }
+            }
+        }
+    }
+
+    public class Narcissism : Ability
+    {
+        public Narcissism()
+        {
+            name = "Narcissism";
+            desc1 = "Buffs self with confident, neurotic, and inflicts hysteria on self";
+            desc2 = "Desc not added yet";
+            cost = 16;
+            position = 2;
+            type = 2;
+            statusEffect = "Confident Neurotic Hysteria";
+        }
+
+        public override void UseAttack(unit user, unit target)
+        {
+            user.setSP(user.currentSP - cost);
+            target = user;
+            target.giveStatus(statusEffect);
         }
     }
 }

@@ -978,6 +978,14 @@ public class unit
     //Give the named status to this unit
     public void giveStatus(string id)
     {
+        if (id.Contains(" "))
+        {
+            string[] breaker = id.Split(' ');
+            for (int i = 0; i < breaker.Length; i++)
+            {
+                giveStatus(breaker[i]);
+            }
+        }
         int ran;
         if (id.Equals("Vomiting")           && statuses[0] == -1)
         {
