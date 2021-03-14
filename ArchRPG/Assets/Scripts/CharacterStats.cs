@@ -398,7 +398,7 @@ public class CharacterStats
         abilities = new List<Ability>();
         status_effects = new List<int>();
 
-        for(int i=0; i<21; i++)
+        for(int i=0; i<27; i++)
         {
             status_effects.Add(-1);
         }
@@ -463,6 +463,12 @@ public class CharacterStats
      * 18 - Conductive
      * 19 - Reactive
      * 20 - Zonked
+     * 21 - Chutzpah
+     * 22 - Lethargic
+     * 23 - Electrified
+     * 24 - Madness
+     * 25 - Doomed
+     * 26 - Disco Fever
     */
     private List<int> status_effects;
 

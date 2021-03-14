@@ -42,6 +42,8 @@ public class PauseMenuHandler : MonoBehaviour
     [SerializeField]
     public Sprite[] positional_icons;
 
+    public Object icon;
+
     private int equip_type;     //0 = weapon, 1 = armor, 2 = trinket
     private bool item_select_menu;
     private bool base_pause_character_select;
@@ -343,6 +345,55 @@ public class PauseMenuHandler : MonoBehaviour
             menus[2].transform.GetChild(7).GetChild(1).GetComponent<Text>().text = data.GetSAN().ToString() + "/" + data.GetSANMax().ToString();
         else
             menus[2].transform.GetChild(7).GetChild(1).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetSAN().ToString() + "/" + data.GetPartyMember(highlighted_party_member - 1).GetSANMax().ToString();
+
+        //--UPDATE CONDITION DATA--
+        for (int i = 0; i < menus[2].transform.GetChild(8).GetChild(0).childCount; i++) Destroy(menus[2].transform.GetChild(8).GetChild(0).GetChild(i).gameObject);
+        int x_index = 0;
+        int y_index = 0;
+        if(highlighted_party_member == 0)
+        {
+            for(int i=0; i<data.GetStatusCount(); i++)
+            {
+                //determine if the status effect in question is inflicted on the character
+                if(data.GetStatus(i) > 0)
+                {
+                    //instance a status effect icon, set it's position, and set it's picture accordingly before incrementing total status
+                    GameObject status = (GameObject)Instantiate(icon, menus[2].transform.GetChild(8).GetChild(0).transform);
+                    status.transform.localPosition = new Vector3(transform.position.x + x_index * 67f, transform.position.y + y_index * -54f, 0);
+                    status.GetComponent<StatusEffectIconBehavior>().SetStatus(i);
+
+                    //handle offset variables
+                    if (x_index < 8) x_index++;
+                    else
+                    {
+                        x_index = 0;
+                        y_index++;
+                    }
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < data.GetPartyMember(highlighted_party_member - 1).GetStatusCount(); i++)
+            {
+                //determine if the status effect in question is inflicted on the character
+                if (data.GetPartyMember(highlighted_party_member - 1).GetStatus(i) > 0)
+                {
+                    //instance a status effect icon, set it's position, and set it's picture accordingly before incrementing total status
+                    GameObject status = (GameObject)Instantiate(icon, menus[2].transform.GetChild(8).GetChild(0).transform);
+                    status.transform.localPosition = new Vector3(transform.position.x + x_index * 67f, transform.position.y + y_index * -54f, 0);
+                    status.GetComponent<StatusEffectIconBehavior>().SetStatus(i);
+
+                    //handle offset variables
+                    if (x_index < 8) x_index++;
+                    else
+                    {
+                        x_index = 0;
+                        y_index++;
+                    }
+                }
+            }
+        }
 
         //--UPDATE STAT DATA--
         //if equipment is not being changed
@@ -1007,6 +1058,55 @@ public class PauseMenuHandler : MonoBehaviour
         else
             menus[2].transform.GetChild(7).GetChild(1).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetSAN().ToString() + "/" + data.GetPartyMember(highlighted_party_member - 1).GetSANMax().ToString();
 
+        //--UPDATE CONDITION DATA--
+        for (int i = 0; i < menus[2].transform.GetChild(8).GetChild(0).childCount; i++) Destroy(menus[2].transform.GetChild(8).GetChild(0).GetChild(i).gameObject);
+        int x_index = 0;
+        int y_index = 0;
+        if (highlighted_party_member == 0)
+        {
+            for (int i = 0; i < data.GetStatusCount(); i++)
+            {
+                //determine if the status effect in question is inflicted on the character
+                if (data.GetStatus(i) > 0)
+                {
+                    //instance a status effect icon, set it's position, and set it's picture accordingly before incrementing total status
+                    GameObject status = (GameObject)Instantiate(icon, menus[2].transform.GetChild(8).GetChild(0).transform);
+                    status.transform.localPosition = new Vector3(transform.position.x + x_index * 67f, transform.position.y + y_index * -54f, 0);
+                    status.GetComponent<StatusEffectIconBehavior>().SetStatus(i);
+
+                    //handle offset variables
+                    if (x_index < 8) x_index++;
+                    else
+                    {
+                        x_index = 0;
+                        y_index++;
+                    }
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < data.GetPartyMember(highlighted_party_member - 1).GetStatusCount(); i++)
+            {
+                //determine if the status effect in question is inflicted on the character
+                if (data.GetPartyMember(highlighted_party_member - 1).GetStatus(i) > 0)
+                {
+                    //instance a status effect icon, set it's position, and set it's picture accordingly before incrementing total status
+                    GameObject status = (GameObject)Instantiate(icon, menus[2].transform.GetChild(8).GetChild(0).transform);
+                    status.transform.localPosition = new Vector3(transform.position.x + x_index * 67f, transform.position.y + y_index * -54f, 0);
+                    status.GetComponent<StatusEffectIconBehavior>().SetStatus(i);
+
+                    //handle offset variables
+                    if (x_index < 8) x_index++;
+                    else
+                    {
+                        x_index = 0;
+                        y_index++;
+                    }
+                }
+            }
+        }
+
         //--UPDATE STAT DATA--
         //if equipment is not being changed
         if (equipment == null)
@@ -1669,6 +1769,55 @@ public class PauseMenuHandler : MonoBehaviour
             menus[2].transform.GetChild(7).GetChild(1).GetComponent<Text>().text = data.GetSAN().ToString() + "/" + data.GetSANMax().ToString();
         else
             menus[2].transform.GetChild(7).GetChild(1).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetSAN().ToString() + "/" + data.GetPartyMember(highlighted_party_member - 1).GetSANMax().ToString();
+
+        //--UPDATE CONDITION DATA--
+        for (int i = 0; i < menus[2].transform.GetChild(8).GetChild(0).childCount; i++) Destroy(menus[2].transform.GetChild(8).GetChild(0).GetChild(i).gameObject);
+        int x_index = 0;
+        int y_index = 0;
+        if (highlighted_party_member == 0)
+        {
+            for (int i = 0; i < data.GetStatusCount(); i++)
+            {
+                //determine if the status effect in question is inflicted on the character
+                if (data.GetStatus(i) > 0)
+                {
+                    //instance a status effect icon, set it's position, and set it's picture accordingly before incrementing total status
+                    GameObject status = (GameObject)Instantiate(icon, menus[2].transform.GetChild(8).GetChild(0).transform);
+                    status.transform.localPosition = new Vector3(transform.position.x + x_index * 67f, transform.position.y + y_index * -54f, 0);
+                    status.GetComponent<StatusEffectIconBehavior>().SetStatus(i);
+
+                    //handle offset variables
+                    if (x_index < 8) x_index++;
+                    else
+                    {
+                        x_index = 0;
+                        y_index++;
+                    }
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < data.GetPartyMember(highlighted_party_member - 1).GetStatusCount(); i++)
+            {
+                //determine if the status effect in question is inflicted on the character
+                if (data.GetPartyMember(highlighted_party_member - 1).GetStatus(i) > 0)
+                {
+                    //instance a status effect icon, set it's position, and set it's picture accordingly before incrementing total status
+                    GameObject status = (GameObject)Instantiate(icon, menus[2].transform.GetChild(8).GetChild(0).transform);
+                    status.transform.localPosition = new Vector3(transform.position.x + x_index * 67f, transform.position.y + y_index * -54f, 0);
+                    status.GetComponent<StatusEffectIconBehavior>().SetStatus(i);
+
+                    //handle offset variables
+                    if (x_index < 8) x_index++;
+                    else
+                    {
+                        x_index = 0;
+                        y_index++;
+                    }
+                }
+            }
+        }
 
         //--UPDATE STAT DATA--
         //if equipment is not being changed
@@ -2881,7 +3030,6 @@ public class PauseMenuHandler : MonoBehaviour
                         equipped_offset = 0;
                         ability_select = false;
                         base_pause_character_select = true;
-                        UpdateEquipMenuInfo();
                         break;
                     case 3:
                         cursor_position = 0;
