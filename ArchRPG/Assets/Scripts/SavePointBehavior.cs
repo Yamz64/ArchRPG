@@ -102,9 +102,9 @@ public class SavePointBehavior : InteractableBaseClass
             dialogue.WriteDriver();
 
             //wait until the dialogue is finished before opening the save menu
-            yield return new WaitForEndOfFrame();
             yield return new WaitUntil(() => !dialogue.GetActive());
-            
+            yield return new WaitForEndOfFrame();
+
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             player.GetComponent<PauseMenuHandler>().menu_mode = true;
             player.GetComponent<PauseMenuHandler>().menu_input = true;
@@ -147,8 +147,8 @@ public class SavePointBehavior : InteractableBaseClass
             dialogue.WriteDriver();
 
             //wait until the dialogue is finished before opening the save menu
-            yield return new WaitForEndOfFrame();
             yield return new WaitUntil(() => !dialogue.GetActive());
+            yield return new WaitForEndOfFrame();
 
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             player.GetComponent<PauseMenuHandler>().menu_mode = true;
