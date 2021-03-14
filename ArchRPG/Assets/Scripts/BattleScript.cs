@@ -1384,8 +1384,16 @@ public class BattleScript : MonoBehaviour
             {
                 if (!menu_input)
                 {
-                    useSound(1);
-                    OpenUseAbilityMenu();
+                    if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].canUse != -1)
+                    {
+                        useSound(1);
+                        OpenUseAbilityMenu();
+                    }
+                    else
+                    {
+                        useSound(0);
+                        dialogue.text = "Ability can not be used again";
+                    }
                 }
                 menu_input = true;
             }

@@ -24,8 +24,8 @@ public class unit
         statusIndex.Add("Vomiting");        //0
         statusIndex.Add("Aspirating");      //1
         statusIndex.Add("Weeping");         //2
-        statusIndex.Add("Eye Bleeding");    //3
-        statusIndex.Add("Blunt Trauma");    //4
+        statusIndex.Add("Eye_Bleeding");    //3
+        statusIndex.Add("Blunt_Trauma");    //4
         statusIndex.Add("Hyperactive");     //5
         statusIndex.Add("Inspired");        //6
         statusIndex.Add("Neurotic");        //7
@@ -1021,12 +1021,12 @@ public class unit
             ran = UnityEngine.Random.Range(5, 9);
             statuses[2] = ran;
         }
-        else if (id.Equals("Eye Bleeding")  && statuses[3] == -1)
+        else if (id.Equals("Eye_Bleeding")  && statuses[3] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[3] = ran;
         }
-        else if (id.Equals("Blunt Trauma")  && statuses[4] == -1)
+        else if (id.Equals("Blunt_Trauma")  && statuses[4] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[4] = ran;

@@ -9,21 +9,31 @@ public class Ability
     public Ability()
     {
         statIndex = new List<string>();
-        statIndex.Add("Vomiting");
-        statIndex.Add("Aspirating");
-        statIndex.Add("Weeping");
-        statIndex.Add("Eye Bleed");
-        statIndex.Add("Blunt Trauma");
-        statIndex.Add("Hyperactive");
-        statIndex.Add("Zealous");
-        statIndex.Add("Neurotic");
-        statIndex.Add("Restrained");
-        statIndex.Add("Consumed");
-        statIndex.Add("Confident");
-        statIndex.Add("Diseased");
-        statIndex.Add("Flammable");
-        statIndex.Add("Hysteria");
-        statIndex.Add("Analyzed");
+        statIndex.Add("Vomiting");        //0
+        statIndex.Add("Aspirating");      //1
+        statIndex.Add("Weeping");         //2
+        statIndex.Add("Eye_Bleeding");    //3
+        statIndex.Add("Blunt_Trauma");    //4
+        statIndex.Add("Hyperactive");     //5
+        statIndex.Add("Inspired");        //6
+        statIndex.Add("Neurotic");        //7
+        statIndex.Add("Restrained");      //8
+        statIndex.Add("Consumed");        //9
+        statIndex.Add("Diseased");        //10
+        statIndex.Add("Flammable");       //11
+        statIndex.Add("Hysteria");        //12
+        statIndex.Add("Analyzed");        //13
+        statIndex.Add("Zealous");         //14
+        statIndex.Add("Cancerous");       //15
+        statIndex.Add("Confident");       //16
+        statIndex.Add("Spasms");          //17
+        statIndex.Add("Conductive");      //18
+        statIndex.Add("Reactive");        //19
+        statIndex.Add("Zonked");          //20
+        statIndex.Add("Chutzpah");        //21
+        statIndex.Add("Lethargic");       //22
+        statIndex.Add("Madness");         //23
+        statIndex.Add("Doomed");          //24
     }
     public virtual void Use(){
         //Used the ability
@@ -83,6 +93,7 @@ public class Ability
     public int multiHitMax = 0;             //Maximum number of hits for a multiHit attack
     public int chance2Die = 0;              //Chances of an instant kill
     public int customAbility = 0;           //Use to check whether an ability has a custom function to use (0 - no, 1 - yes, single target, 2 - yes, multiple)
+    public int canUse = 0;
 
 
     public List<string> statIndex;          //List of status effects that can be given
@@ -542,7 +553,7 @@ namespace EnemyAbilities
             target = 0;
             damage = 12;
             damageType = 1;
-            statusEffect = "Blunt Trauma";
+            statusEffect = "Blunt_Trauma";
             priority = defaultPriority = nextPriority = 1;
         }
     }
@@ -641,7 +652,7 @@ namespace EnemyAbilities
             target = 1;
             damage = 18;
             damageType = 0;
-            statusEffect = "Blunt Trauma";
+            statusEffect = "Blunt_Trauma";
             priority = defaultPriority = 3;
         }
     }
@@ -835,7 +846,7 @@ namespace EnemyAbilities
             name = "Proboscis Punch";
             damage = 10;
             priority = defaultPriority = 4;
-            statusEffect = "Blunt Trauma";
+            statusEffect = "Blunt_Trauma";
             swapper = 2;
         }
     }
@@ -1390,6 +1401,7 @@ namespace JimAbilities
                     targets[ran].giveStatus("Confident");
                 }
             }
+            canUse = -1;
         }
     }
 
@@ -1405,126 +1417,6 @@ namespace JimAbilities
             damage = 15;
             damageType = 4;
             customAbility = 1;
-        }
-    }
-}
-
-namespace LucyAbilities
-{
-    public class FungalRat : Ability
-    {
-        public FungalRat()
-        {
-            name = "Fungal Rat";
-            desc1 = "Single target debuff attack\nCost = 4";
-            desc2 = "These rats have been bred to be the perfect host " +
-                "for a parasitic fungus, the result is unsightly and churns the stomach to look at.";
-            cost = 4;
-            target = 0;
-            position = 2;
-            statusEffect = "Aspirating";
-            damage = 0;
-            damageType = 3;
-        }
-    }
-
-    public class RodentialKindling : Ability
-    {
-        public RodentialKindling()
-        {
-            name = "Rodential Kindling";
-            desc1 = "Single target debuff attack\nCost = 6";
-            desc2 = "Lucy commands a breed of rat with particularly flammable " +
-                "skin oil and dry fur to pile onto a target and make them more flammable.";
-            cost = 6;
-            target = 0;
-            position = 2;
-            statusEffect = "Flammable";
-            damageType = 1;
-        }
-    }
-
-    public class FeedTheMasses : Ability
-    {
-        public FeedTheMasses()
-        {
-            name = "Feed the Masses";
-            desc1 = "A strong debuff attack\nCost = 8";
-            desc2 = "Lucy commands her “children” to feed on a " +
-                "target, their appetite is particularly voracious today.";
-            cost = 8;
-            target = 0;
-            position = 2;
-            statusEffect = "Consumed";
-        }
-    }
-
-    public class FrenziedInvasion : Ability
-    {
-        public FrenziedInvasion()
-        {
-            name = "Frenzied Invasion";
-            desc1 = "Moderate Multi-hit physical ATK on a single target";
-            desc2 = "With sheer numbers, it should be no issue to simply overrun your opponents. Good practice for the eventual rodent uprising.";
-            cost = 12;
-            damage = 8;
-            multiHitMin = 2;
-            multiHitMax = 6;
-        }
-    }
-
-    public class PropellorRat : Ability
-    {
-        public PropellorRat()
-        {
-            name = "Propellor Rat";
-            desc1 = "Moderate physical ATK with a small chance to multi-hit inflicts eye bleed";
-            desc2 = "Don’t worry this is a highly trained rat, totally a professional, don’t question why it’s crashing into its target.";
-            cost = 15;
-            damage = 12;
-            position = 2;
-            statusEffect = "Eye Bleed";
-            multiHitMin = 1;
-            multiHitMax = 3;
-        }
-    }
-
-    public class VirumRodentia : Ability
-    {
-        public VirumRodentia()
-        {
-            name = "Virum Rodentia";
-            desc1 = "Low damage ability that inflicts aspirating, diseased, and has a very low random chance to " +
-                "instantly kill a non-boss target that increases based on the target’s remaining health";
-            desc2 = "The culmination of Lucy’s work, after all these years, she’s finally come up with a plague that can wipe " +
-                "humanity off the face of the earth, she couldn’t have done it without you!";
-            cost = 18;
-            damage = 10;
-            position = 2;
-            statusEffect = "Aspirating Diseased";
-            chance2Die = 10;
-        }
-    }
-
-    public class ProtectMyChildren : Ability
-    {
-        public ProtectMyChildren()
-        {
-            name = "Protect My Children";
-            desc1 = "Shuffles Lucy to the frontlines gives zealous and neurotic " +
-                "(this ability will periodically happen without the player selecting it)";
-            desc2 = "They can never take my children!... NEVER!!!!!";
-            cost = 10;
-            type = 2;
-            swapper = 1;
-            selfStatus = "Zealous Neurotic";
-        }
-
-        public override void UseAttack(unit user, unit target)
-        {
-            target = user;
-            user.setSP(user.currentSP - cost);
-            user.giveStatus(selfStatus);
         }
     }
 }
@@ -1622,7 +1514,7 @@ namespace NormAbilities
             cost = 16;
             position = 1;
             damage = 12;
-            statusEffect = "Blunt Trauma";
+            statusEffect = "Blunt_Trauma";
             multiHitMin = 4;
             multiHitMax = 9;
         }
@@ -1646,145 +1538,6 @@ namespace NormAbilities
             user.setSP(user.currentSP - cost);
             user.giveStatus(statusEffect);
             user.setSAN(user.sanity + 5);
-        }
-    }
-}
-
-namespace RalphAbilities
-{
-    public class PistolWhip : Ability
-    {
-        public PistolWhip()
-        {
-            name = "Pistol Whip";
-            desc1 = "Frontline Melee Attack\nCost = 2";
-            desc2 = "Little Ralphy knows that if he actually fired his glock then there " +
-                "would be a lot of paperwork that would ensure, but if he uses it to pistol " +
-                "whip people, then there’s less paperwork!";
-            cost = 2;
-            damage = 16;
-            damageType = 0;
-            position = 1;
-            statusEffect = "Blunt Trauma";
-        }
-    }
-
-    public class SmokeBreak : Ability
-    {
-        bool contract = false;
-        public SmokeBreak()
-        {
-            name = "Smoke Break";
-            desc1 = "Backline Support Ability\nCost = 1";
-            desc2 = "Despite various warnings from the AMA, his ‘parents’, " +
-                "and movie ads about smoking causing cancer, Little Ralphy shares " +
-                "a cig with a party member to reduce stress.";
-            cost = 1;
-            damage = 0;
-            type = 1;
-            position = 2;
-        }
-
-        public override void UseAttack(unit user, unit target)
-        {
-            user.setSP(user.getSP() - cost);
-            target.sanity += 2;
-            int rol = Random.Range(1, 101);
-            if (rol < target.RES)
-            {
-                if (target.statuses[16] != -1) contract = true;
-                target.giveStatus("Cancer");
-            }
-        }
-    }
-
-    public class Taser : Ability
-    {
-        public Taser()
-        {
-            name = "Taser";
-            desc1 = "A stunning electrical attack\nCost = 10";
-            desc2 = "Stop right there- oh shit my finger slipped… Welp that’s gonna’ be a lot of paperwork...";
-            cost = 10;
-            damage = 10;
-            damageType = 2;
-            position = 1;
-            statusEffect = "Restrained";
-        }
-    }
-
-    public class OopsCoffeeSpilled : Ability
-    {
-        public OopsCoffeeSpilled()
-        {
-            name = "Oops, Coffee Spilled";
-            desc1 = "Low chemical ATK, inflicts spasms";
-            desc2 = "Ah nuts, I was looking forward to that...Welp, have fun with caffeine in the eyes";
-            cost = 10;
-            damage = 10;
-            damageType = 3;
-            statusEffect = "Spasms";
-        }
-    }
-
-    public class LetLooseTheDonuts : Ability
-    {
-        public LetLooseTheDonuts()
-        {
-            name = "Let Loose the Donuts";
-            desc1 = "AOE moderate weird ATK, inflicts weeping on self";
-            desc2 = "Hey Guys, guess who brought --- *trips* --- NOOO, NOT THE DONUTS!!";
-            cost = 14;
-            damage = 15;
-            damageType = 4;
-            target = 3;
-            selfStatus = "Weeping";
-        }
-    }
-
-    public class Gun : Ability
-    {
-        public Gun()
-        {
-            name = "Gun";
-            desc1 = "High Physical Attack";
-            desc2 = "For his final ability, he wields a gun (Authorized for use this time, I swear!)";
-            cost = 17;
-            position = 2;
-            damage = 30;
-        }
-    }
-
-    public class EvidenceSchmevidence : Ability
-    {
-        public EvidenceSchmevidence()
-        {
-            name = "Evidence Schmevidence";
-            desc1 = "Use confiscated substances to buff self with Hyperactive, Confident, or Zealous.";
-            desc2 = "Ralph finally snapped, and has taken the law into his own hands to exact his vengeance on all who wronged him. " +
-                "Good luck to whoever has to bring him in.";
-            cost = 10;
-            position = 2;
-            type = 2;
-        }
-
-        public override void UseAttack(unit user, unit target)
-        {
-            target = user;
-            user.setSP(user.currentSP - cost);
-            int ran = Random.Range(0, 3);
-            if (ran == 0)
-            {
-                user.giveStatus("Hyperactive");
-            }
-            else if (ran == 1)
-            {
-                user.giveStatus("Confident");
-            }
-            else
-            {
-                user.giveStatus("Zealous");
-            }
         }
     }
 }
@@ -1919,4 +1672,444 @@ namespace ShirleyAbilities
             selfStatus = "Zealous";
         }
     }
+}
+
+namespace RalphAbilities
+{
+    public class PistolWhip : Ability
+    {
+        public PistolWhip()
+        {
+            name = "Pistol Whip";
+            desc1 = "Frontline Melee Attack\nCost = 2";
+            desc2 = "Little Ralphy knows that if he actually fired his glock then there " +
+                "would be a lot of paperwork that would ensure, but if he uses it to pistol " +
+                "whip people, then there’s less paperwork!";
+            cost = 2;
+            damage = 16;
+            damageType = 0;
+            position = 1;
+            statusEffect = "Blunt_Trauma";
+        }
+    }
+
+    public class SmokeBreak : Ability
+    {
+        bool contract = false;
+        public SmokeBreak()
+        {
+            name = "Smoke Break";
+            desc1 = "Backline Support Ability\nCost = 1";
+            desc2 = "Despite various warnings from the AMA, his ‘parents’, " +
+                "and movie ads about smoking causing cancer, Little Ralphy shares " +
+                "a cig with a party member to reduce stress.";
+            cost = 1;
+            damage = 0;
+            type = 1;
+            position = 2;
+        }
+
+        public override void UseAttack(unit user, unit target)
+        {
+            user.setSP(user.getSP() - cost);
+            target.sanity += 2;
+            int rol = Random.Range(1, 101);
+            if (rol < target.RES)
+            {
+                if (target.statuses[16] != -1) contract = true;
+                target.giveStatus("Cancer");
+            }
+        }
+    }
+
+    public class Taser : Ability
+    {
+        public Taser()
+        {
+            name = "Taser";
+            desc1 = "A stunning electrical attack\nCost = 10";
+            desc2 = "Stop right there- oh shit my finger slipped… Welp that’s gonna’ be a lot of paperwork...";
+            cost = 10;
+            damage = 10;
+            damageType = 2;
+            position = 1;
+            statusEffect = "Restrained";
+        }
+    }
+
+    public class OopsCoffeeSpilled : Ability
+    {
+        public OopsCoffeeSpilled()
+        {
+            name = "Oops, Coffee Spilled";
+            desc1 = "Low chemical ATK, inflicts spasms";
+            desc2 = "Ah nuts, I was looking forward to that...Welp, have fun with caffeine in the eyes";
+            cost = 10;
+            damage = 10;
+            damageType = 3;
+            statusEffect = "Spasms";
+        }
+    }
+
+    public class LetLooseTheDonuts : Ability
+    {
+        public LetLooseTheDonuts()
+        {
+            name = "Let Loose the Donuts";
+            desc1 = "AOE moderate weird ATK, inflicts weeping on self";
+            desc2 = "Hey Guys, guess who brought --- *trips* --- NOOO, NOT THE DONUTS!!";
+            cost = 14;
+            damage = 15;
+            damageType = 4;
+            target = 3;
+            selfStatus = "Weeping";
+        }
+    }
+
+    public class Gun : Ability
+    {
+        public Gun()
+        {
+            name = "Gun";
+            desc1 = "High Physical Attack";
+            desc2 = "For his final ability, he wields a gun (Authorized for use this time, I swear!)";
+            cost = 17;
+            position = 2;
+            damage = 30;
+        }
+    }
+
+    public class EvidenceSchmevidence : Ability
+    {
+        public EvidenceSchmevidence()
+        {
+            name = "Evidence Schmevidence";
+            desc1 = "Use confiscated substances to buff self with Hyperactive, Confident, or Zealous.";
+            desc2 = "Ralph finally snapped, and has taken the law into his own hands to exact his vengeance on all who wronged him. " +
+                "Good luck to whoever has to bring him in.";
+            cost = 10;
+            position = 2;
+            type = 2;
+        }
+
+        public override void UseAttack(unit user, unit target)
+        {
+            target = user;
+            user.setSP(user.currentSP - cost);
+            int ran = Random.Range(0, 3);
+            if (ran == 0)
+            {
+                user.giveStatus("Hyperactive");
+            }
+            else if (ran == 1)
+            {
+                user.giveStatus("Confident");
+            }
+            else
+            {
+                user.giveStatus("Zealous");
+            }
+        }
+    }
+}
+
+namespace LucyAbilities
+{
+    public class FungalRat : Ability
+    {
+        public FungalRat()
+        {
+            name = "Fungal Rat";
+            desc1 = "Single target debuff attack\nCost = 4";
+            desc2 = "These rats have been bred to be the perfect host " +
+                "for a parasitic fungus, the result is unsightly and churns the stomach to look at.";
+            cost = 4;
+            target = 0;
+            position = 2;
+            statusEffect = "Aspirating";
+            damage = 0;
+            damageType = 3;
+        }
+    }
+
+    public class RodentialKindling : Ability
+    {
+        public RodentialKindling()
+        {
+            name = "Rodential Kindling";
+            desc1 = "Single target debuff attack\nCost = 6";
+            desc2 = "Lucy commands a breed of rat with particularly flammable " +
+                "skin oil and dry fur to pile onto a target and make them more flammable.";
+            cost = 6;
+            target = 0;
+            position = 2;
+            statusEffect = "Flammable";
+            damageType = 1;
+        }
+    }
+
+    public class FeedTheMasses : Ability
+    {
+        public FeedTheMasses()
+        {
+            name = "Feed the Masses";
+            desc1 = "A strong debuff attack\nCost = 8";
+            desc2 = "Lucy commands her “children” to feed on a " +
+                "target, their appetite is particularly voracious today.";
+            cost = 8;
+            target = 0;
+            position = 2;
+            statusEffect = "Consumed";
+        }
+    }
+
+    public class FrenziedInvasion : Ability
+    {
+        public FrenziedInvasion()
+        {
+            name = "Frenzied Invasion";
+            desc1 = "Moderate Multi-hit physical ATK on a single target";
+            desc2 = "With sheer numbers, it should be no issue to simply overrun your opponents. Good practice for the eventual rodent uprising.";
+            cost = 12;
+            damage = 8;
+            multiHitMin = 2;
+            multiHitMax = 6;
+        }
+    }
+
+    public class PropellorRat : Ability
+    {
+        public PropellorRat()
+        {
+            name = "Propellor Rat";
+            desc1 = "Moderate physical ATK with a small chance to multi-hit inflicts eye bleed";
+            desc2 = "Don’t worry this is a highly trained rat, totally a professional, don’t question why it’s crashing into its target.";
+            cost = 15;
+            damage = 12;
+            position = 2;
+            statusEffect = "Eye_Bleeding";
+            multiHitMin = 1;
+            multiHitMax = 3;
+        }
+    }
+
+    public class VirumRodentia : Ability
+    {
+        public VirumRodentia()
+        {
+            name = "Virum Rodentia";
+            desc1 = "Low damage ability that inflicts aspirating, diseased, and has a very low random chance to " +
+                "instantly kill a non-boss target that increases based on the target’s remaining health";
+            desc2 = "The culmination of Lucy’s work, after all these years, she’s finally come up with a plague that can wipe " +
+                "humanity off the face of the earth, she couldn’t have done it without you!";
+            cost = 18;
+            damage = 10;
+            position = 2;
+            statusEffect = "Aspirating Diseased";
+            chance2Die = 10;
+        }
+    }
+
+    public class ProtectMyChildren : Ability
+    {
+        public ProtectMyChildren()
+        {
+            name = "Protect My Children";
+            desc1 = "Shuffles Lucy to the frontlines gives zealous and neurotic " +
+                "(this ability will periodically happen without the player selecting it)";
+            desc2 = "They can never take my children!... NEVER!!!!!";
+            cost = 10;
+            type = 2;
+            swapper = 1;
+            selfStatus = "Zealous Neurotic";
+        }
+
+        public override void UseAttack(unit user, unit target)
+        {
+            target = user;
+            user.setSP(user.currentSP - cost);
+            user.giveStatus(selfStatus);
+        }
+    }
+}
+
+namespace TimAbilities
+{
+    public class MeatDog : Ability
+    {
+        public MeatDog()
+        {
+            name = "Meat Dog";
+            desc1 = "Moderate single target healing";
+            desc2 = "The Goodmeat brand Meatdog can revitalize any individual in need!";
+            cost = 6;
+            type = 1;
+        }
+        public override void UseAttack(unit user, unit target)
+        {
+            user.setSP(user.currentHP - cost);
+            target.healDamage(20);
+        }
+    }
+
+    public class BackyardBBQ : Ability
+    {
+        public BackyardBBQ()
+        {
+            name = "Backyard BBQ";
+            desc1 = "Weak AoE heal";
+            desc2 = "Tim produces a prepackaged Goodmeat children’s Backyard BBQ to share with his buddies on a difficult adventure!";
+            cost = 10;
+            type = 1;
+            target = 3;
+        }
+
+        public override void UseAttack(unit user, List<unit> targets)
+        {
+            user.setSP(user.currentSP - cost);
+            for (int i = 0; i < targets.Count; i++)
+            {
+                if (targets[i] != null)
+                {
+                    if (targets[i].currentHP > 0 && !targets[i].enemy)
+                    {
+                        targets[i].healDamage(12);
+                    }
+                }
+            }
+        }
+    }
+
+    public class GreaseTrap : Ability
+    {
+        public GreaseTrap()
+        {
+            name = "Grease Trap";
+            desc1 = "Inflicts flammable on two adjacent enemies";
+            desc2 = "Tim empties the tray of his portable, propane fueled, limited edition Goodmeat " +
+                "brand hotdog grill onto his enemies to inflict them with flammable!";
+            cost = 12;
+            target = 2;
+            statusEffect = "Flammable";
+        }
+    }
+
+    public class HeartyDinner : Ability
+    {
+        public HeartyDinner()
+        {
+            name = "Hearty Dinner";
+            desc1 = "Moderate AoE heal grants Chutzpah to allies";
+            desc2 = "Tim stops to create a well balanced meal of the 4 major food groups: sausages, " +
+                "vienna sausages, red meat, and white meat.  You are well filled after it’s consumption.";
+            cost = 20;
+            type = 1;
+            target = 3;
+            position = 2;
+            statusEffect = "Chutzpah";
+        }
+
+        public override void UseAttack(unit user, List<unit> targets)
+        {
+            user.setSP(user.currentSP - cost);
+            for (int i = 0; i < targets.Count; i++)
+            {
+                if (targets[i] != null)
+                {
+                    if (targets[i].currentHP > 0 && !targets[i].enemy)
+                    {
+                        targets[i].healDamage(20);
+                        targets[i].giveStatus(statusEffect);
+                    }
+                }
+            }
+        }
+    }
+
+    public class BigMeatTM : Ability
+    {
+        public BigMeatTM()
+        {
+            name = "BigMeat™";
+            desc1 = "Heals a single party member to full and has a chance to inflict vomiting or chutzpah";
+            desc2 = "Tim grills up a 72 oz steak dinner, which he refers to as ‘The BigMeat™’, but you know it’s " +
+                "typically called a Big Texan. You also know people have gotten real sick or even died eating this large of a meal";
+            cost = 20;
+            type = 1;
+            position = 2;
+        }
+
+        public override void UseAttack(unit user, unit target)
+        {
+            target.healDamage(target.maxHP);
+            int ran = UnityEngine.Random.Range(1, 101);
+            if (ran >= target.RES || ran == 1)
+            {
+                int uno = Random.Range(0, 2);
+                if (uno == 0) target.giveStatus("Vomiting");
+                else target.giveStatus("Chutzpah");
+            }
+        }
+    }
+
+    public class AllYouCanEat : Ability
+    {
+        public AllYouCanEat()
+        {
+            name = "All You Can Eat";
+            desc1 = "Heals everyone to max. Once per combat.";
+            desc2 = "After feeding you guys so much, it seems that you’ve earned enough credit for a free all you can eat buffet!  " +
+                "Tim fixes up the largest, and heartiest meal he can cook up and serves it to his good friends!";
+            cost = 25;
+            type = 1;
+            target = 3;
+        }
+
+        public override void UseAttack(unit user, List<unit> targets)
+        {
+            user.setSP(user.currentSP - cost);
+            for (int i = 0; i < targets.Count; i++)
+            {
+                if (targets[i] != null)
+                {
+                    if (targets[i].currentHP > 0 && !targets[i].enemy)
+                    {
+                        targets[i].healDamage(targets[i].maxHP);
+                    }
+                }
+            }
+            canUse = -1;
+
+        }
+    }
+
+    public class MysteryMeat : Ability
+    {
+        public MysteryMeat()
+        {
+            name = "Mystery Meat";
+            desc1 = "Inflicts aspirating and eye bleed on an enemy. Inflicts vomiting and weeping on self.";
+            desc2 = "You don’t know what it is, but Tim is failing to serve it without gagging.";
+            cost = 14;
+            type = 0;
+            position = 1;
+            statusEffect = "Aspirating Eye_Bleeding";
+            selfStatus = "Vomiting Weeping";
+        }
+    }
+}
+
+namespace WhiteKnightAbilities
+{
+
+}
+
+namespace OliverSproutAbilities
+{
+
+}
+
+namespace EmberMoonAbilities
+{
+
 }
