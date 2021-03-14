@@ -16,7 +16,7 @@ public class unit
 
         abilities = new List<Ability>();
         statuses = new List<int>();
-        for (int i = 0; i < 17; i++)
+        for (int i = 0; i < 25; i++)
         {
             statuses.Add(-1);
         }
@@ -42,6 +42,10 @@ public class unit
         statusIndex.Add("Conductive");      //18
         statusIndex.Add("Reactive");        //19
         statusIndex.Add("Zonked");          //20
+        statusIndex.Add("Chutzpah");        //21
+        statusIndex.Add("Lethargic");       //22
+        statusIndex.Add("Madness");         //23
+        statusIndex.Add("Doomed");          //24
     }
     //Copy the numerical statistics of a unit
     public void copyUnitStats(unit ver)
@@ -625,6 +629,8 @@ public class unit
                     val -= (int)(val * valD);
                     valS -= (int)(valS * valD);
                 }
+                Debug.Log("Got past damage stuff");
+                Debug.Log("Sttatus size == " + statuses.Count);
                 //Check if target is weak or resistant to a certain damage type
                 if (target.weaknesses[ata.damageType] == true)
                 {
@@ -652,6 +658,7 @@ public class unit
                 {
                     critBuff += 15;
                 }
+                Debug.Log("Gt past status stuff");
                 //Check if the unit gets a crit
                 int crit = UnityEngine.Random.Range(1, 101);
                 if (crit < (LCK / 3) + critBuff)

@@ -1458,6 +1458,75 @@ namespace LucyAbilities
             statusEffect = "Consumed";
         }
     }
+
+    public class FrenziedInvasion : Ability
+    {
+        public FrenziedInvasion()
+        {
+            name = "Frenzied Invasion";
+            desc1 = "Moderate Multi-hit physical ATK on a single target";
+            desc2 = "With sheer numbers, it should be no issue to simply overrun your opponents. Good practice for the eventual rodent uprising.";
+            cost = 12;
+            damage = 8;
+            multiHitMin = 2;
+            multiHitMax = 6;
+        }
+    }
+
+    public class PropellorRat : Ability
+    {
+        public PropellorRat()
+        {
+            name = "Propellor Rat";
+            desc1 = "Moderate physical ATK with a small chance to multi-hit inflicts eye bleed";
+            desc2 = "Don’t worry this is a highly trained rat, totally a professional, don’t question why it’s crashing into its target.";
+            cost = 15;
+            damage = 12;
+            position = 2;
+            statusEffect = "Eye Bleed";
+            multiHitMin = 1;
+            multiHitMax = 3;
+        }
+    }
+
+    public class VirumRodentia : Ability
+    {
+        public VirumRodentia()
+        {
+            name = "Virum Rodentia";
+            desc1 = "Low damage ability that inflicts aspirating, diseased, and has a very low random chance to " +
+                "instantly kill a non-boss target that increases based on the target’s remaining health";
+            desc2 = "The culmination of Lucy’s work, after all these years, she’s finally come up with a plague that can wipe " +
+                "humanity off the face of the earth, she couldn’t have done it without you!";
+            cost = 18;
+            damage = 10;
+            position = 2;
+            statusEffect = "Aspirating Diseased";
+            chance2Die = 10;
+        }
+    }
+
+    public class ProtectMyChildren : Ability
+    {
+        public ProtectMyChildren()
+        {
+            name = "Protect My Children";
+            desc1 = "Shuffles Lucy to the frontlines gives zealous and neurotic " +
+                "(this ability will periodically happen without the player selecting it)";
+            desc2 = "They can never take my children!... NEVER!!!!!";
+            cost = 10;
+            type = 2;
+            swapper = 1;
+            selfStatus = "Zealous Neurotic";
+        }
+
+        public override void UseAttack(unit user, unit target)
+        {
+            target = user;
+            user.setSP(user.currentSP - cost);
+            user.giveStatus(selfStatus);
+        }
+    }
 }
 
 namespace NormAbilities
@@ -1641,6 +1710,81 @@ namespace RalphAbilities
             damageType = 2;
             position = 1;
             statusEffect = "Restrained";
+        }
+    }
+
+    public class OopsCoffeeSpilled : Ability
+    {
+        public OopsCoffeeSpilled()
+        {
+            name = "Oops, Coffee Spilled";
+            desc1 = "Low chemical ATK, inflicts spasms";
+            desc2 = "Ah nuts, I was looking forward to that...Welp, have fun with caffeine in the eyes";
+            cost = 10;
+            damage = 10;
+            damageType = 3;
+            statusEffect = "Spasms";
+        }
+    }
+
+    public class LetLooseTheDonuts : Ability
+    {
+        public LetLooseTheDonuts()
+        {
+            name = "Let Loose the Donuts";
+            desc1 = "AOE moderate weird ATK, inflicts weeping on self";
+            desc2 = "Hey Guys, guess who brought --- *trips* --- NOOO, NOT THE DONUTS!!";
+            cost = 14;
+            damage = 15;
+            damageType = 4;
+            target = 3;
+            selfStatus = "Weeping";
+        }
+    }
+
+    public class Gun : Ability
+    {
+        public Gun()
+        {
+            name = "Gun";
+            desc1 = "High Physical Attack";
+            desc2 = "For his final ability, he wields a gun (Authorized for use this time, I swear!)";
+            cost = 17;
+            position = 2;
+            damage = 30;
+        }
+    }
+
+    public class EvidenceSchmevidence : Ability
+    {
+        public EvidenceSchmevidence()
+        {
+            name = "Evidence Schmevidence";
+            desc1 = "Use confiscated substances to buff self with Hyperactive, Confident, or Zealous.";
+            desc2 = "Ralph finally snapped, and has taken the law into his own hands to exact his vengeance on all who wronged him. " +
+                "Good luck to whoever has to bring him in.";
+            cost = 10;
+            position = 2;
+            type = 2;
+        }
+
+        public override void UseAttack(unit user, unit target)
+        {
+            target = user;
+            user.setSP(user.currentSP - cost);
+            int ran = Random.Range(0, 3);
+            if (ran == 0)
+            {
+                user.giveStatus("Hyperactive");
+            }
+            else if (ran == 1)
+            {
+                user.giveStatus("Confident");
+            }
+            else
+            {
+                user.giveStatus("Zealous");
+            }
         }
     }
 }
