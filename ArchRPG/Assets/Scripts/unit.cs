@@ -163,6 +163,10 @@ public class unit
     //Whether damage was reduced in attack
     public bool reduced = false;
 
+    public int aggro = 0;
+
+    public string aggroTarget = "";
+
 
     public Sprite[] sprites;        //Array of sprites (for attack animations)
     public string ImageFilePath;    //Use to determine what image to display for the unit
@@ -726,6 +730,11 @@ public class unit
                                 target.giveStatus(ata.statusEffect);
                             }
                         }
+                        if (ata.doAggro)
+                        {
+                            target.aggroTarget = unitName;
+                            target.aggro = UnityEngine.Random.Range(1, 5);
+                        }
                     }
                     return d;
                 }
@@ -1196,6 +1205,8 @@ public class unit
         {
             if (abilities[i].statCounter > 0) abilities[i].statCounter -= 1;
         }
+        if (aggro > 0) aggro -= 1;
+        if (aggro == 0) aggroTarget = "";
     }
 
     //Flash red in response to damage
@@ -1793,6 +1804,18 @@ public class PlayerUnit : unit
         if (level >= 7)
         {
             abilities.Add(new PlayerAbilities.Analysis());
+        }
+        if (level >= 11)
+        {
+            abilities.Add(new PlayerAbilities.ManicRant());
+        }
+        if (level >= 15)
+        {
+            abilities.Add(new PlayerAbilities.IncoherentRamblings());
+        }
+        if (level >= 20)
+        {
+            abilities.Add(new PlayerAbilities.CharismaticFervor());
         }
     }
 }
