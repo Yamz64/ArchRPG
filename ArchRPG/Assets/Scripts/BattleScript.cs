@@ -2475,8 +2475,12 @@ public class BattleScript : MonoBehaviour
                             for (int c = 0; c < enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[d].priority; c++)
                             {
                                 probos.Add(d);
+                                Debug.Log("Ability added === " + enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[d].name);
                             }
                         }
+                        Debug.Log("R == " + r);
+                        x = probos[Random.Range(0, probos.Count)];
+                        Debug.Log("x == " + x + ", ability == " + enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].name);
                         //Select the appropriate ability based on enemy position
                         if (r == 0 || r == 1)
                         {
@@ -2486,6 +2490,7 @@ public class BattleScript : MonoBehaviour
                                 enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].type != 0)
                             {
                                 x = probos[Random.Range(0, probos.Count)];
+                                Debug.Log("x == " + x + ", ability == " + enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].name);
                             }
                         }
                         else if (r == 2 || r == 3)
@@ -2495,6 +2500,7 @@ public class BattleScript : MonoBehaviour
                                 enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].type != 0)
                             {
                                 x = probos[Random.Range(0, probos.Count)];
+                                Debug.Log("x == " + x + ", ability == " + enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].name);
                             }
                         }
 
@@ -3219,6 +3225,14 @@ public class BattleScript : MonoBehaviour
                 else if (loader.names[i] == "Lucy" && !loader.dead[i])
                 {
                     p = new LucyUnit(loader.levels[i]);
+                }
+                else if (loader.names[i] == "Tim" && !loader.dead[i])
+                {
+                    p = new TimUnit(loader.levels[i]);
+                }
+                else if (loader.names[i] == "White Knight" && !loader.dead[i])
+                {
+                    p = new WhiteKnightUnit(loader.levels[i]);
                 }
                 else if (loader.names[i] == "Eldritch" || loader.dead[i])
                 {

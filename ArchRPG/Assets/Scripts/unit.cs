@@ -633,8 +633,11 @@ public class unit
                     val -= (int)(val * valD);
                     valS -= (int)(valS * valD);
                 }
-                Debug.Log("Got past damage stuff");
-                Debug.Log("Sttatus size == " + statuses.Count);
+                //Debug.Log("Got past damage stuff");
+                //Debug.Log("Unit name == " + unitName);
+                //Debug.Log("Sttatus size == " + statuses.Count);
+                //Debug.Log("Target name == " + target.unitName);
+                //Debug.Log("TargetSttatus size == " + target.statuses.Count);
                 //Check if target is weak or resistant to a certain damage type
                 if (target.weaknesses[ata.damageType] == true)
                 {
@@ -644,6 +647,7 @@ public class unit
                 {
                     val = (int)(val * 0.5);
                 }
+                //Debug.Log("Got past types");
                     
                 //If flammable + fire damage
                 if (target.statuses[11] != -1 && ata.damageType == 1)
@@ -652,20 +656,20 @@ public class unit
                 }
 
                 //If conductive
-                if (target.statuses[18] != -1 && ata.damage == 2)
+                if (target.statuses[18] != -1 && ata.damageType == 2)
                 {
                 }
-
                 int critBuff = ata.alteredCrit;
                 //If target has analyzed
                 if (target.statuses[14] != -1)
                 {
                     critBuff += 15;
                 }
-                Debug.Log("Gt past status stuff");
+                //Debug.Log("Ability name == " + ata.name);
+                //Debug.Log("Gt past status stuff");
                 //Check if the unit gets a crit
                 int crit = UnityEngine.Random.Range(1, 101);
-                if (crit < (LCK / 3) + critBuff)
+                if (crit < ((LCK / 3) + critBuff))
                 {
                     val += (val / 2);
                     critted = true;
@@ -1539,6 +1543,18 @@ public class PlayerUnit : unit
         {
             abilities.Add(new PlayerAbilities.Analysis());
         }
+        if (level >= 11)
+        {
+            abilities.Add(new PlayerAbilities.ManicRant());
+        }
+        if (level >= 15)
+        {
+            abilities.Add(new PlayerAbilities.IncoherentRamblings());
+        }
+        if (level >= 20)
+        {
+            abilities.Add(new PlayerAbilities.CharismaticFervor());
+        }
     }
 
     public override void updateUnit(int levl = 1)
@@ -2092,6 +2108,18 @@ public class ClyveUnit : unit
         {
             abilities.Add(new ClyveAbilities.Halitosis());
         }
+        if (level >= 10)
+        {
+            abilities.Add(new ClyveAbilities.FootFungus());
+        }
+        if (level >= 14)
+        {
+            abilities.Add(new ClyveAbilities.SmellOfDeath());
+        }
+        if (level >= 20)
+        {
+            abilities.Add(new ClyveAbilities.InfernalShower());
+        }
     }
 
     public override void updateUnit(int levl = 1)
@@ -2357,6 +2385,18 @@ public class ClyveUnit : unit
         if (level >= 6)
         {
             abilities.Add(new ClyveAbilities.Halitosis());
+        }
+        if (level >= 10)
+        {
+            abilities.Add(new ClyveAbilities.FootFungus());
+        }
+        if (level >= 14)
+        {
+            abilities.Add(new ClyveAbilities.SmellOfDeath());
+        }
+        if (level >= 20)
+        {
+            abilities.Add(new ClyveAbilities.InfernalShower());
         }
     }
 }
@@ -2632,6 +2672,18 @@ public class JimUnit : unit
         {
             abilities.Add(new JimAbilities.UncannyRemedy());
         }
+        if (level >= 9)
+        {
+            abilities.Add(new JimAbilities.TelekineticProwess());
+        }
+        if (level >= 16)
+        {
+            abilities.Add(new JimAbilities.MagicAttunement());
+        }
+        if (level >= 20)
+        {
+            abilities.Add(new JimAbilities.MagicalInspiration());
+        }
     }
 
     public override void updateUnit(int levl = 1)
@@ -2897,6 +2949,18 @@ public class JimUnit : unit
         if (level >= 6)
         {
             abilities.Add(new JimAbilities.UncannyRemedy());
+        }
+        if (level >= 9)
+        {
+            abilities.Add(new JimAbilities.TelekineticProwess());
+        }
+        if (level >= 16)
+        {
+            abilities.Add(new JimAbilities.MagicAttunement());
+        }
+        if (level >= 20)
+        {
+            abilities.Add(new JimAbilities.MagicalInspiration());
         }
     }
 }
@@ -3171,6 +3235,18 @@ public class NormUnit : unit
         {
             abilities.Add(new NormAbilities.PrimatePowerbomb());
         }
+        if (level >= 12)
+        {
+            abilities.Add(new NormAbilities.ApeArmbar());
+        }
+        if (level >= 16)
+        {
+            abilities.Add(new NormAbilities.OrangutanRage());
+        }
+        if (level >= 20)
+        {
+            abilities.Add(new NormAbilities.ChimpChop());
+        }
     }
 
     public override void updateUnit(int levl = 1)
@@ -3436,6 +3512,18 @@ public class NormUnit : unit
         if (level >= 8)
         {
             abilities.Add(new NormAbilities.PrimatePowerbomb());
+        }
+        if (level >= 12)
+        {
+            abilities.Add(new NormAbilities.ApeArmbar());
+        }
+        if (level >= 16)
+        {
+            abilities.Add(new NormAbilities.OrangutanRage());
+        }
+        if (level >= 20)
+        {
+            abilities.Add(new NormAbilities.ChimpChop());
         }
     }
 }
@@ -3710,6 +3798,18 @@ public class ShirleyUnit : unit
         {
             abilities.Add(new ShirleyAbilities.BugleCall());
         }
+        if (level >= 12)
+        {
+            abilities.Add(new ShirleyAbilities.StrategicPlanning());
+        }
+        if (level >= 16)
+        {
+            abilities.Add(new ShirleyAbilities.ShotgunBlast());
+        }
+        if (level >= 20)
+        {
+            abilities.Add(new ShirleyAbilities.SuppressingFire());
+        }
     }
 
     public override void updateUnit(int levl = 1)
@@ -3975,6 +4075,18 @@ public class ShirleyUnit : unit
         if (level >= 6)
         {
             abilities.Add(new ShirleyAbilities.BugleCall());
+        }
+        if (level >= 12)
+        {
+            abilities.Add(new ShirleyAbilities.StrategicPlanning());
+        }
+        if (level >= 16)
+        {
+            abilities.Add(new ShirleyAbilities.ShotgunBlast());
+        }
+        if (level >= 20)
+        {
+            abilities.Add(new ShirleyAbilities.SuppressingFire());
         }
     }
 }
@@ -4251,6 +4363,18 @@ public class RalphUnit : unit
         {
             abilities.Add(new RalphAbilities.Taser());
         }
+        if (level >= 10)
+        {
+            abilities.Add(new RalphAbilities.OopsCoffeeSpilled());
+        }
+        if (level >= 15)
+        {
+            abilities.Add(new RalphAbilities.LetLooseTheDonuts());
+        }
+        if (level >= 20)
+        {
+            abilities.Add(new RalphAbilities.Gun());
+        }
     }
 
     public override void updateUnit(int levl = 1)
@@ -4516,6 +4640,18 @@ public class RalphUnit : unit
         if (level >= 6)
         {
             abilities.Add(new RalphAbilities.Taser());
+        }
+        if (level >= 10)
+        {
+            abilities.Add(new RalphAbilities.OopsCoffeeSpilled());
+        }
+        if (level >= 15)
+        {
+            abilities.Add(new RalphAbilities.LetLooseTheDonuts());
+        }
+        if (level >= 20)
+        {
+            abilities.Add(new RalphAbilities.Gun());
         }
     }
 }
@@ -4792,6 +4928,18 @@ public class LucyUnit : unit
         {
             abilities.Add(new LucyAbilities.FeedTheMasses());
         }
+        if (level >= 12)
+        {
+            abilities.Add(new LucyAbilities.FrenziedInvasion());
+        }
+        if (level >= 17)
+        {
+            abilities.Add(new LucyAbilities.PropellorRat());
+        }
+        if (level >= 20)
+        {
+            abilities.Add(new LucyAbilities.VirumRodentia());
+        }
     }
 
     public override void updateUnit(int levl = 1)
@@ -5058,6 +5206,18 @@ public class LucyUnit : unit
         {
             abilities.Add(new LucyAbilities.FeedTheMasses());
         }
+        if (level >= 12)
+        {
+            abilities.Add(new LucyAbilities.FrenziedInvasion());
+        }
+        if (level >= 17)
+        {
+            abilities.Add(new LucyAbilities.PropellorRat());
+        }
+        if (level >= 20)
+        {
+            abilities.Add(new LucyAbilities.VirumRodentia());
+        }
     }
 }
 
@@ -5323,15 +5483,27 @@ public class TimUnit : unit
 
         if (level >= 1)
         {
-
+            abilities.Add(new TimAbilities.MeatDog());
         }
         if (level >= 5)
         {
-
+            abilities.Add(new TimAbilities.BackyardBBQ());
         }
         if (level >= 8)
         {
-
+            abilities.Add(new TimAbilities.GreaseTrap());
+        }
+        if (level >= 14)
+        {
+            abilities.Add(new TimAbilities.HeartyDinner());
+        }
+        if (level >= 18)
+        {
+            abilities.Add(new TimAbilities.BigMeatTM());
+        }
+        if (level >= 20)
+        {
+            abilities.Add(new TimAbilities.AllYouCanEat());
         }
     }
 
@@ -5589,15 +5761,27 @@ public class TimUnit : unit
 
         if (level >= 1)
         {
-
+            abilities.Add(new TimAbilities.MeatDog());
         }
         if (level >= 5)
         {
-
+            abilities.Add(new TimAbilities.BackyardBBQ());
         }
         if (level >= 8)
         {
-
+            abilities.Add(new TimAbilities.GreaseTrap());
+        }
+        if (level >= 14)
+        {
+            abilities.Add(new TimAbilities.HeartyDinner());
+        }
+        if (level >= 18)
+        {
+            abilities.Add(new TimAbilities.BigMeatTM());
+        }
+        if (level >= 20)
+        {
+            abilities.Add(new TimAbilities.AllYouCanEat());
         }
     }
 }
@@ -5866,15 +6050,27 @@ public class WhiteKnightUnit : unit
 
         if (level >= 1)
         {
-
+            abilities.Add(new WhiteKnightAbilities.IRespectTheOppressed());
         }
         if (level >= 5)
         {
-
+            abilities.Add(new WhiteKnightAbilities.KamiNoSumaito());
         }
-        if (level >= 8)
+        if (level >= 7)
         {
-
+            abilities.Add(new WhiteKnightAbilities.DefendTheWeak());
+        }
+        if (level >= 12)
+        {
+            abilities.Add(new WhiteKnightAbilities.PreachGodsWord());
+        }
+        if (level >= 18)
+        {
+            abilities.Add(new WhiteKnightAbilities.HolyHandGrenade());
+        }
+        if (level >= 20)
+        {
+            abilities.Add(new WhiteKnightAbilities.DeusVultusMaximus());
         }
     }
 
@@ -6132,15 +6328,27 @@ public class WhiteKnightUnit : unit
 
         if (level >= 1)
         {
-            abilities.Add(new LucyAbilities.FungalRat());
+            abilities.Add(new WhiteKnightAbilities.IRespectTheOppressed());
         }
         if (level >= 5)
         {
-            abilities.Add(new LucyAbilities.RodentialKindling());
+            abilities.Add(new WhiteKnightAbilities.KamiNoSumaito());
         }
-        if (level >= 8)
+        if (level >= 7)
         {
-            abilities.Add(new LucyAbilities.FeedTheMasses());
+            abilities.Add(new WhiteKnightAbilities.DefendTheWeak());
+        }
+        if (level >= 12)
+        {
+            abilities.Add(new WhiteKnightAbilities.PreachGodsWord());
+        }
+        if (level >= 18)
+        {
+            abilities.Add(new WhiteKnightAbilities.HolyHandGrenade());
+        }
+        if (level >= 20)
+        {
+            abilities.Add(new WhiteKnightAbilities.DeusVultusMaximus());
         }
     }
 }
@@ -7426,9 +7634,6 @@ public class Vermin : unit
         weaknesses[1] = true;
         level = 6;
         maxHP = currentHP = 35;
-        expGain = 60;
-        enemy = true;
-        capital = 4;
 
         //Currently uses Locker stats
         ATK = 40;
@@ -7438,6 +7643,10 @@ public class Vermin : unit
         RES = 6;
         AGI = 5;
         LCK = 2;
+
+        expGain = 60;
+        enemy = true;
+        capital = 4;
 
         abilities = new List<Ability>();
         abilities.Add(new EnemyAbilities.CritterCrunch());

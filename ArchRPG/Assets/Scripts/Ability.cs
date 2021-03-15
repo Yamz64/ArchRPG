@@ -57,13 +57,13 @@ public class Ability
     public bool eldritch = false;   //Whether the ability is eldritch or not
     public int target = 0;          //0-Single, 1-Across, 2-2 Adjacent enemies, 3-All
     public int enemyTarget = 0;     //Targets for the ability: 0-Any, 1-Front, 2-Back, 3-Self
-    public string name;             //The name of the ability
-    public int type;                //int denotes who to use ability on --> 0 == enemy, 1 == ally, 2 == self
+    public string name = "";        //The name of the ability
+    public int type = 0;            //int denotes who to use ability on --> 0 == enemy, 1 == ally, 2 == self
     public int position = 0;        //int denotes the place the ability can be used 0 = front and backline, 1 = frontline, 2 = backline
     public int swapper;             //If ability should swap units: 0-no, 1-yes, pull forward, 2-yes, push backwards
     public int cost = 0;            //int denotes the cost of using the ability (if any)
-    public int damage;              //int denotes the amount of damage the attack will do
-    public int sanity_damage;       //int denotes the amount of sanity damage the attack will do
+    public int damage = 0;          //int denotes the amount of damage the attack will do
+    public int sanity_damage = 0;   //int denotes the amount of sanity damage the attack will do
     //--MISC STATS--
     /* DAMAGE TYPES
      * 0 - Physical
@@ -73,19 +73,19 @@ public class Ability
      * 4 - Weird
     */
     public string statusEffect = "";        //String that matches a specific status effect to inflict
-    public string selfStatus = "";
-    public int damageType;                  //The type of damage dealt by the attack
-    public int level_cost;                  //cost to purchase this ability on levelup (only applies to eldritch abilities)
+    public string selfStatus = "";          //String that tells which status effectst he unit should od on itself
+    public int damageType = 0;              //The type of damage dealt by the attack
+    public int level_cost = 1;              //cost to purchase this ability on levelup (only applies to eldritch abilities)
     public string image_file_path = "";     //Give path to image that goes with attack
-    public string desc1;                    //Give info on attack name, cost, and basic details
-    public string desc2;                    //Give actual description and more details (damage type, targets, etc.)
+    public string desc1 = "";               //Give info on attack name, cost, and basic details
+    public string desc2 = "";               //Give actual description and more details (damage type, targets, etc.)
     public bool fast = false;               //if this is applied to the ability then it behaves as if the user had double speed
     public bool use_pow = false;            //if applied to the ability then the attack uses pow to scale the damage rather than atk
     public int moneySteal = 0;              //Amount of money the ability should steal (enemy only)
     public int priority = 0;                //The chance of an enemy using a move
     public int defaultPriority = 0;         //Default priority value
     public int nextPriority = 0;            //Priority value to change to under certain circumstances
-    public int statCounter;                 //If != 0, how long until the move can not be used for
+    public int statCounter = 0;             //If != 0, how long until the move can not be used for
     public string bigStatus = "";           //A status effect that an ability will do extra with
     public int alteredStatus = 0;           //Int to add to chance of a status effect
     public int alteredCrit = 0;             //Int to add to chance of getting a critical hit
@@ -772,8 +772,10 @@ namespace EnemyAbilities
         public CritterCrunch()
         {
             name = "Critter Crunch";
+            cost = 0;
             priority = defaultPriority = 4;
             damage = 5;
+            damageType = 0;
             alteredCrit = 10;
         }
     }
