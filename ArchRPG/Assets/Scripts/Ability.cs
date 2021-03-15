@@ -92,8 +92,11 @@ public class Ability
     public int multiHitMin = 0;             //Minimum number of hits for a multiHit attack
     public int multiHitMax = 0;             //Maximum number of hits for a multiHit attack
     public int chance2Die = 0;              //Chances of an instant kill
-    public int customAbility = 0;           //Use to check whether an ability has a custom function to use (0 - no, 1 - yes, single target, 2 - yes, multiple)
+    public int customAbility = 0;           //Use to check whether an ability has a custom function to use 
+    //(0 - no, 1 - yes, single target, 2 - all units, 3 - target (enemy) and 2 adjacent enemies)
     public int canUse = 0;
+    public bool doAggro = false;
+    public bool randoDamage = false;
 
 
     public List<string> statIndex;          //List of status effects that can be given
@@ -1416,7 +1419,7 @@ namespace JimAbilities
             type = 0;
             damage = 15;
             damageType = 4;
-            customAbility = 1;
+            selfStatus = "Vomiting Aspirating Weeping";
         }
     }
 }
@@ -1636,6 +1639,7 @@ namespace ShirleyAbilities
             desc2 = "You’re not sure if they used shotguns in the civil war but Shirley sure as hell seems like she knows how to use one.";
             cost = 11;
             position = 2;
+            use_pow = true;
             target = 2;
             damage = 20;
             damageType = 1;
@@ -1653,6 +1657,7 @@ namespace ShirleyAbilities
                 "they’d told you that you’d learn to fire a bolt action rifle so fast that your enemies don’t get a chance to stand up.";
             cost = 15;
             position = 2;
+            use_pow = true;
             damage = 30;
             damageType = 1;
             statusEffect = "Restrained";
@@ -2101,7 +2106,174 @@ namespace TimAbilities
 
 namespace WhiteKnightAbilities
 {
+    public class IRespectTheOppressed : Ability
+    {
+        public IRespectTheOppressed()
+        {
+            name = "I Respect the Oppressed";
+            desc1 = "Aggroes the target to White Knight";
+            desc2 = "White knight lets off a long obnoxious monologue defending an indeterminate protected class. " +
+                "The monsters’ combined descimination is momentarily converted into pure annoyance towards White Knight.";
+            cost = 7;
+            type = 0;
+            position = 1;
+            doAggro = true;
+        }
+    }
 
+    public class KamiNoSumaito : Ability
+    {
+        public KamiNoSumaito()
+        {
+            name = "Kami No Sumaito!";
+            desc1 = "Deals moderate POW scaling electric damage on a single target";
+            desc2 = "White Knight summons the power of God and anime in raising his bokken to the sky. " +
+                "A lightning bolt comes down and charges his weapon with electricity powering up his strike!";
+            cost = 10;
+            damage = 12;
+            damageType = 2;
+            position = 1;
+            use_pow = true;
+        }
+    }
+
+    public class DefendTheWeak : Ability
+    {
+        public DefendTheWeak()
+        {
+            name = "Defend the Weak!";
+            desc1 = "Buffs the whole party with neurotic, inflicts Zealous on White Knight";
+            desc2 = "As a paladin of the crusade I must defend the weak!’ White Knight yells as he jumps in front of his allies, " +
+                "you feel protected, albeit a little self conscious about your bicep size.";
+            cost = 14;
+            type = 1;
+            target = 3;
+            position = 1;
+        }
+
+        public override void UseAttack(unit user, List<unit> targets)
+        {
+            user.setSP(user.currentSP - cost);
+            for (int i = 0; i < targets.Count; i++)
+            {
+                if (targets[i] != null)
+                {
+                    if (targets[i].currentHP > 0 && !targets[i].enemy)
+                    {
+                        if (targets[i].unitName.Equals(user.unitName))
+                        {
+                            targets[i].giveStatus("Zealous");
+                        }
+                        else
+                        {
+                            targets[i].giveStatus("Neurotic");
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public class PreachGodsWord : Ability
+    {
+        public PreachGodsWord()
+        {
+            name = "Preach God's Word";
+            desc1 = "Causes all enemy units to aggro to White Knight";
+            desc2 = "This may be the word of God, but it’s Heresy to any American’s ears!  White Knight " +
+                "reads wise words from Kawaī Neko No On'nanoko to the enemy Pagans. Get that Jap cartoon shit out of here!";
+            cost = 16;
+            type = 0;
+            target = 3;
+            doAggro = true;
+        }
+    }
+
+    public class HolyHandGrenade : Ability
+    {
+        public HolyHandGrenade()
+        {
+            name = "Holy Hand Grenade";
+            desc1 = "Deals moderate fire POW damage to a target and a fraction in fire damage to adjacent targets";
+            desc2 = "Ah yes, the Holy Hand Grenade of Antioch, the God bomb, one of the oldest relics known to all Christendom, " +
+                "and you decided to use it on that? Well then I better ask God for forgiveness… and another grenade...";
+            cost = 18;
+            position = 2;
+            damage = 18;
+            damageType = 1;
+            target = 3;
+            use_pow = true;
+            customAbility = 3;
+        }
+
+        public override void UseAttack(unit user, List<unit> targets)
+        {
+            for (int i = 0; i < targets.Count; i++)
+            {
+                if (targets[i] != null)
+                {
+                    if (i == 0 || i == 2)
+                    {
+                        int val = user.takeDamageCalc(targets[i], damage / 2, damageType, true);
+                        targets[i].takeDamage(val);
+                    }
+                    else
+                    {
+                        int val = user.takeDamageCalc(targets[i], damage, damageType, true);
+                        targets[i].takeDamage(val);
+                    }
+                }
+            }
+        }
+    }
+
+    public class DeusVultusMaximus : Ability
+    {
+        public DeusVultusMaximus()
+        {
+            name = "Deus Vultus Maximus";
+            desc1 = "Buffs everyone with Confident and Inspired, heals a small amount of san on self";
+            desc2 = "White Knight is now a seasoned warrior of God and the Internet.  He decides to take every " +
+                "last one of his companions as his squires. You’re honored?";
+            cost = 25;
+            type = 1;
+            target = 3;
+            statusEffect = "Confident Inspired";
+        }
+
+        public override void UseAttack(unit user, List<unit> targets)
+        {
+            user.setSP(user.currentSP - cost);
+            for (int i = 0; i < targets.Count; i++)
+            {
+                if (targets[i] != null)
+                {
+                    if (targets[i].currentHP > 0 && !targets[i].enemy)
+                    {
+                        targets[i].giveStatus(statusEffect);
+                        if (targets[i].unitName.Equals(user.unitName))
+                        {
+                            targets[i].setSAN(targets[i].sanity + 5);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public class HereticalCharge : Ability
+    {
+        public HereticalCharge()
+        {
+            name = "Heretical Charge";
+            desc1 = "White Knight randomly attacks one of the onscreen enemies for random damage low to high";
+            desc2 = "Damn these heretics! Why would God have me protect those that will never follow his teachings? " +
+                "Is he wrong? Have all my ventures in the internet… been for nought?";
+            cost = 10;
+            type = 0;
+            //Will need to implement random damage and targetting
+        }
+    }
 }
 
 namespace OliverSproutAbilities

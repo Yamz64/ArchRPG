@@ -2437,6 +2437,17 @@ public class BattleScript : MonoBehaviour
                             {
                                 tochoos.Add(f);
                             }
+                            if (partyUnits[f] != null)
+                            {
+                                if (partyUnits[f].GetComponent<UnitMono>().mainUnit.currentHP > 0 &&
+                                    enemyUnits[i].GetComponent<UnitMono>().mainUnit.aggroTarget.Equals(partyUnits[f].GetComponent<UnitMono>().mainUnit.unitName))
+                                {
+                                    for (int g = 0; g < 10; g++)
+                                    {
+                                        tochoos.Add(f);
+                                    }
+                                }
+                            }
                         }
                         int r = tochoos[Random.Range(0, tochoos.Count)];
                         while (partyUnits[r] == null)
@@ -3915,81 +3926,121 @@ public class BattleScript : MonoBehaviour
             }
         }
         //If offensive ability with custom function to use
-        else if (uni.abilities[ata].type == 0)
+        else if (uni.abilities[ata].type == 0 && uni.abilities[ata].customAbility != 0)
         {
-            List<bool> priors = new List<bool>();
-            List<unit> actors = new List<unit>();
-            for (int x = 0; x < partyUnits.Count; x++)
+            if (uni.abilities[ata].customAbility == 2)
             {
-                if (partyUnits[x] != null)
+                List<bool> priors = new List<bool>();
+                List<unit> actors = new List<unit>();
+
+                for (int x = 0; x < partyUnits.Count; x++)
                 {
-                    actors.Add(partyUnits[x].GetComponent<UnitMono>().mainUnit);
-                    if (partyUnits[x].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                    if (partyUnits[x] != null)
                     {
-                        priors.Add(false);
-                    }
-                    else
-                    {
-                        priors.Add(true);
-                    }
-                }
-                else
-                {
-                    priors.Add(false);
-                    actors.Add(null);
-                }
-            }
-            for (int x = 0; x < enemyUnits.Count; x++)
-            {
-                if (enemyUnits[x] != null)
-                {
-                    if (enemyUnits[x].GetComponent<UnitMono>().mainUnit.currentHP > 0)
-                    {
-                        actors.Add(enemyUnits[x].GetComponent<UnitMono>().mainUnit);
-                        priors.Add(false);
-                    }
-                    else
-                    {
-                        priors.Add(true);
-                    }
-                }
-                else
-                {
-                    priors.Add(false);
-                    actors.Add(null);
-                }
-            }
-            uni.abilities[ata].UseAttack(uni, actors);
-            for (int x = 0; x < priors.Count; x++)
-            {
-                if (actors[x] != null)
-                {
-                    if (x < 4)
-                    {
-                        if (partyUnits[x].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && !priors[x])
+                        actors.Add(partyUnits[x].GetComponent<UnitMono>().mainUnit);
+                        if (partyUnits[x].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                         {
-                            partyDeaths++;
-                            yield return unitDeath(partyUnits[x].GetComponent<UnitMono>().mainUnit);
-                            if (partyDeaths == partyUnits.Count)
-                            {
-                                state = battleState.LOSE;
-                                yield return battleEnd();
-                            }
+                            priors.Add(false);
+                        }
+                        else
+                        {
+                            priors.Add(true);
                         }
                     }
                     else
                     {
-                        if (enemyUnits[x].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && !priors[x])
+                        priors.Add(false);
+                        actors.Add(null);
+                    }
+                }
+                for (int x = 0; x < enemyUnits.Count; x++)
+                {
+                    if (enemyUnits[x] != null)
+                    {
+                        if (enemyUnits[x].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                        {
+                            actors.Add(enemyUnits[x].GetComponent<UnitMono>().mainUnit);
+                            priors.Add(false);
+                        }
+                        else
+                        {
+                            priors.Add(true);
+                        }
+                    }
+                    else
+                    {
+                        priors.Add(false);
+                        actors.Add(null);
+                    }
+                }
+                uni.abilities[ata].UseAttack(uni, actors);
+                for (int x = 0; x < priors.Count; x++)
+                {
+                    if (actors[x] != null)
+                    {
+                        if (x < 4)
+                        {
+                            if (partyUnits[x].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && !priors[x])
+                            {
+                                partyDeaths++;
+                                yield return unitDeath(partyUnits[x].GetComponent<UnitMono>().mainUnit);
+                                if (partyDeaths == partyUnits.Count)
+                                {
+                                    state = battleState.LOSE;
+                                    yield return battleEnd();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (enemyUnits[x].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && !priors[x])
+                            {
+                                enemyDeaths++;
+                                yield return unitDeath(enemyUnits[x].GetComponent<UnitMono>().mainUnit);
+                                if (enemyDeaths == enemyUnits.Count)
+                                {
+                                    state = battleState.WIN;
+                                    yield return battleEnd();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else if (uni.abilities[ata].customAbility == 3)
+            {
+                List<unit> bots = new List<unit>();
+                if (enemyUnits[val - 1] != null)
+                {
+                    if (enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                        bots.Add(enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit);
+                    else
+                        bots.Add(null);
+                }
+                bots.Add(target);
+                if (enemyUnits[val + 1] != null)
+                {
+                    if (enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                        bots.Add(enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit);
+                    else
+                        bots.Add(null);
+                }
+                uni.abilities[ata].UseAttack(uni, bots);
+                for (int b = 0; b < bots.Count; b++)
+                {
+                    if (bots[b] != null)
+                    {
+                        if (bots[b].currentHP <= 0)
                         {
                             enemyDeaths++;
-                            yield return unitDeath(enemyUnits[x].GetComponent<UnitMono>().mainUnit);
-                            if (enemyDeaths == enemyUnits.Count)
-                            {
-                                state = battleState.WIN;
-                                yield return battleEnd();
-                            }
+                            yield return unitDeath(bots[b]);
                         }
                     }
+                }
+                if (enemyDeaths == activeEnemies)
+                {
+                    state = battleState.WIN;
+                    yield return battleEnd();
                 }
             }
         }
