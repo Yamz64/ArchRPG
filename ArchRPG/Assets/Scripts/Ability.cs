@@ -870,6 +870,41 @@ namespace EnemyAbilities
             nextPriority = 0;
         }
     }
+
+    //Highway Horror
+    public class TrafficBite : Ability
+    {
+        public TrafficBite()
+        {
+            name = "Traffic Bite";
+            damage = 10;
+            priority = defaultPriority = 4;
+            nextPriority = 2;
+            statusEffect = "Consumed";
+        }
+    }
+
+    public class RedLight : Ability
+    {
+        public RedLight()
+        {
+            name = "Red Light";
+            sanity_damage = 8;
+            priority = defaultPriority = 3;
+            statusEffect = "Hysteria";
+        }
+    }
+
+    public class GreenLight : Ability
+    {
+        public GreenLight()
+        {
+            name = "Green Light";
+            type = 2;
+            priority = defaultPriority = 2;
+            statusEffect = "Hyperactive Confident";
+        }
+    }
 }
 
 namespace PlayerAbilities

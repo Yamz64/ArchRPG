@@ -7687,6 +7687,190 @@ public class Hound : unit
     }
 }
 
+public class HighwayHorror : unit
+{
+    //Uses Hound stats at moment
+    public HighwayHorror()
+    {
+        ImageFilePath = "";
+        unitName = "Highway Horror";
+        loadSprites();
+
+        level = 6;
+        maxHP = currentHP = 35;
+        expGain = 60;
+        enemy = true;
+        capital = 8;
+
+        //Currently uses Locker stats
+        ATK = 40;
+        DEF = 40;
+        POW = 30;
+        WILL = 6;
+        RES = 6;
+        AGI = 5;
+        LCK = 2;
+
+        abilities = new List<Ability>();
+    }
+}
+
+public class Bouncer : unit
+{
+    public Bouncer()
+    {
+        ImageFilePath = "";
+        unitName = "Bouncer";
+        loadSprites();
+
+        level = 6;
+        maxHP = currentHP = 35;
+        expGain = 60;
+        enemy = true;
+        capital = 8;
+
+        //Currently uses Locker stats
+        ATK = 40;
+        DEF = 40;
+        POW = 30;
+        WILL = 6;
+        RES = 6;
+        AGI = 5;
+        LCK = 2;
+
+        abilities = new List<Ability>();
+    }
+}
+
+public class DiscoHooliganDan : unit
+{
+    public DiscoHooliganDan()
+    {
+        ImageFilePath = "";
+        unitName = "Dan";
+        loadSprites();
+
+        level = 6;
+        maxHP = currentHP = 35;
+        expGain = 60;
+        enemy = true;
+        capital = 8;
+
+        //Currently uses Locker stats
+        ATK = 40;
+        DEF = 40;
+        POW = 30;
+        WILL = 6;
+        RES = 6;
+        AGI = 5;
+        LCK = 2;
+
+        abilities = new List<Ability>();
+    }
+}
+
+public class DiscoHooliganDylan : unit
+{
+    public DiscoHooliganDylan()
+    {
+        ImageFilePath = "";
+        unitName = "Dylan";
+        loadSprites();
+
+        level = 6;
+        maxHP = currentHP = 35;
+        expGain = 60;
+        enemy = true;
+        capital = 8;
+
+        //Currently uses Locker stats
+        ATK = 40;
+        DEF = 40;
+        POW = 30;
+        WILL = 6;
+        RES = 6;
+        AGI = 5;
+        LCK = 2;
+
+        abilities = new List<Ability>();
+    }
+}
+
+public class DiscoHooliganBrian : unit
+{
+    public DiscoHooliganBrian()
+    {
+        ImageFilePath = "";
+        unitName = "Brian";
+        loadSprites();
+
+        level = 6;
+        maxHP = currentHP = 35;
+        expGain = 60;
+        enemy = true;
+        capital = 8;
+
+        //Currently uses Locker stats
+        ATK = 40;
+        DEF = 40;
+        POW = 30;
+        WILL = 6;
+        RES = 6;
+        AGI = 5;
+        LCK = 2;
+
+        abilities = new List<Ability>();
+    }
+}
+
+public class ConnivingCone : unit
+{
+    public ConnivingCone()
+    {
+
+    }
+}
+
+public class DisposalDemon : unit
+{
+    public DisposalDemon()
+    {
+
+    }
+}
+
+public class TheSquatter : unit
+{
+    public TheSquatter()
+    {
+
+    }
+}
+
+public class MeatPuppet : unit
+{
+    public MeatPuppet()
+    {
+
+    }
+}
+
+public class MeatGolem : unit
+{
+    public MeatGolem()
+    {
+
+    }
+}
+
+public class MrGoodMeat : unit
+{
+    public MrGoodMeat()
+    {
+
+    }
+}
+
 public class Enemy2 : unit
 {
     public Enemy2()
