@@ -96,10 +96,10 @@ public class Ability
     public int chance2Die = 0;              //Chances of an instant kill
     public int customAbility = 0;           //Use to check whether an ability has a custom function to use 
     //(0 - no, 1 - yes, single target, 2 - all units, 3 - target (enemy) and 2 adjacent enemies)
-    public int canUse = 0;
-    public bool doAggro = false;
-    public bool randoDamage = false;
-    public bool shuffle = false;
+    public int canUse = 0;                  //Use to say whether an ability can be used again
+    public bool doAggro = false;            //Whether the ability causes aggro
+    public bool randoDamage = false;        //Whether the ability does random damage
+    public bool shuffle = false;            //Whether the ability should always shuffle, regardless of where it is used
 
 
     public List<string> statIndex;          //List of status effects that can be given
@@ -913,6 +913,7 @@ namespace EnemyAbilities
         {
             target = user;
             user.giveStatus(statusEffect);
+            statCounter = 5;
         }
     }
 
@@ -1090,6 +1091,7 @@ namespace EnemyAbilities
             {
                 user.giveStatus("Confident");
             }
+            statCounter = 5;
         }
     }
 
@@ -1240,6 +1242,153 @@ namespace EnemyAbilities
         {
             target = user;
             user.healDamage(15);
+        }
+    }
+
+    //Meat Puppet
+    public class ForceFeed : Ability
+    {
+        public ForceFeed()
+        {
+            name = "Force Feed";
+            damage = 30;
+            statusEffect = "Vomiting";
+            priority = defaultPriority = 4;
+        }
+    }
+
+    public class ScreamGravy : Ability
+    {
+        public ScreamGravy()
+        {
+            name = "Screams from the Gravy";
+            target = 1;
+            sanity_damage = 20;
+            statusEffect = "Hysteria";
+            priority = defaultPriority = 2;
+        }
+    }
+
+    public class MaggotMeat : Ability
+    {
+        public MaggotMeat()
+        {
+            name = "Maggot Meat";
+            damage = 15;
+            damageType = 3;
+            statusEffect = "Diseased";
+            priority = defaultPriority = 2;
+        }
+    }
+
+    //Meat Golem
+    public class HamFist : Ability
+    {
+        public HamFist()
+        {
+            name = "Ham Fist";
+            damage = 30;
+            alteredCrit = 20;
+            statusEffect = "Blunt_Trauma";
+            priority = defaultPriority = 5;
+        }
+    }
+
+    public class GreaseFire : Ability
+    {
+        public GreaseFire()
+        {
+            name = "Grease Fire";
+            target = 1;
+            damage = 20;
+            damageType = 1;
+            bigStatus = "Flammable";
+            priority = defaultPriority = 2;
+            nextPriority = 5;
+        }
+    }
+
+    public class RibRake : Ability
+    {
+        public RibRake()
+        {
+            name = "Rib Rake";
+            damage = 25;
+            statusEffect = "Eye_Bleeding";
+            priority = defaultPriority = 5;
+            nextPriority = 2;
+        }
+    }
+
+    public class InhumanWarble : Ability
+    {
+        public InhumanWarble()
+        {
+            name = "Inhuman Warble";
+            target = 3;
+            sanity_damage = 15;
+            selfStatus = "Zealous";
+            priority = defaultPriority = 2;
+        }
+    }
+
+    //Mr. GoodMeat
+    public class LighterFluid : Ability
+    {
+        public LighterFluid()
+        {
+            name = "Goodmeat Brand BBQ Lighter fluid™";
+            statusEffect = "Flammable";
+            priority = defaultPriority = 5;
+            nextPriority = 3;
+        }
+    }
+
+    public class ElectricMeat : Ability
+    {
+        public ElectricMeat()
+        {
+            name = "Electric Meat Stimulation";
+            type = 2;
+            statusEffect = "Chutzpah Electrified";
+            defaultPriority = priority = 5;
+            nextPriority = 0;
+        }
+
+        public override void UseAttack(unit user, unit target)
+        {
+            target = user;
+            user.giveStatus(statusEffect);
+        }
+    }
+
+    public class MeatMold : Ability
+    {
+        public MeatMold()
+        {
+            name = "Meat Mold";
+            type = 2;
+            defaultPriority = priority = 4;
+        }
+
+        public override void UseAttack(unit user, unit target)
+        {
+            target = user;
+            user.healDamage(30);
+        }
+    }
+
+    public class Entrecote : Ability
+    {
+        public Entrecote()
+        {
+            name = "Entrecote’ Electrocution";
+            damage = 30;
+            damageType = 2;
+            use_pow = true;
+            statusEffect = "Conductive Spasms";
+
+            defaultPriority = priority = 1;
         }
     }
 }
