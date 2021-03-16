@@ -124,6 +124,7 @@ public class unit
     public int AGI;                 //Agility stat of unit
     public int LCK;                 //Luck stat of unit
     public string status;           //String to say what status effect the unit has
+    public int mode = 0;
     //public int statusCounter = 0;   //Int to track how many more turns the unit will have the status for
 
 
@@ -163,8 +164,10 @@ public class unit
     //Whether damage was reduced in attack
     public bool reduced = false;
 
+    //How long aggro will last
     public int aggro = 0;
 
+    //Which unit enemies will aggro
     public string aggroTarget = "";
 
 
@@ -556,6 +559,7 @@ public class unit
                 //{
                     //Calculate damage of the attack
                 int val = ata.damage;
+                int val2 = ata.selfDamage;
                 int valS = ata.sanity_damage;
                 if (position == 0 && !enemy)
                 {
@@ -570,11 +574,13 @@ public class unit
                     if (statuses[14] == -1)
                     {
                         val += (int)(val * (float)(ATK / 100));
+                        val2 += (int)(val * (float)(ATK / 100));
                     }
                     //Zealous
                     else
                     {
                         val += (int)(val * (float)((ATK * 1.25) / 100));
+                        val2 += (int)(val * (float)((ATK * 1.25) / 100));
                     }
 
                     //Check if DEF is reduced by a status like Blunt Trauma
@@ -605,12 +611,15 @@ public class unit
                     {
                         val += (int)(val * (float)(POW / 100));
                         valS += (int)(val * (float)(POW / 100));
+                        val2 += (int)(val * (float)(POW / 100));
+
                     }
                     //Zealous
                     else
                     {
                         val += (int)(val * (float)((POW * 1.25) / 100));
                         valS += (int)(val * (float)((POW * 1.25) / 100));
+                        val2 += (int)(val * (float)((POW * 1.25) / 100));
                     }
 
                     //Check if WILL is affected (statuses[16] is cancer)
@@ -659,6 +668,8 @@ public class unit
                 if (target.statuses[18] != -1 && ata.damageType == 2)
                 {
                 }
+
+                takeDamage(val2);
                 int critBuff = ata.alteredCrit;
                 //If target has analyzed
                 if (target.statuses[14] != -1)
@@ -702,10 +713,15 @@ public class unit
                     bool d = target.takeDamage(val);
                     target.setHP(target.currentHP);
 
-                    if (valS > 0)
+                    if (valS > 0 && enemy)
                     {
-                        bool s = target.takeSanityDamage(valS);
+                        //bool s = target.takeSanityDamage(valS);
                         target.setSAN(target.sanity);
+                    }
+                    else if (valS > 0 && !enemy)
+                    {
+                        //bool s = takeSanityDamage(valS);
+                        setSAN(sanity);
                     }
 
                     //There is a status effect

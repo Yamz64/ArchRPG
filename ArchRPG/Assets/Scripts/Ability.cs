@@ -61,8 +61,10 @@ public class Ability
     public int type = 0;            //int denotes who to use ability on --> 0 == enemy, 1 == ally, 2 == self
     public int position = 0;        //int denotes the place the ability can be used 0 = front and backline, 1 = frontline, 2 = backline
     public int swapper;             //If ability should swap units: 0-no, 1-yes, pull forward, 2-yes, push backwards
+    public int selfSwapper;         //If ability should swap self:  0-no, 1-yes, pull forward, 2-yes, push backwards
     public int cost = 0;            //int denotes the cost of using the ability (if any)
     public int damage = 0;          //int denotes the amount of damage the attack will do
+    public int selfDamage = 0;      //int denotes the amount of damage the attack will deal to the user
     public int sanity_damage = 0;   //int denotes the amount of sanity damage the attack will do
     //--MISC STATS--
     /* DAMAGE TYPES
@@ -903,6 +905,67 @@ namespace EnemyAbilities
             type = 2;
             priority = defaultPriority = 2;
             statusEffect = "Hyperactive Confident";
+        }
+
+        public override void UseAttack(unit user, unit target)
+        {
+            target = user;
+            user.giveStatus(statusEffect);
+        }
+    }
+
+    public class YellowLight : Ability
+    {
+        public YellowLight()
+        {
+            name = "Yellow Light";
+            use_pow = true;
+            damage = 14;
+            damageType = 4;
+            priority = defaultPriority = 3;
+            nextPriority = 2;
+            statusEffect = "Lethargic";
+        }
+    }
+
+    //Bouncer
+    public class Bounce : Ability
+    {
+        public Bounce()
+        {
+            name = "Bounce";
+            damage = 15;
+            enemyTarget = 1;
+            swapper = 2;
+            priority = defaultPriority = 5;
+            statusEffect = "Blunt_Trauma";
+        }
+    }
+
+    public class StunGun : Ability
+    {
+        public StunGun()
+        {
+            name = "Stun Gun";
+            damage = 12;
+            damageType = 2;
+            enemyTarget = 1;
+            swapper = 2;
+            priority = defaultPriority = 2;
+            nextPriority = 0;
+            statusEffect = "Restrained";
+        }
+    }
+
+    public class BeatItKid : Ability
+    {
+        public BeatItKid()
+        {
+            name = "Beat it, Kid";
+            sanity_damage = 7;
+            enemyTarget = 1;
+            swapper = 2;
+            priority = defaultPriority = 2;
         }
     }
 }
@@ -2315,10 +2378,319 @@ namespace WhiteKnightAbilities
 
 namespace OliverSproutAbilities
 {
+    public class WarAndPeace : Ability
+    {
+        public WarAndPeace()
+        {
+            name = "War and Peace";
+            desc2 = "Oliver has two modes, an angered mode that ups ATK and a peaceful mode that ups DEF. " +
+                "When you use this ability he swaps between modes. Swapping to War moves him to the frontline " +
+                "and swapping to Peace moves him to the backline. His mode also dictates which abilities he can use.";
+            cost = 5;
+            type = 2;
+        }
 
+        public override void UseAttack(unit user, unit target)
+        {
+            target = user;
+            user.setSP(user.currentSP - cost);
+            if (user.position == 0)
+            {
+                swapper = 2;
+                user.mode = 2;
+            }
+            else if (user.position == 1)
+            {
+                swapper = 1;
+                user.mode = 1;
+            }
+        }
+    }
+
+    public class GoodVibes : Ability
+    {
+        public GoodVibes()
+        {
+            name = "Good Vibes";
+            desc1 = "Swaps to the back, moderate Single Target Heal";
+            desc2 = "Once you’ve known Oliver long enough, you realize that all you need to do is get him some " +
+                "weed and a cosmic brownie and he probably won’t rip off your arms.";
+            cost = 10;
+            type = 1;
+            selfSwapper = 2;
+        }
+
+        public override void UseAttack(unit user, unit target)
+        {
+            user.setSP(user.currentSP - cost);
+            target.healDamage(15);
+        }
+    }
+
+    public class BohemianGrip : Ability
+    {
+        public BohemianGrip()
+        {
+            name = "Bohemian Grip";
+            desc1 = "Swaps to the front, deals restrained via a choking attack, and moderate physical ATK. Takes moderate SAN damage.";
+            desc2 = "When someone talks shit about Oliver’s favorite bands, he makes sure that they won’t be able to speak ever again.";
+            cost = 10;
+            damage = 14;
+            sanity_damage = 10;
+
+            swapper = 1;
+            statusEffect = "Restrained";
+        }
+    }
+
+    public class EyeGouge : Ability
+    {
+        public EyeGouge()
+        {
+            name = "Eye Gouge";
+            desc1 = "PHAT Single target physical ATK inflicts eye bleed. Takes moderate SAN damage.";
+            desc2 = "You thought Oliver keeps the fingernails long on his right hand because he doesn’t " +
+                "use a guitar pick, now you know what that’s for.";
+            cost = 15;
+            damage = 25;
+            sanity_damage = 15;
+            position = 1;
+            statusEffect = "Eye_Bleeding";
+        }
+    }
+
+    public class ChillaxDude : Ability
+    {
+        public ChillaxDude()
+        {
+            name = "Chillax, Dude";
+            desc1 = "Group inspired buff, minor HP heal";
+            desc2 = "You’re having trouble seeing through all this smoke, but that good feeling is telling you it’ll be all fine.";
+            cost = 15;
+            type = 1;
+            target = 3;
+            position = 2;
+            statusEffect = "Inspired";
+        }
+
+        public override void UseAttack(unit user, List<unit> targets)
+        {
+            user.setSP(user.currentSP - cost);
+            for (int i = 0; i < targets.Count; i++)
+            {
+                if (targets[i] != null)
+                {
+                    if (targets[i].currentHP > 0 && !targets[i].enemy)
+                    {
+                        targets[i].giveStatus(statusEffect);
+                        targets[i].healDamage(10);
+                    }
+                }
+            }
+        }
+    }
+
+    public class RipAndTear : Ability
+    {
+        public RipAndTear()
+        {
+            name = "Rip and Tear";
+            desc1 = "High damage physical AoE ATK. High sanity damage to self.";
+            desc2 = "Oliver shows the enemy what true carnage is. It’s moments like these where you forget this guy’s human.";
+            cost = 20;
+            damage = 30;
+            sanity_damage = 20;
+            target = 3;
+            position = 1;
+        }
+    }
+
+    public class Imagine : Ability
+    {
+        public Imagine()
+        {
+            name = "Imagine";
+            desc1 = "High Power serenading buff, gives weeping to all enemies, heals own sanity moderately, and buffing allies with confident.";
+            desc2 = "Oliver shows you all the true power of John Lennon. Even the monsters are brought to tears by the wonder of music.";
+            cost = 20;
+            target = 3;
+            enemyTarget = 3;
+        }
+        public override void UseAttack(unit user, List<unit> targets)
+        {
+            user.setSP(user.currentSP - cost);
+            for (int i = 0; i < targets.Count; i++)
+            {
+                if (targets[i] != null)
+                {
+                    if (targets[i].currentHP > 0 && !targets[i].enemy)
+                    {
+                        targets[i].giveStatus("Confident");
+                        if (targets[i].unitName == user.unitName)
+                        {
+                            targets[i].setSAN(targets[i].sanity + 20);
+                        }
+                    }
+                    if (targets[i].currentHP > 0 && targets[i].enemy)
+                    {
+                        targets[i].giveStatus("Weeping");
+                    }
+                }
+            }
+        }
+    }
+
+    public class BadVibes : Ability
+    {
+        public BadVibes()
+        {
+            name = "Bad Vibes";
+            desc1 = "Sacrifice health and SAN to inflict blunt trauma and weeping on all enemies as " +
+                "well as dealing a moderate weird POW AoE.";
+            desc2 = "Oliver can’t deal with all this negativity in the air and decides to give into it " +
+                "as he beats the everloving shit out of the enemy, injuring himself in the process.";
+            cost = 16;
+            damage = 24;
+            damageType = 4;
+            selfDamage = 12;
+            sanity_damage = 15;
+            target = 3;
+            statusEffect = "Blunt_Trauma Weeping";
+        }
+    }
 }
 
 namespace EmberMoonAbilities
 {
+    public class MolotovCocktail : Ability
+    {
+        public MolotovCocktail()
+        {
+            name = "Molotov Cocktail";
+            desc1 = "Deals low to medium fire damage (based on attack) to an enemy and gives an enemy adjacent to the target conductive.";
+            desc2 = "Say what you will about the anarchist cookbook but it’s recipes are effective.";
+            cost = 8;
+            damage = 15;
+            damageType = 1;
+            target = 3;
+            customAbility = 3;
+        }
 
+        public override void UseAttack(unit user, List<unit> targets)
+        {
+            for (int i = 0; i < targets.Count; i++)
+            {
+                if (targets[i] != null)
+                {
+                    if (i == 0 || i == 2)
+                    {
+                        targets[i].giveStatus("Conductive");
+                    }
+                    else
+                    {
+                        int val = user.takeDamageCalc(targets[i], damage, damageType, false
+);
+                        targets[i].takeDamage(val);
+                    }
+                }
+            }
+        }
+    }
+
+    public class SwappinPills : Ability
+    {
+        public SwappinPills()
+        {
+            name = "Swappin’ Pills";
+            desc1 = "Target enemy gains reactive and Ember gains hyperactive.";
+            desc2 = "You’d think that the baddies wouldn’t want to take drugs from the kids they’re fighting, " +
+                "but Ember’s peer pressure aura is impossible, even for the lowliest of life forms, to defeat.";
+            cost = 12;
+            statusEffect = "Reactive";
+            selfStatus = "Hyperactive";
+        }
+    }
+
+    public class GuitarSmash : Ability
+    {
+        public GuitarSmash()
+        {
+            name = "Guitar Smash";
+            desc1 = "Deals medium physical damage to target, they gain flammable";
+            desc2 = "I used to wonder why Ember coated her guitars in kerosene, but it turns out there’s way " +
+                "more applications than I possibly could have imagined.";
+            cost = 16;
+            damage = 15;
+            position = 1;
+            statusEffect = "Flammable";
+        }
+    }
+
+    public class MagicalWeirdShit : Ability
+    {
+        public MagicalWeirdShit()
+        {
+            name = "Magical Weird S***";
+            desc1 = "Ember inflicts zonked on 2 adjacent enemies, gains confident, and moves to the front line.";
+            desc2 = "Listen I uh, I’m not gonna say everything that goes on here but it involves a pig’s head, a " +
+                "musical instrument, minimal clothing, and it makes everyone but her feel WEIRD AS HELL";
+            cost = 19;
+            swapper = 1;
+            target = 2;
+            statusEffect = "Zonked";
+            selfStatus = "Confident";
+        }
+    }
+
+    public class MindCrush : Ability
+    {
+        public MindCrush()
+        {
+            name = "Mind Crush";
+            desc1 = "Ember inflicts consumed on a non-boss enemy, heals herself for an amount based on POW, " +
+                "and deals Weird damage based on POW";
+            desc2 = "Ember staring at you is already pretty scary, but when her third eye opens up and she starts " +
+                "speaking in tongues you better get the hell out of there.";
+            cost = 21;
+            damage = 20;
+            selfDamage = -20;
+            damageType = 4;
+            use_pow = true;
+            statusEffect = "Consumed";
+        }
+    }
+
+    //Will need to hash out what ability should do, seems all over the place
+    public class HogWild : Ability
+    {
+        public HogWild()
+        {
+            name = "Hog Wild";
+            desc1 = "Ember inflicts weird damage on the target based on pow, chemical damage on an adjacent enemy using " +
+                "pow, and gives all enemies in combat zonked";
+            desc2 = "Ok so for this one she does 3 black flips, throws a molotov, does a tarot card reading, says the " +
+                "lord’s prayer backwards in swahili… uh ok I guess I don’t have enough room but it’s really cool " +
+                "and also it kills people.";
+            cost = 25;
+            damage = 25;
+            damageType = 4;
+            use_pow = true;
+            target = 3;
+
+        }
+    }
+
+    public class BurnItAll : Ability
+    {
+        public BurnItAll()
+        {
+            name = "Burn It All";
+            desc1 = "Ember inflicts reactive, conductive, flammable, and zonked upon a random enemy and herself.";
+            desc2 = "Idk what was in that gas can but it is all over Ember and the person she used it on and honestly " +
+                "I’m not sure she knows either.";
+            cost = 25;
+            statusEffect = "Reactive Conductive Flammable Zonked";
+            selfStatus = statusEffect;
+        }
+    }
 }
