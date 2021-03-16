@@ -2460,13 +2460,22 @@ public class BattleScript : MonoBehaviour
                             for (int c = 0; c < enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities.Count; c++)
                             {
                                 string[] breaker = enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[c].statusEffect.Split(' ');
+                                int match = 0;
                                 for (int k = 0; k < breaker.Length; k++)
                                 {
                                     if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.statuses[d] != -1 &&
                                         enemyUnits[i].GetComponent<UnitMono>().mainUnit.statusIndex[d] == breaker[k])
                                     {
-                                        enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[c].priority =
-                                            enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[c].nextPriority;
+                                        if (match == 0)
+                                        {
+                                            enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[c].priority =
+                                                enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[c].nextPriority;
+                                            match += 1;
+                                        }
+                                        else if (match > 0)
+                                        {
+                                            enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[c].priority = 0;
+                                        }
                                     }
                                 }
                             }
@@ -2505,6 +2514,15 @@ public class BattleScript : MonoBehaviour
                                 //Debug.Log("x == " + x + ", ability == " + enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].name);
                             }
                         }
+                        if (r == 0 || r == 1 && enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].shuffle)
+                        {
+                            enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].swapper = 2;
+                        }
+                        else if (r == 2 || r == 3 && enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].shuffle)
+                        {
+                            enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].swapper = 1;
+                        }
+
 
                         action now = new action(i, "enemyAttack", x, r, enemyUnits[i].GetComponent<UnitMono>().mainUnit.getAGI());
                         actions.Add(now);

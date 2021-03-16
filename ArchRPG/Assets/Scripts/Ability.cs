@@ -99,6 +99,7 @@ public class Ability
     public int canUse = 0;
     public bool doAggro = false;
     public bool randoDamage = false;
+    public bool shuffle = false;
 
 
     public List<string> statIndex;          //List of status effects that can be given
@@ -521,6 +522,7 @@ namespace EnemyAbilities
             position = 0;
             target = 0;
             damage = 0;
+            selfDamage = 0;
             type = 2;
             statusEffect = "Neurotic";
             priority = defaultPriority = 4;
@@ -529,7 +531,8 @@ namespace EnemyAbilities
         public override void UseAttack(unit user, unit target)
         {
             target = user;
-            user.giveStatus("Neurotic");
+            user.takeDamage(selfDamage);
+            user.giveStatus(statusEffect);
             statCounter = 5;
         }
     }
@@ -544,7 +547,7 @@ namespace EnemyAbilities
             target = 0;
             damage = 4;
             damageType = 0;
-            priority = defaultPriority = nextPriority = 5;
+            priority = defaultPriority = 5;
         }
     }
 
@@ -557,9 +560,8 @@ namespace EnemyAbilities
             position = 0;
             target = 0;
             damage = 12;
-            damageType = 1;
             statusEffect = "Blunt_Trauma";
-            priority = defaultPriority = nextPriority = 1;
+            priority = defaultPriority = 1;
         }
     }
 
@@ -966,6 +968,278 @@ namespace EnemyAbilities
             enemyTarget = 1;
             swapper = 2;
             priority = defaultPriority = 2;
+        }
+    }
+
+    //Disco Hooligans
+    public class ElectricSlide : Ability
+    {
+        public ElectricSlide()
+        {
+            name = "Electric Slide";
+
+            damage = 15;
+            damageType = 2;
+            use_pow = true;
+            priority = defaultPriority = 5;
+            nextPriority = 8;
+            bigStatus = "Conductive";
+        }
+    }
+
+    public class DiscoInferno : Ability
+    {
+        public DiscoInferno()
+        {
+            name = "Disco Inferno";
+
+            damage = 15;
+            damageType = 1;
+            use_pow = true;
+            priority = defaultPriority = 5;
+            nextPriority = 8;
+            bigStatus = "Flammable";
+        }
+    }
+
+    public class ToxicTango : Ability
+    {
+        public ToxicTango()
+        {
+            name = "Toxic Tango";
+
+            damage = 15;
+            damageType = 3;
+            use_pow = true;
+            priority = defaultPriority = 5;
+            nextPriority = 8;
+            bigStatus = "Reactive";
+        }
+    }
+
+    public class GroupGrooveDan : Ability
+    {
+        public GroupGrooveDan()
+        {
+            name = "Group Groove";
+            priority = defaultPriority = 5;
+            nextPriority = 0;
+            statusEffect = "Conductive";
+        }
+    }
+
+    public class GroupGrooveDylan : Ability
+    {
+        public GroupGrooveDylan()
+        {
+            name = "Group Groove";
+            priority = defaultPriority = 5;
+            nextPriority = 0;
+            statusEffect = "Flammable";
+        }
+    }
+
+    public class GroupGrooveBrian : Ability
+    {
+        public GroupGrooveBrian()
+        {
+            name = "Group Groove";
+            priority = defaultPriority = 5;
+            nextPriority = 0;
+            statusEffect = "Reactive";
+        }
+    }
+
+    public class DanceDanceRevulsion : Ability
+    {
+        public DanceDanceRevulsion()
+        {
+            name = "Dance Dance Revulsion";
+            damage = 10;
+            damageType = 4;
+            use_pow = true;
+            target = 1;
+            priority = defaultPriority = 3;
+            nextPriority = 1;
+            statusEffect = "Disco Fever";
+            swapper = 1;
+            shuffle = true;
+        }
+    }
+
+    public class SacrificialBoogie : Ability
+    {
+        public SacrificialBoogie()
+        {
+            name = "Sacrificial Boogie";
+            type = 2;
+            priority = defaultPriority = 3;
+            nextPriority = 1;
+        }
+
+        public override void UseAttack(unit user, unit target)
+        {
+            target = user;
+            user.giveStatus("Vomiting");
+            int ran = Random.Range(0, 2);
+            if (ran == 0)
+            {
+                user.giveStatus("Zealous");
+            }
+            else
+            {
+                user.giveStatus("Confident");
+            }
+        }
+    }
+
+    //Conniving Cone
+    public class LookBothWays2 : LookBothWays
+    {
+        public LookBothWays2()
+        {
+            selfDamage = -10;
+            statusEffect = "Neurotic Confident";
+        }
+    }
+
+    public class ConeClaw2 : Ability
+    {
+        public ConeClaw2()
+        {
+            name = "Cone Claw";
+            damage = 16;
+            priority = defaultPriority = 4;
+            statusEffect = "Eye_Bleeding";
+        }
+    }
+
+    public class CurbStomp2 : Ability
+    {
+        public CurbStomp2()
+        {
+            name = "Curb Stomp";
+            cost = 0;
+            position = 0;
+            target = 0;
+            damage = 36;
+            statusEffect = "Blunt_Trauma";
+            priority = defaultPriority = 3;
+        }
+    }
+
+    public class PylonDriver : Ability
+    {
+        public PylonDriver()
+        {
+            name = "Pylon Driver";
+            damage = 50;
+            statusEffect = "Blunt_Trauma Spasms";
+            priority = defaultPriority = 1;
+        }
+    }
+
+    //Disposal Demon
+    public class SpewingGarbage2 : SpewingGarbage
+    {
+        public SpewingGarbage2()
+        {
+            damage = 24;
+        }
+    }
+
+    //PutInCan again
+
+    public class TakeOutTrash2 : TakeOutTrash
+    {
+        public TakeOutTrash2()
+        {
+            damage = 40;
+        }
+    }
+
+    public class GarbageDay : Ability
+    {
+        public GarbageDay()
+        {
+            name = "Garbage Day!";
+            target = 3;
+            damage = 15;
+            damageType = 3;
+            use_pow = true;
+            statusEffect = "Reactive";
+            priority = defaultPriority = 7;
+            nextPriority = 3;
+        }
+    }
+
+    //The Squatter
+    public class WetWilly : Ability
+    {
+        public WetWilly()
+        {
+            name = "Wet Willy";
+            sanity_damage = 10;
+            swapper = 1;
+            statusEffect = "Hysteria";
+            priority = defaultPriority = 2;
+            nextPriority = 1;
+        }
+    }
+
+    public class ProjectileVomit : Ability
+    {
+        public ProjectileVomit()
+        {
+            name = "Projectile Vomit";
+            target = 1;
+            damage = 15;
+            damageType = 3;
+            statusEffect = "Vomiting";
+            priority = defaultPriority = 4;
+            nextPriority = 2;
+        }
+    }
+
+    public class YourMouthOpen : Ability
+    {
+        public YourMouthOpen()
+        {
+            name = "Your Mouth was Open";
+            damage = 25;
+            damageType = 3;
+            statusEffect = "Aspirating";
+            swapper = 2;
+            priority = defaultPriority = 4;
+            nextPriority = 2;
+        }
+    }
+
+    public class Tantrum : Ability
+    {
+        public Tantrum()
+        {
+            name = "Tantrum";
+            damage = 27;
+            statusEffect = "Blunt_Trauma";
+            priority = defaultPriority = 4;
+            nextPriority = 3;
+        }
+    }
+
+    public class PizzaTime : Ability
+    {
+        public PizzaTime()
+        {
+            name = "Pizza Time!";
+            type = 2;
+            priority = defaultPriority = 1;
+        }
+
+        public override void UseAttack(unit user, unit target)
+        {
+            target = user;
+            user.healDamage(15);
         }
     }
 }
