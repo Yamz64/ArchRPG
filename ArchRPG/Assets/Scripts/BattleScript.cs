@@ -1485,8 +1485,12 @@ public class BattleScript : MonoBehaviour
                                     else
                                     {
                                         useSound(1);
-                                        actions.Add(new action(currentUnit, "ability", highlighted_ability, currentEnemy,
-                                            partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI(),
+                                        int speed = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI();
+                                        if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[22] != -1)
+                                        {
+                                            speed = (int)(speed * 0.75);
+                                        }
+                                        actions.Add(new action(currentUnit, "ability", highlighted_ability, currentEnemy, speed,
                                             partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].fast));
                                         currentEnemy = 0;
                                         highlighted_ability = 0;
@@ -1550,8 +1554,12 @@ public class BattleScript : MonoBehaviour
                                     else
                                     {
                                         useSound(1);
-                                        actions.Add(new action(currentUnit, "ability1", highlighted_ability, currentUnit,
-                                            partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI(),
+                                        int speed = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI();
+                                        if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[22] != -1)
+                                        {
+                                            speed = (int)(speed * 0.75);
+                                        }
+                                        actions.Add(new action(currentUnit, "ability1", highlighted_ability, currentUnit, speed,
                                             partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].fast));
                                         currentEnemy = 0;
                                         highlighted_ability = 0;
@@ -1590,8 +1598,12 @@ public class BattleScript : MonoBehaviour
                                 else if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].type == 2)
                                 {
                                     useSound(1);
-                                    actions.Add(new action(currentUnit, "ability1", highlighted_ability, currentUnit,
-                                        partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI(),
+                                    int speed = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI();
+                                    if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[22] != -1)
+                                    {
+                                        speed = (int)(speed * 0.75);
+                                    }
+                                    actions.Add(new action(currentUnit, "ability1", highlighted_ability, currentUnit, speed,
                                         partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].fast));
                                     currentEnemy = 0;
                                     highlighted_ability = 0;
@@ -1733,8 +1745,12 @@ public class BattleScript : MonoBehaviour
             else if (Input.GetButtonDown("Interact"))
             {
                 useSound(1);
-                actions.Add(new action(currentUnit, "ability", highlighted_ability, currentEnemy,
-                    partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI(),
+                int speed = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI();
+                if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[22] != -1)
+                {
+                    speed = (int)(speed * 0.75);
+                }
+                actions.Add(new action(currentUnit, "ability", highlighted_ability, currentEnemy, speed,
                     partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].fast));
                 currentEnemy = 0;
                 highlighted_ability = 0;
@@ -1869,8 +1885,12 @@ public class BattleScript : MonoBehaviour
                 if (partyUnits[currentAlly] != null)
                 {
                     useSound(1);
-                    actions.Add(new action(currentUnit, "ability1", highlighted_ability, currentAlly,
-                        partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI(),
+                    int speed = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI();
+                    if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[22] != -1)
+                    {
+                        speed = (int)(speed * 0.75);
+                    }
+                    actions.Add(new action(currentUnit, "ability1", highlighted_ability, currentAlly, speed,
                         partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].fast,
                         partyUnits[currentAlly].GetComponent<UnitMono>().mainUnit.unitName));
                     currentAlly = 0;
@@ -2070,7 +2090,12 @@ public class BattleScript : MonoBehaviour
                 {
                     case 9:
                         useSound(1);
-                        actions.Add(new action(currentUnit, "item", highlighted_item, currentUnit, partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI()));
+                        int speed = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI();
+                        if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[22] != -1)
+                        {
+                            speed = (int)(speed * 0.75);
+                        }
+                        actions.Add(new action(currentUnit, "item", highlighted_item, currentUnit, speed));
                         //data.UseItem(highlighted_item);
                         UpdateInventoryItems();
                         UpdateInventoryImageandDesc();
@@ -2219,7 +2244,12 @@ public class BattleScript : MonoBehaviour
 
                     i1 = currentUnit;
                     i2 = currentAlly;
-                    actions.Add(new action(currentUnit, "swap", i1, i2, partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI()));
+                    int speed = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI();
+                    if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[22] != -1)
+                    {
+                        speed = (int)(speed * 0.75);
+                    }
+                    actions.Add(new action(currentUnit, "swap", i1, i2, speed));
 
                     swaps.Add(partyUnits[i1].gameObject);
 
@@ -2523,8 +2553,12 @@ public class BattleScript : MonoBehaviour
                             enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].swapper = 1;
                         }
 
-
-                        action now = new action(i, "enemyAttack", x, r, enemyUnits[i].GetComponent<UnitMono>().mainUnit.getAGI());
+                        int speed = enemyUnits[i].GetComponent<UnitMono>().mainUnit.getAGI();
+                        if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.statuses[22] != -1)
+                        {
+                            speed = (int)(speed * 0.75);
+                        }
+                        action now = new action(i, "enemyAttack", x, r, speed);
                         actions.Add(now);
                     }
                     else if (vals == 1)
@@ -2551,7 +2585,12 @@ public class BattleScript : MonoBehaviour
                         {
                             x = probos[Random.Range(0, probos.Count)];
                         }
-                        action now = new action(i, "enemyAbility", x, r, enemyUnits[i].GetComponent<UnitMono>().mainUnit.getAGI());
+                        int speed = enemyUnits[i].GetComponent<UnitMono>().mainUnit.getAGI();
+                        if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.statuses[22] != -1)
+                        {
+                            speed = (int)(speed * 0.75);
+                        }
+                        action now = new action(i, "enemyAbility", x, r, speed);
                         actions.Add(now);
                     }
                     else if (vals == 2)
@@ -2572,7 +2611,12 @@ public class BattleScript : MonoBehaviour
                         {
                             x = probos[Random.Range(0, probos.Count)];
                         }
-                        action now = new action(i, "enemyAbility", x, i, enemyUnits[i].GetComponent<UnitMono>().mainUnit.getAGI());
+                        int speed = enemyUnits[i].GetComponent<UnitMono>().mainUnit.getAGI();
+                        if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.statuses[22] != -1)
+                        {
+                            speed = (int)(speed * 0.75);
+                        }
+                        action now = new action(i, "enemyAbility", x, i, speed);
                         actions.Add(now);
                     }
                     //Reset ability priorities
@@ -3254,6 +3298,14 @@ public class BattleScript : MonoBehaviour
                 {
                     p = new WhiteKnightUnit(loader.levels[i]);
                 }
+                else if (loader.names[i] == "Oliver Sprout" && !loader.dead[i])
+                {
+                    p = new OliverSproutUnit(loader.levels[i]);
+                }
+                else if (loader.names[i] == "Ember Moon" && !loader.dead[i])
+                {
+                    p = new EmberMoonUnit(loader.levels[i]);
+                }
                 else if (loader.names[i] == "Eldritch" || loader.dead[i])
                 {
                     p = new EldritchPartyUnit(loader.levels[i]);
@@ -3334,7 +3386,7 @@ public class BattleScript : MonoBehaviour
         bool boss2 = false;
 
         int z = 0;
-        for (int i = 0; i < loader.enemy_names.Length; i++)
+        for (int i = 0; i < loader.enemy_names.Length && z < 4; i++)
         {
             unit enen;
             if (loader.enemy_names[i] == "Eldritch Gunner" || loader.enemy_names[i] == "Thrash Can")
@@ -3362,6 +3414,50 @@ public class BattleScript : MonoBehaviour
             {
                 enen = new Hound();
                 boss2 = true;
+            }
+            else if (loader.enemy_names[i] == "Highway Horror")
+            {
+                enen = new Vermin();
+            }
+            else if (loader.enemy_names[i] == "Bouncer")
+            {
+                enen = new Vermin();
+            }
+            else if (loader.enemy_names[i] == "Disco Hooligan Dan")
+            {
+                enen = new DiscoHooliganDan();
+            }
+            else if (loader.enemy_names[i] == "Disco Hooligan Dylan")
+            {
+                enen = new DiscoHooliganDylan();
+            }
+            else if (loader.enemy_names[i] == "Disco Hooligan Brian")
+            {
+                enen = new DiscoHooliganBrian();
+            }
+            else if (loader.enemy_names[i] == "Conniving Cone")
+            {
+                enen = new ConnivingCone();
+            }
+            else if (loader.enemy_names[i] == "Disposal Demon")
+            {
+                enen = new DisposalDemon();
+            }
+            else if (loader.enemy_names[i] == "The Squatter")
+            {
+                enen = new TheSquatter();
+            }
+            else if (loader.enemy_names[i] == "Meat Puppet")
+            {
+                enen = new MeatPuppet();
+            }
+            else if (loader.enemy_names[i] == "Meat Golem")
+            {
+                enen = new MeatGolem();
+            }
+            else if (loader.enemy_names[i] == "Mr Good Meat")
+            {
+                enen = new MrGoodMeat();
             }
             else if (!loader.enemy_names[i].Equals(""))
             {
@@ -4369,7 +4465,7 @@ public class BattleScript : MonoBehaviour
             }
             
         }
-        if (uni.abilities[ata].selfDamage >0)
+        if (uni.abilities[ata].selfDamage != 0)
         {
             uni.takeDamage(uni.abilities[ata].selfDamage);
         }

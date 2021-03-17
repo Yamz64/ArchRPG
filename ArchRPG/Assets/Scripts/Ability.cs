@@ -471,6 +471,27 @@ public static class EldritchAbilities
         }
     }
 
+    //This ability drains health from an ally
+    public class VampiricBetrayal : Ability
+    {
+        public VampiricBetrayal()
+        {
+            name = "Vampiric Betrayal";
+            desc1 = "Inflicts high weird POW to an ally and you gain that much life, also grants you inspired";
+            type = 1;
+            damage = 20;
+            damageType = 4;
+        }
+
+        public override void UseAttack(unit user, unit target)
+        {
+            int val = user.takeDamageCalc(target, damage, damageType, true);
+            target.takeDamage(val);
+            user.healDamage(val);
+            user.giveStatus("Inspired");
+        }
+    }
+
     //***~RYAN~*** DONE
     //This ability heals you to full but also inflicts everyone with a 
     //random status effect (this needs to work so that when new status effects are added they are included if possible)
@@ -506,6 +527,28 @@ public static class EldritchAbilities
                 }
             }
             user.currentSP -= cost;
+        }
+    }
+
+    //need to work on more
+    public class SanityBeam : Ability
+    {
+        public SanityBeam()
+        {
+            name = "Sanity Beam";
+            desc1 = "Inflicts moderate sanity damage on an ally and does high weird POW to an enemy.";
+
+        }
+    }
+
+    //need to work on more
+    public class UltimateSacrifice : Ability
+    {
+        public UltimateSacrifice()
+        {
+            name = "Ultimate Sacrifice";
+            desc1 = "Kills a random party member. Inflicts a shit ton of status effects on an enemy and does moderate weird POW.";
+            desc2 = "Takes one to Kill one";
         }
     }
 }

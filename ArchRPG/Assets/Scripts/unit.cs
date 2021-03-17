@@ -16,7 +16,7 @@ public class unit
 
         abilities = new List<Ability>();
         statuses = new List<int>();
-        for (int i = 0; i < 25; i++)
+        for (int i = 0; i < 26; i++)
         {
             statuses.Add(-1);
         }
@@ -44,8 +44,9 @@ public class unit
         statusIndex.Add("Zonked");          //20
         statusIndex.Add("Chutzpah");        //21
         statusIndex.Add("Lethargic");       //22
-        statusIndex.Add("Madness");         //23
-        statusIndex.Add("Doomed");          //24
+        statusIndex.Add("Electrified");     //23
+        statusIndex.Add("Madness");         //24
+        statusIndex.Add("Doomed");          //25
     }
     //Copy the numerical statistics of a unit
     public void copyUnitStats(unit ver)
@@ -656,7 +657,8 @@ public class unit
                 {
                     val = (int)(val * 0.5);
                 }
-                //Debug.Log("Got past types");
+
+
                     
                 //If flammable + fire damage
                 if (target.statuses[11] != -1 && ata.damageType == 1)
@@ -664,9 +666,28 @@ public class unit
                     val = (int)(val * 1.25);
                 }
 
-                //If conductive
-                if (target.statuses[18] != -1 && ata.damageType == 2)
+                //If electrified + electric damage
+                if (target.statuses[23] != -1 && ata.damageType == 2)
                 {
+                    val = (int)(val * 1.25);
+                }
+
+                //If conductive + electric damage
+                if (target.statuses[18] != -1 && ata.damageType == 1)
+                {
+                    //Roll numbers to check if status effect is given
+                    int ran = UnityEngine.Random.Range(1, 101);
+                    int statBuff = ata.alteredStatus;
+                    int reze = target.RES;
+                    //If target has Chutzpah
+                    if (statuses[21] != -1)
+                    {
+                        reze = (int)(reze * 1.25);
+                    }
+                    if (ran >= reze + statBuff || ran == 1 || ata.type != 0)
+                    {
+                        target.giveStatus("Restrained");
+                    }
                 }
 
                 takeDamage(val2);
@@ -724,15 +745,21 @@ public class unit
                         setSAN(sanity);
                     }
 
-                    //There is a status effect
+                    //There is a status effect for the user to get
                     if (!ata.selfStatus.Equals(""))
                     {
                         //Roll numbers to check if status effect is given
                         int ran = UnityEngine.Random.Range(1, 101);
                         int statBuff = ata.alteredStatus;
-                        if (ran >= target.RES + statBuff || ran == 1 || ata.type != 0)
+                        int reze = RES;
+                        //If target has Chutzpah
+                        if (statuses[21] != -1)
                         {
-                            target.giveStatus(ata.selfStatus);
+                            reze =(int)(reze * 1.25);
+                        }
+                        if (ran >= reze + statBuff || ran == 1 || ata.type != 0)
+                        {
+                            giveStatus(ata.selfStatus);
                         }
                     }
 
@@ -745,7 +772,13 @@ public class unit
                             //Roll numbers to check if status effect is given
                             int ran = UnityEngine.Random.Range(1, 101);
                             int statBuff = ata.alteredStatus;
-                            if (ran >= target.RES + statBuff || ran == 1 || ata.type != 0)
+                            int reze = target.RES;
+                            //If target has Chutzpah
+                            if (statuses[21] != -1)
+                            {
+                                reze = (int)(reze * 1.25);
+                            }
+                            if (ran >= reze + statBuff || ran == 1 || ata.type != 0)
                             {
                                 target.giveStatus(ata.statusEffect);
                             }
@@ -7728,6 +7761,10 @@ public class HighwayHorror : unit
         LCK = 2;
 
         abilities = new List<Ability>();
+        abilities.Add(new EnemyAbilities.TrafficBite());
+        abilities.Add(new EnemyAbilities.RedLight());
+        abilities.Add(new EnemyAbilities.YellowLight());
+        abilities.Add(new EnemyAbilities.GreenLight());
     }
 }
 
@@ -7755,6 +7792,9 @@ public class Bouncer : unit
         LCK = 2;
 
         abilities = new List<Ability>();
+        abilities.Add(new EnemyAbilities.Bounce());
+        abilities.Add(new EnemyAbilities.StunGun());
+        abilities.Add(new EnemyAbilities.BeatItKid());
     }
 }
 
@@ -7782,6 +7822,10 @@ public class DiscoHooliganDan : unit
         LCK = 2;
 
         abilities = new List<Ability>();
+        abilities.Add(new EnemyAbilities.ElectricSlide());
+        abilities.Add(new EnemyAbilities.GroupGrooveDan());
+        abilities.Add(new EnemyAbilities.DanceDanceRevulsion());
+        abilities.Add(new EnemyAbilities.SacrificialBoogie());
     }
 }
 
@@ -7809,6 +7853,10 @@ public class DiscoHooliganDylan : unit
         LCK = 2;
 
         abilities = new List<Ability>();
+        abilities.Add(new EnemyAbilities.DiscoInferno());
+        abilities.Add(new EnemyAbilities.GroupGrooveDylan());
+        abilities.Add(new EnemyAbilities.DanceDanceRevulsion());
+        abilities.Add(new EnemyAbilities.SacrificialBoogie());
     }
 }
 
@@ -7836,6 +7884,10 @@ public class DiscoHooliganBrian : unit
         LCK = 2;
 
         abilities = new List<Ability>();
+        abilities.Add(new EnemyAbilities.ToxicTango());
+        abilities.Add(new EnemyAbilities.GroupGrooveBrian());
+        abilities.Add(new EnemyAbilities.DanceDanceRevulsion());
+        abilities.Add(new EnemyAbilities.SacrificialBoogie());
     }
 }
 
@@ -7844,6 +7896,11 @@ public class ConnivingCone : unit
     public ConnivingCone()
     {
 
+        abilities = new List<Ability>();
+        abilities.Add(new EnemyAbilities.ConeClaw2());
+        abilities.Add(new EnemyAbilities.LookBothWays2());
+        abilities.Add(new EnemyAbilities.CurbStomp2());
+        abilities.Add(new EnemyAbilities.PylonDriver());
     }
 }
 
@@ -7852,6 +7909,11 @@ public class DisposalDemon : unit
     public DisposalDemon()
     {
 
+        abilities = new List<Ability>();
+        abilities.Add(new EnemyAbilities.PutInCan());
+        abilities.Add(new EnemyAbilities.SpewingGarbage2());
+        abilities.Add(new EnemyAbilities.TakeOutTrash2());
+        abilities.Add(new EnemyAbilities.GarbageDay());
     }
 }
 
@@ -7860,6 +7922,12 @@ public class TheSquatter : unit
     public TheSquatter()
     {
 
+        abilities = new List<Ability>();
+        abilities.Add(new EnemyAbilities.WetWilly());
+        abilities.Add(new EnemyAbilities.ProjectileVomit());
+        abilities.Add(new EnemyAbilities.YourMouthOpen());
+        abilities.Add(new EnemyAbilities.Tantrum());
+        abilities.Add(new EnemyAbilities.PizzaTime());
     }
 }
 
@@ -7868,6 +7936,10 @@ public class MeatPuppet : unit
     public MeatPuppet()
     {
 
+        abilities = new List<Ability>();
+        abilities.Add(new EnemyAbilities.ForceFeed());
+        abilities.Add(new EnemyAbilities.ScreamGravy());
+        abilities.Add(new EnemyAbilities.MaggotMeat());
     }
 }
 
@@ -7876,6 +7948,11 @@ public class MeatGolem : unit
     public MeatGolem()
     {
 
+        abilities = new List<Ability>();
+        abilities.Add(new EnemyAbilities.HamFist());
+        abilities.Add(new EnemyAbilities.GreaseFire());
+        abilities.Add(new EnemyAbilities.RibRake());
+        abilities.Add(new EnemyAbilities.InhumanWarble());
     }
 }
 
@@ -7884,6 +7961,11 @@ public class MrGoodMeat : unit
     public MrGoodMeat()
     {
 
+        abilities = new List<Ability>();
+        abilities.Add(new EnemyAbilities.LighterFluid());
+        abilities.Add(new EnemyAbilities.ElectricMeat());
+        abilities.Add(new EnemyAbilities.MeatMold());
+        abilities.Add(new EnemyAbilities.Entrecote());
     }
 }
 
