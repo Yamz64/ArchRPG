@@ -16,16 +16,16 @@ public class unit
 
         abilities = new List<Ability>();
         statuses = new List<int>();
-        for (int i = 0; i < 26; i++)
+        for (int i = 0; i < 27; i++)
         {
             statuses.Add(-1);
         }
         statusIndex = new List<string>();
-        statusIndex.Add("Vomiting");        //0
-        statusIndex.Add("Aspirating");      //1
-        statusIndex.Add("Weeping");         //2
-        statusIndex.Add("Eye_Bleeding");    //3
-        statusIndex.Add("Blunt_Trauma");    //4
+        statusIndex.Add("Vomiting");        //0     Low level
+        statusIndex.Add("Aspirating");      //1     High
+        statusIndex.Add("Weeping");         //2     Low
+        statusIndex.Add("Eye_Bleeding");    //3     High
+        statusIndex.Add("Blunt_Trauma");    //4     Low
         statusIndex.Add("Hyperactive");     //5
         statusIndex.Add("Inspired");        //6
         statusIndex.Add("Neurotic");        //7
@@ -47,6 +47,7 @@ public class unit
         statusIndex.Add("Electrified");     //23
         statusIndex.Add("Madness");         //24
         statusIndex.Add("Doomed");          //25
+        statusIndex.Add("Disco_Fever");     //26
     }
     //Copy the numerical statistics of a unit
     public void copyUnitStats(unit ver)
@@ -643,11 +644,13 @@ public class unit
                     val -= (int)(val * valD);
                     valS -= (int)(valS * valD);
                 }
+
                 //Debug.Log("Got past damage stuff");
                 //Debug.Log("Unit name == " + unitName);
                 //Debug.Log("Sttatus size == " + statuses.Count);
                 //Debug.Log("Target name == " + target.unitName);
                 //Debug.Log("TargetSttatus size == " + target.statuses.Count);
+
                 //Check if target is weak or resistant to a certain damage type
                 if (target.weaknesses[ata.damageType] == true)
                 {
@@ -673,7 +676,49 @@ public class unit
                 }
 
                 //If conductive + electric damage
-                if (target.statuses[18] != -1 && ata.damageType == 1)
+                if (target.statuses[18] != -1 && ata.damageType == 2)
+                {
+                    //Roll numbers to check if status effect is given
+                    int ran = UnityEngine.Random.Range(1, 101);
+                    int statBuff = ata.alteredStatus;
+                    int reze = target.RES;
+                    //If target has Chutzpah
+                    if (statuses[21] != -1)
+                    {
+                        reze = (int)(reze * 1.25);
+                    }
+                    if (ran >= reze + statBuff || ran == 1)
+                    {
+                        target.giveStatus("Restrained");
+                    }
+                }
+
+                //If reactive + chemical damage
+                if (target.statuses[19] != -1 && ata.damageType == 3)
+                {
+                    //Roll numbers to check if status effect is given
+                    int ran = UnityEngine.Random.Range(1, 101);
+                    int statBuff = ata.alteredStatus;
+                    int reze = target.RES;
+                    //If target has Chutzpah
+                    if (statuses[21] != -1)
+                    {
+                        reze = (int)(reze * 1.25);
+                    }
+                    //If within bounds, increase duration of all active status effects by 1
+                    if (ran >= reze + statBuff || ran == 1)
+                    {
+                        for (int i = 0; i < statuses.Count; i++)
+                        {
+                            if (statuses[i] != -1)
+                            {
+                                statuses[i] += 1;
+                            }
+                        }
+                    }
+                }
+
+                if (target.statuses[20] != -1 && ata.damageType == 4)
                 {
                     //Roll numbers to check if status effect is given
                     int ran = UnityEngine.Random.Range(1, 101);
@@ -692,6 +737,7 @@ public class unit
 
                 takeDamage(val2);
                 int critBuff = ata.alteredCrit;
+
                 //If target has analyzed
                 if (target.statuses[14] != -1)
                 {
@@ -699,6 +745,7 @@ public class unit
                 }
                 //Debug.Log("Ability name == " + ata.name);
                 //Debug.Log("Gt past status stuff");
+
                 //Check if the unit gets a crit
                 int crit = UnityEngine.Random.Range(1, 101);
                 if (crit < ((LCK / 3) + critBuff))
@@ -711,6 +758,16 @@ public class unit
                 if (statuses[2] != -1)
                 {
                     int dum = UnityEngine.Random.Range(1, 4);
+                    if (dum == 1)
+                    {
+                        val = val / 5;
+                        reduced = true;
+                    }
+                }
+                //If unit has eye_bleeding
+                if (statuses[3] != -1)
+                {
+                    int dum = UnityEngine.Random.Range(1, 3);
                     if (dum == 1)
                     {
                         val = val / 5;

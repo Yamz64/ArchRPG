@@ -2960,14 +2960,7 @@ public class BattleScript : MonoBehaviour
                 if (actions[z].getType() == "ability" && state == battleState.ATTACK)
                 {
                     int toget = actions[z].getTarget();
-                    if (enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.currentHP > 0)
-                    {
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
-                            temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
-                        yield return playerAbility(actions[z].getIndex(), actions[z].getTarget(),
-                            temp[ind].GetComponent<UnitMono>().mainUnit, enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit);
-                    }
-                    else
+                    if (enemyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
                     {
                         while (enemyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && toget > 0)
                         {
@@ -2987,11 +2980,24 @@ public class BattleScript : MonoBehaviour
                         }
                         //dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " tried attacking " +
                         //    enemyUnits[toget].GetComponent<UnitMono>().mainUnit.unitName + ", but they weren't there";
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
-                            temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
-                        yield return playerAbility(actions[z].getIndex(), toget,
-                            temp[ind].GetComponent<UnitMono>().mainUnit, enemyUnits[toget].GetComponent<UnitMono>().mainUnit);
+                        //dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                        //    temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                        //yield return playerAbility(actions[z].getIndex(), toget,
+                        //   temp[ind].GetComponent<UnitMono>().mainUnit, enemyUnits[toget].GetComponent<UnitMono>().mainUnit);
                     }
+                    //If current unit has spasms
+                    if (temp[ind].GetComponent<UnitMono>().mainUnit.statuses[17] != -1 && activeEnemies - enemyDeaths > 1)
+                    {
+                        int baseNum = toget;
+                        while (enemyUnits[toget] == null || enemyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0 || toget == baseNum)
+                        {
+                            toget = Random.Range(0, enemyUnits.Count);
+                        }
+                    }
+                    dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                            temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                    yield return playerAbility(actions[z].getIndex(), toget,
+                            temp[ind].GetComponent<UnitMono>().mainUnit, enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit);
                 }
                 //Use Buff/Support ability (player)
                 else if (actions[z].getType() == "ability1" && state == battleState.ATTACK)
@@ -3011,6 +3017,7 @@ public class BattleScript : MonoBehaviour
                             }
                         }
                     }
+                    /*
                     else if (partyUnits[pose].GetComponent<UnitMono>().mainUnit.unitName != actions[z].getName())
                     {
                         for (int i = 0; i < 4; i++)
@@ -3025,6 +3032,7 @@ public class BattleScript : MonoBehaviour
                             }
                         }
                     }
+                    */
 
                     if (partyUnits[pose].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                     {
@@ -3037,14 +3045,10 @@ public class BattleScript : MonoBehaviour
                 //Use basic attack
                 else if (actions[z].getType() == "basic attack" && state == battleState.ATTACK)
                 {
-                    if (enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                    int toget = actions[z].getTarget();
+
+                    if (enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
                     {
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked the enemy";
-                        yield return basicAttack(temp[ind].GetComponent<UnitMono>().mainUnit, enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit);
-                    }
-                    else
-                    {
-                        int toget = actions[z].getTarget();
                         while (enemyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && toget > 0)
                         {
                             toget--;
@@ -3063,9 +3067,20 @@ public class BattleScript : MonoBehaviour
                         }
                         //dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " tried attacking " +
                         //    enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName + ", but they weren't there";
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked the enemy";
-                        yield return basicAttack(temp[ind].GetComponent<UnitMono>().mainUnit, enemyUnits[toget].GetComponent<UnitMono>().mainUnit);
+                        //dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked the enemy";
+                        //yield return basicAttack(temp[ind].GetComponent<UnitMono>().mainUnit, enemyUnits[toget].GetComponent<UnitMono>().mainUnit);
                     }
+                    //If current unit has spasms
+                    if (temp[ind].GetComponent<UnitMono>().mainUnit.statuses[17] != -1 && activeEnemies - enemyDeaths > 1)
+                    {
+                        int baseNum = toget;
+                        while (enemyUnits[toget] == null || enemyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0 || toget == baseNum)
+                        {
+                            toget = Random.Range(0, enemyUnits.Count);
+                        }
+                    }
+                    dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked the enemy";
+                    yield return basicAttack(temp[ind].GetComponent<UnitMono>().mainUnit, enemyUnits[toget].GetComponent<UnitMono>().mainUnit);
                 }
                 //Use item
                 else if (actions[z].getType() == "item" && state == battleState.ATTACK)
