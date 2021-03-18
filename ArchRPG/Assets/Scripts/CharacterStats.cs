@@ -673,6 +673,7 @@ public class CharacterStatJsonConverter
             id.GetComponent<UnitMono>().mainUnit.maxSP = SPs[num];
             id.GetComponent<UnitMono>().mainUnit.currentSP = SPs[num];
             id.GetComponent<UnitMono>().mainUnit.sanity = SANs[num];
+            if (SANs[num] <= 50) id.GetComponent<UnitMono>().mainUnit.giveEldritchAbility();
             id.GetComponent<UnitMono>().mainUnit.exp = XPs[num];
             id.GetComponent<UnitMono>().mainUnit.level = levels[num];
             if (weapons[num] != null)

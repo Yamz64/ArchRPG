@@ -403,7 +403,7 @@ public static class EldritchAbilities
             desc1 = "Buffs self with zealous and inspired, inflicts weeping on a random party member";
             desc2 = "You stare into the great beyond and uncover truths unbeknownst to that of your underlings...";
             cost = 8;
-            level_cost = 3;
+            level_cost = 1;
             position = 0;
             target = 3;
             enemyTarget = -1;
@@ -449,7 +449,7 @@ public static class EldritchAbilities
             name = "RuinousWave";
             desc2 = "You manifest the darkest dregs of your psyche and let out a destructive wave to damage those of inferior understanding.";
             cost = 12;
-            level_cost = 8;
+            level_cost = 2;
             position = 1;
             target = 3;
             enemyTarget = 3;
@@ -482,6 +482,7 @@ public static class EldritchAbilities
         {
             name = "Vampiric Betrayal";
             desc1 = "Inflicts high weird POW to an ally and you gain that much life, also grants you inspired";
+            level_cost = 3;
             type = 1;
             damage = 20;
             damageType = 4;
@@ -509,7 +510,7 @@ public static class EldritchAbilities
             name = "BeseechTheAbyss";
             desc2 = "You clasp your hands together and invoke the dark names of higher poewrs to provie assistance, who knows they might deem you and your followers worthy of aid.";
             cost = 15;
-            level_cost = 16;
+            level_cost = 4;
             position = 0;
             target = 3;
             enemyTarget = -1;
@@ -545,6 +546,7 @@ public static class EldritchAbilities
         {
             name = "Sanity Beam";
             desc1 = "Inflicts moderate sanity damage on an ally and does high weird POW to an enemy.";
+            level_cost = 5;
             type = 0;
             target = 0;
             enemyTarget = 0;
@@ -575,6 +577,7 @@ public static class EldritchAbilities
             name = "Ultimate Sacrifice";
             desc1 = "Kills a random party member. Inflicts a shit ton of status effects on an enemy and does moderate weird POW.";
             desc2 = "Takes one to Kill one";
+            level_cost = 6;
             target = 0;
             enemyTarget = 0;
             eldritch = true;

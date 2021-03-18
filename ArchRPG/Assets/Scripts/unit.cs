@@ -1319,6 +1319,46 @@ public class unit
         if (aggro == 0) aggroTarget = "";
     }
 
+    public void giveEldritchAbility()
+    {
+        if (unitName == "Clyve")
+        {
+            abilities.Add(new ClyveAbilities.Dysentery());
+        }
+        else if (unitName == "Jim")
+        {
+            abilities.Add(new JimAbilities.MalevolentSlapstick());
+        }
+        else if (unitName == "Shirley")
+        {
+            abilities.Add(new ShirleyAbilities.BayonetCharge());
+        }
+        else if (unitName == "Ralph")
+        {
+            abilities.Add(new RalphAbilities.EvidenceSchmevidence());
+        }
+        else if (unitName == "Lucy")
+        {
+            abilities.Add(new LucyAbilities.ProtectMyChildren());
+        }
+        else if (unitName == "Tim")
+        {
+            abilities.Add(new TimAbilities.MysteryMeat());
+        }
+        else if (unitName == "White Knight")
+        {
+            abilities.Add(new WhiteKnightAbilities.HereticalCharge());
+        }
+        else if (unitName == "Oliver Sprout")
+        {
+            abilities.Add(new OliverSproutAbilities.BadVibes());
+        }
+        else if (unitName == "Ember Moon")
+        {
+            abilities.Add(new EmberMoonAbilities.BurnItAll());
+        }
+    }
+
     //Flash red in response to damage
     public IEnumerator flashDamage()
     {
