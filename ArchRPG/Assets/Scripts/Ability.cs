@@ -54,6 +54,24 @@ public class Ability
 
     public virtual string OutputText(unit user, unit target) { return null; }
 
+    //function returns a name with whitespaces
+    public string GetTrueName()
+    {
+        string temp = "";
+
+        for(int i=0; i<name.Length; i++)
+        {
+            if (char.IsUpper(name[i]) && i != 0)
+            {
+                if(!char.IsWhiteSpace(name[i-1]))
+                temp += " ";
+            }
+            temp += name[i];
+        }
+
+        return temp;
+    }
+
     public bool eldritch = false;   //Whether the ability is eldritch or not
     public int target = 0;          //0-Single, 1-Across, 2-2 Adjacent enemies, 3-All
     public int enemyTarget = -1;     //Targets for the ability: 0-Any, 1-Front, 2-Back, 3-Self
@@ -480,7 +498,7 @@ public static class EldritchAbilities
     {
         public VampiricBetrayal()
         {
-            name = "Vampiric Betrayal";
+            name = "VampiricBetrayal";
             desc1 = "Inflicts high weird POW to an ally and you gain that much life, also grants you inspired";
             level_cost = 3;
             type = 1;
@@ -544,7 +562,7 @@ public static class EldritchAbilities
     {
         public SanityBeam()
         {
-            name = "Sanity Beam";
+            name = "SanityBeam";
             desc1 = "Inflicts moderate sanity damage on an ally and does high weird POW to an enemy.";
             level_cost = 5;
             type = 0;
@@ -574,7 +592,7 @@ public static class EldritchAbilities
     {
         public UltimateSacrifice()
         {
-            name = "Ultimate Sacrifice";
+            name = "UltimateSacrifice";
             desc1 = "Kills a random party member. Inflicts a shit ton of status effects on an enemy and does moderate weird POW.";
             desc2 = "Takes one to Kill one";
             level_cost = 6;
