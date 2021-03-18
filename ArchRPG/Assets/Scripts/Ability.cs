@@ -56,7 +56,7 @@ public class Ability
 
     public bool eldritch = false;   //Whether the ability is eldritch or not
     public int target = 0;          //0-Single, 1-Across, 2-2 Adjacent enemies, 3-All
-    public int enemyTarget = 0;     //Targets for the ability: 0-Any, 1-Front, 2-Back, 3-Self
+    public int enemyTarget = -1;     //Targets for the ability: 0-Any, 1-Front, 2-Back, 3-Self
     public string name = "";        //The name of the ability
     public int type = 0;            //int denotes who to use ability on --> 0 == enemy, 1 == ally, 2 == self
     public int position = 0;        //int denotes the place the ability can be used 0 = front and backline, 1 = frontline, 2 = backline
@@ -394,20 +394,23 @@ public static class EldritchAbilities
     }
 
     //***~RYAN~*** DONE
-    //This ability needs to buff the player with both zealous and confident, but inflict weeping on a party member
+    //This ability needs to buff the player with both zealous and confident, but inflict weeping on a random party member
     public class OtherworldyGaze : Ability
     {
         public OtherworldyGaze()
         {
             name = "OtherworldyGaze";
+            desc1 = "Buffs self with zealous and inspired, inflicts weeping on a random party member";
             desc2 = "You stare into the great beyond and uncover truths unbeknownst to that of your underlings...";
             cost = 8;
             level_cost = 3;
             position = 0;
-            target = 0;
+            target = 3;
+            enemyTarget = -1;
             damage = 0;
             type = 2;
             statusEffect = "Weeping";
+            eldritch = true;
         }
         public void useAttack(unit user, List<unit> targets)
         {
@@ -454,6 +457,7 @@ public static class EldritchAbilities
             type = 0;
             damageType = 4;
             use_pow = true;
+            eldritch = true;
         }
 
         public void useAttack(unit user, List<unit> targets)
@@ -481,12 +485,15 @@ public static class EldritchAbilities
             type = 1;
             damage = 20;
             damageType = 4;
+            target = 0;
+            enemyTarget = -1;
+            eldritch = true;
         }
 
-        public override void UseAttack(unit user, unit target)
+        public override void UseAttack(unit user, List<unit> targets)
         {
-            int val = user.takeDamageCalc(target, damage, damageType, true);
-            target.takeDamage(val);
+            int val = user.takeDamageCalc(targets[0], damage, damageType, true);
+            targets[0].takeDamage(val);
             user.healDamage(val);
             user.giveStatus("Inspired");
         }
@@ -505,7 +512,9 @@ public static class EldritchAbilities
             level_cost = 16;
             position = 0;
             target = 3;
+            enemyTarget = -1;
             type = 2;
+            eldritch = true;
         }
 
         public void useAttack(unit user, List<unit> targets)
@@ -530,18 +539,35 @@ public static class EldritchAbilities
         }
     }
 
-    //need to work on more
     public class SanityBeam : Ability
     {
         public SanityBeam()
         {
             name = "Sanity Beam";
             desc1 = "Inflicts moderate sanity damage on an ally and does high weird POW to an enemy.";
+            type = 0;
+            target = 0;
+            enemyTarget = 0;
+            eldritch = true;
+        }
 
+        public override void UseAttack(unit user, List<unit> targets)
+        {
+            for (int i = 0; i < targets.Count; i++)
+            {
+                if (!targets[i].enemy)
+                {
+                    targets[i].takeSanityDamage(15);
+                }
+                else
+                {
+                    int dam = user.takeDamageCalc(targets[i], 30, 4, true);
+                    targets[i].takeDamage(dam);
+                }
+            }
         }
     }
 
-    //need to work on more
     public class UltimateSacrifice : Ability
     {
         public UltimateSacrifice()
@@ -549,6 +575,32 @@ public static class EldritchAbilities
             name = "Ultimate Sacrifice";
             desc1 = "Kills a random party member. Inflicts a shit ton of status effects on an enemy and does moderate weird POW.";
             desc2 = "Takes one to Kill one";
+            target = 0;
+            enemyTarget = 0;
+            eldritch = true;
+        }
+
+        public override void UseAttack(unit user, List<unit> targets)
+        {
+            for (int i = 0; i < targets.Count; i++)
+            {
+                if (!targets[i].enemy)
+                {
+                    targets[i].takeDamage(targets[i].defMaxHP);
+                }
+                else
+                {
+                    targets[i].giveStatus("Vomiting");
+                    targets[i].giveStatus("Aspirating");
+                    targets[i].giveStatus("Weeping");
+                    targets[i].giveStatus("Eye_Bleeding");
+                    targets[i].giveStatus("Blunt_Trauma");
+                    targets[i].giveStatus("Lethargic");
+                    targets[i].giveStatus("Spasms");
+                    int dam = user.takeDamageCalc(targets[i], 30, 4, true);
+                    targets[i].takeDamage(dam);
+                }
+            }
         }
     }
 }
