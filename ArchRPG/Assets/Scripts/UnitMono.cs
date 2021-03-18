@@ -17,6 +17,7 @@ public class UnitMono : MonoBehaviour
         mainUnit.abilities = new List<Ability>();
 
         mainUnit.view = view;
+        mainUnit.backupView = backupView;
         mainUnit.nameText = nameText;
         mainUnit.BBackground = BBackground;
         mainUnit.WBackground = WBackground;
@@ -56,6 +57,7 @@ public class UnitMono : MonoBehaviour
 
     public string ImageFilePath;//Use to determine what image to display for the unit
     public Image view;          //Image of unit
+    public Image backupView;    //Baseline image position
     public Text nameText;       //Text object to project name to
     public Image BBackground;   //Background for the text
     public Image WBackground;   //Forms border around UI data

@@ -172,10 +172,10 @@ public class unit
     //Which unit enemies will aggro
     public string aggroTarget = "";
 
-
     public Sprite[] sprites;        //Array of sprites (for attack animations)
     public string ImageFilePath;    //Use to determine what image to display for the unit
     public Image view;              //Image of unit
+    public Image backupView;        //Baseline position of the image
     public Text nameText;           //Text object to project name to
     public Image BBackground;       //Background for the text
     public Image WBackground;       //Forms border around UI data
@@ -1321,7 +1321,11 @@ public class unit
 
     public void giveEldritchAbility()
     {
-        if (unitName == "Clyve")
+        if (unitName == "Player")
+        {
+
+        }
+        else if (unitName == "Clyve")
         {
             abilities.Add(new ClyveAbilities.Dysentery());
         }
@@ -7992,6 +7996,24 @@ public class ConnivingCone : unit
 {
     public ConnivingCone()
     {
+        ImageFilePath = "";
+        unitName = "Conniving Cone";
+        loadSprites();
+
+        level = 6;
+        maxHP = currentHP = 35;
+        expGain = 60;
+        enemy = true;
+        capital = 8;
+
+        //Currently uses Locker stats
+        ATK = 40;
+        DEF = 40;
+        POW = 30;
+        WILL = 6;
+        RES = 6;
+        AGI = 5;
+        LCK = 2;
 
         abilities = new List<Ability>();
         abilities.Add(new EnemyAbilities.ConeClaw2());
@@ -8005,6 +8027,24 @@ public class DisposalDemon : unit
 {
     public DisposalDemon()
     {
+        ImageFilePath = "";
+        unitName = "Disposal Demon";
+        loadSprites();
+
+        level = 6;
+        maxHP = currentHP = 35;
+        expGain = 60;
+        enemy = true;
+        capital = 8;
+
+        //Currently uses Locker stats
+        ATK = 40;
+        DEF = 40;
+        POW = 30;
+        WILL = 6;
+        RES = 6;
+        AGI = 5;
+        LCK = 2;
 
         abilities = new List<Ability>();
         abilities.Add(new EnemyAbilities.PutInCan());
@@ -8018,6 +8058,24 @@ public class TheSquatter : unit
 {
     public TheSquatter()
     {
+        ImageFilePath = "";
+        unitName = "The Squatter";
+        loadSprites();
+
+        level = 6;
+        maxHP = currentHP = 35;
+        expGain = 60;
+        enemy = true;
+        capital = 8;
+
+        //Currently uses Locker stats
+        ATK = 40;
+        DEF = 40;
+        POW = 30;
+        WILL = 6;
+        RES = 6;
+        AGI = 5;
+        LCK = 2;
 
         abilities = new List<Ability>();
         abilities.Add(new EnemyAbilities.WetWilly());
@@ -8032,6 +8090,24 @@ public class MeatPuppet : unit
 {
     public MeatPuppet()
     {
+        ImageFilePath = "";
+        unitName = "Meat Puppet";
+        loadSprites();
+
+        level = 6;
+        maxHP = currentHP = 35;
+        expGain = 60;
+        enemy = true;
+        capital = 8;
+
+        //Currently uses Locker stats
+        ATK = 40;
+        DEF = 40;
+        POW = 30;
+        WILL = 6;
+        RES = 6;
+        AGI = 5;
+        LCK = 2;
 
         abilities = new List<Ability>();
         abilities.Add(new EnemyAbilities.ForceFeed());
@@ -8044,6 +8120,24 @@ public class MeatGolem : unit
 {
     public MeatGolem()
     {
+        ImageFilePath = "";
+        unitName = "Meat Golem";
+        loadSprites();
+
+        level = 6;
+        maxHP = currentHP = 35;
+        expGain = 60;
+        enemy = true;
+        capital = 8;
+
+        //Currently uses Locker stats
+        ATK = 40;
+        DEF = 40;
+        POW = 30;
+        WILL = 6;
+        RES = 6;
+        AGI = 5;
+        LCK = 2;
 
         abilities = new List<Ability>();
         abilities.Add(new EnemyAbilities.HamFist());
@@ -8057,6 +8151,24 @@ public class MrGoodMeat : unit
 {
     public MrGoodMeat()
     {
+        ImageFilePath = "";
+        unitName = "Mr. GoodMeat";
+        loadSprites();
+
+        level = 6;
+        maxHP = currentHP = 35;
+        expGain = 60;
+        enemy = true;
+        capital = 8;
+
+        //Currently uses Locker stats
+        ATK = 40;
+        DEF = 40;
+        POW = 30;
+        WILL = 6;
+        RES = 6;
+        AGI = 5;
+        LCK = 2;
 
         abilities = new List<Ability>();
         abilities.Add(new EnemyAbilities.LighterFluid());

@@ -2732,6 +2732,18 @@ public class BattleScript : MonoBehaviour
     {
         cursor.SetActive(false);
         transform.GetChild(1).Find("ActionMenu").gameObject.SetActive(false);
+        for (int x = 0; x < partyUnits.Count; x++)
+        {
+            if (partyUnits[x] != null)
+            {
+                if (partyUnits[x].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                {
+                    Vector3 here = partyUnits[x].GetComponent<UnitMono>().mainUnit.view.transform.position;
+                    here.y = partyUnits[x].GetComponent<UnitMono>().mainUnit.backupView.transform.position.y;
+                    partyUnits[x].GetComponent<UnitMono>().mainUnit.view.transform.position = here;
+                }
+            }
+        }
         enemyAttacks();
         //Debug.Log("State == " + state);
         if (state != battleState.WIN && state != battleState.LOSE && state != battleState.FLEE)
@@ -3505,6 +3517,7 @@ public class BattleScript : MonoBehaviour
         //Load in all enemies possible
         bool boss = false;
         bool boss2 = false;
+        bool boss4 = false;
 
         int z = 0;
         for (int i = 0; i < loader.enemy_names.Length && z < 4; i++)
@@ -3575,6 +3588,7 @@ public class BattleScript : MonoBehaviour
             else if (loader.enemy_names[i] == "Meat Golem")
             {
                 enen = new MeatGolem();
+                boss4 = true;
             }
             else if (loader.enemy_names[i] == "Mr Good Meat")
             {
@@ -3601,23 +3615,29 @@ public class BattleScript : MonoBehaviour
             z++;
         }
 
-        //If normal enemy
-        if (!boss && !boss2)
-        {
-            //Start background music
-            useSound(3, true, 1);
-        }
         //If Student Body
-        else if (!boss2)
+        if (boss)
         {
             useSound(4, true, 1);
-            background.GetComponent<VideoPlayer>().clip = Resources.Load<VideoClip>("Backgrounds/Background1Edited");
+            background.GetComponent<VideoPlayer>().clip = Resources.Load<VideoClip>("Backgrounds/Background2EditedBright");
         }
         //If The Hound
-        else
+        else if (boss2)
         {
             useSound(4, true, 1);
             background.GetComponent<VideoPlayer>().clip = Resources.Load<VideoClip>("Backgrounds/Background4");
+        }
+        //If Meat Golem
+        else if (boss4)
+        {
+            useSound(4, true, 1);
+            background.GetComponent<VideoPlayer>().clip = Resources.Load<VideoClip>("Backgrounds/Background6");
+        }
+        //If normal enemy
+        else
+        {
+            //Start background music
+            useSound(3, true, 1);
         }
 
         //Define actions list
@@ -5692,6 +5712,29 @@ public class BattleScript : MonoBehaviour
                     break;
                 default:
                     break;
+            }
+            if (state == battleState.PLAYER)
+            {
+                for (int x = 0; x < partyUnits.Count; x++)
+                {
+                    if (partyUnits[x] != null)
+                    {
+                        if (partyUnits[x].GetComponent<UnitMono>().mainUnit.currentHP > 0 && x == currentUnit)
+                        {
+                            Vector3 here = partyUnits[x].GetComponent<UnitMono>().mainUnit.view.transform.position;
+                            Debug.Log("yloc = " + here.y);
+                            Debug.Log("back = " + partyUnits[x].GetComponent<UnitMono>().mainUnit.backupView.transform.position.y);
+                            here.y = partyUnits[x].GetComponent<UnitMono>().mainUnit.backupView.transform.position.y + 114;
+                            partyUnits[x].GetComponent<UnitMono>().mainUnit.view.transform.position = here;
+                        }
+                        else if (partyUnits[x].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                        {
+                            Vector3 here = partyUnits[x].GetComponent<UnitMono>().mainUnit.view.transform.position;
+                            here.y = partyUnits[x].GetComponent<UnitMono>().mainUnit.backupView.transform.position.y;
+                            partyUnits[x].GetComponent<UnitMono>().mainUnit.view.transform.position = here;
+                        }
+                    }
+                }
             }
         }
         else if (state == battleState.WIN)
