@@ -495,11 +495,15 @@ public class BattleScript : MonoBehaviour
         {
             if (i + ability_offset < partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities.Count)
             {
-                ability_viewer[i].text = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAbility(i + ability_offset).name;
                 if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAbility(i + ability_offset).eldritch)
                 {
+                    ability_viewer[i].text = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAbility(i + ability_offset).GetTrueName();
                     Color g = new Color(0.0f, 1.0f, 0.0f);
                     ability_viewer[i].color = g;
+                }
+                else
+                {
+                    ability_viewer[i].text = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAbility(i + ability_offset).name;
                 }
             }
             else
@@ -3103,8 +3107,12 @@ public class BattleScript : MonoBehaviour
                             toget = Random.Range(0, enemyUnits.Count);
                         }
                     }
-                    dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
-                            temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                    string abiName = temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                    if (temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].eldritch)
+                    {
+                        abiName = temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].GetTrueName();
+                    }
+                    dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " + abiName;
                     if (actions[z].getSecond() == -1)
                     {
                         yield return playerAbility(actions[z].getIndex(), toget,
@@ -3154,8 +3162,12 @@ public class BattleScript : MonoBehaviour
 
                     if (partyUnits[pose].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                     {
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
-                            temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                        string abiName = temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                        if (temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].eldritch)
+                        {
+                            abiName = temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].GetTrueName();
+                        }
+                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " + abiName;
                         yield return playerAbility(actions[z].getIndex(), pose,
                             temp[ind].GetComponent<UnitMono>().mainUnit, partyUnits[pose].GetComponent<UnitMono>().mainUnit);
                     }
