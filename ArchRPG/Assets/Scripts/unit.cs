@@ -16,11 +16,17 @@ public class unit
 
         abilities = new List<Ability>();
         statuses = new List<int>();
+        statusIcons = new List<Image>();
         for (int i = 0; i < 27; i++)
         {
             statuses.Add(-1);
         }
+        for (int i = 0; i < 8; i++)
+        {
+            statusIcons.Add(null);
+        }
         statusIndex = new List<string>();
+        statusIconIndex = new List<string>();
         statusIndex.Add("Vomiting");        //0     Low level
         statusIndex.Add("Aspirating");      //1     High
         statusIndex.Add("Weeping");         //2     Low
@@ -48,6 +54,34 @@ public class unit
         statusIndex.Add("Madness");         //24
         statusIndex.Add("Doomed");          //25
         statusIndex.Add("Disco_Fever");     //26
+
+        statusIconIndex.Add("vomiting");        //0     Low level
+        statusIconIndex.Add("aspirating");      //1     High
+        statusIconIndex.Add("weeping");         //2     Low
+        statusIconIndex.Add("eye_bleed");       //3     High
+        statusIconIndex.Add("blunt");           //4     Low
+        statusIconIndex.Add("hyperactive");     //5
+        statusIconIndex.Add("inspired");        //6
+        statusIconIndex.Add("neurotic");        //7
+        statusIconIndex.Add("restrained");      //8
+        statusIconIndex.Add("consumed");        //9
+        statusIconIndex.Add("diseased");        //10
+        statusIconIndex.Add("flammable");       //11
+        statusIconIndex.Add("hysteria");        //12
+        statusIconIndex.Add("analyzed");        //13
+        statusIconIndex.Add("zealous");         //14
+        statusIconIndex.Add("cancerous");       //15
+        statusIconIndex.Add("confident");       //16
+        statusIconIndex.Add("spasms");          //17
+        statusIconIndex.Add("conductive");      //18
+        statusIconIndex.Add("reactive");        //19
+        statusIconIndex.Add("zonked");          //20
+        statusIconIndex.Add("chutzpah");        //21
+        statusIconIndex.Add("lethargic");       //22
+        statusIconIndex.Add("electrified");     //23
+        statusIconIndex.Add("madness");         //24
+        statusIconIndex.Add("doomed");          //25
+        statusIconIndex.Add("disco_fever");     //26
     }
     //Copy the numerical statistics of a unit
     public void copyUnitStats(unit ver)
@@ -101,6 +135,10 @@ public class unit
             sanBar = ver.sanBar;
             sanSideText = ver.sanSideText;
             sanReadOut = ver.sanReadOut;
+        }
+        for (int i = 0; i < ver.statusIcons.Count; i++)
+        {
+            statusIcons[i] = ver.statusIcons[i];
         }
         statusBackW = ver.statusBackW;
         statusBackColor = ver.statusBackColor;
@@ -156,6 +194,7 @@ public class unit
     public bool[] resistances;          //an array of integer codes for the resistances that a unit may have
     public List<int> statuses;          //List of ints in order to track how long each status lasts for
     public List<string> statusIndex;    //List of strings for each status effect
+    public List<string> statusIconIndex;//List of strings to use to assign the correct icon
 
     //Whether an attack was critical
     public bool critted = false;
@@ -193,6 +232,8 @@ public class unit
     public Text sanSideText;        //SAN Icon
     public Text sanReadOut;         //Text showing exact sanity readout
 
+    public List<Image> statusIcons;
+
     public Image statusBackW;       //White background of the status bar
     public Image statusBackColor;   //Colored background of the status bar
     public Text statusText;         //Text to say what status effect the unit has
@@ -204,7 +245,7 @@ public class unit
     }
 
     //Function to set up the HUD with important data
-    public void setHUD(bool pic = false)        
+    public void setHUD(bool pic = false) 
     {
         //Debug.Log("view sprite == " + view.sprite);
         if (!pic)
@@ -237,6 +278,7 @@ public class unit
             sanReadOut.text = sanity + " / 100";
         }
         int sdnum = 0;
+        int num = 0;
         statusText.text = "";
         for (int i = 0; i < statuses.Count; i++)
         {
@@ -244,6 +286,31 @@ public class unit
             {
                 statusText.text += statusIndex[i] + ":" + statuses[i] + "\n";
                 sdnum++;
+            }
+        }
+        for (int i = 0; i < statuses.Count; i++)
+        {
+            if (statuses[i] != -1)
+            {
+                sdnum++;
+                if (num < 8)
+                {
+                    Color temp = statusIcons[i].color;
+                    temp.a = 1.0f;
+                    statusIcons[i].color = temp;
+                    statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_" + statusIconIndex[i]);
+                    Debug.Log(unitName + " status is " + statusIconIndex[i]);
+                    num += 1;
+                }
+            }
+        }
+        if (num < 8)
+        {
+            for (int i = num; i < 8; i++)
+            {
+                Color temp = statusIcons[i].color;
+                temp.a = 0.0f;
+                statusIcons[i].color = temp;
             }
         }
         if (sdnum > 0)
@@ -1116,6 +1183,14 @@ public class unit
     //Give the named status to this unit
     public void giveStatus(string id)
     {
+        int num = 0;
+        for (int i = 0; i < statuses.Count; i++)
+        {
+            if (statuses[i] != -1)
+            {
+                num += 1;
+            }
+        }
         if (id.Contains(" "))
         {
             string[] breaker = id.Split(' ');
@@ -1125,55 +1200,76 @@ public class unit
             }
         }
         int ran;
+        bool val = true;
         if (id.Equals("Vomiting")           && statuses[0] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[0] = ran;
+            if (num < 8)
+                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_vomiting");
         }
         else if (id.Equals("Aspirating")    && statuses[1] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[1] = ran;
+            if (num < 8)
+                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_aspirating");
         }
         else if (id.Equals("Weeping")       && statuses[2] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[2] = ran;
+            if (num < 8)
+                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_weeping");
         }
         else if (id.Equals("Eye_Bleeding")  && statuses[3] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[3] = ran;
+            if (num < 8)
+                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_eye_bleed");
         }
         else if (id.Equals("Blunt_Trauma")  && statuses[4] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[4] = ran;
+            if (num < 8)
+                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_blunt");
         }
         else if (id.Equals("Hyperactive")   && statuses[5] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[5] = ran;
+            if (num < 8)
+                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_hyperactive");
         }
         else if (id.Equals("Inspired")      && statuses[6] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[6] = ran;
+            if (num < 8)
+                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_inspired");
         }
         else if (id.Equals("Neurotic")      && statuses[7] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[7] = ran;
+            if (num < 8)
+                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_neurotic");
         }
         else if (id.Equals("Restrained")    && statuses[8] == -1)
         {
             ran = UnityEngine.Random.Range(1, 3);
             statuses[8] = ran;
+            if (num < 8)
+                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_restrained");
         }
         else if (id.Equals("Consumed")      && statuses[9] == -1)
         {
             ran = UnityEngine.Random.Range(1, 3);
             statuses[9] = ran;
+            if (num < 8)
+                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_consumed");
         }
         else if (id.Equals("Diseased")      && statuses[10] == -1)
         {
@@ -1184,27 +1280,37 @@ public class unit
                 maxHP -= 20;
                 if (currentHP > maxHP) currentHP = maxHP;
             }
+            if (num < 8)
+                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_diseased");
 
         }
         else if (id.Equals("Flammable")     && statuses[11] == -1)
         {
             ran = UnityEngine.Random.Range(3, 6);
             statuses[11] = ran;
+            if (num < 8)
+                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_flammable");
         }
         else if (id.Equals("Hysteria")      && statuses[12] == -1)
         {
             ran = UnityEngine.Random.Range(7, 11);
             statuses[12] = ran;
+            if (num < 8)
+                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_hysteria");
         }
         else if (id.Equals("Analyzed")      && statuses[13] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[13] = ran;
+            if (num < 8)
+                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_analyzed");
         }
         else if (id.Equals("Zealous")       && statuses[14] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[14] = ran;
+            if (num < 8)
+                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_zealous");
         }
         else if (id.Equals("Cancerous")     && statuses[15] == -1)
         {
@@ -1212,31 +1318,95 @@ public class unit
             statuses[15] = ran;
             maxHP = maxHP / 4;
             if (currentHP > maxHP) currentHP = maxHP;
+            if (num < 8)
+                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_cancerous");
         }
         else if (id.Equals("Confident")     && statuses[16] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[16] = ran;
+            if (num < 8)
+                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_confident");
         }
         else if (id.Equals("Spasms")        && statuses[17] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[17] = ran;
+            if (num < 8)
+                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_spasms");
         }
         else if (id.Equals("Conductive")    && statuses[18] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[18] = ran;
+            if (num < 8)
+                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_conductive");
         }
         else if (id.Equals("Reactive")      && statuses[19] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[19] = ran;
+            if (num < 8)
+                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_reactive");
         }
         else if (id.Equals("Zonked")        && statuses[20] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[20] = ran;
+            if (num < 8)
+                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_zonked");
+        }
+        else if (id.Equals("Chutzpah")      && statuses[21] == -1)
+        {
+            ran = UnityEngine.Random.Range(5, 9);
+            statuses[21] = ran;
+            if (num < 8)
+                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_chutzpah");
+        }
+        else if (id.Equals("Lethargic")     && statuses[22] == -1)
+        {
+            ran = UnityEngine.Random.Range(5, 9);
+            statuses[22] = ran;
+            if (num < 8)
+                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_lethargic");
+        }
+        else if (id.Equals("Electrified")   && statuses[23] == -1)
+        {
+            ran = UnityEngine.Random.Range(5, 9);
+            statuses[23] = ran;
+            if (num < 8)
+                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_electrified");
+        }
+        else if (id.Equals("Madness")       && statuses[24] == -1)
+        {
+            ran = UnityEngine.Random.Range(5, 9);
+            statuses[24] = ran;
+            if (num < 8)
+                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_madness");
+        }
+        else if (id.Equals("Dead")          && statuses[25] == -1)
+        {
+            ran = UnityEngine.Random.Range(5, 9);
+            statuses[25] = ran;
+            if (num < 8)
+                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_dead");
+        }
+        else if (id.Equals("Disco Fever")   && statuses[26] == -1)
+        {
+            ran = UnityEngine.Random.Range(5, 9);
+            statuses[20] = ran;
+            if (num < 8)
+                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_disco_fever");
+        }
+        else
+        {
+            val = false;
+        }
+        if (val)
+        {
+            Color temp = statusIcons[num].color;
+            temp.a = 1.0f;
+            statusIcons[num].color = temp;
         }
         status = "";
         bool has = false;
@@ -1264,7 +1434,7 @@ public class unit
         bool no = false;
         for (int i = 0; i < statuses.Count; i++)
         {
-            if (statuses[i] > -1 && i != 17)
+            if (statuses[i] > -1)
             {
                 if (unitName != "Accident Jim" || i != 4)
                 {
@@ -1293,12 +1463,31 @@ public class unit
         else
         {
             status = "";
+            int num = 0;
 
             for (int i = 0; i < statuses.Count; i++)
             {
                 if (statuses[i] != -1)
                 {
                     status += statusIndex[i] + ":" + statuses[i] + "\n";
+                    if (num < 8)
+                    {
+                        Color temp = statusIcons[num].color;
+                        temp.a = 1.0f;
+                        statusIcons[num].color = temp;
+                        statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_" + statusIconIndex[i]);
+                        num += 1;
+                    }
+                }
+            }
+            if (num < 8)
+            {
+                for (int i = num; i < 8; i++)
+                {
+                    Color temp = statusIcons[i].color;
+                    temp.a = 0.0f;
+                    statusIcons[i].color = temp;
+                    statusIcons[i].sprite = null;
                 }
             }
 

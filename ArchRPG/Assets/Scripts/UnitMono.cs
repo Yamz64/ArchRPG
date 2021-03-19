@@ -34,6 +34,11 @@ public class UnitMono : MonoBehaviour
             mainUnit.sanSideText = sanSideText;
             mainUnit.sanReadOut = sanReadOut;
         }
+        mainUnit.statusIcons = statusIcons;
+        //for (int i = 0; i < statusIcons.Count; i++)
+       // {
+       //     Debug.Log("Stat[" + i + "] of " + mainUnit.unitName + " is " + statusIcons[i]);
+       // }
         mainUnit.statusBackW = statusBackW;
         mainUnit.statusBackColor = statusBackColor;
         mainUnit.statusText = statusText;
@@ -71,6 +76,8 @@ public class UnitMono : MonoBehaviour
     public Image sanBar;        //Bar to project sanity to
     public Text sanSideText;    //SAN Icon
     public Text sanReadOut;     //Text showing exact sanity readout
+
+    public List<Image> statusIcons;
     public Image statusBackW;   //White background of the status bar
     public Image statusBackColor;   //Colored background of the status bar
     public Text statusText;     //Text to say what status effect the unit has   

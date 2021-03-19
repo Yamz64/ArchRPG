@@ -5734,8 +5734,8 @@ public class BattleScript : MonoBehaviour
                         if (partyUnits[x].GetComponent<UnitMono>().mainUnit.currentHP > 0 && x == currentUnit)
                         {
                             Vector3 here = partyUnits[x].GetComponent<UnitMono>().mainUnit.view.transform.position;
-                            Debug.Log("yloc = " + here.y);
-                            Debug.Log("back = " + partyUnits[x].GetComponent<UnitMono>().mainUnit.backupView.transform.position.y);
+                            //Debug.Log("yloc = " + here.y);
+                            //Debug.Log("back = " + partyUnits[x].GetComponent<UnitMono>().mainUnit.backupView.transform.position.y);
                             here.y = partyUnits[x].GetComponent<UnitMono>().mainUnit.backupView.transform.position.y + 114;
                             partyUnits[x].GetComponent<UnitMono>().mainUnit.view.transform.position = here;
                         }
