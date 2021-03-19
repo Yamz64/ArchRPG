@@ -299,7 +299,17 @@ public class unit
                     temp.a = 1.0f;
                     statusIcons[i].color = temp;
                     statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_" + statusIconIndex[i]);
-                    Debug.Log(unitName + " status is " + statusIconIndex[i]);
+                    statusIcons[num].transform.GetChild(0).GetChild(2).GetComponent<Text>().text = "" + statuses[i];
+
+                    temp = statusIcons[num].transform.GetChild(0).GetChild(0).GetComponent<Image>().color;
+                    temp.a = 1.0f;
+                    statusIcons[num].transform.GetChild(0).GetChild(0).GetComponent<Image>().color = temp;
+
+                    temp = statusIcons[num].transform.GetChild(0).GetChild(1).GetComponent<Image>().color;
+                    temp.a = 1.0f;
+                    statusIcons[num].transform.GetChild(0).GetChild(1).GetComponent<Image>().color = temp;
+
+                    //Debug.Log(unitName + " status is " + statusIconIndex[i]);
                     num += 1;
                 }
             }
@@ -311,6 +321,16 @@ public class unit
                 Color temp = statusIcons[i].color;
                 temp.a = 0.0f;
                 statusIcons[i].color = temp;
+
+                temp = statusIcons[i].transform.GetChild(0).GetChild(0).GetComponent<Image>().color;
+                temp.a = 0.0f;
+                statusIcons[i].transform.GetChild(0).GetChild(0).GetComponent<Image>().color = temp;
+
+                temp = statusIcons[i].transform.GetChild(0).GetChild(1).GetComponent<Image>().color;
+                temp.a = 0.0f;
+                statusIcons[i].transform.GetChild(0).GetChild(1).GetComponent<Image>().color = temp;
+
+                statusIcons[i].transform.GetChild(0).GetChild(2).GetComponent<Text>().text = "";
             }
         }
         if (sdnum > 0)
@@ -1205,71 +1225,60 @@ public class unit
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[0] = ran;
-            if (num < 8)
-                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_vomiting");
         }
         else if (id.Equals("Aspirating")    && statuses[1] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[1] = ran;
-            if (num < 8)
-                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_aspirating");
+            
         }
         else if (id.Equals("Weeping")       && statuses[2] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[2] = ran;
-            if (num < 8)
-                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_weeping");
+            
         }
         else if (id.Equals("Eye_Bleeding")  && statuses[3] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[3] = ran;
-            if (num < 8)
-                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_eye_bleed");
+            
         }
         else if (id.Equals("Blunt_Trauma")  && statuses[4] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[4] = ran;
-            if (num < 8)
-                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_blunt");
+            
         }
         else if (id.Equals("Hyperactive")   && statuses[5] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[5] = ran;
-            if (num < 8)
-                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_hyperactive");
+            
         }
         else if (id.Equals("Inspired")      && statuses[6] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[6] = ran;
-            if (num < 8)
-                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_inspired");
+            
         }
         else if (id.Equals("Neurotic")      && statuses[7] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[7] = ran;
-            if (num < 8)
-                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_neurotic");
+            
         }
         else if (id.Equals("Restrained")    && statuses[8] == -1)
         {
             ran = UnityEngine.Random.Range(1, 3);
             statuses[8] = ran;
-            if (num < 8)
-                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_restrained");
+            
         }
         else if (id.Equals("Consumed")      && statuses[9] == -1)
         {
             ran = UnityEngine.Random.Range(1, 3);
             statuses[9] = ran;
-            if (num < 8)
-                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_consumed");
+            
         }
         else if (id.Equals("Diseased")      && statuses[10] == -1)
         {
@@ -1280,37 +1289,32 @@ public class unit
                 maxHP -= 20;
                 if (currentHP > maxHP) currentHP = maxHP;
             }
-            if (num < 8)
-                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_diseased");
+            
 
         }
         else if (id.Equals("Flammable")     && statuses[11] == -1)
         {
             ran = UnityEngine.Random.Range(3, 6);
             statuses[11] = ran;
-            if (num < 8)
-                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_flammable");
+            
         }
         else if (id.Equals("Hysteria")      && statuses[12] == -1)
         {
             ran = UnityEngine.Random.Range(7, 11);
             statuses[12] = ran;
-            if (num < 8)
-                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_hysteria");
+            
         }
         else if (id.Equals("Analyzed")      && statuses[13] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[13] = ran;
-            if (num < 8)
-                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_analyzed");
+            
         }
         else if (id.Equals("Zealous")       && statuses[14] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[14] = ran;
-            if (num < 8)
-                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_zealous");
+            
         }
         else if (id.Equals("Cancerous")     && statuses[15] == -1)
         {
@@ -1318,85 +1322,73 @@ public class unit
             statuses[15] = ran;
             maxHP = maxHP / 4;
             if (currentHP > maxHP) currentHP = maxHP;
-            if (num < 8)
-                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_cancerous");
+            
         }
         else if (id.Equals("Confident")     && statuses[16] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[16] = ran;
-            if (num < 8)
-                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_confident");
+            
         }
         else if (id.Equals("Spasms")        && statuses[17] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[17] = ran;
-            if (num < 8)
-                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_spasms");
+            
         }
         else if (id.Equals("Conductive")    && statuses[18] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[18] = ran;
-            if (num < 8)
-                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_conductive");
+            
         }
         else if (id.Equals("Reactive")      && statuses[19] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[19] = ran;
-            if (num < 8)
-                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_reactive");
+            
         }
         else if (id.Equals("Zonked")        && statuses[20] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[20] = ran;
-            if (num < 8)
-                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_zonked");
+            
         }
         else if (id.Equals("Chutzpah")      && statuses[21] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[21] = ran;
-            if (num < 8)
-                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_chutzpah");
+            
         }
         else if (id.Equals("Lethargic")     && statuses[22] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[22] = ran;
-            if (num < 8)
-                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_lethargic");
+            
         }
         else if (id.Equals("Electrified")   && statuses[23] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[23] = ran;
-            if (num < 8)
-                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_electrified");
+            
         }
         else if (id.Equals("Madness")       && statuses[24] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[24] = ran;
-            if (num < 8)
-                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_madness");
+            
         }
         else if (id.Equals("Dead")          && statuses[25] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[25] = ran;
-            if (num < 8)
-                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_dead");
+            
         }
         else if (id.Equals("Disco Fever")   && statuses[26] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[20] = ran;
-            if (num < 8)
-                statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_disco_fever");
+            
         }
         else
         {
@@ -1426,6 +1418,7 @@ public class unit
             statusBackColor.gameObject.SetActive(true);
             statusText.gameObject.SetActive(true);
         }
+        setHUD();
     }
 
     //Decrement the status counter, and remove the status when it reaches 0
@@ -1476,6 +1469,16 @@ public class unit
                         temp.a = 1.0f;
                         statusIcons[num].color = temp;
                         statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_" + statusIconIndex[i]);
+                        statusIcons[num].transform.GetChild(0).GetChild(2).GetComponent<Text>().text = "" + statuses[i];
+
+                        temp = statusIcons[num].transform.GetChild(0).GetChild(0).GetComponent<Image>().color;
+                        temp.a = 1.0f;
+                        statusIcons[num].transform.GetChild(0).GetChild(0).GetComponent<Image>().color = temp;
+
+                        temp = statusIcons[num].transform.GetChild(0).GetChild(1).GetComponent<Image>().color;
+                        temp.a = 1.0f;
+                        statusIcons[num].transform.GetChild(0).GetChild(1).GetComponent<Image>().color = temp;
+
                         num += 1;
                     }
                 }
@@ -1488,6 +1491,15 @@ public class unit
                     temp.a = 0.0f;
                     statusIcons[i].color = temp;
                     statusIcons[i].sprite = null;
+
+                    temp = statusIcons[i].transform.GetChild(0).GetChild(0).GetComponent<Image>().color;
+                    temp.a = 0.0f;
+                    statusIcons[i].transform.GetChild(0).GetChild(0).GetComponent<Image>().color = temp;
+
+                    temp = statusIcons[i].transform.GetChild(0).GetChild(1).GetComponent<Image>().color;
+                    temp.a = 0.0f;
+                    statusIcons[i].transform.GetChild(0).GetChild(1).GetComponent<Image>().color = temp;
+                    statusIcons[i].transform.GetChild(0).GetChild(2).GetComponent<Text>().text = "";
                 }
             }
 
