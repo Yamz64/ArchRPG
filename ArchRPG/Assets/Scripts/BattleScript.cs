@@ -217,6 +217,34 @@ public class BattleScript : MonoBehaviour
             else
                 audio_handler.PlaySoundLoop("Sound/Music/BossMusic", i);
         }
+        else if (num == 5)
+        {
+            if (!lop)
+                audio_handler.PlaySound("Sound/Music/Hound", i);
+            else
+                audio_handler.PlaySoundLoop("Sound/Music/Hound", i);
+        }
+        else if (num == 6)
+        {
+            if (!lop)
+                audio_handler.PlaySound("Sound/Music/Squatter", i);
+            else
+                audio_handler.PlaySoundLoop("Sound/Music/Squatter", i);
+        }
+        else if (num == 7)
+        {
+            if (!lop)
+                audio_handler.PlaySound("Sound/Music/ClubBossk", i);
+            else
+                audio_handler.PlaySoundLoop("Sound/Music/ClubBossk", i);
+        }
+        else if (num == 8)
+        {
+            if (!lop)
+                audio_handler.PlaySound("Sound/Music/MeatGolemTheme", i);
+            else
+                audio_handler.PlaySoundLoop("Sound/Music/MeatGolemTheme", i);
+        }
         else
         {
             Debug.Log("Invalid sound");
@@ -3567,6 +3595,8 @@ public class BattleScript : MonoBehaviour
         //Load in all enemies possible
         bool boss = false;
         bool boss2 = false;
+        bool boss31 = false;
+        bool boss32 = false;
         bool boss4 = false;
 
         int z = 0;
@@ -3610,14 +3640,17 @@ public class BattleScript : MonoBehaviour
             else if (loader.enemy_names[i] == "Disco Hooligan Dan")
             {
                 enen = new DiscoHooliganDan();
+                boss32 = true;
             }
             else if (loader.enemy_names[i] == "Disco Hooligan Dylan")
             {
                 enen = new DiscoHooliganDylan();
+                boss32 = true;
             }
             else if (loader.enemy_names[i] == "Disco Hooligan Brian")
             {
                 enen = new DiscoHooliganBrian();
+                boss32 = true;
             }
             else if (loader.enemy_names[i] == "Conniving Cone")
             {
@@ -3630,6 +3663,7 @@ public class BattleScript : MonoBehaviour
             else if (loader.enemy_names[i] == "The Squatter")
             {
                 enen = new TheSquatter();
+                boss31 = true;
             }
             else if (loader.enemy_names[i] == "Meat Puppet")
             {
@@ -3674,13 +3708,25 @@ public class BattleScript : MonoBehaviour
         //If The Hound
         else if (boss2)
         {
-            useSound(4, true, 1);
+            useSound(5, true, 1);
             background.GetComponent<VideoPlayer>().clip = Resources.Load<VideoClip>("Backgrounds/Background4");
+        }
+        //If The Squatter
+        else if (boss31)
+        {
+            useSound(6, true, 1);
+            background.GetComponent<VideoPlayer>().clip = Resources.Load<VideoClip>("Backgrounds/Background4");
+        }
+        //If The Disco Hooligans
+        else if (boss32)
+        {
+            useSound(7, true, 1);
+            background.GetComponent<VideoPlayer>().clip = Resources.Load<VideoClip>("Backgrounds/Background5");
         }
         //If Meat Golem
         else if (boss4)
         {
-            useSound(4, true, 1);
+            useSound(8, true, 1);
             background.GetComponent<VideoPlayer>().clip = Resources.Load<VideoClip>("Backgrounds/Background6");
         }
         //If normal enemy
