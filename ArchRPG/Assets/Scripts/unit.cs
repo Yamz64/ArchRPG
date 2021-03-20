@@ -164,7 +164,7 @@ public class unit
     public int AGI;                 //Agility stat of unit
     public int LCK;                 //Luck stat of unit
     public string status;           //String to say what status effect the unit has
-    public int mode = 0;
+    public int mode = 0;            //The unit's mode (ex. Oliver's Rage and Peace modes)
     //public int statusCounter = 0;   //Int to track how many more turns the unit will have the status for
 
 
@@ -232,7 +232,7 @@ public class unit
     public Text sanSideText;        //SAN Icon
     public Text sanReadOut;         //Text showing exact sanity readout
 
-    public List<Image> statusIcons;
+    public List<Image> statusIcons; //List of status icons to place specific statuses in
 
     public Image statusBackW;       //White background of the status bar
     public Image statusBackColor;   //Colored background of the status bar
@@ -981,6 +981,7 @@ public class unit
         }
     }
 
+    //Calculate the damage this unit does against the target
     public int takeDamageCalc(unit target, int dam, int typer, bool powe = false)
     {
         int val = dam;
@@ -1211,6 +1212,7 @@ public class unit
                 num += 1;
             }
         }
+        //If there is whitespace, split the string up and give multiple status effects
         if (id.Contains(" "))
         {
             string[] breaker = id.Split(' ');
@@ -1520,6 +1522,7 @@ public class unit
         if (aggro == 0) aggroTarget = "";
     }
 
+    //Give this unit its assigned eldritch/madness ability
     public void giveEldritchAbility()
     {
         if (unitName == "Player")
@@ -2158,6 +2161,15 @@ public class PlayerUnit : unit
                 break;
         }
 
+        List<string> edi = new List<string>();
+        for (int i = 0; i < abilities.Count; i++)
+        {
+            if (abilities[i].eldritch)
+            {
+                edi.Add(abilities[i].name);
+            }
+        }
+
         abilities.Clear();
 
         if (level >= 1)
@@ -2183,6 +2195,31 @@ public class PlayerUnit : unit
         if (level >= 20)
         {
             abilities.Add(new PlayerAbilities.CharismaticFervor());
+        }
+        //Add any eldritch abilities
+        if (edi.Contains("OtherworldlyGaze"))
+        {
+            abilities.Add(new EldritchAbilities.OtherworldyGaze());
+        }
+        if (edi.Contains("RuinousWave"))
+        {
+            abilities.Add(new EldritchAbilities.RuinousWave());
+        }
+        if (edi.Contains("VampiricBetrayal"))
+        {
+            abilities.Add(new EldritchAbilities.VampiricBetrayal());
+        }
+        if (edi.Contains("BeseechTheAbyss"))
+        {
+            abilities.Add(new EldritchAbilities.BeseechTheAbyss());
+        }
+        if (edi.Contains("SanityBeam"))
+        {
+            abilities.Add(new EldritchAbilities.SanityBeam());
+        }
+        if (edi.Contains("UltimateSacrifice"))
+        {
+            abilities.Add(new EldritchAbilities.UltimateSacrifice());
         }
     }
 }
@@ -2749,6 +2786,11 @@ public class ClyveUnit : unit
         {
             abilities.Add(new ClyveAbilities.InfernalShower());
         }
+
+        if (sanity <= 50)
+        {
+            abilities.Add(new ClyveAbilities.Dysentery());
+        }
     }
 }
 
@@ -3313,6 +3355,10 @@ public class JimUnit : unit
         {
             abilities.Add(new JimAbilities.MagicalInspiration());
         }
+        if (sanity <= 50)
+        {
+            abilities.Add(new JimAbilities.MalevolentSlapstick());
+        }
     }
 }
 
@@ -3876,6 +3922,10 @@ public class NormUnit : unit
         {
             abilities.Add(new NormAbilities.ChimpChop());
         }
+        if (sanity <= 50)
+        {
+            abilities.Add(new NormAbilities.MonkeyGrief());
+        }
     }
 }
 
@@ -4438,6 +4488,10 @@ public class ShirleyUnit : unit
         if (level >= 20)
         {
             abilities.Add(new ShirleyAbilities.SuppressingFire());
+        }
+        if (sanity <= 50)
+        {
+            abilities.Add(new ShirleyAbilities.BayonetCharge());
         }
     }
 }
@@ -5004,6 +5058,11 @@ public class RalphUnit : unit
         {
             abilities.Add(new RalphAbilities.Gun());
         }
+
+        if (sanity <= 50)
+        {
+            abilities.Add(new RalphAbilities.EvidenceSchmevidence());
+        }
     }
 }
 
@@ -5569,6 +5628,11 @@ public class LucyUnit : unit
         {
             abilities.Add(new LucyAbilities.VirumRodentia());
         }
+
+        if (sanity <= 50)
+        {
+            abilities.Add(new LucyAbilities.ProtectMyChildren());
+        }
     }
 }
 
@@ -6133,6 +6197,11 @@ public class TimUnit : unit
         if (level >= 20)
         {
             abilities.Add(new TimAbilities.AllYouCanEat());
+        }
+
+        if (sanity <= 50)
+        {
+            abilities.Add(new TimAbilities.MysteryMeat());
         }
     }
 }
@@ -6701,6 +6770,11 @@ public class WhiteKnightUnit : unit
         {
             abilities.Add(new WhiteKnightAbilities.DeusVultusMaximus());
         }
+
+        if (sanity <= 50)
+        {
+            abilities.Add(new WhiteKnightAbilities.HereticalCharge());
+        }
     }
 }
 
@@ -6966,15 +7040,22 @@ public class OliverSproutUnit : unit
 
         if (level >= 1)
         {
-
+            abilities.Add(new OliverSproutAbilities.WarAndPeace());
         }
         if (level >= 5)
         {
-
+            abilities.Add(new OliverSproutAbilities.GoodVibes());
+            abilities.Add(new OliverSproutAbilities.BohemianGrip());
         }
-        if (level >= 8)
+        if (level >= 12)
         {
-
+            abilities.Add(new OliverSproutAbilities.ChillaxDude());
+            abilities.Add(new OliverSproutAbilities.EyeGouge());
+        }
+        if (level >= 20)
+        {
+            abilities.Add(new OliverSproutAbilities.Imagine());
+            abilities.Add(new OliverSproutAbilities.RipAndTear());
         }
     }
 
@@ -7232,15 +7313,27 @@ public class OliverSproutUnit : unit
 
         if (level >= 1)
         {
-            abilities.Add(new LucyAbilities.FungalRat());
+            abilities.Add(new OliverSproutAbilities.WarAndPeace());
         }
         if (level >= 5)
         {
-            abilities.Add(new LucyAbilities.RodentialKindling());
+            abilities.Add(new OliverSproutAbilities.GoodVibes());
+            abilities.Add(new OliverSproutAbilities.BohemianGrip());
         }
-        if (level >= 8)
+        if (level >= 12)
         {
-            abilities.Add(new LucyAbilities.FeedTheMasses());
+            abilities.Add(new OliverSproutAbilities.ChillaxDude());
+            abilities.Add(new OliverSproutAbilities.EyeGouge());
+        }
+        if (level >= 20)
+        {
+            abilities.Add(new OliverSproutAbilities.Imagine());
+            abilities.Add(new OliverSproutAbilities.RipAndTear());
+        }
+
+        if (sanity <= 50)
+        {
+            abilities.Add(new OliverSproutAbilities.BadVibes());
         }
     }
 }
@@ -7507,15 +7600,27 @@ public class EmberMoonUnit : unit
 
         if (level >= 1)
         {
-
+            abilities.Add(new EmberMoonAbilities.MolotovCocktail());
         }
-        if (level >= 5)
+        if (level >= 4)
         {
-
+            abilities.Add(new EmberMoonAbilities.SwappinPills());
         }
         if (level >= 8)
         {
-
+            abilities.Add(new EmberMoonAbilities.GuitarSmash());
+        }
+        if (level >= 13)
+        {
+            abilities.Add(new EmberMoonAbilities.MagicalWeirdShit());
+        }
+        if (level >= 17)
+        {
+            abilities.Add(new EmberMoonAbilities.MindCrush());
+        }
+        if (level >= 20)
+        {
+            abilities.Add(new EmberMoonAbilities.HogWild());
         }
     }
 
@@ -7773,15 +7878,32 @@ public class EmberMoonUnit : unit
 
         if (level >= 1)
         {
-            abilities.Add(new LucyAbilities.FungalRat());
+            abilities.Add(new EmberMoonAbilities.MolotovCocktail());
         }
-        if (level >= 5)
+        if (level >= 4)
         {
-            abilities.Add(new LucyAbilities.RodentialKindling());
+            abilities.Add(new EmberMoonAbilities.SwappinPills());
         }
         if (level >= 8)
         {
-            abilities.Add(new LucyAbilities.FeedTheMasses());
+            abilities.Add(new EmberMoonAbilities.GuitarSmash());
+        }
+        if (level >= 13)
+        {
+            abilities.Add(new EmberMoonAbilities.MagicalWeirdShit());
+        }
+        if (level >= 17)
+        {
+            abilities.Add(new EmberMoonAbilities.MindCrush());
+        }
+        if (level >= 20)
+        {
+            abilities.Add(new EmberMoonAbilities.HogWild());
+        }
+
+        if (sanity <= 50)
+        {
+            abilities.Add(new EmberMoonAbilities.BurnItAll());
         }
     }
 }

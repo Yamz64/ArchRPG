@@ -2635,10 +2635,12 @@ public class BattleScript : MonoBehaviour
                         for (int f = 0; f < partyUnits.Count; f++)
                         {
                             tochoos.Add(f);
+                            //If a frontline unit, add twice
                             if (f < 2)
                             {
                                 tochoos.Add(f);
                             }
+                            //If an active unit that is using aggro, add 10 times
                             if (partyUnits[f] != null)
                             {
                                 if (partyUnits[f].GetComponent<UnitMono>().mainUnit.currentHP > 0 &&
@@ -2661,6 +2663,7 @@ public class BattleScript : MonoBehaviour
                         {
                             for (int c = 0; c < enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities.Count; c++)
                             {
+                                //Break up status effect, and compare against target's current statuses
                                 string[] breaker = enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[c].statusEffect.Split(' ');
                                 int match = 0;
                                 for (int k = 0; k < breaker.Length; k++)
@@ -2693,6 +2696,7 @@ public class BattleScript : MonoBehaviour
                         }
                         x = probos[Random.Range(0, probos.Count)];
                         //Select the appropriate ability based on enemy position
+                        //If frontline
                         if (r == 0 || r == 1)
                         {
                             //Keep loop going while ability doesn't match position or while ability isn't offensive
@@ -2704,8 +2708,10 @@ public class BattleScript : MonoBehaviour
                                 x = probos[Random.Range(0, probos.Count)];
                             }
                         }
+                        //If backline
                         else if (r == 2 || r == 3)
                         {
+                            //While ability target isn't neutral, backline, or default, and the type isn't offensive
                             while ((enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].enemyTarget != 0 &&
                                 enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].enemyTarget != 2 &&
                                 enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].enemyTarget != -1) ||
@@ -2714,6 +2720,7 @@ public class BattleScript : MonoBehaviour
                                 x = probos[Random.Range(0, probos.Count)];
                             }
                         }
+                        //If frontline/backline, and the ability has to shuffle units, set ability swapper to correct value
                         if (r == 0 || r == 1 && enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].shuffle)
                         {
                             enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].swapper = 2;
@@ -2723,6 +2730,7 @@ public class BattleScript : MonoBehaviour
                             enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].swapper = 1;
                         }
 
+                        //Set speed to modified enemy agility
                         int speed = enemyUnits[i].GetComponent<UnitMono>().mainUnit.getAGI();
                         if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.statuses[22] != -1)
                         {
@@ -2731,6 +2739,7 @@ public class BattleScript : MonoBehaviour
                         action now = new action(i, "enemyAttack", x, r, speed);
                         actions.Add(now);
                     }
+                    //If support ability is chosen (user is not the target)
                     else if (vals == 1)
                     {
                         int x = 0;
@@ -2763,6 +2772,7 @@ public class BattleScript : MonoBehaviour
                         action now = new action(i, "enemyAbility", x, r, speed);
                         actions.Add(now);
                     }
+                    //If self-buff ability is chosen
                     else if (vals == 2)
                     {
                         int x = 0;
@@ -5468,8 +5478,11 @@ public class BattleScript : MonoBehaviour
     //Use to give a unit experience and, if possible, level them up. Display text as well
     IEnumerator levelUp(int expGained)
     {
+        //Make a list to check if any abilities are added
         List<int> abiSizes = new List<int>();
+
         dialogue.text = "Gained " + expGained + " exp";
+        //Loop through party and add the size of each ability list, have each unti gain the exp, and update the stats if they leveled up
         for (int i = 0; i < partyUnits.Count; i++)
         {
             if (partyUnits[i] != null)
@@ -5774,14 +5787,13 @@ public class BattleScript : MonoBehaviour
         //Define audio object
         audio_handler = GetComponent<PlayerOverworldAudioHandler>();
 
+        //Define the lists
         swaps = new List<GameObject>();
-
         pSpots = new List<Transform>();
         ppgs = new List<GameObject>();
         partyUnits = new List<GameObject>();
         partyNames = new List<string>();
         enemyUnits = new List<GameObject>();
-
         swapInds = new List<int>();
 
         state = battleState.START;
@@ -5790,7 +5802,7 @@ public class BattleScript : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log("State == " + state);
+        //If the state is such that an action menu should be open, make the cursor visible
         if (!enemy_select_menu && state != battleState.ATTACK
              && state != battleState.WIN && state != battleState.LOSE && state != battleState.HUH
               && state != battleState.FLEE && state != battleState.START && active_menu != 3)
@@ -5799,12 +5811,14 @@ public class BattleScript : MonoBehaviour
         }
         else cursor.SetActive(false);
 
+        //If player is choosing an action to do
         if (state == battleState.PLAYER && currentUnit < partyUnits.Count && partyUnits[currentUnit] != null && !working)
         {
             //Make sure current unit is popped up
             Vector3 here = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.view.transform.position;
             here.y = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.backupView.transform.position.y + 114;
             partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.view.transform.position = here;
+
             //handle cursor movement in the various menus
             switch (active_menu)
             {
@@ -5847,6 +5861,8 @@ public class BattleScript : MonoBehaviour
             }
         }
         */
+
+        //Make sure ending text stays displayed
         else if (state == battleState.WIN)
         {
             if (enemyUnits.Count > 1)
