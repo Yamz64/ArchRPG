@@ -74,7 +74,7 @@ public class Ability
 
     public bool eldritch = false;   //Whether the ability is eldritch or not
     public int target = 0;          //0-Single, 1-Across, 2-2 Adjacent enemies, 3-All
-    public int enemyTarget = -1;     //Targets for the ability: 0-Any, 1-Front, 2-Back, 3-Self
+    public int enemyTarget = -1;    //Targets for the ability: 0-Any, 1-Front, 2-Back, 3-Self
     public string name = "";        //The name of the ability
     public int type = 0;            //int denotes who to use ability on --> 0 == enemy, 1 == ally, 2 == self
     public int position = 0;        //int denotes the place the ability can be used 0 = front and backline, 1 = frontline, 2 = backline

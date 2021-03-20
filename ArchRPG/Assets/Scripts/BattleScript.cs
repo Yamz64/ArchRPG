@@ -2696,8 +2696,9 @@ public class BattleScript : MonoBehaviour
                         if (r == 0 || r == 1)
                         {
                             //Keep loop going while ability doesn't match position or while ability isn't offensive
-                            while ((enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].target != 0 &&
-                                enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].target != 1) ||
+                            while ((enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].enemyTarget != 0 &&
+                                enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].enemyTarget != 1 &&
+                                enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].enemyTarget != -1) ||
                                 enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].type != 0)
                             {
                                 x = probos[Random.Range(0, probos.Count)];
@@ -2705,8 +2706,9 @@ public class BattleScript : MonoBehaviour
                         }
                         else if (r == 2 || r == 3)
                         {
-                            while ((enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].target != 0 &&
-                                enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].target != 2) ||
+                            while ((enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].enemyTarget != 0 &&
+                                enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].enemyTarget != 2 &&
+                                enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].enemyTarget != -1) ||
                                 enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].type != 0)
                             {
                                 x = probos[Random.Range(0, probos.Count)];
@@ -5345,7 +5347,7 @@ public class BattleScript : MonoBehaviour
                     r2 = val - 2;
                 }
             }
-
+            //If Whole Party AOE
             else if (uni.abilities[ata].target == 3)
             {
                 for (int i = 0; i < partyUnits.Count; i++)
