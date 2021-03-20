@@ -295,9 +295,9 @@ public class unit
                 sdnum++;
                 if (num < 8)
                 {
-                    Color temp = statusIcons[i].color;
+                    Color temp = statusIcons[num].color;
                     temp.a = 1.0f;
-                    statusIcons[i].color = temp;
+                    statusIcons[num].color = temp;
                     statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_" + statusIconIndex[i]);
                     statusIcons[num].transform.GetChild(0).GetChild(2).GetComponent<Text>().text = "" + statuses[i];
 
