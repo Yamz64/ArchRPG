@@ -2721,11 +2721,11 @@ public class BattleScript : MonoBehaviour
                             }
                         }
                         //If frontline/backline, and the ability has to shuffle units, set ability swapper to correct value
-                        if (r == 0 || r == 1 && enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].shuffle)
+                        if ((r == 0 || r == 1) && enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].shuffle)
                         {
                             enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].swapper = 2;
                         }
-                        else if (r == 2 || r == 3 && enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].shuffle)
+                        else if ((r == 2 || r == 3) && enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].shuffle)
                         {
                             enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].swapper = 1;
                         }

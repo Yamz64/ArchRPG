@@ -805,6 +805,7 @@ public class unit
                     }
                 }
 
+                //If zonked + weird damage
                 if (target.statuses[20] != -1 && ata.damageType == 4)
                 {
                     //Roll numbers to check if status effect is given
@@ -818,7 +819,23 @@ public class unit
                     }
                     if (ran >= reze + statBuff || ran == 1 || ata.type != 0)
                     {
-                        target.giveStatus("Restrained");
+                        int andi = UnityEngine.Random.Range(0, 4);
+                        if (andi == 0)
+                        {
+                            giveStatus("Vomiting");
+                        }
+                        else if (andi == 1)
+                        {
+                            giveStatus("Weeping");
+                        }
+                        else if (andi == 2)
+                        {
+                            giveStatus("Blunt_Trauma");
+                        }
+                        else if (andi == 3)
+                        {
+                            giveStatus("Lethargic");
+                        }
                     }
                 }
 
