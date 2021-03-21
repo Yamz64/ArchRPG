@@ -5641,7 +5641,7 @@ public class TimUnit : unit
     public TimUnit(int lev = 1)
     {
         unitName = "Tim";
-        ImageFilePath = "CharacterSprites/Pizza Worker";
+        ImageFilePath = "CharacterSprites/Tim";
         loadSprites();
         level = lev;
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
@@ -8196,7 +8196,7 @@ public class Bouncer : unit
 {
     public Bouncer()
     {
-        ImageFilePath = "";
+        ImageFilePath = "EnemySprites/bouncer";
         unitName = "Bouncer";
         loadSprites();
 
@@ -8226,7 +8226,7 @@ public class DiscoHooliganDan : unit
 {
     public DiscoHooliganDan()
     {
-        ImageFilePath = "";
+        ImageFilePath = "EnemySprites/disco_Dan";
         unitName = "Dan";
         loadSprites();
 
@@ -8257,7 +8257,7 @@ public class DiscoHooliganDylan : unit
 {
     public DiscoHooliganDylan()
     {
-        ImageFilePath = "";
+        ImageFilePath = "EnemySprites/disco_Dylan";
         unitName = "Dylan";
         loadSprites();
 
@@ -8288,7 +8288,7 @@ public class DiscoHooliganBrian : unit
 {
     public DiscoHooliganBrian()
     {
-        ImageFilePath = "";
+        ImageFilePath = "EnemySprites/disco_Brian";
         unitName = "Brian";
         loadSprites();
 
