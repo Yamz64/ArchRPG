@@ -2813,7 +2813,7 @@ public class BattleScript : MonoBehaviour
     //Perform the selected actions, after they have been selected
     IEnumerator performActions()
     {
-        Debug.Log("Got into actions");
+        //Debug.Log("Got into actions");
         cursor.SetActive(false);
         transform.GetChild(1).Find("ActionMenu").gameObject.SetActive(false);
         for (int x = 0; x < partyUnits.Count; x++)
@@ -2828,7 +2828,7 @@ public class BattleScript : MonoBehaviour
                 }
             }
         }
-        Debug.Log("Got past reset");
+        //Debug.Log("Got past reset");
         enemyAttacks();
         if (state != battleState.WIN && state != battleState.LOSE && state != battleState.FLEE && enemyUnits.Count - enemyDeaths > 0 && activeUnits - partyDeaths > 0)
         {
@@ -3011,6 +3011,21 @@ public class BattleScript : MonoBehaviour
                     {
                         newd = temp[ind].GetComponent<UnitMono>().mainUnit.takeSanityDamage(3);
                         dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " is suffering from Hysteria.";
+                        yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
+                        yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                    }
+                    if (newd)
+                    {
+                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " is on the verge of Insanity.";
+                        yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
+                        yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                    }
+
+                    //Check for Disco Fever
+                    if (temp[ind].GetComponent<UnitMono>().mainUnit.statuses[26] != -1)
+                    {
+                        newd = temp[ind].GetComponent<UnitMono>().mainUnit.takeSanityDamage(6);
+                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " must boogie against their will.";
                         yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
                         yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
                     }
