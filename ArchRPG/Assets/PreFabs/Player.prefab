@@ -1346,7 +1346,6 @@ GameObject:
   - component: {fileID: 6474131881195870918}
   - component: {fileID: 4905747977007477784}
   - component: {fileID: 810251847889706056}
-  - component: {fileID: 5894903592315525665}
   m_Layer: 5
   m_Name: Status1
   m_TagString: Untagged
@@ -1412,35 +1411,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5894903592315525665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2468864645293982594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 810251847889706056}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: 
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &2488515503588741140
 GameObject:
   m_ObjectHideFlags: 0
@@ -3344,6 +3314,9 @@ MonoBehaviour:
   - {fileID: 6708051378814073782}
   - {fileID: 7489028408519575147}
   - {fileID: 3656978523039626502}
+  statBlurb: {fileID: 0}
+  statBlurbBackB: {fileID: 0}
+  statBlurbBackW: {fileID: 0}
   statusBackW: {fileID: 976114408232130404}
   statusBackColor: {fileID: 7469232624184205837}
   statusText: {fileID: 3097408027960065870}

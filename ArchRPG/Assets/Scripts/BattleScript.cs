@@ -3704,6 +3704,7 @@ public class BattleScript : MonoBehaviour
             else if (loader.enemy_names[i] == "Mr Good Meat")
             {
                 enen = new MrGoodMeat();
+                boss4 = true;
             }
             else if (!loader.enemy_names[i].Equals(""))
             {

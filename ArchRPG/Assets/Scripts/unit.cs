@@ -82,6 +82,31 @@ public class unit
         statusIconIndex.Add("madness");         //24
         statusIconIndex.Add("doomed");          //25
         statusIconIndex.Add("disco_fever");     //26
+
+        statBlurbIndex.Add("Deals 10 damage before the unit acts");
+        statBlurbIndex.Add("Deals 1/16 of the units Max HP as damage before the unit acts");
+        statBlurbIndex.Add("Has a 33% chance of reducing the units attack damage by 80%");
+        statBlurbIndex.Add("Has a 50% chance of reducing the units attack damage by 80%");
+        statBlurbIndex.Add("Unit's DEFENCE reduced by 25%");
+        statBlurbIndex.Add("Unit's AGILITY increased by 25%");
+        statBlurbIndex.Add("Unit's ATTACK increased by 25%");
+        statBlurbIndex.Add("Unit's DEFENCE reduced by 50%, WILLPOWER reduced by 25%");
+        statBlurbIndex.Add("Unit is unable to perform actions while restrained");
+        statBlurbIndex.Add("Unit is unable to act and is damaged in the process of consumption");
+        statBlurbIndex.Add("Unit's Maximum HP is reduced by 20HP while diseased");
+        statBlurbIndex.Add("Fire attacks will deal extra damage against this unit");
+        statBlurbIndex.Add("Unit loses sanity each turn");
+        statBlurbIndex.Add("Critical hits are more likely to occur against this unit");
+        statBlurbIndex.Add("ATTACK and POWER are increased by 25%, and DEFENCE is reduced by 25%");
+        statBlurbIndex.Add("Maximum HP and WILLPOWER are reduced");
+        statBlurbIndex.Add("WILLPOWER and LUCK are increaed by 25%");
+        statBlurbIndex.Add("This unit has a 33% chance of acting on a different target");
+        statBlurbIndex.Add("Electrical attacks have a chance of inflicting paralysis (restrained)");
+        statBlurbIndex.Add("Chemical attacks have a chance of increasing the duration of all active status effects by 1");
+        statBlurbIndex.Add("Weird attacks have a chance of inflicting a random, low level status effect");
+        statBlurbIndex.Add("This Unit's RESISTANCE is increased by 25%");
+        statBlurbIndex.Add("Electrical attacks will deal 10 more damage");
+        statBlurbIndex.Add("Madness");
     }
     //Copy the numerical statistics of a unit
     public void copyUnitStats(unit ver)
@@ -194,6 +219,7 @@ public class unit
     public bool[] resistances;          //an array of integer codes for the resistances that a unit may have
     public List<int> statuses;          //List of ints in order to track how long each status lasts for
     public List<string> statusIndex;    //List of strings for each status effect
+    public List<string> statBlurbIndex; //List of description about each statuse effect
     public List<string> statusIconIndex;//List of strings to use to assign the correct icon
 
     //Whether an attack was critical
@@ -233,6 +259,9 @@ public class unit
     public Text sanReadOut;         //Text showing exact sanity readout
 
     public List<Image> statusIcons; //List of status icons to place specific statuses in
+    public Text statBlurb;
+    public Image statBlurbBackB;
+    public Image statBlurbBackW;
 
     public Image statusBackW;       //White background of the status bar
     public Image statusBackColor;   //Colored background of the status bar
@@ -1638,6 +1667,11 @@ public class unit
         BBackground.color = green;
         yield return new WaitForSeconds(0.5f);
         BBackground.color = ori;
+    }
+
+    public void displayStat(string id)
+    {
+
     }
 
     public int giveEXP() { return expGain; }
