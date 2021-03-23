@@ -41,7 +41,23 @@ public class PlayerData : CharacterStats
                 SetStatus(i, temp.GetStatus(i));
             }
 
-            for(int i=0; i<u_char_count; i++)
+            //see if the player's sanity is below 50 if so give them maddened
+            if (GetSAN() < 50) SetStatus(24, int.MaxValue);
+            else if (GetStatus(24) > 0) SetStatus(24, -1);
+
+            //see if the player is maddened if they are then modify some stats, set uses_mp to true, and add their madness ability
+            if (GetStatus(24) > 0)
+            {
+                float interp_factor = Mathf.Lerp(.5f, .25f, GetSAN() / 50f);
+                SetLCK(GetLCK() - (int)(GetLCK() * interp_factor));
+                SetWIL(GetWIL() - (int)(GetWIL() * interp_factor));
+                SetPOW(GetPOW() + (int)(GetPOW() * interp_factor));
+                AddAbility(new PlayerAbilities.Narcissism());
+
+                SetUseMP(true);
+            }
+
+            for (int i=0; i<u_char_count; i++)
             {
                 if (temp.GetUnlockedMember(i))
                 {

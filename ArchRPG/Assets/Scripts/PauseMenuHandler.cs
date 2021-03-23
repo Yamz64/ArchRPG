@@ -146,7 +146,8 @@ public class PauseMenuHandler : MonoBehaviour
                 party_info[0].transform.GetChild(3).GetComponent<Text>().text = "HP: (" + data.GetHP() + "/" + data.GetHPMAX() + ")";
                 party_info[0].transform.GetChild(3).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetHP() / data.GetHPMAX();
 
-                party_info[0].transform.GetChild(4).GetComponent<Text>().text = "MP: (" + data.GetSP() + "/" + data.GetSPMax() + ")";
+                if(data.GetUseMP()) party_info[0].transform.GetChild(4).GetComponent<Text>().text = "MP: (" + data.GetSP() + "/" + data.GetSPMax() + ")";
+                else party_info[0].transform.GetChild(4).GetComponent<Text>().text = "SP: (" + data.GetSP() + "/" + data.GetSPMax() + ")";
                 party_info[0].transform.GetChild(4).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetSP() / data.GetSPMax();
 
                 continue;
@@ -166,7 +167,10 @@ public class PauseMenuHandler : MonoBehaviour
                 party_info[i].transform.GetChild(3).GetComponent<Text>().text = "HP: (" + data.GetPartyMember(i-1).GetHP() + "/" + data.GetPartyMember(i-1).GetHPMAX() + ")";
                 party_info[i].transform.GetChild(3).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetPartyMember(i-1).GetHP() / data.GetPartyMember(i-1).GetHPMAX();
 
+                if(data.GetPartyMember(i-1).GetUseMP())
                 party_info[i].transform.GetChild(4).GetComponent<Text>().text = "MP: (" + data.GetPartyMember(i-1).GetSP() + "/" + data.GetPartyMember(i-1).GetSPMax() + ")";
+                else
+                party_info[i].transform.GetChild(4).GetComponent<Text>().text = "SP: (" + data.GetPartyMember(i - 1).GetSP() + "/" + data.GetPartyMember(i - 1).GetSPMax() + ")";
                 party_info[i].transform.GetChild(4).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetPartyMember(i-1).GetSP() / data.GetPartyMember(i-1).GetSPMax();
             }
             //if there is no party member that the data exists for set all the data to invisible
@@ -323,6 +327,17 @@ public class PauseMenuHandler : MonoBehaviour
             menus[2].transform.GetChild(5).GetChild(1).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetHP().ToString() + "/" + data.GetPartyMember(highlighted_party_member-1).GetHPMAX().ToString();
 
         //--UPDATE SP DATA--
+        //name
+        if(highlighted_party_member == 0)
+        {
+            if (data.GetUseMP()) menus[2].transform.GetChild(6).GetComponent<Text>().text = "MP";
+            else menus[2].transform.GetChild(6).GetComponent<Text>().text = "SP";
+        }
+        else
+        {
+            if (data.GetPartyMember(highlighted_party_member - 1).GetUseMP()) menus[2].transform.GetChild(6).GetComponent<Text>().text = "MP";
+            else menus[2].transform.GetChild(6).GetComponent<Text>().text = "SP";
+        }
         //bar
         if (highlighted_party_member == 0)
             menus[2].transform.GetChild(6).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetSP() / data.GetSPMax();
@@ -1035,6 +1050,17 @@ public class PauseMenuHandler : MonoBehaviour
             menus[2].transform.GetChild(5).GetChild(1).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetHP().ToString() + "/" + data.GetPartyMember(highlighted_party_member - 1).GetHPMAX().ToString();
 
         //--UPDATE SP DATA--
+        //name
+        if (highlighted_party_member == 0)
+        {
+            if (data.GetUseMP()) menus[2].transform.GetChild(6).GetComponent<Text>().text = "MP";
+            else menus[2].transform.GetChild(6).GetComponent<Text>().text = "SP";
+        }
+        else
+        {
+            if (data.GetPartyMember(highlighted_party_member - 1).GetUseMP()) menus[2].transform.GetChild(6).GetComponent<Text>().text = "MP";
+            else menus[2].transform.GetChild(6).GetComponent<Text>().text = "SP";
+        }
         //bar
         if (highlighted_party_member == 0)
             menus[2].transform.GetChild(6).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetSP() / data.GetSPMax();
@@ -1747,6 +1773,17 @@ public class PauseMenuHandler : MonoBehaviour
             menus[2].transform.GetChild(5).GetChild(1).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetHP().ToString() + "/" + data.GetPartyMember(highlighted_party_member - 1).GetHPMAX().ToString();
 
         //--UPDATE SP DATA--
+        //name
+        if (highlighted_party_member == 0)
+        {
+            if (data.GetUseMP()) menus[2].transform.GetChild(6).GetComponent<Text>().text = "MP";
+            else menus[2].transform.GetChild(6).GetComponent<Text>().text = "SP";
+        }
+        else
+        {
+            if (data.GetPartyMember(highlighted_party_member - 1).GetUseMP()) menus[2].transform.GetChild(6).GetComponent<Text>().text = "MP";
+            else menus[2].transform.GetChild(6).GetComponent<Text>().text = "SP";
+        }
         //bar
         if (highlighted_party_member == 0)
             menus[2].transform.GetChild(6).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetSP() / data.GetSPMax();
@@ -2445,7 +2482,8 @@ public class PauseMenuHandler : MonoBehaviour
         cards[data.GetPos()].transform.GetChild(4).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetHP() / data.GetHPMAX();
 
         //mp
-        cards[data.GetPos()].transform.GetChild(5).GetComponent<Text>().text = "MP: (" + data.GetSP() + "/" + data.GetSPMax() + ")";
+        if(data.GetUseMP()) cards[data.GetPos()].transform.GetChild(5).GetComponent<Text>().text = "MP: (" + data.GetSP() + "/" + data.GetSPMax() + ")";
+        else cards[data.GetPos()].transform.GetChild(5).GetComponent<Text>().text = "SP: (" + data.GetSP() + "/" + data.GetSPMax() + ")";
         cards[data.GetPos()].transform.GetChild(5).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetSP() / data.GetSPMax();
 
         //san
@@ -2470,7 +2508,10 @@ public class PauseMenuHandler : MonoBehaviour
             cards[data.GetPartyMember(i).GetPos()].transform.GetChild(4).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetPartyMember(i).GetHP() / data.GetPartyMember(i).GetHPMAX();
 
             //mp
+            if(data.GetPartyMember(i).GetUseMP())
             cards[data.GetPartyMember(i).GetPos()].transform.GetChild(5).GetComponent<Text>().text = "MP: (" + data.GetPartyMember(i).GetSP() + "/" + data.GetPartyMember(i).GetSPMax() + ")";
+            else
+            cards[data.GetPartyMember(i).GetPos()].transform.GetChild(5).GetComponent<Text>().text = "SP: (" + data.GetPartyMember(i).GetSP() + "/" + data.GetPartyMember(i).GetSPMax() + ")";
             cards[data.GetPartyMember(i).GetPos()].transform.GetChild(5).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetPartyMember(i).GetSP() / data.GetPartyMember(i).GetSPMax();
 
             //san
@@ -2517,6 +2558,18 @@ public class PauseMenuHandler : MonoBehaviour
         menus[4].transform.GetChild(5).GetChild(1).GetComponent<Text>().text = data.GetExperience().ToString() + "/" + data.GetMaxExperience().ToString();
 
         //--UPDATE THE CHARACTER SP--
+        //name
+        if(highlighted_party_member == 0)
+        {
+            if (data.GetUseMP()) menus[4].transform.GetChild(6).GetComponent<Text>().text = "MP";
+            else menus[4].transform.GetChild(6).GetComponent<Text>().text = "SP";
+        }
+        else
+        {
+
+            if (data.GetPartyMember(highlighted_party_member - 1).GetUseMP()) menus[4].transform.GetChild(6).GetComponent<Text>().text = "MP";
+            else menus[4].transform.GetChild(6).GetComponent<Text>().text = "SP";
+        }
         //bar
         if (highlighted_party_member == 0) menus[4].transform.GetChild(6).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetSP() / data.GetSPMax();
         else menus[4].transform.GetChild(6).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetPartyMember(highlighted_party_member - 1).GetSP() /

@@ -8,6 +8,7 @@ public class CharacterStats
 {
     //--ACCESSORS--
     public bool GetDead() { return dead; }
+    public bool GetUseMP() { return use_MP; }
     public int GetHP()  { return HP; }
     public int GetHPMAX() { return HP_max; }
     public int GetSAN() { return SAN; }
@@ -53,9 +54,12 @@ public class CharacterStats
     }
     public void SetHPMax(int h) { HP_max = h; }
     public void SetSAN(int s) {
-        SAN = s;
-        if (SAN > SAN_max) SAN = SAN_max;
-        if (SAN <= 0) SAN = 0;
+        if (GetStatus(25) < 0)
+        {
+            SAN = s;
+            if (SAN > SAN_max) SAN = SAN_max;
+            if (SAN <= 0) SAN = 0;
+        }
     }
     public void SetSANMax(int s) { SAN_max = s; }
     public void SetSP(int s) {
@@ -76,6 +80,7 @@ public class CharacterStats
     public void SetLVL(int l) { LVL = l; }
     public void SetPos(int p) { position = p; }
     public void SetStatus(int index, int s) { status_effects[index] = s; }
+    public void SetUseMP(bool m) { use_MP = m; }
 
     public void SetName(string n) { name = n; }
     public void SetDesc(string s) { desc = s; }
@@ -390,11 +395,30 @@ public class CharacterStats
         SetWeapon(temp_weapon);
         SetArmor(temp_armor);
         SetTrinket(temp_trinket);
+
+        //see if the player's sanity is below 50 if so give them maddened
+        if (SAN < 50) SetStatus(24, int.MaxValue);
+        else if (GetStatus(24) > 0) SetStatus(24, -1);
+
+        //see if the player is maddened if they are then modify some stats and add their madness ability
+        if(GetStatus(24) > 0)
+        {
+            float interp_factor = Mathf.Lerp(.5f, .25f, SAN / 50f);
+            LCK -= (int)(LCK * interp_factor);
+            WIL -= (int)(WIL * interp_factor);
+            POW += (int)(POW * interp_factor);
+
+            use_MP = true;
+        }
+
+        //see if the character is at 0 SAN if they are then mark them as doomed
+        if (SAN <= 0) SetStatus(25, int.MaxValue);
     }
 
     public CharacterStats()
     {
         dead = false;
+        use_MP = false;
         abilities = new List<Ability>();
         status_effects = new List<int>();
 
@@ -474,6 +498,7 @@ public class CharacterStats
 
     //flag to determine if the character is dead
     private bool dead;
+    private bool use_MP;    //flag to determine if the character is using MP
 }
 
 [System.Serializable]
@@ -1324,6 +1349,25 @@ class Clyve : CharacterStats
         if (GetLVL() >= 1) AddAbility(new ClyveAbilities.NoShower());
         if (GetLVL() >= 3) AddAbility(new ClyveAbilities.ShoeRemoval());
         if (GetLVL() >= 6) AddAbility(new ClyveAbilities.Halitosis());
+
+        //see if the player's sanity is below 50 if so give them maddened
+        if (GetSAN() < 50) SetStatus(24, int.MaxValue);
+        else if (GetStatus(24) > 0) SetStatus(24, -1);
+
+        //see if the player is maddened if they are then modify some stats, set uses_mp to true, and add their madness ability
+        if (GetStatus(24) > 0)
+        {
+            float interp_factor = Mathf.Lerp(.5f, .25f, GetSAN() / 50f);
+            SetLCK(GetLCK() - (int)(GetLCK() * interp_factor));
+            SetWIL(GetWIL() - (int)(GetWIL() * interp_factor));
+            SetPOW(GetPOW() + (int)(GetPOW() * interp_factor));
+            AddAbility(new ClyveAbilities.Dysentery());
+
+            SetUseMP(true);
+        }
+
+        //see if the character is at 0 SAN if they are then mark them as doomed
+        if (GetSAN() <= 0) SetStatus(25, int.MaxValue);
     }
 }
 
@@ -1624,6 +1668,25 @@ class Jim : CharacterStats
         if (GetLVL() >= 2) AddAbility(new JimAbilities.Antacid());
         if (GetLVL() >= 3) AddAbility(new JimAbilities.Bandaid());
         if (GetLVL() >= 6) AddAbility(new JimAbilities.UncannyRemedy());
+
+        //see if the player's sanity is below 50 if so give them maddened
+        if (GetSAN() < 50) SetStatus(24, int.MaxValue);
+        else if (GetStatus(24) > 0) SetStatus(24, -1);
+
+        //see if the player is maddened if they are then modify some stats, set uses_mp to true, and add their madness ability
+        if (GetStatus(24) > 0)
+        {
+            float interp_factor = Mathf.Lerp(.5f, .25f, GetSAN() / 50f);
+            SetLCK(GetLCK() - (int)(GetLCK() * interp_factor));
+            SetWIL(GetWIL() - (int)(GetWIL() * interp_factor));
+            SetPOW(GetPOW() + (int)(GetPOW() * interp_factor));
+            AddAbility(new JimAbilities.MalevolentSlapstick());
+
+            SetUseMP(true);
+        }
+
+        //see if the character is at 0 SAN if they are then mark them as doomed
+        if (GetSAN() <= 0) SetStatus(25, int.MaxValue);
     }
 }
 
@@ -1924,6 +1987,25 @@ class Norm : CharacterStats
         if (GetLVL() >= 2) AddAbility(new NormAbilities.PoopThrow());
         if (GetLVL() >= 5) AddAbility(new NormAbilities.EatBanana());
         if (GetLVL() >= 8) AddAbility(new NormAbilities.PrimatePowerbomb());
+
+        //see if the player's sanity is below 50 if so give them maddened
+        if (GetSAN() < 50) SetStatus(24, int.MaxValue);
+        else if (GetStatus(24) > 0) SetStatus(24, -1);
+
+        //see if the player is maddened if they are then modify some stats, set uses_mp to true, and add their madness ability
+        if (GetStatus(24) > 0)
+        {
+            float interp_factor = Mathf.Lerp(.5f, .25f, GetSAN() / 50f);
+            SetLCK(GetLCK() - (int)(GetLCK() * interp_factor));
+            SetWIL(GetWIL() - (int)(GetWIL() * interp_factor));
+            SetPOW(GetPOW() + (int)(GetPOW() * interp_factor));
+            AddAbility(new NormAbilities.MonkeyGrief());
+
+            SetUseMP(true);
+        }
+
+        //see if the character is at 0 SAN if they are then mark them as doomed
+        if (GetSAN() <= 0) SetStatus(25, int.MaxValue);
     }
 }
 
@@ -2222,6 +2304,25 @@ class Shirley : CharacterStats
         if (GetLVL() >= 2) AddAbility(new ShirleyAbilities.OpenFire());
         if (GetLVL() >= 4) AddAbility(new ShirleyAbilities.Frontline());
         if (GetLVL() >= 6) AddAbility(new ShirleyAbilities.BugleCall());
+
+        //see if the player's sanity is below 50 if so give them maddened
+        if (GetSAN() < 50) SetStatus(24, int.MaxValue);
+        else if (GetStatus(24) > 0) SetStatus(24, -1);
+
+        //see if the player is maddened if they are then modify some stats, set uses_mp to true, and add their madness ability
+        if (GetStatus(24) > 0)
+        {
+            float interp_factor = Mathf.Lerp(.5f, .25f, GetSAN() / 50f);
+            SetLCK(GetLCK() - (int)(GetLCK() * interp_factor));
+            SetWIL(GetWIL() - (int)(GetWIL() * interp_factor));
+            SetPOW(GetPOW() + (int)(GetPOW() * interp_factor));
+            AddAbility(new ShirleyAbilities.BayonetCharge());
+
+            SetUseMP(true);
+        }
+
+        //see if the character is at 0 SAN if they are then mark them as doomed
+        if (GetSAN() <= 0) SetStatus(25, int.MaxValue);
     }
 }
 
@@ -2520,6 +2621,25 @@ class Ralph : CharacterStats
         if (GetLVL() >= 1) AddAbility(new RalphAbilities.PistolWhip());
         if (GetLVL() >= 4) AddAbility(new RalphAbilities.SmokeBreak());
         if (GetLVL() >= 6) AddAbility(new RalphAbilities.Taser());
+
+        //see if the player's sanity is below 50 if so give them maddened
+        if (GetSAN() < 50) SetStatus(24, int.MaxValue);
+        else if (GetStatus(24) > 0) SetStatus(24, -1);
+
+        //see if the player is maddened if they are then modify some stats, set uses_mp to true, and add their madness ability
+        if (GetStatus(24) > 0)
+        {
+            float interp_factor = Mathf.Lerp(.5f, .25f, GetSAN() / 50f);
+            SetLCK(GetLCK() - (int)(GetLCK() * interp_factor));
+            SetWIL(GetWIL() - (int)(GetWIL() * interp_factor));
+            SetPOW(GetPOW() + (int)(GetPOW() * interp_factor));
+            AddAbility(new RalphAbilities.EvidenceSchmevidence());
+
+            SetUseMP(true);
+        }
+
+        //see if the character is at 0 SAN if they are then mark them as doomed
+        if (GetSAN() <= 0) SetStatus(25, int.MaxValue);
     }
 }
 
@@ -2818,6 +2938,25 @@ class Lucy : CharacterStats
         if (GetLVL() >= 1) AddAbility(new LucyAbilities.FungalRat());
         if (GetLVL() >= 5) AddAbility(new LucyAbilities.RodentialKindling());
         if (GetLVL() >= 8) AddAbility(new LucyAbilities.FeedTheMasses());
+
+        //see if the player's sanity is below 50 if so give them maddened
+        if (GetSAN() < 50) SetStatus(24, int.MaxValue);
+        else if (GetStatus(24) > 0) SetStatus(24, -1);
+
+        //see if the player is maddened if they are then modify some stats, set uses_mp to true, and add their madness ability
+        if (GetStatus(24) > 0)
+        {
+            float interp_factor = Mathf.Lerp(.5f, .25f, GetSAN() / 50f);
+            SetLCK(GetLCK() - (int)(GetLCK() * interp_factor));
+            SetWIL(GetWIL() - (int)(GetWIL() * interp_factor));
+            SetPOW(GetPOW() + (int)(GetPOW() * interp_factor));
+            AddAbility(new LucyAbilities.ProtectMyChildren());
+
+            SetUseMP(true);
+        }
+
+        //see if the character is at 0 SAN if they are then mark them as doomed
+        if (GetSAN() <= 0) SetStatus(25, int.MaxValue);
     }
 }
 
