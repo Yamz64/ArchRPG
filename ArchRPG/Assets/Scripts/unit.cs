@@ -336,7 +336,14 @@ public class unit
                     temp.a = 1.0f;
                     statusIcons[num].color = temp;
                     statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_" + statusIconIndex[i]);
-                    statusIcons[num].transform.GetChild(0).GetChild(2).GetComponent<Text>().text = "" + statuses[i];
+                    if (statuses[i] < 9)
+                    {
+                        statusIcons[num].transform.GetChild(0).GetChild(2).GetComponent<Text>().text = "" + statuses[i];
+                    }
+                    else
+                    {
+                        statusIcons[num].transform.GetChild(0).GetChild(2).GetComponent<Text>().text = "9+";
+                    }
 
                     temp = statusIcons[num].transform.GetChild(0).GetChild(0).GetComponent<Image>().color;
                     temp.a = 1.0f;
@@ -443,20 +450,31 @@ public class unit
     {
         if (!enemy)
         {
-            if (sn >= 0 && sn <= 100)
+            if (sanity < sn && statuses[25] != -1)
             {
-                sanity = sn;
+                Debug.Log("Madness prevents sanity recovery");
             }
-            else if (sn < 0)
+            else
             {
-                sanity = 0;
+                if (sn >= 0 && sn <= 100)
+                {
+                    sanity = sn;
+                }
+                else if (sn < 0)
+                {
+                    sanity = 0;
+                }
+                else if (sn > 100)
+                {
+                    sanity = 100;
+                }
+                sanBar.GetComponent<Image>().fillAmount = (float)sanity / 100;
+                sanReadOut.text = sanity + " / 100";
+                if (sanity == 0)
+                {
+                    giveStatus("Doomed");
+                }
             }
-            else if (sn > 100)
-            {
-                sanity = 100;
-            }
-            sanBar.GetComponent<Image>().fillAmount = (float)sanity / 100;
-            sanReadOut.text = sanity + " / 100";
         }
     }
 
@@ -1198,18 +1216,26 @@ public class unit
     public bool takeSanityDamage(int dam)
     {
         //StartCoroutine(flashDamage());
-        sanity -= dam;
-        if (sanity <= 0)
+        if (sanity > 0)
         {
-            sanity = 0;
-            sanBar.GetComponent<Image>().fillAmount = 0.0f / 100;
-            sanReadOut.text = sanity + " / 100";
-            return true;
+            sanity -= dam;
+            if (sanity <= 0)
+            {
+                sanity = 0;
+                sanBar.GetComponent<Image>().fillAmount = 0.0f / 100;
+                sanReadOut.text = sanity + " / 100";
+                giveStatus("Doomed");
+                return true;
+            }
+            else
+            {
+                sanBar.GetComponent<Image>().fillAmount = (float)sanity / 100;
+                sanReadOut.text = sanity + " / 100";
+                return false;
+            }
         }
         else
         {
-            sanBar.GetComponent<Image>().fillAmount = (float)sanity / 100;
-            sanReadOut.text = sanity + " / 100";
             return false;
         }
     }
@@ -1434,9 +1460,9 @@ public class unit
             statuses[24] = ran;
             
         }
-        else if (id.Equals("Dead")          && statuses[25] == -1)
+        else if (id.Equals("Doomed")        && statuses[25] == -1)
         {
-            ran = UnityEngine.Random.Range(5, 9);
+            ran = UnityEngine.Random.Range(998, 1000);
             statuses[25] = ran;
             
         }
@@ -2862,7 +2888,7 @@ public class JimUnit : unit
         loadSprites();
         level = lev;
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));       //(int)(2.5 * Mathf.Pow(lev, 4));
-        statuses[4] = 99;
+        statuses[4] = 999;
         //Weird
         resistances[4] = true;
 
@@ -8070,7 +8096,7 @@ public class ThrashCan : unit
 {
     public ThrashCan()
     {
-        ImageFilePath = "EnemySprites/trashcan";
+        ImageFilePath = "EnemySprites/thrashcan";
         unitName = "Thrash Can";
         loadSprites();
         level = 3;
@@ -8409,7 +8435,7 @@ public class DisposalDemon : unit
 {
     public DisposalDemon()
     {
-        ImageFilePath = "";
+        ImageFilePath = "EnemySprites/disposal_demon";
         unitName = "Disposal Demon";
         loadSprites();
 

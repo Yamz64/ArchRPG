@@ -3186,28 +3186,29 @@ public class BattleScript : MonoBehaviour
                             state = battleState.WIN;
                             yield return battleEnd();
                         }
-                        //dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " tried attacking " +
-                        //    enemyUnits[toget].GetComponent<UnitMono>().mainUnit.unitName + ", but they weren't there";
-                        //dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
-                        //    temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
-                        //yield return playerAbility(actions[z].getIndex(), toget,
-                        //   temp[ind].GetComponent<UnitMono>().mainUnit, enemyUnits[toget].GetComponent<UnitMono>().mainUnit);
                     }
                     //If current unit has spasms
                     if (temp[ind].GetComponent<UnitMono>().mainUnit.statuses[17] != -1 && activeEnemies - enemyDeaths > 1)
                     {
-                        int baseNum = toget;
-                        while (enemyUnits[toget] == null || enemyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0 || toget == baseNum)
+                        int chance = Random.Range(0, 3);
+                        if (chance == 0)
                         {
-                            toget = Random.Range(0, enemyUnits.Count);
+                            int baseNum = toget;
+                            while (enemyUnits[toget] == null || enemyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0 || toget == baseNum)
+                            {
+                                toget = Random.Range(0, enemyUnits.Count);
+                            }
                         }
                     }
+
                     string abiName = temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                    //If ability is eldritch, change display name of ability
                     if (temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].eldritch)
                     {
                         abiName = temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].GetTrueName();
                     }
                     dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " + abiName;
+                    //If no second target
                     if (actions[z].getSecond() == -1)
                     {
                         yield return playerAbility(actions[z].getIndex(), toget,
@@ -3365,6 +3366,73 @@ public class BattleScript : MonoBehaviour
                 else if (actions[z].getType() == "enemyAttack" && state == battleState.ATTACK)
                 {
                     enemyUnits[ind].GetComponent<UnitMono>().mainUnit.changeSprite(1);
+                    int toget = actions[z].getTarget();
+                    //If the enemy has spasms
+                    if (enemyUnits[ind].GetComponent<UnitMono>().mainUnit.statuses[17] != -1 && activeUnits - partyDeaths > 1)
+                    {
+                        //Roll the chance of changing targets
+                        int chance = Random.Range(0, 3);
+                        if (chance == 0)
+                        {
+                            //If ability works on any unit, roll random target
+                            if (enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].enemyTarget == 0)
+                            {
+                                int baseNum = toget;
+                                while (partyUnits[toget] == null || partyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0 || toget == baseNum)
+                                {
+                                    toget = Random.Range(0, partyUnits.Count);
+                                }
+                            }
+                            //If only targets frontline, switch to next unit
+                            else if (enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].enemyTarget == 1)
+                            {
+                                if (actions[z].getTarget() == 0)
+                                {
+                                    if (partyUnits[1] != null)
+                                    {
+                                        if (partyUnits[1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                                        {
+                                            toget = 1;
+                                        }
+                                    }
+                                }
+                                else if (actions[z].getTarget() == 1)
+                                {
+                                    if (partyUnits[0] != null)
+                                    {
+                                        if (partyUnits[0].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                                        {
+                                            toget = 0;
+                                        }
+                                    }
+                                }
+                            }
+                            //Same, but for backline
+                            else if (enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].enemyTarget == 2)
+                            {
+                                if (actions[z].getTarget() == 2)
+                                {
+                                    if (partyUnits[3] != null)
+                                    {
+                                        if (partyUnits[3].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                                        {
+                                            toget = 3;
+                                        }
+                                    }
+                                }
+                                else if (actions[z].getTarget() == 3)
+                                {
+                                    if (partyUnits[2] != null)
+                                    {
+                                        if (partyUnits[2].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                                        {
+                                            toget = 2;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                     if (partyUnits[actions[z].getTarget()] != null)
                     {
                         if (partyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.currentHP > 0)
@@ -5633,6 +5701,13 @@ public class BattleScript : MonoBehaviour
             {
                 for (int x = 0; x < partyNames.Count; x++)
                 {
+                    if (partyUnits[i].GetComponent<UnitMono>().mainUnit.player)
+                    {
+                        if (partyUnits[i].GetComponent<UnitMono>().mainUnit.statuses[25] != -1 && pc.statuses[25] == -1)
+                        {
+                            data.SetEP(data.GetEP() + 6);
+                        }
+                    }
                     if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName == partyNames[x])
                     {
                         loader.storeUnit(partyUnits[i], x);
