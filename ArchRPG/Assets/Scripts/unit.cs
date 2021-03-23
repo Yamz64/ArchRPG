@@ -8378,7 +8378,7 @@ public class ConnivingCone : unit
 {
     public ConnivingCone()
     {
-        ImageFilePath = "";
+        ImageFilePath = "EnemySprites/Conniving Cone";
         unitName = "Conniving Cone";
         loadSprites();
 
