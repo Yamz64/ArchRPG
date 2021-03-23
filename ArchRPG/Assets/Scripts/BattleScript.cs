@@ -3447,9 +3447,16 @@ public class BattleScript : MonoBehaviour
 
             if (state != battleState.WIN && state != battleState.LOSE && state != battleState.FLEE && enemyDeaths < enemyUnits.Count)
             {
-                for (int i = 0; i < enemyUnits.Count; i++)
+                for (int i = 0; i < partyUnits.Count; i++)
                 {
-                    Debug.Log("Enemy " + i + " health == " + enemyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP);
+                    if (partyUnits[i] != null)
+                    {
+                        if (partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP > 0 && partyUnits[i].GetComponent<UnitMono>().mainUnit.hasMP)
+                        {
+                            partyUnits[i].GetComponent<UnitMono>().mainUnit.setSP(partyUnits[i].GetComponent<UnitMono>().mainUnit.currentSP + 5);
+                            StartCoroutine(flashBuff2(partyUnits[i].GetComponent<UnitMono>().mainUnit));
+                        }
+                    }
                 }
                 yield return new WaitForSeconds(1.5f);
                 state = battleState.PLAYER;
@@ -5751,6 +5758,20 @@ public class BattleScript : MonoBehaviour
         green.b = 1.0f;
         green.g = 0.0f;
         green.r = 0.5f;
+        yield return new WaitForSeconds(0.5f);
+        bot.BBackground.color = green;
+        yield return new WaitForSeconds(0.5f);
+        bot.BBackground.color = ori;
+    }
+
+    //Flash purple to show a buff (usually for enemy)
+    public IEnumerator flashBuff2(unit bot)
+    {
+        Color ori = bot.BBackground.color;
+        Color green = bot.BBackground.color;
+        green.b = 1.0f;
+        green.g = 0.0f;
+        green.r = 0.75f;
         yield return new WaitForSeconds(0.5f);
         bot.BBackground.color = green;
         yield return new WaitForSeconds(0.5f);

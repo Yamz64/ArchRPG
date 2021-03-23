@@ -196,6 +196,7 @@ public class unit
 
     public bool player;             //Whether the unit is the main player character
     public bool enemy;              //Whether the unit is an enemy unit or not
+    public bool hasMP = false;
     public bool outOfSP;            //Bool to say whether a unit has no more SP for attacks (party)
     public int position;            //0 == Frontline, 1 == Backline
     //public List<Ability> attacks;
@@ -300,6 +301,12 @@ public class unit
         hpReadOut.text = currentHP + " / " + maxHP;
         if (!enemy)
         {
+            if (hasMP)
+            {
+                spSideText.text = "MP";
+                Color temp = new Color(1.0f, 1.0f, 0.0f);
+                spBar.color = temp;
+            }
             if (maxSP <= 0) { maxSP = 1; }
             spBar.fillAmount = (float)currentSP / maxSP;
             spReadOut.text = currentSP + " / " + maxSP;
