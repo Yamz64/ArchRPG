@@ -27,6 +27,7 @@ public class unit
         }
         statusIndex = new List<string>();
         statusIconIndex = new List<string>();
+        statBlurbIndex = new List<string>();
         statusIndex.Add("Vomiting");        //0     Low level
         statusIndex.Add("Aspirating");      //1     High
         statusIndex.Add("Weeping");         //2     Low
