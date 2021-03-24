@@ -456,9 +456,13 @@ public class unit
             }
             else
             {
+                int oriSan = sanity;
                 if (sn >= 0 && sn <= 100)
                 {
-                    sanity = sn;
+                    if (sanity >= sn || statuses[25] == -1)
+                    {
+                        sanity = sn;
+                    }
                 }
                 else if (sn < 0)
                 {
@@ -470,10 +474,38 @@ public class unit
                 }
                 sanBar.GetComponent<Image>().fillAmount = (float)sanity / 100;
                 sanReadOut.text = sanity + " / 100";
+                if (sanity <= 50)
+                {
+                    giveStatus("Madness");
+                    hasMP = true;
+                    if (oriSan > 50)
+                    {
+                        giveEldritchAbility();
+                    }
+                }
+                //If sanity goes over 50
+                else if (sanity > 50 && oriSan <= 50)
+                {
+                    statuses[24] = -1;
+                    if (hasMP && unitName != "Jim" && unitName != "Ember Moon" && unitName != "White Knight")
+                    {
+                        hasMP = false;
+                    }
+                    int g = 0;
+                    for (int i = 0; i < abilities.Count; i++)
+                    {
+                        if (abilities[i].eldritch)
+                        {
+                            g = i;
+                        }
+                    }
+                    abilities.RemoveAt(g);
+                }
                 if (sanity == 0)
                 {
                     giveStatus("Doomed");
                 }
+                setHUD();
             }
         }
     }
@@ -713,6 +745,17 @@ public class unit
                 {
                     val -= (int)(val * 0.2);
                 }
+
+                float valL = (float)LCK;
+                if (sanity < 50 && sanity > 0 && statuses[24] != -1)
+                {
+                    valL = valL * 0.75f;
+                }
+                else if (sanity == 0 && statuses[24] != -1)
+                {
+                    valL = valL * 0.50f;
+                }
+
                 if (!ata.use_pow)
                 {   
                     if (statuses[14] == -1)
@@ -750,24 +793,40 @@ public class unit
                 }
                 else
                 {
+                    float valP = (float)target.POW / 100;
+                    float valD = (float)target.WILL / 300;
+
+
+                    if (sanity < 50 && sanity > 0 && statuses[24] != -1)
+                    {
+                        valP = valP * 1.25f;
+                        valD = valD * 0.75f;
+                        valL = valL * 0.75f;
+                    }
+                    else if (sanity == 0 && statuses[24] != -1)
+                    {
+                        valP = valP * 1.50f;
+                        valD = valD * 0.50f;
+                        valL = valL * 0.50f;
+                    }
                     //Check if POW is affected
                     if (statuses[14] == -1)
                     {
-                        val += (int)(val * (float)(POW / 100));
-                        valS += (int)(val * (float)(POW / 100));
-                        val2 += (int)(val * (float)(POW / 100));
+                        val += (int)(val * valP);
+                        valS += (int)(val2 * valP);
+                        val2 += (int)(valS * valP);
 
                     }
                     //Zealous
                     else
                     {
-                        val += (int)(val * (float)((POW * 1.25) / 100));
-                        valS += (int)(val * (float)((POW * 1.25) / 100));
-                        val2 += (int)(val * (float)((POW * 1.25) / 100));
+                        valP = valP * 1.25f;
+                        val += (int)(val * valP);
+                        valS += (int)(val2 * valP);
+                        val2 += (int)(valS * valP);
                     }
 
-                    //Check if WILL is affected (statuses[16] is cancer)
-                    float valD = (float)target.WILL / 300;
+
                     //If neurotic
                     if (target.statuses[7] != -1)
                     {
@@ -907,7 +966,7 @@ public class unit
 
                 //Check if the unit gets a crit
                 int crit = UnityEngine.Random.Range(1, 101);
-                if (crit < ((LCK / 3) + critBuff))
+                if (crit < ((valL / 3) + critBuff))
                 {
                     val += (val / 2);
                     critted = true;
@@ -1215,24 +1274,52 @@ public class unit
     //Take sanity damage, return true if sanity reaches 0
     public bool takeSanityDamage(int dam)
     {
+        int oriSan = sanity;
         //StartCoroutine(flashDamage());
         if (sanity > 0)
         {
+            bool end = false;
             sanity -= dam;
             if (sanity <= 0)
             {
                 sanity = 0;
-                sanBar.GetComponent<Image>().fillAmount = 0.0f / 100;
-                sanReadOut.text = sanity + " / 100";
                 giveStatus("Doomed");
-                return true;
+                end = true;
+            }
+            else if (sanity <= 50)
+            {
+                giveStatus("Madness");
+                hasMP = true;
+                if (oriSan > 50)
+                {
+                    giveEldritchAbility();
+                }
+            }
+            else if (sanity > 50)
+            {
+                statuses[24] = -1;
+                if (hasMP && unitName != "Jim" && unitName != "Ember Moon" && unitName != "White Knight")
+                {
+                    hasMP = false;
+                }
+                int g = 0;
+                for (int i = 0; i < abilities.Count; i++)
+                {
+                    if (abilities[i].eldritch)
+                    {
+                        g = i;
+                    }
+                }
+                abilities.RemoveAt(g);
             }
             else
             {
-                sanBar.GetComponent<Image>().fillAmount = (float)sanity / 100;
-                sanReadOut.text = sanity + " / 100";
-                return false;
+                end = false;
             }
+            sanBar.GetComponent<Image>().fillAmount = (float)sanity / 100;
+            sanReadOut.text = sanity + " / 100";
+            setHUD();
+            return end;
         }
         else
         {
