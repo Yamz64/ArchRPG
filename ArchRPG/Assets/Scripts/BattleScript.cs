@@ -2841,6 +2841,8 @@ public class BattleScript : MonoBehaviour
             actions.Sort((a, b) => { return b.getFast().CompareTo(a.getFast()); });
             for (int z = 0; z < actions.Count; z++)
             {
+                bool sane = false;
+                bool sane2 = false;
                 string sc = actions[z].getType();
                 yield return new WaitForSeconds(0.5f);
                 int ind = actions[z].getID();
@@ -2852,6 +2854,14 @@ public class BattleScript : MonoBehaviour
                     if (temp[ind].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
                     {
                         continue;
+                    }
+                    if (temp[ind].GetComponent<UnitMono>().mainUnit.sanity > 50)
+                    {
+                        sane = true;
+                    }
+                    if (temp[ind].GetComponent<UnitMono>().mainUnit.sanity > 0)
+                    {
+                        sane2 = true;
                     }
                     bool newd = false;
                     bool newds = false;
@@ -3492,6 +3502,25 @@ public class BattleScript : MonoBehaviour
                     yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
                 }
                 else skipper = false;
+                if (sc == "attack" || sc == "ability" || sc == "ability1" || sc == "item" || sc == "swap" || sc == "basic attack"
+                    || sc == "Flee")
+                {
+                    if (sane == true && temp[ind].GetComponent<UnitMono>().mainUnit.sanity <= 50)
+                    {
+                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " has Delved into Madness!";
+                        yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                    }
+                    else if (sane == false && temp[ind].GetComponent<UnitMono>().mainUnit.sanity > 50)
+                    {
+                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " has Recovered from Madness!";
+                        yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                    }
+                    if (sane2 == true && temp[ind].GetComponent<UnitMono>().mainUnit.sanity <= 0)
+                    {
+                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " is Doomed to Insanity!";
+                        yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                    }
+                }
             }
             for (int i = 0; i < partyUnits.Count; i++)
             {
@@ -5706,6 +5735,8 @@ public class BattleScript : MonoBehaviour
                         if (partyUnits[i].GetComponent<UnitMono>().mainUnit.statuses[25] != -1 && pc.statuses[25] == -1)
                         {
                             data.SetEP(data.GetEP() + 6);
+                            dialogue.text = "Gained 6 Eldritch Points";
+                            yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
                         }
                     }
                     if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName == partyNames[x])
