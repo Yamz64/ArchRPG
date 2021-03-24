@@ -801,13 +801,11 @@ public class unit
                     {
                         valP = valP * 1.25f;
                         valD = valD * 0.75f;
-                        valL = valL * 0.75f;
                     }
                     else if (sanity == 0 && statuses[24] != -1)
                     {
                         valP = valP * 1.50f;
                         valD = valD * 0.50f;
-                        valL = valL * 0.50f;
                     }
                     //Check if POW is affected
                     if (statuses[14] == -1)
