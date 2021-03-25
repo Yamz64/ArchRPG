@@ -2591,7 +2591,7 @@ namespace TimAbilities
         }
         public override void UseAttack(unit user, unit target)
         {
-            user.setSP(user.currentHP - cost);
+            user.setSP(user.currentSP - cost);
             target.healDamage(20);
         }
     }
@@ -2947,6 +2947,7 @@ namespace OliverSproutAbilities
                 swapper = 1;
                 user.mode = 1;
             }
+            PlayerPrefs.SetInt("OliverMode", user.mode);
         }
     }
 

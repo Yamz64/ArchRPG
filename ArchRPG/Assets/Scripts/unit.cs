@@ -452,7 +452,7 @@ public class unit
         {
             if (sanity < sn && statuses[25] != -1)
             {
-                Debug.Log("Madness prevents sanity recovery");
+                Debug.Log("Doomed prevents sanity recovery");
             }
             else
             {
@@ -474,17 +474,17 @@ public class unit
                 }
                 sanBar.GetComponent<Image>().fillAmount = (float)sanity / 100;
                 sanReadOut.text = sanity + " / 100";
-                if (sanity <= 50)
+                if (sanity < 50)
                 {
                     giveStatus("Madness");
                     hasMP = true;
-                    if (oriSan > 50)
+                    if (oriSan >= 50)
                     {
                         giveEldritchAbility();
                     }
                 }
                 //If sanity goes over 50
-                else if (sanity > 50 && oriSan <= 50)
+                else if (sanity >= 50 && oriSan < 50)
                 {
                     statuses[24] = -1;
                     if (hasMP && unitName != "Jim" && unitName != "Ember Moon" && unitName != "White Knight")
@@ -869,12 +869,6 @@ public class unit
                     valS -= (int)(valS * valD);
                 }
 
-                //Debug.Log("Got past damage stuff");
-                //Debug.Log("Unit name == " + unitName);
-                //Debug.Log("Sttatus size == " + statuses.Count);
-                //Debug.Log("Target name == " + target.unitName);
-                //Debug.Log("TargetSttatus size == " + target.statuses.Count);
-
                 //Check if target is weak or resistant to a certain damage type
                 if (target.weaknesses[ata.damageType] == true)
                 {
@@ -884,9 +878,7 @@ public class unit
                 {
                     val = (int)(val * 0.5);
                 }
-
-
-                    
+     
                 //If flammable + fire damage
                 if (target.statuses[11] != -1 && ata.damageType == 1)
                 {
@@ -984,8 +976,6 @@ public class unit
                 {
                     critBuff += 15;
                 }
-                //Debug.Log("Ability name == " + ata.name);
-                //Debug.Log("Gt past status stuff");
 
                 //Check if the unit gets a crit
                 int crit = UnityEngine.Random.Range(1, 101);
@@ -1016,16 +1006,7 @@ public class unit
                     }
                 }
                 bool miss = false;
-                /*
-                if (status == "Confused")
-                {
-                    int dum = UnityEngine.Random.Range(1, 101);
-                    if (dum > 50)
-                    {
-                        miss = true;
-                    }
-                }
-                */
+
                 if (miss == false)
                 {
                     //Check if target is dead from attack
@@ -1139,74 +1120,104 @@ public class unit
     public int takeDamageCalc(unit target, int dam, int typer, bool powe = false)
     {
         int val = dam;
+
+        float valL = (float)LCK;
+        if (sanity < 50 && sanity > 0 && statuses[24] != -1)
+        {
+            valL = valL * 0.75f;
+        }
+        else if (sanity == 0 && statuses[24] != -1)
+        {
+            valL = valL * 0.50f;
+        }
+
         if (!powe)
         {
-            if (statuses[6] == -1 && statuses[14] == -1)
+            float valA = (float)ATK / 100;
+            if (mode == 1 && unitName == "Oliver Sprout")
             {
-                val += (int)(val * (float)(ATK / 100));
+                valA = valA * 1.5f;
             }
-            //Zealous or Inspired
-            else if (statuses[6] != -1 ^ statuses[14] != -1)
+            if (statuses[14] == -1)
             {
-                val += (int)(val * (float)((ATK * 1.25) / 100));
+                val += (int)(val * valA);
             }
+            //Zealous
             else
             {
-                val += (int)(val * (float)((ATK * 1.50) / 100));
+                valA = valA * 1.25f;
+                val += (int)(val * valA);
             }
 
             float valD = (float)target.DEF / 300;
-            //If Blunt Trauma
-            if (target.statuses[4] != -1)
-            {
-                valD = valD * 0.75f;
-            }
-            //If Neurotic
-            if (target.statuses[7] != -1)
+
+            if (target.unitName == "Oliver Sprout" && target.mode == 0)
             {
                 valD = valD * 1.5f;
             }
-            val -= (int)(val * valD);
-            /*
+
             //Check if DEF is reduced by a status like Blunt Trauma
             if (target.statuses[4] == -1 && target.statuses[7] == -1)
             {
-                //val -= (int)(val * (float)(target.DEF / 300));
+                val -= (int)(val * valD);
             }
             //Blunt Trauma
             else if (target.statuses[4] != -1 && target.statuses[7] == -1)
             {
                 valD = valD * 0.75f;
-                //val -= (int)(val * (float)((target.DEF * 0.75) / 300));
+                val -= (int)(val * valD);
             }
             //Neurotic
             else if (target.statuses[4] == -1 && target.statuses[7] != -1)
             {
                 valD = valD * 1.5f;
-                //val -= (int)(val * (float)((target.DEF * 1.5) / 300));
+                val -= (int)(val * valD);
             }
             //Both
             else
             {
-                //val -= (int)(val * (float)((target.DEF * 1.25) / 300));
+                valD = valD * 1.25f;
+                val -= (int)(val * valD);
             }
-            */
         }
         else
         {
+            float valP = (float)POW / 100;
+            float valD = (float)target.WILL / 300;
+
+            if (unitName == "Oliver Sprout" && mode == 1)
+            {
+                valP = valP * 1.2f;
+            }
+            else if (target.unitName == "Oliver Sprout" && target.mode == 0)
+            {
+                valD = valD * 1.2f;
+            }
+
+
+            if (sanity < 50 && sanity > 0 && statuses[24] != -1)
+            {
+                valP = valP * 1.25f;
+                valD = valD * 0.75f;
+            }
+            else if (sanity == 0 && statuses[24] != -1)
+            {
+                valP = valP * 1.50f;
+                valD = valD * 0.50f;
+            }
             //Check if POW is affected
             if (statuses[14] == -1)
             {
-                val += (int)(val * (float)(POW / 100));
+                val += (int)(val * valP);
             }
             //Zealous
             else
             {
-                val += (int)(val * (float)((POW * 1.25) / 100));
+                valP = valP * 1.25f;
+                val += (int)(val * valP);
             }
 
-            //Check if WILL is affected (statuses[16] is cancer)
-            float valD = (float)target.WILL / 300;
+
             //If neurotic
             if (target.statuses[7] != -1)
             {
@@ -1223,34 +1234,6 @@ public class unit
                 valD = valD * 1.25f;
             }
             val -= (int)(val * valD);
-            /*
-            if (target.statuses[7] == target.statuses[15] && target.statuses[16] != -1)
-            {
-                val -= (int)(val * (float)((target.WILL * 0.75) / 300));
-            }
-            if (target.statuses[7] == target.statuses[10])
-            {
-                val -= (int)(val * (float)(target.WILL / 300));
-            }
-            //If target has neurotic
-            else if (target.statuses[7] != -1 && target.statuses[15] != -1)
-            {
-                val -= (int)(val * (float)((target.WILL * 0.5) / 300));
-            }
-            else if (target.statuses[7] != -1)
-            {
-                val -= (int)(val * (float)((target.WILL * 0.75) / 300));
-            }
-            //If target has confidence
-            else if (target.statuses[15] != -1 && target.statuses[16] != -1)
-            {
-                val -= (int)(val * (float)((target.WILL * 1.00) / 300));
-            }
-            else
-            {
-                val -= (int)(val * (float)((target.WILL * 1.25) / 300));
-            }
-            */
         }
         //Check if target is weak or resistant to a certain damage type
         if (target.weaknesses[typer] == true)
@@ -1268,6 +1251,88 @@ public class unit
             val = (int)(val * 1.25);
         }
 
+        //If electrified + electric damage
+        if (target.statuses[23] != -1 && typer == 2)
+        {
+            val = (int)(val * 1.25);
+        }
+
+        //If conductive + electric damage
+        if (target.statuses[18] != -1 && typer == 2)
+        {
+            //Roll numbers to check if status effect is given
+            int ran = UnityEngine.Random.Range(1, 101);
+
+            int reze = target.RES;
+            //If target has Chutzpah
+            if (statuses[21] != -1)
+            {
+                reze = (int)(reze * 1.25);
+            }
+            if (ran >= reze || ran == 1)
+            {
+                target.giveStatus("Restrained");
+            }
+        }
+
+        //If reactive + chemical damage
+        if (target.statuses[19] != -1 && typer == 3)
+        {
+            //Roll numbers to check if status effect is given
+            int ran = UnityEngine.Random.Range(1, 101);
+
+            int reze = target.RES;
+            //If target has Chutzpah
+            if (statuses[21] != -1)
+            {
+                reze = (int)(reze * 1.25);
+            }
+            //If within bounds, increase duration of all active status effects by 1
+            if (ran >= reze || ran == 1)
+            {
+                for (int i = 0; i < statuses.Count; i++)
+                {
+                    if (statuses[i] != -1)
+                    {
+                        statuses[i] += 1;
+                    }
+                }
+            }
+        }
+
+        //If zonked + weird damage
+        if (target.statuses[20] != -1 && typer == 4)
+        {
+            //Roll numbers to check if status effect is given
+            int ran = UnityEngine.Random.Range(1, 101);
+            int reze = target.RES;
+            //If target has Chutzpah
+            if (statuses[21] != -1)
+            {
+                reze = (int)(reze * 1.25);
+            }
+            if (ran >= reze || ran == 1 || typer != 0)
+            {
+                int andi = UnityEngine.Random.Range(0, 4);
+                if (andi == 0)
+                {
+                    giveStatus("Vomiting");
+                }
+                else if (andi == 1)
+                {
+                    giveStatus("Weeping");
+                }
+                else if (andi == 2)
+                {
+                    giveStatus("Blunt_Trauma");
+                }
+                else if (andi == 3)
+                {
+                    giveStatus("Lethargic");
+                }
+            }
+        }
+
         int critBuff = 0;
         //If target has analyzed
         if (target.statuses[14] != -1)
@@ -1276,7 +1341,7 @@ public class unit
         }
         //Check if the unit gets a crit
         int crit = UnityEngine.Random.Range(1, 101);
-        if (crit < (LCK / 3) + critBuff)
+        if (crit < (valL / 3) + critBuff)
         {
             val += (val / 2);
             //Debug.Log("Got a crit!");
@@ -1288,6 +1353,17 @@ public class unit
             if (dum == 1)
             {
                 val = val / 5;
+                reduced = true;
+            }
+        }
+        //If unit has eye_bleeding
+        if (statuses[3] != -1)
+        {
+            int dum = UnityEngine.Random.Range(1, 3);
+            if (dum == 1)
+            {
+                val = val / 5;
+                reduced = true;
             }
         }
 
@@ -1309,16 +1385,16 @@ public class unit
                 giveStatus("Doomed");
                 end = true;
             }
-            else if (sanity <= 50)
+            else if (sanity < 50)
             {
                 giveStatus("Madness");
                 hasMP = true;
-                if (oriSan > 50)
+                if (oriSan >= 50)
                 {
                     giveEldritchAbility();
                 }
             }
-            else if (sanity > 50)
+            else if (sanity >= 50)
             {
                 statuses[24] = -1;
                 if (hasMP && unitName != "Jim" && unitName != "Ember Moon" && unitName != "White Knight")
@@ -1358,10 +1434,12 @@ public class unit
         if (currentHP > maxHP)
         {
             currentHP = maxHP;
+            hpBar.GetComponent<Image>().fillAmount = maxHP / maxHP;
             hpReadOut.text = maxHP + " / " + maxHP;
         }
         else
         {
+            hpBar.GetComponent<Image>().fillAmount = currentHP / maxHP;
             hpReadOut.text = currentHP + " / " + maxHP;
         }
     }
