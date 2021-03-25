@@ -1541,15 +1541,12 @@ public class unit
         }
         else if (id.Equals("Madness")       && statuses[24] == -1)
         {
-            ran = UnityEngine.Random.Range(5, 9);
-            statuses[24] = ran;
+            statuses[24] = int.MaxValue;
             
         }
         else if (id.Equals("Doomed")        && statuses[25] == -1)
         {
-            ran = UnityEngine.Random.Range(998, 1000);
-            statuses[25] = ran;
-            
+            statuses[25] = int.MaxValue;
         }
         else if (id.Equals("Disco Fever")   && statuses[26] == -1)
         {

@@ -1349,6 +1349,9 @@ class Clyve : CharacterStats
         if (GetLVL() >= 1) AddAbility(new ClyveAbilities.NoShower());
         if (GetLVL() >= 3) AddAbility(new ClyveAbilities.ShoeRemoval());
         if (GetLVL() >= 6) AddAbility(new ClyveAbilities.Halitosis());
+        if (GetLVL() >= 10) AddAbility(new ClyveAbilities.FootFungus());
+        if (GetLVL() >= 14) AddAbility(new ClyveAbilities.SmellOfDeath());
+        if (GetLVL() >= 20) AddAbility(new ClyveAbilities.InfernalShower());
 
         //see if the player's sanity is below 50 if so give them maddened
         if (GetSAN() < 50) SetStatus(24, int.MaxValue);
@@ -1668,6 +1671,9 @@ class Jim : CharacterStats
         if (GetLVL() >= 2) AddAbility(new JimAbilities.Antacid());
         if (GetLVL() >= 3) AddAbility(new JimAbilities.Bandaid());
         if (GetLVL() >= 6) AddAbility(new JimAbilities.UncannyRemedy());
+        if (GetLVL() >= 9) AddAbility(new JimAbilities.TelekineticProwess());
+        if (GetLVL() >= 16) AddAbility(new JimAbilities.MagicAttunement());
+        if (GetLVL() >= 20) AddAbility(new JimAbilities.MagicalInspiration());
 
         //see if the player's sanity is below 50 if so give them maddened
         if (GetSAN() < 50) SetStatus(24, int.MaxValue);
@@ -1987,6 +1993,9 @@ class Norm : CharacterStats
         if (GetLVL() >= 2) AddAbility(new NormAbilities.PoopThrow());
         if (GetLVL() >= 5) AddAbility(new NormAbilities.EatBanana());
         if (GetLVL() >= 8) AddAbility(new NormAbilities.PrimatePowerbomb());
+        if (GetLVL() >= 12) AddAbility(new NormAbilities.ApeArmbar());
+        if (GetLVL() >= 16) AddAbility(new NormAbilities.OrangutanRage());
+        if (GetLVL() >= 20) AddAbility(new NormAbilities.ChimpChop());
 
         //see if the player's sanity is below 50 if so give them maddened
         if (GetSAN() < 50) SetStatus(24, int.MaxValue);
@@ -2304,6 +2313,9 @@ class Shirley : CharacterStats
         if (GetLVL() >= 2) AddAbility(new ShirleyAbilities.OpenFire());
         if (GetLVL() >= 4) AddAbility(new ShirleyAbilities.Frontline());
         if (GetLVL() >= 6) AddAbility(new ShirleyAbilities.BugleCall());
+        if (GetLVL() >= 12) AddAbility(new ShirleyAbilities.StrategicPlanning());
+        if (GetLVL() >= 16) AddAbility(new ShirleyAbilities.ShotgunBlast());
+        if (GetLVL() >= 20) AddAbility(new ShirleyAbilities.SuppressingFire());
 
         //see if the player's sanity is below 50 if so give them maddened
         if (GetSAN() < 50) SetStatus(24, int.MaxValue);
@@ -2621,6 +2633,9 @@ class Ralph : CharacterStats
         if (GetLVL() >= 1) AddAbility(new RalphAbilities.PistolWhip());
         if (GetLVL() >= 4) AddAbility(new RalphAbilities.SmokeBreak());
         if (GetLVL() >= 6) AddAbility(new RalphAbilities.Taser());
+        if (GetLVL() >= 10) AddAbility(new RalphAbilities.OopsCoffeeSpilled());
+        if (GetLVL() >= 15) AddAbility(new RalphAbilities.LetLooseTheDonuts());
+        if (GetLVL() >= 20) AddAbility(new RalphAbilities.Gun());
 
         //see if the player's sanity is below 50 if so give them maddened
         if (GetSAN() < 50) SetStatus(24, int.MaxValue);
@@ -2938,6 +2953,9 @@ class Lucy : CharacterStats
         if (GetLVL() >= 1) AddAbility(new LucyAbilities.FungalRat());
         if (GetLVL() >= 5) AddAbility(new LucyAbilities.RodentialKindling());
         if (GetLVL() >= 8) AddAbility(new LucyAbilities.FeedTheMasses());
+        if (GetLVL() >= 12) AddAbility(new LucyAbilities.FrenziedInvasion());
+        if (GetLVL() >= 17) AddAbility(new LucyAbilities.PropellorRat());
+        if (GetLVL() >= 20) AddAbility(new LucyAbilities.VirumRodentia());
 
         //see if the player's sanity is below 50 if so give them maddened
         if (GetSAN() < 50) SetStatus(24, int.MaxValue);
@@ -2951,6 +2969,1295 @@ class Lucy : CharacterStats
             SetWIL(GetWIL() - (int)(GetWIL() * interp_factor));
             SetPOW(GetPOW() + (int)(GetPOW() * interp_factor));
             AddAbility(new LucyAbilities.ProtectMyChildren());
+
+            SetUseMP(true);
+        }
+
+        //see if the character is at 0 SAN if they are then mark them as doomed
+        if (GetSAN() <= 0) SetStatus(25, int.MaxValue);
+    }
+}
+
+class Tim : CharacterStats
+{
+    public Tim()
+    {
+        SetImageFilepath("CharacterSprites/Tim");
+
+        SetName("Tim");
+        SetDesc("A young kid who voluntarily indentured himself into what many would consider child labor. His normal chipper attitude has been disrupted by recent personally disturbing experiences...");
+
+        SetLVL(1);
+
+        SetHPMax(40);
+        SetHP(40);
+
+        SetSPMax(18);
+        SetSP(18);
+
+        SetSANMax(100);
+        SetSAN(100);
+
+        SetATK(10);
+        SetPOW(4);
+        SetDEF(4);
+        SetWIL(6);
+        SetRES(3);
+        SetSPD(5);
+        SetLCK(0);
+    }
+    public override void UpdateStats()
+    {
+        //remove base weapon armor and trinket
+        Weapon temp_weapon = GetWeapon();
+        Armor temp_armor = GetArmor();
+        Trinket temp_trinket = GetTrinket();
+
+        RemoveWeapon();
+        RemoveArmor();
+        RemoveTrinket();
+
+        switch (GetLVL())
+        {
+            case 1:
+                //apply the base stats per level
+                SetHPMax(40);
+                SetSPMax(18);
+                SetATK(4);
+                SetPOW(4);
+                SetDEF(6);
+                SetWIL(3);
+                SetRES(5);
+                SetSPD(5);
+                SetLCK(0);
+                break;
+            case 2:
+                //apply the base stats per level
+                SetHPMax(60);
+                SetSPMax(26);
+                SetATK(7);
+                SetPOW(8);
+                SetDEF(12);
+                SetWIL(7);
+                SetRES(9);
+                SetSPD(11);
+                SetLCK(0);
+                break;
+            case 3:
+                //apply the base stats per level
+                SetHPMax(80);
+                SetSPMax(34);
+                SetATK(10);
+                SetPOW(12);
+                SetDEF(18);
+                SetWIL(10);
+                SetRES(12);
+                SetSPD(16);
+                SetLCK(0);
+                break;
+            case 4:
+                //apply the base stats per level
+                SetHPMax(100);
+                SetSPMax(41);
+                SetATK(13);
+                SetPOW(16);
+                SetDEF(25);
+                SetWIL(14);
+                SetRES(16);
+                SetSPD(22);
+                SetLCK(0);
+                break;
+            case 5:
+                //apply the base stats per level
+                SetHPMax(120);
+                SetSPMax(49);
+                SetATK(16);
+                SetPOW(20);
+                SetDEF(31);
+                SetWIL(17);
+                SetRES(19);
+                SetSPD(27);
+                SetLCK(0);
+                break;
+            case 6:
+                //apply the base stats per level
+                SetHPMax(140);
+                SetSPMax(57);
+                SetATK(19);
+                SetPOW(24);
+                SetDEF(37);
+                SetWIL(21);
+                SetRES(23);
+                SetSPD(33);
+                SetLCK(1);
+                break;
+            case 7:
+                //apply the base stats per level
+                SetHPMax(160);
+                SetSPMax(64);
+                SetATK(22);
+                SetPOW(29);
+                SetDEF(43);
+                SetWIL(24);
+                SetRES(26);
+                SetSPD(38);
+                SetLCK(1);
+                break;
+            case 8:
+                //apply the base stats per level
+                SetHPMax(180);
+                SetSPMax(72);
+                SetATK(25);
+                SetPOW(33);
+                SetDEF(50);
+                SetWIL(28);
+                SetRES(30);
+                SetSPD(44);
+                SetLCK(2);
+                break;
+            case 9:
+                //apply the base stats per level
+                SetHPMax(200);
+                SetSPMax(80);
+                SetATK(28);
+                SetPOW(37);
+                SetDEF(56);
+                SetWIL(31);
+                SetRES(33);
+                SetSPD(49);
+                SetLCK(3);
+                break;
+            case 10:
+                //apply the base stats per level
+                SetHPMax(220);
+                SetSPMax(88);
+                SetATK(31);
+                SetPOW(41);
+                SetDEF(62);
+                SetWIL(35);
+                SetRES(37);
+                SetSPD(55);
+                SetLCK(4);
+                break;
+            case 11:
+                //apply the base stats per level
+                SetHPMax(240);
+                SetSPMax(95);
+                SetATK(34);
+                SetPOW(45);
+                SetDEF(68);
+                SetWIL(38);
+                SetRES(40);
+                SetSPD(60);
+                SetLCK(6);
+                break;
+            case 12:
+                //apply the base stats per level
+                SetHPMax(260);
+                SetSPMax(103);
+                SetATK(37);
+                SetPOW(49);
+                SetDEF(75);
+                SetWIL(42);
+                SetRES(44);
+                SetSPD(66);
+                SetLCK(8);
+                break;
+            case 13:
+                //apply the base stats per level
+                SetHPMax(280);
+                SetSPMax(111);
+                SetATK(40);
+                SetPOW(53);
+                SetDEF(81);
+                SetWIL(45);
+                SetRES(47);
+                SetSPD(71);
+                SetLCK(10);
+                break;
+            case 14:
+                //apply the base stats per level
+                SetHPMax(300);
+                SetSPMax(118);
+                SetATK(43);
+                SetPOW(58);
+                SetDEF(87);
+                SetWIL(49);
+                SetRES(51);
+                SetSPD(77);
+                SetLCK(12);
+                break;
+            case 15:
+                //apply the base stats per level
+                SetHPMax(320);
+                SetSPMax(126);
+                SetATK(46);
+                SetPOW(62);
+                SetDEF(93);
+                SetWIL(52);
+                SetRES(54);
+                SetSPD(82);
+                SetLCK(15);
+                break;
+            case 16:
+                //apply the base stats per level
+                SetHPMax(340);
+                SetSPMax(126);
+                SetATK(46);
+                SetPOW(62);
+                SetDEF(93);
+                SetWIL(52);
+                SetRES(54);
+                SetSPD(82);
+                SetLCK(15);
+                break;
+            case 17:
+                //apply the base stats per level
+                SetHPMax(360);
+                SetSPMax(141);
+                SetATK(52);
+                SetPOW(70);
+                SetDEF(106);
+                SetWIL(59);
+                SetRES(61);
+                SetSPD(93);
+                SetLCK(22);
+                break;
+            case 18:
+                //apply the base stats per level
+                SetHPMax(380);
+                SetSPMax(149);
+                SetATK(55);
+                SetPOW(74);
+                SetDEF(112);
+                SetWIL(63);
+                SetRES(65);
+                SetSPD(99);
+                SetLCK(27);
+                break;
+            case 19:
+                //apply the base stats per level
+                SetHPMax(400);
+                SetSPMax(157);
+                SetATK(58);
+                SetPOW(78);
+                SetDEF(118);
+                SetWIL(66);
+                SetRES(68);
+                SetSPD(104);
+                SetLCK(32);
+                break;
+            case 20:
+                //apply the base stats per level
+                SetHPMax(420);
+                SetSPMax(165);
+                SetATK(61);
+                SetPOW(83);
+                SetDEF(125);
+                SetWIL(70);
+                SetRES(72);
+                SetSPD(110);
+                SetLCK(37);
+                break;
+            default:
+                break;
+        }
+
+        //reapply weapon armor and trinket
+        if (temp_weapon != null) SetWeapon(temp_weapon);
+        if (temp_armor != null) SetArmor(temp_armor);
+        if (temp_trinket != null) SetTrinket(temp_trinket);
+
+        //add abilities
+        ClearAbilities();
+        if (GetLVL() >= 1) AddAbility(new TimAbilities.MeatDog());
+        if (GetLVL() >= 5) AddAbility(new TimAbilities.BackyardBBQ());
+        if (GetLVL() >= 8) AddAbility(new TimAbilities.GreaseTrap());
+        if (GetLVL() >= 14) AddAbility(new TimAbilities.HeartyDinner());
+        if (GetLVL() >= 18) AddAbility(new TimAbilities.BigMeatTM());
+        if (GetLVL() >= 20) AddAbility(new TimAbilities.AllYouCanEat());
+
+        //see if the player's sanity is below 50 if so give them maddened
+        if (GetSAN() < 50) SetStatus(24, int.MaxValue);
+        else if (GetStatus(24) > 0) SetStatus(24, -1);
+
+        //see if the player is maddened if they are then modify some stats, set uses_mp to true, and add their madness ability
+        if (GetStatus(24) > 0)
+        {
+            float interp_factor = Mathf.Lerp(.5f, .25f, GetSAN() / 50f);
+            SetLCK(GetLCK() - (int)(GetLCK() * interp_factor));
+            SetWIL(GetWIL() - (int)(GetWIL() * interp_factor));
+            SetPOW(GetPOW() + (int)(GetPOW() * interp_factor));
+            AddAbility(new TimAbilities.MysteryMeat());
+
+            SetUseMP(true);
+        }
+
+        //see if the character is at 0 SAN if they are then mark them as doomed
+        if (GetSAN() <= 0) SetStatus(25, int.MaxValue);
+    }
+}
+
+class WhiteKnight : CharacterStats
+{
+    public WhiteKnight()
+    {
+        SetImageFilepath("CharacterSprites/Tim");
+
+        SetName("White Knight");
+        SetDesc("White knight is the kind of guy that gets too into LARPing, such that he became a real crusader. He defends the weak, holds the door for everyone, and still has time to write a weekly manga review on his Christian anime blog.");
+
+        SetLVL(1);
+
+        SetHPMax(37);
+        SetHP(37);
+
+        SetSPMax(19);
+        SetSP(19);
+
+        SetSANMax(100);
+        SetSAN(100);
+
+        SetATK(3);
+        SetPOW(12);
+        SetDEF(10);
+        SetWIL(9);
+        SetRES(5);
+        SetSPD(4);
+        SetLCK(0);
+    }
+    public override void UpdateStats()
+    {
+        //remove base weapon armor and trinket
+        Weapon temp_weapon = GetWeapon();
+        Armor temp_armor = GetArmor();
+        Trinket temp_trinket = GetTrinket();
+
+        RemoveWeapon();
+        RemoveArmor();
+        RemoveTrinket();
+
+        switch (GetLVL())
+        {
+            case 1:
+                //apply the base stats per level
+                SetHPMax(37);
+                SetSPMax(19);
+                SetATK(3);
+                SetPOW(12);
+                SetDEF(10);
+                SetWIL(9);
+                SetRES(5);
+                SetSPD(4);
+                SetLCK(0);
+                break;
+            case 2:
+                //apply the base stats per level
+                SetHPMax(59);
+                SetSPMax(22);
+                SetATK(6);
+                SetPOW(19);
+                SetDEF(19);
+                SetWIL(16);
+                SetRES(8);
+                SetSPD(7);
+                SetLCK(0);
+                break;
+            case 3:
+                //apply the base stats per level
+                SetHPMax(81);
+                SetSPMax(28);
+                SetATK(8);
+                SetPOW(26);
+                SetDEF(28);
+                SetWIL(23);
+                SetRES(11);
+                SetSPD(10);
+                SetLCK(0);
+                break;
+            case 4:
+                //apply the base stats per level
+                SetHPMax(103);
+                SetSPMax(34);
+                SetATK(11);
+                SetPOW(33);
+                SetDEF(37);
+                SetWIL(30);
+                SetRES(15);
+                SetSPD(14);
+                SetLCK(0);
+                break;
+            case 5:
+                //apply the base stats per level
+                SetHPMax(125);
+                SetSPMax(40);
+                SetATK(13);
+                SetPOW(40);
+                SetDEF(46);
+                SetWIL(37);
+                SetRES(18);
+                SetSPD(17);
+                SetLCK(0);
+                break;
+            case 6:
+                //apply the base stats per level
+                SetHPMax(147);
+                SetSPMax(46);
+                SetATK(16);
+                SetPOW(47);
+                SetDEF(55);
+                SetWIL(44);
+                SetRES(21);
+                SetSPD(20);
+                SetLCK(0);
+                break;
+            case 7:
+                //apply the base stats per level
+                SetHPMax(169);
+                SetSPMax(52);
+                SetATK(18);
+                SetPOW(54);
+                SetDEF(64);
+                SetWIL(51);
+                SetRES(24);
+                SetSPD(23);
+                SetLCK(1);
+                break;
+            case 8:
+                //apply the base stats per level
+                SetHPMax(191);
+                SetSPMax(58);
+                SetATK(21);
+                SetPOW(61);
+                SetDEF(73);
+                SetWIL(58);
+                SetRES(28);
+                SetSPD(27);
+                SetLCK(2);
+                break;
+            case 9:
+                //apply the base stats per level
+                SetHPMax(213);
+                SetSPMax(64);
+                SetATK(23);
+                SetPOW(68);
+                SetDEF(82);
+                SetWIL(65);
+                SetRES(31);
+                SetSPD(30);
+                SetLCK(3);
+                break;
+            case 10:
+                //apply the base stats per level
+                SetHPMax(235);
+                SetSPMax(70);
+                SetATK(26);
+                SetPOW(75);
+                SetDEF(91);
+                SetWIL(72);
+                SetRES(34);
+                SetSPD(33);
+                SetLCK(4);
+                break;
+            case 11:
+                //apply the base stats per level
+                SetHPMax(257);
+                SetSPMax(76);
+                SetATK(28);
+                SetPOW(82);
+                SetDEF(100);
+                SetWIL(79);
+                SetRES(37);
+                SetSPD(36);
+                SetLCK(5);
+                break;
+            case 12:
+                //apply the base stats per level
+                SetHPMax(279);
+                SetSPMax(82);
+                SetATK(31);
+                SetPOW(89);
+                SetDEF(109);
+                SetWIL(86);
+                SetRES(41);
+                SetSPD(40);
+                SetLCK(7);
+                break;
+            case 13:
+                //apply the base stats per level
+                SetHPMax(301);
+                SetSPMax(88);
+                SetATK(33);
+                SetPOW(96);
+                SetDEF(118);
+                SetWIL(93);
+                SetRES(44);
+                SetSPD(43);
+                SetLCK(9);
+                break;
+            case 14:
+                //apply the base stats per level
+                SetHPMax(323);
+                SetSPMax(94);
+                SetATK(36);
+                SetPOW(103);
+                SetDEF(127);
+                SetWIL(100);
+                SetRES(47);
+                SetSPD(46);
+                SetLCK(11);
+                break;
+            case 15:
+                //apply the base stats per level
+                SetHPMax(345);
+                SetSPMax(100);
+                SetATK(38);
+                SetPOW(110);
+                SetDEF(136);
+                SetWIL(107);
+                SetRES(50);
+                SetSPD(49);
+                SetLCK(14);
+                break;
+            case 16:
+                //apply the base stats per level
+                SetHPMax(367);
+                SetSPMax(106);
+                SetATK(41);
+                SetPOW(117);
+                SetDEF(145);
+                SetWIL(114);
+                SetRES(54);
+                SetSPD(53);
+                SetLCK(17);
+                break;
+            case 17:
+                //apply the base stats per level
+                SetHPMax(389);
+                SetSPMax(112);
+                SetATK(43);
+                SetPOW(124);
+                SetDEF(154);
+                SetWIL(121);
+                SetRES(57);
+                SetSPD(56);
+                SetLCK(20);
+                break;
+            case 18:
+                //apply the base stats per level
+                SetHPMax(411);
+                SetSPMax(118);
+                SetATK(46);
+                SetPOW(131);
+                SetDEF(163);
+                SetWIL(128);
+                SetRES(60);
+                SetSPD(59);
+                SetLCK(24);
+                break;
+            case 19:
+                //apply the base stats per level
+                SetHPMax(433);
+                SetSPMax(124);
+                SetATK(48);
+                SetPOW(138);
+                SetDEF(172);
+                SetWIL(135);
+                SetRES(63);
+                SetSPD(82);
+                SetLCK(28);
+                break;
+            case 20:
+                //apply the base stats per level
+                SetHPMax(455);
+                SetSPMax(130);
+                SetATK(51);
+                SetPOW(145);
+                SetDEF(181);
+                SetWIL(142);
+                SetRES(67);
+                SetSPD(66);
+                SetLCK(33);
+                break;
+            default:
+                break;
+        }
+
+        //reapply weapon armor and trinket
+        if (temp_weapon != null) SetWeapon(temp_weapon);
+        if (temp_armor != null) SetArmor(temp_armor);
+        if (temp_trinket != null) SetTrinket(temp_trinket);
+
+        //add abilities
+        ClearAbilities();
+        if (GetLVL() >= 1) AddAbility(new WhiteKnightAbilities.IRespectTheOppressed());
+        if (GetLVL() >= 5) AddAbility(new WhiteKnightAbilities.KamiNoSumaito());
+        if (GetLVL() >= 7) AddAbility(new WhiteKnightAbilities.DefendTheWeak());
+        if (GetLVL() >= 12) AddAbility(new WhiteKnightAbilities.PreachGodsWord());
+        if (GetLVL() >= 18) AddAbility(new WhiteKnightAbilities.HolyHandGrenade());
+        if (GetLVL() >= 20) AddAbility(new WhiteKnightAbilities.DeusVultusMaximus());
+
+        //see if the player's sanity is below 50 if so give them maddened
+        if (GetSAN() < 50) SetStatus(24, int.MaxValue);
+        else if (GetStatus(24) > 0) SetStatus(24, -1);
+
+        //see if the player is maddened if they are then modify some stats, set uses_mp to true, and add their madness ability
+        if (GetStatus(24) > 0)
+        {
+            float interp_factor = Mathf.Lerp(.5f, .25f, GetSAN() / 50f);
+            SetLCK(GetLCK() - (int)(GetLCK() * interp_factor));
+            SetWIL(GetWIL() - (int)(GetWIL() * interp_factor));
+            SetPOW(GetPOW() + (int)(GetPOW() * interp_factor));
+            AddAbility(new WhiteKnightAbilities.HereticalCharge());
+
+            SetUseMP(true);
+        }
+
+        //see if the character is at 0 SAN if they are then mark them as doomed
+        if (GetSAN() <= 0) SetStatus(25, int.MaxValue);
+    }
+}
+
+class OliverSprout : CharacterStats
+{
+    public OliverSprout()
+    {
+        SetImageFilepath("CharacterSprites/Tim");
+
+        SetName("Oliver Sprout");
+        SetDesc("Oliver Sprout is an altruistic, peaceful, and at one with nature... Or so he looks at first glance: Oliver suffers from violent anger issues.  He will tear your throat out if you say anything negative against Jon Lemon");
+
+        SetLVL(1);
+
+        SetHPMax(29);
+        SetHP(29);
+
+        SetSPMax(15);
+        SetSP(15);
+
+        SetSANMax(100);
+        SetSAN(100);
+
+        SetATK(6);
+        SetPOW(5);
+        SetDEF(5);
+        SetWIL(4);
+        SetRES(4);
+        SetSPD(6);
+        SetLCK(0);
+    }
+    public override void UpdateStats()
+    {
+        //remove base weapon armor and trinket
+        Weapon temp_weapon = GetWeapon();
+        Armor temp_armor = GetArmor();
+        Trinket temp_trinket = GetTrinket();
+
+        RemoveWeapon();
+        RemoveArmor();
+        RemoveTrinket();
+
+        switch (GetLVL())
+        {
+            case 1:
+                //apply the base stats per level
+                SetHPMax(29);
+                SetSPMax(15);
+                SetATK(6);
+                SetPOW(5);
+                SetDEF(5);
+                SetWIL(4);
+                SetRES(4);
+                SetSPD(6);
+                SetLCK(0);
+                break;
+            case 2:
+                //apply the base stats per level
+                SetHPMax(44);
+                SetSPMax(21);
+                SetATK(12);
+                SetPOW(10);
+                SetDEF(11);
+                SetWIL(9);
+                SetRES(6);
+                SetSPD(12);
+                SetLCK(0);
+                break;
+            case 3:
+                //apply the base stats per level
+                SetHPMax(59);
+                SetSPMax(27);
+                SetATK(18);
+                SetPOW(15);
+                SetDEF(17);
+                SetWIL(14);
+                SetRES(8);
+                SetSPD(18);
+                SetLCK(0);
+                break;
+            case 4:
+                //apply the base stats per level
+                SetHPMax(74);
+                SetSPMax(33);
+                SetATK(24);
+                SetPOW(20);
+                SetDEF(23);
+                SetWIL(19);
+                SetRES(10);
+                SetSPD(24);
+                SetLCK(0);
+                break;
+            case 5:
+                //apply the base stats per level
+                SetHPMax(88);
+                SetSPMax(39);
+                SetATK(30);
+                SetPOW(25);
+                SetDEF(28);
+                SetWIL(23);
+                SetRES(12);
+                SetSPD(30);
+                SetLCK(0);
+                break;
+            case 6:
+                //apply the base stats per level
+                SetHPMax(103);
+                SetSPMax(45);
+                SetATK(36);
+                SetPOW(30);
+                SetDEF(34);
+                SetWIL(28);
+                SetRES(14);
+                SetSPD(36);
+                SetLCK(1);
+                break;
+            case 7:
+                //apply the base stats per level
+                SetHPMax(118);
+                SetSPMax(51);
+                SetATK(42);
+                SetPOW(35);
+                SetDEF(40);
+                SetWIL(33);
+                SetRES(16);
+                SetSPD(42);
+                SetLCK(2);
+                break;
+            case 8:
+                //apply the base stats per level
+                SetHPMax(133);
+                SetSPMax(57);
+                SetATK(48);
+                SetPOW(40);
+                SetDEF(46);
+                SetWIL(38);
+                SetRES(18);
+                SetSPD(48);
+                SetLCK(3);
+                break;
+            case 9:
+                //apply the base stats per level
+                SetHPMax(147);
+                SetSPMax(63);
+                SetATK(54);
+                SetPOW(45);
+                SetDEF(51);
+                SetWIL(42);
+                SetRES(20);
+                SetSPD(54);
+                SetLCK(4);
+                break;
+            case 10:
+                //apply the base stats per level
+                SetHPMax(162);
+                SetSPMax(69);
+                SetATK(60);
+                SetPOW(50);
+                SetDEF(57);
+                SetWIL(47);
+                SetRES(22);
+                SetSPD(60);
+                SetLCK(6);
+                break;
+            case 11:
+                //apply the base stats per level
+                SetHPMax(177);
+                SetSPMax(75);
+                SetATK(66);
+                SetPOW(55);
+                SetDEF(63);
+                SetWIL(24);
+                SetSPD(66);
+                SetLCK(7);
+                break;
+            case 12:
+                //apply the base stats per level
+                SetHPMax(192);
+                SetSPMax(81);
+                SetATK(72);
+                SetPOW(60);
+                SetDEF(69);
+                SetWIL(57);
+                SetRES(26);
+                SetSPD(72);
+                SetLCK(10);
+                break;
+            case 13:
+                //apply the base stats per level
+                SetHPMax(206);
+                SetSPMax(87);
+                SetATK(78);
+                SetPOW(65);
+                SetDEF(74);
+                SetWIL(61);
+                SetRES(28);
+                SetSPD(78);
+                SetLCK(13);
+                break;
+            case 14:
+                //apply the base stats per level
+                SetHPMax(221);
+                SetSPMax(93);
+                SetATK(84);
+                SetPOW(70);
+                SetDEF(80);
+                SetWIL(66);
+                SetRES(30);
+                SetSPD(84);
+                SetLCK(16);
+                break;
+            case 15:
+                //apply the base stats per level
+                SetHPMax(236);
+                SetSPMax(99);
+                SetATK(90);
+                SetPOW(75);
+                SetDEF(86);
+                SetWIL(71);
+                SetRES(32);
+                SetSPD(90);
+                SetLCK(20);
+                break;
+            case 16:
+                //apply the base stats per level
+                SetHPMax(251);
+                SetSPMax(105);
+                SetATK(96);
+                SetPOW(80);
+                SetDEF(92);
+                SetWIL(76);
+                SetRES(34);
+                SetSPD(96);
+                SetLCK(24);
+                break;
+            case 17:
+                //apply the base stats per level
+                SetHPMax(265);
+                SetSPMax(111);
+                SetATK(102);
+                SetPOW(85);
+                SetDEF(97);
+                SetWIL(80);
+                SetRES(36);
+                SetSPD(102);
+                SetLCK(29);
+                break;
+            case 18:
+                //apply the base stats per level
+                SetHPMax(280);
+                SetSPMax(117);
+                SetATK(108);
+                SetPOW(90);
+                SetDEF(103);
+                SetWIL(85);
+                SetRES(38);
+                SetSPD(108);
+                SetLCK(34);
+                break;
+            case 19:
+                //apply the base stats per level
+                SetHPMax(295);
+                SetSPMax(123);
+                SetATK(114);
+                SetPOW(95);
+                SetDEF(109);
+                SetWIL(90);
+                SetRES(40);
+                SetSPD(114);
+                SetLCK(41);
+                break;
+            case 20:
+                //apply the base stats per level
+                SetHPMax(310);
+                SetSPMax(129);
+                SetATK(120);
+                SetPOW(100);
+                SetDEF(115);
+                SetWIL(95);
+                SetRES(42);
+                SetSPD(120);
+                SetLCK(48);
+                break;
+            default:
+                break;
+        }
+
+        //reapply weapon armor and trinket
+        if (temp_weapon != null) SetWeapon(temp_weapon);
+        if (temp_armor != null) SetArmor(temp_armor);
+        if (temp_trinket != null) SetTrinket(temp_trinket);
+
+        //add abilities
+        ClearAbilities();
+        if (GetLVL() >= 1) AddAbility(new OliverSproutAbilities.WarAndPeace());
+        if (GetLVL() >= 5)
+        {
+            AddAbility(new OliverSproutAbilities.GoodVibes());
+            AddAbility(new OliverSproutAbilities.BohemianGrip());
+        }
+        if (GetLVL() >= 12)
+        {
+            AddAbility(new OliverSproutAbilities.ChillaxDude());
+            AddAbility(new OliverSproutAbilities.EyeGouge());
+        }
+        if (GetLVL() >= 20)
+        {
+            AddAbility(new OliverSproutAbilities.Imagine());
+            AddAbility(new OliverSproutAbilities.RipAndTear());
+        }
+
+        //see if the player's sanity is below 50 if so give them maddened
+        if (GetSAN() < 50) SetStatus(24, int.MaxValue);
+        else if (GetStatus(24) > 0) SetStatus(24, -1);
+
+        //see if the player is maddened if they are then modify some stats, set uses_mp to true, and add their madness ability
+        if (GetStatus(24) > 0)
+        {
+            float interp_factor = Mathf.Lerp(.5f, .25f, GetSAN() / 50f);
+            SetLCK(GetLCK() - (int)(GetLCK() * interp_factor));
+            SetWIL(GetWIL() - (int)(GetWIL() * interp_factor));
+            SetPOW(GetPOW() + (int)(GetPOW() * interp_factor));
+            AddAbility(new OliverSproutAbilities.BadVibes());
+
+            SetUseMP(true);
+        }
+
+        //see if the character is at 0 SAN if they are then mark them as doomed
+        if (GetSAN() <= 0) SetStatus(25, int.MaxValue);
+    }
+}
+
+class EmberMoon : CharacterStats
+{
+    public EmberMoon()
+    {
+        SetImageFilepath("CharacterSprites/Tim");
+
+        SetName("Ember Moon");
+        SetDesc("");
+
+        SetLVL(1);
+
+        SetHPMax(29);
+        SetHP(29);
+
+        SetSPMax(16);
+        SetSP(16);
+
+        SetSANMax(100);
+        SetSAN(100);
+
+        SetATK(7);
+        SetPOW(13);
+        SetDEF(4);
+        SetWIL(4);
+        SetRES(4);
+        SetSPD(5);
+        SetLCK(0);
+    }
+    public override void UpdateStats()
+    {
+        //remove base weapon armor and trinket
+        Weapon temp_weapon = GetWeapon();
+        Armor temp_armor = GetArmor();
+        Trinket temp_trinket = GetTrinket();
+
+        RemoveWeapon();
+        RemoveArmor();
+        RemoveTrinket();
+
+        switch (GetLVL())
+        {
+            case 1:
+                //apply the base stats per level
+                SetHPMax(29);
+                SetSPMax(16);
+                SetATK(7);
+                SetPOW(13);
+                SetDEF(4);
+                SetWIL(4);
+                SetRES(4);
+                SetSPD(5);
+                SetLCK(0);
+                break;
+            case 2:
+                //apply the base stats per level
+                SetHPMax(44);
+                SetSPMax(22);
+                SetATK(13);
+                SetPOW(21);
+                SetDEF(8);
+                SetWIL(8);
+                SetRES(7);
+                SetSPD(10);
+                SetLCK(0);
+                break;
+            case 3:
+                //apply the base stats per level
+                SetHPMax(59);
+                SetSPMax(28);
+                SetATK(19);
+                SetPOW(29);
+                SetDEF(12);
+                SetWIL(12);
+                SetRES(10);
+                SetSPD(15);
+                SetLCK(0);
+                break;
+            case 4:
+                //apply the base stats per level
+                SetHPMax(74);
+                SetSPMax(34);
+                SetATK(25);
+                SetPOW(37);
+                SetDEF(17);
+                SetWIL(17);
+                SetRES(14);
+                SetSPD(20);
+                SetLCK(0);
+                break;
+            case 5:
+                //apply the base stats per level
+                SetHPMax(88);
+                SetSPMax(40);
+                SetATK(31);
+                SetPOW(45);
+                SetDEF(21);
+                SetWIL(21);
+                SetRES(17);
+                SetSPD(25);
+                SetLCK(0);
+                break;
+            case 6:
+                //apply the base stats per level
+                SetHPMax(103);
+                SetSPMax(46);
+                SetATK(37);
+                SetPOW(53);
+                SetDEF(25);
+                SetWIL(25);
+                SetRES(20);
+                SetSPD(30);
+                SetLCK(0);
+                break;
+            case 7:
+                //apply the base stats per level
+                SetHPMax(118);
+                SetSPMax(52);
+                SetATK(43);
+                SetPOW(61);
+                SetDEF(30);
+                SetWIL(30);
+                SetRES(23);
+                SetSPD(35);
+                SetLCK(1);
+                break;
+            case 8:
+                //apply the base stats per level
+                SetHPMax(133);
+                SetSPMax(58);
+                SetATK(49);
+                SetPOW(69);
+                SetDEF(34);
+                SetWIL(34);
+                SetRES(27);
+                SetSPD(40);
+                SetLCK(2);
+                break;
+            case 9:
+                //apply the base stats per level
+                SetHPMax(147);
+                SetSPMax(64);
+                SetATK(55);
+                SetPOW(77);
+                SetDEF(38);
+                SetWIL(38);
+                SetRES(30);
+                SetSPD(45);
+                SetLCK(3);
+                break;
+            case 10:
+                //apply the base stats per level
+                SetHPMax(162);
+                SetSPMax(70);
+                SetATK(61);
+                SetPOW(85);
+                SetDEF(42);
+                SetWIL(42);
+                SetRES(33);
+                SetSPD(50);
+                SetLCK(4);
+                break;
+            case 11:
+                //apply the base stats per level
+                SetHPMax(177);
+                SetSPMax(76);
+                SetATK(67);
+                SetPOW(93);
+                SetDEF(47);
+                SetWIL(47);
+                SetRES(36);
+                SetSPD(55);
+                SetLCK(5);
+                break;
+            case 12:
+                //apply the base stats per level
+                SetHPMax(192);
+                SetSPMax(82);
+                SetATK(73);
+                SetPOW(101);
+                SetDEF(51);
+                SetWIL(51);
+                SetRES(40);
+                SetSPD(60);
+                SetLCK(7);
+                break;
+            case 13:
+                //apply the base stats per level
+                SetHPMax(206);
+                SetSPMax(88);
+                SetATK(79);
+                SetPOW(109);
+                SetDEF(55);
+                SetWIL(55);
+                SetRES(43);
+                SetSPD(65);
+                SetLCK(9);
+                break;
+            case 14:
+                //apply the base stats per level
+                SetHPMax(221);
+                SetSPMax(94);
+                SetATK(85);
+                SetPOW(117);
+                SetDEF(60);
+                SetWIL(60);
+                SetRES(46);
+                SetSPD(70);
+                SetLCK(12);
+                break;
+            case 15:
+                //apply the base stats per level
+                SetHPMax(236);
+                SetSPMax(100);
+                SetATK(91);
+                SetPOW(125);
+                SetDEF(64);
+                SetWIL(64);
+                SetRES(49);
+                SetSPD(75);
+                SetLCK(15);
+                break;
+            case 16:
+                //apply the base stats per level
+                SetHPMax(251);
+                SetSPMax(106);
+                SetATK(97);
+                SetPOW(133);
+                SetDEF(68);
+                SetWIL(68);
+                SetRES(53);
+                SetSPD(80);
+                SetLCK(18);
+                break;
+            case 17:
+                //apply the base stats per level
+                SetHPMax(265);
+                SetSPMax(112);
+                SetATK(103);
+                SetPOW(141);
+                SetDEF(72);
+                SetWIL(72);
+                SetRES(56);
+                SetSPD(85);
+                SetLCK(22);
+                break;
+            case 18:
+                //apply the base stats per level
+                SetHPMax(280);
+                SetSPMax(118);
+                SetATK(109);
+                SetPOW(149);
+                SetDEF(76);
+                SetWIL(76);
+                SetRES(59);
+                SetSPD(90);
+                SetLCK(26);
+                break;
+            case 19:
+                //apply the base stats per level
+                SetHPMax(295);
+                SetSPMax(124);
+                SetATK(115);
+                SetPOW(157);
+                SetDEF(80);
+                SetWIL(80);
+                SetRES(62);
+                SetSPD(95);
+                SetLCK(30);
+                break;
+            case 20:
+                //apply the base stats per level
+                SetHPMax(310);
+                SetSPMax(130);
+                SetATK(121);
+                SetPOW(165);
+                SetDEF(85);
+                SetWIL(85);
+                SetRES(66);
+                SetSPD(100);
+                SetLCK(36);
+                break;
+            default:
+                break;
+        }
+
+        //reapply weapon armor and trinket
+        if (temp_weapon != null) SetWeapon(temp_weapon);
+        if (temp_armor != null) SetArmor(temp_armor);
+        if (temp_trinket != null) SetTrinket(temp_trinket);
+
+        //add abilities
+        ClearAbilities();
+        if (GetLVL() >= 1) AddAbility(new EmberMoonAbilities.MolotovCocktail());
+        if (GetLVL() >= 4) AddAbility(new EmberMoonAbilities.SwappinPills());
+        if (GetLVL() >= 8) AddAbility(new EmberMoonAbilities.GuitarSmash());
+        if (GetLVL() >= 13) AddAbility(new EmberMoonAbilities.MagicalWeirdShit());
+        if (GetLVL() >= 17) AddAbility(new EmberMoonAbilities.MindCrush());
+        if (GetLVL() >= 20) AddAbility(new EmberMoonAbilities.HogWild());
+
+        //see if the player's sanity is below 50 if so give them maddened
+        if (GetSAN() < 50) SetStatus(24, int.MaxValue);
+        else if (GetStatus(24) > 0) SetStatus(24, -1);
+
+        //see if the player is maddened if they are then modify some stats, set uses_mp to true, and add their madness ability
+        if (GetStatus(24) > 0)
+        {
+            float interp_factor = Mathf.Lerp(.5f, .25f, GetSAN() / 50f);
+            SetLCK(GetLCK() - (int)(GetLCK() * interp_factor));
+            SetWIL(GetWIL() - (int)(GetWIL() * interp_factor));
+            SetPOW(GetPOW() + (int)(GetPOW() * interp_factor));
+            AddAbility(new EmberMoonAbilities.BurnItAll());
 
             SetUseMP(true);
         }
