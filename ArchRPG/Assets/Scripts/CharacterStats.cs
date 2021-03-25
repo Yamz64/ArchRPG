@@ -1104,7 +1104,7 @@ class Clyve : CharacterStats
                 SetDEF(8);
                 SetWIL(5);
                 SetRES(7);
-                SetSPD(5);
+                SetSPD(6);
                 SetLCK(0);
                 break;
             case 2:
@@ -1116,7 +1116,7 @@ class Clyve : CharacterStats
                 SetDEF(16);
                 SetWIL(9);
                 SetRES(10);
-                SetSPD(9);
+                SetSPD(12);
                 SetLCK(0);
                 break;
             case 3:
@@ -1128,7 +1128,7 @@ class Clyve : CharacterStats
                 SetDEF(24);
                 SetWIL(13);
                 SetRES(14);
-                SetSPD(3);
+                SetSPD(18);
                 SetLCK(0);
                 break;
             case 4:
@@ -1140,7 +1140,7 @@ class Clyve : CharacterStats
                 SetDEF(32);
                 SetWIL(17);
                 SetRES(17);
-                SetSPD(17);
+                SetSPD(24);
                 SetLCK(0);
                 break;
             case 5:
@@ -1152,7 +1152,7 @@ class Clyve : CharacterStats
                 SetDEF(40);
                 SetWIL(21);
                 SetRES(21);
-                SetSPD(21);
+                SetSPD(30);
                 SetLCK(1);
                 break;
             case 6:
@@ -1164,7 +1164,7 @@ class Clyve : CharacterStats
                 SetDEF(48);
                 SetWIL(25);
                 SetRES(24);
-                SetSPD(25);
+                SetSPD(36);
                 SetLCK(2);
                 break;
             case 7:
@@ -1176,7 +1176,7 @@ class Clyve : CharacterStats
                 SetDEF(56);
                 SetWIL(29);
                 SetRES(28);
-                SetSPD(29);
+                SetSPD(42);
                 SetLCK(3);
                 break;
             case 8:
@@ -1188,7 +1188,7 @@ class Clyve : CharacterStats
                 SetDEF(64);
                 SetWIL(33);
                 SetRES(31);
-                SetSPD(33);
+                SetSPD(48);
                 SetLCK(4);
                 break;
             case 9:
@@ -1200,7 +1200,7 @@ class Clyve : CharacterStats
                 SetDEF(72);
                 SetWIL(37);
                 SetRES(35);
-                SetSPD(37);
+                SetSPD(54);
                 SetLCK(7);
                 break;
             case 10:
@@ -1212,7 +1212,7 @@ class Clyve : CharacterStats
                 SetDEF(80);
                 SetWIL(41);
                 SetRES(38);
-                SetSPD(41);
+                SetSPD(60);
                 SetLCK(9);
                 break;
             case 11:
@@ -1224,7 +1224,7 @@ class Clyve : CharacterStats
                 SetDEF(88);
                 SetWIL(45);
                 SetRES(25);
-                SetSPD(45);
+                SetSPD(65);
                 SetLCK(12);
                 break;
             case 12:
@@ -1236,7 +1236,7 @@ class Clyve : CharacterStats
                 SetDEF(96);
                 SetWIL(49);
                 SetRES(45);
-                SetSPD(49);
+                SetSPD(71);
                 SetLCK(16);
                 break;
             case 13:
@@ -1248,7 +1248,7 @@ class Clyve : CharacterStats
                 SetDEF(104);
                 SetWIL(53);
                 SetRES(49);
-                SetSPD(53);
+                SetSPD(77);
                 SetLCK(21);
                 break;
             case 14:
@@ -1260,7 +1260,7 @@ class Clyve : CharacterStats
                 SetDEF(112);
                 SetWIL(57);
                 SetRES(27);
-                SetSPD(57);
+                SetSPD(83);
                 SetLCK(26);
                 break;
             case 15:
@@ -1272,7 +1272,7 @@ class Clyve : CharacterStats
                 SetDEF(120);
                 SetWIL(61);
                 SetRES(56);
-                SetSPD(61);
+                SetSPD(89);
                 SetLCK(32);
                 break;
             case 16:
@@ -1284,7 +1284,7 @@ class Clyve : CharacterStats
                 SetDEF(128);
                 SetWIL(65);
                 SetRES(59);
-                SetSPD(65);
+                SetSPD(95);
                 SetLCK(39);
                 break;
             case 17:
@@ -1296,7 +1296,7 @@ class Clyve : CharacterStats
                 SetDEF(136);
                 SetWIL(69);
                 SetRES(63);
-                SetSPD(69);
+                SetSPD(101);
                 SetLCK(47);
                 break;
             case 18:
@@ -1308,7 +1308,7 @@ class Clyve : CharacterStats
                 SetDEF(144);
                 SetWIL(73);
                 SetRES(66);
-                SetSPD(73);
+                SetSPD(107);
                 SetLCK(56);
                 break;
             case 19:
@@ -1320,7 +1320,7 @@ class Clyve : CharacterStats
                 SetDEF(152);
                 SetWIL(77);
                 SetRES(70);
-                SetSPD(77);
+                SetSPD(113);
                 SetLCK(66);
                 break;
             case 20:
@@ -1332,7 +1332,7 @@ class Clyve : CharacterStats
                 SetDEF(160);
                 SetWIL(81);
                 SetRES(73);
-                SetSPD(81);
+                SetSPD(119);
                 SetLCK(77);
                 break;
             default:
@@ -2068,7 +2068,7 @@ class Shirley : CharacterStats
                 SetDEF(4);
                 SetWIL(7);
                 SetRES(5);
-                SetSPD(4);
+                SetSPD(7);
                 SetLCK(0);
                 break;
             case 2:
@@ -2080,7 +2080,7 @@ class Shirley : CharacterStats
                 SetDEF(7);
                 SetWIL(13);
                 SetRES(7);
-                SetSPD(8);
+                SetSPD(15);
                 SetLCK(0);
                 break;
             case 3:
@@ -2092,7 +2092,7 @@ class Shirley : CharacterStats
                 SetDEF(10);
                 SetWIL(19);
                 SetRES(9);
-                SetSPD(12);
+                SetSPD(22);
                 SetLCK(1);
                 break;
             case 4:
@@ -2104,7 +2104,7 @@ class Shirley : CharacterStats
                 SetDEF(13);
                 SetWIL(25);
                 SetRES(11);
-                SetSPD(16);
+                SetSPD(30);
                 SetLCK(2);
                 break;
             case 5:
@@ -2116,7 +2116,7 @@ class Shirley : CharacterStats
                 SetDEF(16);
                 SetWIL(31);
                 SetRES(13);
-                SetSPD(20);
+                SetSPD(37);
                 SetLCK(4);
                 break;
             case 6:
@@ -2128,7 +2128,7 @@ class Shirley : CharacterStats
                 SetDEF(19);
                 SetWIL(37);
                 SetRES(15);
-                SetSPD(24);
+                SetSPD(45);
                 SetLCK(6);
                 break;
             case 7:
@@ -2140,7 +2140,7 @@ class Shirley : CharacterStats
                 SetDEF(22);
                 SetWIL(43);
                 SetRES(17);
-                SetSPD(28);
+                SetSPD(52);
                 SetLCK(8);
                 break;
             case 8:
@@ -2152,7 +2152,7 @@ class Shirley : CharacterStats
                 SetDEF(25);
                 SetWIL(49);
                 SetRES(19);
-                SetSPD(32);
+                SetSPD(60);
                 SetLCK(10);
                 break;
             case 9:
@@ -2164,7 +2164,7 @@ class Shirley : CharacterStats
                 SetDEF(28);
                 SetWIL(55);
                 SetRES(21);
-                SetSPD(36);
+                SetSPD(67);
                 SetLCK(13);
                 break;
             case 10:
@@ -2176,7 +2176,7 @@ class Shirley : CharacterStats
                 SetDEF(31);
                 SetWIL(61);
                 SetRES(23);
-                SetSPD(40);
+                SetSPD(75);
                 SetLCK(17);
                 break;
             case 11:
@@ -2188,7 +2188,7 @@ class Shirley : CharacterStats
                 SetDEF(34);
                 SetWIL(67);
                 SetRES(25);
-                SetSPD(44);
+                SetSPD(82);
                 SetLCK(20);
                 break;
             case 12:
@@ -2200,7 +2200,7 @@ class Shirley : CharacterStats
                 SetDEF(37);
                 SetWIL(73);
                 SetRES(27);
-                SetSPD(48);
+                SetSPD(90);
                 SetLCK(24);
                 break;
             case 13:
@@ -2212,7 +2212,7 @@ class Shirley : CharacterStats
                 SetDEF(40);
                 SetWIL(79);
                 SetRES(29);
-                SetSPD(52);
+                SetSPD(97);
                 SetLCK(28);
                 break;
             case 14:
@@ -2224,7 +2224,7 @@ class Shirley : CharacterStats
                 SetDEF(43);
                 SetWIL(85);
                 SetRES(31);
-                SetSPD(56);
+                SetSPD(105);
                 SetLCK(33);
                 break;
             case 15:
@@ -2236,7 +2236,7 @@ class Shirley : CharacterStats
                 SetDEF(46);
                 SetWIL(91);
                 SetRES(33);
-                SetSPD(60);
+                SetSPD(112);
                 SetLCK(38);
                 break;
             case 16:
@@ -2248,7 +2248,7 @@ class Shirley : CharacterStats
                 SetDEF(49);
                 SetWIL(97);
                 SetRES(35);
-                SetSPD(64);
+                SetSPD(120);
                 SetLCK(43);
                 break;
             case 17:
@@ -2260,7 +2260,7 @@ class Shirley : CharacterStats
                 SetDEF(52);
                 SetWIL(103);
                 SetRES(37);
-                SetSPD(68);
+                SetSPD(127);
                 SetLCK(49);
                 break;
             case 18:
@@ -2272,7 +2272,7 @@ class Shirley : CharacterStats
                 SetDEF(55);
                 SetWIL(109);
                 SetRES(39);
-                SetSPD(72);
+                SetSPD(135);
                 SetLCK(55);
                 break;
             case 19:
@@ -2284,7 +2284,7 @@ class Shirley : CharacterStats
                 SetDEF(58);
                 SetWIL(115);
                 SetRES(41);
-                SetSPD(76);
+                SetSPD(142);
                 SetLCK(61);
                 break;
             case 20:
@@ -2296,7 +2296,7 @@ class Shirley : CharacterStats
                 SetDEF(61);
                 SetWIL(121);
                 SetRES(43);
-                SetSPD(80);
+                SetSPD(150);
                 SetLCK(68);
                 break;
             default:
@@ -2400,7 +2400,7 @@ class Ralph : CharacterStats
                 SetDEF(17);
                 SetWIL(8);
                 SetRES(6);
-                SetSPD(11);
+                SetSPD(12);
                 SetLCK(0);
                 break;
             case 3:
@@ -2412,7 +2412,7 @@ class Ralph : CharacterStats
                 SetDEF(24);
                 SetWIL(12);
                 SetRES(8);
-                SetSPD(15);
+                SetSPD(16);
                 SetLCK(0);
                 break;
             case 4:
@@ -2424,7 +2424,7 @@ class Ralph : CharacterStats
                 SetDEF(32);
                 SetWIL(16);
                 SetRES(10);
-                SetSPD(20);
+                SetSPD(21);
                 SetLCK(0);
                 break;
             case 5:
@@ -2436,7 +2436,7 @@ class Ralph : CharacterStats
                 SetDEF(39);
                 SetWIL(20);
                 SetRES(12);
-                SetSPD(24);
+                SetSPD(25);
                 SetLCK(0);
                 break;
             case 6:
@@ -2448,7 +2448,7 @@ class Ralph : CharacterStats
                 SetDEF(47);
                 SetWIL(24);
                 SetRES(14);
-                SetSPD(28);
+                SetSPD(30);
                 SetLCK(0);
                 break;
             case 7:
@@ -2460,7 +2460,7 @@ class Ralph : CharacterStats
                 SetDEF(54);
                 SetWIL(28);
                 SetRES(16);
-                SetSPD(32);
+                SetSPD(34);
                 SetLCK(1);
                 break;
             case 8:
@@ -2472,7 +2472,7 @@ class Ralph : CharacterStats
                 SetDEF(62);
                 SetWIL(32);
                 SetRES(18);
-                SetSPD(37);
+                SetSPD(39);
                 SetLCK(1);
                 break;
             case 9:
@@ -2484,7 +2484,7 @@ class Ralph : CharacterStats
                 SetDEF(69);
                 SetWIL(36);
                 SetRES(20);
-                SetSPD(41);
+                SetSPD(43);
                 SetLCK(2);
                 break;
             case 10:
@@ -2496,7 +2496,7 @@ class Ralph : CharacterStats
                 SetDEF(77);
                 SetWIL(40);
                 SetRES(22);
-                SetSPD(45);
+                SetSPD(48);
                 SetLCK(3);
                 break;
             case 11:
@@ -2508,7 +2508,7 @@ class Ralph : CharacterStats
                 SetDEF(84);
                 SetWIL(44);
                 SetRES(24);
-                SetSPD(49);
+                SetSPD(52);
                 SetLCK(4);
                 break;
             case 12:
@@ -2520,7 +2520,7 @@ class Ralph : CharacterStats
                 SetDEF(92);
                 SetWIL(48);
                 SetRES(26);
-                SetSPD(54);
+                SetSPD(57);
                 SetLCK(5);
                 break;
             case 13:
@@ -2532,7 +2532,7 @@ class Ralph : CharacterStats
                 SetDEF(99);
                 SetWIL(52);
                 SetRES(28);
-                SetSPD(58);
+                SetSPD(61);
                 SetLCK(7);
                 break;
             case 14:
@@ -2544,7 +2544,7 @@ class Ralph : CharacterStats
                 SetDEF(107);
                 SetWIL(56);
                 SetRES(30);
-                SetSPD(62);
+                SetSPD(66);
                 SetLCK(9);
                 break;
             case 15:
@@ -2556,7 +2556,7 @@ class Ralph : CharacterStats
                 SetDEF(114);
                 SetWIL(60);
                 SetRES(32);
-                SetSPD(66);
+                SetSPD(70);
                 SetLCK(11);
                 break;
             case 16:
@@ -2568,7 +2568,7 @@ class Ralph : CharacterStats
                 SetDEF(122);
                 SetWIL(64);
                 SetRES(34);
-                SetSPD(71);
+                SetSPD(75);
                 SetLCK(13);
                 break;
             case 17:
@@ -2580,7 +2580,7 @@ class Ralph : CharacterStats
                 SetDEF(129);
                 SetWIL(68);
                 SetRES(36);
-                SetSPD(75);
+                SetSPD(79);
                 SetLCK(16);
                 break;
             case 18:
@@ -2592,7 +2592,7 @@ class Ralph : CharacterStats
                 SetDEF(137);
                 SetWIL(72);
                 SetRES(38);
-                SetSPD(79);
+                SetSPD(84);
                 SetLCK(19);
                 break;
             case 19:
@@ -2604,7 +2604,7 @@ class Ralph : CharacterStats
                 SetDEF(144);
                 SetWIL(76);
                 SetRES(40);
-                SetSPD(83);
+                SetSPD(88);
                 SetLCK(22);
                 break;
             case 20:
@@ -2616,7 +2616,7 @@ class Ralph : CharacterStats
                 SetDEF(152);
                 SetWIL(80);
                 SetRES(42);
-                SetSPD(88);
+                SetSPD(93);
                 SetLCK(26);
                 break;
             default:
@@ -2708,7 +2708,7 @@ class Lucy : CharacterStats
                 SetDEF(4);
                 SetWIL(6);
                 SetRES(5);
-                SetSPD(4);
+                SetSPD(8);
                 SetLCK(0);
                 break;
             case 2:
@@ -2720,7 +2720,7 @@ class Lucy : CharacterStats
                 SetDEF(8);
                 SetWIL(13);
                 SetRES(9);
-                SetSPD(9);
+                SetSPD(14);
                 SetLCK(0);
                 break;
             case 3:
@@ -2732,7 +2732,7 @@ class Lucy : CharacterStats
                 SetDEF(12);
                 SetWIL(19);
                 SetRES(12);
-                SetSPD(13);
+                SetSPD(20);
                 SetLCK(0);
                 break;
             case 4:
@@ -2744,7 +2744,7 @@ class Lucy : CharacterStats
                 SetDEF(16);
                 SetWIL(26);
                 SetRES(16);
-                SetSPD(18);
+                SetSPD(26);
                 SetLCK(0);
                 break;
             case 5:
@@ -2756,7 +2756,7 @@ class Lucy : CharacterStats
                 SetDEF(20);
                 SetWIL(32);
                 SetRES(19);
-                SetSPD(22);
+                SetSPD(33);
                 SetLCK(0);
                 break;
             case 6:
@@ -2768,7 +2768,7 @@ class Lucy : CharacterStats
                 SetDEF(24);
                 SetWIL(39);
                 SetRES(23);
-                SetSPD(27);
+                SetSPD(39);
                 SetLCK(1);
                 break;
             case 7:
@@ -2780,7 +2780,7 @@ class Lucy : CharacterStats
                 SetDEF(28);
                 SetWIL(45);
                 SetRES(26);
-                SetSPD(31);
+                SetSPD(45);
                 SetLCK(1);
                 break;
             case 8:
@@ -2792,7 +2792,7 @@ class Lucy : CharacterStats
                 SetDEF(32);
                 SetWIL(52);
                 SetRES(30);
-                SetSPD(36);
+                SetSPD(51);
                 SetLCK(2);
                 break;
             case 9:
@@ -2804,7 +2804,7 @@ class Lucy : CharacterStats
                 SetDEF(36);
                 SetWIL(58);
                 SetRES(33);
-                SetSPD(40);
+                SetSPD(57);
                 SetLCK(4);
                 break;
             case 10:
@@ -2816,7 +2816,7 @@ class Lucy : CharacterStats
                 SetDEF(40);
                 SetWIL(65);
                 SetRES(37);
-                SetSPD(45);
+                SetSPD(64);
                 SetLCK(5);
                 break;
             case 11:
@@ -2828,7 +2828,7 @@ class Lucy : CharacterStats
                 SetDEF(44);
                 SetWIL(71);
                 SetRES(40);
-                SetSPD(49);
+                SetSPD(70);
                 SetLCK(7);
                 break;
             case 12:
@@ -2840,7 +2840,7 @@ class Lucy : CharacterStats
                 SetDEF(48);
                 SetWIL(78);
                 SetRES(44);
-                SetSPD(54);
+                SetSPD(76);
                 SetLCK(9);
                 break;
             case 13:
@@ -2852,7 +2852,7 @@ class Lucy : CharacterStats
                 SetDEF(52);
                 SetWIL(84);
                 SetRES(47);
-                SetSPD(58);
+                SetSPD(82);
                 SetLCK(12);
                 break;
             case 14:
@@ -2864,7 +2864,7 @@ class Lucy : CharacterStats
                 SetDEF(56);
                 SetWIL(91);
                 SetRES(51);
-                SetSPD(63);
+                SetSPD(88);
                 SetLCK(15);
                 break;
             case 15:
@@ -2876,7 +2876,7 @@ class Lucy : CharacterStats
                 SetDEF(60);
                 SetWIL(97);
                 SetRES(54);
-                SetSPD(67);
+                SetSPD(95);
                 SetLCK(18);
                 break;
             case 16:
@@ -2888,7 +2888,7 @@ class Lucy : CharacterStats
                 SetDEF(64);
                 SetWIL(104);
                 SetRES(58);
-                SetSPD(72);
+                SetSPD(101);
                 SetLCK(23);
                 break;
             case 17:
@@ -2900,7 +2900,7 @@ class Lucy : CharacterStats
                 SetDEF(68);
                 SetWIL(110);
                 SetRES(61);
-                SetSPD(76);
+                SetSPD(107);
                 SetLCK(27);
                 break;
             case 18:
@@ -2912,7 +2912,7 @@ class Lucy : CharacterStats
                 SetDEF(72);
                 SetWIL(117);
                 SetRES(65);
-                SetSPD(81);
+                SetSPD(113);
                 SetLCK(32);
                 break;
             case 19:
@@ -2924,7 +2924,7 @@ class Lucy : CharacterStats
                 SetDEF(76);
                 SetWIL(123);
                 SetRES(68);
-                SetSPD(85);
+                SetSPD(119);
                 SetLCK(38);
                 break;
             case 20:
@@ -2936,7 +2936,7 @@ class Lucy : CharacterStats
                 SetDEF(80);
                 SetWIL(130);
                 SetRES(72);
-                SetSPD(90);
+                SetSPD(126);
                 SetLCK(45);
                 break;
             default:
@@ -2998,11 +2998,11 @@ class Tim : CharacterStats
         SetSANMax(100);
         SetSAN(100);
 
-        SetATK(10);
+        SetATK(4);
         SetPOW(4);
-        SetDEF(4);
-        SetWIL(6);
-        SetRES(3);
+        SetDEF(6);
+        SetWIL(3);
+        SetRES(5);
         SetSPD(5);
         SetLCK(0);
     }
@@ -3202,14 +3202,14 @@ class Tim : CharacterStats
             case 16:
                 //apply the base stats per level
                 SetHPMax(340);
-                SetSPMax(126);
-                SetATK(46);
-                SetPOW(62);
-                SetDEF(93);
-                SetWIL(52);
-                SetRES(54);
-                SetSPD(82);
-                SetLCK(15);
+                SetSPMax(134);
+                SetATK(49);
+                SetPOW(66);
+                SetDEF(100);
+                SetWIL(56);
+                SetRES(58);
+                SetSPD(88);
+                SetLCK(19);
                 break;
             case 17:
                 //apply the base stats per level
@@ -3302,9 +3302,9 @@ class WhiteKnight : CharacterStats
 {
     public WhiteKnight()
     {
-        SetImageFilepath("CharacterSprites/Tim");
+        SetImageFilepath("CharacterSprites/WhiteKnight");
 
-        SetName("White Knight");
+        SetName("WhiteKnight");
         SetDesc("White knight is the kind of guy that gets too into LARPing, such that he became a real crusader. He defends the weak, holds the door for everyone, and still has time to write a weekly manga review on his Christian anime blog.");
 
         SetLVL(1);
@@ -3564,7 +3564,7 @@ class WhiteKnight : CharacterStats
                 SetDEF(172);
                 SetWIL(135);
                 SetRES(63);
-                SetSPD(82);
+                SetSPD(62);
                 SetLCK(28);
                 break;
             case 20:
@@ -3591,10 +3591,10 @@ class WhiteKnight : CharacterStats
         //add abilities
         ClearAbilities();
         if (GetLVL() >= 1) AddAbility(new WhiteKnightAbilities.IRespectTheOppressed());
-        if (GetLVL() >= 5) AddAbility(new WhiteKnightAbilities.KamiNoSumaito());
+        if (GetLVL() >= 4) AddAbility(new WhiteKnightAbilities.KamiNoSumaito());
         if (GetLVL() >= 7) AddAbility(new WhiteKnightAbilities.DefendTheWeak());
         if (GetLVL() >= 12) AddAbility(new WhiteKnightAbilities.PreachGodsWord());
-        if (GetLVL() >= 18) AddAbility(new WhiteKnightAbilities.HolyHandGrenade());
+        if (GetLVL() >= 16) AddAbility(new WhiteKnightAbilities.HolyHandGrenade());
         if (GetLVL() >= 20) AddAbility(new WhiteKnightAbilities.DeusVultusMaximus());
 
         //see if the player's sanity is below 50 if so give them maddened
@@ -3622,10 +3622,10 @@ class OliverSprout : CharacterStats
 {
     public OliverSprout()
     {
-        SetImageFilepath("CharacterSprites/Tim");
+        SetImageFilepath("CharacterSprites/OliverSprout");
 
-        SetName("Oliver Sprout");
-        SetDesc("Oliver Sprout is an altruistic, peaceful, and at one with nature... Or so he looks at first glance: Oliver suffers from violent anger issues.  He will tear your throat out if you say anything negative against Jon Lemon");
+        SetName("OliverSprout");
+        SetDesc("Oliver Sprout is an altruistic, peaceful, and at one with nature... Or so he looks at first glance: Oliver has serious anger issues and will frequently get violent...  He will tear your throat out if you say anything negative against his favorite musician, John Lemon.");
 
         SetLVL(1);
 
@@ -3786,7 +3786,8 @@ class OliverSprout : CharacterStats
                 SetATK(66);
                 SetPOW(55);
                 SetDEF(63);
-                SetWIL(24);
+                SetWIL(52);
+                SetRES(24);
                 SetSPD(66);
                 SetLCK(7);
                 break;
@@ -3910,21 +3911,12 @@ class OliverSprout : CharacterStats
         //add abilities
         ClearAbilities();
         if (GetLVL() >= 1) AddAbility(new OliverSproutAbilities.WarAndPeace());
-        if (GetLVL() >= 5)
-        {
-            AddAbility(new OliverSproutAbilities.GoodVibes());
-            AddAbility(new OliverSproutAbilities.BohemianGrip());
-        }
-        if (GetLVL() >= 12)
-        {
-            AddAbility(new OliverSproutAbilities.ChillaxDude());
-            AddAbility(new OliverSproutAbilities.EyeGouge());
-        }
-        if (GetLVL() >= 20)
-        {
-            AddAbility(new OliverSproutAbilities.Imagine());
-            AddAbility(new OliverSproutAbilities.RipAndTear());
-        }
+        if (GetLVL() >= 5) AddAbility(new OliverSproutAbilities.GoodVibes());
+        if (GetLVL() >= 5) AddAbility(new OliverSproutAbilities.BohemianGrip());
+        if (GetLVL() >= 12) AddAbility(new OliverSproutAbilities.EyeGouge());
+        if (GetLVL() >= 12) AddAbility(new OliverSproutAbilities.ChillaxDude());
+        if (GetLVL() >= 20) AddAbility(new OliverSproutAbilities.RipAndTear());
+        if (GetLVL() >= 20) AddAbility(new OliverSproutAbilities.Imagine());
 
         //see if the player's sanity is below 50 if so give them maddened
         if (GetSAN() < 50) SetStatus(24, int.MaxValue);
@@ -3951,10 +3943,10 @@ class EmberMoon : CharacterStats
 {
     public EmberMoon()
     {
-        SetImageFilepath("CharacterSprites/Tim");
+        SetImageFilepath("CharacterSprites/EmberMoon");
 
-        SetName("Ember Moon");
-        SetDesc("");
+        SetName("EmberMoon");
+        SetDesc("\"I know magic's real. Let's go hog wild. The end is coming. Let's burn it all down!\" Ember Moon is a punk rock, goth chick that doesn't give a shit, and the coming apocalypse doesn't change that for her. The only thing she fears is static electricity.");
 
         SetLVL(1);
 
@@ -4066,7 +4058,7 @@ class EmberMoon : CharacterStats
                 SetSPMax(52);
                 SetATK(43);
                 SetPOW(61);
-                SetDEF(30);
+                SetDEF(29);
                 SetWIL(30);
                 SetRES(23);
                 SetSPD(35);
@@ -4103,7 +4095,7 @@ class EmberMoon : CharacterStats
                 SetATK(61);
                 SetPOW(85);
                 SetDEF(42);
-                SetWIL(42);
+                SetWIL(43);
                 SetRES(33);
                 SetSPD(50);
                 SetLCK(4);
@@ -4114,7 +4106,7 @@ class EmberMoon : CharacterStats
                 SetSPMax(76);
                 SetATK(67);
                 SetPOW(93);
-                SetDEF(47);
+                SetDEF(46);
                 SetWIL(47);
                 SetRES(36);
                 SetSPD(55);
@@ -4150,7 +4142,7 @@ class EmberMoon : CharacterStats
                 SetSPMax(94);
                 SetATK(85);
                 SetPOW(117);
-                SetDEF(60);
+                SetDEF(59);
                 SetWIL(60);
                 SetRES(46);
                 SetSPD(70);
@@ -4162,7 +4154,7 @@ class EmberMoon : CharacterStats
                 SetSPMax(100);
                 SetATK(91);
                 SetPOW(125);
-                SetDEF(64);
+                SetDEF(63);
                 SetWIL(64);
                 SetRES(49);
                 SetSPD(75);
@@ -4187,7 +4179,7 @@ class EmberMoon : CharacterStats
                 SetATK(103);
                 SetPOW(141);
                 SetDEF(72);
-                SetWIL(72);
+                SetWIL(73);
                 SetRES(56);
                 SetSPD(85);
                 SetLCK(22);
@@ -4199,7 +4191,7 @@ class EmberMoon : CharacterStats
                 SetATK(109);
                 SetPOW(149);
                 SetDEF(76);
-                SetWIL(76);
+                SetWIL(77);
                 SetRES(59);
                 SetSPD(90);
                 SetLCK(26);
@@ -4211,7 +4203,7 @@ class EmberMoon : CharacterStats
                 SetATK(115);
                 SetPOW(157);
                 SetDEF(80);
-                SetWIL(80);
+                SetWIL(81);
                 SetRES(62);
                 SetSPD(95);
                 SetLCK(30);
@@ -4223,7 +4215,7 @@ class EmberMoon : CharacterStats
                 SetATK(121);
                 SetPOW(165);
                 SetDEF(85);
-                SetWIL(85);
+                SetWIL(86);
                 SetRES(66);
                 SetSPD(100);
                 SetLCK(36);

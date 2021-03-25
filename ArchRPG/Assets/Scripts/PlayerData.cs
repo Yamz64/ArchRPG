@@ -498,7 +498,7 @@ public class PlayerData : CharacterStats
                 SetDEF(4);
                 SetWIL(6);
                 SetRES(6);
-                SetSPD(3);
+                SetSPD(5);
                 SetLCK(0);
                 break;
             case 2:
@@ -511,7 +511,7 @@ public class PlayerData : CharacterStats
                 SetDEF(8);
                 SetWIL(12);
                 SetRES(8);
-                SetSPD(6);
+                SetSPD(11);
                 SetLCK(0);
                 break;
             case 3:
@@ -524,7 +524,7 @@ public class PlayerData : CharacterStats
                 SetDEF(12);
                 SetWIL(17);
                 SetRES(11);
-                SetSPD(9);
+                SetSPD(16);
                 SetLCK(0);
                 break;
             case 4:
@@ -537,7 +537,7 @@ public class PlayerData : CharacterStats
                 SetDEF(16);
                 SetWIL(23);
                 SetRES(13);
-                SetSPD(12);
+                SetSPD(21);
                 SetLCK(0);
                 break;
             case 5:
@@ -550,7 +550,7 @@ public class PlayerData : CharacterStats
                 SetDEF(20);
                 SetWIL(28);
                 SetRES(16);
-                SetSPD(15);
+                SetSPD(26);
                 SetLCK(0);
                 break;
             case 6:
@@ -563,7 +563,7 @@ public class PlayerData : CharacterStats
                 SetDEF(24);
                 SetWIL(34);
                 SetRES(18);
-                SetSPD(18);
+                SetSPD(32);
                 SetLCK(0);
                 break;
             case 7:
@@ -576,7 +576,7 @@ public class PlayerData : CharacterStats
                 SetDEF(28);
                 SetWIL(39);
                 SetRES(21);
-                SetSPD(21);
+                SetSPD(37);
                 SetLCK(1);
                 break;
             case 8:
@@ -589,7 +589,7 @@ public class PlayerData : CharacterStats
                 SetDEF(32);
                 SetWIL(45);
                 SetRES(23);
-                SetSPD(24);
+                SetSPD(42);
                 SetLCK(1);
                 break;
             case 9:
@@ -602,7 +602,7 @@ public class PlayerData : CharacterStats
                 SetDEF(36);
                 SetWIL(50);
                 SetRES(26);
-                SetSPD(27);
+                SetSPD(47);
                 SetLCK(2);
                 break;
             case 10:
@@ -615,7 +615,7 @@ public class PlayerData : CharacterStats
                 SetDEF(40);
                 SetWIL(56);
                 SetRES(28);
-                SetSPD(30);
+                SetSPD(53);
                 SetLCK(3);
                 break;
             case 11:
@@ -628,7 +628,7 @@ public class PlayerData : CharacterStats
                 SetDEF(44);
                 SetWIL(61);
                 SetRES(31);
-                SetSPD(33);
+                SetSPD(58);
                 SetLCK(4);
                 break;
             case 12:
@@ -641,7 +641,7 @@ public class PlayerData : CharacterStats
                 SetDEF(48);
                 SetWIL(67);
                 SetRES(33);
-                SetSPD(36);
+                SetSPD(63);
                 SetLCK(5);
                 break;
             case 13:
@@ -654,7 +654,7 @@ public class PlayerData : CharacterStats
                 SetDEF(52);
                 SetWIL(72);
                 SetRES(36);
-                SetSPD(39);
+                SetSPD(68);
                 SetLCK(7);
                 break;
             case 14:
@@ -667,7 +667,7 @@ public class PlayerData : CharacterStats
                 SetDEF(56);
                 SetWIL(78);
                 SetRES(38);
-                SetSPD(42);
+                SetSPD(74);
                 SetLCK(9);
                 break;
             case 15:
@@ -680,7 +680,7 @@ public class PlayerData : CharacterStats
                 SetDEF(60);
                 SetWIL(83);
                 SetRES(41);
-                SetSPD(45);
+                SetSPD(79);
                 SetLCK(11);
                 break;
             case 16:
@@ -693,7 +693,7 @@ public class PlayerData : CharacterStats
                 SetDEF(64);
                 SetWIL(89);
                 SetRES(43);
-                SetSPD(48);
+                SetSPD(84);
                 SetLCK(13);
                 break;
             case 17:
@@ -706,7 +706,7 @@ public class PlayerData : CharacterStats
                 SetDEF(68);
                 SetWIL(94);
                 SetRES(46);
-                SetSPD(51);
+                SetSPD(89);
                 SetLCK(16);
                 break;
             case 18:
@@ -719,7 +719,7 @@ public class PlayerData : CharacterStats
                 SetDEF(72);
                 SetWIL(100);
                 SetRES(48);
-                SetSPD(54);
+                SetSPD(95);
                 SetLCK(19);
                 break;
             case 19:
@@ -732,7 +732,7 @@ public class PlayerData : CharacterStats
                 SetDEF(76);
                 SetWIL(105);
                 SetRES(51);
-                SetSPD(57);
+                SetSPD(100);
                 SetLCK(22);
                 break;
             case 20:
@@ -745,7 +745,7 @@ public class PlayerData : CharacterStats
                 SetDEF(80);
                 SetWIL(111);
                 SetRES(53);
-                SetSPD(60);
+                SetSPD(105);
                 SetLCK(26);
                 break;
             default:
@@ -762,6 +762,9 @@ public class PlayerData : CharacterStats
         if(GetLVL() >= 1) AddAbility(new PlayerAbilities.Scrutinize());
         if (GetLVL() >= 4) AddAbility(new PlayerAbilities.Diagnosis());
         if (GetLVL() >= 7) AddAbility(new PlayerAbilities.Analysis());
+        if (GetLVL() >= 11) AddAbility(new PlayerAbilities.ManicRant());
+        if (GetLVL() >= 15) AddAbility(new PlayerAbilities.IncoherentRamblings());
+        if (GetLVL() >= 20) AddAbility(new PlayerAbilities.CharismaticFervor());
     }
 
     private bool loaded;
