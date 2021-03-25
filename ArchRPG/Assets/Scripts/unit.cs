@@ -757,44 +757,69 @@ public class unit
                 }
 
                 if (!ata.use_pow)
-                {   
+                {
+                    float valA = (float)ATK / 100;
+                    if (mode == 1 && unitName == "Oliver Sprout")
+                    {
+                        valA = valA * 1.5f;
+                    }
                     if (statuses[14] == -1)
                     {
-                        val += (int)(val * (float)(ATK / 100));
-                        val2 += (int)(val * (float)(ATK / 100));
+                        val += (int)(val * valA);
+                        val2 += (int)(val * valA);
                     }
                     //Zealous
                     else
                     {
-                        val += (int)(val * (float)((ATK * 1.25) / 100));
-                        val2 += (int)(val * (float)((ATK * 1.25) / 100));
+                        valA = valA * 1.25f;
+                        val += (int)(val * valA);
+                        val2 += (int)(val * valA);
+                    }
+
+                    float valD = (float)target.DEF / 300;
+
+                    if (target.unitName == "Oliver Sprout" && target.mode == 0)
+                    {
+                        valD = valD * 1.5f;
                     }
 
                     //Check if DEF is reduced by a status like Blunt Trauma
                     if (target.statuses[4] == -1 && target.statuses[7] == -1)
                     {
-                        val -= (int)(val * (float)(target.DEF / 300));
+                        val -= (int)(val * valD);
                     }
                     //Blunt Trauma
                     else if (target.statuses[4] != -1 && target.statuses[7] == -1)
                     {
-                        val -= (int)(val * (float)((target.DEF * 0.75) / 300));
+                        valD = valD * 0.75f;
+                        val -= (int)(val * valD);
                     }
                     //Neurotic
                     else if (target.statuses[4] == -1 && target.statuses[7] != -1)
                     {
-                        val -= (int)(val * (float)((target.DEF * 1.5) / 300));
+                        valD = valD * 1.5f; 
+                        val -= (int)(val * valD);
                     }
                     //Both
                     else
                     {
-                        val -= (int)(val * (float)((target.DEF * 1.25) / 300));
+                        valD = valD * 1.25f;
+                        val -= (int)(val * valD);
                     }
                 }
                 else
                 {
-                    float valP = (float)target.POW / 100;
+                    float valP = (float)POW / 100;
                     float valD = (float)target.WILL / 300;
+
+                    if (unitName == "Oliver Sprout" && mode == 1)
+                    {
+                        valP = valP * 1.2f;
+                    }
+                    else if (target.unitName == "Oliver Sprout" && target.mode == 0)
+                    {
+                        valD = valD * 1.2f;
+                    }
 
 
                     if (sanity < 50 && sanity > 0 && statuses[24] != -1)

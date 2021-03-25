@@ -2927,17 +2927,21 @@ namespace OliverSproutAbilities
                 "and swapping to Peace moves him to the backline. His mode also dictates which abilities he can use.";
             cost = 5;
             type = 2;
+            shuffle = true;
+            swapper = 1;
         }
 
         public override void UseAttack(unit user, unit target)
         {
             target = user;
             user.setSP(user.currentSP - cost);
+            //If frontline, swap to Peace
             if (user.position == 0)
             {
                 swapper = 2;
-                user.mode = 2;
+                user.mode = 0;
             }
+            //If backline, swap to war
             else if (user.position == 1)
             {
                 swapper = 1;
