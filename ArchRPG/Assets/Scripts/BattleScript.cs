@@ -3549,6 +3549,7 @@ public class BattleScript : MonoBehaviour
 
             if (state != battleState.WIN && state != battleState.LOSE && state != battleState.FLEE && enemyDeaths < enemyUnits.Count)
             {
+
                 for (int i = 0; i < partyUnits.Count; i++)
                 {
                     if (partyUnits[i] != null)
@@ -3680,6 +3681,7 @@ public class BattleScript : MonoBehaviour
                     p.maxSP = p.currentSP;
                 }
                 p.sanity = loader.SANs[i];
+                p.statuses = loader.statuses[i].status_effects;
 
                 //Combine/customize prefabs (UI base and unit base)
                 GameObject unitGo = Instantiate(partyPrefabs[loader.positions[i]], allyStations[loader.positions[i]]);
