@@ -59,6 +59,7 @@
     ],
     "weapons": [
         {
+            "useable": false,
             "name": "",
             "description": "",
             "image_file_path": "",
@@ -75,6 +76,7 @@
             "luck_buff": 0
         },
         {
+            "useable": false,
             "name": "",
             "description": "",
             "image_file_path": "",
@@ -91,6 +93,7 @@
             "luck_buff": 0
         },
         {
+            "useable": false,
             "name": "",
             "description": "",
             "image_file_path": "",
@@ -109,6 +112,7 @@
     ],
     "armors": [
         {
+            "useable": false,
             "name": "",
             "description": "",
             "image_file_path": "",
@@ -125,6 +129,7 @@
             "luck_buff": 0
         },
         {
+            "useable": false,
             "name": "",
             "description": "",
             "image_file_path": "",
@@ -141,6 +146,7 @@
             "luck_buff": 0
         },
         {
+            "useable": false,
             "name": "",
             "description": "",
             "image_file_path": "",
@@ -159,6 +165,7 @@
     ],
     "trinkets": [
         {
+            "useable": false,
             "name": "",
             "description": "",
             "image_file_path": "",
@@ -175,6 +182,7 @@
             "luck_buff": 0
         },
         {
+            "useable": false,
             "name": "",
             "description": "",
             "image_file_path": "",
@@ -191,6 +199,7 @@
             "luck_buff": 0
         },
         {
+            "useable": false,
             "name": "",
             "description": "",
             "image_file_path": "",
@@ -226,7 +235,6 @@
                 -1,
                 -1,
                 -1,
-		-1,
                 -1,
                 -1,
                 -1,
@@ -236,7 +244,8 @@
                 -1,
                 -1,
                 -1,
-		-1,
+                -1,
+                -1,
                 -1
             ]
         },
@@ -257,7 +266,6 @@
                 -1,
                 -1,
                 -1,
-		-1,
                 -1,
                 -1,
                 -1,
@@ -267,7 +275,8 @@
                 -1,
                 -1,
                 -1,
-		-1,
+                -1,
+                -1,
                 -1
             ]
         },
@@ -288,7 +297,6 @@
                 -1,
                 -1,
                 -1,
-		-1,
                 -1,
                 -1,
                 -1,
@@ -298,7 +306,8 @@
                 -1,
                 -1,
                 -1,
-		-1,
+                -1,
+                -1,
                 -1
             ]
         }

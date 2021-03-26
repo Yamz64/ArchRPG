@@ -2772,31 +2772,32 @@ public class PauseMenuHandler : MonoBehaviour
         {
             //see if the file exists
             //no
+            int childcount = menus[6].transform.childCount;
             if (!File.Exists(Application.streamingAssetsPath + "/Saves/" + (i + 1).ToString() + "/Old.json"))
             {
                 //set all images to invisible
                 for(int j=1; j<5; j++)
                 {
-                    menus[6].transform.GetChild(4 + i).GetChild(j).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                    menus[6].transform.GetChild((childcount - 4) + i).GetChild(j).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
                 }
                 //set the current level to nothing
-                menus[6].transform.GetChild(4 + i).GetChild(5).GetComponent<Text>().text = "";
+                menus[6].transform.GetChild((childcount - 4) + i).GetChild(5).GetComponent<Text>().text = "";
                 //set the time to nothing
-                menus[6].transform.GetChild(4 + i).GetChild(6).GetComponent<Text>().text = "";
+                menus[6].transform.GetChild((childcount - 4) + i).GetChild(6).GetComponent<Text>().text = "";
             }
             else
             {
                 //load the file
                 CharacterStatJsonConverter save = new CharacterStatJsonConverter(i, true);
-                
+
                 //set the images
-                for(int j=1; j<5; j++)
+                for (int j=1; j<5; j++)
                 {
                     //set the first index always to the player
                     if(j - 1 == 0)
                     {
-                        menus[6].transform.GetChild(4 + i).GetChild(j).GetComponent<Image>().color = Color.white;
-                        menus[6].transform.GetChild(4 + i).GetChild(j).GetComponent<Image>().sprite = Resources.Load<Sprite>("CharacterSprites/PC");
+                        menus[6].transform.GetChild((childcount - 4) + i).GetChild(j).GetComponent<Image>().color = Color.white;
+                        menus[6].transform.GetChild((childcount - 4) + i).GetChild(j).GetComponent<Image>().sprite = Resources.Load<Sprite>("CharacterSprites/PC");
                     }
                     else
                     {
@@ -2804,23 +2805,23 @@ public class PauseMenuHandler : MonoBehaviour
                         //no
                         if(j > save.names.GetLength(0))
                         {
-                            menus[6].transform.GetChild(4 + i).GetChild(j).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                            menus[6].transform.GetChild((childcount - 4) + i).GetChild(j).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
                         }
                         //yes
                         else
                         {
-                            menus[6].transform.GetChild(4 + i).GetChild(j).GetComponent<Image>().color = Color.white;
+                            menus[6].transform.GetChild((childcount - 4) + i).GetChild(j).GetComponent<Image>().color = Color.white;
                             System.Type t = System.Type.GetType(save.names[j - 1]);
                             CharacterStats temp = (CharacterStats)System.Activator.CreateInstance(t);
-                            menus[6].transform.GetChild(4 + i).GetChild(j).GetComponent<Image>().sprite = Resources.Load<Sprite>(temp.GetImageFilepath());
+                            menus[6].transform.GetChild((childcount - 4) + i).GetChild(j).GetComponent<Image>().sprite = Resources.Load<Sprite>(temp.GetImageFilepath());
                         }
                     }
                 }
 
                 //set the current level
-                menus[6].transform.GetChild(4 + i).GetChild(5).GetComponent<Text>().text = "Lvl " + save.levels[0];
+                menus[6].transform.GetChild((childcount - 4) + i).GetChild(5).GetComponent<Text>().text = "Lvl " + save.levels[0];
                 //set the time
-                menus[6].transform.GetChild(4 + i).GetChild(6).GetComponent<Text>().text = "";
+                menus[6].transform.GetChild((childcount - 4) + i).GetChild(6).GetComponent<Text>().text = "";
             }
         }
     }
