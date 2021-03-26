@@ -2939,16 +2939,17 @@ namespace OliverSproutAbilities
             {
                 swapper = 2;
                 user.mode = 0;
-                user.changeSprite(0);
+                user.ImageFilePath = "CharacterSprites/Oliver_peace";
             }
             //If backline, swap to war
             else if (user.position == 1)
             {
                 swapper = 1;
                 user.mode = 1;
-                user.changeSprite(1);
+                user.ImageFilePath = "CharacterSprites/Oliver_war";
             }
             PlayerPrefs.SetInt("OliverMode", user.mode);
+            user.setHUD();
         }
     }
 
