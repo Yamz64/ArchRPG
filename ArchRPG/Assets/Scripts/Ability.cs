@@ -1972,7 +1972,6 @@ namespace JimAbilities
         }
     }
 
-    //Will need to work on more
     public class TelekineticProwess : Ability
     {
         public TelekineticProwess()
