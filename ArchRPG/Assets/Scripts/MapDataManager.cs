@@ -10,11 +10,18 @@ public class ObjectInfo
     public string o;
     public bool interacted;
 }
+[System.Serializable] 
+public class SaveInfo
+{
+    public string name;
+    public Vector2 location;
+}
 [System.Serializable]
 public class MapGameData
 {
     public string name;
     public List<ObjectInfo> objects;
+    public List<SaveInfo> saves;
 }
 [System.Serializable]
 public class MapSaveData
@@ -113,9 +120,28 @@ public class MapDataManager : MonoBehaviour
                 temp.interacted = data.map_data[index].objects[i].interacted;
                 current_map.objects.Add(temp);
             }
+
+            for(int i=0; i<data.map_data[index].saves.Count; i++)
+            {
+                SaveInfo temp = new SaveInfo();
+                temp.name = data.map_data[index].saves[i].name;
+                temp.location = data.map_data[index].saves[i].location;
+                current_map.saves.Add(temp);
+            }
         }
         else
         {
+            //try to find all active save point objects in the scene and populate them for fast travel purposes
+            GameObject[] saves = GameObject.FindGameObjectsWithTag("SavePoint");
+            current_map.saves = new List<SaveInfo>();
+            for (int i = 0; i < saves.Length; i++)
+            {
+                SaveInfo temp = new SaveInfo();
+                temp.name = saves[i].GetComponent<SavePointBehavior>().save_name;
+                temp.location = saves[i].transform.GetChild(0).transform.position;
+                current_map.saves.Add(temp);
+            }
+
             data.map_data.Add(current_map);
             data.Save();
         }

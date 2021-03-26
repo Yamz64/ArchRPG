@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SavePointBehavior : InteractableBaseClass
 {
+    public string save_name;
     private PlayerDialogueBoxHandler dialogue;
     private PauseMenuHandler pause;
 

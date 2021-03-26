@@ -1,28 +1,76 @@
 {
     "map_data": [
         {
-            "name": "SchoolHallwayScene",
-            "objects": [
-                {
-                    "o": "Trash Can (1)",
-                    "interacted": false
-                },
-                {
-                    "o": "Norm",
-                    "interacted": false
-                }
-            ]
-        },
-        {
             "name": "CafeScene",
             "objects": [
                 {
                     "o": "Shirley",
                     "interacted": false
                 },
-		{
+                {
                     "o": "Rad Flat Cap",
                     "interacted": false
+                }
+            ],
+            "saves": []
+        },
+        {
+            "name": "Schoolyard",
+            "objects": [
+                {
+                    "o": "Danny2",
+                    "interacted": false
+                },
+                {
+                    "o": "Clay Amulet",
+                    "interacted": false
+                }
+            ],
+            "saves": []
+        },
+        {
+            "name": "ConvenienceStore",
+            "objects": [
+                {
+                    "o": "ADHDKid",
+                    "interacted": false
+                },
+                {
+                    "o": "Ralph",
+                    "interacted": false
+                },
+                {
+                    "o": "Commemorative T-Shirt",
+                    "interacted": false
+                }
+            ],
+            "saves": []
+        },
+        {
+            "name": "Pizzeria",
+            "objects": [
+                {
+                    "o": "RatBomb",
+                    "interacted": false
+                }
+            ],
+            "saves": []
+        },
+        {
+            "name": "BedroomScene",
+            "objects": [
+                {
+                    "o": "Protractor",
+                    "interacted": false
+                }
+            ],
+            "saves": [
+                {
+                    "name": "Computer Desk",
+                    "location": {
+                        "x": -4.050000190734863,
+                        "y": 5.0
+                    }
                 }
             ]
         },
@@ -45,43 +93,44 @@
                     "o": "Jim",
                     "interacted": true
                 },
-		{
+                {
                     "o": "Gnome Shard",
                     "interacted": false
                 },
-		{
+                {
                     "o": "Mr Whiskers",
                     "interacted": false
                 }
-            ]
-        },
-        {
-            "name": "Schoolyard",
-            "objects": [
+            ],
+            "saves": [
                 {
-                    "o": "Danny2",
-                    "interacted": false
-                },
-		{
-                    "o": "Clay Amulet",
-                    "interacted": false
+                    "name": "School Entrance",
+                    "location": {
+                        "x": -95.0,
+                        "y": 2.0
+                    }
                 }
             ]
         },
         {
-            "name": "ConvenienceStore",
+            "name": "SchoolHallwayScene",
             "objects": [
                 {
-                    "o": "ADHDKid",
+                    "o": "Trash Can (1)",
                     "interacted": false
                 },
                 {
-                    "o": "Ralph",
+                    "o": "Norm",
                     "interacted": false
-                },
-		{
-                    "o": "Commemorative T-Shirt",
-                    "interacted": false
+                }
+            ],
+            "saves": [
+                {
+                    "name": "Lockers",
+                    "location": {
+                        "x": -10.5,
+                        "y": 2.0
+                    }
                 }
             ]
         },
@@ -100,29 +149,46 @@
                     "o": "SubwayColliders",
                     "interacted": false
                 },
-		{
-                    "o": "Strecth Resistant Trash Bag",
+                {
+                    "o": "Stretch Resistant Trash Bag",
                     "interacted": false
+                }
+            ],
+            "saves": [
+                {
+                    "name": "Entrance",
+                    "location": {
+                        "x": -3.9744768142700197,
+                        "y": -27.0
+                    }
                 }
             ]
         },
         {
-            "name": "BedroomScene",
-            "objects": [
-		{
-                    "o": "Protractor",
-                    "interacted": false
+            "name": "City1",
+            "objects": [],
+            "saves": [
+                {
+                    "name": "Subway Exit",
+                    "location": {
+                        "x": 25.5,
+                        "y": 2.5
+                    }
                 }
-	]
+            ]
         },
-	{
-            "name": "Pizzeria",
-            "objects": [
-		{
-                    "o": "RatBomb",
-                    "interacted": false
+        {
+            "name": "City2",
+            "objects": [],
+            "saves": [
+                {
+                    "name": "Condemned Building",
+                    "location": {
+                        "x": 34.5,
+                        "y": 2.9200000762939455
+                    }
                 }
-	]
+            ]
         }
     ]
 }
