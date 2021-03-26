@@ -2940,12 +2940,14 @@ namespace OliverSproutAbilities
             {
                 swapper = 2;
                 user.mode = 0;
+                user.changeSprite(0);
             }
             //If backline, swap to war
             else if (user.position == 1)
             {
                 swapper = 1;
                 user.mode = 1;
+                user.changeSprite(1);
             }
             PlayerPrefs.SetInt("OliverMode", user.mode);
         }

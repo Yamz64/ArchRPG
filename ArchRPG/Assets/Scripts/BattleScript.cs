@@ -3598,7 +3598,7 @@ public class BattleScript : MonoBehaviour
         //Load in all party members
         for (int i = 0; i < loader.names.Length; i++)
         {
-            partyNames[loader.positions[i]] = loader.names[i];
+            partyNames[i] = loader.names[i];
             if (loader.HPs[i] > 0)
             {
                 unit p;
@@ -5870,7 +5870,7 @@ public class BattleScript : MonoBehaviour
         bot.BBackground.color = ori;
     }
 
-    //Flash purple to show a buff (usually for enemy)
+    //Flash pink to show a buff (usually for party units)
     public IEnumerator flashBuff2(unit bot)
     {
         Color ori = bot.BBackground.color;
