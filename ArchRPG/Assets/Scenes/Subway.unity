@@ -13420,6 +13420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item:
+    useable: 1
     name: Brown Rat
     description: Rattus Norvegicus, the common brown rat. You should bring this to
       Lucy.
