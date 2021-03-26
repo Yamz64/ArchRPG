@@ -3650,7 +3650,7 @@ public class BattleScript : MonoBehaviour
                 {
                     p = new WhiteKnightUnit(loader.levels[i]);
                 }
-                else if (loader.names[i] == "Oliver Sprout" && !loader.dead[i])
+                else if ((loader.names[i] == "Oliver Sprout" || loader.names[i] == "OliverSprout") && !loader.dead[i])
                 {
                     p = new OliverSproutUnit(loader.levels[i]);
                 }

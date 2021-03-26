@@ -112,6 +112,7 @@ public class unit
     //Copy the numerical statistics of a unit
     public void copyUnitStats(unit ver)
     {
+        unitName = ver.unitName;
         level = ver.level;
         currentLevelTop = (int)(2.5 * Mathf.Pow(level, 4));
         maxHP = ver.maxHP;
@@ -283,6 +284,7 @@ public class unit
         view.sprite = Resources.Load<Sprite>(ImageFilePath);
 
         //Debug.Log("view sprite now == " + view.sprite);
+
         nameText.text = unitName;
         if (player)
         {
