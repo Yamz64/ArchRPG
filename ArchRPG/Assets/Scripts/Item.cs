@@ -98,6 +98,10 @@ public class Weapon : Item
         character.SetSPD(character.GetSPD() - speed_buff);
         character.SetLCK(character.GetLCK() - luck_buff);
     }
+    public virtual void updateStats(int b = 0)
+    {
+
+    }
     public int damage_buff;
     public int power_buff;
     public int defense_buff;
@@ -105,6 +109,9 @@ public class Weapon : Item
     public int resistance_buff;
     public int speed_buff;
     public int luck_buff;
+    public bool eldritch = false;
+    public bool promising = false;
+    public int level = 0;
 }
 
 //base class handling all armor
@@ -153,6 +160,10 @@ public class Armor : Item
         character.SetSPD(character.GetSPD() - speed_buff);
         character.SetLCK(character.GetLCK() - luck_buff);
     }
+    public virtual void updateStats(int b = 0)
+    {
+
+    }
     public int damage_buff;
     public int power_buff;
     public int defense_buff;
@@ -160,6 +171,9 @@ public class Armor : Item
     public int resistance_buff;
     public int speed_buff;
     public int luck_buff;
+    public bool eldritch = false;
+    public bool promising = false;
+    public int level = 0;
 }
 
 //base class handling all trinkets
@@ -208,6 +222,10 @@ public class Trinket : Item
         character.SetSPD(character.GetSPD() - speed_buff);
         character.SetLCK(character.GetLCK() - luck_buff);
     }
+    public virtual void updateStats(int b = 0)
+    {
+
+    }
     public int damage_buff;
     public int power_buff;
     public int defense_buff;
@@ -215,6 +233,101 @@ public class Trinket : Item
     public int resistance_buff;
     public int speed_buff;
     public int luck_buff;
+    public bool eldritch = false;
+    public bool promising = false;
+    public int level = 0;
+}
+
+public class PromisingWeapon : Weapon
+{
+    public PromisingWeapon(int bo = 0)
+    {
+        promising = true;
+        level = bo;
+    }
+
+    public override void updateStats(int b = 0)
+    {
+        level = b;
+
+    }
+
+}
+
+public class PromisingArmor : Armor
+{
+    public PromisingArmor(int bo = 0)
+    {
+        promising = true;
+        level = bo;
+    }
+
+    public override void updateStats(int b = 0)
+    {
+        level = b;
+
+    }
+
+}
+
+public class PromisingTrinket : Trinket
+{
+    public PromisingTrinket(int bo = 0)
+    {
+        promising = true;
+        level = bo;
+    }
+
+    public override void updateStats(int b = 0)
+    {
+        level = b;
+    }
+
+}
+
+public class EldritchWeapon : Weapon
+{
+    public EldritchWeapon(int bo = 0)
+    {
+        eldritch = true;
+        level = bo;
+    }
+
+    public override void updateStats(int b = 0)
+    {
+        level = b;
+    }
+
+}
+
+public class EldritchArmor : Armor
+{
+    public EldritchArmor(int bo = 0)
+    {
+        eldritch = true;
+        level = bo;
+    }
+
+    public override void updateStats(int b = 0)
+    {
+        level = b;
+    }
+
+}
+
+public class EldritchTrinket : Trinket
+{
+    public EldritchTrinket(int bo = 0)
+    {
+        eldritch = true;
+        level = bo;
+    }
+
+    public override void updateStats(int b = 0)
+    {
+        level = b;
+    }
+
 }
 
 //--DERIVED ITEMS--

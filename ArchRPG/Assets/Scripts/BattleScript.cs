@@ -3646,7 +3646,7 @@ public class BattleScript : MonoBehaviour
                 {
                     p = new TimUnit(loader.levels[i]);
                 }
-                else if (loader.names[i] == "White Knight" && !loader.dead[i])
+                else if ((loader.names[i] == "White Knight" || loader.names[i] == "WhiteKnight" ) && !loader.dead[i])
                 {
                     p = new WhiteKnightUnit(loader.levels[i]);
                 }
@@ -3654,7 +3654,7 @@ public class BattleScript : MonoBehaviour
                 {
                     p = new OliverSproutUnit(loader.levels[i]);
                 }
-                else if (loader.names[i] == "Ember Moon" && !loader.dead[i])
+                else if ((loader.names[i] == "Ember Moon" || loader.names[i] == "EmberMoon") && !loader.dead[i])
                 {
                     p = new EmberMoonUnit(loader.levels[i]);
                 }
@@ -3994,6 +3994,27 @@ public class BattleScript : MonoBehaviour
             bot.sanBar.CrossFadeAlpha(0, 2f, false);
             bot.sanSideText.CrossFadeAlpha(0, 2f, false);
             bot.sanReadOut.CrossFadeAlpha(0, 2f, false);
+        }
+        if (bot.unitWeapon != null)
+        {
+            if (bot.unitWeapon.eldritch)
+            {
+
+            }
+        }
+        if (bot.unitArmor != null)
+        {
+            if (bot.unitArmor.eldritch)
+            {
+
+            }
+        }
+        if (bot.unitTrinket != null)
+        {
+            if (bot.unitTrinket.eldritch)
+            {
+
+            }
         }
 
         yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
@@ -5829,6 +5850,38 @@ public class BattleScript : MonoBehaviour
                     }
                     if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName == partyNames[x])
                     {
+                        //If unit survived, check if promising equipment should be updated
+                        if (partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                        {
+                            if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitWeapon != null && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitWeapon.promising)
+                            {
+
+                            }
+                            if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitArmor != null && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitArmor.promising)
+                            {
+
+                            }
+                            if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitTrinket != null && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitTrinket.promising)
+                            {
+
+                            }
+                        }
+                        //If unit died, update any eldritch equipment
+                        else
+                        {
+                            if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitWeapon != null && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitWeapon.eldritch)
+                            {
+                                partyUnits[i].GetComponent<UnitMono>().mainUnit.unitWeapon.updateStats(partyUnits[i].GetComponent<UnitMono>().mainUnit.unitWeapon.level + 1);
+                            }
+                            if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitArmor != null && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitArmor.eldritch)
+                            {
+                                partyUnits[i].GetComponent<UnitMono>().mainUnit.unitArmor.updateStats(partyUnits[i].GetComponent<UnitMono>().mainUnit.unitArmor.level + 1);
+                            }
+                            if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitTrinket != null && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitTrinket.eldritch)
+                            {
+                                partyUnits[i].GetComponent<UnitMono>().mainUnit.unitTrinket.updateStats(partyUnits[i].GetComponent<UnitMono>().mainUnit.unitTrinket.level + 1);
+                            }
+                        }
                         loader.storeUnit(partyUnits[i], x);
                         break;
                     }

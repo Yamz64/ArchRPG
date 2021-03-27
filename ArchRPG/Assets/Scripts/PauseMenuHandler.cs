@@ -13,6 +13,13 @@ public class PauseMenuHandler : MonoBehaviour
         public List<Transform> positions;
     }
 
+    private struct WarpInfo
+    {
+        public string scene_name;
+        public string save_name;
+        public Vector2 save_position;
+    }
+
     public int cursor_position;
     public int active_menu;
     public bool menu_mode;
@@ -26,6 +33,7 @@ public class PauseMenuHandler : MonoBehaviour
     public int ability_offset;
     public int levelup_offset;
     public int swap_offset;
+    public int warp_offset;
 
     public int highlighted_item;
     public int highlighted_party_member;
@@ -62,6 +70,7 @@ public class PauseMenuHandler : MonoBehaviour
     private PlayerOverworldAudioHandler audio_handler;
     private List<Item> store_items;
     private List<int> store_costs;
+    private List<WarpInfo> saved_warps;
 
     private IEnumerator LateProtection()
     {
@@ -3020,6 +3029,65 @@ public class PauseMenuHandler : MonoBehaviour
         menus[9].transform.GetChild(6).transform.GetChild(0).GetComponent<Text>().text = "Amount\n" + trans_amount.ToString();
     }
 
+    public void UpdateWarpMenu()
+    {
+        //first get a list of all save points
+        List<WarpInfo> warps = new List<WarpInfo>();
+        saved_warps = new List<WarpInfo>();
+        MapSaveData data = new MapSaveData();
+        data.Load();
+
+        for(int i=0; i<data.map_data.Count; i++)
+        {
+            if(data.map_data[i].saves != null)
+            {
+                if(data.map_data[i].saves.Count > 0)
+                {
+                    for(int j=0; j<data.map_data[i].saves.Count; j++)
+                    {
+                        WarpInfo temp = new WarpInfo();
+                        temp.save_name = data.map_data[i].saves[j].name;
+                        temp.save_position = data.map_data[i].saves[j].location;
+                        temp.scene_name = data.map_data[i].name;
+                        warps.Add(temp);
+                        saved_warps.Add(temp);
+                    }
+                }
+            }
+        }
+
+        //Update the save preview
+        if (cursor_position + warp_offset < warps.Count)
+        {
+            byte[] png = File.ReadAllBytes(Application.streamingAssetsPath + "/Saves/" + (PlayerPrefs.GetInt("_active_save_file_") + 1).ToString() +
+                "/ScreenCaptures/" + warps[cursor_position + warp_offset].save_name + ".png");
+            
+            Texture2D texture = new Texture2D(1, 1);
+            texture.LoadImage(png);
+
+            Sprite preview = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(.5f, .5f), 100.0f);
+
+            menus[10].transform.GetChild(1).GetComponent<Image>().color = Color.white;
+            menus[10].transform.GetChild(1).GetComponent<Image>().sprite = preview;
+        }
+        else
+        {
+            menus[10].transform.GetChild(1).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+        }
+
+        //update the list of warp destinations
+        for(int i=0; i<5; i++)
+        {
+            //see if the index is out of bounds
+            if(i + warp_offset >= warps.Count)
+            {
+                menus[10].transform.GetChild(2 + i).GetComponent<Text>().text = "";
+                continue;
+            }
+            menus[10].transform.GetChild(2 + i).GetComponent<Text>().text = warps[i + warp_offset].save_name;
+        }
+    }
+
     public void SetChoiceText(string text, bool choice_text = false)
     {
         if (!choice_text) menus[7].transform.GetChild(0).GetComponent<Text>().text = text;
@@ -4122,6 +4190,14 @@ public class PauseMenuHandler : MonoBehaviour
                             swap_offset = 0;
                             cursor_position = 0;
                             break;
+                        case 3:
+                            CloseMenu(6);
+                            OpenMenu(0);
+                            OpenMenu(10);
+                            UpdateWarpMenu();
+                            warp_offset = 0;
+                            cursor_position = 0;
+                            break;
                         default:
                             break;
                     }
@@ -4661,6 +4737,51 @@ public class PauseMenuHandler : MonoBehaviour
         }
     }
 
+    public void WarpMenuRoutine()
+    {
+        if(Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+        {
+            if (!menu_input)
+            {
+                cursor_position--;
+                UpdateWarpMenu();
+            }
+            menu_input = true;
+        }
+        else if(Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < 4)
+        {
+            if (!menu_input)
+            {
+                cursor_position++;
+                UpdateWarpMenu();
+            }
+            menu_input = true;
+        }
+        else if(Input.GetAxisRaw("Vertical") > 0.0f && warp_offset > 0)
+        {
+            if (!menu_input)
+            {
+                warp_offset--;
+                UpdateWarpMenu();
+            }
+            menu_input = true;
+        }
+        else if(Input.GetAxisRaw("Vertical") < 0.0f && (cursor_position + warp_offset) < saved_warps.Count - 1)
+        {
+            if (!menu_input)
+            {
+                warp_offset++;
+                UpdateWarpMenu();
+            }
+            menu_input = true;
+        }
+        else
+        {
+            menu_input = false;
+        }
+        cursor.transform.position = cursor_positions[14].positions[cursor_position].transform.position;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -4750,6 +4871,9 @@ public class PauseMenuHandler : MonoBehaviour
                     break;
                 case 9:
                     StoreMenuRoutine();
+                    break;
+                case 10:
+                    WarpMenuRoutine();
                     break;
                 default:
                     break;
