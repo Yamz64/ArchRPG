@@ -13,6 +13,13 @@ public class PauseMenuHandler : MonoBehaviour
         public List<Transform> positions;
     }
 
+    private struct WarpInfo
+    {
+        public string scene_name;
+        public string save_name;
+        public Vector2 save_position;
+    }
+
     public int cursor_position;
     public int active_menu;
     public bool menu_mode;
@@ -26,6 +33,7 @@ public class PauseMenuHandler : MonoBehaviour
     public int ability_offset;
     public int levelup_offset;
     public int swap_offset;
+    public int warp_offset;
 
     public int highlighted_item;
     public int highlighted_party_member;
@@ -3018,6 +3026,63 @@ public class PauseMenuHandler : MonoBehaviour
 
         //update the amount to buy/sell
         menus[9].transform.GetChild(6).transform.GetChild(0).GetComponent<Text>().text = "Amount\n" + trans_amount.ToString();
+    }
+
+    public void UpdateWarpMenu()
+    {
+        //first get a list of all save points
+        List<WarpInfo> warps = new List<WarpInfo>();
+        MapSaveData data = new MapSaveData();
+        data.Load();
+
+        for(int i=0; i<data.map_data.Count; i++)
+        {
+            if(data.map_data[i].saves != null)
+            {
+                if(data.map_data[i].saves.Count > 0)
+                {
+                    for(int j=0; j<data.map_data[i].saves.Count; j++)
+                    {
+                        WarpInfo temp = new WarpInfo();
+                        temp.save_name = data.map_data[i].saves[j].name;
+                        temp.save_position = data.map_data[i].saves[j].location;
+                        temp.scene_name = data.map_data[i].name;
+                    }
+                }
+            }
+        }
+
+        //Update the save preview
+        if (cursor_position + warp_offset < warps.Count)
+        {
+            string png = File.ReadAllText(Application.streamingAssetsPath + "/Saves/" + (PlayerPrefs.GetInt("_active_save_file_") + 1).ToString() +
+                "/ScreenCaptures/" + warps[cursor_position + warp_offset].save_name + ".png");
+
+            TextAsset text = new TextAsset(png);
+            Texture2D texture = new Texture2D(1, 1);
+            texture.LoadImage(text.bytes);
+
+            Sprite preview = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(.5f, .5f), 100.0f);
+
+            menus[10].transform.GetChild(1).GetComponent<SpriteRenderer>().color = Color.white;
+            menus[10].transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = preview;
+        }
+        else
+        {
+            menus[10].transform.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+        }
+
+        //update the list of warp destinations
+        for(int i=0; i<5; i++)
+        {
+            //see if the index is out of bounds
+            if(i + warp_offset >= warps.Count)
+            {
+                menus[10].transform.GetChild(2 + i).GetComponent<Text>().text = "";
+                continue;
+            }
+            menus[10].transform.GetChild(2 + i).GetComponent<Text>().text = warps[i + warp_offset].scene_name + " - " + warps[i + warp_offset].save_name;
+        }
     }
 
     public void SetChoiceText(string text, bool choice_text = false)

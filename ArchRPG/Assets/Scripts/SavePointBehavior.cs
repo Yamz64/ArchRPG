@@ -11,6 +11,7 @@ public class SavePointBehavior : InteractableBaseClass
     IEnumerator SaveSequence()
     {
         //open text box and initialize writing variables
+        yield return new WaitForEndOfFrame();
         dialogue.OpenTextBox();
         List<string> dialogue_queue = new List<string>();
         List<EffectContainer> effect_queue = new List<EffectContainer>();
@@ -183,6 +184,7 @@ public class SavePointBehavior : InteractableBaseClass
 
     public override void Interact()
     {
+        ScreenCapture.CaptureScreenshot(Application.streamingAssetsPath + "/Saves/" + (PlayerPrefs.GetInt("_active_save_file_") + 1).ToString() + "/ScreenCaptures/" + save_name + ".png");
         StartCoroutine(SaveSequence());
     }
 }
