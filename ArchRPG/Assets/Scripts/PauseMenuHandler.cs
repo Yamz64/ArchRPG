@@ -79,6 +79,15 @@ public class PauseMenuHandler : MonoBehaviour
         GetComponent<PlayerMovement>().interaction_protection = true;
     }
 
+    private IEnumerator FadeTransition(string scene_name)
+    {
+        GetComponent<TransitionHandler>().SetFadeColor(Color.black);
+        GetComponent<TransitionHandler>().FadeDriver(2);
+        yield return new WaitForEndOfFrame();
+        yield return new WaitUntil(() => GetComponent<TransitionHandler>().transition_completed);
+        SceneManager.LoadScene(scene_name);
+    }
+
     public void SetStoreItems(List<Item> items) { store_items = items; }
 
     public void SetStoreCosts(List<int> costs) { store_costs = costs; }
@@ -4745,6 +4754,7 @@ public class PauseMenuHandler : MonoBehaviour
             {
                 cursor_position--;
                 UpdateWarpMenu();
+                audio_handler.PlaySound("Sound/SFX/cursor");
             }
             menu_input = true;
         }
@@ -4754,6 +4764,7 @@ public class PauseMenuHandler : MonoBehaviour
             {
                 cursor_position++;
                 UpdateWarpMenu();
+                audio_handler.PlaySound("Sound/SFX/cursor");
             }
             menu_input = true;
         }
@@ -4763,6 +4774,7 @@ public class PauseMenuHandler : MonoBehaviour
             {
                 warp_offset--;
                 UpdateWarpMenu();
+                audio_handler.PlaySound("Sound/SFX/cursor");
             }
             menu_input = true;
         }
@@ -4772,6 +4784,22 @@ public class PauseMenuHandler : MonoBehaviour
             {
                 warp_offset++;
                 UpdateWarpMenu();
+                audio_handler.PlaySound("Sound/SFX/cursor");
+            }
+            menu_input = true;
+        }
+        else if (Input.GetButtonDown("Interact"))
+        {
+            if (!menu_input)
+            {
+                //save the player's position and then fadeout to the new scene
+                CharacterStatJsonConverter data = new CharacterStatJsonConverter(GetComponent<PlayerDataMono>().data);
+                data.position = saved_warps[cursor_position + warp_offset].save_position;
+                data.Save(PlayerPrefs.GetInt("_active_save_file_"));
+
+                pause_menu_protection = true;
+                StartCoroutine(FadeTransition(saved_warps[cursor_position + warp_offset].scene_name));
+                audio_handler.PlaySound("Sound/SFX/select");
             }
             menu_input = true;
         }
