@@ -7620,7 +7620,7 @@ public class EmberMoonUnit : unit
     public EmberMoonUnit(int lev = 1)
     {
         unitName = "Ember Moon";
-        ImageFilePath = "CharacterSprites/Background Kid";
+        ImageFilePath = "CharacterSprites/Ember Moon";
         loadSprites();
         level = lev;
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
