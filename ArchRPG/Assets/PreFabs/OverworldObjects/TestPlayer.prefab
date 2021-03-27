@@ -9978,6 +9978,12 @@ MonoBehaviour:
     - {fileID: 5255203177844682438}
     - {fileID: 8811001564186247112}
     - {fileID: 908750798841109265}
+  - positions:
+    - {fileID: 7035606191868890394}
+    - {fileID: 8618822558913666048}
+    - {fileID: 7850457915285947069}
+    - {fileID: 2643416080418757734}
+    - {fileID: 2103049879080071079}
   inventory_offset: 0
   equipped_offset: 0
   ability_offset: 0
@@ -26810,8 +26816,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 272, y: 162}
-  m_SizeDelta: {x: 480, y: 270}
+  m_AnchoredPosition: {x: 299, y: 162}
+  m_SizeDelta: {x: 600, y: 337.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5852816654381924233
 CanvasRenderer:

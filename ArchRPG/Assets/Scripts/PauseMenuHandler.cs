@@ -70,6 +70,7 @@ public class PauseMenuHandler : MonoBehaviour
     private PlayerOverworldAudioHandler audio_handler;
     private List<Item> store_items;
     private List<int> store_costs;
+    private List<WarpInfo> saved_warps;
 
     private IEnumerator LateProtection()
     {
@@ -3032,6 +3033,7 @@ public class PauseMenuHandler : MonoBehaviour
     {
         //first get a list of all save points
         List<WarpInfo> warps = new List<WarpInfo>();
+        saved_warps = new List<WarpInfo>();
         MapSaveData data = new MapSaveData();
         data.Load();
 
@@ -3047,6 +3049,8 @@ public class PauseMenuHandler : MonoBehaviour
                         temp.save_name = data.map_data[i].saves[j].name;
                         temp.save_position = data.map_data[i].saves[j].location;
                         temp.scene_name = data.map_data[i].name;
+                        warps.Add(temp);
+                        saved_warps.Add(temp);
                     }
                 }
             }
@@ -3055,21 +3059,20 @@ public class PauseMenuHandler : MonoBehaviour
         //Update the save preview
         if (cursor_position + warp_offset < warps.Count)
         {
-            string png = File.ReadAllText(Application.streamingAssetsPath + "/Saves/" + (PlayerPrefs.GetInt("_active_save_file_") + 1).ToString() +
+            byte[] png = File.ReadAllBytes(Application.streamingAssetsPath + "/Saves/" + (PlayerPrefs.GetInt("_active_save_file_") + 1).ToString() +
                 "/ScreenCaptures/" + warps[cursor_position + warp_offset].save_name + ".png");
-
-            TextAsset text = new TextAsset(png);
+            
             Texture2D texture = new Texture2D(1, 1);
-            texture.LoadImage(text.bytes);
+            texture.LoadImage(png);
 
             Sprite preview = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(.5f, .5f), 100.0f);
 
-            menus[10].transform.GetChild(1).GetComponent<SpriteRenderer>().color = Color.white;
-            menus[10].transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = preview;
+            menus[10].transform.GetChild(1).GetComponent<Image>().color = Color.white;
+            menus[10].transform.GetChild(1).GetComponent<Image>().sprite = preview;
         }
         else
         {
-            menus[10].transform.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+            menus[10].transform.GetChild(1).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
         }
 
         //update the list of warp destinations
@@ -3081,7 +3084,7 @@ public class PauseMenuHandler : MonoBehaviour
                 menus[10].transform.GetChild(2 + i).GetComponent<Text>().text = "";
                 continue;
             }
-            menus[10].transform.GetChild(2 + i).GetComponent<Text>().text = warps[i + warp_offset].scene_name + " - " + warps[i + warp_offset].save_name;
+            menus[10].transform.GetChild(2 + i).GetComponent<Text>().text = warps[i + warp_offset].save_name;
         }
     }
 
@@ -4187,6 +4190,14 @@ public class PauseMenuHandler : MonoBehaviour
                             swap_offset = 0;
                             cursor_position = 0;
                             break;
+                        case 3:
+                            CloseMenu(6);
+                            OpenMenu(0);
+                            OpenMenu(10);
+                            UpdateWarpMenu();
+                            warp_offset = 0;
+                            cursor_position = 0;
+                            break;
                         default:
                             break;
                     }
@@ -4726,6 +4737,51 @@ public class PauseMenuHandler : MonoBehaviour
         }
     }
 
+    public void WarpMenuRoutine()
+    {
+        if(Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+        {
+            if (!menu_input)
+            {
+                cursor_position--;
+                UpdateWarpMenu();
+            }
+            menu_input = true;
+        }
+        else if(Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < 4)
+        {
+            if (!menu_input)
+            {
+                cursor_position++;
+                UpdateWarpMenu();
+            }
+            menu_input = true;
+        }
+        else if(Input.GetAxisRaw("Vertical") > 0.0f && warp_offset > 0)
+        {
+            if (!menu_input)
+            {
+                warp_offset--;
+                UpdateWarpMenu();
+            }
+            menu_input = true;
+        }
+        else if(Input.GetAxisRaw("Vertical") < 0.0f && (cursor_position + warp_offset) < saved_warps.Count - 1)
+        {
+            if (!menu_input)
+            {
+                warp_offset++;
+                UpdateWarpMenu();
+            }
+            menu_input = true;
+        }
+        else
+        {
+            menu_input = false;
+        }
+        cursor.transform.position = cursor_positions[14].positions[cursor_position].transform.position;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -4815,6 +4871,9 @@ public class PauseMenuHandler : MonoBehaviour
                     break;
                 case 9:
                     StoreMenuRoutine();
+                    break;
+                case 10:
+                    WarpMenuRoutine();
                     break;
                 default:
                     break;
