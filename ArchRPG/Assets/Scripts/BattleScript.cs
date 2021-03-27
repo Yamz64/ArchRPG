@@ -5851,19 +5851,53 @@ public class BattleScript : MonoBehaviour
                     if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName == partyNames[x])
                     {
                         //If unit survived, check if promising equipment should be updated
-                        if (partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                        if (partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP > 0 && state == battleState.WIN)
                         {
                             if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitWeapon != null && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitWeapon.promising)
                             {
+                                partyUnits[i].GetComponent<UnitMono>().mainUnit.unitWeapon.winCounter++;
+                                if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitWeapon.level == 1 && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitWeapon.winCounter == 2)
+                                {
 
+                                }
+                                else if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitWeapon.level == 2 && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitWeapon.winCounter == 4)
+                                {
+
+                                }
+                                else if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitWeapon.level == 3 && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitWeapon.winCounter == 6)
+                                {
+
+                                }
                             }
                             if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitArmor != null && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitArmor.promising)
                             {
+                                if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitArmor.level == 1 && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitArmor.winCounter == 2)
+                                {
 
+                                }
+                                else if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitArmor.level == 2 && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitArmor.winCounter == 4)
+                                {
+
+                                }
+                                else if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitArmor.level == 3 && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitArmor.winCounter == 6)
+                                {
+
+                                }
                             }
                             if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitTrinket != null && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitTrinket.promising)
                             {
+                                if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitTrinket.level == 1 && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitTrinket.winCounter == 2)
+                                {
 
+                                }
+                                else if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitTrinket.level == 2 && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitTrinket.winCounter == 4)
+                                {
+
+                                }
+                                else if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitTrinket.level == 3 && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitTrinket.winCounter == 6)
+                                {
+
+                                }
                             }
                         }
                         //If unit died, update any eldritch equipment

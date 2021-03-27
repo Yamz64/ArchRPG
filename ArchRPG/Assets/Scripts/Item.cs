@@ -112,6 +112,7 @@ public class Weapon : Item
     public bool eldritch = false;
     public bool promising = false;
     public int level = 0;
+    public int winCounter = 0;
 }
 
 //base class handling all armor
@@ -174,6 +175,7 @@ public class Armor : Item
     public bool eldritch = false;
     public bool promising = false;
     public int level = 0;
+    public int winCounter = 0;
 }
 
 //base class handling all trinkets
@@ -222,7 +224,7 @@ public class Trinket : Item
         character.SetSPD(character.GetSPD() - speed_buff);
         character.SetLCK(character.GetLCK() - luck_buff);
     }
-    public virtual void updateStats(int b = 0)
+    public virtual void updateStats(int b = 1)
     {
 
     }
@@ -236,17 +238,18 @@ public class Trinket : Item
     public bool eldritch = false;
     public bool promising = false;
     public int level = 0;
+    public int winCounter = 0;
 }
 
 public class PromisingWeapon : Weapon
 {
-    public PromisingWeapon(int bo = 0)
+    public PromisingWeapon(int bo = 1)
     {
         promising = true;
         level = bo;
     }
 
-    public override void updateStats(int b = 0)
+    public override void updateStats(int b = 1)
     {
         level = b;
 
@@ -256,13 +259,13 @@ public class PromisingWeapon : Weapon
 
 public class PromisingArmor : Armor
 {
-    public PromisingArmor(int bo = 0)
+    public PromisingArmor(int bo = 1)
     {
         promising = true;
         level = bo;
     }
 
-    public override void updateStats(int b = 0)
+    public override void updateStats(int b = 1)
     {
         level = b;
 
@@ -272,13 +275,13 @@ public class PromisingArmor : Armor
 
 public class PromisingTrinket : Trinket
 {
-    public PromisingTrinket(int bo = 0)
+    public PromisingTrinket(int bo = 1)
     {
         promising = true;
         level = bo;
     }
 
-    public override void updateStats(int b = 0)
+    public override void updateStats(int b = 1)
     {
         level = b;
     }
@@ -287,13 +290,13 @@ public class PromisingTrinket : Trinket
 
 public class EldritchWeapon : Weapon
 {
-    public EldritchWeapon(int bo = 0)
+    public EldritchWeapon(int bo = 1)
     {
         eldritch = true;
         level = bo;
     }
 
-    public override void updateStats(int b = 0)
+    public override void updateStats(int b = 1)
     {
         level = b;
     }
@@ -302,13 +305,13 @@ public class EldritchWeapon : Weapon
 
 public class EldritchArmor : Armor
 {
-    public EldritchArmor(int bo = 0)
+    public EldritchArmor(int bo = 1)
     {
         eldritch = true;
         level = bo;
     }
 
-    public override void updateStats(int b = 0)
+    public override void updateStats(int b = 1)
     {
         level = b;
     }
@@ -317,13 +320,13 @@ public class EldritchArmor : Armor
 
 public class EldritchTrinket : Trinket
 {
-    public EldritchTrinket(int bo = 0)
+    public EldritchTrinket(int bo = 1)
     {
         eldritch = true;
         level = bo;
     }
 
-    public override void updateStats(int b = 0)
+    public override void updateStats(int b = 1)
     {
         level = b;
     }
