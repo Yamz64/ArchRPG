@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SavePointBehavior : InteractableBaseClass
 {
     public string save_name;
     private PlayerDialogueBoxHandler dialogue;
     private PauseMenuHandler pause;
+    private bool city_sequence;
 
     IEnumerator SaveSequence()
     {
@@ -20,7 +22,6 @@ public class SavePointBehavior : InteractableBaseClass
         List<string> image_queue = new List<string>();
 
         //see if this is the first time interacting with a save point
-        //yes
         if (PlayerPrefs.GetInt("Saved") == 0)
         {
             //start populating with dialogue
@@ -131,7 +132,106 @@ public class SavePointBehavior : InteractableBaseClass
             //mark savepoints as having been visited
             PlayerPrefs.SetInt("Saved", 1);
         }
-        //no
+        //see if the player should do the city sequence
+        else if (city_sequence)
+        {
+            //start warp sequence dialogue
+            dialogue_queue.Add("Fish, I never asked? But how are you consistently able to know where I'm going to be before I get there?");
+            dialogue_queue.Add("...");
+            dialogue_queue.Add("So due to the ever increasing supernatural occurrences, the distances between the exits of the rift in space time are shrinking?");
+            dialogue_queue.Add("...");
+            dialogue_queue.Add("Most interesting... so I can use this to Warp between Save Points. This may prove most useful.");
+            dialogue_queue.Add("Blub blub");
+
+            //add effects
+            temp.name = "_NO_EFFECT_";
+            temp_effect.effects.Add(new TextEffectClass(temp));
+            effect_queue.Add(new EffectContainer(temp_effect));
+
+            temp_effect.effects.Clear();
+            temp.name = "_NO_EFFECT_";
+            temp_effect.effects.Add(new TextEffectClass(temp));
+            effect_queue.Add(new EffectContainer(temp_effect));
+
+            temp_effect.effects.Clear();
+            temp.name = "_NO_EFFECT_";
+            temp_effect.effects.Add(new TextEffectClass(temp));
+            effect_queue.Add(new EffectContainer(temp_effect));
+
+            temp_effect.effects.Clear();
+            temp.name = "_NO_EFFECT_";
+            temp_effect.effects.Add(new TextEffectClass(temp));
+            effect_queue.Add(new EffectContainer(temp_effect));
+
+            temp_effect.effects.Clear();
+            temp.name = "Wave";
+            temp.lower = 33;
+            temp.upper = 36;
+            temp_effect.effects.Add(new TextEffectClass(temp));
+            temp.name = "Color";
+            temp.color = Color.blue;
+            temp.lower = 44;
+            temp.upper = 53;
+            effect_queue.Add(new EffectContainer(temp_effect));
+
+            temp_effect.effects.Clear();
+            temp.name = "_NO_EFFECT_";
+            temp_effect.effects.Add(new TextEffectClass(temp));
+            effect_queue.Add(new EffectContainer(temp_effect));
+
+            //Add images
+            image_queue.Add("CharacterSprites/PC");
+            image_queue.Add("CharacterSprites/Fish2");
+            image_queue.Add("CharacterSprites/PC");
+            image_queue.Add("CharacterSprites/Fish2");
+            image_queue.Add("CharacterSprites/PC");
+            image_queue.Add("CharacterSprites/Fish2");
+
+            //start writing
+            dialogue.SetWriteQueue(dialogue_queue);
+            dialogue.SetEffectQueue(effect_queue);
+            dialogue.SetImageQueue(image_queue);
+            dialogue.WriteDriver();
+
+            //mark this object as interacted
+            MapDataManager map_data = GameObject.FindGameObjectWithTag("MapManager").GetComponent<MapDataManager>();
+            for (int i = 0; i < map_data.current_map.objects.Count; i++)
+            {
+                if (map_data.current_map.objects[i].o == "TestSave")
+                {
+                    map_data.current_map.objects[i].interacted = true;
+                    map_data.Save();
+                    break;
+                }
+            }
+
+            //wait until the dialogue is finished before opening the save menu
+            yield return new WaitForEndOfFrame();
+            yield return new WaitUntil(() => !dialogue.GetActive());
+            yield return new WaitForEndOfFrame();
+
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            player.GetComponent<PauseMenuHandler>().menu_mode = true;
+            player.GetComponent<PauseMenuHandler>().menu_input = true;
+            player.GetComponent<PauseMenuHandler>().OpenMenu(6);
+            player.GetComponent<PauseMenuHandler>().ActivateCursor();
+            player.GetComponent<PauseMenuHandler>().UpdateSaveMenu();
+            player.GetComponent<PlayerMovement>().interaction_protection = true;
+
+            //heal everyone in the party and the player do not heal dead party members unless it's the player
+            PlayerData data = player.GetComponent<PlayerDataMono>().data;
+            data.SetHP(data.GetHPMAX());
+            data.SetSP(data.GetSPMax());
+            for (int i = 0; i < data.GetPartySize(); i++)
+            {
+                if (data.GetPartyMember(i).GetHP() > 0)
+                {
+                    data.GetPartyMember(i).SetHP(data.GetHPMAX());
+                    data.GetPartyMember(i).SetSP(data.GetSPMax());
+                }
+            }
+        }
+        //no special cases
         else
         {
             //have the fish say one line
@@ -184,6 +284,20 @@ public class SavePointBehavior : InteractableBaseClass
 
     public override void Interact()
     {
+        //if the scene is the city1 scene, check to see if this object has been interacted with
+        city_sequence = false;
+        if (SceneManager.GetActiveScene().name == "City1")
+        {
+            MapDataManager data = GameObject.FindGameObjectWithTag("MapManager").GetComponent<MapDataManager>();
+            for (int i = 0; i < data.current_map.objects.Count; i++)
+            {
+                if (data.current_map.objects[i].o == "TestSave")
+                {
+                    city_sequence = !data.current_map.objects[i].interacted;
+                    break;
+                }
+            }
+        }
         ScreenCapture.CaptureScreenshot(Application.streamingAssetsPath + "/Saves/" + (PlayerPrefs.GetInt("_active_save_file_") + 1).ToString() + "/ScreenCaptures/" + save_name + ".png");
         StartCoroutine(SaveSequence());
     }

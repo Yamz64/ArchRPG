@@ -165,19 +165,6 @@
             ]
         },
         {
-            "name": "City1",
-            "objects": [],
-            "saves": [
-                {
-                    "name": "Subway Exit",
-                    "location": {
-                        "x": 25.5,
-                        "y": 2.5
-                    }
-                }
-            ]
-        },
-        {
             "name": "City2",
             "objects": [],
             "saves": [
@@ -186,6 +173,24 @@
                     "location": {
                         "x": 34.5,
                         "y": 2.9200000762939455
+                    }
+                }
+            ]
+        },
+        {
+            "name": "City1",
+            "objects": [
+                {
+                    "o": "TestSave",
+                    "interacted": false
+                }
+            ],
+            "saves": [
+                {
+                    "name": "Subway Exit",
+                    "location": {
+                        "x": 25.5,
+                        "y": 2.5
                     }
                 }
             ]

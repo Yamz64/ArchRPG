@@ -53,6 +53,7 @@ public class PauseMenuHandler : MonoBehaviour
     public Object icon;
 
     private int equip_type;     //0 = weapon, 1 = armor, 2 = trinket
+    public bool warp_unlock;   //are warps unlocked
     private bool item_select_menu;
     private bool base_pause_character_select;
     private bool equipping;
@@ -2842,6 +2843,8 @@ public class PauseMenuHandler : MonoBehaviour
                 menus[6].transform.GetChild((childcount - 4) + i).GetChild(6).GetComponent<Text>().text = "";
             }
         }
+        if (!warp_unlock) menus[6].transform.GetChild(3).GetComponent<Text>().color = Color.grey;
+        else menus[6].transform.GetChild(3).GetComponent<Text>().color = Color.white;
     }
 
     public void UpdatePartySwap()
@@ -4200,12 +4203,15 @@ public class PauseMenuHandler : MonoBehaviour
                             cursor_position = 0;
                             break;
                         case 3:
-                            CloseMenu(6);
-                            OpenMenu(0);
-                            OpenMenu(10);
-                            UpdateWarpMenu();
-                            warp_offset = 0;
-                            cursor_position = 0;
+                            if (warp_unlock)
+                            {
+                                CloseMenu(6);
+                                OpenMenu(0);
+                                OpenMenu(10);
+                                UpdateWarpMenu();
+                                warp_offset = 0;
+                                cursor_position = 0;
+                            }
                             break;
                         default:
                             break;
@@ -4834,6 +4840,26 @@ public class PauseMenuHandler : MonoBehaviour
 
         //define audio handler
         audio_handler = GetComponent<PlayerOverworldAudioHandler>();
+
+        //see if warps have been unlocked
+        warp_unlock = false;
+        MapSaveData map_data = new MapSaveData();
+        map_data.Load();
+        for (int i = 0; i < map_data.map_data.Count; i++)
+        {
+            if (map_data.map_data[i].name == "City1")
+            {
+                for (int j = 0; j < map_data.map_data[i].objects.Count; j++)
+                {
+                    if (map_data.map_data[i].objects[j].o == "TestSave" && map_data.map_data[i].objects[j].interacted)
+                    {
+                        warp_unlock = true;
+                        break;
+                    }
+                }
+                break;
+            }
+        }
 
         //unlock party members
         data.UnlockPartyMember(0);

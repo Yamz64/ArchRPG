@@ -38347,8 +38347,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1396058554207331182, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: current_map.objects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331182, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
       propertyPath: current_map.name
       value: City1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331182, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: current_map.objects.Array.data[0].o
+      value: TestSave
       objectReference: {fileID: 0}
     - target: {fileID: 1396058554207331183, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
       propertyPath: m_Name
@@ -42171,7 +42179,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 47
+  m_RootOrder: 48
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1209719710
 PrefabInstance:
@@ -44490,5 +44498,5 @@ Transform:
   - {fileID: 1339624679}
   - {fileID: 1761161974}
   m_Father: {fileID: 0}
-  m_RootOrder: 35
+  m_RootOrder: 36
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
