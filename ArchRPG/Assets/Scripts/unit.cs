@@ -262,9 +262,6 @@ public class unit
     public Text sanReadOut;         //Text showing exact sanity readout
 
     public List<Image> statusIcons; //List of status icons to place specific statuses in
-    public Text statBlurb;
-    public Image statBlurbBackB;
-    public Image statBlurbBackW;
 
     public Image statusBackW;       //White background of the status bar
     public Image statusBackColor;   //Colored background of the status bar
@@ -337,6 +334,8 @@ public class unit
                     Color temp = statusIcons[num].color;
                     temp.a = 1.0f;
                     statusIcons[num].color = temp;
+                    statusIcons[num].GetComponent<statIcon>().desc = statBlurbIndex[i];
+                    statusIcons[num].GetComponent<statIcon>().count = statuses[i];
                     statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_" + statusIconIndex[i]);
                     if (statuses[i] < 9)
                     {
@@ -1502,7 +1501,6 @@ public class unit
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[1] = ran;
-            
         }
         else if (id.Equals("Weeping")       && statuses[2] == -1)
         {
@@ -1668,6 +1666,9 @@ public class unit
             Color temp = statusIcons[num].color;
             temp.a = 1.0f;
             statusIcons[num].color = temp;
+            int index = statusIndex.FindIndex(str => str == id);
+            statusIcons[num].GetComponent<statIcon>().desc = statBlurbIndex[index];
+            statusIcons[num].GetComponent<statIcon>().count = statuses[index];
         }
         status = "";
         bool has = false;

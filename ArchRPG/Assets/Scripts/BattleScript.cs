@@ -3038,6 +3038,76 @@ public class BattleScript : MonoBehaviour
                         dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " must boogie against their will.";
                         yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
                         yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+
+                        if (temp[ind + 1] != null)
+                        {
+                            if (temp[ind + 1].GetComponent<UnitMono>().mainUnit.currentHP > 0 &&
+                                temp[ind + 1].GetComponent<UnitMono>().mainUnit.statuses[26] == -1)
+                            {
+                                int rol = UnityEngine.Random.Range(1, 101);
+                                if (rol > temp[ind + 1].GetComponent<UnitMono>().mainUnit.RES)
+                                {
+                                    temp[ind + 1].GetComponent<UnitMono>().mainUnit.giveStatus(temp[ind].GetComponent<UnitMono>().mainUnit.statusIndex[26]);
+                                    dialogue.text = temp[ind + 1].GetComponent<UnitMono>().mainUnit.unitName + " was inflicted with " +
+                                        temp[ind + 1].GetComponent<UnitMono>().mainUnit.statusIndex[26] + " from " +
+                                        temp[ind].GetComponent<UnitMono>().mainUnit.unitName;
+                                    yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
+                                    yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                                }
+                            }
+                        }
+                        if (temp[ind - 1] != null)
+                        {
+                            if (temp[ind - 1].GetComponent<UnitMono>().mainUnit.currentHP > 0 &&
+                                temp[ind - 1].GetComponent<UnitMono>().mainUnit.statuses[26] == -1)
+                            {
+                                int rol = UnityEngine.Random.Range(1, 101);
+                                if (rol > temp[ind - 1].GetComponent<UnitMono>().mainUnit.RES)
+                                {
+                                    temp[ind - 1].GetComponent<UnitMono>().mainUnit.giveStatus(temp[ind].GetComponent<UnitMono>().mainUnit.statusIndex[26]);
+                                    dialogue.text = temp[ind - 1].GetComponent<UnitMono>().mainUnit.unitName + " was inflicted with " +
+                                        temp[ind - 1].GetComponent<UnitMono>().mainUnit.statusIndex[26] + " from " +
+                                        temp[ind].GetComponent<UnitMono>().mainUnit.unitName;
+                                    yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
+                                    yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                                }
+                            }
+                        }
+                        if (temp[ind + 2] != null)
+                        {
+                            if (temp[ind + 2].GetComponent<UnitMono>().mainUnit.currentHP > 0 &&
+                                temp[ind + 2].GetComponent<UnitMono>().mainUnit.statuses[26] == -1)
+                            {
+                                int rol = UnityEngine.Random.Range(1, 101);
+                                if (rol > temp[ind + 2].GetComponent<UnitMono>().mainUnit.RES)
+                                {
+                                    temp[ind + 2].GetComponent<UnitMono>().mainUnit.giveStatus(temp[ind].GetComponent<UnitMono>().mainUnit.statusIndex[26]);
+                                    dialogue.text = temp[ind + 2].GetComponent<UnitMono>().mainUnit.unitName + " was inflicted with " +
+                                        temp[ind + 2].GetComponent<UnitMono>().mainUnit.statusIndex[26] + " from " +
+                                        temp[ind].GetComponent<UnitMono>().mainUnit.unitName;
+                                    yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
+                                    yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                                }
+                            }
+                        }
+                        if (temp[ind - 2] != null)
+                        {
+                            if (temp[ind - 2].GetComponent<UnitMono>().mainUnit.currentHP > 0 &&
+                                temp[ind - 2].GetComponent<UnitMono>().mainUnit.statuses[26] == -1)
+                            {
+                                int rol = UnityEngine.Random.Range(1, 101);
+                                if (rol > temp[ind - 2].GetComponent<UnitMono>().mainUnit.RES)
+                                {
+                                    temp[ind - 2].GetComponent<UnitMono>().mainUnit.giveStatus(temp[ind].GetComponent<UnitMono>().mainUnit.statusIndex[26]);
+                                    dialogue.text = temp[ind - 2].GetComponent<UnitMono>().mainUnit.unitName + " was inflicted with " +
+                                        temp[ind - 2].GetComponent<UnitMono>().mainUnit.statusIndex[26] + " from " +
+                                        temp[ind].GetComponent<UnitMono>().mainUnit.unitName;
+                                    yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
+                                    yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                                }
+                            }
+                        }
+
                     }
                     if (newd)
                     {
@@ -5839,12 +5909,14 @@ public class BattleScript : MonoBehaviour
             {
                 for (int x = 0; x < partyNames.Count; x++)
                 {
+                    //If the unit is the player and they have gained madness
                     if (partyUnits[i].GetComponent<UnitMono>().mainUnit.player)
                     {
                         if (partyUnits[i].GetComponent<UnitMono>().mainUnit.statuses[25] != -1 && pc.statuses[25] == -1)
                         {
                             data.SetEP(data.GetEP() + 6);
                             dialogue.text = "Gained 6 Eldritch Points";
+                            yield return new WaitForSeconds(0.5f);
                             yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
                         }
                     }
@@ -5856,45 +5928,45 @@ public class BattleScript : MonoBehaviour
                             if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitWeapon != null && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitWeapon.promising)
                             {
                                 partyUnits[i].GetComponent<UnitMono>().mainUnit.unitWeapon.winCounter++;
-                                if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitWeapon.level == 1 && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitWeapon.winCounter == 2)
+                                if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitWeapon.level == 1 && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitWeapon.winCounter == 3)
                                 {
 
                                 }
-                                else if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitWeapon.level == 2 && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitWeapon.winCounter == 4)
+                                else if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitWeapon.level == 2 && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitWeapon.winCounter == 5)
                                 {
 
                                 }
-                                else if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitWeapon.level == 3 && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitWeapon.winCounter == 6)
+                                else if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitWeapon.level == 3 && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitWeapon.winCounter == 7)
                                 {
 
                                 }
                             }
                             if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitArmor != null && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitArmor.promising)
                             {
-                                if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitArmor.level == 1 && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitArmor.winCounter == 2)
+                                if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitArmor.level == 1 && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitArmor.winCounter == 3)
                                 {
 
                                 }
-                                else if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitArmor.level == 2 && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitArmor.winCounter == 4)
+                                else if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitArmor.level == 2 && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitArmor.winCounter == 5)
                                 {
 
                                 }
-                                else if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitArmor.level == 3 && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitArmor.winCounter == 6)
+                                else if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitArmor.level == 3 && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitArmor.winCounter == 7)
                                 {
 
                                 }
                             }
                             if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitTrinket != null && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitTrinket.promising)
                             {
-                                if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitTrinket.level == 1 && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitTrinket.winCounter == 2)
+                                if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitTrinket.level == 1 && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitTrinket.winCounter == 3)
                                 {
 
                                 }
-                                else if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitTrinket.level == 2 && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitTrinket.winCounter == 4)
+                                else if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitTrinket.level == 2 && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitTrinket.winCounter == 5)
                                 {
 
                                 }
-                                else if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitTrinket.level == 3 && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitTrinket.winCounter == 6)
+                                else if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitTrinket.level == 3 && partyUnits[i].GetComponent<UnitMono>().mainUnit.unitTrinket.winCounter == 7)
                                 {
 
                                 }
@@ -5923,6 +5995,7 @@ public class BattleScript : MonoBehaviour
             }
         }
         loader.Save(PlayerPrefs.GetInt("_active_save_file_"));
+        yield return new WaitForSeconds(0.5f);
         yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
         yield return fadeOut();
         StartCoroutine(NextScene());

@@ -35,13 +35,17 @@ public class UnitMono : MonoBehaviour
             mainUnit.sanReadOut = sanReadOut;
         }
         mainUnit.statusIcons = statusIcons;
-        mainUnit.statBlurb = statBlurb;
-        mainUnit.statBlurbBackB = statBlurbBackB;
-        mainUnit.statBlurbBackW = statBlurbBackW;
 
         mainUnit.statusBackW = statusBackW;
         mainUnit.statusBackColor = statusBackColor;
         mainUnit.statusText = statusText;
+    }
+    public void Update()
+    {
+        for (int i = 0; i < statusIcons.Count; i++)
+        {
+            
+        }
     }
 
     public unit mainUnit;
@@ -77,12 +81,7 @@ public class UnitMono : MonoBehaviour
     public Text sanSideText;    //SAN Icon
     public Text sanReadOut;     //Text showing exact sanity readout
 
-    public List<Image> statusIcons;
-    public Text statBlurb;
-    public Image statBlurbBackB;
-    public Image statBlurbBackW;
-
-
+    public List<Image> statusIcons; //List of status effect icons
 
     public Image statusBackW;   //White background of the status bar
     public Image statusBackColor;   //Colored background of the status bar
