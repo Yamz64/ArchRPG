@@ -1,7 +1,7 @@
 {
     "position": {
-        "x": -11.5,
-        "y": -13.25
+        "x": -2.5,
+        "y": -4.5
     },
     "flee": false,
     "unlocked_sans": [
@@ -73,7 +73,11 @@
             "will_buff": 0,
             "resistance_buff": 0,
             "speed_buff": 0,
-            "luck_buff": 0
+            "luck_buff": 0,
+            "eldritch": false,
+            "promising": false,
+            "level": 0,
+            "winCounter": 0
         },
         {
             "useable": false,
@@ -90,7 +94,11 @@
             "will_buff": 0,
             "resistance_buff": 0,
             "speed_buff": 0,
-            "luck_buff": 0
+            "luck_buff": 0,
+            "eldritch": false,
+            "promising": false,
+            "level": 0,
+            "winCounter": 0
         },
         {
             "useable": false,
@@ -107,7 +115,11 @@
             "will_buff": 0,
             "resistance_buff": 0,
             "speed_buff": 0,
-            "luck_buff": 0
+            "luck_buff": 0,
+            "eldritch": false,
+            "promising": false,
+            "level": 0,
+            "winCounter": 0
         }
     ],
     "armors": [
@@ -126,7 +138,11 @@
             "will_buff": 0,
             "resistance_buff": 0,
             "speed_buff": 0,
-            "luck_buff": 0
+            "luck_buff": 0,
+            "eldritch": false,
+            "promising": false,
+            "level": 0,
+            "winCounter": 0
         },
         {
             "useable": false,
@@ -143,7 +159,11 @@
             "will_buff": 0,
             "resistance_buff": 0,
             "speed_buff": 0,
-            "luck_buff": 0
+            "luck_buff": 0,
+            "eldritch": false,
+            "promising": false,
+            "level": 0,
+            "winCounter": 0
         },
         {
             "useable": false,
@@ -160,7 +180,11 @@
             "will_buff": 0,
             "resistance_buff": 0,
             "speed_buff": 0,
-            "luck_buff": 0
+            "luck_buff": 0,
+            "eldritch": false,
+            "promising": false,
+            "level": 0,
+            "winCounter": 0
         }
     ],
     "trinkets": [
@@ -179,7 +203,11 @@
             "will_buff": 0,
             "resistance_buff": 0,
             "speed_buff": 0,
-            "luck_buff": 0
+            "luck_buff": 0,
+            "eldritch": false,
+            "promising": false,
+            "level": 0,
+            "winCounter": 0
         },
         {
             "useable": false,
@@ -196,7 +224,11 @@
             "will_buff": 0,
             "resistance_buff": 0,
             "speed_buff": 0,
-            "luck_buff": 0
+            "luck_buff": 0,
+            "eldritch": false,
+            "promising": false,
+            "level": 0,
+            "winCounter": 0
         },
         {
             "useable": false,
@@ -213,7 +245,11 @@
             "will_buff": 0,
             "resistance_buff": 0,
             "speed_buff": 0,
-            "luck_buff": 0
+            "luck_buff": 0,
+            "eldritch": false,
+            "promising": false,
+            "level": 0,
+            "winCounter": 0
         }
     ],
     "inventory": [],
