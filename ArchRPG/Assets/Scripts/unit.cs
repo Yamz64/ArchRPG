@@ -167,6 +167,7 @@ public class unit
         {
             statusIcons[i] = ver.statusIcons[i];
         }
+        bas = ver.bas;
         statusBackW = ver.statusBackW;
         statusBackColor = ver.statusBackColor;
         statusText = ver.statusText;
@@ -262,6 +263,7 @@ public class unit
     public Text sanReadOut;         //Text showing exact sanity readout
 
     public List<Image> statusIcons; //List of status icons to place specific statuses in
+    public statTree bas;
 
     public Image statusBackW;       //White background of the status bar
     public Image statusBackColor;   //Colored background of the status bar
@@ -8752,7 +8754,7 @@ public class MrGoodMeat : unit
 {
     public MrGoodMeat()
     {
-        ImageFilePath = "";
+        ImageFilePath = "EnemySprites/Mr. GoodMeat";
         unitName = "Mr. GoodMeat";
         loadSprites();
 

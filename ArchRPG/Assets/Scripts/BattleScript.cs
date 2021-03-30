@@ -3883,7 +3883,7 @@ public class BattleScript : MonoBehaviour
                 enen = new MeatGolem();
                 boss4 = true;
             }
-            else if (loader.enemy_names[i] == "Mr Good Meat")
+            else if (loader.enemy_names[i] == "Mr. GoodMeat")
             {
                 enen = new MrGoodMeat();
                 boss4 = true;
@@ -6205,9 +6205,15 @@ public class BattleScript : MonoBehaviour
         //If player is choosing an action to do
         if (state == battleState.PLAYER && currentUnit < partyUnits.Count && partyUnits[currentUnit] != null && !working)
         {
+            //for (int x = 0; x < 8; x++)
+            //{
+            Debug.Log("Bounds(jim) == " + partyUnits[2].GetComponent<UnitMono>().mainUnit.statusIcons[0].GetComponent<BoxCollider2D>().bounds);
+            Debug.Log("Pos(jim) == " + partyUnits[2].GetComponent<UnitMono>().mainUnit.statusIcons[0].GetComponent<BoxCollider2D>().transform.position);
+            //Debug.Log("World(jim) == " + partyUnits[2].GetComponent<UnitMono>().mainUnit.statusIcons[0].GetComponent<BoxCollider2D>().transform.position);
+            //}
             //Make sure current unit is popped up
             Vector3 here = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.view.transform.position;
-            here.y = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.backupView.transform.position.y + 114;
+            here.y = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.backupView.transform.position.y + 1;
             partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.view.transform.position = here;
 
             //handle cursor movement in the various menus

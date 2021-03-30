@@ -1347,7 +1347,7 @@ GameObject:
   - component: {fileID: 4905747977007477784}
   - component: {fileID: 810251847889706056}
   - component: {fileID: 3558063542458066623}
-  - component: {fileID: 8576834289552120294}
+  - component: {fileID: 2557028544878772965}
   m_Layer: 5
   m_Name: Status1
   m_TagString: Untagged
@@ -1363,7 +1363,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2468864645293982594}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 175.7376}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4945606791488975650}
@@ -1425,57 +1425,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa813b5bb7f935c4e8f318a46765a375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  on: 0
-  blurbBack: {fileID: 2144534771925396917}
-  blurbBack2: {fileID: 4972182980148723205}
-  statBlurb: {fileID: 571764242052451708}
   desc: 
   count: 0
---- !u!114 &8576834289552120294
-MonoBehaviour:
+--- !u!61 &2557028544878772965
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2468864645293982594}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 3558063542458066623}
-          m_TargetAssemblyTypeName: statIcon, Assembly-CSharp
-          m_MethodName: OnMouseEnter
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 3558063542458066623}
-          m_TargetAssemblyTypeName: statIcon, Assembly-CSharp
-          m_MethodName: OnMouseExit
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 2.9291}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 53.18677, y: 49.940384}
+  m_EdgeRadius: 0
 --- !u!1 &2488515503588741140
 GameObject:
   m_ObjectHideFlags: 0
@@ -1567,7 +1544,7 @@ GameObject:
   - component: {fileID: 7357286845174867341}
   - component: {fileID: 5989358688247012430}
   - component: {fileID: 2307046585002816883}
-  - component: {fileID: 7529239290253121346}
+  - component: {fileID: 4813031489587202408}
   m_Layer: 5
   m_Name: Status4
   m_TagString: Untagged
@@ -1583,7 +1560,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2712469658350657537}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 175.7376}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2708607803535094900}
@@ -1645,57 +1622,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa813b5bb7f935c4e8f318a46765a375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  on: 0
-  blurbBack: {fileID: 2144534771925396917}
-  blurbBack2: {fileID: 4972182980148723205}
-  statBlurb: {fileID: 571764242052451708}
   desc: 
   count: 0
---- !u!114 &7529239290253121346
-MonoBehaviour:
+--- !u!61 &4813031489587202408
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2712469658350657537}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2307046585002816883}
-          m_TargetAssemblyTypeName: statIcon, Assembly-CSharp
-          m_MethodName: OnMouseEnter
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2307046585002816883}
-          m_TargetAssemblyTypeName: statIcon, Assembly-CSharp
-          m_MethodName: OnMouseExit
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.10918808}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 53.18677, y: 45.201775}
+  m_EdgeRadius: 0
 --- !u!1 &2724835904318973692
 GameObject:
   m_ObjectHideFlags: 0
@@ -1705,6 +1659,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9026527383426247442}
+  - component: {fileID: 6381656985980019469}
   m_Layer: 5
   m_Name: StatusEffects
   m_TagString: Untagged
@@ -1720,7 +1675,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2724835904318973692}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 224, y: -26, z: -175.7376}
+  m_LocalPosition: {x: 224, y: -26, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6474131881195870918}
@@ -1734,6 +1689,32 @@ Transform:
   m_Father: {fileID: 5863634071550135658}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6381656985980019469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2724835904318973692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73256c1fe1af39f4d809e346665dfadc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spaces:
+  - {fileID: 3558063542458066623}
+  - {fileID: 8774344479907526270}
+  - {fileID: 5768324067093837828}
+  - {fileID: 2307046585002816883}
+  - {fileID: 1923654716694470722}
+  - {fileID: 7129291657825441101}
+  - {fileID: 3669228024974113063}
+  - {fileID: 8112739743803137900}
+  desc: 
+  count: 0
+  blurbBack: {fileID: 2144534771925396917}
+  blurbBack2: {fileID: 4972182980148723205}
+  statBlurb: {fileID: 571764242052451708}
 --- !u!1 &2729532119982589007
 GameObject:
   m_ObjectHideFlags: 0
@@ -1972,7 +1953,7 @@ GameObject:
   - component: {fileID: 6810511940630016552}
   - component: {fileID: 3656978523039626502}
   - component: {fileID: 8112739743803137900}
-  - component: {fileID: 2387531857384159653}
+  - component: {fileID: 3444922249748936681}
   m_Layer: 5
   m_Name: Status8
   m_TagString: Untagged
@@ -1988,7 +1969,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2980081419258405351}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 175.7376}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8519233724525696861}
@@ -2050,57 +2031,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa813b5bb7f935c4e8f318a46765a375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  on: 0
-  blurbBack: {fileID: 2144534771925396917}
-  blurbBack2: {fileID: 4972182980148723205}
-  statBlurb: {fileID: 571764242052451708}
   desc: 
   count: 0
---- !u!114 &2387531857384159653
-MonoBehaviour:
+--- !u!61 &3444922249748936681
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2980081419258405351}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8112739743803137900}
-          m_TargetAssemblyTypeName: statIcon, Assembly-CSharp
-          m_MethodName: OnMouseEnter
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8112739743803137900}
-          m_TargetAssemblyTypeName: statIcon, Assembly-CSharp
-          m_MethodName: OnMouseExit
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 2.5103912}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 53.18677, y: 50.777798}
+  m_EdgeRadius: 0
 --- !u!1 &2990331899776070694
 GameObject:
   m_ObjectHideFlags: 0
@@ -2376,7 +2334,7 @@ GameObject:
   - component: {fileID: 1183237698140119631}
   - component: {fileID: 1337997316915807197}
   - component: {fileID: 5768324067093837828}
-  - component: {fileID: 8645040233622036262}
+  - component: {fileID: 4104811179671064950}
   m_Layer: 5
   m_Name: Status3
   m_TagString: Untagged
@@ -2392,7 +2350,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3848658128585376755}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 175.7376}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1773316176723626225}
@@ -2454,57 +2412,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa813b5bb7f935c4e8f318a46765a375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  on: 0
-  blurbBack: {fileID: 2144534771925396917}
-  blurbBack2: {fileID: 4972182980148723205}
-  statBlurb: {fileID: 571764242052451708}
   desc: 
   count: 0
---- !u!114 &8645040233622036262
-MonoBehaviour:
+--- !u!61 &4104811179671064950
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3848658128585376755}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5768324067093837828}
-          m_TargetAssemblyTypeName: statIcon, Assembly-CSharp
-          m_MethodName: OnMouseEnter
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5768324067093837828}
-          m_TargetAssemblyTypeName: statIcon, Assembly-CSharp
-          m_MethodName: OnMouseExit
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.67594147}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 53.18677, y: 46.33528}
+  m_EdgeRadius: 0
 --- !u!1 &3878833391958373687
 GameObject:
   m_ObjectHideFlags: 0
@@ -3107,7 +3042,7 @@ GameObject:
   - component: {fileID: 6486197635717204533}
   - component: {fileID: 6708051378814073782}
   - component: {fileID: 7129291657825441101}
-  - component: {fileID: 5349022728372911369}
+  - component: {fileID: 3152414174205436556}
   m_Layer: 5
   m_Name: Status6
   m_TagString: Untagged
@@ -3123,7 +3058,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4863348690425470657}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 175.7376}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6616383501773477534}
@@ -3185,57 +3120,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa813b5bb7f935c4e8f318a46765a375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  on: 0
-  blurbBack: {fileID: 2144534771925396917}
-  blurbBack2: {fileID: 4972182980148723205}
-  statBlurb: {fileID: 571764242052451708}
   desc: 
   count: 0
---- !u!114 &5349022728372911369
-MonoBehaviour:
+--- !u!61 &3152414174205436556
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4863348690425470657}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 7129291657825441101}
-          m_TargetAssemblyTypeName: statIcon, Assembly-CSharp
-          m_MethodName: OnMouseEnter
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 7129291657825441101}
-          m_TargetAssemblyTypeName: statIcon, Assembly-CSharp
-          m_MethodName: OnMouseExit
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.9333229}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 53.18677, y: 44.6755}
+  m_EdgeRadius: 0
 --- !u!1 &4882567954094669251
 GameObject:
   m_ObjectHideFlags: 0
@@ -3361,7 +3273,7 @@ GameObject:
   - component: {fileID: 6187759895349400580}
   - component: {fileID: 7489028408519575147}
   - component: {fileID: 3669228024974113063}
-  - component: {fileID: 1089809878766855797}
+  - component: {fileID: 4170753478356437766}
   m_Layer: 5
   m_Name: Status7
   m_TagString: Untagged
@@ -3377,7 +3289,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5818612650600272554}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 175.7376}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3499673622731867391}
@@ -3439,57 +3351,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa813b5bb7f935c4e8f318a46765a375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  on: 0
-  blurbBack: {fileID: 2144534771925396917}
-  blurbBack2: {fileID: 4972182980148723205}
-  statBlurb: {fileID: 571764242052451708}
   desc: 
   count: 0
---- !u!114 &1089809878766855797
-MonoBehaviour:
+--- !u!61 &4170753478356437766
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5818612650600272554}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 3669228024974113063}
-          m_TargetAssemblyTypeName: statIcon, Assembly-CSharp
-          m_MethodName: OnMouseEnter
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 3669228024974113063}
-          m_TargetAssemblyTypeName: statIcon, Assembly-CSharp
-          m_MethodName: OnMouseExit
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 2.7614288}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 53.18677, y: 50.275723}
+  m_EdgeRadius: 0
 --- !u!1 &5831512346278985377
 GameObject:
   m_ObjectHideFlags: 0
@@ -3716,6 +3605,7 @@ MonoBehaviour:
   - {fileID: 6708051378814073782}
   - {fileID: 7489028408519575147}
   - {fileID: 3656978523039626502}
+  bas: {fileID: 6381656985980019469}
   statusBackW: {fileID: 976114408232130404}
   statusBackColor: {fileID: 7469232624184205837}
   statusText: {fileID: 3097408027960065870}
@@ -4986,7 +4876,7 @@ GameObject:
   - component: {fileID: 1523753802204564898}
   - component: {fileID: 9214092161833029887}
   - component: {fileID: 1923654716694470722}
-  - component: {fileID: 5380547930779201024}
+  - component: {fileID: 6837396987757323254}
   m_Layer: 5
   m_Name: Status5
   m_TagString: Untagged
@@ -5002,7 +4892,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8492004545979270537}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 175.7376}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3863814131014629397}
@@ -5064,57 +4954,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa813b5bb7f935c4e8f318a46765a375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  on: 0
-  blurbBack: {fileID: 2144534771925396917}
-  blurbBack2: {fileID: 4972182980148723205}
-  statBlurb: {fileID: 571764242052451708}
   desc: 
   count: 0
---- !u!114 &5380547930779201024
-MonoBehaviour:
+--- !u!61 &6837396987757323254
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8492004545979270537}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1923654716694470722}
-          m_TargetAssemblyTypeName: statIcon, Assembly-CSharp
-          m_MethodName: OnMouseEnter
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1923654716694470722}
-          m_TargetAssemblyTypeName: statIcon, Assembly-CSharp
-          m_MethodName: OnMouseExit
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.2248154, y: -1.0285187}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 50.49382, y: 45.51361}
+  m_EdgeRadius: 0
 --- !u!1 &8609166636842899291
 GameObject:
   m_ObjectHideFlags: 0
@@ -5165,7 +5032,7 @@ GameObject:
   - component: {fileID: 4978028932182883850}
   - component: {fileID: 5929143772979351894}
   - component: {fileID: 8774344479907526270}
-  - component: {fileID: 2999327851286045526}
+  - component: {fileID: 1611573058627078236}
   m_Layer: 5
   m_Name: Status2
   m_TagString: Untagged
@@ -5181,7 +5048,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8748143772220382372}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 175.7376}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3289565638605707796}
@@ -5243,57 +5110,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa813b5bb7f935c4e8f318a46765a375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  on: 0
-  blurbBack: {fileID: 2144534771925396917}
-  blurbBack2: {fileID: 4972182980148723205}
-  statBlurb: {fileID: 571764242052451708}
   desc: 
   count: 0
---- !u!114 &2999327851286045526
-MonoBehaviour:
+--- !u!61 &1611573058627078236
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8748143772220382372}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8774344479907526270}
-          m_TargetAssemblyTypeName: statIcon, Assembly-CSharp
-          m_MethodName: OnMouseEnter
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8774344479907526270}
-          m_TargetAssemblyTypeName: statIcon, Assembly-CSharp
-          m_MethodName: OnMouseExit
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 2.9291077}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 53.18677, y: 49.94037}
+  m_EdgeRadius: 0
 --- !u!1 &8762747907985363526
 GameObject:
   m_ObjectHideFlags: 0
