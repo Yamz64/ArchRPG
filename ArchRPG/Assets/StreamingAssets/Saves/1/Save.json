@@ -1,7 +1,7 @@
 {
     "position": {
-        "x": 11.506400108337403,
-        "y": 12.436408042907715
+        "x": -18.0,
+        "y": 1.5
     },
     "flee": false,
     "unlocked_sans": [
@@ -348,17 +348,12 @@
             ]
         }
     ],
-    "active_scene": "SchoolHallwayScene",
+    "active_scene": "",
     "names": [
         "Player",
         "Clyve",
         "Jim"
     ],
     "e_abilities": [],
-    "enemy_names": [
-        "Locker Lurker",
-        "",
-        "",
-        ""
-    ]
+    "enemy_names": []
 }
