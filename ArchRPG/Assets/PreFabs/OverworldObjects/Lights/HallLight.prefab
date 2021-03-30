@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   predominant_state: 1
-  predominant_timer: 1
+  predominant_timer: 2
   subsequent_timer: 0.25
 --- !u!1 &8914464199337047767
 GameObject:
