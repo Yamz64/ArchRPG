@@ -28,14 +28,14 @@
     "progress": 0,
     "money": 50,
     "HPs": [
-        67,
-        50,
-        25
+        207,
+        235,
+        220
     ],
     "SPs": [
-        14,
-        12,
-        18
+        50,
+        70,
+        88
     ],
     "SANs": [
         100,
@@ -48,9 +48,9 @@
         98
     ],
     "levels": [
-        3,
-        3,
-        3
+        10,
+        10,
+        10
     ],
     "positions": [
         0,
@@ -322,7 +322,7 @@
                 -1,
                 -1,
                 -1,
-                99,
+                -1,
                 -1,
                 -1,
                 -1,
@@ -351,9 +351,9 @@
     "active_scene": "",
     "names": [
         "Player",
-        "Clyve",
-        "Jim"
+        "WhiteKnight",
+        "Tim"
     ],
     "e_abilities": [],
-    "enemy_names": []
+    "enemy_names": ["Killer Cone", "Killer Cone", "Killer Cone", "Killer Cone"]
 }

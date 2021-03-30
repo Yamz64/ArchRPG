@@ -280,7 +280,23 @@ public class unit
     {
         //Debug.Log("view sprite == " + view.sprite);
         if (!pic)
-        view.sprite = Resources.Load<Sprite>(ImageFilePath);
+        {
+            view.sprite = Resources.Load<Sprite>(ImageFilePath);
+            if (aggro > 0)
+            {
+                Color temp = view.color;
+                temp.g = (float)(86 / 255);
+                temp.b = (float)(78 / 255);
+                view.color = temp;
+            }
+            else
+            {
+                Color temp = view.color;
+                temp.g = (float)(255 / 255);
+                temp.b = (float)(255 / 255);
+                view.color = temp;
+            }
+        }
 
         //Debug.Log("view sprite now == " + view.sprite);
 

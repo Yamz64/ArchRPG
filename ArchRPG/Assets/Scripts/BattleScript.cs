@@ -5391,6 +5391,7 @@ public class BattleScript : MonoBehaviour
         red.r = 1.0f;
         yield return new WaitForSeconds(0.5f);
         bot.BBackground.color = red;
+        bot.setHUD();
         yield return new WaitForSeconds(0.5f);
         bot.BBackground.color = ori;
     }
@@ -5405,6 +5406,7 @@ public class BattleScript : MonoBehaviour
         now.r = 1.0f;
         yield return new WaitForSeconds(0.5f);
         bot.BBackground.color = now;
+        bot.setHUD();
         yield return new WaitForSeconds(0.5f);
         bot.BBackground.color = ori;
     }
@@ -5419,6 +5421,7 @@ public class BattleScript : MonoBehaviour
         green.r = 0.0f;
         yield return new WaitForSeconds(0.5f);
         bot.BBackground.color = green;
+        bot.setHUD();
         yield return new WaitForSeconds(0.5f);
         bot.BBackground.color = ori;
     }
@@ -5433,6 +5436,7 @@ public class BattleScript : MonoBehaviour
         green.r = 0.0f;
         yield return new WaitForSeconds(0.5f);
         bot.BBackground.color = green;
+        bot.setHUD();
         yield return new WaitForSeconds(0.5f);
         bot.BBackground.color = ori;
     }
@@ -5447,6 +5451,7 @@ public class BattleScript : MonoBehaviour
         green.r = 0.5f;
         yield return new WaitForSeconds(0.5f);
         bot.BBackground.color = green;
+        bot.setHUD();
         yield return new WaitForSeconds(0.5f);
         bot.BBackground.color = ori;
     }
@@ -5461,6 +5466,7 @@ public class BattleScript : MonoBehaviour
         green.r = 0.75f;
         yield return new WaitForSeconds(0.5f);
         bot.BBackground.color = green;
+        bot.setHUD();
         yield return new WaitForSeconds(0.5f);
         bot.BBackground.color = ori;
     }
