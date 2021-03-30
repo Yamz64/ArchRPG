@@ -183,17 +183,17 @@
                 {
                     "o": "TestSave",
                     "interacted": false
+                },
+                {
+                    "o": "Tim",
+                    "interacted": true
+                },
+                {
+                    "o": "MeatFactoryLoadingZone",
+                    "interacted": true
                 }
             ],
-            "saves": [
-                {
-                    "name": "Subway Exit",
-                    "location": {
-                        "x": 25.5,
-                        "y": 2.5
-                    }
-                }
-            ]
+            "saves": []
         }
     ]
 }

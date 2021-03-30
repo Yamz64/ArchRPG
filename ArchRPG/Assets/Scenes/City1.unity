@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589ea63de86f2f8469187f04dfa527f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mark_interactable: 0
   spawn_position: {x: -70.5, y: 7.5}
   scene: City2
 --- !u!61 &10411469
@@ -38975,7 +38976,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1396058554207331182, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
       propertyPath: current_map.objects.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1396058554207331182, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
       propertyPath: current_map.name
@@ -38984,6 +38985,14 @@ PrefabInstance:
     - target: {fileID: 1396058554207331182, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
       propertyPath: current_map.objects.Array.data[0].o
       value: TestSave
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331182, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: current_map.objects.Array.data[1].o
+      value: Tim
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331182, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: current_map.objects.Array.data[2].o
+      value: MeatFactoryLoadingZone
       objectReference: {fileID: 0}
     - target: {fileID: 1396058554207331183, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
       propertyPath: m_Name
@@ -44454,7 +44463,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_Name
-      value: OverworldCharacter (8)
+      value: Tim
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.x
@@ -44500,8 +44509,91 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4998140645680048167, guid: 52110445f037b614787b39ff46091263, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f5b74a10ceca5c94382b9ae2603deb63, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &1462841680 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1462841679}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1462841682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462841680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c336f3fa752da64cb47695af0a6afb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: Hello good pal, and possible consumer of Goodmeat Corporation's fine meat-like
+      products!
+  - text: Would you like to purchase one of our limited edition Arbor Day Goodmeat
+      Meat Dogs?
+  - text: Uh, no thanks did you say Arbor Day? Isn't that in April?
+  - text: Well, off the record, I think you're correct sir.
+  - text: Isn't it strange that we're celebrating Arbor Day several months early
+      in a city with no trees in it?
+  - text: No that I think of it, it's a little strange.
+  - text: So why is there a parade happening for a holiday that isn't even celebrated
+      today?
+  - text: I need to get past the float so that I can stop the end of the world!
+  - text: Listen buddy, I don't mean to sound rude, but I'm here to sell hotdogs
+      for Mr. Goodmeat,
+  - text: not to ask or answer questions and I'm on the clock here.
+  - text: If you've got any complaints, take it up with Mr. Goodmeat, in the factory
+      behind me, he's the one who arranged this whole parade.
+  container:
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 17
+      upper: 21
+    - name: Color
+      color: {r: 1, g: 0, b: 0, a: 1}
+      lower: 39
+      upper: 52
+  - effects:
+    - name: Color
+      color: {r: 0.5019608, g: 0, b: 1, a: 1}
+      lower: 60
+      upper: 71
+  - effects: []
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 49
+      upper: 69
+  dialogueImages:
+  - sprite_path: CharacterSprites/Tim
+    lines: 2
+  - sprite_path: CharacterSprites/PC
+    lines: 1
+  - sprite_path: CharacterSprites/Tim
+    lines: 1
+  - sprite_path: CharacterSprites/PC
+    lines: 1
+  - sprite_path: CharacterSprites/Tim
+    lines: 1
+  - sprite_path: CharacterSprites/PC
+    lines: 2
+  - sprite_path: CharacterSprites/Tim
+    lines: 3
+  player: {fileID: 0}
 --- !u!1001 &1486951534
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44996,6 +45088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589ea63de86f2f8469187f04dfa527f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mark_interactable: 0
   spawn_position: {x: -82, y: 7.5}
   scene: City2
 --- !u!61 &1573893821
@@ -45959,6 +46052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589ea63de86f2f8469187f04dfa527f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mark_interactable: 1
   spawn_position: {x: -2.5, y: -4.5}
   scene: MeatFactory1
 --- !u!61 &1970097494
@@ -46459,6 +46553,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 2028388997}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2035532183 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 236483539}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2035532184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035532183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a2e2496bd3091c498e55c224e1e2532, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: It's Arbor Day!
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &2044109642
 PrefabInstance:
   m_ObjectHideFlags: 0

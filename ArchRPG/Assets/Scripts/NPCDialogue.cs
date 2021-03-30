@@ -7,6 +7,8 @@ public class NPCDialogue : InteractableBaseClass
     [System.Serializable]
     public class ExpandedString
     {
+        public ExpandedString() { }
+        public ExpandedString(string e) { text = e; }
         [TextArea(3, 5)]
         public string text;
     }
@@ -14,6 +16,8 @@ public class NPCDialogue : InteractableBaseClass
     [System.Serializable]
     public class DialogueImages
     {
+        public DialogueImages() { }
+        public DialogueImages(string p, int l = 1) { sprite_path = p; lines = l; }
         public string sprite_path;
         public int lines;
     }
