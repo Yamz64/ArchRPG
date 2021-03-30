@@ -16,6 +16,7 @@ public class LightFlicker : MonoBehaviour
     private float subsequent_timer_max;
 
     private SpriteMask mask;
+    private SpriteMask parent_mask;
     private GameObject cookie;
 
     // Start is called before the first frame update
@@ -29,6 +30,7 @@ public class LightFlicker : MonoBehaviour
         current_state = Random.value > .5f;
 
         mask = GetComponent<SpriteMask>();
+        if (transform.parent != null) parent_mask = transform.parent.GetComponent<SpriteMask>();
         cookie = transform.GetChild(0).gameObject;
     }
 
@@ -65,11 +67,13 @@ public class LightFlicker : MonoBehaviour
             if (current_state)
             {
                 mask.enabled = true;
+                if (parent_mask != null) parent_mask.enabled = true;
                 cookie.SetActive(true);
             }
             else
             {
                 mask.enabled = false;
+                if (parent_mask != null) parent_mask.enabled = false;
                 cookie.SetActive(false);
             }
         }
@@ -79,11 +83,13 @@ public class LightFlicker : MonoBehaviour
             if (!current_state)
             {
                 mask.enabled = true;
+                if (parent_mask != null) parent_mask.enabled = true;
                 cookie.SetActive(true);
             }
             else
             {
                 mask.enabled = false;
+                if (parent_mask != null) parent_mask.enabled = false;
                 cookie.SetActive(false);
             }
         }
