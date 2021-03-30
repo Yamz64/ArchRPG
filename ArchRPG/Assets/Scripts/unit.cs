@@ -6486,7 +6486,7 @@ public class WhiteKnightUnit : unit
     public WhiteKnightUnit(int lev = 1)
     {
         unitName = "White Knight";
-        ImageFilePath = "CharacterSprites/Background Kid";
+        ImageFilePath = "CharacterSprites/White Knight";
         loadSprites();
         level = lev;
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
@@ -8723,7 +8723,7 @@ public class MeatGolem : unit
 {
     public MeatGolem()
     {
-        ImageFilePath = "";
+        ImageFilePath = "EnemySprites/Meat Golem";
         unitName = "Meat Golem";
         loadSprites();
 
