@@ -561,8 +561,9 @@ public class BattleScript : MonoBehaviour
             {
                 transform.GetChild(1).Find("AbilityMenu").GetChild(2).GetChild(3).GetComponent<Image>().sprite = Resources.Load<Sprite>(ability.image_file_path);
             }
-            //update item description
+            //update ability description
             transform.GetChild(1).Find("AbilityMenu").GetChild(2).GetChild(4).GetComponent<Text>().text = ability.desc1;
+            transform.GetChild(1).Find("AbilityMenu").GetChild(2).GetChild(7).GetComponent<Text>().text = "Cost: " + ability.cost;
             transform.GetChild(1).Find("AbilityMenu").GetChild(2).GetChild(5).GetComponent<Text>().text = ability.desc2;
 
             //Update ability line icon
@@ -3316,7 +3317,13 @@ public class BattleScript : MonoBehaviour
                     p.maxSP = p.currentSP;
                 }
                 p.sanity = loader.SANs[i];
-                p.statuses = loader.statuses[i].status_effects;
+                for (int v = 0; v < loader.statuses[i].status_effects.Count; v++)
+                {
+                    if (p.statuses[v] == -1)
+                    {
+                        p.statuses[v] = loader.statuses[i].status_effects[v];
+                    }
+                }
 
                 //Combine/customize prefabs (UI base and unit base)
                 GameObject unitGo = Instantiate(partyPrefabs[loader.positions[i]], allyStations[loader.positions[i]]);

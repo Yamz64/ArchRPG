@@ -138,7 +138,7 @@ public class unit
         abilities = ver.abilities;
         weaknesses = ver.weaknesses;
         resistances = ver.resistances;
-        //statuses = ver.statuses;
+        statuses = ver.statuses;
         sprites = ver.sprites;
         position = ver.position;
     }
@@ -569,21 +569,7 @@ public class unit
 
     }
 
-    //Get the attack at the given index
-    /*
-    public Ability getAttack(int index)
-    {
-        if (index < attacks.Count)
-        {
-            return attacks[index];
-        }
-        else
-        {
-            return null;
-        }
-    }
-    */
-
+    //Get the ability at the given index
     public Ability getAbility(int index)
     {
         if (index < abilities.Count)
@@ -596,14 +582,7 @@ public class unit
         }
     }
 
-    //Add an attack to the unit's list of attacks
-    /*
-    public void addAttack(Ability move)
-    {
-        attacks.Add(move);
-    }
-    */
-
+    //Add an ability to the unit's list of abilities
     public void addAbility(Ability move)
     {
         abilities.Add(move);
@@ -629,108 +608,6 @@ public class unit
         }
     }
 
-    /*
-    public bool useAttack(int index, unit target)
-    {
-        Ability ata = getAttack(index);
-        if (ata.position == 0 || (ata.position - 1 == position))
-        {
-            //If SP isn't 0 or the unit is an enemy
-            if (currentSP > 0 || enemy == true)
-            {
-                if (!enemy)
-                {
-                    setSP(currentSP - ata.cost);
-                }
-                if (currentSP == 0 && !enemy)
-                {
-                    outOfSP = true;
-                }
-                //Calculate damage of the attack
-                int val;
-                if (statuses[6] != -1)
-                {
-                    val = ata.damage + ((int)(ATK * 1.25) / 100);
-                }
-                else
-                {
-                    val = ata.damage + (ATK / 100);
-                }
-                if (ata.damageType == 0)
-                {
-                    //Check if DEF is reduced by a status like Blunt Trauma
-                    if (target.statuses[4] == -1 && target.statuses[7] == -1)
-                    {
-                        val -= target.DEF / 200;
-                    }
-                    else if (target.statuses[4] != -1 && target.statuses[7] == -1)
-                    {
-                        val -= (int)(target.DEF * 0.75) / 200;
-                    }
-                    else if (target.statuses[4] == -1 && target.statuses[7] != -1)
-                    {
-                        val -= (int)(target.DEF * 0.5) / 200;
-                    }
-                    else
-                    {
-                        val -= (int)(target.DEF * 0.25) / 200;
-                    }
-                }
-                else
-                {
-                    val -= target.WILL / 200;
-                }
-                int crit = UnityEngine.Random.Range(1, 101);
-                if (crit <= LCK)
-                {
-                    val += (val / 2);
-                }
-                bool miss = false;
-                /*
-                if (status == "Confused")
-                {
-                    int dum = UnityEngine.Random.Range(1, 101);
-                    if (dum > 50)
-                    {
-                        miss = true;
-                    }
-                }
-                
-                //Check if damage is reduced from the weeping status
-                if (statuses[2] != -1)
-                {
-                    int dum = UnityEngine.Random.Range(1, 4);
-                    if (dum == 1)
-                    {
-                        val = val / 5;
-                    }
-                }
-                if (miss == false)
-                {
-                    //Check if target is dead from attack
-                    bool d = target.takeDamage(val);
-                    target.setHP(target.currentHP);
-                    if (d == false)
-                    {
-                        if (!ata.statusEffect.Equals(""))
-                        {
-                            target.giveStatus(ata.statusEffect);
-                        }
-                    }
-                    return d;
-                }
-                else   {    return false;    }
-            }
-            return false;
-        }
-        else if (ata.position - 1 != position)
-        {
-            return true;
-        }
-        return false;
-    }
-
-    */
     //Use the ability at the given index and calculate damage
     //index -- of ability
     //target
@@ -1463,31 +1340,6 @@ public class unit
         }
     }
 
-    //Give the matching status to this unit
-    /*
-    public void giveStatus(int id)
-    {
-        if (status == "")
-        {
-            if (id == 0)
-            {
-                status = "Vomiting";
-                statusCounter = 3;
-
-            }
-            else
-            {
-                status = "Pertubed";
-                statusCounter = 1;
-            }
-            statusText.text = status;
-
-            statusBackW.gameObject.SetActive(true);
-            statusBackColor.gameObject.SetActive(true);
-            statusText.gameObject.SetActive(true);
-        }
-    }
-    */
     //Give the named status to this unit
     public void giveStatus(string id)
     {

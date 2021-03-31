@@ -1516,7 +1516,7 @@ namespace PlayerAbilities
         public Scrutinize()
         {
             name = "Scrutinize";
-            desc1 = "Look for a weak spot\nCost: 2";
+            desc1 = "Look for a weak spot";
             desc2 = "You remove your glasses so that you can closely inspect your enemies with your near-sightedness - reveals an enemy's weakness";
             cost = 2;
             position = 0;
@@ -1625,7 +1625,7 @@ namespace PlayerAbilities
         {
             name = "Diagnosis";
 
-            desc1 = "Check their general health\nCost: 3";
+            desc1 = "Check their general health";
             desc2 = "You remove your glasses so that you can closely inspect your enemies with your near-sightedness - reveals an enemy's health status";
             cost = 3;
             position = 0;
@@ -1657,7 +1657,7 @@ namespace PlayerAbilities
         public Analysis()
         {
             name = "Analysis";
-            desc1 = "Opens the enemy up to more effective attacks\nCost = 4";
+            desc1 = "Opens the enemy up to more effective attacks";
             desc2 = "After putting aside your clear superiority, you come up with an unbiased view of the enemies weakness and how to exploit it.";
             cost = 4;
             position = 1;
@@ -1767,7 +1767,7 @@ namespace ClyveAbilities
         public NoShower()
         {
             name = "I Didn't Shower Today";
-            desc1 = "Induce vomiting\nCost: 3";
+            desc1 = "Induce vomiting";
             desc2 = "Clyve reminds everyone that he didn't take a shower today, you aren't surprised, but this may cause the enemy to vomit a bit.";
             cost = 3;
             target = 0;
@@ -1784,7 +1784,7 @@ namespace ClyveAbilities
         public ShoeRemoval()
         {
             name = "Shoe Removal";
-            desc1 = "Induce weeping\nCost: 4";
+            desc1 = "Induce weeping";
             desc2 = "Clyve removes his shoe, you don't want to describe the smell in too much detail, but it may cause the enemy to tear up a bit.";
             cost = 4;
             target = 0;
@@ -1801,7 +1801,7 @@ namespace ClyveAbilities
         public Halitosis()
         {
             name = "Halitosis";
-            desc1 = "AOE status effect attack\nCost = 6";
+            desc1 = "AOE status effect attack";
             desc2 = "It is quite clear the Clyve hasn’t brushed his teeth… like ever, it’s remarkable he still has his teeth.";
             cost = 6;
             position = 1;
@@ -1902,7 +1902,7 @@ namespace JimAbilities
         public Antacid()
         {
             name = "Antacid";
-            desc1 = "Cure vomiting\nCost: 3";
+            desc1 = "Cure vomiting";
             desc2 = "Jim has always been a sickly child, so his mom has sent him to school with these miracle tablets for as long as you can remember." +
                 "They cure vomiting and other such stomach ailments.";
             cost = 3;
@@ -1924,7 +1924,7 @@ namespace JimAbilities
         public Bandaid()
         {
             name = "Bandaid";
-            desc1 = "Heal a friend by 10 HP\nCost: 3";
+            desc1 = "Heal a friend by 10 HP";
             desc2 = "Jim produces a small adhesive bandage from his belongings to ease the pain of others.";
             cost = 3;
             target = 0;
@@ -1948,7 +1948,7 @@ namespace JimAbilities
         public UncannyRemedy()
         {
             name = "Uncanny Remedy";
-            desc1 = "Full party weak heal (scales with POW)\nCost = 5";
+            desc1 = "Full party weak heal (scales with POW)";
             desc2 = "The pain is suddenly, gone? It seems Jim’s concussed brain has tapped into some strange curative magic.";
             cost = 5;
             position = 2;
@@ -2069,7 +2069,7 @@ namespace NormAbilities
         public PoopThrow()
         {
             name = "Poop Throw";
-            desc1 = "Backline Projectile Attack\nCost: 3";
+            desc1 = "Backline Projectile Attack";
             desc2 = "Well of course we're going to Throw poo at them!  This attack may cause vomiting in addition to a small amount of chemical damage";
             cost = 3;
             damage = 8;
@@ -2084,7 +2084,7 @@ namespace NormAbilities
         public EatBanana()
         {
             name = "Banana Consumption";
-            desc1 = "Heal self by 25 HP\nCost: 5";
+            desc1 = "Heal self by 25 HP";
             desc2 = "Norm produces his favorite food from his secret stash, consumes it healing a small amount of health, and lets out a hearty belch rubbing his stomach.";
             cost = 5;
             damage = 0;
@@ -2106,7 +2106,7 @@ namespace NormAbilities
         public PrimatePowerbomb()
         {
             name = "Primate Powerbomb";
-            desc1 = "Powerful Physical attack to hit 2 enemies\nCost = 8";
+            desc1 = "Powerful Physical attack to hit 2 enemies";
             desc2 = "Norm has always been a large fan of professional wrestling, and decides to practice some of his moves.";
             cost = 8;
             target = 2;
@@ -2115,7 +2115,6 @@ namespace NormAbilities
         }
     }
 
-    //Not sure if single or multi target
     public class ApeArmbar : Ability
     {
         public ApeArmbar()
@@ -2125,6 +2124,7 @@ namespace NormAbilities
             desc2 = "Norm engages his opponent with a crushing grapple in his massive wingspan." +
                 " He learned this from his favorite wrestler, Bulk Bogan.";
             cost = 10;
+            target = 0;
             position = 1;
             damage = 10;
             statusEffect = "Restrained";
@@ -2190,7 +2190,7 @@ namespace ShirleyAbilities
         public OpenFire()
         {
             name = "Open Fire";
-            desc1 = "Shoot at the enemy to deal 10 dmg\nCost: 4";
+            desc1 = "Shoot at the enemy to deal 10 dmg";
             desc2 = "Shirley quickly draws an Aston Model 1842 flintlock pistol replica, fires at the enemy, and stows it away.  This ability is very quick.";
             cost = 4;
             target = 0;
@@ -2206,7 +2206,7 @@ namespace ShirleyAbilities
         public Frontline()
         {
             name = "To the Frontlines!";
-            desc1 = "Induce Zealous on an ally\nCost = 6";
+            desc1 = "Induce Zealous on an ally";
             desc2 = "After letting out a zealous warcry, Shirley commands a party member to the frontline, they seem really fired up though.  Buffs ally with Zealous";
             cost = 6;
             damage = 0;
@@ -2227,7 +2227,7 @@ namespace ShirleyAbilities
         public BugleCall()
         {
             name = "Bugle Call";
-            desc1 = "Backline support ability\nCost = 7";
+            desc1 = "Backline support ability";
             desc2 = "You’re not sure where Shirley got a bugle from, " +
                 "in fact it might just be a car funnel taped to a kazoo, " +
                 "all you know is that you’re real confident you’re gonna win this!";
@@ -2324,7 +2324,7 @@ namespace RalphAbilities
         public PistolWhip()
         {
             name = "Pistol Whip";
-            desc1 = "Frontline Melee Attack\nCost = 2";
+            desc1 = "Frontline Melee Attack";
             desc2 = "Little Ralphy knows that if he actually fired his glock then there " +
                 "would be a lot of paperwork that would ensure, but if he uses it to pistol " +
                 "whip people, then there’s less paperwork!";
@@ -2342,7 +2342,7 @@ namespace RalphAbilities
         public SmokeBreak()
         {
             name = "Smoke Break";
-            desc1 = "Backline Support Ability\nCost = 1";
+            desc1 = "Backline Support Ability";
             desc2 = "Despite various warnings from the AMA, his ‘parents’, " +
                 "and movie ads about smoking causing cancer, Little Ralphy shares " +
                 "a cig with a party member to reduce stress.";
@@ -2370,7 +2370,7 @@ namespace RalphAbilities
         public Taser()
         {
             name = "Taser";
-            desc1 = "A stunning electrical attack\nCost = 10";
+            desc1 = "A stunning electrical attack";
             desc2 = "Stop right there- oh shit my finger slipped… Welp that’s gonna’ be a lot of paperwork...";
             cost = 10;
             damage = 10;
@@ -2463,7 +2463,7 @@ namespace LucyAbilities
         public FungalRat()
         {
             name = "Fungal Rat";
-            desc1 = "Single target debuff attack\nCost = 4";
+            desc1 = "Single target debuff attack";
             desc2 = "These rats have been bred to be the perfect host " +
                 "for a parasitic fungus, the result is unsightly and churns the stomach to look at.";
             cost = 4;
@@ -2480,7 +2480,7 @@ namespace LucyAbilities
         public RodentialKindling()
         {
             name = "Rodential Kindling";
-            desc1 = "Single target debuff attack\nCost = 6";
+            desc1 = "Single target debuff attack";
             desc2 = "Lucy commands a breed of rat with particularly flammable " +
                 "skin oil and dry fur to pile onto a target and make them more flammable.";
             cost = 6;
@@ -2496,7 +2496,7 @@ namespace LucyAbilities
         public FeedTheMasses()
         {
             name = "Feed the Masses";
-            desc1 = "A strong debuff attack\nCost = 8";
+            desc1 = "A strong debuff attack";
             desc2 = "Lucy commands her “children” to feed on a " +
                 "target, their appetite is particularly voracious today.";
             cost = 8;
