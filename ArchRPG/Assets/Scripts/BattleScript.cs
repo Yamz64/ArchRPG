@@ -1085,6 +1085,7 @@ public class BattleScript : MonoBehaviour
                                 partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].cost)
                             {
                                 dialogue.text = "Insufficient SP";
+                                Debug.Log("SP not enought");
                             }
                             else
                             {
@@ -1118,24 +1119,21 @@ public class BattleScript : MonoBehaviour
                                     else
                                     {
                                         useSound(1);
-                                        Debug.Log("Calculating speed");
+                                        //Debug.Log("Calculating speed");
                                         int speed = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI();
                                         if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[22] != -1)
                                         {
                                             speed = (int)(speed * 0.75);
                                         }
-                                        Debug.Log("Speed calculated");
                                         actions.Add(new action(currentUnit, "ability", highlighted_ability, currentEnemy, speed,
                                             partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].fast));
-                                        Debug.Log("Action ability added for " + currentUnit);
                                         currentEnemy = 0;
                                         highlighted_ability = 0;
+                                        ability_offset = 0;
                                         currentUnit += 1;
-                                        Debug.Log("Undoing last unit - " + (currentUnit-1));
                                         Vector3 here = partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.view.transform.position;
                                         here.y = partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.backupView.transform.position.y;
                                         partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.view.transform.position = here;
-                                        Debug.Log("Last unit undone); - " + (currentUnit - 1));
                                         moves += 1;
 
                                         CloseUseAbilityMenu();
@@ -1412,6 +1410,7 @@ public class BattleScript : MonoBehaviour
                 }
                 target1 = -1;
                 currentEnemy = 0;
+                ability_offset = 0;
                 highlighted_ability = 0;
                 currentUnit += 1;
                 Vector3 here = partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.view.transform.position;
@@ -1573,6 +1572,7 @@ public class BattleScript : MonoBehaviour
                             partyUnits[currentAlly].GetComponent<UnitMono>().mainUnit.unitName));
                         currentAlly = 0;
                         highlighted_ability = 0;
+                        ability_offset = 0;
                         currentUnit += 1;
                         Vector3 here = partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.view.transform.position;
                         here.y = partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.backupView.transform.position.y;
@@ -1657,6 +1657,7 @@ public class BattleScript : MonoBehaviour
 
                             currentAlly = 0;
                             highlighted_ability = 0;
+                            ability_offset = 0;
                             currentUnit += 1;
                             Vector3 here = partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.view.transform.position;
                             here.y = partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.backupView.transform.position.y;
@@ -3331,6 +3332,7 @@ public class BattleScript : MonoBehaviour
 
                 p.copyUnitUI(unitGo.GetComponent<UnitMono>().mainUnit);
                 unitGo.GetComponent<UnitMono>().mainUnit.copyUnitStats(p);
+                p.updateUnit(p.level);
                 p.setHUD();
                 if (i == 2 || i == 3)
                 {

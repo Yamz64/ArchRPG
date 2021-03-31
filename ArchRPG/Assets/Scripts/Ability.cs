@@ -1891,6 +1891,7 @@ namespace ClyveAbilities
             cost = 10;
             target = 3;
             statusEffect = "Diseased";
+            selfStatus = "Diseased";
         }
     }
 }

@@ -124,6 +124,7 @@ public class unit
             currentSP = ver.currentSP;
         }
         sanity = ver.sanity;
+        if (sanity < 50) giveEldritchAbility();
         enemy = ver.enemy;
         player = ver.player;
         ATK = ver.ATK;
@@ -318,6 +319,7 @@ public class unit
         hpReadOut.text = currentHP + " / " + maxHP;
         if (!enemy)
         {
+            if (sanity < 50) hasMP = true;
             if (hasMP)
             {
                 spSideText.text = "MP";
@@ -2930,7 +2932,7 @@ public class ClyveUnit : unit
             abilities.Add(new ClyveAbilities.InfernalShower());
         }
 
-        if (sanity <= 50)
+        if (sanity < 50)
         {
             abilities.Add(new ClyveAbilities.Dysentery());
         }
@@ -3498,7 +3500,7 @@ public class JimUnit : unit
         {
             abilities.Add(new JimAbilities.MagicalInspiration());
         }
-        if (sanity <= 50)
+        if (sanity < 50)
         {
             abilities.Add(new JimAbilities.MalevolentSlapstick());
         }
