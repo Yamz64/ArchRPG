@@ -128,7 +128,7 @@ public class ClyveDialogue : InteractableBaseClass
     // Update is called once per frame
     public override void Interact()
     {
-        //Norm has been unlocked so he won't show up anymore in the hallway after being added
+        //Clyve has been unlocked so he won't show up anymore in the hallway after being added
         MapDataManager map_manager = GameObject.FindGameObjectWithTag("MapManager").GetComponent<MapDataManager>();
         for (int i = 0; i < map_manager.current_map.objects.Count; i++)
         {

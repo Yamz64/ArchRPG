@@ -194,6 +194,16 @@
                 }
             ],
             "saves": []
+        },
+        {
+            "name": "NightclubHallway",
+            "objects": [
+                {
+                    "o": "Bouncer",
+                    "interacted": true
+                }
+            ],
+            "saves": []
         }
     ]
 }
