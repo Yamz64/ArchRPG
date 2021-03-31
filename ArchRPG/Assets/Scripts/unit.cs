@@ -8529,7 +8529,7 @@ public class TheSquatter : unit
 {
     public TheSquatter()
     {
-        ImageFilePath = "";
+        ImageFilePath = "EnemySprites/The Squatter";
         unitName = "The Squatter";
         loadSprites();
 
