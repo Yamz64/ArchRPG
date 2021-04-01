@@ -198,7 +198,7 @@ public class unit
 
 
     public bool player;             //Whether the unit is the main player character
-    public bool enemy;              //Whether the unit is an enemy unit or not
+    public bool enemy = false;      //Whether the unit is an enemy unit or not
     public bool hasMP = false;
     public bool outOfSP;            //Bool to say whether a unit has no more SP for attacks (party)
     public int position;            //0 == Frontline, 1 == Backline

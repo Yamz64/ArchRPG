@@ -1864,18 +1864,24 @@ namespace ClyveAbilities
             user.setSP(user.currentSP - cost);
             for (int i = 0; i < targets.Count; i++)
             {
-                int dam = targets[i].takeDamageCalc(targets[i], damage, damageType);
-                if (!targets[i].enemy)
+                if (targets[i] != null)
                 {
-                    if (targets[i].unitName == user.unitName)
+                    if (targets[i].currentHP > 0)
                     {
-                        targets[i].takeDamage(dam);
+                        int dam = targets[i].takeDamageCalc(targets[i], damage, damageType);
+                        if (!targets[i].enemy)
+                        {
+                            if (targets[i].unitName == user.unitName)
+                            {
+                                targets[i].takeDamage(dam);
+                            }
+                            targets[i].giveStatus("Confident");
+                        }
+                        else
+                        {
+                            targets[i].takeDamage(dam);
+                        }
                     }
-                    targets[i].giveStatus("Confident");
-                }
-                else
-                {
-                    targets[i].takeDamage(dam);
                 }
             }
         }

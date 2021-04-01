@@ -1074,10 +1074,16 @@ public class BattleScript : MonoBehaviour
                     //Player uses the attack
                     case 4:
                         bool match = false;
-                        if ((currentUnit == 0 || currentUnit == 1) && 
-                            partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].position == 1) match = true;
+                        if ((currentUnit == 0 || currentUnit == 1) &&
+                            partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].position == 1)
+                        {
+                            match = true;
+                        }
                         else if ((currentUnit == 2 || currentUnit == 3) &&
-                            partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].position == 2) match = true;
+                            partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].position == 2)
+                        {
+                            match = true;
+                        }
                         if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].position == 0 ||
                             match)
                         {
@@ -1288,9 +1294,14 @@ public class BattleScript : MonoBehaviour
                         }
                         else
                         {
-                            StartCoroutine(WrongLine());
+                            dialogue.text = "Can't use ability at current position";
+                            currentEnemy = 0;
+                            highlighted_ability = 0;
+                            ability_offset = 0;
+                            CloseUseAbilityMenu();
+                            CloseMenu(1);
                             menu_input = false;
-                            playerTurn();
+                            //playerTurn();
                         }
                         break;
 
@@ -4130,9 +4141,9 @@ public class BattleScript : MonoBehaviour
                 {
                     if (enemyUnits[x] != null)
                     {
+                        actors.Add(enemyUnits[x].GetComponent<UnitMono>().mainUnit);
                         if (enemyUnits[x].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                         {
-                            actors.Add(enemyUnits[x].GetComponent<UnitMono>().mainUnit);
                             priors.Add(false);
                         }
                         else
@@ -4166,10 +4177,12 @@ public class BattleScript : MonoBehaviour
                         }
                         else
                         {
-                            if (enemyUnits[x].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && !priors[x])
+                            Debug.Log("X == " + x);
+                            Debug.Log("actor[x] == " + actors[x].unitName);
+                            if (enemyUnits[x-4].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && !priors[x])
                             {
                                 enemyDeaths++;
-                                yield return unitDeath(enemyUnits[x].GetComponent<UnitMono>().mainUnit);
+                                yield return unitDeath(enemyUnits[x-4].GetComponent<UnitMono>().mainUnit);
                                 if (enemyDeaths == enemyUnits.Count)
                                 {
                                     state = battleState.WIN;
