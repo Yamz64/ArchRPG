@@ -3683,6 +3683,7 @@ public class BattleScript : MonoBehaviour
     //target - the target of the ability
     IEnumerator playerAbility(int ata, int val, unit uni, unit target, unit second = null)
     {
+        Ability doer = uni.abilities[ata];
         //If offensive ability
         if (uni.abilities[ata].type == 0 && uni.abilities[ata].customAbility == 0 && !uni.abilities[ata].eldritch)
         {
@@ -4241,17 +4242,7 @@ public class BattleScript : MonoBehaviour
             {
                 uni.abilities[ata].UseAttack(uni, target);
                 Debug.Log("Used ability");
-                Debug.Log("type == " + uni.abilities[ata].type);
-                if (uni.abilities[ata].type == 1)
-                {
-                    StartCoroutine(flashHeal(target));
-                }
-                else if (uni.abilities[ata].type == 2)
-                {
-                    Debug.Log("Starting flash");
-                    StartCoroutine(flashHeal(uni));
-                    Debug.Log("Got past flash");
-                }
+                StartCoroutine(flashHeal(target));
             }
             else if (uni.abilities[ata].target == 1)
             {
@@ -4291,9 +4282,13 @@ public class BattleScript : MonoBehaviour
                 }
                 uni.abilities[ata].UseAttack(uni, todos);
             }
-            Debug.Log("Ability used");
+
+            if (ata < uni.abilities.Count)
+            {
+                doer = uni.abilities[ata];
+            }
             //Pull target forward
-            if (uni.abilities[ata].selfSwapper == 1)
+            if (doer.selfSwapper == 1)
             {
                 Transform pp1 = new GameObject().transform;
                 Transform pp2 = new GameObject().transform;
@@ -4339,7 +4334,7 @@ public class BattleScript : MonoBehaviour
                 }
             }
             //Push target backwards
-            else if (uni.abilities[ata].selfSwapper == 2)
+            else if (doer.selfSwapper == 2)
             {
                 Transform pp1 = new GameObject().transform;
                 Transform pp2 = new GameObject().transform;
@@ -4382,7 +4377,7 @@ public class BattleScript : MonoBehaviour
                 }
             }
             //Pull target forward
-            if (uni.abilities[ata].swapper == 1)
+            if (doer.swapper == 1)
             {
                 Transform pp1 = new GameObject().transform;
                 Transform pp2 = new GameObject().transform;
@@ -4428,7 +4423,7 @@ public class BattleScript : MonoBehaviour
                 }
             }
             //Push target backwards
-            else if (uni.abilities[ata].swapper == 2)
+            else if (doer.swapper == 2)
             {
                 Transform pp1 = new GameObject().transform;
                 Transform pp2 = new GameObject().transform;
@@ -4470,7 +4465,6 @@ public class BattleScript : MonoBehaviour
                     PerformSwaps(swapInds.Count - 2);
                 }
             }
-            Debug.Log("Past the swappers");
         }
         //If eldritch ability
         else
@@ -4561,9 +4555,9 @@ public class BattleScript : MonoBehaviour
             }
             
         }
-        if (uni.abilities[ata].selfDamage != 0)
+        if (doer.selfDamage != 0)
         {
-            uni.takeDamage(uni.abilities[ata].selfDamage);
+            uni.takeDamage(doer.selfDamage);
         }
         if (uni.currentHP <= 0)
         {
@@ -4575,9 +4569,9 @@ public class BattleScript : MonoBehaviour
                 yield return battleEnd();
             }
         }
-        if (uni.abilities[ata].OutputText(uni, target) != null)
+        if (doer.OutputText(uni, target) != null)
         {
-            dialogue.text = uni.abilities[ata].OutputText(uni, target);
+            dialogue.text = doer.OutputText(uni, target);
             yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
         }
         Debug.Log("Made to end");

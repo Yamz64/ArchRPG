@@ -1730,8 +1730,8 @@ namespace PlayerAbilities
                 {
                     if (targets[i].currentHP > 0)
                     {
-                        //Need to clarify what the ability does to allies
-
+                        targets[i].setSAN(targets[i].sanity + 10);
+                        targets[i].giveStatus("Inspired");
                     }
                 }
             }
