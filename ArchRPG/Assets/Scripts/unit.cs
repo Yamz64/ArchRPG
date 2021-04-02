@@ -8587,7 +8587,7 @@ public class MeatPuppet : unit
 {
     public MeatPuppet()
     {
-        ImageFilePath = "";
+        ImageFilePath = "EnemySprites/Meat Puppet";
         unitName = "Meat Puppet";
         loadSprites();
 
