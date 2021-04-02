@@ -607,6 +607,18 @@ public class unit
         {
             abilities.Add(new EldritchAbilities.BeseechTheAbyss());
         }
+        if (id == "VampiricBetrayal")
+        {
+            abilities.Add(new EldritchAbilities.VampiricBetrayal());
+        }
+        else if (id == "SanityBeam")
+        {
+            abilities.Add(new EldritchAbilities.SanityBeam());
+        }
+        else if (id == "UltimateSacrifice")
+        {
+            abilities.Add(new EldritchAbilities.UltimateSacrifice());
+        }
         else
         {
             Debug.Log("Incorrect eldritch name");
@@ -1670,7 +1682,7 @@ public class unit
     {
         if (unitName == "Player")
         {
-
+            abilities.Add(new PlayerAbilities.Narcissism());
         }
         else if (unitName == "Clyve")
         {
@@ -2057,6 +2069,10 @@ public class PlayerUnit : unit
         {
             abilities.Add(new PlayerAbilities.CharismaticFervor());
         }
+        if (sanity < 50)
+        {
+            abilities.Add(new PlayerAbilities.Narcissism());
+        }
     }
 
     public override void updateUnit(int levl = 1)
@@ -2343,6 +2359,11 @@ public class PlayerUnit : unit
         if (level >= 20)
         {
             abilities.Add(new PlayerAbilities.CharismaticFervor());
+        }
+
+        if (sanity < 50)
+        {
+            abilities.Add(new PlayerAbilities.Narcissism());
         }
         //Add any eldritch abilities
         if (edi.Contains("OtherworldlyGaze"))

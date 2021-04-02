@@ -3190,7 +3190,7 @@ public class BattleScript : MonoBehaviour
 
             if (state != battleState.WIN && state != battleState.LOSE && state != battleState.FLEE && enemyDeaths < enemyUnits.Count)
             {
-
+                /*
                 for (int i = 0; i < partyUnits.Count; i++)
                 {
                     if (partyUnits[i] != null)
@@ -3202,6 +3202,7 @@ public class BattleScript : MonoBehaviour
                         }
                     }
                 }
+                */
                 yield return new WaitForSeconds(1.5f);
                 state = battleState.PLAYER;
                 cursor.SetActive(true);
