@@ -78,8 +78,8 @@ public class Ability
     public string name = "";        //The name of the ability
     public int type = 0;            //int denotes who to use ability on --> 0 == enemy, 1 == ally, 2 == self
     public int position = 0;        //int denotes the place the ability can be used 0 = front and backline, 1 = frontline, 2 = backline
-    public int swapper;             //If ability should swap units: 0-no, 1-yes, pull forward, 2-yes, push backwards
-    public int selfSwapper;         //If ability should swap self:  0-no, 1-yes, pull forward, 2-yes, push backwards
+    public int swapper = 0;             //If ability should swap units: 0-no, 1-yes, pull forward, 2-yes, push backwards
+    public int selfSwapper = 0;         //If ability should swap self:  0-no, 1-yes, pull forward, 2-yes, push backwards
     public int cost = 0;            //int denotes the cost of using the ability (if any)
     public int damage = 0;          //int denotes the amount of damage the attack will do
     public int selfDamage = 0;      //int denotes the amount of damage the attack will deal to the user
@@ -2160,6 +2160,7 @@ namespace NormAbilities
             desc1 = "Deals moderate physical ATK hits 4-8 times each hit may cause Blunt Trauma";
             desc2 = "Norm spins his arms without restraint, brutally beating in the skull of his poor unfortunate victim.";
             cost = 16;
+            target = 0;
             position = 1;
             damage = 12;
             statusEffect = "Blunt_Trauma";

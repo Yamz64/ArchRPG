@@ -28,6 +28,7 @@ public class unit
         statusIndex = new List<string>();
         statusIconIndex = new List<string>();
         statBlurbIndex = new List<string>();
+        rewards = new List<Item>();
         statusIndex.Add("Vomiting");        //0     Low level
         statusIndex.Add("Aspirating");      //1     High
         statusIndex.Add("Weeping");         //2     Low
@@ -279,7 +280,6 @@ public class unit
     //Function to set up the HUD with important data
     public void setHUD(bool pic = false) 
     {
-        //Debug.Log("view sprite == " + view.sprite);
         if (!pic)
         {
             view.sprite = Resources.Load<Sprite>(ImageFilePath);
@@ -298,8 +298,6 @@ public class unit
                 view.color = temp;
             }
         }
-
-        //Debug.Log("view sprite now == " + view.sprite);
 
         nameText.text = unitName;
         if (player)
@@ -374,7 +372,6 @@ public class unit
                     temp.a = 1.0f;
                     statusIcons[num].transform.GetChild(0).GetChild(1).GetComponent<Image>().color = temp;
 
-                    //Debug.Log(unitName + " status is " + statusIconIndex[i]);
                     num += 1;
                 }
             }
@@ -664,14 +661,14 @@ public class unit
                     if (statuses[14] == -1)
                     {
                         val += (int)(val * valA);
-                        val2 += (int)(val * valA);
+                        val2 += (int)(val2 * valA);
                     }
                     //Zealous
                     else
                     {
                         valA = valA * 1.25f;
                         val += (int)(val * valA);
-                        val2 += (int)(val * valA);
+                        val2 += (int)(val2 * valA);
                     }
 
                     float valD = (float)target.DEF / 300;
@@ -734,8 +731,8 @@ public class unit
                     if (statuses[14] == -1)
                     {
                         val += (int)(val * valP);
-                        valS += (int)(val2 * valP);
-                        val2 += (int)(valS * valP);
+                        valS += (int)(valS * valP);
+                        val2 += (int)(val2 * valP);
 
                     }
                     //Zealous
@@ -743,8 +740,8 @@ public class unit
                     {
                         valP = valP * 1.25f;
                         val += (int)(val * valP);
-                        valS += (int)(val2 * valP);
-                        val2 += (int)(valS * valP);
+                        valS += (int)(valS * valP);
+                        val2 += (int)(val2 * valP);
                     }
 
 
