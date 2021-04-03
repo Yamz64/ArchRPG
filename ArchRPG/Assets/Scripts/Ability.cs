@@ -1931,7 +1931,7 @@ namespace JimAbilities
         public Bandaid()
         {
             name = "Bandaid";
-            desc1 = "Heal a friend by 10 HP";
+            desc1 = "Heal a friend by 15 HP";
             desc2 = "Jim produces a small adhesive bandage from his belongings to ease the pain of others.";
             cost = 3;
             target = 0;
@@ -1944,7 +1944,7 @@ namespace JimAbilities
         {
             user.setSP(user.getSP() - cost);
 
-            target.setHP(target.getHP() + 10);
+            target.setHP(target.getHP() + 15);
 
             if (target.getHP() > target.maxHP) target.setHP(target.maxHP);
         }

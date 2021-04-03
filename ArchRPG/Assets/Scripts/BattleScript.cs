@@ -3528,31 +3528,6 @@ public class BattleScript : MonoBehaviour
         //Define actions list
         actions = new List<action>();
 
-        //Make test ability to use in menu
-        Ability mover = new Ability();
-        mover.name = "Attack 1";
-        mover.cost = 3;
-        mover.damage = 6;
-        mover.damageType = 0;
-        mover.desc1 = "The most basic of attacks\nCost = 3";
-        mover.desc2 = "Does 6 physical damage, used to test out attack system. Works in both lines.";
-        mover.statusEffect = "";
-
-        //Loop to add test abilities to all party units
-        for (int i = 0; i < partyUnits.Count; i++)
-        {
-            if (partyUnits[i] != null)
-            {
-                /*
-                partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(mover);
-                partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(new BasicBack());
-                partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(new BasicFront());
-                partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(new TestAbility());
-                partyUnits[i].GetComponent<UnitMono>().mainUnit.addAbility(new TestAbility1());
-                */
-            }
-        }
-
         /*
         data.AddItem(new Consumables.HotDog());
         data.AddItem(new Consumables.HotDog());
@@ -3600,13 +3575,27 @@ public class BattleScript : MonoBehaviour
         {
             dialogue.text = "A group of enemies appeared";
         }
+        int less = -1;
         for (int v = 0; v < 4; v++)
         {
             if (partyUnits[v] != null)
             {
+                if (less == -1)
+                {
+                    less = v;
+                }
+                if (v <= 1)
+                {
+                    partyUnits[v].GetComponent<UnitMono>().mainUnit.position = 0;
+                }
+                else
+                {
+                    partyUnits[v].GetComponent<UnitMono>().mainUnit.position = 1;
+                }
                 partyUnits[v].GetComponent<UnitMono>().mainUnit.setHUD();
             }
         }
+        currentUnit = less;
 
         //Start player turn
         yield return new WaitForSeconds(2f);
