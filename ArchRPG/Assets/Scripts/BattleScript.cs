@@ -3463,17 +3463,17 @@ public class BattleScript : MonoBehaviour
             {
                 enen = new Vermin();
             }
-            else if (loader.enemy_names[i] == "Disco Hooligan Dan")
+            else if (loader.enemy_names[i] == "Dan")
             {
                 enen = new DiscoHooliganDan();
                 boss32 = true;
             }
-            else if (loader.enemy_names[i] == "Disco Hooligan Dylan")
+            else if (loader.enemy_names[i] == "Dylan")
             {
                 enen = new DiscoHooliganDylan();
                 boss32 = true;
             }
-            else if (loader.enemy_names[i] == "Disco Hooligan Brian")
+            else if (loader.enemy_names[i] == "Brian")
             {
                 enen = new DiscoHooliganBrian();
                 boss32 = true;
