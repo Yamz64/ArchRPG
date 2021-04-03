@@ -40,7 +40,7 @@ public class DiscoHooligansDialogue : NPCDialogue
                     if(save.enemy_names[0] == "Dylan" && save.enemy_names[1] == "Dan" && save.enemy_names[2] == "Brian")
                     {
                         //player fled from the hooligan's combat so mark them as not interacted
-                        if (!save.flee)
+                        if (save.flee)
                         {
                             data.current_map.objects[i].interacted = false;
                             data.Save();
@@ -51,6 +51,14 @@ public class DiscoHooligansDialogue : NPCDialogue
                             Destroy(gameObject);
                         }
                     }
+                    else
+                    {
+                        Destroy(gameObject);
+                    }
+                }
+                else
+                {
+                    Destroy(gameObject);
                 }
                 break;
             }
@@ -66,6 +74,7 @@ public class DiscoHooligansDialogue : NPCDialogue
             if (map_data.current_map.objects[i].o == "DiscoHooligans")
             {
                 map_data.current_map.objects[i].interacted = true;
+                map_data.Save();
                 break;
             }
         }
