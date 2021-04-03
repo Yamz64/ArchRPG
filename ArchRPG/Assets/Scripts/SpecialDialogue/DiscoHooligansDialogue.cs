@@ -27,11 +27,48 @@ public class DiscoHooligansDialogue : NPCDialogue
     // Start is called before the first frame update
     new void Start()
     {
+        //see if the hooligans have been interacted with
+        MapDataManager data = GameObject.FindGameObjectWithTag("MapManager").GetComponent<MapDataManager>();
+        for(int i=0; i<data.current_map.objects.Count; i++)
+        {
+            if(data.current_map.objects[i].o == "DiscoHooligans" && data.current_map.objects[i].interacted)
+            {
+                //check to see if the player just fought the hooligans
+                CharacterStatJsonConverter save = new CharacterStatJsonConverter(PlayerPrefs.GetInt("_active_save_file_"));
+                if(save.enemy_names.Length > 0)
+                {
+                    if(save.enemy_names[0] == "Dylan" && save.enemy_names[1] == "Dan" && save.enemy_names[2] == "Brian")
+                    {
+                        //player fled from the hooligan's combat so mark them as not interacted
+                        if (!save.flee)
+                        {
+                            data.current_map.objects[i].interacted = false;
+                            data.Save();
+                        }
+                        //player didn't flee from the hooligans so destroy them
+                        else
+                        {
+                            Destroy(gameObject);
+                        }
+                    }
+                }
+                break;
+            }
+        }
         base.Start();
     }
 
     public override void Interact()
     {
+        MapDataManager map_data = GameObject.FindGameObjectWithTag("MapManager").GetComponent<MapDataManager>();
+        for (int i = 0; i < map_data.current_map.objects.Count; i++)
+        {
+            if (map_data.current_map.objects[i].o == "DiscoHooligans")
+            {
+                map_data.current_map.objects[i].interacted = true;
+                break;
+            }
+        }
         base.Interact();
         StartCoroutine(StartFight());
     }
