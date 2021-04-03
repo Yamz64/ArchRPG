@@ -123,12 +123,45 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &34900075
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 34900076}
+  m_Layer: 0
+  m_Name: DiscoHooligans
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &34900076
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34900075}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.5, y: 12, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 844903753}
+  - {fileID: 1157345870}
+  - {fileID: 1653538233}
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &120743588
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 34900076}
     m_Modifications:
     - target: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_Name
@@ -136,11 +169,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.451792
+      value: 0.048208237
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.447177
+      value: -0.55282307
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.z
@@ -164,7 +197,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -790,7 +823,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7527172466602869493, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7527172466602869493, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -854,14 +887,170 @@ Transform:
   - {fileID: 1606964981}
   - {fileID: 228649900}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &844903750 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 120743588}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &844903751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844903750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 534b29e42e63dcd4687617e918a31c02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: "YOOOWWW, this candles HOT, you sure we can\u2019t use those ener-G efficient
+      bulbs?"
+  - text: "OOOWWW, not as hot as this knife is SHARP.\r"
+  - text: "Wait, hold the phone ya cool cats! A small innocent child has walked in
+      on our funkin!\r"
+  - text: "Ummm\u2026"
+  - text: Allow us to introduce ourselves to YOU.
+  - text: "I\u2019m DISCO DAN OOOWWW!"
+  - text: "I\u2019m DISCO DYLAN WOOOWWW!"
+  - text: "and I\u2019m DISCO BRIAN YOOOWWW!"
+  - text: And we are the Disco Hooligans! Here to make the funkiest sacrifice ever
+      in Disco History!
+  - text: Actually, some kid told us he was awakening an elder god-
+  - text: He said if we kidnapped a small innocent child-
+  - text: "And uh\u2026 sacrificed the child to the elder god, we\u2019d be young
+      forever-"
+  - text: "So naturally we\u2019d take the opportunity to make music for the rest
+      of time!"
+  - text: I just had an idea, what if we sacrificed the kid we nabbed, AND we sacrificed
+      the kid that just walked in!
+  - text: "YOOOWWW! Then we\u2019d stay doubly young for double the rest of time
+      right?"
+  - text: "There\u2019s a reason you two have the tightest fros, and that\u2019s
+      to hide the tightest brains OOOWWW!\r\n"
+  container:
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 7
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 19
+      upper: 22
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 6
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 28
+      upper: 33
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 29
+      upper: 46
+  - effects: []
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 29
+      upper: 32
+  - effects:
+    - name: Color
+      color: {r: 0.882353, g: 0.41176474, b: 0.33333334, a: 1}
+      lower: 2
+      upper: 9
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 10
+      upper: 16
+  - effects:
+    - name: Color
+      color: {r: 0.5058824, g: 0.68235296, b: 0.3882353, a: 1}
+      lower: 2
+      upper: 11
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 12
+      upper: 20
+  - effects:
+    - name: Color
+      color: {r: 0.78823537, g: 0.77647066, b: 0.3529412, a: 1}
+      lower: 5
+      upper: 14
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 15
+      upper: 23
+  - effects:
+    - name: Color
+      color: {r: 1, g: 0, b: 0, a: 1}
+      lower: 11
+      upper: 25
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 7
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 72
+      upper: 78
+  dialogueImages:
+  - sprite_path: CharacterSprites/disco_Brian
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Dan
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Dylan
+    lines: 1
+  - sprite_path: CharacterSprites/PC
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Dan
+    lines: 2
+  - sprite_path: CharacterSprites/disco_Dylan
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Brian
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Dan
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Brian
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Dylan
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Brian
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Dan
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Dylan
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Brian
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Dan
+    lines: 1
+  player: {fileID: 0}
+--- !u!4 &844903753 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 120743588}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &940604317
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 34900076}
     m_Modifications:
     - target: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_Name
@@ -869,11 +1058,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.17
+      value: 0.17000008
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.z
@@ -881,15 +1070,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalRotation.w
@@ -897,7 +1086,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -974,6 +1163,162 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f43982e2a230d947830355b5f90e117, type: 3}
+--- !u!1 &1157345867 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 940604317}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1157345868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157345867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 534b29e42e63dcd4687617e918a31c02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: "YOOOWWW, this candles HOT, you sure we can\u2019t use those ener-G efficient
+      bulbs?"
+  - text: "OOOWWW, not as hot as this knife is SHARP.\r"
+  - text: "Wait, hold the phone ya cool cats! A small innocent child has walked in
+      on our funkin!\r"
+  - text: "Ummm\u2026"
+  - text: Allow us to introduce ourselves to YOU.
+  - text: "I\u2019m DISCO DAN OOOWWW!"
+  - text: "I\u2019m DISCO DYLAN WOOOWWW!"
+  - text: "and I\u2019m DISCO BRIAN YOOOWWW!"
+  - text: And we are the Disco Hooligans! Here to make the funkiest sacrifice ever
+      in Disco History!
+  - text: Actually, some kid told us he was awakening an elder god-
+  - text: He said if we kidnapped a small innocent child-
+  - text: "And uh\u2026 sacrificed the child to the elder god, we\u2019d be young
+      forever-"
+  - text: "So naturally we\u2019d take the opportunity to make music for the rest
+      of time!"
+  - text: I just had an idea, what if we sacrificed the kid we nabbed, AND we sacrificed
+      the kid that just walked in!
+  - text: "YOOOWWW! Then we\u2019d stay doubly young for double the rest of time
+      right?"
+  - text: "There\u2019s a reason you two have the tightest fros, and that\u2019s
+      to hide the tightest brains OOOWWW!\r\n"
+  container:
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 7
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 19
+      upper: 22
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 6
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 28
+      upper: 33
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 29
+      upper: 46
+  - effects: []
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 29
+      upper: 32
+  - effects:
+    - name: Color
+      color: {r: 0.882353, g: 0.41176474, b: 0.33333334, a: 1}
+      lower: 2
+      upper: 9
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 10
+      upper: 16
+  - effects:
+    - name: Color
+      color: {r: 0.5058824, g: 0.68235296, b: 0.3882353, a: 1}
+      lower: 2
+      upper: 11
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 12
+      upper: 20
+  - effects:
+    - name: Color
+      color: {r: 0.78823537, g: 0.77647066, b: 0.3529412, a: 1}
+      lower: 5
+      upper: 14
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 15
+      upper: 23
+  - effects:
+    - name: Color
+      color: {r: 1, g: 0, b: 0, a: 1}
+      lower: 11
+      upper: 25
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 7
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 72
+      upper: 78
+  dialogueImages:
+  - sprite_path: CharacterSprites/disco_Brian
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Dan
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Dylan
+    lines: 1
+  - sprite_path: CharacterSprites/PC
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Dan
+    lines: 2
+  - sprite_path: CharacterSprites/disco_Dylan
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Brian
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Dan
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Brian
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Dylan
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Brian
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Dan
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Dylan
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Brian
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Dan
+    lines: 1
+  player: {fileID: 0}
+--- !u!4 &1157345870 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 940604317}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1283213316
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1015,7 +1360,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1077,7 +1422,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 34900076}
     m_Modifications:
     - target: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_Name
@@ -1085,11 +1430,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.91
+      value: -1.4099998
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.17
+      value: 0.17000008
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1097,15 +1442,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1113,7 +1458,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1696,6 +2041,235 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1653538230 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1397821097}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1653538231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653538230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 534b29e42e63dcd4687617e918a31c02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: "YOOOWWW, this candles HOT, you sure we can\u2019t use those ener-G efficient
+      bulbs?"
+  - text: "OOOWWW, not as hot as this knife is SHARP.\r"
+  - text: "Wait, hold the phone ya cool cats! A small innocent child has walked in
+      on our funkin!\r"
+  - text: "Ummm\u2026"
+  - text: Allow us to introduce ourselves to YOU.
+  - text: "I\u2019m DISCO DAN OOOWWW!"
+  - text: "I\u2019m DISCO DYLAN WOOOWWW!"
+  - text: "and I\u2019m DISCO BRIAN YOOOWWW!"
+  - text: And we are the Disco Hooligans! Here to make the funkiest sacrifice ever
+      in Disco History!
+  - text: Actually, some kid told us he was awakening an elder god-
+  - text: He said if we kidnapped a small innocent child-
+  - text: "And uh\u2026 sacrificed the child to the elder god, we\u2019d be young
+      forever-"
+  - text: "So naturally we\u2019d take the opportunity to make music for the rest
+      of time!"
+  - text: I just had an idea, what if we sacrificed the kid we nabbed, AND we sacrificed
+      the kid that just walked in!
+  - text: "YOOOWWW! Then we\u2019d stay doubly young for double the rest of time
+      right?"
+  - text: "There\u2019s a reason you two have the tightest fros, and that\u2019s
+      to hide the tightest brains OOOWWW!\r\n"
+  container:
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 7
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 19
+      upper: 22
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 6
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 28
+      upper: 33
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 29
+      upper: 46
+  - effects: []
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 29
+      upper: 32
+  - effects:
+    - name: Color
+      color: {r: 0.882353, g: 0.41176474, b: 0.33333334, a: 1}
+      lower: 2
+      upper: 9
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 10
+      upper: 16
+  - effects:
+    - name: Color
+      color: {r: 0.5058824, g: 0.68235296, b: 0.3882353, a: 1}
+      lower: 2
+      upper: 11
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 12
+      upper: 20
+  - effects:
+    - name: Color
+      color: {r: 0.78823537, g: 0.77647066, b: 0.3529412, a: 1}
+      lower: 5
+      upper: 14
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 15
+      upper: 23
+  - effects:
+    - name: Color
+      color: {r: 1, g: 0, b: 0, a: 1}
+      lower: 11
+      upper: 25
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 7
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 72
+      upper: 78
+  dialogueImages:
+  - sprite_path: CharacterSprites/disco_Brian
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Dan
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Dylan
+    lines: 1
+  - sprite_path: CharacterSprites/PC
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Dan
+    lines: 2
+  - sprite_path: CharacterSprites/disco_Dylan
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Brian
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Dan
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Brian
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Dylan
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Brian
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Dan
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Dylan
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Brian
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Dan
+    lines: 1
+  player: {fileID: 0}
+--- !u!4 &1653538233 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1397821097}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1757863220
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331182, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: current_map.objects.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331182, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: current_map.objects.Array.data[0].o
+      value: Tim
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331182, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: current_map.objects.Array.data[1].o
+      value: DiscoHooligans
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331182, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: current_map.name
+      value: NightclubBackstage
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331183, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_Name
+      value: MapManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
 --- !u!1 &2081052962
 GameObject:
   m_ObjectHideFlags: 0
@@ -3119,5 +3693,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
