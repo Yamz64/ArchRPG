@@ -1749,6 +1749,7 @@ namespace PlayerAbilities
             position = 2;
             type = 2;
             statusEffect = "Confident Neurotic Hysteria";
+            eldritch = true;
         }
 
         public override void UseAttack(unit user, unit target)
@@ -1898,6 +1899,7 @@ namespace ClyveAbilities
             target = 3;
             statusEffect = "Diseased";
             selfStatus = "Diseased";
+            eldritch = true;
         }
     }
 }
@@ -1909,7 +1911,7 @@ namespace JimAbilities
         public Antacid()
         {
             name = "Antacid";
-            desc1 = "Cure vomiting";
+            desc1 = "Cure vomiting and weeping";
             desc2 = "Jim has always been a sickly child, so his mom has sent him to school with these miracle tablets for as long as you can remember." +
                 "They cure vomiting and other such stomach ailments.";
             cost = 3;
@@ -1923,6 +1925,7 @@ namespace JimAbilities
         {
             user.setSP(user.getSP() - cost);
             if (target.statuses[0] != -1) target.statuses[0] = -1;
+            if (target.statuses[2] != -1) target.statuses[2] = -1;
         }
     }
 
@@ -1931,7 +1934,7 @@ namespace JimAbilities
         public Bandaid()
         {
             name = "Bandaid";
-            desc1 = "Heal a friend by 15 HP";
+            desc1 = "Heal a friend by 15+ HP";
             desc2 = "Jim produces a small adhesive bandage from his belongings to ease the pain of others.";
             cost = 3;
             target = 0;
@@ -1944,7 +1947,7 @@ namespace JimAbilities
         {
             user.setSP(user.getSP() - cost);
 
-            target.setHP(target.getHP() + 15);
+            target.setHP(target.getHP() + 15 + (target.maxHP / 10));
 
             if (target.getHP() > target.maxHP) target.setHP(target.maxHP);
         }
@@ -2048,6 +2051,7 @@ namespace JimAbilities
                 {
                     targets[ran].giveStatus("Confident");
                 }
+                targets[ran].setHP(targets[ran].currentHP + 30);
             }
             canUse = -1;
         }
@@ -2065,6 +2069,7 @@ namespace JimAbilities
             damage = 15;
             damageType = 4;
             selfStatus = "Vomiting Aspirating Weeping";
+            eldritch = true;
         }
     }
 }
@@ -2179,6 +2184,7 @@ namespace NormAbilities
             cost = 7;
             type = 2;
             statusEffect = "Neurotic Weeping";
+            eldritch = true;
         }
 
         public override void UseAttack(unit user, unit target)
@@ -2321,6 +2327,7 @@ namespace ShirleyAbilities
             damage = 25;
             swapper = 1;
             selfStatus = "Zealous";
+            eldritch = true;
         }
     }
 }
@@ -2439,6 +2446,7 @@ namespace RalphAbilities
             cost = 10;
             position = 2;
             type = 2;
+            eldritch = true;
         }
 
         public override void UseAttack(unit user, unit target)
@@ -2469,7 +2477,7 @@ namespace LucyAbilities
         public FungalRat()
         {
             name = "Fungal Rat";
-            desc1 = "Single target debuff attack";
+            desc1 = "Single target debuff attack (Aspirating)";
             desc2 = "These rats have been bred to be the perfect host " +
                 "for a parasitic fungus, the result is unsightly and churns the stomach to look at.";
             cost = 4;
@@ -2486,7 +2494,7 @@ namespace LucyAbilities
         public RodentialKindling()
         {
             name = "Rodential Kindling";
-            desc1 = "Single target debuff attack";
+            desc1 = "Single target debuff attack (Flammable)";
             desc2 = "Lucy commands a breed of rat with particularly flammable " +
                 "skin oil and dry fur to pile onto a target and make them more flammable.";
             cost = 6;
@@ -2502,7 +2510,7 @@ namespace LucyAbilities
         public FeedTheMasses()
         {
             name = "Feed the Masses";
-            desc1 = "A strong debuff attack";
+            desc1 = "A strong debuff attack (Consumed)";
             desc2 = "Lucy commands her “children” to feed on a " +
                 "target, their appetite is particularly voracious today.";
             cost = 8;
@@ -2571,6 +2579,7 @@ namespace LucyAbilities
             type = 2;
             swapper = 1;
             selfStatus = "Zealous Neurotic";
+            eldritch = true;
         }
 
         public override void UseAttack(unit user, unit target)
@@ -2744,6 +2753,7 @@ namespace TimAbilities
             position = 1;
             statusEffect = "Aspirating Eye_Bleeding";
             selfStatus = "Vomiting Weeping";
+            eldritch = true;
         }
     }
 }
@@ -2915,6 +2925,7 @@ namespace WhiteKnightAbilities
                 "Is he wrong? Have all my ventures in the internet… been for nought?";
             cost = 10;
             type = 0;
+            eldritch = true;
             //Will need to implement random damage and targetting
         }
     }
@@ -3108,6 +3119,7 @@ namespace OliverSproutAbilities
             sanity_damage = 15;
             target = 3;
             statusEffect = "Blunt_Trauma Weeping";
+            eldritch = true;
         }
     }
 }
@@ -3243,6 +3255,7 @@ namespace EmberMoonAbilities
             cost = 25;
             statusEffect = "Reactive Conductive Flammable Zonked";
             selfStatus = statusEffect;
+            eldritch = true;
         }
     }
 }

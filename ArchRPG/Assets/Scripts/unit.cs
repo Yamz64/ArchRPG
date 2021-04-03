@@ -523,7 +523,10 @@ public class unit
                             g = i;
                         }
                     }
-                    abilities.RemoveAt(g);
+                    if (oriSan < 50 && sanity >= 50 && abilities[g].eldritch)
+                    {
+                        abilities.RemoveAt(g);
+                    }
                 }
                 if (sanity == 0)
                 {
@@ -1322,7 +1325,10 @@ public class unit
                         g = i;
                     }
                 }
-                abilities.RemoveAt(g);
+                if (oriSan < 50 && sanity >= 50 && abilities[g].eldritch)
+                {
+                    abilities.RemoveAt(g);
+                }
             }
             else
             {
