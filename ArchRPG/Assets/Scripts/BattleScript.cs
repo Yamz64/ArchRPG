@@ -2858,6 +2858,14 @@ public class BattleScript : MonoBehaviour
                         }
                     }
 
+                    if (temp[ind].GetComponent<UnitMono>().mainUnit.sanity >= 50 &&
+                            actions[z].getIndex() >= temp[ind].GetComponent<UnitMono>().mainUnit.abilities.Count)
+                    {
+                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " was cured of madness. Their ability is gone";
+                        yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                        continue;
+                    }
+
                     string abiName = temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
                     //If ability is eldritch, change display name of ability
                     if (temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].eldritch)
@@ -2915,6 +2923,13 @@ public class BattleScript : MonoBehaviour
 
                     if (temp[pose].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                     {
+                        if (temp[ind].GetComponent<UnitMono>().mainUnit.sanity >= 50 &&
+                            actions[z].getIndex() >= temp[ind].GetComponent<UnitMono>().mainUnit.abilities.Count)
+                        {
+                            dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " was cured of madness. Their ability is gone";
+                            yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                            continue;
+                        }
                         string abiName = temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
                         if (temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].eldritch)
                         {
@@ -3223,9 +3238,8 @@ public class BattleScript : MonoBehaviour
     IEnumerator showDamage(int dam)
     {
         yield return new WaitForSeconds(1f);
-        Text bin = damageText;
+        Text bin = Instantiate(damageText, damage1, transform.GetChild(1));
         bin.text = "" + dam;
-        bin.transform.position = damage1.position;
         float count = 0.0f;
         while (count < 2.0f)
         {
@@ -4625,71 +4639,11 @@ public class BattleScript : MonoBehaviour
         if (uni.ATK > uni.POW)
         {
             val = uni.takeDamageCalc(target, val, 0);
-
-            /*
-            if (uni.statuses[6] == -1)
-            {
-                val += (int)(val * (float)(uni.ATK / 100));
-            }
-            else
-            {
-                val += (int)(val * (float)((uni.ATK * 1.25) / 100));
-            }
-
-            //Check if DEF is reduced by a status like Blunt Trauma
-            if (target.statuses[4] == -1 && target.statuses[7] == -1)
-            {
-                val -= (int)(val * (float)(target.DEF / 300));
-            }
-            //Blunt Trauma
-            else if (target.statuses[4] != -1 && target.statuses[7] == -1)
-            {
-                val -= (int)(val * (float)((target.DEF * 0.75) / 300));
-            }
-            //Neurotic
-            else if (target.statuses[4] == -1 && target.statuses[7] != -1)
-            {
-                val -= (int)(val * (float)((target.DEF * 1.5) / 300));
-            }
-            //Both
-            else
-            {
-                val -= (int)(val * (float)((target.DEF * 1.25) / 300));
-            }
-            */
         }
         
         else
         {
             val = uni.takeDamageCalc(target, val, 0, true);
-            /*
-            //Check if POW is affected
-            if (uni.statuses[6] == -1)
-            {
-                val += (int)(val * (float)(uni.POW / 100));
-            }
-            //Target has zealous
-            else
-            {
-                val += (int)(val * (float)((uni.POW * 1.25) / 100));
-            }
-
-            //Check if WILL is affected
-            if (target.statuses[7] == target.statuses[10])
-            {
-                val -= (int)(val * (float)(target.WILL / 300));
-            }
-            //Target has neurotic
-            else if (target.statuses[7] != -1)
-            {
-                val -= (int)(val * (float)((target.WILL * 0.75) / 300));
-            }
-            //Target has confidence
-            else
-            {
-                val -= (int)(val * (float)((target.WILL * 1.25) / 300));
-            }
-            */
         }
         
         //Check if target is weak or resistant to a certain damage type
@@ -4719,8 +4673,15 @@ public class BattleScript : MonoBehaviour
                 bad = true;
             }
         }
+        int dif = target.currentHP;
         bool dead = target.takeDamage(val);
         target.setHP(target.currentHP);
+        dif -= target.currentHP;
+
+        if (dif > 0)
+        {
+            StartCoroutine(showDamage(dif));
+        }
         //uni.setSP(uni.currentSP - 2);
         StartCoroutine(flashDamage(target));
         yield return flashDealDamage(uni);

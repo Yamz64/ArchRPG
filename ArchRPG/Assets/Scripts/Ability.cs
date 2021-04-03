@@ -411,6 +411,18 @@ public static class EldritchAbilities
         return e_abilities;
     }
 
+    public static List<Ability> GetAll()
+    {
+        List<Ability> ebi = new List<Ability>();
+        ebi.Add(new OtherworldyGaze());
+        ebi.Add(new RuinousWave());
+        ebi.Add(new VampiricBetrayal());
+        ebi.Add(new BeseechTheAbyss());
+        ebi.Add(new SanityBeam());
+        ebi.Add(new UltimateSacrifice());
+        return ebi;
+    }
+
     //***~RYAN~*** DONE
     //This ability needs to buff the player with both zealous and confident, but inflict weeping on a random party member
     public class OtherworldyGaze : Ability
