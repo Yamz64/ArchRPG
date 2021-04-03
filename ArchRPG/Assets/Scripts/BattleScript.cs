@@ -1070,12 +1070,12 @@ public class BattleScript : MonoBehaviour
                     //Player uses the attack
                     case 4:
                         bool match = false;
-                        if ((currentUnit == 0 || currentUnit == 1) &&
+                        if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.position == 0 &&
                             partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].position == 1)
                         {
                             match = true;
                         }
-                        else if ((currentUnit == 2 || currentUnit == 3) &&
+                        else if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.position == 1 &&
                             partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].position == 2)
                         {
                             match = true;
