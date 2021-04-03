@@ -8326,7 +8326,7 @@ public class Hound : unit
         ATK = 50;
         DEF = 60;
         POW = 30;
-        WILL = 30;
+        WILL = 40;
         RES = 18;
         AGI = 25;
         LCK = 6;
