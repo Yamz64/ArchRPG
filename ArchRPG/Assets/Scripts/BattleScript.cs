@@ -753,7 +753,7 @@ public class BattleScript : MonoBehaviour
             {
                 unit now = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit;
                 transform.GetChild(1).Find("UnitInfo").GetChild(2).GetComponent<Text>().text =
-                    now.unitName + "\nSanity: " + now.getSAN() + "\nExp: " + now.getEXP() + "\nExp to next level: " + (now.currentLevelTop - now.getEXP()) 
+                    now.unitName + "\nSanity: " + now.getSAN() + "\nPosition: " + now.position + "\nExp: " + now.getEXP() + "\nExp to next level: " + (now.currentLevelTop - now.getEXP()) 
                     + "\nAtk: " + now.getATK() + "\nPOW: " + now.getPOW() + "\nDef: " + now.getDEF() + "\nWill: "
                     + now.getWILL() + "\nRes: " + now.getRES() + "\nAgi: " + now.getAGI()
                     + "\nLuck: " + now.getLUCK() + "\nPosition == " + now.position;
