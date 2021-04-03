@@ -8317,19 +8317,19 @@ public class Hound : unit
         loadSprites();
         weaknesses[4] = true;
         level = 6;
-        maxHP = currentHP = 35;
+        maxHP = currentHP = 95;
         expGain = 60;
         enemy = true;
         capital = 8;
 
         //Currently uses Locker stats
-        ATK = 40;
-        DEF = 40;
+        ATK = 50;
+        DEF = 60;
         POW = 30;
-        WILL = 6;
-        RES = 6;
-        AGI = 5;
-        LCK = 2;
+        WILL = 30;
+        RES = 18;
+        AGI = 25;
+        LCK = 6;
 
         abilities = new List<Ability>();
         abilities.Add(new EnemyAbilities.DetainAndRestrain());

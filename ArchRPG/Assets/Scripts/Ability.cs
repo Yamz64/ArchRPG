@@ -981,7 +981,7 @@ namespace EnemyAbilities
         public IncendiarySnot()
         {
             name = "Incendiary Snot";
-            target = 1;
+            target = 2;
             damage = 5;
             damageType = 4;
             use_pow = true;
