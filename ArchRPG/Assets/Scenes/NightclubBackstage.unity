@@ -983,7 +983,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_Name
-      value: Hotdog Tim
+      value: Tim
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1035,6 +1035,43 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: af94f67d94eed7043b610790f349c7db, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &1283213317 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1283213316}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1283213318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283213317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a6f95a9f3033894e9a8ef7e09d1051a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: Oh thank Goodmeat it's you, pal!
+  - text: Listen, after you walked into the factory looking for Mr. Goodmeat, these
+      old folks dragged me off to this nightclub.
+  - text: They wouldn't even let me go for a week-long reusable Goodmeat meatdog
+      coupon!
+  - text: Who ARE, these people??!??!
+  container:
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 3
+      upper: 5
+  dialogueImages:
+  - sprite_path: CharacterSprites/Tim_sad
+    lines: 4
+  player: {fileID: 0}
 --- !u!1001 &1397821097
 PrefabInstance:
   m_ObjectHideFlags: 0
