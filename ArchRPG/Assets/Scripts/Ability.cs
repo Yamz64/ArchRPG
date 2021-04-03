@@ -2336,7 +2336,7 @@ namespace RalphAbilities
             desc2 = "Little Ralphy knows that if he actually fired his glock then there " +
                 "would be a lot of paperwork that would ensure, but if he uses it to pistol " +
                 "whip people, then there’s less paperwork!";
-            cost = 2;
+            cost = 6;
             damage = 16;
             damageType = 0;
             position = 1;
@@ -2346,15 +2346,14 @@ namespace RalphAbilities
 
     public class SmokeBreak : Ability
     {
-        bool contract = false;
         public SmokeBreak()
         {
             name = "Smoke Break";
-            desc1 = "Backline Support Ability";
+            desc1 = "Backline Support Ability, heals sanity";
             desc2 = "Despite various warnings from the AMA, his ‘parents’, " +
                 "and movie ads about smoking causing cancer, Little Ralphy shares " +
                 "a cig with a party member to reduce stress.";
-            cost = 1;
+            cost = 5;
             damage = 0;
             type = 1;
             position = 2;
@@ -2367,8 +2366,7 @@ namespace RalphAbilities
             int rol = Random.Range(1, 101);
             if (rol < target.RES)
             {
-                if (target.statuses[16] != -1) contract = true;
-                target.giveStatus("Cancer");
+                if (target.statuses[15] != -1)  target.giveStatus("Cancerous");
             }
         }
     }

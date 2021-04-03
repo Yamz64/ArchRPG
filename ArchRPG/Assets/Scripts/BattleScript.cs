@@ -4758,7 +4758,7 @@ public class BattleScript : MonoBehaviour
         bool bad = false;
         bool dead = false;
         bool dead2 = false;
-        int r2 = 0;
+        int r2 = -1;
 
         List<bool> deads = new List<bool>();
         List<int> rs = new List<int>();
@@ -5077,10 +5077,10 @@ public class BattleScript : MonoBehaviour
                         yield return battleEnd();
                     }
                 }
-                else if (!dead && dead2)
+                else if (!dead && dead2 && r2 != -1)
                 {
                     partyDeaths++;
-                    yield return unitDeath(target);
+                    yield return unitDeath(partyUnits[r2].GetComponent<UnitMono>().mainUnit);
                     if (partyDeaths == partyUnits.Count)
                     {
                         state = battleState.LOSE;
