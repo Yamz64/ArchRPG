@@ -2204,12 +2204,12 @@ namespace ShirleyAbilities
         public OpenFire()
         {
             name = "Open Fire";
-            desc1 = "Shoot at the enemy to deal 10 dmg";
+            desc1 = "Shoot at the enemy to deal 10 fire damage";
             desc2 = "Shirley quickly draws an Aston Model 1842 flintlock pistol replica, fires at the enemy, and stows it away.  This ability is very quick.";
             cost = 4;
             target = 0;
             damage = 10;
-            damageType = 0;
+            damageType = 1;
             position = 2;
             fast = true;
         }
