@@ -238,9 +238,9 @@ public class BattleScript : MonoBehaviour
         else if (num == 7)
         {
             if (!lop)
-                audio_handler.PlaySound("Sound/Music/ClubBossk", i);
+                audio_handler.PlaySound("Sound/Music/ClubBosskBreathe", i);
             else
-                audio_handler.PlaySoundLoop("Sound/Music/ClubBossk", i);
+                audio_handler.PlaySoundLoop("Sound/Music/ClubBosskBreathe", i);
         }
         else if (num == 8)
         {
