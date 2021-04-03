@@ -3249,6 +3249,8 @@ public class BattleScript : MonoBehaviour
             bin.transform.position = newt;
         }
         bin.CrossFadeAlpha(0, 1f, false);
+        yield return new WaitForSeconds(1f);
+        Destroy(bin);
     }
 
     //Fade into the battle scene (from black to screen)

@@ -754,8 +754,8 @@ namespace EnemyAbilities
             name = "Metallic Wail";
             cost = 0;
             target = 0;
-            damage = 4;
-            sanity_damage = 4;
+            damage = 8;
+            sanity_damage = 8;
             damageType = 4;
             use_pow = true;
             statusEffect = "Weeping";
