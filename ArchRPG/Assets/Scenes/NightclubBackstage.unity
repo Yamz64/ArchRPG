@@ -907,54 +907,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text:
-  - text: "YOOOWWW, this candles HOT, you sure we can\u2019t use those ener-G efficient
-      bulbs?"
-  - text: "OOOWWW, not as hot as this knife is SHARP.\r"
+  - text: Ow, this candle's HOT, you sure we can't use those ener-G efficient bulbs?
+  - text: "WOOOWWW, not as hot as this knife is SHARP.\r"
   - text: "Wait, hold the phone ya cool cats! A small innocent child has walked in
       on our funkin!\r"
+  - text: MMMM TASTY WOOOWWW!
   - text: "Ummm\u2026"
   - text: Allow us to introduce ourselves to YOU.
-  - text: "I\u2019m DISCO DAN OOOWWW!"
+  - text: "I\u2019m DISCO DAN YOOOWWW!"
   - text: "I\u2019m DISCO DYLAN WOOOWWW!"
-  - text: "and I\u2019m DISCO BRIAN YOOOWWW!"
+  - text: "and I\u2019m DISCO BRIAN OOOWWW!"
   - text: And we are the Disco Hooligans! Here to make the funkiest sacrifice ever
       in Disco History!
-  - text: Actually, some kid told us he was awakening an elder god-
+  - text: Some kid told us he was awakening an elder god-
   - text: He said if we kidnapped a small innocent child-
-  - text: "And uh\u2026 sacrificed the child to the elder god, we\u2019d be young
-      forever-"
+  - text: "And sacrificed the child to the elder god, we\u2019d be young forever-"
   - text: "So naturally we\u2019d take the opportunity to make music for the rest
       of time!"
-  - text: I just had an idea, what if we sacrificed the kid we nabbed, AND we sacrificed
-      the kid that just walked in!
-  - text: "YOOOWWW! Then we\u2019d stay doubly young for double the rest of time
-      right?"
+  - text: Uh... I don't think we should be sayin' this in front of the kid that just
+      waltzed in...
+  - text: I just had an idea, what if we sacrificed the kid we nabbed, AND the new
+      kid!
+  - text: Then we'd be killin' two baby birds with one stone!
+  - text: That's not exactly what I meant-
   - text: "There\u2019s a reason you two have the tightest fros, and that\u2019s
       to hide the tightest brains OOOWWW!\r\n"
   container:
   - effects:
-    - name: Quake
-      color: {r: 0, g: 0, b: 0, a: 0}
-      lower: 0
-      upper: 7
     - name: Wave
       color: {r: 0, g: 0, b: 0, a: 0}
-      lower: 19
-      upper: 22
+      lower: 15
+      upper: 17
   - effects:
     - name: Wave
       color: {r: 0, g: 0, b: 0, a: 0}
       lower: 0
-      upper: 6
+      upper: 7
     - name: Quake
       color: {r: 0, g: 0, b: 0, a: 0}
-      lower: 28
-      upper: 33
+      lower: 29
+      upper: 34
   - effects:
     - name: Wave
       color: {r: 0, g: 0, b: 0, a: 0}
       lower: 29
       upper: 46
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 16
   - effects: []
   - effects:
     - name: Wave
@@ -998,18 +1000,18 @@ MonoBehaviour:
   - effects: []
   - effects: []
   - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
   - effects:
     - name: Wave
       color: {r: 0, g: 0, b: 0, a: 0}
-      lower: 0
-      upper: 7
-  - effects:
-    - name: Wave
-      color: {r: 0, g: 0, b: 0, a: 0}
-      lower: 72
+      lower: 70
       upper: 78
   dialogueImages:
   - sprite_path: CharacterSprites/disco_Brian
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Dylan
     lines: 1
   - sprite_path: CharacterSprites/disco_Dan
     lines: 1
@@ -1027,14 +1029,16 @@ MonoBehaviour:
     lines: 1
   - sprite_path: CharacterSprites/disco_Brian
     lines: 1
-  - sprite_path: CharacterSprites/disco_Dylan
-    lines: 1
-  - sprite_path: CharacterSprites/disco_Brian
-    lines: 1
   - sprite_path: CharacterSprites/disco_Dan
     lines: 1
   - sprite_path: CharacterSprites/disco_Dylan
     lines: 1
+  - sprite_path: CharacterSprites/disco_Dan
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Brian
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Dylan
+    lines: 2
   - sprite_path: CharacterSprites/disco_Brian
     lines: 1
   - sprite_path: CharacterSprites/disco_Dan
@@ -1181,54 +1185,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text:
-  - text: "YOOOWWW, this candles HOT, you sure we can\u2019t use those ener-G efficient
-      bulbs?"
-  - text: "OOOWWW, not as hot as this knife is SHARP.\r"
+  - text: Ow, this candle's HOT, you sure we can't use those ener-G efficient bulbs?
+  - text: "WOOOWWW, not as hot as this knife is SHARP.\r"
   - text: "Wait, hold the phone ya cool cats! A small innocent child has walked in
       on our funkin!\r"
+  - text: MMMM TASTY WOOOWWW!
   - text: "Ummm\u2026"
   - text: Allow us to introduce ourselves to YOU.
-  - text: "I\u2019m DISCO DAN OOOWWW!"
+  - text: "I\u2019m DISCO DAN YOOOWWW!"
   - text: "I\u2019m DISCO DYLAN WOOOWWW!"
-  - text: "and I\u2019m DISCO BRIAN YOOOWWW!"
+  - text: "and I\u2019m DISCO BRIAN OOOWWW!"
   - text: And we are the Disco Hooligans! Here to make the funkiest sacrifice ever
       in Disco History!
-  - text: Actually, some kid told us he was awakening an elder god-
+  - text: Some kid told us he was awakening an elder god-
   - text: He said if we kidnapped a small innocent child-
-  - text: "And uh\u2026 sacrificed the child to the elder god, we\u2019d be young
-      forever-"
+  - text: "And sacrificed the child to the elder god, we\u2019d be young forever-"
   - text: "So naturally we\u2019d take the opportunity to make music for the rest
       of time!"
-  - text: I just had an idea, what if we sacrificed the kid we nabbed, AND we sacrificed
-      the kid that just walked in!
-  - text: "YOOOWWW! Then we\u2019d stay doubly young for double the rest of time
-      right?"
+  - text: Uh... I don't think we should be sayin' this in front of the kid that just
+      waltzed in...
+  - text: I just had an idea, what if we sacrificed the kid we nabbed, AND the new
+      kid!
+  - text: Then we'd be killin' two baby birds with one stone!
+  - text: That's not exactly what I meant-
   - text: "There\u2019s a reason you two have the tightest fros, and that\u2019s
       to hide the tightest brains OOOWWW!\r\n"
   container:
   - effects:
-    - name: Quake
-      color: {r: 0, g: 0, b: 0, a: 0}
-      lower: 0
-      upper: 7
     - name: Wave
       color: {r: 0, g: 0, b: 0, a: 0}
-      lower: 19
-      upper: 22
+      lower: 15
+      upper: 17
   - effects:
     - name: Wave
       color: {r: 0, g: 0, b: 0, a: 0}
       lower: 0
-      upper: 6
+      upper: 7
     - name: Quake
       color: {r: 0, g: 0, b: 0, a: 0}
-      lower: 28
-      upper: 33
+      lower: 29
+      upper: 34
   - effects:
     - name: Wave
       color: {r: 0, g: 0, b: 0, a: 0}
       lower: 29
       upper: 46
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 16
   - effects: []
   - effects:
     - name: Wave
@@ -1272,18 +1278,18 @@ MonoBehaviour:
   - effects: []
   - effects: []
   - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
   - effects:
     - name: Wave
       color: {r: 0, g: 0, b: 0, a: 0}
-      lower: 0
-      upper: 7
-  - effects:
-    - name: Wave
-      color: {r: 0, g: 0, b: 0, a: 0}
-      lower: 72
+      lower: 70
       upper: 78
   dialogueImages:
   - sprite_path: CharacterSprites/disco_Brian
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Dylan
     lines: 1
   - sprite_path: CharacterSprites/disco_Dan
     lines: 1
@@ -1301,14 +1307,16 @@ MonoBehaviour:
     lines: 1
   - sprite_path: CharacterSprites/disco_Brian
     lines: 1
-  - sprite_path: CharacterSprites/disco_Dylan
-    lines: 1
-  - sprite_path: CharacterSprites/disco_Brian
-    lines: 1
   - sprite_path: CharacterSprites/disco_Dan
     lines: 1
   - sprite_path: CharacterSprites/disco_Dylan
     lines: 1
+  - sprite_path: CharacterSprites/disco_Dan
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Brian
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Dylan
+    lines: 2
   - sprite_path: CharacterSprites/disco_Brian
     lines: 1
   - sprite_path: CharacterSprites/disco_Dan
@@ -2059,54 +2067,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text:
-  - text: "YOOOWWW, this candles HOT, you sure we can\u2019t use those ener-G efficient
-      bulbs?"
-  - text: "OOOWWW, not as hot as this knife is SHARP.\r"
+  - text: Ow, this candle's HOT, you sure we can't use those ener-G efficient bulbs?
+  - text: "WOOOWWW, not as hot as this knife is SHARP.\r"
   - text: "Wait, hold the phone ya cool cats! A small innocent child has walked in
       on our funkin!\r"
+  - text: MMMM TASTY WOOOWWW!
   - text: "Ummm\u2026"
   - text: Allow us to introduce ourselves to YOU.
-  - text: "I\u2019m DISCO DAN OOOWWW!"
+  - text: "I\u2019m DISCO DAN YOOOWWW!"
   - text: "I\u2019m DISCO DYLAN WOOOWWW!"
-  - text: "and I\u2019m DISCO BRIAN YOOOWWW!"
+  - text: "and I\u2019m DISCO BRIAN OOOWWW!"
   - text: And we are the Disco Hooligans! Here to make the funkiest sacrifice ever
       in Disco History!
-  - text: Actually, some kid told us he was awakening an elder god-
+  - text: Some kid told us he was awakening an elder god-
   - text: He said if we kidnapped a small innocent child-
-  - text: "And uh\u2026 sacrificed the child to the elder god, we\u2019d be young
-      forever-"
+  - text: "And sacrificed the child to the elder god, we\u2019d be young forever-"
   - text: "So naturally we\u2019d take the opportunity to make music for the rest
       of time!"
-  - text: I just had an idea, what if we sacrificed the kid we nabbed, AND we sacrificed
-      the kid that just walked in!
-  - text: "YOOOWWW! Then we\u2019d stay doubly young for double the rest of time
-      right?"
+  - text: Uh... I don't think we should be sayin' this in front of the kid that just
+      waltzed in...
+  - text: I just had an idea, what if we sacrificed the kid we nabbed, AND the new
+      kid!
+  - text: Then we'd be killin' two baby birds with one stone!
+  - text: That's not exactly what I meant-
   - text: "There\u2019s a reason you two have the tightest fros, and that\u2019s
       to hide the tightest brains OOOWWW!\r\n"
   container:
   - effects:
-    - name: Quake
-      color: {r: 0, g: 0, b: 0, a: 0}
-      lower: 0
-      upper: 7
     - name: Wave
       color: {r: 0, g: 0, b: 0, a: 0}
-      lower: 19
-      upper: 22
+      lower: 15
+      upper: 17
   - effects:
     - name: Wave
       color: {r: 0, g: 0, b: 0, a: 0}
       lower: 0
-      upper: 6
+      upper: 7
     - name: Quake
       color: {r: 0, g: 0, b: 0, a: 0}
-      lower: 28
-      upper: 33
+      lower: 29
+      upper: 34
   - effects:
     - name: Wave
       color: {r: 0, g: 0, b: 0, a: 0}
       lower: 29
       upper: 46
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 16
   - effects: []
   - effects:
     - name: Wave
@@ -2150,18 +2160,18 @@ MonoBehaviour:
   - effects: []
   - effects: []
   - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
   - effects:
     - name: Wave
       color: {r: 0, g: 0, b: 0, a: 0}
-      lower: 0
-      upper: 7
-  - effects:
-    - name: Wave
-      color: {r: 0, g: 0, b: 0, a: 0}
-      lower: 72
+      lower: 70
       upper: 78
   dialogueImages:
   - sprite_path: CharacterSprites/disco_Brian
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Dylan
     lines: 1
   - sprite_path: CharacterSprites/disco_Dan
     lines: 1
@@ -2179,14 +2189,16 @@ MonoBehaviour:
     lines: 1
   - sprite_path: CharacterSprites/disco_Brian
     lines: 1
-  - sprite_path: CharacterSprites/disco_Dylan
-    lines: 1
-  - sprite_path: CharacterSprites/disco_Brian
-    lines: 1
   - sprite_path: CharacterSprites/disco_Dan
     lines: 1
   - sprite_path: CharacterSprites/disco_Dylan
     lines: 1
+  - sprite_path: CharacterSprites/disco_Dan
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Brian
+    lines: 1
+  - sprite_path: CharacterSprites/disco_Dylan
+    lines: 2
   - sprite_path: CharacterSprites/disco_Brian
     lines: 1
   - sprite_path: CharacterSprites/disco_Dan

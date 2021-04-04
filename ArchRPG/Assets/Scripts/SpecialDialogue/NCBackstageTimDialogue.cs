@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class NCBackstageTimDialogue : NPCDialogue
 {
+    private new void Start()
+    {
 
+    }
 }
