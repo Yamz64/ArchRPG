@@ -7,7 +7,7 @@ public class PlayerData : CharacterStats
     //--CONSTRUCTOR--
     public PlayerData(bool l = false)
     {
-        int u_char_count = 6;
+        int u_char_count = 10;
         inventory = new List<Item>();
         party_stats = new List<CharacterStats>();
         added_party_members = new bool[u_char_count];
@@ -184,6 +184,18 @@ public class PlayerData : CharacterStats
                     break;
                 case "Lucy":
                     SetUnlockedSAN(5, party_stats[i].GetSAN());
+                    break;
+                case "Tim":
+                    SetUnlockedSAN(6, party_stats[i].GetSAN());
+                    break;
+                case "WhiteKnight":
+                    SetUnlockedSAN(7, party_stats[i].GetSAN());
+                    break;
+                case "OliverSprout":
+                    SetUnlockedSAN(8, party_stats[i].GetSAN());
+                    break;
+                case "EmberMoon":
+                    SetUnlockedSAN(9, party_stats[i].GetSAN());
                     break;
                 default:
                     break;
@@ -785,6 +797,10 @@ public class PlayerData : CharacterStats
      * 3 - Shirley
      * 4 - Ralphy
      * 5 - Lucy
+     * 6 - Tim
+     * 7 - White Knight
+     * 8 - Oliver Sprout
+     * 9 - Ember Moon
     */
     private bool[] added_party_members;
     private int[] added_party_sans;

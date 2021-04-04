@@ -1425,6 +1425,16 @@ MonoBehaviour:
   - sprite_path: CharacterSprites/Tim_sad
     lines: 4
   player: {fileID: 0}
+  jm_id:
+    useable: 1
+    name: Junior Meat ID
+    description: The proud ID of a junior meat salesman for Mr. Goodmeat! It shines
+      of cheaply manufactured holographic foil!
+    image_file_path: 
+    amount: 1
+    limit: 2
+    type: 0
+    cost: 0
 --- !u!1001 &1397821097
 PrefabInstance:
   m_ObjectHideFlags: 0
