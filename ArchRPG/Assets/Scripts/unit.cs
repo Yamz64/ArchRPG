@@ -8322,7 +8322,6 @@ public class Hound : unit
         enemy = true;
         capital = 8;
 
-        //Currently uses Locker stats
         ATK = 50;
         DEF = 60;
         POW = 30;

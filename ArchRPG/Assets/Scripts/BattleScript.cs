@@ -5118,14 +5118,34 @@ public class BattleScript : MonoBehaviour
     //An enemy uses a non-offensive ability
     IEnumerator enemyAbility(int ata, int val, unit uni, unit target)
     {
-        uni.abilities[ata].UseAttack(uni, target);
-        StartCoroutine(flashBuff(target));
-        if (uni.abilities[ata].OutputText(uni, target) != null)
+        if (uni.abilities[ata].target == 0)
         {
-            dialogue.text = uni.abilities[ata].OutputText(uni, target);
-            yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+            uni.abilities[ata].UseAttack(uni, target);
+            StartCoroutine(flashBuff(target));
+            if (uni.abilities[ata].OutputText(uni, target) != null)
+            {
+                dialogue.text = uni.abilities[ata].OutputText(uni, target);
+                yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+            }
         }
-        yield return new WaitForSeconds(0f);
+        else if (uni.abilities[ata].target == 3)
+        {
+            List<unit> buds = new List<unit>();
+            for (int i = 0; i < enemyUnits.Count; i++)
+            {
+                buds.Add(enemyUnits[i].GetComponent<UnitMono>().mainUnit);
+            }
+            uni.abilities[ata].UseAttack(uni, buds);
+            for (int i = 0; i < enemyUnits.Count; i++)
+            {
+                StartCoroutine(flashBuff(buds[i]));
+            }
+            if (uni.abilities[ata].OutputText(uni, target) != null)
+            {
+                dialogue.text = uni.abilities[ata].OutputText(uni, target);
+                yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+            }
+        }
     }
 
     //Use to give a unit experience and, if possible, level them up. Display text as well

@@ -1519,6 +1519,194 @@ namespace EnemyAbilities
             defaultPriority = priority = 1;
         }
     }
+
+    //Construction Worker
+    //Add random damage
+    public class SignSlam : Ability
+    {
+        public SignSlam()
+        {
+            name = "Sign Slam";
+            type = 0;
+            damage = 60;
+            statusEffect = "Zonked";
+            defaultPriority = priority = 5;
+        }
+    }
+
+    public class OpticalIncision : Ability
+    {
+        public OpticalIncision()
+        {
+            name = "Optical Incision";
+            type = 0;
+            target = 3;
+            sanity_damage = 10;
+            statusEffect = "Aspirating";
+            selfStatus = "Eye_Bleed";
+            defaultPriority = priority = 2;
+        }
+    }
+
+    public class SafetyFirst : Ability
+    {
+        public SafetyFirst()
+        {
+            name = "Safety First";
+            type = 1;
+            target = 3;
+            statusEffect = "Neurotic";
+            defaultPriority = priority = 6;
+        }
+
+        public override void UseAttack(unit user, List<unit> targets)
+        {
+            for (int i = 0; i < targets.Count; i++)
+            {
+                if (targets[i] != null)
+                {
+                    if (targets[i].currentHP > 0)
+                    {
+                        targets[i].giveStatus(statusEffect);
+                    }
+                }
+            }
+        }
+    }
+
+    //Danny
+    public class Humiliate : Ability
+    {
+        public Humiliate()
+        {
+            name = "Humiliate";
+            sanity_damage = 5;
+            statusEffect = "Weeping Hysteria";
+            defaultPriority = priority = 2;
+        }
+        public override string OutputText(unit user, unit target)
+        {
+            string insult = "";
+            int ran = Random.Range(0, 4);
+            if (ran == 0)
+            {
+                insult = target.unitName + " is a butt";
+            }
+            else if (ran == 1)
+            {
+
+            }
+            return insult;
+        }
+    }
+
+    public class PraiseGod : Ability
+    {
+        public PraiseGod()
+        {
+            name = "Praise God";
+            type = 2;
+            statusEffect = "Confident Zealous";
+            defaultPriority = priority = 2;
+        }
+
+        public override void UseAttack(unit user, unit target)
+        {
+            target = user;
+            user.giveStatus(statusEffect);
+            statCounter = 5;
+
+        }
+    }
+
+    public class OccultCharisma : Ability
+    {
+        public OccultCharisma()
+        {
+            name = "Occult Charisma";
+            use_pow = true;
+            damage = 40;
+            damageType = 4;
+            statusEffect = "Spasms Zonked";
+            defaultPriority = priority = 3;
+        }
+    }
+
+    public class GutPunch : Ability
+    {
+        public GutPunch()
+        {
+            name = "Gut Punch";
+            damage = 25;
+            statusEffect = "Vomiting";
+            defaultPriority = priority = 4;
+        }
+    }
+
+    //God's Hand
+    public class GodsWill : Ability
+    {
+        public GodsWill()
+        {
+            name = "God's Will";
+            target = 3;
+            use_pow = true;
+            damageType = 1;
+            damage = 30;
+            statusEffect = "Eye_Bleed";
+            defaultPriority = priority = 1;
+        }
+    }
+
+    //Add random damage
+    public class SoulPenetratingGaze : Ability
+    {
+        public SoulPenetratingGaze()
+        {
+            name = "Soul Penetrating Gaze";
+            target = 1;
+            damageType = 4;
+            damage = 30;
+            sanity_damage = 10;
+            statusEffect = "Hysteria";
+            defaultPriority = priority = 3;
+        }
+    }
+
+    public class Grope : Ability
+    {
+        public Grope()
+        {
+            name = "Grope";
+            damageType = 4;
+            damage = 50;
+            defaultPriority = priority = 4;
+        }
+    }
+
+    //God 1
+    public class IncomprehensibleVisage : Ability
+    {
+        public IncomprehensibleVisage()
+        {
+            name = "Incomprehensible Visage";
+            sanity_damage = 8;
+            statusEffect = "Aspirating";
+            defaultPriority = priority = 3;
+        }
+    }
+
+    public class ExtraplanarParasite : Ability
+    {
+        public ExtraplanarParasite()
+        {
+            name = "Extraplanar Parasite";
+        }
+    }
+
+
+
+    //God 2 (Divine Boogaloo)
 }
 
 namespace PlayerAbilities
