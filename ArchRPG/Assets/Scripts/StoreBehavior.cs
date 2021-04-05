@@ -118,7 +118,7 @@ public class StoreBehavior : InteractableBaseClass
     }
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         StoreStart();
     }

@@ -1687,7 +1687,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_Name
-      value: OverworldCharacter
+      value: PizzaGuy
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2907,6 +2907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589ea63de86f2f8469187f04dfa527f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mark_interactable: 0
   spawn_position: {x: 0.5, y: -13.25}
   scene: Subway
 --- !u!61 &1903782996
@@ -3072,6 +3073,9 @@ MonoBehaviour:
     objects:
     - o: Rat Bomb
       interacted: 0
+    - o: PizzaGuy
+      interacted: 0
+    saves: []
 --- !u!4 &2102447044
 Transform:
   m_ObjectHideFlags: 0
