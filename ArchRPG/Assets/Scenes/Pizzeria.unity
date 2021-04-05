@@ -1748,7 +1748,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 290751157}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &290751159
+--- !u!114 &290751163
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1757,7 +1757,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 290751158}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f43b670a4b35cc48ad26f0a8d83d2a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 08defeb9850c5ac4c94a88730e6be2d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
@@ -1771,6 +1771,26 @@ MonoBehaviour:
   - name: Commemorative T-Shirt
     cost: 20
     type: 2
+  sm_id:
+    useable: 0
+    name: Senior Meat Salesman ID
+    description: A high quality replica of a Senior Meat Salesman ID.  It reads "Rusty
+      Shackleford."
+    image_file_path: 
+    amount: 1
+    limit: 1
+    type: 0
+    cost: 1
+  boxed_pizza:
+    useable: 1
+    name: Boxed Pizza
+    description: A boxed pizza you need to deliver to the condemned building.  Grease
+      leaks out of the seams.
+    image_file_path: 
+    amount: 1
+    limit: 1
+    type: 0
+    cost: 50
 --- !u!1001 &390584783
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -47,16 +47,6 @@
             "saves": []
         },
         {
-            "name": "Pizzeria",
-            "objects": [
-                {
-                    "o": "RatBomb",
-                    "interacted": false
-                }
-            ],
-            "saves": []
-        },
-        {
             "name": "BedroomScene",
             "objects": [
                 {
@@ -201,6 +191,20 @@
                 {
                     "o": "Bouncer",
                     "interacted": true
+                }
+            ],
+            "saves": []
+        },
+        {
+            "name": "Pizzeria",
+            "objects": [
+                {
+                    "o": "RatBomb",
+                    "interacted": false
+                },
+                {
+                    "o": "PizzaGuy",
+                    "interacted": false
                 }
             ],
             "saves": []
