@@ -1772,17 +1772,11 @@ MonoBehaviour:
     cost: 20
     type: 2
   sm_id:
-    useable: 0
     name: Senior Meat Salesman ID
-    description: A high quality replica of a Senior Meat Salesman ID.  It reads "Rusty
-      Shackleford."
-    image_file_path: 
-    amount: 1
-    limit: 1
+    cost: 100
     type: 0
-    cost: 1
   boxed_pizza:
-    useable: 1
+    useable: 0
     name: Boxed Pizza
     description: A boxed pizza you need to deliver to the condemned building.  Grease
       leaks out of the seams.

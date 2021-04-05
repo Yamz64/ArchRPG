@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PizzeriaBehavior : StoreBehavior
 {
-    [SerializeField]
-    public Item sm_id;
+    public StoreItem sm_id;
 
     [SerializeField]
     public Item boxed_pizza;
@@ -193,7 +192,7 @@ public class PizzeriaBehavior : StoreBehavior
             if (has_enough)
             {
                 player.GetComponent<PlayerDataMono>().data.SetMoney(player.GetComponent<PlayerDataMono>().data.GetMoney() - 100);
-                player.GetComponent<PlayerDataMono>().data.AddItem(new Item(sm_id));
+                player.GetComponent<PlayerDataMono>().data.AddItem(new Consumables.SeniorMeatSalesmanID());
                 text.Add("Umm ok, here ya go kid!");
                 text.Add("You got the Senior Meat Salesman ID!");
 
@@ -256,6 +255,7 @@ public class PizzeriaBehavior : StoreBehavior
             if(map_data.map_data[i].name == "City1")
             {
                 act_2 = true;
+                items.Add(sm_id);
                 break;
             }
         }

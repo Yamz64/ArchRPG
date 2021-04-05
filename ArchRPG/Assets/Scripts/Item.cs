@@ -489,6 +489,21 @@ public static class Consumables
             character.SetSP(character.GetSP() + 75);
         }
     }
+
+    public class SeniorMeatSalesmanID : Item
+    {
+        public SeniorMeatSalesmanID()
+        {
+            name = "Senior Meat Salesman ID";
+            description = "A high quality replica of a Senior Meat Salesman ID.  It reads \"Rusty Shackleford.\"";
+            image_file_path = "";
+            amount = 1;
+            limit = 1;
+            cost = 50;
+
+            useable = false;
+        }
+    }
 }
 
 public static class Weapons
