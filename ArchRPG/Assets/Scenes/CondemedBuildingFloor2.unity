@@ -2095,9 +2095,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 418063344}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 589ea63de86f2f8469187f04dfa527f2, type: 3}
+  m_Script: {fileID: 11500000, guid: ab4f7a15d31caca4c913c61a4ae730da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mark_interactable: 0
   spawn_position: {x: -14, y: -4.5}
   scene: CondemnedBuildingBossRoom
 --- !u!61 &418063346
@@ -2277,7 +2278,7 @@ Transform:
   m_LocalScale: {x: 9.944361, y: 3.347803, z: 3.618128}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &853738325
 PrefabInstance:
@@ -2488,6 +2489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589ea63de86f2f8469187f04dfa527f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mark_interactable: 0
   spawn_position: {x: 3, y: 3}
   scene: CondemnedBuildingFloor1
 --- !u!61 &1597089857

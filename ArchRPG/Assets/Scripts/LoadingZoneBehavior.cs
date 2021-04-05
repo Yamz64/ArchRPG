@@ -9,7 +9,7 @@ public class LoadingZoneBehavior : MonoBehaviour
     public Vector2 spawn_position;
     public string scene;
 
-    void LoadScene()
+    public virtual void LoadScene()
     {
         if (mark_interactable)
         {

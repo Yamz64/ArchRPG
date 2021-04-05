@@ -163,7 +163,7 @@ public class PizzeriaBehavior : StoreBehavior
             images.Add("CharacterSprites/Pizza Worker");
             images.Add("CharacterSprites/Pizza Worker");
             images.Add("CharacterSprites/Pizza Worker");
-            images.Add("CharacterSprites/Pizza Worker");
+            images.Add(null);
 
             player.SetWriteQueue(text);
             player.SetEffectQueue(effects);
