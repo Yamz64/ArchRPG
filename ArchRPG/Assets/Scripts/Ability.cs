@@ -1782,6 +1782,7 @@ namespace EnemyAbilities
         public Paroxysm()
         {
             name = "Paroxysm";
+            target = 3;
             customAbility = 2;
             multiHitMin = 3;
             multiHitMax = 8;

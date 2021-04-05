@@ -3207,7 +3207,7 @@ public class BattleScript : MonoBehaviour
             swaps.Clear();
             actions.Clear();
 
-            if (state != battleState.WIN && state != battleState.LOSE && state != battleState.FLEE && enemyDeaths < enemyUnits.Count)
+            if (state != battleState.WIN && state != battleState.LOSE && state != battleState.FLEE && enemyDeaths < enemyUnits.Count && partyDeaths < activeUnits)
             {
                 /*
                 for (int i = 0; i < partyUnits.Count; i++)
@@ -3228,8 +3228,12 @@ public class BattleScript : MonoBehaviour
                 transform.GetChild(1).Find("ActionMenu").gameObject.SetActive(true);
                 OpenMenu(0);
                 currentUnit = 0;
-                while (partyUnits[currentUnit] == null) currentUnit++;
+                while (partyUnits[currentUnit] == null || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.currentHP <= 0) currentUnit++;
                 playerTurn();
+            }
+            else
+            {
+                yield return battleEnd();
             }
         }
     }
@@ -4760,6 +4764,25 @@ public class BattleScript : MonoBehaviour
         List<bool> deads = new List<bool>();
         List<int> rs = new List<int>();
 
+        if (uni.abilities[ata].customAbility == 1)
+        {
+            uni.abilities[ata].UseAttack(uni, target);
+            dead = (target.currentHP <= 0);
+        }
+        else if (uni.abilities[ata].customAbility == 2)
+        {
+            List<unit> bots = new List<unit>();
+            for (int i = 0; i < partyUnits.Count; i++)
+            {
+                if (partyUnits[i] != null)
+                {
+                    if (partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                    {
+                        bots.Add(partyUnits[i].GetComponent<UnitMono>().mainUnit);
+                    }
+                }
+            }
+        }
 
         yield return new WaitForSeconds(0.5f);
         int looper = 1;
@@ -4770,135 +4793,131 @@ public class BattleScript : MonoBehaviour
 
         for (int g = 0; g < looper && !dead; g++)
         {
-            dead = uni.useAbility(ata, target);
-
-            if (target.weaknesses[uni.abilities[ata].damageType]) good = true;
-            if (target.resistances[uni.abilities[ata].damageType]) bad = true;
-
-            StartCoroutine(flashDamage(target));
-            yield return flashDealDamage(uni);
-            if (target.critted)
+            if (uni.abilities[ata].target == 0)
             {
-                dialogue.text = "The attack hit a weak spot!";
-                yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
-                skipper = true;
-                target.critted = false;
-            }
-            if (good)
-            {
-                //yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
-                dialogue.text = "It did a lot of damage!";
-                yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
-                skipper = true;
-                good = false;
-            }
-            else if (bad)
-            {
-                dialogue.text = "It didn't do too much damage.";
-                yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
-                skipper = true;
-                bad = false;
-            }
+                dead = uni.useAbility(ata, target);
 
-            if (target.lived)
-            {
-                dialogue.text = target.unitName +  " barely survived...";
-                yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
-                skipper = true;
-                target.lived = false;
-            }
+                if (target.weaknesses[uni.abilities[ata].damageType]) good = true;
+                if (target.resistances[uni.abilities[ata].damageType]) bad = true;
 
-            //Pull forward
-            if (uni.abilities[ata].swapper == 1)
-            {
-                Transform pp1 = new GameObject().transform;
-                Transform pp2 = new GameObject().transform;
-
-                GameObject po1 = new GameObject();
-                GameObject po2 = new GameObject();
-                pp1.position = allyStations[val].position;
-                po1 = partyUnits[val];
-                if (val == 2 || val == 3)
+                StartCoroutine(flashDamage(target));
+                yield return flashDealDamage(uni);
+                if (target.critted)
                 {
-                    if (val - 2 == 0 || val - 2 == 1) po1.GetComponent<UnitMono>().mainUnit.position = 0;
-                    else po1.GetComponent<UnitMono>().mainUnit.position = 1;
-                    pp2.position = allyStations[val - 2].position;
-                    po2 = partyUnits[val - 2];
-                    if (po2 != null)
-                    {
-                        if (val == 0 || val == 1) po2.GetComponent<UnitMono>().mainUnit.position = 0;
-                        else po2.GetComponent<UnitMono>().mainUnit.position = 1;
-                    }
-                    pSpots.Add(pp1);
-                    pSpots.Add(pp2);
-                    ppgs.Add(po1);
-                    ppgs.Add(po2);
-
-                    swaps.Add(partyUnits[val].gameObject);
-
-                    if (partyUnits[val - 2] != null)
-                    {
-                        swaps.Add(partyUnits[val - 2].gameObject);
-                    }
-                    else
-                    {
-                        swaps.Add(null);
-                    }
-
-                    swapInds.Add(val);
-                    swapInds.Add(val - 2);
-                    PerformSwaps(swapInds.Count - 2);
+                    dialogue.text = "The attack hit a weak spot!";
+                    yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                    skipper = true;
+                    target.critted = false;
                 }
-            }
-            //Push Back
-            else if (uni.abilities[ata].swapper == 2)
-            {
-                Transform pp1 = new GameObject().transform;
-                Transform pp2 = new GameObject().transform;
-
-                GameObject po1 = new GameObject();
-                GameObject po2 = new GameObject();
-
-                pp1.position = allyStations[val].position;
-                po1 = partyUnits[val];
-                if (val == 0 || val == 1)
+                if (good)
                 {
-                    if (val + 2 == 0 || val + 2 == 1) po1.GetComponent<UnitMono>().mainUnit.position = 0;
-                    else po1.GetComponent<UnitMono>().mainUnit.position = 1;
-                    pp2.position = allyStations[val + 2].position;
-                    po2 = partyUnits[val + 2];
-                    if (po2 != null)
-                    {
-                        if (val == 0 || val == 1) po2.GetComponent<UnitMono>().mainUnit.position = 0;
-                        else po2.GetComponent<UnitMono>().mainUnit.position = 1;
-                    }
-                    pSpots.Add(pp1);
-                    pSpots.Add(pp2);
-                    ppgs.Add(po1);
-                    ppgs.Add(po2);
-
-                    swaps.Add(partyUnits[val].gameObject);
-
-                    if (partyUnits[val + 2] != null)
-                    {
-                        swaps.Add(partyUnits[val + 2].gameObject);
-                    }
-                    else
-                    {
-                        swaps.Add(null);
-                    }
-
-                    swapInds.Add(val);
-                    swapInds.Add(val + 2);
-                    PerformSwaps(swapInds.Count - 2);
+                    //yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                    dialogue.text = "It did a lot of damage!";
+                    yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                    skipper = true;
+                    good = false;
                 }
-            }
+                else if (bad)
+                {
+                    dialogue.text = "It didn't do too much damage.";
+                    yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                    skipper = true;
+                    bad = false;
+                }
 
-            if (uni.abilities[ata].moneySteal > 0)
-            {
-                data.SetMoney(data.GetMoney() - uni.abilities[ata].moneySteal);
-                dialogue.text = uni.unitName + " stole $" + uni.abilities[ata].moneySteal + " buckaroos";
-                yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                if (target.lived)
+                {
+                    dialogue.text = target.unitName + " barely survived...";
+                    yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+                    skipper = true;
+                    target.lived = false;
+                }
+
+                //Pull forward
+                if (uni.abilities[ata].swapper == 1)
+                {
+                    Transform pp1 = new GameObject().transform;
+                    Transform pp2 = new GameObject().transform;
+
+                    GameObject po1 = new GameObject();
+                    GameObject po2 = new GameObject();
+                    pp1.position = allyStations[val].position;
+                    po1 = partyUnits[val];
+                    if (val == 2 || val == 3)
+                    {
+                        if (val - 2 == 0 || val - 2 == 1) po1.GetComponent<UnitMono>().mainUnit.position = 0;
+                        else po1.GetComponent<UnitMono>().mainUnit.position = 1;
+                        pp2.position = allyStations[val - 2].position;
+                        po2 = partyUnits[val - 2];
+                        if (po2 != null)
+                        {
+                            if (val == 0 || val == 1) po2.GetComponent<UnitMono>().mainUnit.position = 0;
+                            else po2.GetComponent<UnitMono>().mainUnit.position = 1;
+                        }
+                        pSpots.Add(pp1);
+                        pSpots.Add(pp2);
+                        ppgs.Add(po1);
+                        ppgs.Add(po2);
+
+                        swaps.Add(partyUnits[val].gameObject);
+
+                        if (partyUnits[val - 2] != null)
+                        {
+                            swaps.Add(partyUnits[val - 2].gameObject);
+                        }
+                        else
+                        {
+                            swaps.Add(null);
+                        }
+
+                        swapInds.Add(val);
+                        swapInds.Add(val - 2);
+                        PerformSwaps(swapInds.Count - 2);
+                    }
+                }
+                //Push Back
+                else if (uni.abilities[ata].swapper == 2)
+                {
+                    Transform pp1 = new GameObject().transform;
+                    Transform pp2 = new GameObject().transform;
+
+                    GameObject po1 = new GameObject();
+                    GameObject po2 = new GameObject();
+
+                    pp1.position = allyStations[val].position;
+                    po1 = partyUnits[val];
+                    if (val == 0 || val == 1)
+                    {
+                        if (val + 2 == 0 || val + 2 == 1) po1.GetComponent<UnitMono>().mainUnit.position = 0;
+                        else po1.GetComponent<UnitMono>().mainUnit.position = 1;
+                        pp2.position = allyStations[val + 2].position;
+                        po2 = partyUnits[val + 2];
+                        if (po2 != null)
+                        {
+                            if (val == 0 || val == 1) po2.GetComponent<UnitMono>().mainUnit.position = 0;
+                            else po2.GetComponent<UnitMono>().mainUnit.position = 1;
+                        }
+                        pSpots.Add(pp1);
+                        pSpots.Add(pp2);
+                        ppgs.Add(po1);
+                        ppgs.Add(po2);
+
+                        swaps.Add(partyUnits[val].gameObject);
+
+                        if (partyUnits[val + 2] != null)
+                        {
+                            swaps.Add(partyUnits[val + 2].gameObject);
+                        }
+                        else
+                        {
+                            swaps.Add(null);
+                        }
+
+                        swapInds.Add(val);
+                        swapInds.Add(val + 2);
+                        PerformSwaps(swapInds.Count - 2);
+                    }
+                }
             }
             //If it is a horizontal AOE attack
             if (uni.abilities[ata].target == 1)
@@ -5060,9 +5079,16 @@ public class BattleScript : MonoBehaviour
                 }
             }
 
+            if (uni.abilities[ata].moneySteal > 0)
+            {
+                data.SetMoney(data.GetMoney() - uni.abilities[ata].moneySteal);
+                dialogue.text = uni.unitName + " stole $" + uni.abilities[ata].moneySteal + " buckaroos";
+                yield return new WaitUntil(new System.Func<bool>(() => Input.GetButtonDown("Interact")));
+            }
+
             yield return new WaitForSeconds(1f);
             //If enemy is dead, battle is won
-            if (uni.abilities[ata].target <= 2)
+            if (uni.abilities[ata].target <= 2 || uni.abilities[ata].customAbility == 1)
             {
                 if (dead && !dead2)
                 {
@@ -5096,7 +5122,7 @@ public class BattleScript : MonoBehaviour
                     }
                 }
             }
-            else if (uni.abilities[ata].target == 3)
+            else if (uni.abilities[ata].target == 3 || uni.abilities[ata].customAbility == 2)
             {
                 for (int i = 0; i < deads.Count; i++)
                 {
