@@ -656,10 +656,12 @@ public class unit
                 if (position == 0 && !enemy)
                 {
                     val += (int)(val * 0.2);
+                    valS += (int)(valS * 0.2);
                 }
                 if (target.position == 1 && !target.enemy)
                 {
                     val -= (int)(val * 0.2);
+                    valS += (int)(valS * 0.2);
                 }
 
                 float valL = (float)LCK;
@@ -754,7 +756,6 @@ public class unit
                         val += (int)(val * valP);
                         valS += (int)(valS * valP);
                         val2 += (int)(val2 * valP);
-
                     }
                     //Zealous
                     else
@@ -8315,7 +8316,9 @@ public class Hound : unit
         ImageFilePath = "EnemySprites/The Hound";
         unitName = "The Hound";
         loadSprites();
+
         weaknesses[4] = true;
+
         level = 6;
         maxHP = currentHP = 95;
         expGain = 60;
@@ -8379,6 +8382,9 @@ public class Bouncer : unit
         unitName = "Bouncer";
         loadSprites();
 
+        resistances[0] = true;
+        weaknesses[4] = true;
+
         level = 6;
         maxHP = currentHP = 35;
         expGain = 60;
@@ -8408,6 +8414,10 @@ public class DiscoHooliganDan : unit
         ImageFilePath = "EnemySprites/disco_Dan";
         unitName = "Dan";
         loadSprites();
+
+        resistances[1] = true;
+        resistances[4] = true;
+        weaknesses[3] = true;
 
         level = 6;
         maxHP = currentHP = 35;
@@ -8440,6 +8450,10 @@ public class DiscoHooliganDylan : unit
         unitName = "Dylan";
         loadSprites();
 
+        resistances[3] = true;
+        resistances[4] = true;
+        weaknesses[2] = true;
+
         level = 6;
         maxHP = currentHP = 35;
         expGain = 60;
@@ -8471,6 +8485,10 @@ public class DiscoHooliganBrian : unit
         unitName = "Brian";
         loadSprites();
 
+        resistances[2] = true;
+        resistances[4] = true;
+        weaknesses[1] = true;
+
         level = 6;
         maxHP = currentHP = 35;
         expGain = 60;
@@ -8501,6 +8519,8 @@ public class ConnivingCone : unit
         ImageFilePath = "EnemySprites/Conniving Cone";
         unitName = "Conniving Cone";
         loadSprites();
+
+        weaknesses[1] = true;
 
         level = 6;
         maxHP = currentHP = 35;
@@ -8564,6 +8584,9 @@ public class TheSquatter : unit
         unitName = "The Squatter";
         loadSprites();
 
+        resistances[4] = true;
+        weaknesses[3] = true;
+
         level = 6;
         maxHP = currentHP = 35;
         expGain = 60;
@@ -8596,6 +8619,8 @@ public class MeatPuppet : unit
         unitName = "Meat Puppet";
         loadSprites();
 
+        weaknesses[2] = true;
+
         level = 6;
         maxHP = currentHP = 35;
         expGain = 60;
@@ -8625,6 +8650,10 @@ public class MeatGolem : unit
         ImageFilePath = "EnemySprites/Meat Golem";
         unitName = "Meat Golem";
         loadSprites();
+
+        resistances[1] = true;
+        resistances[2] = true;
+        weaknesses[3] = true;
 
         level = 6;
         maxHP = currentHP = 35;
@@ -8656,6 +8685,177 @@ public class MrGoodMeat : unit
         ImageFilePath = "EnemySprites/Mr. GoodMeat";
         unitName = "Mr. GoodMeat";
         loadSprites();
+
+        weaknesses[4] = true;
+
+        level = 6;
+        maxHP = currentHP = 35;
+        expGain = 60;
+        enemy = true;
+        capital = 8;
+
+        //Currently uses Locker stats
+        ATK = 40;
+        DEF = 40;
+        POW = 30;
+        WILL = 6;
+        RES = 6;
+        AGI = 5;
+        LCK = 2;
+
+        abilities = new List<Ability>();
+        abilities.Add(new EnemyAbilities.LighterFluid());
+        abilities.Add(new EnemyAbilities.ElectricMeat());
+        abilities.Add(new EnemyAbilities.MeatMold());
+        abilities.Add(new EnemyAbilities.Entrecote());
+    }
+}
+
+public class ConstructionWorker : unit
+{
+    public ConstructionWorker()
+    {
+        ImageFilePath = "EnemySprites/Mr. GoodMeat";
+        unitName = "Construction Worker";
+        loadSprites();
+
+        resistances[0] = true;
+        weaknesses[2] = true;
+        weaknesses[3] = true;
+
+        level = 6;
+        maxHP = currentHP = 35;
+        expGain = 60;
+        enemy = true;
+        capital = 8;
+
+        //Currently uses Locker stats
+        ATK = 40;
+        DEF = 40;
+        POW = 30;
+        WILL = 6;
+        RES = 6;
+        AGI = 5;
+        LCK = 2;
+
+        abilities = new List<Ability>();
+        abilities.Add(new EnemyAbilities.SignSlam());
+        abilities.Add(new EnemyAbilities.OpticalIncision());
+        abilities.Add(new EnemyAbilities.SafetyFirst());
+    }
+}
+
+public class Danny : unit
+{
+    public Danny()
+    {
+        ImageFilePath = "CharacterSprites/Danny2";
+        unitName = "Danny";
+        loadSprites();
+
+        resistances[4] = true;
+        weaknesses[2] = true;
+
+        level = 6;
+        maxHP = currentHP = 35;
+        expGain = 60;
+        enemy = true;
+        capital = 8;
+
+        //Currently uses Locker stats
+        ATK = 40;
+        DEF = 40;
+        POW = 30;
+        WILL = 6;
+        RES = 6;
+        AGI = 5;
+        LCK = 2;
+
+        abilities = new List<Ability>();
+        abilities.Add(new EnemyAbilities.Humiliate());
+        abilities.Add(new EnemyAbilities.PraiseGod());
+        abilities.Add(new EnemyAbilities.OccultCharisma());
+        abilities.Add(new EnemyAbilities.GutPunch());
+    }
+}
+
+public class GodsHand : unit
+{
+    public GodsHand()
+    {
+        ImageFilePath = "EnemySprites/Mr. GoodMeat";
+        unitName = "God's Hand";
+        loadSprites();
+
+        resistances[4] = true;
+        weaknesses[2] = true;
+
+        level = 6;
+        maxHP = currentHP = 35;
+        expGain = 60;
+        enemy = true;
+        capital = 8;
+
+        //Currently uses Locker stats
+        ATK = 40;
+        DEF = 40;
+        POW = 30;
+        WILL = 6;
+        RES = 6;
+        AGI = 5;
+        LCK = 2;
+
+        abilities = new List<Ability>();
+        abilities.Add(new EnemyAbilities.GodsWill());
+        abilities.Add(new EnemyAbilities.SoulPenetratingGaze());
+        abilities.Add(new EnemyAbilities.Grope());
+    }
+}
+
+public class God : unit
+{
+    public God()
+    {
+        ImageFilePath = "EnemySprites/Mr. GoodMeat";
+        unitName = "God";
+        loadSprites();
+
+        resistances[0] = true;
+
+        level = 6;
+        maxHP = currentHP = 35;
+        expGain = 60;
+        enemy = true;
+        capital = 8;
+
+        //Currently uses Locker stats
+        ATK = 40;
+        DEF = 40;
+        POW = 30;
+        WILL = 6;
+        RES = 6;
+        AGI = 5;
+        LCK = 2;
+
+        abilities = new List<Ability>();
+        abilities.Add(new EnemyAbilities.LighterFluid());
+        abilities.Add(new EnemyAbilities.ElectricMeat());
+        abilities.Add(new EnemyAbilities.MeatMold());
+        abilities.Add(new EnemyAbilities.Entrecote());
+    }
+}
+
+public class God2 : unit
+{
+    public God2()
+    {
+        ImageFilePath = "EnemySprites/Mr. GoodMeat";
+        unitName = "God";
+        loadSprites();
+
+        resistances[4] = true;
+        weaknesses[1] = true;
+        weaknesses[2] = true;
 
         level = 6;
         maxHP = currentHP = 35;

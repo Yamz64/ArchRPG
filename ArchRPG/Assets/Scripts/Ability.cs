@@ -1701,12 +1701,121 @@ namespace EnemyAbilities
         public ExtraplanarParasite()
         {
             name = "Extraplanar Parasite";
+            type = 1;
+            statusEffect = "Hyperactive Chutzpah";
+            defaultPriority = priority = 3;
+            nextPriority = 1;
+        }
+
+        public override void UseAttack(unit user, unit target)
+        {
+            int dam = user.takeDamageCalc(target, 20, 0);
+            target.takeDamage(dam);
+            int ran = Random.Range(0, 2);
+            if (ran == 0)
+            {
+                user.healDamage(dam);
+            }
+            else
+            {
+                user.healDamage(dam / 2);
+            }
+            user.giveStatus(statusEffect);
         }
     }
 
+    public class IncomprehensibleAssault : Ability
+    {
+        public IncomprehensibleAssault()
+        {
+            name = "Incomprehensible Assault";
+            target = 3;
+            damageType = 4;
+            damage = 50;
+            statusEffect = "Blunt_Trauma";
+            defaultPriority = priority = 5;
+        }
+    }
 
+    public class IncomprehensibleThought : Ability
+    {
+        public IncomprehensibleThought()
+        {
+            name = "Incomprehensible Thought";
+            target = 3;
+            use_pow = true;
+            damageType = 4;
+            damage = 40;
+            statusEffect = "Spasms";
+            defaultPriority = priority = 4;
+        }
+    }
 
     //God 2 (Divine Boogaloo)
+    public class Doom : Ability
+    {
+        public Doom()
+        {
+            name = "Doom";
+            statusEffect = "Doomed";
+            defaultPriority = priority = 2;
+            nextPriority = 3;
+            target = 0;
+            customAbility = 1;
+        }
+
+        public override void UseAttack(unit user, unit target)
+        {
+            if (target.statuses[25] != -1 && target.unitName != "Player")
+            {
+                target.takeDamage(target.currentHP);
+            }
+            if (target.currentHP > 0)
+            {
+                target.giveStatus("Hysteria");
+            }
+        }
+    }
+
+    public class Paroxysm : Ability
+    {
+        public Paroxysm()
+        {
+            name = "Paroxysm";
+            customAbility = 2;
+            multiHitMin = 3;
+            multiHitMax = 8;
+            defaultPriority = priority = 2;
+        }
+
+        public override void UseAttack(unit user, List<unit> targets)
+        {
+            int checker = 0;
+            int ran = Random.Range(multiHitMin, multiHitMax);
+            for (int i = 0; i < ran && checker < targets.Count; i++)
+            {
+                int alo = Random.Range(0, targets.Count);
+                while (targets[alo].currentHP < 0)
+                {
+                    alo = Random.Range(0, targets.Count);
+                }
+                int fif = Random.Range(0, 2);
+                if (fif == 0)
+                {
+                    int dam = user.takeDamageCalc(targets[alo], 30, 4);
+                    bool dee = targets[alo].takeDamage(dam);
+                    if (dee)
+                    {
+                        checker += 1;
+                    }
+                }
+                else if (fif == 1)
+                {
+                    targets[alo].takeSanityDamage(10);
+                }
+            }
+        }
+    }
 }
 
 namespace PlayerAbilities
