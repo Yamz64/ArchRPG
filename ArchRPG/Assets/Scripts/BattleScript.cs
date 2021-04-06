@@ -110,6 +110,10 @@ public class BattleScript : MonoBehaviour
     //Main text to let player know state of battle
     public Text dialogue;
 
+    public PlayerDialogueBoxHandler dialogueBox;
+
+    public List<string> dialogueText;
+
     public Text damageText;
 
     public Transform damage1;
@@ -3428,6 +3432,8 @@ public class BattleScript : MonoBehaviour
         bool boss31 = false;
         bool boss32 = false;
         bool boss4 = false;
+        bool boss5 = false;
+        bool boss6 = false;
 
         int z = 0;
         for (int i = 0; i < loader.enemy_names.Length && z < 4; i++)
@@ -3508,6 +3514,29 @@ public class BattleScript : MonoBehaviour
             {
                 enen = new MrGoodMeat();
                 boss4 = true;
+            }
+            else if (loader.enemy_names[i] == "Construction Worker")
+            {
+                enen = new ConstructionWorker();
+            }
+            else if (loader.enemy_names[i] == "God's Hand")
+            {
+                enen = new GodsHand();
+            }
+            else if (loader.enemy_names[i] == "Danny")
+            {
+                enen = new Danny();
+                boss5 = true;
+            }
+            else if (loader.enemy_names[i] == "God")
+            {
+                enen = new MrGoodMeat();
+                boss5 = true;
+            }
+            else if (loader.enemy_names[i] == "God2")
+            {
+                enen = new MrGoodMeat();
+                boss6 = true;
             }
             else if (!loader.enemy_names[i].Equals(""))
             {
