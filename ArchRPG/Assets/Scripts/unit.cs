@@ -8591,7 +8591,7 @@ public class TheSquatter : unit
         maxHP = currentHP = 35;
         expGain = 60;
         enemy = true;
-        capital = 8;
+        capital = 75;
 
         //Currently uses Locker stats
         ATK = 40;
