@@ -208,6 +208,16 @@
                 }
             ],
             "saves": []
+        },
+        {
+            "name": "CondemnedBuildingBossRoom",
+            "objects": [
+                {
+                    "o": "The Squatter",
+                    "interacted": false
+                }
+            ],
+            "saves": []
         }
     ]
 }
