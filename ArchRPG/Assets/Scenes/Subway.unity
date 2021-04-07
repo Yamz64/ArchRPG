@@ -1854,6 +1854,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589ea63de86f2f8469187f04dfa527f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mark_interactable: 0
   spawn_position: {x: -4, y: 0.4}
   scene: Pizzeria
 --- !u!61 &569245200
@@ -13491,6 +13492,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4998140645680048167, guid: 52110445f037b614787b39ff46091263, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: aedc30d11e81a1341a2a465d9dda1ff7, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
 --- !u!1 &870873269
@@ -13523,6 +13528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589ea63de86f2f8469187f04dfa527f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mark_interactable: 0
   spawn_position: {x: 56, y: 4}
   scene: Street1Scene
 --- !u!61 &870873271
@@ -13657,6 +13663,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4998140645680048167, guid: 52110445f037b614787b39ff46091263, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 021e6147c27763442b3ce1997dddc034, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
 --- !u!1001 &892602567
@@ -13714,6 +13724,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4998140645680048167, guid: 52110445f037b614787b39ff46091263, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 276be077bcf801e48bc6d6e79e46cd19, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
 --- !u!1 &938079945
@@ -18332,6 +18346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589ea63de86f2f8469187f04dfa527f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mark_interactable: 0
   spawn_position: {x: -4, y: 0.8}
   scene: ConvenienceStore
 --- !u!61 &1735243755
@@ -18797,6 +18812,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4998140645680048167, guid: 52110445f037b614787b39ff46091263, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4431d8ddc513fb343a8a1bfb739d1e6e, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
 --- !u!1001 &1840404497
