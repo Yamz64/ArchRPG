@@ -3585,7 +3585,7 @@ public class BattleScript : MonoBehaviour
             background.GetComponent<VideoPlayer>().clip = Resources.Load<VideoClip>("Backgrounds/Background5");
         }
         //If Meat Golem
-        else if (boss4)
+        else if (boss4 || boss5 || boss6)
         {
             useSound(8, true, 1);
             background.GetComponent<VideoPlayer>().clip = Resources.Load<VideoClip>("Backgrounds/Background6");
