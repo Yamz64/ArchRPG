@@ -8715,7 +8715,7 @@ public class ConstructionCreeper : unit
 {
     public ConstructionCreeper()
     {
-        ImageFilePath = "EnemySprites/Mr. GoodMeat";
+        ImageFilePath = "EnemySprites/Construction Creeper";
         unitName = "Construction Creeper";
         loadSprites();
 
