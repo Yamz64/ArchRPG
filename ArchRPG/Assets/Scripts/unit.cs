@@ -8711,12 +8711,12 @@ public class MrGoodMeat : unit
     }
 }
 
-public class ConstructionWorker : unit
+public class ConstructionCreeper : unit
 {
-    public ConstructionWorker()
+    public ConstructionCreeper()
     {
         ImageFilePath = "EnemySprites/Mr. GoodMeat";
-        unitName = "Construction Worker";
+        unitName = "Construction Creeper";
         loadSprites();
 
         resistances[0] = true;

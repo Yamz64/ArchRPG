@@ -3515,9 +3515,9 @@ public class BattleScript : MonoBehaviour
                 enen = new MrGoodMeat();
                 boss4 = true;
             }
-            else if (loader.enemy_names[i] == "Construction Worker")
+            else if (loader.enemy_names[i] == "Construction Creeper")
             {
-                enen = new ConstructionWorker();
+                enen = new ConstructionCreeper();
             }
             else if (loader.enemy_names[i] == "God's Hand")
             {
