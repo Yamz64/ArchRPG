@@ -86,6 +86,27 @@ public class MapDataManager : MonoBehaviour
         data.Save();
     }
 
+    public bool GetInteracted(string object_name)
+    {
+        for(int i=0; i<current_map.objects.Count; i++)
+        {
+            if (current_map.objects[i].o == object_name) return current_map.objects[i].interacted;
+        }
+        return false;
+    }
+
+    public void SetInteracted(string object_name, bool interacted = false)
+    {
+        for (int i = 0; i < current_map.objects.Count; i++)
+        {
+            if (current_map.objects[i].o == object_name)
+            {
+                current_map.objects[i].interacted = interacted;
+                break;
+            }
+        }
+    }
+
     [SerializeField]
     public MapGameData current_map;
 

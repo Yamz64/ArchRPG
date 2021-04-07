@@ -378,6 +378,43 @@ public static class Consumables
         }
     }
 
+    public class MeatDog : Item
+    {
+        public MeatDog()
+        {
+            name = "Meat Dog";
+            description = "A tube of unidentified, but delicious meat! Heals 50 HP when eaten!";
+            image_file_path = "ItemSprites/HotDog";
+            amount = 1;
+            limit = 5;
+            cost = 10;
+
+        }
+
+        public override void Use()
+        {
+            character.SetHP(character.GetHP() + 50);
+        }
+    }
+
+    public class BaconLollipop : Item
+    {
+        public BaconLollipop()
+        {
+            name = "Bacon Lollipop";
+            description = "Why would someone make this? Heals 80 HP when eaten.";
+            image_file_path = null;
+            amount = 1;
+            limit = 1;
+            cost = 15;
+        }
+
+        public override void Use()
+        {
+            character.SetHP(character.GetHP() + 80);
+        }
+    }
+
     public class Adderall : Item
     {
         public Adderall()

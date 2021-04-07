@@ -155,19 +155,6 @@
             ]
         },
         {
-            "name": "City2",
-            "objects": [],
-            "saves": [
-                {
-                    "name": "Condemned Building",
-                    "location": {
-                        "x": 34.5,
-                        "y": 2.9200000762939455
-                    }
-                }
-            ]
-        },
-        {
             "name": "City1",
             "objects": [
                 {
@@ -218,6 +205,24 @@
                 }
             ],
             "saves": []
+        },
+        {
+            "name": "City2",
+            "objects": [
+                {
+                    "o": "Recruiter",
+                    "interacted": false
+                }
+            ],
+            "saves": [
+                {
+                    "name": "Condemned Building",
+                    "location": {
+                        "x": 34.5,
+                        "y": 2.9200000762939455
+                    }
+                }
+            ]
         }
     ]
 }
