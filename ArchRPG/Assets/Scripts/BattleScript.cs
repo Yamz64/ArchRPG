@@ -3600,14 +3600,6 @@ public class BattleScript : MonoBehaviour
         //Define actions list
         actions = new List<action>();
 
-        /*
-        data.AddItem(new Consumables.HotDog());
-        data.AddItem(new Consumables.HotDog());
-        data.AddItem(new Consumables.HotDog());
-        data.AddItem(new Consumables.HotDog());
-        data.AddItem(new Consumables.HotDog());
-        */
-
         if (currentUnit == 4)
         {
             dialogue.text = "But the party wasn't there...";
@@ -3640,8 +3632,15 @@ public class BattleScript : MonoBehaviour
         }
         else if (activeEnemies == 2)
         {
-            dialogue.text = "The " + enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName + " and "
-                + enemyUnits[1].GetComponent<UnitMono>().mainUnit.unitName + " appeared";
+            if (enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName != enemyUnits[1].GetComponent<UnitMono>().mainUnit.unitName)
+            {
+                dialogue.text = "The " + enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName + " and "
+                    + enemyUnits[1].GetComponent<UnitMono>().mainUnit.unitName + " appeared";
+            }
+            else
+            {
+                dialogue.text = "The " + enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName + "'s appeared";
+            }
         }
         else if (activeEnemies >= 3)
         {
