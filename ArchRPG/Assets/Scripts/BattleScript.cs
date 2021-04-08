@@ -2324,11 +2324,6 @@ public class BattleScript : MonoBehaviour
                     else if (vals == 1)
                     {
                         int x = 0;
-                        int r = Random.Range(0, enemyUnits.Count);
-                        while (partyUnits[r].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
-                        {
-                            r = Random.Range(0, enemyUnits.Count);
-                        }
 
                         List<int> probos = new List<int>();
                         for (int d = 0; d < enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities.Count; d++)
@@ -2345,6 +2340,23 @@ public class BattleScript : MonoBehaviour
                         {
                             x = probos[Random.Range(0, probos.Count)];
                         }
+
+                        int r = Random.Range(0, enemyUnits.Count);
+                        bool selfie = true;
+                        if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].name == "Extraplanar Parasite" &&
+                            enemyUnits[i].GetComponent<UnitMono>().mainUnit.unitName == enemyUnits[r].GetComponent<UnitMono>().mainUnit.unitName)
+                        {
+                            selfie = false;
+                        }
+                        while (enemyUnits[r].GetComponent<UnitMono>().mainUnit.currentHP <= 0 || !selfie)
+                        {
+                            r = Random.Range(0, enemyUnits.Count);
+                            if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.unitName != enemyUnits[r].GetComponent<UnitMono>().mainUnit.unitName)
+                            {
+                                selfie = true;
+                            }
+                        }
+
                         int speed = enemyUnits[i].GetComponent<UnitMono>().mainUnit.getAGI();
                         if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.statuses[22] != -1)
                         {

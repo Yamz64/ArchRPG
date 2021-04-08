@@ -651,6 +651,10 @@ public class unit
                 //{
                     //Calculate damage of the attack
                 int val = ata.damage;
+                if (ata.randoMin != ata.randoMax)
+                {
+                    val = UnityEngine.Random.Range(ata.randoMin, ata.randoMax + 1);
+                }
                 int val2 = ata.selfDamage;
                 int valS = ata.sanity_damage;
                 if (position == 0 && !enemy)

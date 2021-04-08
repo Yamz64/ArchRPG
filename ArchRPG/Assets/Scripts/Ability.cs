@@ -117,6 +117,8 @@ public class Ability
     public int canUse = 0;                  //Use to say whether an ability can be used again
     public bool doAggro = false;            //Whether the ability causes aggro
     public bool randoDamage = false;        //Whether the ability does random damage
+    public int randoMin = 0;
+    public int randoMax = 0;
     public bool shuffle = false;            //Whether the ability should always shuffle, regardless of where it is used
 
 
@@ -1529,6 +1531,8 @@ namespace EnemyAbilities
             name = "Sign Slam";
             type = 0;
             damage = 60;
+            randoMin = 40;
+            randoMax = 70;
             statusEffect = "Zonked";
             defaultPriority = priority = 5;
         }
@@ -1667,6 +1671,8 @@ namespace EnemyAbilities
             target = 1;
             damageType = 4;
             damage = 30;
+            randoMin = 20;
+            randoMax = 40;
             sanity_damage = 10;
             statusEffect = "Hysteria";
             defaultPriority = priority = 3;
