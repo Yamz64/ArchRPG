@@ -2509,6 +2509,91 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 3ad638fd536df364d93dad6b884e1cbe, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &1421935167 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1421935166}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1421935168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421935167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f58065c4339079418a595d5c9ac473a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: Look buddy I can't leave from this spot and all I've had to eat has been
+      pizza for a week now!
+  - text: Why can't you leave?
+  - text: Some weirdly charismatic kid in a red shirt dared me to.
+  - text: Listen that's not important, if I don't have a change in diet real soon
+      I'm going to go insane!
+  - text: I have these meat-
+  - text: I don't have to hear the rest, here take my ten bucks, it's all I have
+      left!
+  - text: You sold a meatdog for $10!
+  container:
+  - effects: []
+  - effects: []
+  - effects:
+    - name: Color
+      color: {r: 1, g: 0, b: 0, a: 1}
+      lower: 22
+      upper: 35
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects:
+    - name: Color
+      color: {r: 0, g: 1, b: 0, a: 1}
+      lower: 18
+      upper: 21
+  dialogueImages:
+  - sprite_path: CharacterSprites/Tim
+    lines: 1
+  - sprite_path: CharacterSprites/PC
+    lines: 1
+  - sprite_path: CharacterSprites/Tim
+    lines: 2
+  - sprite_path: CharacterSprites/PC
+    lines: 1
+  - sprite_path: CharacterSprites/Tim
+    lines: 1
+  player: {fileID: 0}
+  alt_text:
+  - text: Now that I've solved the issue of not going insane,
+  - text: I have to solve the issue of not starving now that my 10 bucks are gone.
+  alt_container:
+  - effects: []
+  - effects: []
+  alt_dialogueImages:
+  - sprite_path: CharacterSprites/Tim
+    lines: 2
+  no_text:
+  - text: Look buddy I can't leave from this spot and all I've had to eat has been
+      pizza for a week now!
+  - text: Why can't you leave?
+  - text: Some weirdly charismatic kid in a red shirt dared me to.
+  no_container:
+  - effects: []
+  - effects: []
+  - effects:
+    - name: Color
+      color: {r: 1, g: 0, b: 0, a: 1}
+      lower: 22
+      upper: 35
+  no_dialogueImages:
+  - sprite_path: CharacterSprites/Tim
+    lines: 1
+  - sprite_path: CharacterSprites/PC
+    lines: 1
+  - sprite_path: CharacterSprites/Tim
+    lines: 1
 --- !u!1 &1524079915
 GameObject:
   m_ObjectHideFlags: 0
@@ -3092,6 +3177,8 @@ MonoBehaviour:
     - o: Rat Bomb
       interacted: 0
     - o: PizzaGuy
+      interacted: 0
+    - o: MeatdogEnthusiast
       interacted: 0
     saves: []
 --- !u!4 &2102447044
