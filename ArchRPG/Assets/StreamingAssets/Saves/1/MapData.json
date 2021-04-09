@@ -223,6 +223,16 @@
                     }
                 }
             ]
+        },
+        {
+            "name": "NightclubDanceFloor",
+            "objects": [
+                {
+                    "o": "MeatdogEnthusiast",
+                    "interacted": false
+                }
+            ],
+            "saves": []
         }
     ]
 }

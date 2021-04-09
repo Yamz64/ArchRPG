@@ -308,6 +308,23 @@ public class PlayerData : CharacterStats
             inventory[index].Remove();
         }
     }
+    public void RemoveItem(string item)
+    {
+        for(int i=0; i<inventory.Count; i++)
+        {
+            if(inventory[i].name == item)
+            {
+                if (inventory[i].amount <= 1)
+                {
+                    inventory.RemoveAt(i);
+                }
+                else
+                {
+                    inventory[i].Remove();
+                }
+            }
+        }
+    }
     public override void SetWeapon(Weapon w)
     {
         int index = 0;

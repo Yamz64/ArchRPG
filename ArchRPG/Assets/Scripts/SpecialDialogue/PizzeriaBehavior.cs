@@ -208,6 +208,7 @@ public class PizzeriaBehavior : StoreBehavior
 
                 container.effects.Clear();
                 effect.name = "Color";
+                effect.color = Color.yellow;
                 effect.lower = 9;
                 effect.upper = 29;
                 container.effects.Add(new TextEffectClass(effect));
