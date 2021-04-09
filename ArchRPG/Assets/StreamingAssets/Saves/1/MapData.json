@@ -170,8 +170,8 @@
                     "interacted": true
                 },
                 {
-                	"o": "MeatdogEnthusiast",
-                	"interacted	": false
+                    "o": "MeatdogEnthusiast",
+                    "interacted": false
                 }
             ],
             "saves": []
@@ -240,6 +240,16 @@
         },
         {
             "name": "City3",
+            "objects": [
+                {
+                    "o": "MeatdogEnthusiast",
+                    "interacted": false
+                }
+            ],
+            "saves": []
+        },
+        {
+            "name": "CondemnedBuildingFloor1",
             "objects": [
                 {
                     "o": "MeatdogEnthusiast",
