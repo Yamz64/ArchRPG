@@ -19,7 +19,7 @@ public class TitleScreen : MonoBehaviour
     [SerializeField]
     public List<MenuPositions> cursor_positions;
 
-    public bool menuInput = false;
+    public bool menu_input = false;
 
     private GameObject cursor;                      //The animated cursor 
     private List<GameObject> menus;                 //The list of menu objects
@@ -44,7 +44,39 @@ public class TitleScreen : MonoBehaviour
 
     public void TitleRoutine()
     {
-
+        if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+        {
+            if (!menu_input)
+            {
+                cursor_position--;
+            }
+            menu_input = true;
+        }
+        else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[0].positions.Count - 1)
+        {
+            if (!menu_input)
+            {
+                cursor_position++;
+            }
+            menu_input = true;
+        }
+        else if (Input.GetButtonDown("Interact"))
+        {
+            switch(cursor_position)
+            {
+                case 0:
+                    OpenMenu(2);
+                    break;
+                case 1:
+                    OpenMenu(1);
+                    break;
+                case 2:
+                    Application.Quit();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     public void SaveRoutine()
@@ -66,6 +98,11 @@ public class TitleScreen : MonoBehaviour
             menus.Add(transform.GetChild(1).GetChild(i).gameObject);
         }
 
+        //define the cursor's gameObject
+        cursor = transform.GetChild(1).Find("Cursor").gameObject;
+
+        cursor.SetActive(true);
+
         //Define audio object
         audio_handler = GetComponent<PlayerOverworldAudioHandler>();
     }
@@ -73,6 +110,19 @@ public class TitleScreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        switch (active_menu)
+        {
+            case 0:
+                TitleRoutine();
+                break;
+            case 1:
+                OptionRoutine();
+                break;
+            case 2:
+                SaveRoutine();
+                break;
+            default:
+                break;
+        }
     }
 }
