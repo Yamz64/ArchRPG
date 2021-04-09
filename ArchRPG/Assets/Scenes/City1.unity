@@ -39064,7 +39064,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1396058554207331182, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
       propertyPath: current_map.objects.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1396058554207331182, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
       propertyPath: current_map.name
@@ -39081,6 +39081,10 @@ PrefabInstance:
     - target: {fileID: 1396058554207331182, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
       propertyPath: current_map.objects.Array.data[2].o
       value: MeatFactoryLoadingZone
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331182, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: current_map.objects.Array.data[3].o
+      value: MeatdogEnthusiast
       objectReference: {fileID: 0}
     - target: {fileID: 1396058554207331183, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
       propertyPath: m_Name
@@ -42622,6 +42626,83 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 3ad638fd536df364d93dad6b884e1cbe, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &1089213228 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1089213227}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1089213229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089213228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f58065c4339079418a595d5c9ac473a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: I'm not really into large gatherings of people, I get a little nervous.
+  - text: Well then why do you live in the city?
+  - text: Because it's so close to Goodmeat Meats headquarters of course!
+  - text: Wait... You're one of those junior meat salesmen!
+  - text: I'd be happy to buy some of those meatdogs from you!
+  - text: You sold a meatdog for $10!
+  container:
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 21
+      upper: 39
+  - effects:
+    - name: Color
+      color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+      lower: 26
+      upper: 33
+  - effects:
+    - name: 
+      color: {r: 0, g: 1, b: 0, a: 1}
+      lower: 18
+      upper: 20
+  dialogueImages:
+  - sprite_path: CharacterSprites/Tim
+    lines: 1
+  - sprite_path: CharacterSprites/PC
+    lines: 1
+  - sprite_path: CharacterSprites/Tim
+    lines: 3
+  player: {fileID: 0}
+  alt_text:
+  - text: That meatdog really hit the spot!
+  alt_container:
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 27
+  alt_dialogueImages:
+  - sprite_path: CharacterSprites/Tim
+    lines: 1
+  no_text:
+  - text: I'm not really into large gatherings of people, I get a little nervous.
+  - text: Well then why do you live in the city?
+  - text: Because it's so close to Goodmeat Meats headquarters of course!
+  no_container:
+  - effects: []
+  - effects: []
+  - effects: []
+  no_dialogueImages:
+  - sprite_path: CharacterSprites/Tim
+    lines: 1
+  - sprite_path: CharacterSprites/PC
+    lines: 1
+  - sprite_path: CharacterSprites/Tim
+    lines: 1
 --- !u!1001 &1090956416
 PrefabInstance:
   m_ObjectHideFlags: 0

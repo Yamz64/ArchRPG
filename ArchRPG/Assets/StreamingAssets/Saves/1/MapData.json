@@ -168,6 +168,10 @@
                 {
                     "o": "MeatFactoryLoadingZone",
                     "interacted": true
+                },
+                {
+                	"o": "MeatdogEnthusiast",
+                	"interacted	": false
                 }
             ],
             "saves": []
