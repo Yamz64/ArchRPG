@@ -233,6 +233,16 @@
                 }
             ],
             "saves": []
+        },
+        {
+            "name": "City3",
+            "objects": [
+                {
+                    "o": "MeatdogEnthusiast",
+                    "interacted": false
+                }
+            ],
+            "saves": []
         }
     ]
 }
