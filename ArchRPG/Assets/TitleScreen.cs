@@ -76,17 +76,107 @@ public class TitleScreen : MonoBehaviour
                 default:
                     break;
             }
+            menu_input = true;
         }
-    }
-
-    public void SaveRoutine()
-    {
-
+        else
+        {
+            menu_input = false;
+        }
+        cursor.transform.position = cursor_positions[active_menu].positions[cursor_position].position;
     }
 
     public void OptionRoutine()
     {
+        if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+        {
+            if (!menu_input)
+            {
+                cursor_position--;
+            }
+            menu_input = true;
+        }
+        else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[1].positions.Count - 1)
+        {
+            if (!menu_input)
+            {
+                cursor_position++;
+            }
+            menu_input = true;
+        }
+        else if (Input.GetButtonDown("Interact"))
+        {
+            switch (cursor_position)
+            {
+                case 0:
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+                default:
+                    break;
+            }
+            menu_input = true;
+        }
+        else if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Menu"))
+        {
+            CloseMenu(1);
+            OpenMenu(0);
+            menu_input = true;
+        }
+        else
+        {
+            menu_input = false;
+        }
+        cursor.transform.position = cursor_positions[active_menu].positions[cursor_position].position;
+    }
 
+    public void SaveRoutine()
+    {
+        if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+        {
+            if (!menu_input)
+            {
+                cursor_position--;
+            }
+            menu_input = true;
+        }
+        else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[2].positions.Count - 1)
+        {
+            if (!menu_input)
+            {
+                cursor_position++;
+            }
+            menu_input = true;
+        }
+        else if (Input.GetButtonDown("Interact"))
+        {
+            switch (cursor_position)
+            {
+                case 0:
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                default:
+                    break;
+            }
+            menu_input = true;
+        }
+        else if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Menu"))
+        {
+            CloseMenu(2);
+            OpenMenu(0);
+            menu_input = true;
+        }
+        else
+        {
+            menu_input = false;
+        }
+        cursor.transform.position = cursor_positions[active_menu].positions[cursor_position].position;
     }
 
     // Start is called before the first frame update
@@ -100,6 +190,8 @@ public class TitleScreen : MonoBehaviour
 
         //define the cursor's gameObject
         cursor = transform.GetChild(1).Find("Cursor").gameObject;
+        active_menu = 0;
+        cursor_position = 0;
 
         cursor.SetActive(true);
 
