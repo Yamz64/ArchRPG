@@ -198,8 +198,8 @@
                     "interacted": false
                 },
                 {
-                	"o": "Meatdog Enthusiast",
-                	"interacted": false
+                    "o": "MeatdogEnthusiast",
+                    "interacted": false
                 }
             ],
             "saves": []
@@ -213,24 +213,6 @@
                 }
             ],
             "saves": []
-        },
-        {
-            "name": "City2",
-            "objects": [
-                {
-                    "o": "Recruiter",
-                    "interacted": false
-                }
-            ],
-            "saves": [
-                {
-                    "name": "Condemned Building",
-                    "location": {
-                        "x": 34.5,
-                        "y": 2.9200000762939455
-                    }
-                }
-            ]
         },
         {
             "name": "NightclubDanceFloor",
@@ -261,6 +243,28 @@
                 }
             ],
             "saves": []
+        },
+        {
+            "name": "City2",
+            "objects": [
+                {
+                    "o": "Recruiter",
+                    "interacted": false
+                },
+                {
+                    "o": "MeatdogsSold",
+                    "interacted": false
+                }
+            ],
+            "saves": [
+                {
+                    "name": "Condemned Building",
+                    "location": {
+                        "x": 34.5,
+                        "y": 2.9200000762939455
+                    }
+                }
+            ]
         }
     ]
 }
