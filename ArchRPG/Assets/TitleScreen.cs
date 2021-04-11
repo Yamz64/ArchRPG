@@ -30,6 +30,9 @@ public class TitleScreen : MonoBehaviour
     private PlayerData data;                        //Object to hold player data
     private PlayerOverworldAudioHandler audio_handler;
 
+    private Color green;
+    private Color white;
+
     //Function to open the menu at the given index
     public void OpenMenu(int index)
     {
@@ -109,7 +112,7 @@ public class TitleScreen : MonoBehaviour
             }
             menu_input = true;
         }
-        else if (Input.GetAxisRaw("Horizontal") < 0.0f && (cursor_position == 1 || cursor_position == 2))
+        else if (Input.GetAxisRaw("Horizontal") < 0.0f && (cursor_position == 1 || cursor_position == 2 || cursor_position == 3))
         {
             if (!menu_input)
             {
@@ -125,10 +128,21 @@ public class TitleScreen : MonoBehaviour
                     PlayerPrefs.SetFloat("EffectVolume", current - 0.1f);
                     effectSlider.fillAmount = PlayerPrefs.GetFloat("EffectVolume");
                 }
+                else if (cursor_position == 3 && Screen.currentResolution.width != 640)
+                {
+                    if (Screen.fullScreen)
+                    {
+                        Screen.SetResolution(1920, 1080, false);
+                    }
+                    else if (Screen.currentResolution.width == 1920)
+                    {
+                        Screen.SetResolution(640, 480, false);
+                    }
+                }
             }
             menu_input = true;
         }
-        else if (Input.GetAxisRaw("Horizontal") > 0.0f && (cursor_position == 1 || cursor_position == 2))
+        else if (Input.GetAxisRaw("Horizontal") > 0.0f && (cursor_position == 1 || cursor_position == 2 || cursor_position == 3))
         {
             if (!menu_input)
             {
@@ -143,6 +157,17 @@ public class TitleScreen : MonoBehaviour
                     float current = PlayerPrefs.GetFloat("EffectVolume");
                     PlayerPrefs.SetFloat("EffectVolume", current + 0.1f);
                     effectSlider.fillAmount = PlayerPrefs.GetFloat("EffectVolume");
+                }
+                else if (cursor_position == 3 && !Screen.fullScreen)
+                {
+                    if (Screen.currentResolution.width == 640)
+                    {
+                        Screen.SetResolution(1920, 1080, false);
+                    }
+                    else if (Screen.currentResolution.width == 1920)
+                    {
+                        Screen.SetResolution(1920, 1080, true);
+                    }
                 }
             }
             menu_input = true;
@@ -254,6 +279,9 @@ public class TitleScreen : MonoBehaviour
 
         //Define audio object
         audio_handler = GetComponent<PlayerOverworldAudioHandler>();
+
+        green = new Color(0.0f, 1.0f, 0.0f);
+        white = new Color(1.0f, 1.0f, 1.0f);
     }
 
     // Update is called once per frame
@@ -266,6 +294,30 @@ public class TitleScreen : MonoBehaviour
                 break;
             case 1:
                 OptionRoutine();
+                if (Screen.fullScreen)
+                {
+                    transform.GetChild(1).Find("Settings").Find("Resolution").GetChild(2).GetComponent<Text>().color = green;
+                }
+                else
+                {
+                    transform.GetChild(1).Find("Settings").Find("Resolution").GetChild(2).GetComponent<Text>().color = white;
+                }
+                if (Screen.currentResolution.width == 1920 && !Screen.fullScreen)
+                {
+                    transform.GetChild(1).Find("Settings").Find("Resolution").GetChild(1).GetComponent<Text>().color = green;
+                }
+                else if (Screen.currentResolution.width != 1920 && !Screen.fullScreen)
+                {
+                    transform.GetChild(1).Find("Settings").Find("Resolution").GetChild(1).GetComponent<Text>().color = white;
+                }
+                if (Screen.currentResolution.width == 640)
+                {
+                    transform.GetChild(1).Find("Settings").Find("Resolution").GetChild(0).GetComponent<Text>().color = green;
+                }
+                else
+                {
+                    transform.GetChild(1).Find("Settings").Find("Resolution").GetChild(0).GetComponent<Text>().color = white;
+                }
                 break;
             case 2:
                 SaveRoutine();
@@ -273,5 +325,6 @@ public class TitleScreen : MonoBehaviour
             default:
                 break;
         }
+
     }
 }

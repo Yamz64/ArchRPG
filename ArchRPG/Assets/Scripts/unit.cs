@@ -8805,7 +8805,7 @@ public class God : unit
 {
     public God()
     {
-        ImageFilePath = "EnemySprites/Mr. GoodMeat";
+        ImageFilePath = "EnemySprites/God";
         unitName = "God";
         loadSprites();
 
@@ -8837,7 +8837,7 @@ public class God2 : unit
 {
     public God2()
     {
-        ImageFilePath = "EnemySprites/Mr. GoodMeat";
+        ImageFilePath = "EnemySprites/God 1";
         unitName = "God";
         loadSprites();
 
