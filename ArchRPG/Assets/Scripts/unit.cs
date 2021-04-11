@@ -8290,17 +8290,16 @@ public class Vermin : unit
         unitName = "Vermin";
         loadSprites();
         weaknesses[1] = true;
-        level = 6;
+        level = 5;
         maxHP = currentHP = 35;
-
-        //Currently uses Locker stats
-        ATK = 40;
-        DEF = 40;
+        
+        ATK = 50;
+        DEF = 15;
         POW = 30;
         WILL = 6;
-        RES = 6;
-        AGI = 5;
-        LCK = 2;
+        RES = 50;
+        AGI = 28;
+        LCK = 48;
 
         expGain = 60;
         enemy = true;
@@ -8355,20 +8354,19 @@ public class HighwayHorror : unit
         unitName = "Highway Horror";
         loadSprites();
 
-        level = 6;
-        maxHP = currentHP = 35;
-        expGain = 60;
+        level = 9;
+        maxHP = currentHP = 70;
+        expGain = 150;
         enemy = true;
         capital = 8;
-
-        //Currently uses Locker stats
-        ATK = 40;
+        
+        ATK = 50;
         DEF = 40;
-        POW = 30;
+        POW = 45;
         WILL = 6;
         RES = 6;
-        AGI = 5;
-        LCK = 2;
+        AGI = 30;
+        LCK = 20;
 
         abilities = new List<Ability>();
         abilities.Add(new EnemyAbilities.TrafficBite());
@@ -8389,20 +8387,19 @@ public class Bouncer : unit
         resistances[0] = true;
         weaknesses[4] = true;
 
-        level = 6;
-        maxHP = currentHP = 35;
-        expGain = 60;
+        level = 12;
+        maxHP = currentHP = 100;
+        expGain = 5184;
         enemy = true;
         capital = 8;
-
-        //Currently uses Locker stats
-        ATK = 40;
+        
+        ATK = 60;
         DEF = 40;
         POW = 30;
         WILL = 6;
-        RES = 6;
-        AGI = 5;
-        LCK = 2;
+        RES = 25;
+        AGI = 30;
+        LCK = 20;
 
         abilities = new List<Ability>();
         abilities.Add(new EnemyAbilities.Bounce());
@@ -8423,20 +8420,19 @@ public class DiscoHooliganDan : unit
         resistances[4] = true;
         weaknesses[3] = true;
 
-        level = 6;
-        maxHP = currentHP = 35;
-        expGain = 60;
+        level = 15;
+        maxHP = currentHP = 150;
+        expGain = 42187;
         enemy = true;
         capital = 8;
-
-        //Currently uses Locker stats
-        ATK = 40;
-        DEF = 40;
-        POW = 30;
+        
+        ATK = 30;
+        DEF = 90;
+        POW = 70;
         WILL = 6;
-        RES = 6;
-        AGI = 5;
-        LCK = 2;
+        RES = 35;
+        AGI = 80;
+        LCK = 48;
 
         abilities = new List<Ability>();
         abilities.Add(new EnemyAbilities.ElectricSlide());
@@ -8458,20 +8454,19 @@ public class DiscoHooliganDylan : unit
         resistances[4] = true;
         weaknesses[2] = true;
 
-        level = 6;
-        maxHP = currentHP = 35;
-        expGain = 60;
+        level = 15;
+        maxHP = currentHP = 150;
+        expGain = 42187;
         enemy = true;
         capital = 8;
 
-        //Currently uses Locker stats
-        ATK = 40;
-        DEF = 40;
-        POW = 30;
+        ATK = 30;
+        DEF = 90;
+        POW = 70;
         WILL = 6;
-        RES = 6;
-        AGI = 5;
-        LCK = 2;
+        RES = 35;
+        AGI = 80;
+        LCK = 48;
 
         abilities = new List<Ability>();
         abilities.Add(new EnemyAbilities.DiscoInferno());
@@ -8493,20 +8488,19 @@ public class DiscoHooliganBrian : unit
         resistances[4] = true;
         weaknesses[1] = true;
 
-        level = 6;
-        maxHP = currentHP = 35;
-        expGain = 60;
+        level = 15;
+        maxHP = currentHP = 150;
+        expGain = 42187;
         enemy = true;
         capital = 8;
 
-        //Currently uses Locker stats
-        ATK = 40;
-        DEF = 40;
-        POW = 30;
+        ATK = 30;
+        DEF = 90;
+        POW = 70;
         WILL = 6;
-        RES = 6;
-        AGI = 5;
-        LCK = 2;
+        RES = 35;
+        AGI = 80;
+        LCK = 48;
 
         abilities = new List<Ability>();
         abilities.Add(new EnemyAbilities.ToxicTango());
@@ -8526,20 +8520,19 @@ public class ConnivingCone : unit
 
         weaknesses[1] = true;
 
-        level = 6;
-        maxHP = currentHP = 35;
-        expGain = 60;
+        level = 7;
+        maxHP = currentHP = 60;
+        expGain = 240;
         enemy = true;
         capital = 8;
-
-        //Currently uses Locker stats
+        
         ATK = 40;
-        DEF = 40;
+        DEF = 30;
         POW = 30;
         WILL = 6;
-        RES = 6;
-        AGI = 5;
-        LCK = 2;
+        RES = 10;
+        AGI = 23;
+        LCK = 20;
 
         abilities = new List<Ability>();
         abilities.Add(new EnemyAbilities.ConeClaw2());
@@ -8557,20 +8550,19 @@ public class DisposalDemon : unit
         unitName = "Disposal Demon";
         loadSprites();
 
-        level = 6;
-        maxHP = currentHP = 35;
+        level = 8;
+        maxHP = currentHP = 500;
         expGain = 60;
         enemy = true;
         capital = 8;
-
-        //Currently uses Locker stats
+        
         ATK = 40;
-        DEF = 40;
+        DEF = 150;
         POW = 30;
         WILL = 6;
         RES = 6;
         AGI = 5;
-        LCK = 2;
+        LCK = 20;
 
         abilities = new List<Ability>();
         abilities.Add(new EnemyAbilities.PutInCan());
@@ -8591,20 +8583,19 @@ public class TheSquatter : unit
         resistances[4] = true;
         weaknesses[3] = true;
 
-        level = 6;
-        maxHP = currentHP = 35;
-        expGain = 60;
+        level = 13;
+        maxHP = currentHP = 350;
+        expGain = 71402;
         enemy = true;
         capital = 75;
-
-        //Currently uses Locker stats
-        ATK = 40;
+        
+        ATK = 35;
         DEF = 40;
         POW = 30;
         WILL = 6;
-        RES = 6;
+        RES = 75;
         AGI = 5;
-        LCK = 2;
+        LCK = 40;
 
         abilities = new List<Ability>();
         abilities.Add(new EnemyAbilities.WetWilly());
@@ -8625,20 +8616,19 @@ public class MeatPuppet : unit
 
         weaknesses[2] = true;
 
-        level = 6;
-        maxHP = currentHP = 35;
-        expGain = 60;
+        level = 16;
+        maxHP = currentHP = 100;
+        expGain = 8192;
         enemy = true;
         capital = 8;
-
-        //Currently uses Locker stats
-        ATK = 40;
+        
+        ATK = 60;
         DEF = 40;
         POW = 30;
         WILL = 6;
-        RES = 6;
+        RES = 30;
         AGI = 5;
-        LCK = 2;
+        LCK = 30;
 
         abilities = new List<Ability>();
         abilities.Add(new EnemyAbilities.ForceFeed());
@@ -8659,20 +8649,19 @@ public class MeatGolem : unit
         resistances[2] = true;
         weaknesses[3] = true;
 
-        level = 6;
-        maxHP = currentHP = 35;
-        expGain = 60;
+        level = 18;
+        maxHP = currentHP = 400;
+        expGain = 196830;
         enemy = true;
         capital = 8;
-
-        //Currently uses Locker stats
-        ATK = 40;
-        DEF = 40;
+        
+        ATK = 120;
+        DEF = 80;
         POW = 30;
         WILL = 6;
-        RES = 6;
-        AGI = 5;
-        LCK = 2;
+        RES = 40;
+        AGI = 2;
+        LCK = 42;
 
         abilities = new List<Ability>();
         abilities.Add(new EnemyAbilities.HamFist());
@@ -8693,19 +8682,18 @@ public class MrGoodMeat : unit
         weaknesses[4] = true;
 
         level = 6;
-        maxHP = currentHP = 35;
-        expGain = 60;
+        maxHP = currentHP = 100;
+        expGain = 65610;
         enemy = true;
         capital = 8;
-
-        //Currently uses Locker stats
+        
         ATK = 40;
         DEF = 40;
-        POW = 30;
+        POW = 140;
         WILL = 6;
-        RES = 6;
-        AGI = 5;
-        LCK = 2;
+        RES = 10;
+        AGI = 115;
+        LCK = 50;
 
         abilities = new List<Ability>();
         abilities.Add(new EnemyAbilities.LighterFluid());
@@ -8727,20 +8715,19 @@ public class ConstructionCreeper : unit
         weaknesses[2] = true;
         weaknesses[3] = true;
 
-        level = 6;
-        maxHP = currentHP = 35;
-        expGain = 60;
+        level = 19;
+        maxHP = currentHP = 100;
+        expGain = 10497;
         enemy = true;
         capital = 8;
-
-        //Currently uses Locker stats
-        ATK = 40;
-        DEF = 40;
+        
+        ATK = 80;
+        DEF = 120;
         POW = 30;
         WILL = 6;
-        RES = 6;
-        AGI = 5;
-        LCK = 2;
+        RES = 25;
+        AGI = 60;
+        LCK = 20;
 
         abilities = new List<Ability>();
         abilities.Add(new EnemyAbilities.SignSlam());
@@ -8760,20 +8747,19 @@ public class Danny : unit
         resistances[4] = true;
         weaknesses[2] = true;
 
-        level = 6;
-        maxHP = currentHP = 35;
-        expGain = 60;
+        level = 19;
+        maxHP = currentHP = 200;
+        expGain = 97741;
         enemy = true;
         capital = 8;
-
-        //Currently uses Locker stats
-        ATK = 40;
-        DEF = 40;
-        POW = 30;
+        
+        ATK = 60;
+        DEF = 80;
+        POW = 60;
         WILL = 6;
-        RES = 6;
-        AGI = 5;
-        LCK = 2;
+        RES = 15;
+        AGI = 140;
+        LCK = 48;
 
         abilities = new List<Ability>();
         abilities.Add(new EnemyAbilities.Humiliate());
@@ -8794,20 +8780,19 @@ public class GodsHand : unit
         resistances[4] = true;
         weaknesses[2] = true;
 
-        level = 6;
-        maxHP = currentHP = 35;
-        expGain = 60;
+        level = 19;
+        maxHP = currentHP = 230;
+        expGain = 15746;
         enemy = true;
         capital = 8;
-
-        //Currently uses Locker stats
-        ATK = 40;
+        
+        ATK = 100;
         DEF = 40;
-        POW = 30;
+        POW = 60;
         WILL = 6;
         RES = 6;
-        AGI = 5;
-        LCK = 2;
+        AGI = 100;
+        LCK = 48;
 
         abilities = new List<Ability>();
         abilities.Add(new EnemyAbilities.GodsWill());
@@ -8826,20 +8811,19 @@ public class God : unit
 
         resistances[0] = true;
 
-        level = 6;
-        maxHP = currentHP = 35;
-        expGain = 60;
+        level = 20;
+        maxHP = currentHP = 500;
+        expGain = 228061;
         enemy = true;
         capital = 8;
-
-        //Currently uses Locker stats
-        ATK = 40;
-        DEF = 40;
-        POW = 30;
+        
+        ATK = 150;
+        DEF = 100;
+        POW = 150;
         WILL = 6;
-        RES = 6;
-        AGI = 5;
-        LCK = 2;
+        RES = 50;
+        AGI = 75;
+        LCK = 20;
 
         abilities = new List<Ability>();
         abilities.Add(new EnemyAbilities.LighterFluid());
@@ -8861,20 +8845,20 @@ public class God2 : unit
         weaknesses[1] = true;
         weaknesses[2] = true;
 
-        level = 6;
-        maxHP = currentHP = 35;
-        expGain = 60;
+        level = 20;
+        maxHP = currentHP = 500;
+        expGain = 0;
         enemy = true;
         capital = 8;
 
         //Currently uses Locker stats
-        ATK = 40;
-        DEF = 40;
-        POW = 30;
+        ATK = 300;
+        DEF = 80;
+        POW = 225;
         WILL = 6;
-        RES = 6;
-        AGI = 5;
-        LCK = 2;
+        RES = 35;
+        AGI = 120;
+        LCK = 48;
 
         abilities = new List<Ability>();
         abilities.Add(new EnemyAbilities.LighterFluid());
