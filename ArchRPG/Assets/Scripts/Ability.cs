@@ -1523,7 +1523,6 @@ namespace EnemyAbilities
     }
 
     //Construction Worker
-    //Add random damage
     public class SignSlam : Ability
     {
         public SignSlam()
@@ -1662,7 +1661,6 @@ namespace EnemyAbilities
         }
     }
 
-    //Add random damage
     public class SoulPenetratingGaze : Ability
     {
         public SoulPenetratingGaze()

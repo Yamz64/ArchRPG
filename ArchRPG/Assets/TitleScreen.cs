@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TitleScreen : MonoBehaviour
 {
@@ -20,6 +21,9 @@ public class TitleScreen : MonoBehaviour
     public List<MenuPositions> cursor_positions;
 
     public bool menu_input = false;
+
+    public Image musicSlider;
+    public Image effectSlider;
 
     private GameObject cursor;                      //The animated cursor 
     private List<GameObject> menus;                 //The list of menu objects
@@ -65,9 +69,11 @@ public class TitleScreen : MonoBehaviour
             switch(cursor_position)
             {
                 case 0:
+                    CloseMenu(0);
                     OpenMenu(2);
                     break;
                 case 1:
+                    CloseMenu(0);
                     OpenMenu(1);
                     break;
                 case 2:
@@ -100,6 +106,44 @@ public class TitleScreen : MonoBehaviour
             if (!menu_input)
             {
                 cursor_position++;
+            }
+            menu_input = true;
+        }
+        else if (Input.GetAxisRaw("Horizontal") < 0.0f && (cursor_position == 1 || cursor_position == 2))
+        {
+            if (!menu_input)
+            {
+                if (cursor_position == 1 && PlayerPrefs.GetFloat("MusicVolume") > 0.1f)
+                {
+                    float current = PlayerPrefs.GetFloat("MusicVolume");
+                    PlayerPrefs.SetFloat("MusicVolume", current - 0.1f);
+                    musicSlider.fillAmount = PlayerPrefs.GetFloat("MusicVolume");
+                }
+                else if (cursor_position == 2 && PlayerPrefs.GetFloat("EffectVolume") > 0.1f)
+                {
+                    float current = PlayerPrefs.GetFloat("EffectVolume");
+                    PlayerPrefs.SetFloat("EffectVolume", current - 0.1f);
+                    effectSlider.fillAmount = PlayerPrefs.GetFloat("EffectVolume");
+                }
+            }
+            menu_input = true;
+        }
+        else if (Input.GetAxisRaw("Horizontal") > 0.0f && (cursor_position == 1 || cursor_position == 2))
+        {
+            if (!menu_input)
+            {
+                if (cursor_position == 1 && PlayerPrefs.GetFloat("MusicVolume") < 1.0f)
+                {
+                    float current = PlayerPrefs.GetFloat("MusicVolume");
+                    PlayerPrefs.SetFloat("MusicVolume", current + 0.1f);
+                    musicSlider.fillAmount = PlayerPrefs.GetFloat("MusicVolume");
+                }
+                else if (cursor_position == 2 && PlayerPrefs.GetFloat("EffectVolume") < 1.0f)
+                {
+                    float current = PlayerPrefs.GetFloat("EffectVolume");
+                    PlayerPrefs.SetFloat("EffectVolume", current + 0.1f);
+                    effectSlider.fillAmount = PlayerPrefs.GetFloat("EffectVolume");
+                }
             }
             menu_input = true;
         }
@@ -190,6 +234,19 @@ public class TitleScreen : MonoBehaviour
 
         //define the cursor's gameObject
         cursor = transform.GetChild(1).Find("Cursor").gameObject;
+
+        if (PlayerPrefs.GetFloat("MusicVolume") <= 0)
+        {
+            PlayerPrefs.SetFloat("MusicVolume", 1.0f);
+        }
+        if (PlayerPrefs.GetFloat("EffectVolume") <= 0)
+        {
+            PlayerPrefs.SetFloat("EffectVolume", 1.0f);
+        }
+
+        musicSlider.fillAmount = PlayerPrefs.GetFloat("MusicVolume");
+        effectSlider.fillAmount = PlayerPrefs.GetFloat("EffectVolume");
+
         active_menu = 0;
         cursor_position = 0;
 
