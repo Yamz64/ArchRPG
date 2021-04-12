@@ -3479,11 +3479,11 @@ public class BattleScript : MonoBehaviour
             }
             else if (loader.enemy_names[i] == "Highway Horror")
             {
-                enen = new Vermin();
+                enen = new HighwayHorror();
             }
             else if (loader.enemy_names[i] == "Bouncer")
             {
-                enen = new Vermin();
+                enen = new Bouncer();
             }
             else if (loader.enemy_names[i] == "Dan")
             {

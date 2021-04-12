@@ -252,11 +252,6 @@ public class TitleScreen : MonoBehaviour
         {
             menu_input = false;
         }
-        Debug.Log("Startin");
-        Debug.Log("save1 == " + save1.getSceneName());
-        Debug.Log(save2.getSceneName());
-        Debug.Log(save3.getSceneName());
-        Debug.Log(save4.getSceneName());
         cursor.transform.position = cursor_positions[active_menu].positions[cursor_position].position;
     }
 
