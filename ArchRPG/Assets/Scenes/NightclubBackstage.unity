@@ -1427,7 +1427,7 @@ MonoBehaviour:
   player: {fileID: 0}
   jm_id:
     useable: 0
-    name: Junior Meat ID
+    name: Junior Meat Salesman ID
     description: The proud ID of a junior meat salesman for Mr. Goodmeat! It shines
       of cheaply manufactured holographic foil!
     image_file_path: 
