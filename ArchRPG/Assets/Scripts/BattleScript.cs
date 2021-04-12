@@ -253,6 +253,13 @@ public class BattleScript : MonoBehaviour
             else
                 audio_handler.PlaySoundLoop("Sound/Music/MeatGolemTheme", i);
         }
+        else if (num == 9)
+        {
+            if (!lop)
+                audio_handler.PlaySound("Sound/Music/ClubTheme", i);
+            else
+                audio_handler.PlaySoundLoop("Sound/Music/ClubTheme", i);
+        }
         else
         {
             Debug.Log("Invalid sound");
@@ -3446,6 +3453,7 @@ public class BattleScript : MonoBehaviour
         bool boss4 = false;
         bool boss5 = false;
         bool boss6 = false;
+        bool bounce = false;
 
         int z = 0;
         for (int i = 0; i < loader.enemy_names.Length && z < 4; i++)
@@ -3484,6 +3492,7 @@ public class BattleScript : MonoBehaviour
             else if (loader.enemy_names[i] == "Bouncer")
             {
                 enen = new Bouncer();
+                bounce = true;
             }
             else if (loader.enemy_names[i] == "Dan")
             {
@@ -3586,6 +3595,11 @@ public class BattleScript : MonoBehaviour
         }
         //If The Squatter
         else if (boss31)
+        {
+            useSound(6, true, 1);
+            background.GetComponent<VideoPlayer>().clip = Resources.Load<VideoClip>("Backgrounds/Background7");
+        }
+        else if (bounce)
         {
             useSound(6, true, 1);
             background.GetComponent<VideoPlayer>().clip = Resources.Load<VideoClip>("Backgrounds/Background7");
