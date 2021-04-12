@@ -17,11 +17,16 @@ public class TitleScreen : MonoBehaviour
 
     public int cursor_position = 0;
 
+    public int save_slot = 0;
+    public int save_choice = 4;
+
     //A list of positions the cursor can go through
     [SerializeField]
     public List<MenuPositions> cursor_positions;
 
     public bool menu_input = false;
+    public bool save_select_menu = false;
+    public bool confirm_menu = false;
 
     public Image musicSlider;
     public Image effectSlider;
@@ -31,7 +36,7 @@ public class TitleScreen : MonoBehaviour
     private PlayerData data;                        //Object to hold player data
     private PlayerOverworldAudioHandler audio_handler;
 
-    public CharacterStatJsonConverter save1;
+    private CharacterStatJsonConverter save1;
     private CharacterStatJsonConverter save2;
     private CharacterStatJsonConverter save3;
     private CharacterStatJsonConverter save4;
@@ -54,6 +59,38 @@ public class TitleScreen : MonoBehaviour
         active_menu = 0;
         cursor_position = 0;
         menus[index].SetActive(false);
+    }
+
+    //Open menu to choose what to do with a save
+    public void OpenUseSlotMenu()
+    {
+        transform.GetChild(1).Find("SaveBlocks").GetChild(4).gameObject.SetActive(true);
+        //transform.GetChild(1).GetChild(6).GetChild(7).gameObject.SetActive(true);
+        cursor_position = 4;
+        save_select_menu = true;
+    }
+
+    //Close the save option menu
+    public void CloseUseSlotMenu()
+    {
+        transform.GetChild(1).Find("SaveBlocks").GetChild(4).gameObject.SetActive(false);
+        cursor_position = save_slot;
+        save_select_menu = false;
+    }
+
+    public void OpenConfirmSlotMenu()
+    {
+        transform.GetChild(1).Find("SaveBlocks").GetChild(5).gameObject.SetActive(true);
+        //transform.GetChild(1).GetChild(6).GetChild(7).gameObject.SetActive(true);
+        cursor_position = 7;
+        confirm_menu = true;
+    }
+
+    public void CloseConfirmSlotMenu()
+    {
+        transform.GetChild(1).Find("SaveBlocks").GetChild(5).gameObject.SetActive(false);
+        cursor_position = save_choice;
+        confirm_menu = false;
     }
 
     public void TitleRoutine()
@@ -209,48 +246,136 @@ public class TitleScreen : MonoBehaviour
 
     public void SaveRoutine()
     {
-        if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+        if (!save_select_menu && !confirm_menu)
         {
-            if (!menu_input)
+            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position >= 0)
             {
-                cursor_position--;
+                if (!menu_input)
+                {
+                    cursor_position--;
+                    save_slot--;
+                }
+                menu_input = true;
             }
-            menu_input = true;
-        }
-        else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[2].positions.Count - 1)
-        {
-            if (!menu_input)
+            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < 3)
             {
-                cursor_position++;
+                if (!menu_input)
+                {
+                    cursor_position++;
+                    save_slot++;
+                }
+                menu_input = true;
             }
-            menu_input = true;
-        }
-        else if (Input.GetButtonDown("Interact"))
-        {
-            switch (cursor_position)
+            else if (Input.GetButtonDown("Interact"))
             {
-                case 0:
-                    break;
-                case 1:
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                default:
-                    break;
+                OpenUseSlotMenu();
+                menu_input = true;
             }
-            menu_input = true;
+            else if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Menu"))
+            {
+                CloseMenu(2);
+                OpenMenu(0);
+                menu_input = true;
+            }
+            else
+            {
+                menu_input = false;
+            }
         }
-        else if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Menu"))
+        else if (!confirm_menu)
         {
-            CloseMenu(2);
-            OpenMenu(0);
-            menu_input = true;
+            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 4)
+            {
+                if (!menu_input)
+                {
+                    cursor_position--;
+                    save_choice = cursor_position;
+                }
+                menu_input = true;
+            }
+            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < 6)
+            {
+                if (!menu_input)
+                {
+                    cursor_position++;
+                    save_choice = cursor_position;
+                }
+                menu_input = true;
+            }
+            else if (Input.GetButtonDown("Interact"))
+            {
+                switch (cursor_position)
+                {
+                    case 4:
+                        OpenConfirmSlotMenu();
+                        break;
+                    case 5:
+                        OpenConfirmSlotMenu();
+                        break;
+                    case 6:
+                        CloseUseSlotMenu();
+                        break;
+                }
+                menu_input = true;
+            }
+            else if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Menu"))
+            {
+                CloseUseSlotMenu();
+                menu_input = true;
+            }
+            else
+            {
+                menu_input = false;
+            }
         }
         else
         {
-            menu_input = false;
+            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 7)
+            {
+                if (!menu_input)
+                {
+                    cursor_position--;
+                }
+                menu_input = true;
+            }
+            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < 8)
+            {
+                if (!menu_input)
+                {
+                    cursor_position++;
+                }
+                menu_input = true;
+            }
+            else if (Input.GetButtonDown("Interact"))
+            {
+                switch (cursor_position)
+                {
+                    case 7:
+                        switch (save_choice)
+                        {
+                            case 4:
+                                //Load selected save file
+                                break;
+                            case 5:
+                                //Clear selected save file
+                                break;
+                        }
+                        break;
+                    case 8:
+                        CloseConfirmSlotMenu();
+                        break;
+                }
+                menu_input = true;
+            }
+            else if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Menu"))
+            {
+                CloseConfirmSlotMenu();
+                menu_input = true;
+            }
+            else
+            {
+                menu_input = false;
+            }
         }
         cursor.transform.position = cursor_positions[active_menu].positions[cursor_position].position;
     }
