@@ -8773,7 +8773,7 @@ public class GodsHand : unit
 {
     public GodsHand()
     {
-        ImageFilePath = "EnemySprites/Mr. GoodMeat";
+        ImageFilePath = "EnemySprites/Hand of God";
         unitName = "God's Hand";
         loadSprites();
 
