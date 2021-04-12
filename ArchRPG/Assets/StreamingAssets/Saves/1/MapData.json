@@ -181,7 +181,7 @@
             "objects": [
                 {
                     "o": "Bouncer",
-                    "interacted": true
+                    "interacted": false
                 }
             ],
             "saves": []
