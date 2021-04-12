@@ -265,6 +265,24 @@
                     }
                 }
             ]
+        },
+        {
+            "name": "MeatFactory1",
+            "objects": [
+                {
+                    "o": "CardReaderDoor",
+                    "interacted": false
+                },
+                {
+                    "o": "CardReaderDoor (1)",
+                    "interacted": false
+                },
+                {
+                    "o": "CardReaderDoor (2)",
+                    "interacted": false
+                }
+            ],
+            "saves": []
         }
     ]
 }

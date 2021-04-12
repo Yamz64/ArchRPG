@@ -24,6 +24,8 @@ public class MeatFactoryCardReader : InteractableBaseClass
         List<EffectContainer> effects = new List<EffectContainer>();
         List<string> images = new List<string>();
 
+        player.OpenTextBox();
+
         //determine if the player has the correct item before populating dialogue
         bool has_card = false;
         bool has_junior = false;
