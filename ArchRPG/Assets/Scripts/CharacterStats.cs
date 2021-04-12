@@ -993,6 +993,72 @@ public class CharacterStatJsonConverter
         }
     }
 
+    public string getSceneName()
+    {
+        string result = "";
+        if (active_scene == "CafeScene")
+        {
+            result = "Cafe";
+        }
+        else if (active_scene == "Schoolyard")
+        {
+            result = "Schoolyard";
+        }
+        else if (active_scene == "ConvenienceStore")
+        {
+            result = "Convenience Store";
+        }
+        else if (active_scene == "BedroomScene")
+        {
+            result = "Bedroom";
+        }
+        else if (active_scene == "Street1Scene")
+        {
+            result = "Home Street";
+        }
+        else if (active_scene == "SchoolHallwayScene")
+        {
+            result = "School Hallways";
+        }
+        else if (active_scene == "Subway")
+        {
+            result = "Subway";
+        }
+        else if (active_scene == "City1")
+        {
+            result = "City - Section 1";
+        }
+        else if (active_scene == "City2")
+        {
+            result = "City - Section 2";
+        }
+        else if (active_scene == "City3")
+        {
+            result = "City - Section 3";
+        }
+        else if (active_scene == "NightclubHallway")
+        {
+            result = "Night Club - Hallway";
+        }
+        else if (active_scene == "Pizzeria")
+        {
+            result = "Pizzeria";
+        }
+        else if (active_scene == "CondemnedBuildingBossRoom")
+        {
+            result = "Condemned Building - Boss Room";
+        }
+        else if (active_scene == "CondemnedBuildingFloor1")
+        {
+            result = "Condemned Building - Floor 1";
+        }
+        else if (active_scene == "NightclubDanceFloor")
+        {
+            result = "Night Club - Dance Floor";
+        }
+        return result;
+    }
+
     public Vector2 position;            //current position in the world (ignored except for after battles)
 
     public bool flee;                   //marked as true if the party just fleed from combat
