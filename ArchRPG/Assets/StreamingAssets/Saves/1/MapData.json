@@ -283,6 +283,16 @@
                 }
             ],
             "saves": []
+        },
+        {
+            "name": "MeatFactoryBossRoom",
+            "objects": [
+                {
+                    "o": "Mr. Goodmeat",
+                    "interacted": false
+                }
+            ],
+            "saves": []
         }
     ]
 }
