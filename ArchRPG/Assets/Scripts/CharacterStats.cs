@@ -511,6 +511,33 @@ public class CharacterStatJsonConverter
         public List<int> status_effects;
     }
 
+    //Constructor that produces an empty Converter
+    public CharacterStatJsonConverter()
+    {
+        position = Vector2.zero;
+        flee = false;
+        unlocked_sans = new int[10] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        unlocked_characters = new bool[10] { false, false, false, false, false, false, false, false, false, false };
+        dead = new bool[1] { false };
+        progress = 0;
+        money = 0;
+        HPs = new int[1] { 27 };
+        SPs = new int[1] { 14 };
+        SANs = new int[1] { 100 };
+        XPs = new int[1] { 0 };
+        levels = new int[1] { 1 };
+        positions = new int[1] { 0 };
+        weapons = new Weapon[1] { null };
+        armors = new Armor[1] { null };
+        trinkets = new Trinket[1] { null };
+        inventory = new Item[0];
+        statuses = new List<StatusEffectContainer>();
+        active_scene = "";
+        names = new string[1] { "Player" };
+        e_abilities = new string[0];
+        enemy_names = new string[0];
+    }
+
     //constructor given the current player data
     public CharacterStatJsonConverter(PlayerData p)
     {
