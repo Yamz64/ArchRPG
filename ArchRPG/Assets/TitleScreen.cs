@@ -79,6 +79,7 @@ public class TitleScreen : MonoBehaviour
         save_select_menu = false;
     }
 
+    //Open the yes/no menu for save files
     public void OpenConfirmSlotMenu()
     {
         transform.GetChild(1).Find("SaveBlocks").GetChild(5).gameObject.SetActive(true);
@@ -87,6 +88,7 @@ public class TitleScreen : MonoBehaviour
         confirm_menu = true;
     }
 
+    //Close the yes/no menu for save files
     public void CloseConfirmSlotMenu()
     {
         transform.GetChild(1).Find("SaveBlocks").GetChild(5).gameObject.SetActive(false);
@@ -94,6 +96,7 @@ public class TitleScreen : MonoBehaviour
         confirm_menu = false;
     }
 
+    //Navigate title screen buttons
     public void TitleRoutine()
     {
         if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
@@ -139,6 +142,7 @@ public class TitleScreen : MonoBehaviour
         cursor.transform.position = cursor_positions[active_menu].positions[cursor_position].position;
     }
 
+    //Navigate settings
     public void OptionRoutine()
     {
         if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
@@ -245,8 +249,10 @@ public class TitleScreen : MonoBehaviour
         cursor.transform.position = cursor_positions[active_menu].positions[cursor_position].position;
     }
 
+    //Navigate save files
     public void SaveRoutine()
     {
+        //If looking at slots
         if (!save_select_menu && !confirm_menu)
         {
             if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position >= 0)
@@ -283,6 +289,7 @@ public class TitleScreen : MonoBehaviour
                 menu_input = false;
             }
         }
+        //If choosing what to do at save file
         else if (!confirm_menu)
         {
             if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 4)
@@ -329,6 +336,7 @@ public class TitleScreen : MonoBehaviour
                 menu_input = false;
             }
         }
+        //Yes/No
         else
         {
             if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 7)
@@ -359,16 +367,28 @@ public class TitleScreen : MonoBehaviour
                                 switch(save_slot)
                                 {
                                     case 0:
-                                        SceneManager.LoadScene(save1.active_scene);
+                                        if (!save1.active_scene.Equals(""))
+                                            SceneManager.LoadScene(save1.active_scene);
+                                        else
+                                            SceneManager.LoadScene("BedroomCutscene");
                                         break;
                                     case 1:
-                                        SceneManager.LoadScene(save2.active_scene);
+                                        if (!save2.active_scene.Equals(""))
+                                            SceneManager.LoadScene(save2.active_scene);
+                                        else
+                                            SceneManager.LoadScene("BedroomCutscene");
                                         break;
                                     case 2:
-                                        SceneManager.LoadScene(save3.active_scene);
+                                        if (!save3.active_scene.Equals(""))
+                                            SceneManager.LoadScene(save3.active_scene);
+                                        else
+                                            SceneManager.LoadScene("BedroomCutscene");
                                         break;
                                     case 3:
-                                        SceneManager.LoadScene(save4.active_scene);
+                                        if (!save4.active_scene.Equals(""))
+                                            SceneManager.LoadScene(save4.active_scene);
+                                        else
+                                            SceneManager.LoadScene("BedroomCutscene");
                                         break;
                                 }
                                 break;
@@ -403,6 +423,7 @@ public class TitleScreen : MonoBehaviour
         cursor.transform.position = cursor_positions[active_menu].positions[cursor_position].position;
     }
 
+    //Update save file character portraits
     public void SaveUpdater()
     {
         save1 = new CharacterStatJsonConverter(0, File.Exists(Application.streamingAssetsPath + "/Saves/1/Old.json"));
