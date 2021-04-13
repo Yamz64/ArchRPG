@@ -282,7 +282,7 @@ public class unit
     {
         if (!pic)
         {
-            view.sprite = Resources.Load<Sprite>(ImageFilePath);
+            view.sprite = sprites[0];
             if (aggro > 0)
             {
                 Color temp = view.color;
@@ -8742,7 +8742,8 @@ public class Danny : unit
     {
         ImageFilePath = "CharacterSprites/Danny2";
         unitName = "Danny";
-        loadSprites();
+        sprites[0] = Resources.Load<Sprite>("CharacterSprites/Danny2");
+        sprites[1] = Resources.Load<Sprite>("EnemySprites/Danny_Attack");
 
         resistances[4] = true;
         weaknesses[2] = true;
