@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Windows;
+using UnityEngine.SceneManagement;
 
 public class TitleScreen : MonoBehaviour
 {
@@ -354,10 +355,32 @@ public class TitleScreen : MonoBehaviour
                         switch (save_choice)
                         {
                             case 4:
-                                //Load selected save file
+                                PlayerPrefs.SetInt("_active_save_file_", save_slot);
+                                switch(save_slot)
+                                {
+                                    case 0:
+                                        SceneManager.LoadScene(save1.active_scene);
+                                        break;
+                                    case 1:
+                                        SceneManager.LoadScene(save2.active_scene);
+                                        break;
+                                    case 2:
+                                        SceneManager.LoadScene(save3.active_scene);
+                                        break;
+                                    case 3:
+                                        SceneManager.LoadScene(save4.active_scene);
+                                        break;
+                                }
                                 break;
                             case 5:
-                                //Clear selected save file
+                                CharacterStatJsonConverter copy = new CharacterStatJsonConverter();
+                                MapSaveData mapi = new MapSaveData();
+                                copy.Save(save_slot, true);
+                                PlayerPrefs.SetInt("_active_save_file_", save_slot);
+                                mapi.Save(true);
+                                CloseConfirmSlotMenu();
+                                CloseUseSlotMenu();
+                                SaveUpdater();
                                 break;
                         }
                         break;
@@ -380,42 +403,8 @@ public class TitleScreen : MonoBehaviour
         cursor.transform.position = cursor_positions[active_menu].positions[cursor_position].position;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void SaveUpdater()
     {
-        menus = new List<GameObject>();
-        for (int i = 2; i < transform.GetChild(1).childCount - 1; i++)
-        {
-            menus.Add(transform.GetChild(1).GetChild(i).gameObject);
-        }
-
-        //define the cursor's gameObject
-        cursor = transform.GetChild(1).Find("Cursor").gameObject;
-
-        if (PlayerPrefs.GetFloat("MusicVolume") <= 0)
-        {
-            PlayerPrefs.SetFloat("MusicVolume", 1.0f);
-        }
-        if (PlayerPrefs.GetFloat("EffectVolume") <= 0)
-        {
-            PlayerPrefs.SetFloat("EffectVolume", 1.0f);
-        }
-
-        musicSlider.fillAmount = PlayerPrefs.GetFloat("MusicVolume");
-        effectSlider.fillAmount = PlayerPrefs.GetFloat("EffectVolume");
-
-        active_menu = 0;
-        cursor_position = 0;
-
-        cursor.SetActive(true);
-
-        green = new Color(0.0f, 1.0f, 0.0f);
-        white = new Color(1.0f, 1.0f, 1.0f);
-        black = new Color(0.0f, 0.0f, 0.0f);
-
-        //Define audio object
-        audio_handler = GetComponent<PlayerOverworldAudioHandler>();
-
         save1 = new CharacterStatJsonConverter(0, File.Exists(Application.streamingAssetsPath + "/Saves/1/Old.json"));
         save2 = new CharacterStatJsonConverter(1, File.Exists(Application.streamingAssetsPath + "/Saves/2/Old.json"));
         save3 = new CharacterStatJsonConverter(2, File.Exists(Application.streamingAssetsPath + "/Saves/3/Old.json"));
@@ -429,20 +418,20 @@ public class TitleScreen : MonoBehaviour
         for (int i = 0; i < save1.names.Length; i++)
         {
             string temp = "";
-            if (save1.names[i] == "Player")                 temp = "CharacterSprites/PC";
-            else if (save1.names[i] == "Clyve")             temp = "CharacterSprites/Clyve";
-            else if (save1.names[i] == "Jim")               temp = "CharacterSprites/Accident Jim";
-            else if (save1.names[i] == "Shirley")           temp = "CharacterSprites/Shirley";
-            else if (save1.names[i] == "Ralph")             temp = "CharacterSprites/Ralph";
-            else if (save1.names[i] == "Lucy")              temp = "CharacterSprites/Lucy";
-            else if (save1.names[i] == "Tim")               temp = "CharacterSprites/Tim";
-            else if (save1.names[i] == "White Knight")      temp = "CharacterSprites/White Knight";
-            else if (save1.names[i] == "Oliver Sprout")     temp = "CharacterSprites/Oliver Sprout";
-            else if (save1.names[i] == "Ember Moon")        temp = "CharacterSprites/Ember Moon";
-            if (i == 0)         f1 = temp;
-            else if (i == 1)    f2 = temp;
-            else if (i == 2)    f3 = temp;
-            else if (i == 3)    f4 = temp;
+            if (save1.names[i] == "Player") temp = "CharacterSprites/PC";
+            else if (save1.names[i] == "Clyve") temp = "CharacterSprites/Clyve";
+            else if (save1.names[i] == "Jim") temp = "CharacterSprites/Accident Jim";
+            else if (save1.names[i] == "Shirley") temp = "CharacterSprites/Shirley";
+            else if (save1.names[i] == "Ralph") temp = "CharacterSprites/Ralph";
+            else if (save1.names[i] == "Lucy") temp = "CharacterSprites/Lucy";
+            else if (save1.names[i] == "Tim") temp = "CharacterSprites/Tim";
+            else if (save1.names[i] == "White Knight") temp = "CharacterSprites/White Knight";
+            else if (save1.names[i] == "Oliver Sprout") temp = "CharacterSprites/Oliver Sprout";
+            else if (save1.names[i] == "Ember Moon") temp = "CharacterSprites/Ember Moon";
+            if (i == 0) f1 = temp;
+            else if (i == 1) f2 = temp;
+            else if (i == 2) f3 = temp;
+            else if (i == 3) f4 = temp;
         }
 
         transform.GetChild(1).Find("SaveBlocks").GetChild(0).Find("Location").GetComponent<Text>().text = save1.getSceneName();
@@ -578,7 +567,45 @@ public class TitleScreen : MonoBehaviour
             transform.GetChild(1).Find("SaveBlocks").GetChild(3).Find("Party4").GetComponent<Image>().sprite = Resources.Load<Sprite>(f4);
         else
             transform.GetChild(1).Find("SaveBlocks").GetChild(3).Find("Party4").GetComponent<Image>().color = black;
+    }
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        menus = new List<GameObject>();
+        for (int i = 2; i < transform.GetChild(1).childCount - 1; i++)
+        {
+            menus.Add(transform.GetChild(1).GetChild(i).gameObject);
+        }
+
+        //define the cursor's gameObject
+        cursor = transform.GetChild(1).Find("Cursor").gameObject;
+
+        if (PlayerPrefs.GetFloat("MusicVolume") <= 0)
+        {
+            PlayerPrefs.SetFloat("MusicVolume", 1.0f);
+        }
+        if (PlayerPrefs.GetFloat("EffectVolume") <= 0)
+        {
+            PlayerPrefs.SetFloat("EffectVolume", 1.0f);
+        }
+
+        musicSlider.fillAmount = PlayerPrefs.GetFloat("MusicVolume");
+        effectSlider.fillAmount = PlayerPrefs.GetFloat("EffectVolume");
+
+        active_menu = 0;
+        cursor_position = 0;
+
+        cursor.SetActive(true);
+
+        green = new Color(0.0f, 1.0f, 0.0f);
+        white = new Color(1.0f, 1.0f, 1.0f);
+        black = new Color(0.0f, 0.0f, 0.0f);
+
+        //Define audio object
+        audio_handler = GetComponent<PlayerOverworldAudioHandler>();
+
+        SaveUpdater();
     }
 
     // Update is called once per frame
