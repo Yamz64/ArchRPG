@@ -373,7 +373,7 @@ public class TitleScreen : MonoBehaviour
                                         {
                                             save1.Save(0);
                                             MapSaveData mapio = new MapSaveData();
-                                            mapio.Save(true);
+                                            mapio.Save();
                                             SceneManager.LoadScene("BedroomCutscene");
                                         }
                                         break;
@@ -384,7 +384,7 @@ public class TitleScreen : MonoBehaviour
                                         {
                                             save2.Save(1);
                                             MapSaveData mapio = new MapSaveData();
-                                            mapio.Save(true);
+                                            mapio.Save();
                                             SceneManager.LoadScene("BedroomCutscene");
                                         }
                                         break;
@@ -395,7 +395,7 @@ public class TitleScreen : MonoBehaviour
                                         {
                                             save3.Save(2);
                                             MapSaveData mapio = new MapSaveData();
-                                            mapio.Save(true);
+                                            mapio.Save();
                                             SceneManager.LoadScene("BedroomCutscene");
                                         }
                                         break;
@@ -406,7 +406,7 @@ public class TitleScreen : MonoBehaviour
                                         {
                                             save4.Save(3);
                                             MapSaveData mapio = new MapSaveData();
-                                            mapio.Save(true);
+                                            mapio.Save();
                                             SceneManager.LoadScene("BedroomCutscene");
                                         }
                                         break;
