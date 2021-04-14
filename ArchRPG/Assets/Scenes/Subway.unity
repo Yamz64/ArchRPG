@@ -13495,7 +13495,7 @@ PrefabInstance:
     - target: {fileID: 4998140645680048167, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: aedc30d11e81a1341a2a465d9dda1ff7, type: 3}
+      objectReference: {fileID: 21300000, guid: a445134d8620c7240897eb9578a8f0f7, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
 --- !u!1 &870873269
@@ -13915,7 +13915,7 @@ MonoBehaviour:
   - text: God I'm so much cooler than those losers over there.
   container: []
   dialogueImages:
-  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid10_front
     lines: 1
   player: {fileID: 0}
 --- !u!1 &1012299290 stripped
@@ -18119,7 +18119,7 @@ MonoBehaviour:
   - effects: []
   - effects: []
   dialogueImages:
-  - sprite_path: CharacterSprites/Background Kid
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid7_front
     lines: 2
   player: {fileID: 0}
 --- !u!1001 &1641830970
@@ -18228,7 +18228,7 @@ MonoBehaviour:
   - text: God that guy over there is so much cooler than us
   container: []
   dialogueImages:
-  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid5_front
     lines: 0
   player: {fileID: 0}
 --- !u!1001 &1716309017
@@ -18444,6 +18444,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4998140645680048167, guid: 52110445f037b614787b39ff46091263, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: de8e2d046eb975048862f70bedd51bb9, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
 --- !u!1001 &1762392900
@@ -18815,7 +18819,7 @@ PrefabInstance:
     - target: {fileID: 4998140645680048167, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 4431d8ddc513fb343a8a1bfb739d1e6e, type: 3}
+      objectReference: {fileID: 21300000, guid: 0a3991a2500621e43bb418c4db91d318, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
 --- !u!1001 &1840404497

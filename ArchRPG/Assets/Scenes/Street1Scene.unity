@@ -210,7 +210,7 @@ MonoBehaviour:
   - effects: []
   - effects: []
   dialogueImages:
-  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid3_front
     lines: 3
   player: {fileID: 0}
 --- !u!1001 &117126099
@@ -719,7 +719,7 @@ MonoBehaviour:
   - effects: []
   - effects: []
   dialogueImages:
-  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid18_front
     lines: 8
   player: {fileID: 0}
 --- !u!1001 &213903823
@@ -8338,7 +8338,7 @@ MonoBehaviour:
       lower: 0
       upper: 26
   dialogueImages:
-  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid23_front
     lines: 5
   player: {fileID: 0}
 --- !u!1001 &604928799
@@ -8844,7 +8844,7 @@ MonoBehaviour:
   - effects: []
   - effects: []
   dialogueImages:
-  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid19_front
     lines: 7
   player: {fileID: 0}
 --- !u!1 &794482831 stripped
@@ -8888,7 +8888,7 @@ MonoBehaviour:
   - effects: []
   - effects: []
   dialogueImages:
-  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid10_front
     lines: 8
   player: {fileID: 0}
 --- !u!1001 &800717503
@@ -9235,7 +9235,7 @@ MonoBehaviour:
       lower: 35
       upper: 46
   dialogueImages:
-  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid2_front
     lines: 3
   player: {fileID: 0}
 --- !u!1001 &877491998
@@ -9324,7 +9324,7 @@ MonoBehaviour:
   - effects: []
   - effects: []
   dialogueImages:
-  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid15_front
     lines: 2
   player: {fileID: 0}
 --- !u!1 &911004115
@@ -10608,7 +10608,7 @@ MonoBehaviour:
       lower: 23
       upper: 39
   dialogueImages:
-  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid9_front
     lines: 2
   player: {fileID: 0}
 --- !u!1001 &1399997046
@@ -10760,7 +10760,7 @@ MonoBehaviour:
   - effects: []
   - effects: []
   dialogueImages:
-  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid21_front
     lines: 2
   player: {fileID: 0}
 --- !u!1001 &1427870412
@@ -33586,7 +33586,7 @@ MonoBehaviour:
       lower: 13
       upper: 17
   dialogueImages:
-  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid4_front
     lines: 3
   player: {fileID: 0}
 --- !u!1001 &1761074658
@@ -41726,7 +41726,7 @@ MonoBehaviour:
   container:
   - effects: []
   dialogueImages:
-  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid8_front
     lines: 1
   player: {fileID: 0}
 --- !u!1001 &2107549505
