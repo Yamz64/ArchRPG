@@ -843,6 +843,7 @@ public class CharacterStatJsonConverter
         p.SetSAN(SANs[0]);
         p.SetExperience(XPs[0]);
 
+        Debug.Log("Step 1");
         //populate inventory after clearing it
         p.ClearInventory();
         for (int i = 0; i < inventory.GetLength(0); i++)
@@ -890,8 +891,10 @@ public class CharacterStatJsonConverter
             }
         }
 
+        Debug.Log("Step 2");
         if (weapons[0].name != "")
         {
+            Debug.Log("Step 2.5");
             p.AddItem(weapons[0]);
             for(int i = 0; i<p.GetInventorySize(); i++)
             {
@@ -902,8 +905,10 @@ public class CharacterStatJsonConverter
                 }
             }
         }
+        Debug.Log("Step 3");
         if (armors[0].name != "")
         {
+            Debug.Log("Step 3.5");
             p.AddItem(armors[0]);
             for (int i = 0; i < p.GetInventorySize(); i++)
             {
@@ -914,8 +919,10 @@ public class CharacterStatJsonConverter
                 }
             }
         }
+        Debug.Log("Step 4");
         if (trinkets[0].name != "")
         {
+            Debug.Log("Step 4.5");
             p.AddItem(trinkets[0]);
             for (int i = 0; i < p.GetInventorySize(); i++)
             {
@@ -926,23 +933,26 @@ public class CharacterStatJsonConverter
                 }
             }
         }
-        
+
+        Debug.Log("Step 5");
         //update the eldritch abilities
-        for(int i=0; i<e_abilities.GetLength(0); i++)
+        for (int i=0; i<e_abilities.GetLength(0); i++)
         {
             //try to find a valid eldritch ability, if it exists and add it to the player's abilities
             System.Type t = System.Type.GetType(e_abilities[i]);
             p.AddAbility((Ability)System.Activator.CreateInstance(t));
         }
 
+        Debug.Log("Step 5.5");
         //update statuses
-        for(int i=0; i<statuses[0].status_effects.Count; i++)
+        for (int i=0; i<statuses[0].status_effects.Count; i++)
         {
             p.SetStatus(i, statuses[0].status_effects[i]);
         }
-        
+
+        Debug.Log("Step 6");
         //update unlocked party members
-        for(int i=0; i<unlocked_characters.Length; i++)
+        for (int i=0; i<unlocked_characters.Length; i++)
         {
             if (unlocked_characters[i])
             {
@@ -957,6 +967,7 @@ public class CharacterStatJsonConverter
 
         p.SetDead(dead[0]);
 
+        Debug.Log("Step 7");
         //add party members
         p.ClearParty();
         for(int i=1; i<names.GetLength(0); i++)
@@ -965,6 +976,7 @@ public class CharacterStatJsonConverter
             System.Type t = System.Type.GetType(names[i]);
             CharacterStats temp = (CharacterStats)System.Activator.CreateInstance(t);
 
+            Debug.Log("Step 8, " + i);
             //update the party member's stats
             temp.SetName(names[i]);
             temp.SetLVL(levels[i]);
@@ -975,8 +987,10 @@ public class CharacterStatJsonConverter
             temp.SetSP(SPs[i]);
             temp.SetSAN(SANs[i]);
 
+            Debug.Log("Woo");
             if (weapons[i].name != "")
             {
+                Debug.Log("Wee");
                 p.AddItem(weapons[i]);
                 for (int j = 0; j < p.GetInventorySize(); j++)
                 {
@@ -987,8 +1001,10 @@ public class CharacterStatJsonConverter
                     }
                 }
             }
+            Debug.Log("Aoo");
             if (armors[i].name != "")
             {
+                Debug.Log("Aee");
                 p.AddItem(armors[i]);
                 for (int j = 0; j < p.GetInventorySize(); j++)
                 {
@@ -999,8 +1015,10 @@ public class CharacterStatJsonConverter
                     }
                 }
             }
+            Debug.Log("Too");
             if (trinkets[i].name != "")
             {
+                Debug.Log("Tee");
                 p.AddItem(trinkets[i]);
                 for (int j = 0; j < p.GetInventorySize(); j++)
                 {

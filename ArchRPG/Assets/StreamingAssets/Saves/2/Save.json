@@ -1,238 +1,131 @@
 {
     "position": {
-        "x": -23.5,
-        "y": 2.5
+        "x": 0.0,
+        "y": 0.0
     },
+    "flee": false,
+    "unlocked_sans": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+    ],
     "unlocked_characters": [
-        true,
-        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
         false,
         false
     ],
+    "dead": [
+        false
+    ],
     "progress": 0,
-    "money": 50,
+    "money": 0,
+    "EP": 0,
     "HPs": [
-        47,
-        40,
-        21
+        27
     ],
     "SPs": [
-        18,
-        21,
-        26
+        14
     ],
     "SANs": [
-        0,
-        0,
-        0
+        100
     ],
     "XPs": [
-        0,
-        0,
         0
     ],
     "levels": [
-        2,
-        2,
-        2
+        1
     ],
     "positions": [
-        0,
-        1,
-        2
+        0
     ],
     "weapons": [
         {
+            "useable": false,
             "name": "",
             "description": "",
             "image_file_path": "",
             "amount": 0,
             "limit": 0,
             "type": 0,
+            "cost": 0,
             "damage_buff": 0,
             "power_buff": 0,
             "defense_buff": 0,
             "will_buff": 0,
             "resistance_buff": 0,
             "speed_buff": 0,
-            "luck_buff": 0
-        },
-        {
-            "name": "",
-            "description": "",
-            "image_file_path": "",
-            "amount": 0,
-            "limit": 0,
-            "type": 0,
-            "damage_buff": 0,
-            "power_buff": 0,
-            "defense_buff": 0,
-            "will_buff": 0,
-            "resistance_buff": 0,
-            "speed_buff": 0,
-            "luck_buff": 0
-        },
-        {
-            "name": "",
-            "description": "",
-            "image_file_path": "",
-            "amount": 0,
-            "limit": 0,
-            "type": 0,
-            "damage_buff": 0,
-            "power_buff": 0,
-            "defense_buff": 0,
-            "will_buff": 0,
-            "resistance_buff": 0,
-            "speed_buff": 0,
-            "luck_buff": 0
+            "luck_buff": 0,
+            "eldritch": false,
+            "promising": false,
+            "level": 0,
+            "winCounter": 0
         }
     ],
     "armors": [
         {
+            "useable": false,
             "name": "",
             "description": "",
             "image_file_path": "",
             "amount": 0,
             "limit": 0,
             "type": 0,
+            "cost": 0,
             "damage_buff": 0,
             "power_buff": 0,
             "defense_buff": 0,
             "will_buff": 0,
             "resistance_buff": 0,
             "speed_buff": 0,
-            "luck_buff": 0
-        },
-        {
-            "name": "",
-            "description": "",
-            "image_file_path": "",
-            "amount": 0,
-            "limit": 0,
-            "type": 0,
-            "damage_buff": 0,
-            "power_buff": 0,
-            "defense_buff": 0,
-            "will_buff": 0,
-            "resistance_buff": 0,
-            "speed_buff": 0,
-            "luck_buff": 0
-        },
-        {
-            "name": "",
-            "description": "",
-            "image_file_path": "",
-            "amount": 0,
-            "limit": 0,
-            "type": 0,
-            "damage_buff": 0,
-            "power_buff": 0,
-            "defense_buff": 0,
-            "will_buff": 0,
-            "resistance_buff": 0,
-            "speed_buff": 0,
-            "luck_buff": 0
+            "luck_buff": 0,
+            "eldritch": false,
+            "promising": false,
+            "level": 0,
+            "winCounter": 0
         }
     ],
     "trinkets": [
         {
+            "useable": false,
             "name": "",
             "description": "",
             "image_file_path": "",
             "amount": 0,
             "limit": 0,
             "type": 0,
+            "cost": 0,
             "damage_buff": 0,
             "power_buff": 0,
             "defense_buff": 0,
             "will_buff": 0,
             "resistance_buff": 0,
             "speed_buff": 0,
-            "luck_buff": 0
-        },
-        {
-            "name": "",
-            "description": "",
-            "image_file_path": "",
-            "amount": 0,
-            "limit": 0,
-            "type": 0,
-            "damage_buff": 0,
-            "power_buff": 0,
-            "defense_buff": 0,
-            "will_buff": 0,
-            "resistance_buff": 0,
-            "speed_buff": 0,
-            "luck_buff": 0
-        },
-        {
-            "name": "",
-            "description": "",
-            "image_file_path": "",
-            "amount": 0,
-            "limit": 0,
-            "type": 0,
-            "damage_buff": 0,
-            "power_buff": 0,
-            "defense_buff": 0,
-            "will_buff": 0,
-            "resistance_buff": 0,
-            "speed_buff": 0,
-            "luck_buff": 0
+            "luck_buff": 0,
+            "eldritch": false,
+            "promising": false,
+            "level": 0,
+            "winCounter": 0
         }
     ],
-    "inventory": []
-    ,
-    "statuses": [
-        {
-            "status_effects": [
-                -1,
-                -1,
-                -1,
-                -1,
-                -1,
-                -1,
-                -1,
-                -1,
-                -1,
-                -1
-            ]
-        },
-        {
-            "status_effects": [
-                -1,
-                -1,
-                -1,
-                -1,
-                -1,
-                -1,
-                -1,
-                -1,
-                -1,
-                -1
-            ]
-        },
-        {
-            "status_effects": [
-                -1,
-                -1,
-                -1,
-                -1,
-                -1,
-                -1,
-                -1,
-                -1,
-                -1,
-                -1
-            ]
-        }
-    ],
+    "inventory": [],
+    "statuses": [],
     "active_scene": "",
     "names": [
-        "Player",
-        "Clyve",
-        "Jim"
+        "Player"
     ],
     "e_abilities": [],
     "enemy_names": []

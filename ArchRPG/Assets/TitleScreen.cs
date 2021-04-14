@@ -370,25 +370,45 @@ public class TitleScreen : MonoBehaviour
                                         if (!save1.active_scene.Equals(""))
                                             SceneManager.LoadScene(save1.active_scene);
                                         else
+                                        {
+                                            save1.Save(0);
+                                            MapSaveData mapio = new MapSaveData();
+                                            mapio.Save(true);
                                             SceneManager.LoadScene("BedroomCutscene");
+                                        }
                                         break;
                                     case 1:
                                         if (!save2.active_scene.Equals(""))
                                             SceneManager.LoadScene(save2.active_scene);
                                         else
+                                        {
+                                            save2.Save(1);
+                                            MapSaveData mapio = new MapSaveData();
+                                            mapio.Save(true);
                                             SceneManager.LoadScene("BedroomCutscene");
+                                        }
                                         break;
                                     case 2:
                                         if (!save3.active_scene.Equals(""))
                                             SceneManager.LoadScene(save3.active_scene);
                                         else
+                                        {
+                                            save3.Save(2);
+                                            MapSaveData mapio = new MapSaveData();
+                                            mapio.Save(true);
                                             SceneManager.LoadScene("BedroomCutscene");
+                                        }
                                         break;
                                     case 3:
                                         if (!save4.active_scene.Equals(""))
                                             SceneManager.LoadScene(save4.active_scene);
                                         else
+                                        {
+                                            save4.Save(3);
+                                            MapSaveData mapio = new MapSaveData();
+                                            mapio.Save(true);
                                             SceneManager.LoadScene("BedroomCutscene");
+                                        }
                                         break;
                                 }
                                 break;
@@ -426,10 +446,14 @@ public class TitleScreen : MonoBehaviour
     //Update save file character portraits
     public void SaveUpdater()
     {
-        save1 = new CharacterStatJsonConverter(0, File.Exists(Application.streamingAssetsPath + "/Saves/1/Old.json"));
-        save2 = new CharacterStatJsonConverter(1, File.Exists(Application.streamingAssetsPath + "/Saves/2/Old.json"));
-        save3 = new CharacterStatJsonConverter(2, File.Exists(Application.streamingAssetsPath + "/Saves/3/Old.json"));
-        save4 = new CharacterStatJsonConverter(3, File.Exists(Application.streamingAssetsPath + "/Saves/4/Old.json"));
+        bool one = File.Exists(Application.streamingAssetsPath + "/Saves/1/Save.json");
+        bool two = File.Exists(Application.streamingAssetsPath + "/Saves/2/Save.json");
+        bool three = File.Exists(Application.streamingAssetsPath + "/Saves/3/Save.json");
+        bool four = File.Exists(Application.streamingAssetsPath + "/Saves/4/Save.json");
+        if (one) save1 = new CharacterStatJsonConverter(0, File.Exists(Application.streamingAssetsPath + "/Saves/1/Old.json"));
+        if (two) save2 = new CharacterStatJsonConverter(1, File.Exists(Application.streamingAssetsPath + "/Saves/2/Old.json"));
+        if (three) save3 = new CharacterStatJsonConverter(2, File.Exists(Application.streamingAssetsPath + "/Saves/3/Old.json"));
+        if (four) save4 = new CharacterStatJsonConverter(3, File.Exists(Application.streamingAssetsPath + "/Saves/4/Old.json"));
 
         string f1 = "";
         string f2 = "";
@@ -456,7 +480,8 @@ public class TitleScreen : MonoBehaviour
         }
 
         transform.GetChild(1).Find("SaveBlocks").GetChild(0).Find("Location").GetComponent<Text>().text = save1.getSceneName();
-        transform.GetChild(1).Find("SaveBlocks").GetChild(0).Find("Level").GetComponent<Text>().text = "Lvl " + save1.levels[0];
+        if (one) transform.GetChild(1).Find("SaveBlocks").GetChild(0).Find("Level").GetComponent<Text>().text = "Lvl " + save1.levels[0];
+        else transform.GetChild(1).Find("SaveBlocks").GetChild(0).Find("Level").GetComponent<Text>().text = "Lvl 0";
         if (save1.names.Length > 0)
             transform.GetChild(1).Find("SaveBlocks").GetChild(0).Find("Party1").GetComponent<Image>().sprite = Resources.Load<Sprite>(f1);
         else
@@ -494,7 +519,8 @@ public class TitleScreen : MonoBehaviour
         }
 
         transform.GetChild(1).Find("SaveBlocks").GetChild(1).Find("Location").GetComponent<Text>().text = save2.getSceneName();
-        transform.GetChild(1).Find("SaveBlocks").GetChild(1).Find("Level").GetComponent<Text>().text = "Lvl " + save2.levels[0];
+        if (two) transform.GetChild(1).Find("SaveBlocks").GetChild(1).Find("Level").GetComponent<Text>().text = "Lvl " + save2.levels[0];
+        else transform.GetChild(1).Find("SaveBlocks").GetChild(1).Find("Level").GetComponent<Text>().text = "Lvl 0";
         if (save2.names.Length > 0)
             transform.GetChild(1).Find("SaveBlocks").GetChild(1).Find("Party1").GetComponent<Image>().sprite = Resources.Load<Sprite>(f1);
         else
@@ -532,7 +558,8 @@ public class TitleScreen : MonoBehaviour
         }
 
         transform.GetChild(1).Find("SaveBlocks").GetChild(2).Find("Location").GetComponent<Text>().text = save3.getSceneName();
-        transform.GetChild(1).Find("SaveBlocks").GetChild(2).Find("Level").GetComponent<Text>().text = "Lvl " + save3.levels[0];
+        if (three) transform.GetChild(1).Find("SaveBlocks").GetChild(2).Find("Level").GetComponent<Text>().text = "Lvl " + save3.levels[0];
+        else transform.GetChild(1).Find("SaveBlocks").GetChild(2).Find("Level").GetComponent<Text>().text = "Lvl 0";
         if (save2.names.Length > 0)
             transform.GetChild(1).Find("SaveBlocks").GetChild(2).Find("Party1").GetComponent<Image>().sprite = Resources.Load<Sprite>(f1);
         else
@@ -571,7 +598,8 @@ public class TitleScreen : MonoBehaviour
         }
 
         transform.GetChild(1).Find("SaveBlocks").GetChild(3).Find("Location").GetComponent<Text>().text = save4.getSceneName();
-        transform.GetChild(1).Find("SaveBlocks").GetChild(3).Find("Level").GetComponent<Text>().text = "Lvl " + save4.levels[0];
+        if (four) transform.GetChild(1).Find("SaveBlocks").GetChild(3).Find("Level").GetComponent<Text>().text = "Lvl " + save4.levels[0];
+        else transform.GetChild(1).Find("SaveBlocks").GetChild(3).Find("Level").GetComponent<Text>().text = "Lvl 0";
         if (save2.names.Length > 0)
             transform.GetChild(1).Find("SaveBlocks").GetChild(3).Find("Party1").GetComponent<Image>().sprite = Resources.Load<Sprite>(f1);
         else
@@ -625,6 +653,11 @@ public class TitleScreen : MonoBehaviour
 
         //Define audio object
         audio_handler = GetComponent<PlayerOverworldAudioHandler>();
+
+        save1 = new CharacterStatJsonConverter();
+        save2 = new CharacterStatJsonConverter();
+        save3 = new CharacterStatJsonConverter();
+        save4 = new CharacterStatJsonConverter();
 
         SaveUpdater();
     }
