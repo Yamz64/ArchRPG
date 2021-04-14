@@ -25,6 +25,7 @@ public class PlayerData : CharacterStats
             SetSavedPosition(temp.GetSavedPosition());
             SetMoney(temp.GetMoney());
             SetProgress(temp.GetProgress());
+            SetEP(temp.GetEP());
             
             for(int i=0; i<temp.GetInventorySize(); i++)
             {
