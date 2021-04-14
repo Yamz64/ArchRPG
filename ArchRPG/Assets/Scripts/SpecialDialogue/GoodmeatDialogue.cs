@@ -67,7 +67,7 @@ public class GoodmeatDialogue : InteractableBaseClass
         yield return new WaitForSeconds(.375f);
         
         player_data.SaveEnemyNames("Meat Golem", "Mr. GoodMeat");
-        player_data.active_scene = SceneManager.GetActiveScene().name;
+        player_data.active_scene = "MeatFactoryCutscene";
         player_data.position = GameObject.FindGameObjectWithTag("Player").transform.position;
         player_data.Save(PlayerPrefs.GetInt("_active_save_file_"));
         GameObject.FindGameObjectWithTag("Player").GetComponent<TransitionHandler>().BattleTransitionDriver();

@@ -4123,6 +4123,7 @@ public class PauseMenuHandler : MonoBehaviour
                     //purchase the ability
                     data.AddAbility(e_abilities[levelup_offset * 4 + cursor_position]);
                     data.SetEP(data.GetEP() - e_abilities[levelup_offset * 4 + cursor_position].level_cost);
+                    data.SetSpentEP(true);
 
                     //say that the ability has been learned
                     List<string> queue = new List<string>();

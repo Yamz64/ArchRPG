@@ -26,6 +26,7 @@ public class PlayerData : CharacterStats
             SetMoney(temp.GetMoney());
             SetProgress(temp.GetProgress());
             SetEP(temp.GetEP());
+            SetSpentEP(temp.GetSpentEP());
             
             for(int i=0; i<temp.GetInventorySize(); i++)
             {
@@ -115,6 +116,8 @@ public class PlayerData : CharacterStats
         }
     }
     
+    public bool GetSpentEP() { return spent_ep; }
+    public void SetSpentEP(bool s) { spent_ep = s; }
     public int GetProgress() { return progress; }
     public void SetProgress(int p) { progress = p; }
     public int GetExperience() { return experience; }
@@ -798,6 +801,7 @@ public class PlayerData : CharacterStats
     }
 
     private bool loaded;
+    private bool spent_ep;
     private int progress;
     private int experience;
     private int max_experience;
