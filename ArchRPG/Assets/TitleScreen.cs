@@ -29,6 +29,10 @@ public class TitleScreen : MonoBehaviour
     public bool save_select_menu = false;
     public bool confirm_menu = false;
 
+    public bool control_menu = false;
+    public bool selector = false;
+    public string prev = "";
+
     public Image musicSlider;
     public Image effectSlider;
 
@@ -96,6 +100,24 @@ public class TitleScreen : MonoBehaviour
         confirm_menu = false;
     }
 
+    public void OpenControlMenu()
+    {
+        transform.GetChild(1).Find("Controls").gameObject.SetActive(true);
+        CloseMenu(1);
+        active_menu = 3;
+        cursor_position = 0;
+        control_menu = true;
+    }
+
+    public void CloseControlMenu()
+    {
+        transform.GetChild(1).Find("Controls").gameObject.SetActive(false);
+        OpenMenu(1);
+        active_menu = 1;
+        cursor_position = 0;
+        control_menu = false;
+    }
+
     //Navigate title screen buttons
     public void TitleRoutine()
     {
@@ -145,108 +167,137 @@ public class TitleScreen : MonoBehaviour
     //Navigate settings
     public void OptionRoutine()
     {
-        if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+        if (!control_menu)
         {
-            if (!menu_input)
+            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
             {
-                cursor_position--;
+                if (!menu_input)
+                {
+                    cursor_position--;
+                }
+                menu_input = true;
             }
-            menu_input = true;
-        }
-        else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[1].positions.Count - 1)
-        {
-            if (!menu_input)
+            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[1].positions.Count - 1)
             {
-                cursor_position++;
+                if (!menu_input)
+                {
+                    cursor_position++;
+                }
+                menu_input = true;
             }
-            menu_input = true;
-        }
-        else if (Input.GetAxisRaw("Horizontal") < 0.0f && (cursor_position == 1 || cursor_position == 2 || cursor_position == 3))
-        {
-            if (!menu_input)
+            else if (Input.GetAxisRaw("Horizontal") < 0.0f && (cursor_position == 1 || cursor_position == 2 || cursor_position == 3))
             {
-                if (cursor_position == 1 && PlayerPrefs.GetFloat("MusicVolume") > 0.1f)
+                if (!menu_input)
                 {
-                    float current = PlayerPrefs.GetFloat("MusicVolume");
-                    PlayerPrefs.SetFloat("MusicVolume", current - 0.1f);
-                    musicSlider.fillAmount = PlayerPrefs.GetFloat("MusicVolume");
-                    Debug.Log("M " + PlayerPrefs.GetFloat("MusicVolume"));
-                }
-                else if (cursor_position == 2 && PlayerPrefs.GetFloat("EffectVolume") > 0.1f)
-                {
-                    float current = PlayerPrefs.GetFloat("EffectVolume");
-                    PlayerPrefs.SetFloat("EffectVolume", current - 0.1f);
-                    effectSlider.fillAmount = PlayerPrefs.GetFloat("EffectVolume");
-                    Debug.Log("E " + PlayerPrefs.GetFloat("EffectVolume"));
-                }
-                else if (cursor_position == 3 && Screen.currentResolution.width != 640)
-                {
-                    if (Screen.fullScreen)
+                    if (cursor_position == 1 && PlayerPrefs.GetFloat("MusicVolume") > 0.1f)
                     {
-                        Screen.SetResolution(1920, 1080, false);
+                        float current = PlayerPrefs.GetFloat("MusicVolume");
+                        PlayerPrefs.SetFloat("MusicVolume", current - 0.1f);
+                        musicSlider.fillAmount = PlayerPrefs.GetFloat("MusicVolume");
                     }
-                    else if (Screen.currentResolution.width == 1920)
+                    else if (cursor_position == 2 && PlayerPrefs.GetFloat("EffectVolume") > 0.1f)
                     {
-                        Screen.SetResolution(640, 480, false);
+                        float current = PlayerPrefs.GetFloat("EffectVolume");
+                        PlayerPrefs.SetFloat("EffectVolume", current - 0.1f);
+                        effectSlider.fillAmount = PlayerPrefs.GetFloat("EffectVolume");
                     }
-                }
-            }
-            menu_input = true;
-        }
-        else if (Input.GetAxisRaw("Horizontal") > 0.0f && (cursor_position == 1 || cursor_position == 2 || cursor_position == 3))
-        {
-            if (!menu_input)
-            {
-                if (cursor_position == 1 && PlayerPrefs.GetFloat("MusicVolume") < 1.0f)
-                {
-                    float current = PlayerPrefs.GetFloat("MusicVolume");
-                    PlayerPrefs.SetFloat("MusicVolume", current + 0.1f);
-                    musicSlider.fillAmount = PlayerPrefs.GetFloat("MusicVolume");
-                }
-                else if (cursor_position == 2 && PlayerPrefs.GetFloat("EffectVolume") < 1.0f)
-                {
-                    float current = PlayerPrefs.GetFloat("EffectVolume");
-                    PlayerPrefs.SetFloat("EffectVolume", current + 0.1f);
-                    effectSlider.fillAmount = PlayerPrefs.GetFloat("EffectVolume");
-                }
-                else if (cursor_position == 3 && !Screen.fullScreen)
-                {
-                    if (Screen.currentResolution.width == 640)
+                    else if (cursor_position == 3 && Screen.currentResolution.width != 640)
                     {
-                        Screen.SetResolution(1920, 1080, false);
-                    }
-                    else if (Screen.currentResolution.width == 1920)
-                    {
-                        Screen.SetResolution(1920, 1080, true);
+                        if (Screen.fullScreen)
+                        {
+                            Screen.SetResolution(1920, 1080, false);
+                        }
+                        else if (Screen.currentResolution.width == 1920)
+                        {
+                            Screen.SetResolution(640, 480, false);
+                        }
                     }
                 }
+                menu_input = true;
             }
-            menu_input = true;
-        }
-        else if (Input.GetButtonDown("Interact"))
-        {
-            switch (cursor_position)
+            else if (Input.GetAxisRaw("Horizontal") > 0.0f && (cursor_position == 1 || cursor_position == 2 || cursor_position == 3))
             {
-                case 0:
-                    break;
-                case 1:
-                    break;
-                case 2:
-                    break;
-                default:
-                    break;
+                if (!menu_input)
+                {
+                    if (cursor_position == 1 && PlayerPrefs.GetFloat("MusicVolume") < 1.0f)
+                    {
+                        float current = PlayerPrefs.GetFloat("MusicVolume");
+                        PlayerPrefs.SetFloat("MusicVolume", current + 0.1f);
+                        musicSlider.fillAmount = PlayerPrefs.GetFloat("MusicVolume");
+                    }
+                    else if (cursor_position == 2 && PlayerPrefs.GetFloat("EffectVolume") < 1.0f)
+                    {
+                        float current = PlayerPrefs.GetFloat("EffectVolume");
+                        PlayerPrefs.SetFloat("EffectVolume", current + 0.1f);
+                        effectSlider.fillAmount = PlayerPrefs.GetFloat("EffectVolume");
+                    }
+                    else if (cursor_position == 3 && !Screen.fullScreen)
+                    {
+                        if (Screen.currentResolution.width == 640)
+                        {
+                            Screen.SetResolution(1920, 1080, false);
+                        }
+                        else if (Screen.currentResolution.width == 1920)
+                        {
+                            Screen.SetResolution(1920, 1080, true);
+                        }
+                    }
+                }
+                menu_input = true;
             }
-            menu_input = true;
-        }
-        else if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Menu"))
-        {
-            CloseMenu(1);
-            OpenMenu(0);
-            menu_input = true;
+            else if (Input.GetButtonDown("Interact"))
+            {
+                if (cursor_position == 0)
+                {
+                    OpenControlMenu();
+                }
+                menu_input = true;
+            }
+            else if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Menu"))
+            {
+                CloseMenu(1);
+                OpenMenu(0);
+                menu_input = true;
+            }
+            else
+            {
+                menu_input = false;
+            }
         }
         else
         {
-            menu_input = false;
+            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0 && !selector)
+            {
+                if (!menu_input)
+                {
+                    cursor_position--;
+                }
+                menu_input = true;
+            }
+            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[3].positions.Count - 1 && !selector)
+            {
+                if (!menu_input)
+                {
+                    cursor_position++;
+                }
+                menu_input = true;
+            }
+            else if (Input.GetButtonDown("Interact") && !selector)
+            {
+                prev = transform.GetChild(1).Find("Controls").GetChild(cursor_position).GetChild(0).GetComponent<Text>().text;
+                transform.GetChild(1).Find("Controls").GetChild(cursor_position).GetChild(0).GetComponent<Text>().text = "";
+                menu_input = true;
+            }
+            
+            else if (Input.GetButtonDown("Cancel") && !selector)
+            {
+                CloseControlMenu();
+                menu_input = true;
+            }
+            else
+            {
+                menu_input = false;
+            }
         }
         cursor.transform.position = cursor_positions[active_menu].positions[cursor_position].position;
     }
@@ -361,6 +412,7 @@ public class TitleScreen : MonoBehaviour
             {
                 switch (cursor_position)
                 {
+                    //Yes
                     case 7:
                         switch (save_choice)
                         {
@@ -426,6 +478,7 @@ public class TitleScreen : MonoBehaviour
                                 break;
                         }
                         break;
+                    //No
                     case 8:
                         CloseConfirmSlotMenu();
                         break;
@@ -701,6 +754,9 @@ public class TitleScreen : MonoBehaviour
                 break;
             case 2:
                 SaveRoutine();
+                break;
+            case 3:
+                OptionRoutine();
                 break;
             default:
                 break;

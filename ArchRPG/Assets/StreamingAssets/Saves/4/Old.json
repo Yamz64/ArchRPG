@@ -1,0 +1,137 @@
+{
+    "position": {
+        "x": 0.0,
+        "y": 0.0
+    },
+    "flee": false,
+    "spent_ep": false,
+    "unlocked_sans": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+    ],
+    "unlocked_characters": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+    ],
+    "dead": [
+        false
+    ],
+    "progress": 0,
+    "money": 0,
+    "EP": 0,
+    "HPs": [
+        27
+    ],
+    "SPs": [
+        14
+    ],
+    "SANs": [
+        100
+    ],
+    "XPs": [
+        0
+    ],
+    "levels": [
+        1
+    ],
+    "positions": [
+        0
+    ],
+    "weapons": [
+        {
+            "useable": false,
+            "name": "",
+            "description": "",
+            "image_file_path": "",
+            "amount": 0,
+            "limit": 0,
+            "type": 0,
+            "cost": 0,
+            "damage_buff": 0,
+            "power_buff": 0,
+            "defense_buff": 0,
+            "will_buff": 0,
+            "resistance_buff": 0,
+            "speed_buff": 0,
+            "luck_buff": 0,
+            "eldritch": false,
+            "promising": false,
+            "level": 0,
+            "winCounter": 0
+        }
+    ],
+    "armors": [
+        {
+            "useable": false,
+            "name": "",
+            "description": "",
+            "image_file_path": "",
+            "amount": 0,
+            "limit": 0,
+            "type": 0,
+            "cost": 0,
+            "damage_buff": 0,
+            "power_buff": 0,
+            "defense_buff": 0,
+            "will_buff": 0,
+            "resistance_buff": 0,
+            "speed_buff": 0,
+            "luck_buff": 0,
+            "eldritch": false,
+            "promising": false,
+            "level": 0,
+            "winCounter": 0
+        }
+    ],
+    "trinkets": [
+        {
+            "useable": false,
+            "name": "",
+            "description": "",
+            "image_file_path": "",
+            "amount": 0,
+            "limit": 0,
+            "type": 0,
+            "cost": 0,
+            "damage_buff": 0,
+            "power_buff": 0,
+            "defense_buff": 0,
+            "will_buff": 0,
+            "resistance_buff": 0,
+            "speed_buff": 0,
+            "luck_buff": 0,
+            "eldritch": false,
+            "promising": false,
+            "level": 0,
+            "winCounter": 0
+        }
+    ],
+    "inventory": [],
+    "statuses": [
+        {
+            "status_effects": []
+        }
+    ],
+    "active_scene": "",
+    "names": [
+        "Player"
+    ],
+    "e_abilities": [],
+    "enemy_names": []
+}
