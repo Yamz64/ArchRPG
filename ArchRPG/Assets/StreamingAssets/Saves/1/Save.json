@@ -4,6 +4,7 @@
         "y": 1.5
     },
     "flee": false,
+    "spent_ep": false,
     "unlocked_sans": [
         100,
         100,

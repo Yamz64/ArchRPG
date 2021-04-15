@@ -137,121 +137,101 @@ MonoBehaviour:
   m_GameObject: {fileID: 35860270}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d600392e828297b4ca30b8202b0db125, type: 3}
+  m_Script: {fileID: 11500000, guid: 9942b8f9e2700c04fb5017e483196db9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  golem: {fileID: 1003972294}
-  first_text:
-  - text: Mr. Goodmeat?
-  - text: Yes one second.
-  - text: Barbara did you authorize a meeting with the new Junior Meat Salesman?
-  - text: No I did not sir.
-  - text: Ah, I see.
-  - text: Do you want me to send him in sir?
-  - text: Hold off on that.
-  - text: Alright, yes I am the Mr. Goodmeat, CEO of Goodmeat Meats, largest distributor
-      of meat-like products in the U.S.!
-  - text: What can I do for you?
-  - text: You need to cancel the parade!
-  - text: Why? Do you have something against Arbor Day?
-  - text: But it isn't Arbor Day!
-  - text: It is if I want it to be. And as a matter of fact, I do.
-  - text: Why do you want it to be Arbor Day?
-  - text: Well you see, some kid in a red shirt said he wanted to build a piece of
-      modern art in the middle of the city.
-  - text: And I viewed this as the perfect opportunity to show my reclusive philanthropic
-      side to the public.
-  - text: I would dedicate a percentage of the parade's proceeds to this kid's art
-      project.
-  - text: And in turn, bolster my already stellar public image!
-  - text: Can't you see that this "Art project" is actually an attempt to summon
-      the end of human kind?
-  - text: What? This sounds preposterous! I will not tolerate such behavior from
-      my employees!
-  - text: Publicity isn't the only thing the kid in the red shirt gave me!
-  - text: Behold my beautiful creation!
-  - text: Security!
-  first_container:
-  - effects: []
-  - effects: []
-  - effects: []
-  - effects: []
-  - effects: []
-  - effects:
-    - name: Color
-      color: {r: 1, g: 0, b: 0, a: 1}
-      lower: 17
-      upper: 19
-  - effects: []
-  - effects:
-    - name: Wave
-      color: {r: 0, g: 0, b: 0, a: 0}
-      lower: 14
-      upper: 16
-  - effects: []
-  - effects: []
-  - effects: []
-  - effects: []
-  - effects:
-    - name: Wave
-      color: {r: 0, g: 0, b: 0, a: 0}
-      lower: 4
-      upper: 17
-  - effects: []
-  - effects:
-    - name: Color
-      color: {r: 1, g: 0, b: 0, a: 1}
-      lower: 15
-      upper: 28
-  - effects: []
-  - effects: []
-  - effects: []
-  - effects: []
+  text:
+  - text: Listen, *WHEEZE*, don't hurt me! You've bested Mr. Goodmeat I'll do anything!
+  - text: Stop the parade!
+  - text: Kid, what're you an idiot! I can't just stop the parade! The people will
+      want an answer!
+  - text: Don't worry about that, if you stop the parade, I will give them an answer.
+  - text: '*Sigh* I''m not really in a position to deny you.'
+  - text: Barbara!
+  - text: Yes Mr. Goodmeat?
+  - text: I need you to cancel the festivities and set the junior meat salesman up
+      with a mic.
+  container:
   - effects:
     - name: Quake
       color: {r: 0, g: 0, b: 0, a: 0}
-      lower: 28
-      upper: 71
-  - effects:
-    - name: Color
-      color: {r: 1, g: 0, b: 0, a: 1}
-      lower: 29
-      upper: 44
-  - effects:
-    - name: Color
-      color: {r: 1, g: 0, b: 0, a: 1}
-      lower: 8
-      upper: 25
+      lower: 7
+      upper: 14
   - effects: []
-  first_images:
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 16
+      upper: 21
+  - effects: []
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 5
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 7
+  - effects: []
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/Mr. Goodmeat Sad
+    lines: 1
   - sprite_path: CharacterSprites/PC
     lines: 1
-  - sprite_path: CharacterSprites/Mr. Goodmeat
+  - sprite_path: CharacterSprites/Mr. Goodmeat Sad
+    lines: 1
+  - sprite_path: CharacterSprites/PC
+    lines: 1
+  - sprite_path: CharacterSprites/Mr. Goodmeat Sad
     lines: 2
-  - sprite_path: 
+  - sprite_path: CharacterSprites/OfficePhone
     lines: 1
-  - sprite_path: CharacterSprites/Mr. Goodmeat
+  - sprite_path: CharacterSprites/Mr. Goodmeat Sad
     lines: 1
-  - sprite_path: 
+  player: {fileID: 0}
+  alt_text:
+  - text: Listen, *WHEEZE*, don't hurt me! You've bested Mr. Goodmeat I'll do anything!
+  - text: "Shut up worm! I just need you to stop the parade!\r"
+  - text: "Kid, I can\u2019t just stop the parade! The people will want an answer!"
+  - text: "Listen up, I don\u2019t care if the people want an answer, and I don\u2019t
+      think you understand:"
+  - text: "You\u2019re not in charge anymore, if you don\u2019t shut down the parade,
+      I\u2019ll just kill you and find another way."
+  - text: "Alright alright! I\u2019ll shut down the parade, just please don\u2019t
+      hurt me!"
+  alt_container:
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 7
+      upper: 14
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 6
+      upper: 10
+  - effects: []
+  - effects: []
+  - effects:
+    - name: Color
+      color: {r: 1, g: 0, b: 0, a: 1}
+      lower: 53
+      upper: 67
+  - effects: []
+  alt_dialogueImages:
+  - sprite_path: CharacterSprites/Mr. Goodmeat Sad
     lines: 1
-  - sprite_path: CharacterSprites/Mr. Goodmeat
-    lines: 3
   - sprite_path: CharacterSprites/PC
     lines: 1
-  - sprite_path: CharacterSprites/Mr. Goodmeat
+  - sprite_path: CharacterSprites/Mr. Goodmeat Sad
     lines: 1
   - sprite_path: CharacterSprites/PC
+    lines: 2
+  - sprite_path: CharacterSprites/Mr. Goodmeat Sad
     lines: 1
-  - sprite_path: CharacterSprites/Mr. Goodmeat
-    lines: 1
-  - sprite_path: CharacterSprites/PC
-    lines: 1
-  - sprite_path: CharacterSprites/Mr. Goodmeat
-    lines: 4
-  - sprite_path: CharacterSprites/PC
-    lines: 1
-  - sprite_path: CharacterSprites/Mr. Goodmeat
-    lines: 4
 --- !u!1001 &41878095
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -289,7 +269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2033402518264873232, guid: 3783e88141977b942a13c4756771fa0c, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2033402518264873232, guid: 3783e88141977b942a13c4756771fa0c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1636,156 +1616,6 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
---- !u!1001 &248804548
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6035087276220563050, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
-      propertyPath: valid_scenes.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6035087276220563050, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
-      propertyPath: track_name
-      value: FactoryTheme
-      objectReference: {fileID: 0}
-    - target: {fileID: 6035087276220563050, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
-      propertyPath: valid_scenes.Array.data[0]
-      value: MeatFactory1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6035087276220563050, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
-      propertyPath: valid_scenes.Array.data[1]
-      value: MeatFactory2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6035087276220563050, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
-      propertyPath: valid_scenes.Array.data[2]
-      value: MeatFactory3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6035087276220563050, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
-      propertyPath: valid_scenes.Array.data[3]
-      value: MeatFactoryBossRoom
-      objectReference: {fileID: 0}
-    - target: {fileID: 7527172466602869493, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7527172466602869493, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7527172466602869493, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7527172466602869493, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7527172466602869493, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7527172466602869493, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7527172466602869493, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7527172466602869493, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7527172466602869493, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7527172466602869493, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7527172466602869493, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7673704983470722225, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
-      propertyPath: m_Name
-      value: InstantiateGeneralMusic
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
---- !u!1001 &249295484
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1396058554207331182, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
-      propertyPath: current_map.objects.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1396058554207331182, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
-      propertyPath: current_map.name
-      value: MeatFactoryBossRoom
-      objectReference: {fileID: 0}
-    - target: {fileID: 1396058554207331182, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
-      propertyPath: current_map.objects.Array.data[0].o
-      value: Mr. Goodmeat
-      objectReference: {fileID: 0}
-    - target: {fileID: 1396058554207331183, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
-      propertyPath: m_Name
-      value: MapManager
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
 --- !u!1 &668271133
 GameObject:
   m_ObjectHideFlags: 0
@@ -1857,7 +1687,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &678551235
 PrefabInstance:
@@ -1912,7 +1742,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5167108425163344066, guid: 617c97ee13b17fa4baaaa464f03ef197, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5167108425163344066, guid: 617c97ee13b17fa4baaaa464f03ef197, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1965,7 +1795,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2033402518264873232, guid: 3783e88141977b942a13c4756771fa0c, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2033402518264873232, guid: 3783e88141977b942a13c4756771fa0c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2034,7 +1864,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2067,7 +1897,7 @@ PrefabInstance:
     - target: {fileID: 4998140645680048167, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 080896946556093448406ae0a3b3abb6, type: 3}
+      objectReference: {fileID: 21300000, guid: f0140e77c5b268f47b64558d56a071c3, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
 --- !u!1 &864299237
@@ -3048,7 +2878,7 @@ Transform:
   m_LocalScale: {x: 1.6431, y: 1.3760306, z: 1.6431}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &890270025
 BoxCollider2D:
@@ -3113,7 +2943,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 731202777461658197, guid: 48dcc6fddc4f71043ba92fa797cea459, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 731202777461658197, guid: 48dcc6fddc4f71043ba92fa797cea459, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3213,7 +3043,7 @@ Transform:
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1084609495
 PrefabInstance:
@@ -3252,7 +3082,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2033402518264873232, guid: 3783e88141977b942a13c4756771fa0c, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2033402518264873232, guid: 3783e88141977b942a13c4756771fa0c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -9705,7 +9535,7 @@ Transform:
   m_LocalScale: {x: 1.8274801, y: 1.5229, z: 1.5229}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1974522376
 BoxCollider2D:
@@ -9742,11 +9572,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3435720644805111882, guid: 1f43982e2a230d947830355b5f90e117, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.024408102
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3435720644805111882, guid: 1f43982e2a230d947830355b5f90e117, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.3518114
+      value: 39.5
       objectReference: {fileID: 0}
     - target: {fileID: 3435720644805111882, guid: 1f43982e2a230d947830355b5f90e117, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9770,7 +9600,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3435720644805111882, guid: 1f43982e2a230d947830355b5f90e117, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3435720644805111882, guid: 1f43982e2a230d947830355b5f90e117, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -9827,7 +9657,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 731202777461658197, guid: 48dcc6fddc4f71043ba92fa797cea459, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 731202777461658197, guid: 48dcc6fddc4f71043ba92fa797cea459, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

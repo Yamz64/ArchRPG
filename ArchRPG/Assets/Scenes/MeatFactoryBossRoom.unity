@@ -228,11 +228,11 @@ MonoBehaviour:
     lines: 1
   - sprite_path: CharacterSprites/Mr. Goodmeat
     lines: 2
-  - sprite_path: 
+  - sprite_path: CharacterSprites/OfficePhone
     lines: 1
   - sprite_path: CharacterSprites/Mr. Goodmeat
     lines: 1
-  - sprite_path: 
+  - sprite_path: CharacterSprites/OfficePhone
     lines: 1
   - sprite_path: CharacterSprites/Mr. Goodmeat
     lines: 3

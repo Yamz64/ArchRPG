@@ -89,4 +89,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MeatFactoryBossRoom.unity
     guid: a1cdc2557af972d4984dae2e83f19b63
+  - enabled: 1
+    path: Assets/Scenes/MeatFactoryCutscene.unity
+    guid: dde14ea3e05bf1449809646fe27d496e
+  - enabled: 1
+    path: Assets/Scenes/SpeechCutscene.unity
+    guid: 34585f3ef4ecac643b6e146fa7bc1a01
   m_configObjects: {}
