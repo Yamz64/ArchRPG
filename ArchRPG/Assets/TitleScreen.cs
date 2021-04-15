@@ -288,7 +288,6 @@ public class TitleScreen : MonoBehaviour
                 transform.GetChild(1).Find("Controls").GetChild(cursor_position).GetChild(0).GetComponent<Text>().text = "";
                 menu_input = true;
             }
-            
             else if (Input.GetButtonDown("Cancel") && !selector)
             {
                 CloseControlMenu();
