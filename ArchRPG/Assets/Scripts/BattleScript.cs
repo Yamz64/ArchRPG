@@ -196,7 +196,7 @@ public class BattleScript : MonoBehaviour
     //Use to play specific sounds with the audio handler
     //num -- which sound to play
     //lop -- whether to loop the sound or not
-    //i -- which audio source will play the sound
+    //i -- which audio source will play the sound (0 == overworld player, 1 == this one)
     public void useSound(int num, bool lop = false, int i = 0)
     {
         if (num == 0)

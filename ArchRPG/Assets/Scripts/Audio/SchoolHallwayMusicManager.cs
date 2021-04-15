@@ -50,6 +50,9 @@ public class SchoolHallwayMusicManager : MonoBehaviour
         normal = GetComponents<AudioSource>()[0];
         spooky = GetComponents<AudioSource>()[1];
 
+        normal.volume = PlayerPrefs.GetFloat("MusicVolume");
+        spooky.volume = PlayerPrefs.GetFloat("MusicVolume");
+
         normal_volume = normal.volume;
         spooky_volume = spooky.volume;
 

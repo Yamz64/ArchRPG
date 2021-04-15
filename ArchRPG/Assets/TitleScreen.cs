@@ -170,12 +170,14 @@ public class TitleScreen : MonoBehaviour
                     float current = PlayerPrefs.GetFloat("MusicVolume");
                     PlayerPrefs.SetFloat("MusicVolume", current - 0.1f);
                     musicSlider.fillAmount = PlayerPrefs.GetFloat("MusicVolume");
+                    Debug.Log("M " + PlayerPrefs.GetFloat("MusicVolume"));
                 }
                 else if (cursor_position == 2 && PlayerPrefs.GetFloat("EffectVolume") > 0.1f)
                 {
                     float current = PlayerPrefs.GetFloat("EffectVolume");
                     PlayerPrefs.SetFloat("EffectVolume", current - 0.1f);
                     effectSlider.fillAmount = PlayerPrefs.GetFloat("EffectVolume");
+                    Debug.Log("E " + PlayerPrefs.GetFloat("EffectVolume"));
                 }
                 else if (cursor_position == 3 && Screen.currentResolution.width != 640)
                 {

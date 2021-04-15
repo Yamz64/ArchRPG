@@ -11,10 +11,15 @@ public class PlayerOverworldAudioHandler : MonoBehaviour
     void Awake()
     {
         source = GetComponent<AudioSource>();
+        source.volume = PlayerPrefs.GetFloat("EffectVolume");
+        if (s2 != null)
+        s2.volume = PlayerPrefs.GetFloat("MusicVolume");
     }
 
     //sound -- path to the sound that should be played
     //i -- determines which audio source will play the sound
+    //0 == This audiosource (effect)
+    //1 == Input (Battle) (music)
     public void PlaySound(string sound, int i = 0)
     {
         if (i == 0)

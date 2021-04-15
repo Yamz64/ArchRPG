@@ -11,8 +11,12 @@ public class GeneralMusicManager : MonoBehaviour
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
-        
-        if (!GetComponent<AudioSource>().isPlaying) GetComponent<AudioSource>().Play();
+
+        if (!GetComponent<AudioSource>().isPlaying)
+        {
+            GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("MusicVolume");
+            GetComponent<AudioSource>().Play();
+        }
     }
 
     private void Update()

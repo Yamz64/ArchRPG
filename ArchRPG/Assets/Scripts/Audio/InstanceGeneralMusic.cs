@@ -12,10 +12,13 @@ public class InstanceGeneralMusic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         //check to see if a music instance is in the scene, if it is not then spawn it set the valid scenes it doesn't get destroyed in, and load it's track
         if (GameObject.Find(music_instance.name + "(Clone)") == null && valid_scenes != null)
         {
             GameObject instance = (GameObject)Instantiate(music_instance);
+
+            instance.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("MusicVolume");
 
             instance.GetComponent<AudioSource>().clip = Resources.Load<AudioClip>("Sound/Music/" + track_name);
 
@@ -30,6 +33,8 @@ public class InstanceGeneralMusic : MonoBehaviour
         else if(GameObject.Find(music_instance.name + "(Clone)").GetComponent<AudioSource>().clip.name != track_name)
         {
             GameObject instance = (GameObject)Instantiate(music_instance);
+
+            instance.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("MusicVolume");
 
             instance.GetComponent<AudioSource>().clip = Resources.Load<AudioClip>("Sound/Music/" + track_name);
 
