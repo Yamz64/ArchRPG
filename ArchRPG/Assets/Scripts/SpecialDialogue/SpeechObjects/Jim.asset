@@ -19,7 +19,10 @@ MonoBehaviour:
   effects:
   - effects: []
   images:
-  - sprite_path: Jim
+  - sprite_path: CharacterSprites/Accident Jim
     lines: 1
-  converted_text: []
-  converted_images: []
+  converted_text:
+  - This guy saved my life and he's trying to do the same for you! Just hear him
+    out!
+  converted_images:
+  - CharacterSprites/Jim

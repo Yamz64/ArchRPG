@@ -428,6 +428,48 @@ public class CharacterStats
         }
     }
 
+    public CharacterStats(CharacterStats c)
+    {
+        HP = c.HP;
+        HP_max = c.HP_max;
+        SAN = c.SAN;
+        SAN_max = c.SAN_max;
+        SP = c.SP;
+        SP_max = c.SP_max;
+        ATK = c.ATK;
+        POW = c.POW;
+        DEF = c.DEF;
+        WIL = c.WIL;
+        RES = c.RES;
+        SPD = c.SPD;
+        LCK = c.LCK;
+        LVL = c.LVL;
+        status_effects = new List<int>();
+
+        for (int i = 0; i < 27; i++)
+        {
+            status_effects.Add(-1);
+        }
+        UpdateStats();
+
+        resistance = c.resistance;
+        weakness = c.resistance;
+        name = c.name;
+        desc = c.desc;
+        image_filepath = c.image_filepath;
+        position = c.position;
+
+        if(c.weapon != null) weapon = new Weapon(c.weapon);
+        if(c.armor != null) armor = new Armor(c.armor);
+        if(c.trinket != null) trinket = new Trinket(c.trinket);
+
+        for(int i=0; i<c.status_effects.Count; i++) { status_effects[i] = c.status_effects[i]; }
+
+        dead = c.dead;
+        use_MP = c.use_MP;
+
+    }
+
     //--PRIMARY STATS--
     private int HP;         //current hp that the character has
     private int HP_max;     //maximum hp that the character can have

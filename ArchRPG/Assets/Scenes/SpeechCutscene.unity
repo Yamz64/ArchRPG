@@ -10063,6 +10063,238 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1187866542}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1194105452
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1194105454}
+  - component: {fileID: 1194105453}
+  m_Layer: 0
+  m_Name: CutsceneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1194105453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194105452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ce5890375afe004bb4dd89a15b8798a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pre_text:
+  - text: Attention citizens of Brown Trout City.
+  - text: --and I said Arbor Day? Isn't that in April?
+  - text: HAHAHA! What a story Mark.
+  - text: Ignorant Arbor Day fools!
+  - text: Hey pal, that's smack outta line!
+  - text: Oh... uh... sorry.
+  - text: Diligent Arbor Day cool...sss?
+  - text: Is that guy talking to us?
+  - text: Yes. I'm trying to at least. Please listen to me!
+  - text: Well, he did say please.
+  - text: You're all in danger!
+  - text: As we speak, a narcissistic maniac is constructing a monolith to merge
+      with an otherworldly being
+  - text: that seeks to corrupt our minds and bodies!
+  - text: You need to get out of here now!
+  - text: That's a load of bologna!
+  - text: You're just being a party pooper trying to rain on our parade!
+  - text: Get off the stage you ugly loser!
+  - text: ...
+  - text: (Why does everyone keep calling me ugly?)
+  - text: (I can't get through to them. Maybe there's a reason my only friend is
+      a goldfish.)
+  - text: Perhaps Danny is right. What if we are just insignificant ants?)
+  - text: (Are we even worthy of being saved?)
+  pre_container:
+  - effects: []
+  - effects: []
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 6
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 21
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects:
+    - name: Color
+      color: {r: 1, g: 0, b: 0, a: 1}
+      lower: 65
+      upper: 81
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 17
+      upper: 26
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  pre_dialogueImages:
+  - sprite_path: CharacterSprites/PC
+    lines: 1
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 2
+  - sprite_path: CharacterSprites/PC
+    lines: 1
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 1
+  - sprite_path: CharacterSprites/PC
+    lines: 2
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 1
+  - sprite_path: CharacterSprites/PC
+    lines: 1
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 1
+  - sprite_path: CharacterSprites/PC
+    lines: 4
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 3
+  - sprite_path: CharacterSprites/PC
+    lines: 5
+  post_text:
+  - text: Wow I didn't think you believed in me that much.
+  - text: I guess we didn't give him a real chance.
+  - text: Yeah we oughta listen.
+  - text: I suppose he's not that ugly.
+  - text: FINALLY!
+  - text: Now, didn't it occur to any of you that something was amiss?
+  - text: For example, haven't you noticed strange creatures walking around or witnessed
+      some sort of unexplainable event?
+  - text: Now that you mention it, I do recall seeing some out of the ordinary things.
+  - text: Like those traffic lights that are harassing people...
+  - text: Traffic Lights don't USUALLY harass people...
+  - text: And the traffic cones, and the trash cans, and those weirdos working at
+      the Goodmeat Factory.
+  - text: All that stuff is quite strange.
+  - text: Maybe Mr. Buttz DIDN'T defecate in his own bread.
+  - text: That does explain why that strange-looking rat bit through the subway car
+      and into my skull.
+  - text: Are you ok?
+  - text: I'm fine. I'm just perplexed.
+  - text: Yes exactly!
+  - text: Don't you see now? You all need to get out of here and take shelter.
+  - text: You're right! It's too dangerous to be out and about!
+  - text: I gotta go find my kid. I hope he's not missing any organs.
+  - text: AND it's not even Arbor Day!
+  - text: Oh well I guess we really SHOULD go home then.
+  post_container:
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 7
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 18
+      upper: 24
+  - effects: []
+  - effects: []
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 13
+      upper: 18
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 22
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 20
+      upper: 25
+  post_dialogueImages:
+  - sprite_path: CharacterSprites/PC
+    lines: 1
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 3
+  - sprite_path: CharacterSprites/PC
+    lines: 3
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 3
+  - sprite_path: CharacterSprites/PC
+    lines: 1
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 5
+  - sprite_path: CharacterSprites/PC
+    lines: 1
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 2
+  - sprite_path: CharacterSprites/PC
+    lines: 1
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 1
+  player: {fileID: 0}
+  unique_dialogues:
+  - {fileID: 11400000, guid: 064792b4661024c4bb2542bd1cc65caa, type: 2}
+  - {fileID: 11400000, guid: 672a4f0e46872dc4d8e9f467af86d7c3, type: 2}
+  - {fileID: 11400000, guid: 283452eefebb15d429163a34cc1ac3d2, type: 2}
+  - {fileID: 11400000, guid: 41428936f167bec4280a042971dfd9d5, type: 2}
+  - {fileID: 11400000, guid: eb5772ddabaf4f34bbfe232970a5934e, type: 2}
+  - {fileID: 11400000, guid: 81bf195c0d726054c9ac881f0d19a1b9, type: 2}
+  - {fileID: 11400000, guid: 9343ae4a7409122428bb73d1df0b3cc1, type: 2}
+  - {fileID: 11400000, guid: bbb577f1774900542be253ab1a67c11f, type: 2}
+  - {fileID: 11400000, guid: 85a5bb05adf2c664b8ce06fb3447ea59, type: 2}
+  - {fileID: 11400000, guid: 6495a77e4db2d3046b164cbc4fdad312, type: 2}
+--- !u!4 &1194105454
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194105452}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 27
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1204675168
 GameObject:
   m_ObjectHideFlags: 0

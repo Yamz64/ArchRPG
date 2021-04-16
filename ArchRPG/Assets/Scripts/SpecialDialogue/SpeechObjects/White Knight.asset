@@ -29,7 +29,7 @@ MonoBehaviour:
       lower: 65
       upper: 68
   images:
-  - sprite_path: White Knight
+  - sprite_path: CharacterSprites/White Knight
     lines: 2
   converted_text: []
   converted_images: []

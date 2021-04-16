@@ -16,7 +16,7 @@ public class SpeechObject : ScriptableObject
     [HideInInspector]
     public List<string> converted_images;
 
-    public SpeechObject()
+    public void UpdateConvertedText()
     {
         converted_text = new List<string>();
         if (text != null)
