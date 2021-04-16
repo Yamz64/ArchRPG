@@ -1283,6 +1283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589ea63de86f2f8469187f04dfa527f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mark_interactable: 0
   spawn_position: {x: 43.5, y: 2}
   scene: City2
 --- !u!61 &1290389701
@@ -1480,8 +1481,8 @@ Tilemap:
   - first: {x: -6, y: -3, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 2
-      m_TileSpriteIndex: 2
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1490,8 +1491,8 @@ Tilemap:
   - first: {x: -5, y: -3, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 2
-      m_TileSpriteIndex: 2
+      m_TileIndex: 7
+      m_TileSpriteIndex: 7
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1500,8 +1501,8 @@ Tilemap:
   - first: {x: -4, y: -3, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 2
-      m_TileSpriteIndex: 2
+      m_TileIndex: 7
+      m_TileSpriteIndex: 7
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1510,8 +1511,8 @@ Tilemap:
   - first: {x: -3, y: -3, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 2
-      m_TileSpriteIndex: 2
+      m_TileIndex: 6
+      m_TileSpriteIndex: 6
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1520,8 +1521,8 @@ Tilemap:
   - first: {x: -3, y: -2, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 3
-      m_TileSpriteIndex: 3
+      m_TileIndex: 2
+      m_TileSpriteIndex: 2
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1530,8 +1531,8 @@ Tilemap:
   - first: {x: -3, y: -1, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 3
-      m_TileSpriteIndex: 3
+      m_TileIndex: 2
+      m_TileSpriteIndex: 2
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1540,8 +1541,8 @@ Tilemap:
   - first: {x: -3, y: 0, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 3
-      m_TileSpriteIndex: 3
+      m_TileIndex: 2
+      m_TileSpriteIndex: 2
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1831,29 +1832,37 @@ Tilemap:
   m_TileAssetArray:
   - m_RefCount: 18
     m_Data: {fileID: 11400000, guid: 97a645bffbd0d6d4da14122e29bee83b, type: 2}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 4
-    m_Data: {fileID: 11400000, guid: 0e0bed0212aa0b34ca584a42b3e3d6cd, type: 2}
-  - m_RefCount: 4
-    m_Data: {fileID: 11400000, guid: 02129dd387b51ff40ada4a2e17e91dc5, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: e26c2f15bef02474e910d8dd53bdfcc3, type: 2}
+  - m_RefCount: 3
+    m_Data: {fileID: 11400000, guid: ad2c5be3ea076d2459eceeeedc93568d, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 107422a0ecccd24478e119bff9a46edd, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 31975c4775e23c042b312583b0f21219, type: 2}
   - m_RefCount: 8
     m_Data: {fileID: 11400000, guid: 7fe593e6231e6f741aff359d025c4730, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: d0d825fed951f624a8a97e9a911d4516, type: 2}
+  - m_RefCount: 2
+    m_Data: {fileID: 11400000, guid: b3d94a1128ec02048b5d28030f6629d3, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 18
     m_Data: {fileID: -7151263978813996725, guid: 1f806d5e64d784d44ac5a9b054847ffe, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 4
-    m_Data: {fileID: 21300000, guid: c8a82ee468afc8b419872cb949c251c9, type: 3}
-  - m_RefCount: 4
-    m_Data: {fileID: 21300000, guid: b4fc55eca50e48647a80818b7866dc10, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: 5a633e2eb3df56e4d92593a7c7edf8e8, type: 3}
+  - m_RefCount: 3
+    m_Data: {fileID: 21300000, guid: 3d8be1cf431e16046973cbfbe5af176b, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: c62da5bcc7600244a91ca2cde471c53b, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 8084591262998096117, guid: 3cb953b6c1e54544b9a50368f4da82d8, type: 3}
   - m_RefCount: 8
     m_Data: {fileID: 1219285002205780653, guid: 1f806d5e64d784d44ac5a9b054847ffe, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: 8d3cfa18df65261459f4f0cfe50f0ab7, type: 3}
+  - m_RefCount: 2
+    m_Data: {fileID: 21300000, guid: 42abd1a65575a1e4fb6f1633b98fa249, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 35
     m_Data:
@@ -3247,6 +3256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589ea63de86f2f8469187f04dfa527f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mark_interactable: 0
   spawn_position: {x: -18, y: 1.5}
   scene: CondemnedBuildingFloor1
 --- !u!61 &2144345675
