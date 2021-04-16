@@ -225,16 +225,6 @@
             "saves": []
         },
         {
-            "name": "City3",
-            "objects": [
-                {
-                    "o": "MeatdogEnthusiast",
-                    "interacted": false
-                }
-            ],
-            "saves": []
-        },
-        {
             "name": "CondemnedBuildingFloor1",
             "objects": [
                 {
@@ -289,6 +279,20 @@
             "objects": [
                 {
                     "o": "Mr. Goodmeat",
+                    "interacted": false
+                }
+            ],
+            "saves": []
+        },
+        {
+            "name": "City3",
+            "objects": [
+                {
+                    "o": "MeatdogEnthusiast",
+                    "interacted": false
+                },
+                {
+                    "o": "Oliver Sprout",
                     "interacted": false
                 }
             ],

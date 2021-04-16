@@ -3766,7 +3766,7 @@ class OliverSprout : CharacterStats
 {
     public OliverSprout()
     {
-        SetImageFilepath("CharacterSprites/OliverSprout");
+        SetImageFilepath("CharacterSprites/Oliver_peace");
 
         SetName("OliverSprout");
         SetDesc("Oliver Sprout is an altruistic, peaceful, and at one with nature... Or so he looks at first glance: Oliver has serious anger issues and will frequently get violent...  He will tear your throat out if you say anything negative against his favorite musician, John Lemon.");
