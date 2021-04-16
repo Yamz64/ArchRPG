@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e872a55b62cf1f44482f6769ae03cd75, type: 3}
+  m_Name: Jim
+  m_EditorClassIdentifier: 
+  character_name: Jim
+  text:
+  - text: This guy saved my life and he's trying to do the same for you! Just hear
+      him out!
+  effects:
+  - effects: []
+  images:
+  - sprite_path: Jim
+    lines: 1
+  converted_text: []
+  converted_images: []

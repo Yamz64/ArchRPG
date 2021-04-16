@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e872a55b62cf1f44482f6769ae03cd75, type: 3}
+  m_Name: Ralph
+  m_EditorClassIdentifier: 
+  character_name: Ralph
+  text:
+  - text: This kid's an honorary deputy! If you don't listen to him, you're all under
+      arrest!
+  - text: That's right, I'm a COP!
+  - text: I FOOLED YOU ALL!!!
+  effects:
+  - effects: []
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 12
+      upper: 19
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 15
+  images:
+  - sprite_path: CharacterSprites/Ralph
+    lines: 3
+  converted_text: []
+  converted_images: []
