@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EmberMoonDialogue : NPCDialogue
+public class WhiteKnightDialogue : NPCDialogue
 {
     private bool interacted;
-    private bool has_guitar;
+    private bool lvl_20;
 
     [SerializeField]
     public List<ExpandedString> alt_text;
@@ -22,7 +22,7 @@ public class EmberMoonDialogue : NPCDialogue
         yield return new WaitUntil(() => player.GetWriteCount() == 0);
         yield return new WaitUntil(() => player.GetActive() == false);
 
-        GameObject.FindGameObjectWithTag("MapManager").GetComponent<MapDataManager>().SetInteracted("EmberMoon", true);
+        GameObject.FindGameObjectWithTag("MapManager").GetComponent<MapDataManager>().SetInteracted("White Knight", true);
         GameObject.FindGameObjectWithTag("MapManager").GetComponent<MapDataManager>().Save();
 
         Destroy(gameObject);
@@ -33,7 +33,7 @@ public class EmberMoonDialogue : NPCDialogue
     {
         //see if Ember Moon has been interacted with before
         MapDataManager data = GameObject.FindGameObjectWithTag("MapManager").GetComponent<MapDataManager>();
-        interacted = data.GetInteracted("EmberMoon");
+        interacted = data.GetInteracted("White Knight");
         if (interacted) Destroy(gameObject);
 
         base.Start();
@@ -53,55 +53,46 @@ public class EmberMoonDialogue : NPCDialogue
             }
         }
 
-        //see if the player has the rad guitar
-        PlayerData player_data = player.GetComponent<PlayerDataMono>().data;
-        for(int i=0; i<player_data.GetInventorySize(); i++)
-        {
-            if(player_data.GetItem(i).name == "Rad Guitar")
-            {
-                has_guitar = true;
-                break;
-            }
-        }
-
+        //see if the player is level 20
+        lvl_20 = player.GetComponent<PlayerDataMono>().data.GetLVL() == 20;
     }
 
     public override void Interact()
     {
-        if (!has_guitar)
-        {
-            base.Interact();
-        }
-        else
+        if (!lvl_20)
         {
             interacted = true;
 
             if (player.GetComponent<PlayerDataMono>().data.GetPartySize() < 3)
             {
                 PlayerData data = player.GetComponent<PlayerDataMono>().data;
-                data.AddPartyMember(new EmberMoon());
+                data.AddPartyMember(new WhiteKnight());
                 data.GetPartyMember(data.GetPartySize() - 1).SetHP(data.GetPartyMember(data.GetPartySize() - 1).GetHPMAX());
                 data.GetPartyMember(data.GetPartySize() - 1).SetSP(data.GetPartyMember(data.GetPartySize() - 1).GetSPMax());
-                data.UnlockPartyMember(9);
-                alt_converted_text.Add("Ember Moon joins the party!");
+                data.UnlockPartyMember(7);
+                alt_converted_text.Add("White Knight joins the party!");
                 alt_container.Add(new EffectContainer());
                 alt_converted_images.Add(null);
             }
             else
             {
-                player.GetComponent<PlayerDataMono>().data.UnlockPartyMember(9);
+                player.GetComponent<PlayerDataMono>().data.UnlockPartyMember(7);
                 alt_converted_text.Add("You do not have enough room in your party");
                 alt_container.Add(new EffectContainer());
                 alt_converted_images.Add(null);
             }
 
+            base.Interact();
+
+            StartCoroutine(LateDestroy());
+        }
+        else
+        {
             player.OpenTextBox();
             player.SetWriteQueue(alt_converted_text);
             player.SetEffectQueue(alt_container);
             player.SetImageQueue(alt_converted_images);
             player.WriteDriver();
-
-            StartCoroutine(LateDestroy());
         }
     }
 }

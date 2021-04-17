@@ -311,6 +311,16 @@
                 }
             ],
             "saves": []
+        },
+        {
+            "name": "Library",
+            "objects": [
+                {
+                    "o": "White Knight",
+                    "interacted": false
+                }
+            ],
+            "saves": []
         }
     ]
 }
