@@ -260,7 +260,7 @@ Transform:
   m_LocalScale: {x: 2.8, y: 0.4, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &171588083
 PrefabInstance:
@@ -912,7 +912,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 43
+  m_RootOrder: 42
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &440971032
 GameObject:
@@ -994,7 +994,7 @@ Transform:
   m_LocalScale: {x: 0.57511383, y: 0.47973, z: 0.47973}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 35
+  m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &443677477
 GameObject:
@@ -3913,7 +3913,7 @@ Transform:
   m_LocalScale: {x: -0.45816064, y: 0.43121, z: 0.43121}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 32
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &553555443
 GameObject:
@@ -3995,7 +3995,7 @@ Transform:
   m_LocalScale: {x: 4.4, y: 0.4, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &628023591
 GameObject:
@@ -4077,7 +4077,7 @@ Transform:
   m_LocalScale: {x: -0.45816064, y: 0.43121, z: 0.43121}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 39
+  m_RootOrder: 38
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &690828131
 GameObject:
@@ -4159,7 +4159,7 @@ Transform:
   m_LocalScale: {x: 2, y: 0.4, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &701323798
 GameObject:
@@ -4241,7 +4241,7 @@ Transform:
   m_LocalScale: {x: -0.55768615, y: 0.47973, z: 0.47973}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &764624006
 PrefabInstance:
@@ -4441,7 +4441,7 @@ Transform:
   m_LocalScale: {x: -0.55768615, y: 0.47973, z: 0.47973}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &970573796
 PrefabInstance:
@@ -4694,7 +4694,7 @@ Transform:
   m_LocalScale: {x: 3.6, y: 0.4, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1229579749
 GameObject:
@@ -4776,199 +4776,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 46
+  m_RootOrder: 45
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1239458223
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
-      propertyPath: m_Name
-      value: Danny
-      objectReference: {fileID: 0}
-    - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -9.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4998140645680048167, guid: 52110445f037b614787b39ff46091263, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 44747a6d3751a144e9ad9df195b0dbc2, type: 3}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
---- !u!1 &1239458224 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
-  m_PrefabInstance: {fileID: 1239458223}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1239458225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1239458224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb8e9b252afd85548a6d481f11295068, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text:
-  - text: Halt, you egomaniac!
-  - text: Wait who are you?
-  - text: ...
-  - text: Oh I got it! You're that ugly loser from class.
-  - text: The only 'ugly loser' here is you, after I put a stop to this nonsense
-      of yours.
-  - text: The only scenario in which I would be considered the loser is if you were
-      to defeat me, which is impossible.
-  - text: Even if you did, there's no way you could take away my devilish good looks.
-  - text: You are the most self-obsessed person I've ever met.
-  - text: Soon I will be more than just myself. I will be the face of God.
-  - text: You're just jealous that God is whispering in my ear and not yours.
-  - text: Whispering? Whispering what?
-  - text: It told ME that it chose ME. That it needed MY magnificent body in order
-      to come into this world.
-  - text: Danny you utter fool. Don't you understand that you are being manipulated?
-  - text: The reason it chose you is not because you are special, but because only
-      someone as conceited as you
-  - text: could be misguided enough to think that you are more important than the
-      billions of other people on this planet.
-  - text: It's too late, ugly. The merging process has already begun.
-  - text: It's here. I can feel it.
-  - text: FLESH.
-  - text: I SENSE FLESH.
-  - text: NUMB YOUR BRAIN FOR ME.
-  - text: OPEN YOURSELF AND RECEIVE ME.
-  - text: Dude sweet.
-  container:
-  - effects: []
-  - effects: []
-  - effects: []
-  - effects:
-    - name: Wave
-      color: {r: 0, g: 0, b: 0, a: 0}
-      lower: 19
-      upper: 27
-  - effects: []
-  - effects: []
-  - effects: []
-  - effects: []
-  - effects: []
-  - effects: []
-  - effects: []
-  - effects:
-    - name: Quake
-      color: {r: 0, g: 0, b: 0, a: 0}
-      lower: 6
-      upper: 7
-    - name: Quake
-      color: {r: 0, g: 0, b: 0, a: 0}
-      lower: 19
-      upper: 20
-    - name: Quake
-      color: {r: 0, g: 0, b: 0, a: 0}
-      lower: 34
-      upper: 35
-  - effects: []
-  - effects: []
-  - effects: []
-  - effects: []
-  - effects: []
-  - effects:
-    - name: Quake
-      color: {r: 0, g: 0, b: 0, a: 0}
-      lower: 0
-      upper: 5
-  - effects:
-    - name: Quake
-      color: {r: 0, g: 0, b: 0, a: 0}
-      lower: 0
-      upper: 11
-  - effects:
-    - name: Quake
-      color: {r: 0, g: 0, b: 0, a: 0}
-      lower: 0
-      upper: 18
-  - effects:
-    - name: Quake
-      color: {r: 0, g: 0, b: 0, a: 0}
-      lower: 0
-      upper: 24
-  - effects: []
-  dialogueImages:
-  - sprite_path: CharacterSprites/PC
-    lines: 1
-  - sprite_path: CharacterSprites/Danny2
-    lines: 1
-  - sprite_path: CharacterSprites/PC
-    lines: 1
-  - sprite_path: CharacterSprites/Danny2
-    lines: 1
-  - sprite_path: CharacterSprites/PC
-    lines: 1
-  - sprite_path: CharacterSprites/Danny2
-    lines: 2
-  - sprite_path: CharacterSprites/PC
-    lines: 1
-  - sprite_path: CharacterSprites/Danny2
-    lines: 2
-  - sprite_path: CharCharacterSprites/PC
-    lines: 1
-  - sprite_path: CharacterSprites/Danny2
-    lines: 1
-  - sprite_path: CharCharacterSprites/PC
-    lines: 3
-  - sprite_path: CharacterSprites/Danny2
-    lines: 2
-  - sprite_path: 
-    lines: 4
-  - sprite_path: CharacterSprites/Danny2
-    lines: 1
-  player: {fileID: 0}
 --- !u!1 &1288879105
 GameObject:
   m_ObjectHideFlags: 0
@@ -5049,7 +4858,7 @@ Transform:
   m_LocalScale: {x: 0.25645, y: 0.25645, z: 0.25645}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 45
+  m_RootOrder: 44
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!1 &1361819070
 GameObject:
@@ -5131,7 +4940,7 @@ Transform:
   m_LocalScale: {x: 4.4, y: 0.4, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1377450295
 PrefabInstance:
@@ -5234,7 +5043,7 @@ Transform:
   - {fileID: 443677478}
   - {fileID: 1785755065}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1467238142
 GameObject:
@@ -5316,7 +5125,7 @@ Transform:
   m_LocalScale: {x: -0.4381564, y: 0.43121, z: 0.43121}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1475186928
 PrefabInstance:
@@ -5455,7 +5264,7 @@ Transform:
   m_LocalScale: {x: -0.55768615, y: 0.47973, z: 0.47973}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 33
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1566499993
 GameObject:
@@ -5537,7 +5346,7 @@ Transform:
   m_LocalScale: {x: 4.4, y: 0.4, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1612038668
 GameObject:
@@ -5619,7 +5428,7 @@ Transform:
   m_LocalScale: {x: 4.4, y: 0.4, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1619076554
 GameObject:
@@ -5701,7 +5510,7 @@ Transform:
   m_LocalScale: {x: -0.45816064, y: 0.43121, z: 0.43121}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1648767392
 GameObject:
@@ -5783,7 +5592,7 @@ Transform:
   m_LocalScale: {x: -0.55768615, y: 0.47973, z: 0.47973}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1683189292
 GameObject:
@@ -9349,7 +9158,7 @@ Transform:
   m_LocalScale: {x: 0.43274704, y: 0.43121, z: 0.43121}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 36
+  m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1785755064
 GameObject:
@@ -10338,7 +10147,7 @@ Transform:
   m_LocalScale: {x: 4.4, y: 0.4, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1952630676
 PrefabInstance:
@@ -10477,7 +10286,7 @@ Transform:
   m_LocalScale: {x: 0.43274704, y: 0.43121, z: 0.43121}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6785578535772396863
 PrefabInstance:
