@@ -95,4 +95,28 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SpeechCutscene.unity
     guid: 34585f3ef4ecac643b6e146fa7bc1a01
+  - enabled: 1
+    path: Assets/Scenes/MonolithAscent1.unity
+    guid: f250ef352dd5fdb45be91bb06c142100
+  - enabled: 1
+    path: Assets/Scenes/MonolithAscent2.unity
+    guid: 2f6e43ecc10e90b488fd14931b6a9036
+  - enabled: 1
+    path: Assets/Scenes/MonolithAscent3.unity
+    guid: dcc3c3107a8920248b89dab9f26f7f8e
+  - enabled: 1
+    path: Assets/Scenes/AscentRoom1.unity
+    guid: 4be5e4bdf16eb4945bf99f8a97d7bce2
+  - enabled: 1
+    path: Assets/Scenes/AscentRoom2.unity
+    guid: 293782526dd51934fa0934799d54e550
+  - enabled: 1
+    path: Assets/Scenes/AscentRoom3.unity
+    guid: 563d9f56f63ff564ca084c2ded465ce6
+  - enabled: 1
+    path: Assets/Scenes/FinalArea.unity
+    guid: aa25131e973405848a1ca0d82184faf6
+  - enabled: 1
+    path: Assets/Scenes/FinalCutscene.unity
+    guid: 9d095b787cfd43c488d13f361179a3d2
   m_configObjects: {}
