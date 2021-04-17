@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FindItemInteractable : InteractableBaseClass
 {
+    public bool destroy_in_overworld;
+
     public Item item;
 
     private GameObject player;
@@ -32,6 +34,11 @@ public class FindItemInteractable : InteractableBaseClass
         }
 
         player = GameObject.FindGameObjectWithTag("Player");
+
+        if (destroy_in_overworld)
+        {
+            if (used) Destroy(gameObject);
+        }
     }
 
     public override void Interact()
@@ -60,6 +67,11 @@ public class FindItemInteractable : InteractableBaseClass
                     map_manager.Save();
                     break;
                 }
+            }
+
+            if (destroy_in_overworld)
+            {
+                if (used) Destroy(gameObject);
             }
         }
         else
