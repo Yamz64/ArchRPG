@@ -301,6 +301,16 @@
                 }
             ],
             "saves": []
+        },
+        {
+            "name": "CondemnedBuildingLobby",
+            "objects": [
+                {
+                    "o": "EmberMoon",
+                    "interacted": false
+                }
+            ],
+            "saves": []
         }
     ]
 }

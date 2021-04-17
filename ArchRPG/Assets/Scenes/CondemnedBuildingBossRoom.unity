@@ -2846,7 +2846,7 @@ MonoBehaviour:
   get_item_effect:
     effects:
     - name: Color
-      color: {r: 1, g: 0.92156863, b: 0.015686275, a: 0.003921569}
+      color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
       lower: 9
       upper: 17
   used_item_effect:
