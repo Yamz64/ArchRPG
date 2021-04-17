@@ -3552,12 +3552,12 @@ public class BattleScript : MonoBehaviour
             }
             else if (loader.enemy_names[i] == "God")
             {
-                enen = new MrGoodMeat();
+                enen = new God();
                 boss5 = true;
             }
             else if (loader.enemy_names[i] == "God2")
             {
-                enen = new MrGoodMeat();
+                enen = new God2();
                 boss6 = true;
             }
             else if (!loader.enemy_names[i].Equals(""))
