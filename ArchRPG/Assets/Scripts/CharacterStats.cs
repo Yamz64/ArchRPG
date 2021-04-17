@@ -4087,7 +4087,7 @@ class EmberMoon : CharacterStats
 {
     public EmberMoon()
     {
-        SetImageFilepath("CharacterSprites/EmberMoon");
+        SetImageFilepath("CharacterSprites/Ember Moon");
 
         SetName("EmberMoon");
         SetDesc("\"I know magic's real. Let's go hog wild. The end is coming. Let's burn it all down!\" Ember Moon is a punk rock, goth chick that doesn't give a shit, and the coming apocalypse doesn't change that for her. The only thing she fears is static electricity.");
