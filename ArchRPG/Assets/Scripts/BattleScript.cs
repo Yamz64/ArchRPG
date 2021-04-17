@@ -784,6 +784,7 @@ public class BattleScript : MonoBehaviour
 
             else if (Input.GetButtonDown("Menu") && currentUnit > 0)
             {
+                useSound(0);
                 int i = currentUnit - 1;
 
                 if (partyUnits[i] == null || partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP <= 0)

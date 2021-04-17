@@ -50,6 +50,79 @@ public class TitleScreen : MonoBehaviour
     private Color black;
     private Color white;
 
+    //Use to play specific sounds with the audio handler
+    //num -- which sound to play
+    //lop -- whether to loop the sound or not
+    //i -- which audio source will play the sound (0 == overworld player, 1 == this one)
+    public void useSound(int num, bool lop = false, int i = 0)
+    {
+        if (num == 0)
+        {
+            audio_handler.PlaySound("Sound/SFX/cursor", i);
+        }
+        else if (num == 1)
+        {
+            audio_handler.PlaySound("Sound/SFX/select", i);
+        }
+        else if (num == 2)
+        {
+            audio_handler.PlaySound("Sound/SFX/EncounterSmall", i);
+        }
+        else if (num == 3)
+        {
+            if (!lop)
+                audio_handler.PlaySound("Sound/Music/Combat", i);
+            else
+                audio_handler.PlaySoundLoop("Sound/Music/Combat", i);
+        }
+        else if (num == 4)
+        {
+            if (!lop)
+                audio_handler.PlaySound("Sound/Music/BossMusic", i);
+            else
+                audio_handler.PlaySoundLoop("Sound/Music/BossMusic", i);
+        }
+        else if (num == 5)
+        {
+            if (!lop)
+                audio_handler.PlaySound("Sound/Music/Hound", i);
+            else
+                audio_handler.PlaySoundLoop("Sound/Music/Hound", i);
+        }
+        else if (num == 6)
+        {
+            if (!lop)
+                audio_handler.PlaySound("Sound/Music/Squatter", i);
+            else
+                audio_handler.PlaySoundLoop("Sound/Music/Squatter", i);
+        }
+        else if (num == 7)
+        {
+            if (!lop)
+                audio_handler.PlaySound("Sound/Music/ClubBosskBreathe", i);
+            else
+                audio_handler.PlaySoundLoop("Sound/Music/ClubBosskBreathe", i);
+        }
+        else if (num == 8)
+        {
+            if (!lop)
+                audio_handler.PlaySound("Sound/Music/MeatGolemTheme", i);
+            else
+                audio_handler.PlaySoundLoop("Sound/Music/MeatGolemTheme", i);
+        }
+        else if (num == 9)
+        {
+            if (!lop)
+                audio_handler.PlaySound("Sound/Music/ClubTheme", i);
+            else
+                audio_handler.PlaySoundLoop("Sound/Music/ClubTheme", i);
+        }
+        else
+        {
+            Debug.Log("Invalid sound");
+        }
+    }
+
     //Function to open the menu at the given index
     public void OpenMenu(int index)
     {
@@ -125,6 +198,7 @@ public class TitleScreen : MonoBehaviour
         {
             if (!menu_input)
             {
+                useSound(0);
                 cursor_position--;
             }
             menu_input = true;
@@ -133,27 +207,34 @@ public class TitleScreen : MonoBehaviour
         {
             if (!menu_input)
             {
+                useSound(0);
                 cursor_position++;
             }
             menu_input = true;
         }
         else if (Input.GetButtonDown("Interact"))
         {
-            switch(cursor_position)
+            if (!menu_input)
             {
-                case 0:
-                    CloseMenu(0);
-                    OpenMenu(2);
-                    break;
-                case 1:
-                    CloseMenu(0);
-                    OpenMenu(1);
-                    break;
-                case 2:
-                    Application.Quit();
-                    break;
-                default:
-                    break;
+                switch (cursor_position)
+                {
+                    case 0:
+                        useSound(1);
+                        CloseMenu(0);
+                        OpenMenu(2);
+                        break;
+                    case 1:
+                        useSound(1);
+                        CloseMenu(0);
+                        OpenMenu(1);
+                        break;
+                    case 2:
+                        useSound(0);
+                        Application.Quit();
+                        break;
+                    default:
+                        break;
+                }
             }
             menu_input = true;
         }
@@ -173,6 +254,7 @@ public class TitleScreen : MonoBehaviour
             {
                 if (!menu_input)
                 {
+                    useSound(0);
                     cursor_position--;
                 }
                 menu_input = true;
@@ -181,6 +263,7 @@ public class TitleScreen : MonoBehaviour
             {
                 if (!menu_input)
                 {
+                    useSound(0);
                     cursor_position++;
                 }
                 menu_input = true;
@@ -194,22 +277,27 @@ public class TitleScreen : MonoBehaviour
                         float current = PlayerPrefs.GetFloat("MusicVolume");
                         PlayerPrefs.SetFloat("MusicVolume", current - 0.1f);
                         musicSlider.fillAmount = PlayerPrefs.GetFloat("MusicVolume");
+                        useSound(1);
                     }
                     else if (cursor_position == 2 && PlayerPrefs.GetFloat("EffectVolume") > 0.1f)
                     {
                         float current = PlayerPrefs.GetFloat("EffectVolume");
                         PlayerPrefs.SetFloat("EffectVolume", current - 0.1f);
                         effectSlider.fillAmount = PlayerPrefs.GetFloat("EffectVolume");
+                        audio_handler.GetComponent<AudioSource>().volume = current;
+                        useSound(1);
                     }
                     else if (cursor_position == 3 && Screen.currentResolution.width != 640)
                     {
                         if (Screen.fullScreen)
                         {
                             Screen.SetResolution(1920, 1080, false);
+                            useSound(1);
                         }
                         else if (Screen.currentResolution.width == 1920)
                         {
                             Screen.SetResolution(640, 480, false);
+                            useSound(1);
                         }
                     }
                 }
@@ -224,22 +312,27 @@ public class TitleScreen : MonoBehaviour
                         float current = PlayerPrefs.GetFloat("MusicVolume");
                         PlayerPrefs.SetFloat("MusicVolume", current + 0.1f);
                         musicSlider.fillAmount = PlayerPrefs.GetFloat("MusicVolume");
+                        useSound(1);
                     }
                     else if (cursor_position == 2 && PlayerPrefs.GetFloat("EffectVolume") < 1.0f)
                     {
                         float current = PlayerPrefs.GetFloat("EffectVolume");
                         PlayerPrefs.SetFloat("EffectVolume", current + 0.1f);
                         effectSlider.fillAmount = PlayerPrefs.GetFloat("EffectVolume");
+                        audio_handler.GetComponent<AudioSource>().volume = current;
+                        useSound(1);
                     }
                     else if (cursor_position == 3 && !Screen.fullScreen)
                     {
                         if (Screen.currentResolution.width == 640)
                         {
                             Screen.SetResolution(1920, 1080, false);
+                            useSound(1);
                         }
                         else if (Screen.currentResolution.width == 1920)
                         {
                             Screen.SetResolution(1920, 1080, true);
+                            useSound(1);
                         }
                     }
                 }
@@ -247,16 +340,24 @@ public class TitleScreen : MonoBehaviour
             }
             else if (Input.GetButtonDown("Interact"))
             {
-                if (cursor_position == 0)
+                if (!menu_input)
                 {
-                    OpenControlMenu();
+                    if (cursor_position == 0)
+                    {
+                        OpenControlMenu();
+                        useSound(1);
+                    }
                 }
                 menu_input = true;
             }
             else if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Menu"))
             {
-                CloseMenu(1);
-                OpenMenu(0);
+                if (!menu_input)
+                {
+                    useSound(0);
+                    CloseMenu(1);
+                    OpenMenu(0);
+                }
                 menu_input = true;
             }
             else
@@ -270,6 +371,7 @@ public class TitleScreen : MonoBehaviour
             {
                 if (!menu_input)
                 {
+                    useSound(0);
                     cursor_position--;
                 }
                 menu_input = true;
@@ -278,18 +380,20 @@ public class TitleScreen : MonoBehaviour
             {
                 if (!menu_input)
                 {
+                    useSound(0);
                     cursor_position++;
                 }
                 menu_input = true;
             }
             else if (Input.GetButtonDown("Interact") && !selector)
             {
-                prev = transform.GetChild(1).Find("Controls").GetChild(cursor_position).GetChild(0).GetComponent<Text>().text;
-                transform.GetChild(1).Find("Controls").GetChild(cursor_position).GetChild(0).GetComponent<Text>().text = "";
+                //prev = transform.GetChild(1).Find("Controls").GetChild(cursor_position).GetChild(0).GetComponent<Text>().text;
+                //transform.GetChild(1).Find("Controls").GetChild(cursor_position).GetChild(0).GetComponent<Text>().text = "";
                 menu_input = true;
             }
             else if (Input.GetButtonDown("Cancel") && !selector)
             {
+                useSound(0);
                 CloseControlMenu();
                 menu_input = true;
             }
@@ -311,6 +415,7 @@ public class TitleScreen : MonoBehaviour
             {
                 if (!menu_input)
                 {
+                    useSound(0);
                     cursor_position--;
                     save_slot--;
                 }
@@ -320,6 +425,7 @@ public class TitleScreen : MonoBehaviour
             {
                 if (!menu_input)
                 {
+                    useSound(0);
                     cursor_position++;
                     save_slot++;
                 }
@@ -327,13 +433,21 @@ public class TitleScreen : MonoBehaviour
             }
             else if (Input.GetButtonDown("Interact"))
             {
-                OpenUseSlotMenu();
+                if (!menu_input)
+                {
+                    useSound(1);
+                    OpenUseSlotMenu();
+                }
                 menu_input = true;
             }
             else if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Menu"))
             {
-                CloseMenu(2);
-                OpenMenu(0);
+                if (!menu_input)
+                {
+                    useSound(0);
+                    CloseMenu(2);
+                    OpenMenu(0);
+                }
                 menu_input = true;
             }
             else
@@ -348,6 +462,7 @@ public class TitleScreen : MonoBehaviour
             {
                 if (!menu_input)
                 {
+                    useSound(0);
                     cursor_position--;
                     save_choice = cursor_position;
                 }
@@ -357,6 +472,7 @@ public class TitleScreen : MonoBehaviour
             {
                 if (!menu_input)
                 {
+                    useSound(0);
                     cursor_position++;
                     save_choice = cursor_position;
                 }
@@ -364,23 +480,33 @@ public class TitleScreen : MonoBehaviour
             }
             else if (Input.GetButtonDown("Interact"))
             {
-                switch (cursor_position)
+                if (!menu_input)
                 {
-                    case 4:
-                        OpenConfirmSlotMenu();
-                        break;
-                    case 5:
-                        OpenConfirmSlotMenu();
-                        break;
-                    case 6:
-                        CloseUseSlotMenu();
-                        break;
+                    switch (cursor_position)
+                    {
+                        case 4:
+                            useSound(1);
+                            OpenConfirmSlotMenu();
+                            break;
+                        case 5:
+                            useSound(1);
+                            OpenConfirmSlotMenu();
+                            break;
+                        case 6:
+                            useSound(0);
+                            CloseUseSlotMenu();
+                            break;
+                    }
                 }
                 menu_input = true;
             }
             else if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Menu"))
             {
-                CloseUseSlotMenu();
+                if (!menu_input)
+                {
+                    useSound(0);
+                    CloseUseSlotMenu();
+                }
                 menu_input = true;
             }
             else
@@ -395,6 +521,7 @@ public class TitleScreen : MonoBehaviour
             {
                 if (!menu_input)
                 {
+                    useSound(0);
                     cursor_position--;
                 }
                 menu_input = true;
@@ -403,90 +530,104 @@ public class TitleScreen : MonoBehaviour
             {
                 if (!menu_input)
                 {
+                    useSound(0);
                     cursor_position++;
                 }
                 menu_input = true;
             }
             else if (Input.GetButtonDown("Interact"))
             {
-                switch (cursor_position)
+                if (!menu_input)
                 {
-                    //Yes
-                    case 7:
-                        switch (save_choice)
-                        {
-                            case 4:
-                                PlayerPrefs.SetInt("_active_save_file_", save_slot);
-                                switch(save_slot)
-                                {
-                                    case 0:
-                                        if (!save1.active_scene.Equals(""))
-                                            SceneManager.LoadScene(save1.active_scene);
-                                        else
-                                        {
-                                            save1.Save(0);
-                                            MapSaveData mapio = new MapSaveData();
-                                            mapio.Save();
-                                            SceneManager.LoadScene("BedroomCutscene");
-                                        }
-                                        break;
-                                    case 1:
-                                        if (!save2.active_scene.Equals(""))
-                                            SceneManager.LoadScene(save2.active_scene);
-                                        else
-                                        {
-                                            save2.Save(1);
-                                            MapSaveData mapio = new MapSaveData();
-                                            mapio.Save();
-                                            SceneManager.LoadScene("BedroomCutscene");
-                                        }
-                                        break;
-                                    case 2:
-                                        if (!save3.active_scene.Equals(""))
-                                            SceneManager.LoadScene(save3.active_scene);
-                                        else
-                                        {
-                                            save3.Save(2);
-                                            MapSaveData mapio = new MapSaveData();
-                                            mapio.Save();
-                                            SceneManager.LoadScene("BedroomCutscene");
-                                        }
-                                        break;
-                                    case 3:
-                                        if (!save4.active_scene.Equals(""))
-                                            SceneManager.LoadScene(save4.active_scene);
-                                        else
-                                        {
-                                            save4.Save(3);
-                                            MapSaveData mapio = new MapSaveData();
-                                            mapio.Save();
-                                            SceneManager.LoadScene("BedroomCutscene");
-                                        }
-                                        break;
-                                }
-                                break;
-                            case 5:
-                                CharacterStatJsonConverter copy = new CharacterStatJsonConverter();
-                                MapSaveData mapi = new MapSaveData();
-                                copy.Save(save_slot, true);
-                                PlayerPrefs.SetInt("_active_save_file_", save_slot);
-                                mapi.Save(true);
-                                CloseConfirmSlotMenu();
-                                CloseUseSlotMenu();
-                                SaveUpdater();
-                                break;
-                        }
-                        break;
-                    //No
-                    case 8:
-                        CloseConfirmSlotMenu();
-                        break;
+                    switch (cursor_position)
+                    {
+                        //Yes
+                        case 7:
+                            switch (save_choice)
+                            {
+                                //Load
+                                case 4:
+                                    useSound(1);
+                                    PlayerPrefs.SetInt("_active_save_file_", save_slot);
+                                    //Check save file
+                                    switch (save_slot)
+                                    {
+                                        case 0:
+                                            if (!save1.active_scene.Equals(""))
+                                                SceneManager.LoadScene(save1.active_scene);
+                                            else
+                                            {
+                                                save1.Save(0);
+                                                MapSaveData mapio = new MapSaveData();
+                                                mapio.Save();
+                                                SceneManager.LoadScene("BedroomCutscene");
+                                            }
+                                            break;
+                                        case 1:
+                                            if (!save2.active_scene.Equals(""))
+                                                SceneManager.LoadScene(save2.active_scene);
+                                            else
+                                            {
+                                                save2.Save(1);
+                                                MapSaveData mapio = new MapSaveData();
+                                                mapio.Save();
+                                                SceneManager.LoadScene("BedroomCutscene");
+                                            }
+                                            break;
+                                        case 2:
+                                            if (!save3.active_scene.Equals(""))
+                                                SceneManager.LoadScene(save3.active_scene);
+                                            else
+                                            {
+                                                save3.Save(2);
+                                                MapSaveData mapio = new MapSaveData();
+                                                mapio.Save();
+                                                SceneManager.LoadScene("BedroomCutscene");
+                                            }
+                                            break;
+                                        case 3:
+                                            if (!save4.active_scene.Equals(""))
+                                                SceneManager.LoadScene(save4.active_scene);
+                                            else
+                                            {
+                                                save4.Save(3);
+                                                MapSaveData mapio = new MapSaveData();
+                                                mapio.Save();
+                                                SceneManager.LoadScene("BedroomCutscene");
+                                            }
+                                            break;
+                                    }
+                                    break;
+                                //Delete
+                                case 5:
+                                    useSound(1);
+                                    CharacterStatJsonConverter copy = new CharacterStatJsonConverter();
+                                    MapSaveData mapi = new MapSaveData();
+                                    copy.Save(save_slot, true);
+                                    PlayerPrefs.SetInt("_active_save_file_", save_slot);
+                                    mapi.Save(true);
+                                    CloseConfirmSlotMenu();
+                                    CloseUseSlotMenu();
+                                    SaveUpdater();
+                                    break;
+                            }
+                            break;
+                        //No
+                        case 8:
+                            useSound(0);
+                            CloseConfirmSlotMenu();
+                            break;
+                    }
                 }
                 menu_input = true;
             }
             else if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Menu"))
             {
-                CloseConfirmSlotMenu();
+                if (!menu_input)
+                {
+                    useSound(0);
+                    CloseConfirmSlotMenu();
+                }
                 menu_input = true;
             }
             else
