@@ -3446,7 +3446,7 @@ class WhiteKnight : CharacterStats
 {
     public WhiteKnight()
     {
-        SetImageFilepath("CharacterSprites/WhiteKnight");
+        SetImageFilepath("CharacterSprites/White Knight");
 
         SetName("WhiteKnight");
         SetDesc("White knight is the kind of guy that gets too into LARPing, such that he became a real crusader. He defends the weak, holds the door for everyone, and still has time to write a weekly manga review on his Christian anime blog.");
