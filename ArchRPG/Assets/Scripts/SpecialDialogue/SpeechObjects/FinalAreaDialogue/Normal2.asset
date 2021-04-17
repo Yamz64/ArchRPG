@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e872a55b62cf1f44482f6769ae03cd75, type: 3}
+  m_Name: Normal2
+  m_EditorClassIdentifier: 
+  character_name: 
+  text:
+  - text: Jesus fuck!
+  - text: MY WOUND IS CLOSED.
+  - text: YOU AND I, WE MUST MERGE.
+  - text: OPEN YOURSELF AND RECEIVE ME.
+  - text: No thanks, cretin. That sounds foul.
+  effects:
+  - effects: []
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 15
+    - name: Color
+      color: {r: 1, g: 0, b: 0, a: 1}
+      lower: 0
+      upper: 15
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 19
+    - name: Color
+      color: {r: 1, g: 0, b: 0, a: 1}
+      lower: 0
+      upper: 19
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 24
+    - name: Color
+      color: {r: 1, g: 0, b: 0, a: 1}
+      lower: 0
+      upper: 24
+  - effects: []
+  images:
+  - sprite_path: CharacterSprites/PC
+    lines: 1
+  - sprite_path: CharacterSprites/God_Injured
+    lines: 3
+  - sprite_path: CharacterSprites/PC
+    lines: 1
+  converted_text: []
+  converted_images: []

@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e872a55b62cf1f44482f6769ae03cd75, type: 3}
+  m_Name: Bad1
+  m_EditorClassIdentifier: 
+  character_name: 
+  text:
+  - text: Shut up.
+  - text: I'm tire of dealing with your thoughtless actions.
+  - text: I'm sick of listening to your obnoxious prattle about gods and insignificance.
+  - text: I'm disgusted by the way our halfwit peers fawn over you and treat you
+      like you are some sort of intellectual.
+  - text: You're just jealous because-
+  - text: I cannot even stomach another word of it you knuckle-dragging reprobate.
+  - text: I am going to cleanse the world of your insufferable existence.
+  - text: Dude wait. What are you saying?
+  - text: ...
+  - text: Dude please! Chill out!
+  - text: ...
+  - text: I'm sorry about calling you ugly just please leave me alone.
+  - text: ...
+  - text: AAAAAAGGGHHHHHH!!!!!
+  effects:
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects:
+    - name: Color
+      color: {r: 1, g: 0, b: 0, a: 1}
+      lower: 0
+      upper: 52
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 19
+  images:
+  - sprite_path: CharacterSprites/PC
+    lines: 4
+  - sprite_path: CharacterSprites/Danny2
+    lines: 1
+  - sprite_path: CharacterSprites/PC
+    lines: 2
+  - sprite_path: CharacterSprites/Danny2
+    lines: 1
+  - sprite_path: CharacterSprites/PC
+    lines: 1
+  - sprite_path: CharacterSprites/Danny2
+    lines: 1
+  - sprite_path: CharacterSprites/PC
+    lines: 1
+  - sprite_path: CharacterSprites/Danny2
+    lines: 1
+  - sprite_path: CharacterSprites/PC
+    lines: 1
+  - sprite_path: CharacterSprites/Danny2
+    lines: 1
+  converted_text: []
+  converted_images: []

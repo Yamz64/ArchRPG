@@ -1,0 +1,172 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e872a55b62cf1f44482f6769ae03cd75, type: 3}
+  m_Name: Normal1
+  m_EditorClassIdentifier: 
+  character_name: 
+  text:
+  - text: Don't you get it you idiot? You're nothing more than fodder for this thing.
+  - text: It sucked out your lifeforce. Is it sapping your brains too?
+  - text: Get out of here while you still can before it's too late.
+  - text: That's just the kind of thing an ugly, jealous loser like you would say.
+  - text: This is my destiny.
+  - text: NO
+  - text: Wha-?
+  - text: YOUR FLESH IS WEAK.
+  - text: I WILL NOT BE WITH YOU.
+  - text: Wait no! Dude you said that you wanted ME.
+  - text: You said you wanted to MERGE with ME.
+  - text: YOUR WOUNDS MAKE YOUR FLESH WEAK.
+  - text: THESE PESTS OPENED MY WOUND TOO.
+  - text: I ACHE INSIDE.
+  - text: IT HURTS.
+  - text: NO MERGING.
+  - text: But then I don't matter. I HAVE to matter.
+  - text: YOU NEVER DID, BUT YOU CAN STILL BE OF SOME USE.
+  - text: YOUR BROKEN FLESH WILL NURSE MY WOUND.
+  effects:
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 1
+    - name: Color
+      color: {r: 1, g: 0, b: 0, a: 1}
+      lower: 0
+      upper: 1
+  - effects: []
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 15
+    - name: Color
+      color: {r: 1, g: 0, b: 0, a: 1}
+      lower: 0
+      upper: 15
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 17
+    - name: Quake
+      color: {r: 1, g: 0, b: 0, a: 1}
+      lower: 0
+      upper: 17
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 31
+      upper: 33
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 18
+      upper: 22
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 27
+      upper: 29
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 27
+    - name: Color
+      color: {r: 1, g: 0, b: 0, a: 1}
+      lower: 0
+      upper: 27
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 26
+    - name: Color
+      color: {r: 1, g: 0, b: 0, a: 1}
+      lower: 0
+      upper: 26
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 11
+    - name: Color
+      color: {r: 1, g: 0, b: 0, a: 1}
+      lower: 0
+      upper: 11
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 7
+    - name: Color
+      color: {r: 1, g: 0, b: 0, a: 1}
+      lower: 0
+      upper: 7
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 9
+    - name: Color
+      color: {r: 1, g: 0, b: 0, a: 1}
+      lower: 0
+      upper: 9
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 21
+      upper: 24
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 37
+    - name: Color
+      color: {r: 1, g: 0, b: 0, a: 1}
+      lower: 0
+      upper: 37
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 31
+    - name: Color
+      color: {r: 1, g: 0, b: 0, a: 1}
+      lower: 0
+      upper: 31
+  images:
+  - sprite_path: CharacterSprites/PC
+    lines: 3
+  - sprite_path: CharacterSprites/Danny2
+    lines: 2
+  - sprite_path: CharacterSprites/God_Injured
+    lines: 1
+  - sprite_path: CharacterSprites/Danny2
+    lines: 1
+  - sprite_path: CharacterSprites/God_Injured
+    lines: 2
+  - sprite_path: CharacterSprites/Danny2
+    lines: 2
+  - sprite_path: CharacterSprites/God_Injured
+    lines: 5
+  - sprite_path: CharacterSprites/Danny2
+    lines: 1
+  - sprite_path: CharacterSprites/God_Injured
+    lines: 2
+  converted_text: []
+  converted_images: []

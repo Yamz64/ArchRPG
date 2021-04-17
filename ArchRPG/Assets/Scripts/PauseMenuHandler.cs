@@ -4475,6 +4475,18 @@ public class PauseMenuHandler : MonoBehaviour
                         case 5:
                             temp = new Lucy();
                             break;
+                        case 6:
+                            temp = new Tim();
+                            break;
+                        case 7:
+                            temp = new WhiteKnight();
+                            break;
+                        case 8:
+                            temp = new OliverSprout();
+                            break;
+                        case 9:
+                            temp = new EmberMoon();
+                            break;
                         default:
                             temp = new Clyve();
                             break;

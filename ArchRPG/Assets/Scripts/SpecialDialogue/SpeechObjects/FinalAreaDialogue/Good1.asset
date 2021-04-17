@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e872a55b62cf1f44482f6769ae03cd75, type: 3}
+  m_Name: Good1
+  m_EditorClassIdentifier: 
+  character_name: 
+  text:
+  - text: Don't you understand? I am telling you the truth.
+  - text: This thing just wants to use you. It hurt you!
+  - text: It's literally sucking the life out of you!
+  - text: Get out of here while you still can before it's too late.
+  - text: But if I don't merge with God, I won't matter!
+  - text: I never thought I'd say this, but Danny you actually do matter to A LOT
+      of people.
+  - text: Everyone at school admires you, and to tell you the truth, I've been jealous
+      of that.
+  - text: Merging with this thing isn't going to make you feel like you matter.
+  - text: Maybe not.
+  - text: I NEED YOUR FLESH.
+  - text: GIVE IT TO ME.
+  - text: IT HURTS.
+  - text: Get away Danny! It's acting weird!
+  - text: I think I'm gonna skedaddle.
+  effects:
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 53
+      upper: 56
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 14
+    - name: Color
+      color: {r: 1, g: 0, b: 0, a: 1}
+      lower: 0
+      upper: 14
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 10
+    - name: Color
+      color: {r: 1, g: 0, b: 0, a: 1}
+      lower: 0
+      upper: 10
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 7
+    - name: Color
+      color: {r: 1, g: 0, b: 0, a: 1}
+      lower: 0
+      upper: 7
+  - effects: []
+  - effects: []
+  images:
+  - sprite_path: CharacterSprites/PC
+    lines: 4
+  - sprite_path: CharacterSprites/Danny2
+    lines: 1
+  - sprite_path: CharacterSprites/PC
+    lines: 3
+  - sprite_path: CharacterSprites/Danny2
+    lines: 1
+  - sprite_path: CharacterSprites/God_Injured
+    lines: 3
+  - sprite_path: CharacterSprites/PC
+    lines: 1
+  - sprite_path: CharacterSprites/Danny2
+    lines: 1
+  converted_text: []
+  converted_images: []
