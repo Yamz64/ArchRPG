@@ -177,16 +177,6 @@
             "saves": []
         },
         {
-            "name": "NightclubHallway",
-            "objects": [
-                {
-                    "o": "Bouncer",
-                    "interacted": false
-                }
-            ],
-            "saves": []
-        },
-        {
             "name": "Pizzeria",
             "objects": [
                 {
@@ -318,6 +308,30 @@
                 {
                     "o": "White Knight",
                     "interacted": false
+                }
+            ],
+            "saves": []
+        },
+        {
+            "name": "NightclubBackstage",
+            "objects": [
+                {
+                    "o": "Tim",
+                    "interacted": false
+                },
+                {
+                    "o": "DiscoHooligans",
+                    "interacted": true
+                }
+            ],
+            "saves": []
+        },
+        {
+            "name": "NightclubHallway",
+            "objects": [
+                {
+                    "o": "Bouncer",
+                    "interacted": true
                 }
             ],
             "saves": []
