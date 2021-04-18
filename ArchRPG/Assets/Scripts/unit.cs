@@ -8839,7 +8839,7 @@ public class God2 : unit
     public God2()
     {
         ImageFilePath = "EnemySprites/God 1";
-        unitName = "God2";
+        unitName = "God";
         loadSprites();
 
         resistances[4] = true;
