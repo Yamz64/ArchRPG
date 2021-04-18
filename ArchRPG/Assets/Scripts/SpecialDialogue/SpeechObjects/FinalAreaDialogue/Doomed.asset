@@ -71,12 +71,12 @@ MonoBehaviour:
       color: {r: 1, g: 0, b: 0, a: 1}
       lower: 0
       upper: 24
+  - effects: []
   - effects:
     - name: Color
       color: {r: 1, g: 0, b: 0, a: 1}
       lower: 0
       upper: 37
-  - effects: []
   images:
   - sprite_path: CharacterSprites/PC
     lines: 1
@@ -88,5 +88,22 @@ MonoBehaviour:
     lines: 3
   - sprite_path: CharacterSprites/PC
     lines: 1
-  converted_text: []
-  converted_images: []
+  converted_text:
+  - ...
+  - THAT FLESH WAS WEAK.
+  - YOURS IS STRONG.
+  - Why should what you say matter to me, you abomination?
+  - I ACHE INSIDE.
+  - YOU AND I, WE MUST MERGE.
+  - OPEN YOURSELF AND RECEIVE ME.
+  - No way, cretin. You need me more than I need you.
+  - I already possess strength beyond strength.
+  converted_images:
+  - CharacterSprites/PC
+  - CharacterSprites/God_Injured
+  - CharacterSprites/God_Injured
+  - CharacterSprites/PC
+  - CharacterSprites/God_Injured
+  - CharacterSprites/God_Injured
+  - CharacterSprites/God_Injured
+  - CharacterSprites/PC

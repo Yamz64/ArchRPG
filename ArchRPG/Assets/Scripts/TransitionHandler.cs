@@ -55,14 +55,42 @@ public class TransitionHandler : MonoBehaviour
         transition_completed = true;
     }
 
+    IEnumerator FadeOut(float duration = 1)
+    {
+        //set all values to 0
+        t_canvas.SetActive(true);
+        Image f_transition = t_canvas.transform.GetChild(1).GetComponent<Image>();
+        f_transition.gameObject.SetActive(true);
+
+        //tween it's alpha value
+        float progress = 0;
+        while (progress < duration)
+        {
+            progress += 1 / 24f;
+            yield return new WaitForSeconds(1 / 24f);
+            f_transition.color = Color.Lerp(new Color(f_transition.color.r, f_transition.color.g,
+                f_transition.color.b, 1.0f), new Color(f_transition.color.r, f_transition.color.g, f_transition.color.b, 0.0f), progress / duration);
+        }
+        transition_completed = true;
+
+    }
+
     public void BattleTransitionDriver()
     {
+        transition_completed = false;
         StartCoroutine(BattleTransition());
     }
 
     public void FadeDriver(float duration = 1)
     {
+        transition_completed = false;
         StartCoroutine(Fade(duration));
+    }
+
+    public void FadeoutDriver(float duration = 1)
+    {
+        transition_completed = false;
+        StartCoroutine(FadeOut(duration));
     }
 
     public void SetFadeColor(Color c)

@@ -63,7 +63,7 @@ MonoBehaviour:
       color: {r: 0, g: 0, b: 0, a: 0}
       lower: 0
       upper: 17
-    - name: Quake
+    - name: Color
       color: {r: 1, g: 0, b: 0, a: 1}
       lower: 0
       upper: 17
@@ -168,5 +168,43 @@ MonoBehaviour:
     lines: 1
   - sprite_path: CharacterSprites/God_Injured
     lines: 2
-  converted_text: []
-  converted_images: []
+  converted_text:
+  - Don't you get it you idiot? You're nothing more than fodder for this thing.
+  - It sucked out your lifeforce. Is it sapping your brains too?
+  - Get out of here while you still can before it's too late.
+  - That's just the kind of thing an ugly, jealous loser like you would say.
+  - This is my destiny.
+  - NO
+  - Wha-?
+  - YOUR FLESH IS WEAK.
+  - I WILL NOT BE WITH YOU.
+  - Wait no! Dude you said that you wanted ME.
+  - You said you wanted to MERGE with ME.
+  - YOUR WOUNDS MAKE YOUR FLESH WEAK.
+  - THESE PESTS OPENED MY WOUND TOO.
+  - I ACHE INSIDE.
+  - IT HURTS.
+  - NO MERGING.
+  - But then I don't matter. I HAVE to matter.
+  - YOU NEVER DID, BUT YOU CAN STILL BE OF SOME USE.
+  - YOUR BROKEN FLESH WILL NURSE MY WOUND.
+  converted_images:
+  - CharacterSprites/PC
+  - CharacterSprites/PC
+  - CharacterSprites/PC
+  - CharacterSprites/Danny2
+  - CharacterSprites/Danny2
+  - CharacterSprites/God_Injured
+  - CharacterSprites/Danny2
+  - CharacterSprites/God_Injured
+  - CharacterSprites/God_Injured
+  - CharacterSprites/Danny2
+  - CharacterSprites/Danny2
+  - CharacterSprites/God_Injured
+  - CharacterSprites/God_Injured
+  - CharacterSprites/God_Injured
+  - CharacterSprites/God_Injured
+  - CharacterSprites/God_Injured
+  - CharacterSprites/Danny2
+  - CharacterSprites/God_Injured
+  - CharacterSprites/God_Injured
