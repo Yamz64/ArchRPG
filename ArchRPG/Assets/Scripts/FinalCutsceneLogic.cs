@@ -67,7 +67,7 @@ public class FinalCutsceneLogic : NPCDialogue
 
                 //begin the final fight
                 data.SaveEnemyNames("God2");
-                data.active_scene = "FinalCutscene";
+                data.active_scene = "EndingSplashScreen";
                 data.position = GameObject.FindGameObjectWithTag("Player").transform.position;
                 data.Save(PlayerPrefs.GetInt("_active_save_file_"));
                 GameObject.FindGameObjectWithTag("Player").GetComponent<TransitionHandler>().BattleTransitionDriver();
@@ -130,7 +130,7 @@ public class FinalCutsceneLogic : NPCDialogue
 
                 //begin the final fight
                 data.SaveEnemyNames("God2");
-                data.active_scene = "FinalCutscene";
+                data.active_scene = "EndingSplashScreen";
                 data.position = GameObject.FindGameObjectWithTag("Player").transform.position;
                 data.Save(PlayerPrefs.GetInt("_active_save_file_"));
                 GameObject.FindGameObjectWithTag("Player").GetComponent<TransitionHandler>().BattleTransitionDriver();
@@ -178,7 +178,7 @@ public class FinalCutsceneLogic : NPCDialogue
 
                 //begin the final fight
                 data.SaveEnemyNames("God2");
-                data.active_scene = "FinalCutscene";
+                data.active_scene = "EndingSplashScreen";
                 data.position = GameObject.FindGameObjectWithTag("Player").transform.position;
                 data.Save(PlayerPrefs.GetInt("_active_save_file_"));
                 GameObject.FindGameObjectWithTag("Player").GetComponent<TransitionHandler>().BattleTransitionDriver();
@@ -226,7 +226,7 @@ public class FinalCutsceneLogic : NPCDialogue
 
                 //begin the final fight
                 data.SaveEnemyNames("God2");
-                data.active_scene = "FinalCutscene";
+                data.active_scene = "EndingSplashScreen";
                 data.position = GameObject.FindGameObjectWithTag("Player").transform.position;
                 data.Save(PlayerPrefs.GetInt("_active_save_file_"));
                 GameObject.FindGameObjectWithTag("Player").GetComponent<TransitionHandler>().BattleTransitionDriver();
@@ -272,7 +272,7 @@ public class FinalCutsceneLogic : NPCDialogue
 
                 //begin the final fight
                 data.SaveEnemyNames("God2");
-                data.active_scene = "FinalCutscene";
+                data.active_scene = "EndingSplashScreen";
                 data.position = GameObject.FindGameObjectWithTag("Player").transform.position;
                 data.Save(PlayerPrefs.GetInt("_active_save_file_"));
                 GameObject.FindGameObjectWithTag("Player").GetComponent<TransitionHandler>().BattleTransitionDriver();
