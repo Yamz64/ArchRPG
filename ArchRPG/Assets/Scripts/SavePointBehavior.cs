@@ -129,6 +129,12 @@ public class SavePointBehavior : InteractableBaseClass
                 }
             }
 
+            //remove status effects
+            for(int i=0; i<data.GetStatusCount(); i++)
+            {
+                if (i != 25) data.SetStatus(i, -1);
+            }
+
             //mark savepoints as having been visited
             PlayerPrefs.SetInt("Saved", 1);
         }
@@ -230,6 +236,12 @@ public class SavePointBehavior : InteractableBaseClass
                     data.GetPartyMember(i).SetSP(data.GetPartyMember(i).GetSPMax());
                 }
             }
+
+            //remove status effects
+            for (int i = 0; i < data.GetStatusCount(); i++)
+            {
+                if (i != 25) data.SetStatus(i, -1);
+            }
         }
         //no special cases
         else
@@ -271,6 +283,12 @@ public class SavePointBehavior : InteractableBaseClass
                     data.GetPartyMember(i).SetHP(data.GetPartyMember(i).GetHPMAX());
                     data.GetPartyMember(i).SetSP(data.GetPartyMember(i).GetSPMax());
                 }
+            }
+
+            //remove status effects
+            for (int i = 0; i < data.GetStatusCount(); i++)
+            {
+                if (i != 25) data.SetStatus(i, -1);
             }
         }
     }
