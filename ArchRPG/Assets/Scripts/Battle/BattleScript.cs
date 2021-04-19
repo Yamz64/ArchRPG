@@ -1596,102 +1596,19 @@ public class BattleScript : MonoBehaviour
             {
                 if (partyUnits[currentAlly] != null)
                 {
-                    if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].enemyTarget != 0)
+                    if (partyUnits[currentAlly].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                     {
-                        useSound(1);
-                        int speed = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI();
-                        if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[22] != -1)
+                        if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].enemyTarget != 0)
                         {
-                            speed = (int)(speed * 0.75);
-                        }
-                        actions.Add(new action(currentUnit, "ability1", highlighted_ability, currentAlly, speed,
-                            partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].fast,
-                            partyUnits[currentAlly].GetComponent<UnitMono>().mainUnit.unitName));
-                        currentAlly = 0;
-                        highlighted_ability = 0;
-                        ability_offset = 0;
-                        currentUnit += 1;
-                        Vector3 here = partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.view.transform.position;
-                        here.y = partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.backupView.transform.position.y;
-                        partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.view.transform.position = here;
-                        moves += 1;
-
-                        Image[] opts = transform.GetChild(1).Find("AbilityMenu").GetComponentsInChildren<Image>();
-                        foreach (Image child in opts)
-                        {
-                            Color temp = child.color;
-                            temp.a = 1.0f;
-                            child.color = temp;
-                        }
-                        Text[] ts = transform.GetChild(1).Find("AbilityMenu").GetComponentsInChildren<Text>();
-                        foreach (Text child in ts)
-                        {
-                            Color temp = child.color;
-                            temp.a = 1.0f;
-                            child.color = temp;
-                        }
-
-                        cursor.SetActive(true);
-                        CloseSelectUnitMenu();
-                        CloseUseAbilityMenu();
-                        CloseMenu(1);
-                        unit_select_menu = false;
-                        menu_input = true;
-
-                        //If this unit is the last one in the party to move
-                        if (moves >= activeUnits)
-                        {
-                            moves = 0;
-                            currentUnit = 0;
-                            state = battleState.ATTACK;
-                            StartCoroutine(performActions());
-                        }
-                        else
-                        {
-                            while (partyUnits[currentUnit] == null && currentUnit < partyUnits.Count) currentUnit++;
-                            if (currentUnit >= partyUnits.Count)
-                            {
-                                moves = 0;
-                                currentUnit = 0;
-                                state = battleState.ATTACK;
-                                StartCoroutine(performActions());
-                            }
-                            else
-                            {
-                                playerTurn();
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (activeEnemies - enemyDeaths > 1)
-                        {
-                            target1 = currentAlly;
-                            currentAlly = 0;
-                            unit_select_menu = false;
-                            enemy_select_menu = true;
-                            OpenSelectEnemyMenu();
-                        }
-                        else
-                        {
-                            int bot = 0;
-                            for (int b = 0; b < enemyUnits.Count; b++)
-                            {
-                                if (enemyUnits[b].GetComponent<UnitMono>().mainUnit.currentHP > 0)
-                                {
-                                    //bot = enemyUnits[b].GetComponent<UnitMono>().mainUnit;
-                                    bot = b;
-                                }
-                            }
                             useSound(1);
                             int speed = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI();
                             if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[22] != -1)
                             {
                                 speed = (int)(speed * 0.75);
                             }
-                            actions.Add(new action(currentUnit, "ability", highlighted_ability, currentAlly, speed,
-                                partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].fast, "", bot));
-
+                            actions.Add(new action(currentUnit, "ability1", highlighted_ability, currentAlly, speed,
+                                partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].fast,
+                                partyUnits[currentAlly].GetComponent<UnitMono>().mainUnit.unitName));
                             currentAlly = 0;
                             highlighted_ability = 0;
                             ability_offset = 0;
@@ -1701,11 +1618,29 @@ public class BattleScript : MonoBehaviour
                             partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.view.transform.position = here;
                             moves += 1;
 
+                            Image[] opts = transform.GetChild(1).Find("AbilityMenu").GetComponentsInChildren<Image>();
+                            foreach (Image child in opts)
+                            {
+                                Color temp = child.color;
+                                temp.a = 1.0f;
+                                child.color = temp;
+                            }
+                            Text[] ts = transform.GetChild(1).Find("AbilityMenu").GetComponentsInChildren<Text>();
+                            foreach (Text child in ts)
+                            {
+                                Color temp = child.color;
+                                temp.a = 1.0f;
+                                child.color = temp;
+                            }
+
+                            cursor.SetActive(true);
+                            CloseSelectUnitMenu();
                             CloseUseAbilityMenu();
                             CloseMenu(1);
-                            menu_input = false;
+                            unit_select_menu = false;
+                            menu_input = true;
 
-                            //Perform player attacks
+                            //If this unit is the last one in the party to move
                             if (moves >= activeUnits)
                             {
                                 moves = 0;
@@ -1729,6 +1664,78 @@ public class BattleScript : MonoBehaviour
                                 }
                             }
                         }
+                        else
+                        {
+                            if (activeEnemies - enemyDeaths > 1)
+                            {
+                                target1 = currentAlly;
+                                currentAlly = 0;
+                                unit_select_menu = false;
+                                enemy_select_menu = true;
+                                OpenSelectEnemyMenu();
+                            }
+                            else
+                            {
+                                int bot = 0;
+                                for (int b = 0; b < enemyUnits.Count; b++)
+                                {
+                                    if (enemyUnits[b].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                                    {
+                                        //bot = enemyUnits[b].GetComponent<UnitMono>().mainUnit;
+                                        bot = b;
+                                    }
+                                }
+                                useSound(1);
+                                int speed = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI();
+                                if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[22] != -1)
+                                {
+                                    speed = (int)(speed * 0.75);
+                                }
+                                actions.Add(new action(currentUnit, "ability", highlighted_ability, currentAlly, speed,
+                                    partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].fast, "", bot));
+
+                                currentAlly = 0;
+                                highlighted_ability = 0;
+                                ability_offset = 0;
+                                currentUnit += 1;
+                                Vector3 here = partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.view.transform.position;
+                                here.y = partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.backupView.transform.position.y;
+                                partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.view.transform.position = here;
+                                moves += 1;
+
+                                CloseUseAbilityMenu();
+                                CloseMenu(1);
+                                menu_input = false;
+
+                                //Perform player attacks
+                                if (moves >= activeUnits)
+                                {
+                                    moves = 0;
+                                    currentUnit = 0;
+                                    state = battleState.ATTACK;
+                                    StartCoroutine(performActions());
+                                }
+                                else
+                                {
+                                    while (partyUnits[currentUnit] == null && currentUnit < partyUnits.Count) currentUnit++;
+                                    if (currentUnit >= partyUnits.Count)
+                                    {
+                                        moves = 0;
+                                        currentUnit = 0;
+                                        state = battleState.ATTACK;
+                                        StartCoroutine(performActions());
+                                    }
+                                    else
+                                    {
+                                        playerTurn();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        dialogue.text = "Invalid space selected. Try again";
                     }
                 }
                 else
