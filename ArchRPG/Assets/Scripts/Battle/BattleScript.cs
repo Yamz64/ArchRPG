@@ -1650,7 +1650,8 @@ public class BattleScript : MonoBehaviour
                             }
                             else
                             {
-                                while (partyUnits[currentUnit] == null && currentUnit < partyUnits.Count) currentUnit++;
+                                while ((partyUnits[currentUnit] == null || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.currentHP <= 0) 
+                                    && currentUnit < partyUnits.Count) currentUnit++;
                                 if (currentUnit >= partyUnits.Count)
                                 {
                                     moves = 0;
