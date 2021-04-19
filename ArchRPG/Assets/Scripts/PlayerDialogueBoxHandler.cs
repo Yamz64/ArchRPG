@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Luminosity.IO;
 
 public class PlayerDialogueBoxHandler : MonoBehaviour
 {
@@ -199,7 +200,7 @@ public class PlayerDialogueBoxHandler : MonoBehaviour
         if (active)
         {
             //handle cancelling of dialogue
-            if (Input.GetButtonDown("Interact") && writing)
+            if (InputManager.GetButtonDown("Interact") && writing)
             {
                 StopAllCoroutines();
                 Clear();
@@ -209,7 +210,7 @@ public class PlayerDialogueBoxHandler : MonoBehaviour
             }
             else
             {
-                if (write_queue.Count > 0 && Input.GetButtonDown("Interact"))
+                if (write_queue.Count > 0 && InputManager.GetButtonDown("Interact"))
                 {
                     Clear();
                     if (image_queue != null)
@@ -220,7 +221,7 @@ public class PlayerDialogueBoxHandler : MonoBehaviour
                     effect_queue.RemoveAt(0);
                     WriteDriver();
                 }
-                else if (write_queue.Count == 0 && Input.GetButtonDown("Interact"))
+                else if (write_queue.Count == 0 && InputManager.GetButtonDown("Interact"))
                 {
                     Clear();
                     if(image_queue != null)

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Luminosity.IO;
 
 public class ShirleyDialogue : InteractableBaseClass
 {
@@ -45,7 +46,7 @@ public class ShirleyDialogue : InteractableBaseClass
 
         //wait until the interact button is pressed close the menu and then write dialogue based on the selection
         yield return new WaitUntil(() => pause.menu_input == false);
-        yield return new WaitUntil(() => Input.GetButtonDown("Interact"));
+        yield return new WaitUntil(() => InputManager.GetButtonDown("Interact"));
         bool choice = pause.GetChoice();
 
         pause.CloseAllMenus();

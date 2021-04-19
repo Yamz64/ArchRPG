@@ -5,6 +5,7 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Luminosity.IO;
 
 public class PauseMenuHandler : MonoBehaviour
 {
@@ -3113,7 +3114,7 @@ public class PauseMenuHandler : MonoBehaviour
         if (!base_pause_character_select)
         {
             //change position of cursor in the menu
-            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+            if (InputManager.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
             {
                 if (!menu_input)
                 {
@@ -3122,7 +3123,7 @@ public class PauseMenuHandler : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[0].positions.Count - 1)
+            else if (InputManager.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[0].positions.Count - 1)
             {
                 if (!menu_input)
                 {
@@ -3137,7 +3138,7 @@ public class PauseMenuHandler : MonoBehaviour
             }
 
             //handle input
-            if (Input.GetButtonDown("Interact"))
+            if (InputManager.GetButtonDown("Interact"))
             {
                 audio_handler.PlaySound("Sound/SFX/select");
                 switch (cursor_position)
@@ -3194,7 +3195,7 @@ public class PauseMenuHandler : MonoBehaviour
         else
         {
             //change position of cursor in the menu
-            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+            if (InputManager.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
             {
                 if (!menu_input)
                 {
@@ -3204,7 +3205,7 @@ public class PauseMenuHandler : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[2].positions.Count - 1)
+            else if (InputManager.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[2].positions.Count - 1)
             {
                 if (!menu_input)
                 {
@@ -3219,7 +3220,7 @@ public class PauseMenuHandler : MonoBehaviour
                 menu_input = false;
             }
 
-            if (Input.GetButtonDown("Interact"))
+            if (InputManager.GetButtonDown("Interact"))
             {
                 audio_handler.PlaySound("Sound/SFX/select");
                 if (!ability_select)
@@ -3260,7 +3261,7 @@ public class PauseMenuHandler : MonoBehaviour
         //change position of cursor in the menu if in item select mode
         if (item_select_menu == false)
         {
-            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+            if (InputManager.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
             {
                 if (!menu_input)
                 {
@@ -3271,7 +3272,7 @@ public class PauseMenuHandler : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[1].positions.Count - 1 - 3)
+            else if (InputManager.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[1].positions.Count - 1 - 3)
             {
                 if (!menu_input)
                 {
@@ -3282,7 +3283,7 @@ public class PauseMenuHandler : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetAxisRaw("Vertical") > 0.0f && inventory_offset > 0 && cursor_position == 0)
+            else if (InputManager.GetAxisRaw("Vertical") > 0.0f && inventory_offset > 0 && cursor_position == 0)
             {
                 if (!menu_input)
                 {
@@ -3294,7 +3295,7 @@ public class PauseMenuHandler : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetAxisRaw("Vertical") < 0.0f && (cursor_positions[1].positions.Count - 3 + inventory_offset) < data.GetInventorySize() && cursor_position == cursor_positions[1].positions.Count - 1 - 3)
+            else if (InputManager.GetAxisRaw("Vertical") < 0.0f && (cursor_positions[1].positions.Count - 3 + inventory_offset) < data.GetInventorySize() && cursor_position == cursor_positions[1].positions.Count - 1 - 3)
             {
                 if (!menu_input)
                 {
@@ -3305,7 +3306,7 @@ public class PauseMenuHandler : MonoBehaviour
                     UpdateInventoryImageandDesc();
                 }
                 menu_input = true;
-            }else if (Input.GetButtonDown("Interact"))
+            }else if (InputManager.GetButtonDown("Interact"))
             {
                 if (!menu_input)
                 {
@@ -3327,7 +3328,7 @@ public class PauseMenuHandler : MonoBehaviour
         }
         else
         {
-            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 9)
+            if (InputManager.GetAxisRaw("Vertical") > 0.0f && cursor_position > 9)
             {
                 if (!menu_input)
                 {
@@ -3336,7 +3337,7 @@ public class PauseMenuHandler : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[1].positions.Count - 1)
+            else if (InputManager.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[1].positions.Count - 1)
             {
                 if (!menu_input)
                 {
@@ -3345,7 +3346,7 @@ public class PauseMenuHandler : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetButtonDown("Interact"))
+            else if (InputManager.GetButtonDown("Interact"))
             {
                 audio_handler.PlaySound("Sound/SFX/select");
                 switch (cursor_position)
@@ -3384,7 +3385,7 @@ public class PauseMenuHandler : MonoBehaviour
         //see if the player is currently equipping an item
         if (!equipping)
         {
-            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+            if (InputManager.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
             {
                 if (!menu_input)
                 {
@@ -3395,7 +3396,7 @@ public class PauseMenuHandler : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[3].positions.Count - 1 - 4)
+            else if (InputManager.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[3].positions.Count - 1 - 4)
             {
                 if (!menu_input)
                 {
@@ -3406,7 +3407,7 @@ public class PauseMenuHandler : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetButtonDown("Interact"))
+            else if (InputManager.GetButtonDown("Interact"))
             {
                 if (!menu_input)
                 {
@@ -3475,7 +3476,7 @@ public class PauseMenuHandler : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetButtonDown("Remove"))
+            else if (InputManager.GetButtonDown("Remove"))
             {
                 if (!menu_input)
                 {
@@ -3549,7 +3550,7 @@ public class PauseMenuHandler : MonoBehaviour
                     }
                 }
             }
-            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 3)
+            if (InputManager.GetAxisRaw("Vertical") > 0.0f && cursor_position > 3)
             {
                 if (!menu_input)
                 {
@@ -3579,7 +3580,7 @@ public class PauseMenuHandler : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[3].positions.Count - 1)
+            else if (InputManager.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[3].positions.Count - 1)
             {
                 if (!menu_input)
                 {
@@ -3610,7 +3611,7 @@ public class PauseMenuHandler : MonoBehaviour
                 menu_input = true;
             }
             //allow the menu to scroll
-            else if(Input.GetAxisRaw("Vertical") > 0.0f && cursor_position == 3 && equipped_offset > 0)
+            else if(InputManager.GetAxisRaw("Vertical") > 0.0f && cursor_position == 3 && equipped_offset > 0)
             {
                 if (!menu_input)
                 {
@@ -3640,7 +3641,7 @@ public class PauseMenuHandler : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position == 6 && (cursor_position - 3 + equipped_offset) < equippables.Count -1)
+            else if (InputManager.GetAxisRaw("Vertical") < 0.0f && cursor_position == 6 && (cursor_position - 3 + equipped_offset) < equippables.Count -1)
             {
                 if (!menu_input)
                 {
@@ -3671,7 +3672,7 @@ public class PauseMenuHandler : MonoBehaviour
                 menu_input = true;
             }
             //handle actual equipping of items
-            else if (Input.GetButtonDown("Interact"))
+            else if (InputManager.GetButtonDown("Interact"))
             {
                 //if this is a valid frame for input
                 if (!menu_input)
@@ -3841,7 +3842,7 @@ public class PauseMenuHandler : MonoBehaviour
     public void PositionMenuRoutine()
     {
         //right
-        if(Input.GetAxisRaw("Horizontal") > 0.0f && cursor_position < 3)
+        if(InputManager.GetAxisRaw("Horizontal") > 0.0f && cursor_position < 3)
         {
             if (!menu_input)
             {
@@ -3851,7 +3852,7 @@ public class PauseMenuHandler : MonoBehaviour
             menu_input = true;
         }
         //left
-        else if (Input.GetAxisRaw("Horizontal") < 0.0f && cursor_position > 0)
+        else if (InputManager.GetAxisRaw("Horizontal") < 0.0f && cursor_position > 0)
         {
             if (!menu_input)
             {
@@ -3861,7 +3862,7 @@ public class PauseMenuHandler : MonoBehaviour
             menu_input = true;
         }
         //up
-        else if(Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 1)
+        else if(InputManager.GetAxisRaw("Vertical") > 0.0f && cursor_position > 1)
         {
             if (!menu_input)
             {
@@ -3871,7 +3872,7 @@ public class PauseMenuHandler : MonoBehaviour
             menu_input = true;
         }
         //down
-        else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < 2)
+        else if (InputManager.GetAxisRaw("Vertical") < 0.0f && cursor_position < 2)
         {
             if (!menu_input)
             {
@@ -3881,7 +3882,7 @@ public class PauseMenuHandler : MonoBehaviour
             menu_input = true;
         }
         //input
-        else if (Input.GetButtonDown("Interact"))
+        else if (InputManager.GetButtonDown("Interact"))
         {
             if (!menu_input)
             {
@@ -3926,7 +3927,7 @@ public class PauseMenuHandler : MonoBehaviour
     public void AbilityMenuRoutine()
     {
         //up
-        if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+        if (InputManager.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
         {
             if (!menu_input)
             {
@@ -3937,7 +3938,7 @@ public class PauseMenuHandler : MonoBehaviour
             menu_input = true;
         }
         //down
-        else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < 7)
+        else if (InputManager.GetAxisRaw("Vertical") < 0.0f && cursor_position < 7)
         {
             if (!menu_input)
             {
@@ -3948,7 +3949,7 @@ public class PauseMenuHandler : MonoBehaviour
             menu_input = true;
         }
         //right
-        else if (Input.GetAxisRaw("Horizontal") > 0.0f && cursor_position < 4)
+        else if (InputManager.GetAxisRaw("Horizontal") > 0.0f && cursor_position < 4)
         {
             if (!menu_input)
             {
@@ -3959,7 +3960,7 @@ public class PauseMenuHandler : MonoBehaviour
             menu_input = true;
         }
         //left
-        else if (Input.GetAxisRaw("Horizontal") < 0.0f && cursor_position > 3)
+        else if (InputManager.GetAxisRaw("Horizontal") < 0.0f && cursor_position > 3)
         {
             if (!menu_input)
             {
@@ -3970,7 +3971,7 @@ public class PauseMenuHandler : MonoBehaviour
             menu_input = true;
         }
         //up scroll
-        else if(Input.GetAxisRaw("Vertical") > 0.0f && cursor_position == 0 && ability_offset > 0)
+        else if(InputManager.GetAxisRaw("Vertical") > 0.0f && cursor_position == 0 && ability_offset > 0)
         {
             if (!menu_input)
             {
@@ -3981,7 +3982,7 @@ public class PauseMenuHandler : MonoBehaviour
             menu_input = true;
         }
         //down scroll
-        else if (highlighted_party_member == 0 && Input.GetAxisRaw("Vertical") < 0.0f) { 
+        else if (highlighted_party_member == 0 && InputManager.GetAxisRaw("Vertical") < 0.0f) { 
             if (cursor_position == 7 && ability_offset + 8 < data.GetAbilityCount())
             {
                 if (!menu_input)
@@ -3994,9 +3995,9 @@ public class PauseMenuHandler : MonoBehaviour
             }
         }
         //upscroll
-        else if(highlighted_party_member != 0 && Input.GetAxisRaw("Vertical") > 0.0f)
+        else if(highlighted_party_member != 0 && InputManager.GetAxisRaw("Vertical") > 0.0f)
         {
-            if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position == 7 && ability_offset + 8 < data.GetPartyMember(highlighted_party_member - 1).GetAbilityCount())
+            if (InputManager.GetAxisRaw("Vertical") < 0.0f && cursor_position == 7 && ability_offset + 8 < data.GetPartyMember(highlighted_party_member - 1).GetAbilityCount())
             {
                 if (!menu_input)
                 {
@@ -4018,7 +4019,7 @@ public class PauseMenuHandler : MonoBehaviour
     {
         //cursor input
         //left
-        if(Input.GetAxisRaw("Horizontal") < 0.0f && cursor_position > 0)
+        if(InputManager.GetAxisRaw("Horizontal") < 0.0f && cursor_position > 0)
         {
             if (!menu_input)
             {
@@ -4028,7 +4029,7 @@ public class PauseMenuHandler : MonoBehaviour
             }
             menu_input = true;
         //right
-        }else if (Input.GetAxisRaw("Horizontal") > 0.0f && cursor_position < 7)
+        }else if (InputManager.GetAxisRaw("Horizontal") > 0.0f && cursor_position < 7)
         {
             if (!menu_input)
             {
@@ -4038,7 +4039,7 @@ public class PauseMenuHandler : MonoBehaviour
             }
             menu_input = true;
         //up
-        }else if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 3)
+        }else if (InputManager.GetAxisRaw("Vertical") > 0.0f && cursor_position > 3)
         {
             if (!menu_input)
             {
@@ -4049,7 +4050,7 @@ public class PauseMenuHandler : MonoBehaviour
             menu_input = true;
         }
         //down
-        else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < 4)
+        else if (InputManager.GetAxisRaw("Vertical") < 0.0f && cursor_position < 4)
         {
             if (!menu_input)
             {
@@ -4060,7 +4061,7 @@ public class PauseMenuHandler : MonoBehaviour
             menu_input = true;
         }
         //scroll up
-        else if(Input.GetAxisRaw("Vertical") > 0.0f && levelup_offset > 0)
+        else if(InputManager.GetAxisRaw("Vertical") > 0.0f && levelup_offset > 0)
         {
             if (!menu_input)
             {
@@ -4071,7 +4072,7 @@ public class PauseMenuHandler : MonoBehaviour
             menu_input = true;
         }
         //scroll down
-        else if(Input.GetAxisRaw("Vertical") < 0.0f && levelup_offset + 8 < EldritchAbilities.GetEldritchAbilities().Count)
+        else if(InputManager.GetAxisRaw("Vertical") < 0.0f && levelup_offset + 8 < EldritchAbilities.GetEldritchAbilities().Count)
         {
             if (!menu_input)
             {
@@ -4082,7 +4083,7 @@ public class PauseMenuHandler : MonoBehaviour
             menu_input = true;
         }
         //input
-        else if (Input.GetButtonDown("Interact"))
+        else if (InputManager.GetButtonDown("Interact"))
         {
             //get all eldritch abilities ahead of time
             List<Ability> e_abilities = EldritchAbilities.GetEldritchAbilities();
@@ -4161,7 +4162,7 @@ public class PauseMenuHandler : MonoBehaviour
     {
         if (!save_select)
         {
-            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+            if (InputManager.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
             {
                 if (!menu_input)
                 {
@@ -4170,7 +4171,7 @@ public class PauseMenuHandler : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[7].positions.Count - 1)
+            else if (InputManager.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[7].positions.Count - 1)
             {
                 if (!menu_input)
                 {
@@ -4179,7 +4180,7 @@ public class PauseMenuHandler : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetButtonDown("Interact"))
+            else if (InputManager.GetButtonDown("Interact"))
             {
                 if (!menu_input)
                 {
@@ -4229,7 +4230,7 @@ public class PauseMenuHandler : MonoBehaviour
         }
         else
         {
-            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+            if (InputManager.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
             {
                 if (!menu_input)
                 {
@@ -4238,7 +4239,7 @@ public class PauseMenuHandler : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[8].positions.Count - 1)
+            else if (InputManager.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[8].positions.Count - 1)
             {
                 if (!menu_input)
                 {
@@ -4247,7 +4248,7 @@ public class PauseMenuHandler : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetButtonDown("Interact"))
+            else if (InputManager.GetButtonDown("Interact"))
             {
                 if (!menu_input)
                 {
@@ -4329,7 +4330,7 @@ public class PauseMenuHandler : MonoBehaviour
     {
         if (cursor_position == 0) choice = false;
         else choice = true;
-        if(Input.GetAxisRaw("Horizontal") > 0.0f && cursor_position < 1)
+        if(InputManager.GetAxisRaw("Horizontal") > 0.0f && cursor_position < 1)
         {
             if (!menu_input)
             {
@@ -4338,7 +4339,7 @@ public class PauseMenuHandler : MonoBehaviour
             }
             menu_input = true;
         }
-        else if(Input.GetAxisRaw("Horizontal") < 0.0f && cursor_position > 0)
+        else if(InputManager.GetAxisRaw("Horizontal") < 0.0f && cursor_position > 0)
         {
             if (!menu_input)
             {
@@ -4358,7 +4359,7 @@ public class PauseMenuHandler : MonoBehaviour
     {
         if (!swap)
         {
-            if(Input.GetAxisRaw("Horizontal") > 0.0f && cursor_position < 2)
+            if(InputManager.GetAxisRaw("Horizontal") > 0.0f && cursor_position < 2)
             {
                 if (!menu_input)
                 {
@@ -4367,7 +4368,7 @@ public class PauseMenuHandler : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if(Input.GetAxisRaw("Horizontal") < 0.0f && cursor_position > 0)
+            else if(InputManager.GetAxisRaw("Horizontal") < 0.0f && cursor_position > 0)
             {
                 if (!menu_input)
                 {
@@ -4376,7 +4377,7 @@ public class PauseMenuHandler : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetButtonDown("Interact"))
+            else if (InputManager.GetButtonDown("Interact"))
             {
                 if (!menu_input)
                 {
@@ -4404,7 +4405,7 @@ public class PauseMenuHandler : MonoBehaviour
                 if (data.GetUnlockedMember(i)) display_count++;
             }
             //MOVE DOWN
-            if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < 3)
+            if (InputManager.GetAxisRaw("Vertical") < 0.0f && cursor_position < 3)
             {
                 if (!menu_input)
                 {
@@ -4414,7 +4415,7 @@ public class PauseMenuHandler : MonoBehaviour
                 menu_input = true;
             }
             //MOVE UP
-            else if(Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+            else if(InputManager.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
             {
                 if (!menu_input)
                 {
@@ -4424,7 +4425,7 @@ public class PauseMenuHandler : MonoBehaviour
                 menu_input = true;
             }
             //SCROLL DOWN
-            else if(Input.GetAxisRaw("Vertical") < 0.0f && swap_offset + 4 < display_count)
+            else if(InputManager.GetAxisRaw("Vertical") < 0.0f && swap_offset + 4 < display_count)
             {
                 if (!menu_input)
                 {
@@ -4435,7 +4436,7 @@ public class PauseMenuHandler : MonoBehaviour
                 menu_input = true;
             }
             //SCROLL UP
-            else if(Input.GetAxisRaw("Vertical") > 0.0f && swap_offset > 0)
+            else if(InputManager.GetAxisRaw("Vertical") > 0.0f && swap_offset > 0)
             {
                 if (!menu_input)
                 {
@@ -4446,7 +4447,7 @@ public class PauseMenuHandler : MonoBehaviour
                 menu_input = true;
             }
             //INPUT
-            else if (Input.GetButtonDown("Interact"))
+            else if (InputManager.GetButtonDown("Interact"))
             {
                 if (!menu_input)
                 {
@@ -4539,7 +4540,7 @@ public class PauseMenuHandler : MonoBehaviour
     {
         if (!store_select)
         {
-            if(Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+            if(InputManager.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
             {
                 if (!menu_input)
                 {
@@ -4548,7 +4549,7 @@ public class PauseMenuHandler : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if(Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < 1)
+            else if(InputManager.GetAxisRaw("Vertical") < 0.0f && cursor_position < 1)
             {
                 if (!menu_input)
                 {
@@ -4557,7 +4558,7 @@ public class PauseMenuHandler : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetButtonDown("Interact"))
+            else if (InputManager.GetButtonDown("Interact"))
             {
                 if (!menu_input)
                 {
@@ -4578,7 +4579,7 @@ public class PauseMenuHandler : MonoBehaviour
         else
         {
             //--UP--
-            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+            if (InputManager.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
             {
                 if (!menu_input)
                 {
@@ -4597,7 +4598,7 @@ public class PauseMenuHandler : MonoBehaviour
                 menu_input = true;
             }
             //--DOWN--
-            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < 8)
+            else if (InputManager.GetAxisRaw("Vertical") < 0.0f && cursor_position < 8)
             {
                 if (!menu_input)
                 {
@@ -4614,7 +4615,7 @@ public class PauseMenuHandler : MonoBehaviour
                 menu_input = true;
             }
             //--SCROLL UP--
-            else if(Input.GetAxisRaw("Vertical") > 0.0f && inventory_offset > 0)
+            else if(InputManager.GetAxisRaw("Vertical") > 0.0f && inventory_offset > 0)
             {
                 if (!menu_input)
                 {
@@ -4632,7 +4633,7 @@ public class PauseMenuHandler : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if(Input.GetAxisRaw("Vertical") < 0.0f)
+            else if(InputManager.GetAxisRaw("Vertical") < 0.0f)
             {
                 //buying
                 if (!menu_input)
@@ -4670,7 +4671,7 @@ public class PauseMenuHandler : MonoBehaviour
                 menu_input = true;
                 UpdateStoreMenu();
             }
-            else if(Input.GetAxisRaw("Vertical") > 0.0f)
+            else if(InputManager.GetAxisRaw("Vertical") > 0.0f)
             {
                 if (!menu_input)
                 {
@@ -4686,7 +4687,7 @@ public class PauseMenuHandler : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetButtonDown("Interact"))
+            else if (InputManager.GetButtonDown("Interact"))
             {
                 if (!menu_input)
                 {
@@ -4767,7 +4768,7 @@ public class PauseMenuHandler : MonoBehaviour
 
     public void WarpMenuRoutine()
     {
-        if(Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+        if(InputManager.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
         {
             if (!menu_input)
             {
@@ -4777,7 +4778,7 @@ public class PauseMenuHandler : MonoBehaviour
             }
             menu_input = true;
         }
-        else if(Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < 4)
+        else if(InputManager.GetAxisRaw("Vertical") < 0.0f && cursor_position < 4)
         {
             if (!menu_input)
             {
@@ -4787,7 +4788,7 @@ public class PauseMenuHandler : MonoBehaviour
             }
             menu_input = true;
         }
-        else if(Input.GetAxisRaw("Vertical") > 0.0f && warp_offset > 0)
+        else if(InputManager.GetAxisRaw("Vertical") > 0.0f && warp_offset > 0)
         {
             if (!menu_input)
             {
@@ -4797,7 +4798,7 @@ public class PauseMenuHandler : MonoBehaviour
             }
             menu_input = true;
         }
-        else if(Input.GetAxisRaw("Vertical") < 0.0f && (cursor_position + warp_offset) < saved_warps.Count - 1)
+        else if(InputManager.GetAxisRaw("Vertical") < 0.0f && (cursor_position + warp_offset) < saved_warps.Count - 1)
         {
             if (!menu_input)
             {
@@ -4807,7 +4808,7 @@ public class PauseMenuHandler : MonoBehaviour
             }
             menu_input = true;
         }
-        else if (Input.GetButtonDown("Interact"))
+        else if (InputManager.GetButtonDown("Interact"))
         {
             if (!menu_input)
             {
@@ -4882,7 +4883,7 @@ public class PauseMenuHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Menu") && active_menu != 7 && !pause_menu_protection)
+        if (InputManager.GetButtonDown("Menu") && active_menu != 7 && !pause_menu_protection)
         {
             base_pause_character_select = false;
             if (!menu_mode)

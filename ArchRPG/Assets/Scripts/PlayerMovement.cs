@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Luminosity.IO;
 
 public class PlayerMovement : CharacterAnimationHandler
 {
@@ -41,7 +42,7 @@ public class PlayerMovement : CharacterAnimationHandler
     {
         if (!interaction_protection)
         {
-            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized * move_speed;
+            rb.velocity = new Vector2(InputManager.GetAxisRaw("Horizontal"), InputManager.GetAxisRaw("Vertical")).normalized * move_speed;
 
             //handle animation
             if (rb.velocity.magnitude > 0.0f) base.moving = true;
@@ -57,7 +58,7 @@ public class PlayerMovement : CharacterAnimationHandler
             was_moving = moving;
 
             //handle interaction
-            if (Input.GetButtonDown("Interact"))
+            if (InputManager.GetButtonDown("Interact"))
             {
                 //prepare a direction to raycast
                 Vector2 direction_cast = Vector2.zero;

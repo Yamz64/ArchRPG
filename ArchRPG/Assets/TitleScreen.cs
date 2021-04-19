@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Windows;
 using UnityEngine.SceneManagement;
+using Luminosity.IO;
 
 public class TitleScreen : MonoBehaviour
 {
@@ -46,9 +47,23 @@ public class TitleScreen : MonoBehaviour
     private CharacterStatJsonConverter save3;
     private CharacterStatJsonConverter save4;
 
+    public InputManager mani;
+
     private Color green;
     private Color black;
     private Color white;
+
+    private KeyCode presser = KeyCode.Space;
+
+    ScanSettings settings = new ScanSettings
+    {
+        ScanFlags = ScanFlags.Key,
+        // If the player presses this key the scan will be canceled.
+        CancelScanKey = KeyCode.Escape,
+        // If the player doesn't press any key within the specified number
+        // of seconds the scan will be canceled.
+        Timeout = 10
+    };
 
     //Use to play specific sounds with the audio handler
     //num -- which sound to play
@@ -194,7 +209,7 @@ public class TitleScreen : MonoBehaviour
     //Navigate title screen buttons
     public void TitleRoutine()
     {
-        if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+        if (InputManager.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
         {
             if (!menu_input)
             {
@@ -203,7 +218,7 @@ public class TitleScreen : MonoBehaviour
             }
             menu_input = true;
         }
-        else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[0].positions.Count - 1)
+        else if (InputManager.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[0].positions.Count - 1)
         {
             if (!menu_input)
             {
@@ -212,7 +227,7 @@ public class TitleScreen : MonoBehaviour
             }
             menu_input = true;
         }
-        else if (Input.GetButtonDown("Interact"))
+        else if (InputManager.GetButtonDown("Interact"))
         {
             if (!menu_input)
             {
@@ -250,7 +265,7 @@ public class TitleScreen : MonoBehaviour
     {
         if (!control_menu)
         {
-            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+            if (InputManager.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
             {
                 if (!menu_input)
                 {
@@ -259,7 +274,7 @@ public class TitleScreen : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[1].positions.Count - 1)
+            else if (InputManager.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[1].positions.Count - 1)
             {
                 if (!menu_input)
                 {
@@ -268,7 +283,7 @@ public class TitleScreen : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetAxisRaw("Horizontal") < 0.0f && (cursor_position == 1 || cursor_position == 2 || cursor_position == 3))
+            else if (InputManager.GetAxisRaw("Horizontal") < 0.0f && (cursor_position == 1 || cursor_position == 2 || cursor_position == 3))
             {
                 if (!menu_input)
                 {
@@ -303,7 +318,7 @@ public class TitleScreen : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetAxisRaw("Horizontal") > 0.0f && (cursor_position == 1 || cursor_position == 2 || cursor_position == 3))
+            else if (InputManager.GetAxisRaw("Horizontal") > 0.0f && (cursor_position == 1 || cursor_position == 2 || cursor_position == 3))
             {
                 if (!menu_input)
                 {
@@ -338,7 +353,7 @@ public class TitleScreen : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetButtonDown("Interact"))
+            else if (InputManager.GetButtonDown("Interact"))
             {
                 if (!menu_input)
                 {
@@ -350,7 +365,7 @@ public class TitleScreen : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Menu"))
+            else if (InputManager.GetButtonDown("Cancel") || InputManager.GetButtonDown("Menu"))
             {
                 if (!menu_input)
                 {
@@ -367,7 +382,7 @@ public class TitleScreen : MonoBehaviour
         }
         else
         {
-            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0 && !selector)
+            if (InputManager.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0 && !selector)
             {
                 if (!menu_input)
                 {
@@ -376,7 +391,7 @@ public class TitleScreen : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[3].positions.Count - 1 && !selector)
+            else if (InputManager.GetAxisRaw("Vertical") < 0.0f && cursor_position < cursor_positions[3].positions.Count - 1 && !selector)
             {
                 if (!menu_input)
                 {
@@ -385,13 +400,144 @@ public class TitleScreen : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetButtonDown("Interact") && !selector)
+            else if (InputManager.GetButtonDown("Interact") && !selector)
             {
-                //prev = transform.GetChild(1).Find("Controls").GetChild(cursor_position).GetChild(0).GetComponent<Text>().text;
-                //transform.GetChild(1).Find("Controls").GetChild(cursor_position).GetChild(0).GetComponent<Text>().text = "";
+                if (!menu_input)
+                {
+                    prev = transform.GetChild(1).Find("Controls").GetChild(cursor_position).GetChild(0).GetComponent<Text>().text;
+                    transform.GetChild(1).Find("Controls").GetChild(cursor_position).GetChild(0).GetComponent<Text>().text = "";
+                    selector = true;
+                    InputManager.StartInputScan(settings, result =>
+                    {
+                        string bases = "";
+                        if (cursor_position == 0 || cursor_position == 1)
+                        {
+                            bases = "Vertical";
+                        }
+                        else if (cursor_position == 2 || cursor_position == 3)
+                        {
+                            bases = "Horizontal";
+                        }
+                        else if (cursor_position == 4)
+                        {
+                            bases = "Interact";
+                        }
+                        else if (cursor_position == 5)
+                        {
+                            bases = "Menu";
+                        }
+                        List<InputAction> opti = new List<InputAction>();
+                        opti.Add(InputManager.GetAction("Default Controls", "Vertical"));
+                        opti.Add(InputManager.GetAction("Default Controls", "Horizontal"));
+                        opti.Add(InputManager.GetAction("Default Controls", "Interact"));
+                        opti.Add(InputManager.GetAction("Default Controls", "Menu"));
+                        InputAction inputAction = InputManager.GetAction("Default Controls", bases);
+                        bool cori = true;
+                        for (int i = 0; i < opti.Count; i++)
+                        {
+                            if (opti[i].Bindings[0].Positive == result.Key || opti[i].Bindings[0].Negative == result.Key)
+                            {
+                                cori = false;
+                            }
+                        }
+                        if (cori)
+                        {
+                            if (cursor_position != 1 && cursor_position != 2)
+                            {
+                                inputAction.Bindings[0].Positive = result.Key;
+                            }
+                            else
+                            {
+                                inputAction.Bindings[0].Negative = result.Key;
+                            }
+                            transform.GetChild(1).Find("Controls").GetChild(cursor_position).GetChild(0).GetComponent<Text>().text = result.Key.ToString();
+                            if (bases == "Interact")
+                            {
+                                CloseControlMenu();
+                            }
+                            InputManager.Save();
+                        }
+                        else
+                        {
+                            transform.GetChild(1).Find("Controls").GetChild(cursor_position).GetChild(0).GetComponent<Text>().text = prev;
+                        }
+                        return true;
+                    });
+                    selector = false;
+                }
                 menu_input = true;
             }
-            else if (Input.GetButtonDown("Cancel") && !selector)
+
+            /*
+            else if (InputManager.anyKeyDown && selector)
+            {
+                if (!menu_input)
+                {
+                    InputManager.StartInputScan(settings, result =>
+                    {
+                        string bases = "";
+                        int opt = cursor_position;
+                        if (cursor_position == 0 || cursor_position == 1)
+                        {
+                            bases = "Vertical";
+                            opt = 0;
+                        }
+                        else if (cursor_position == 2 || cursor_position == 3)
+                        {
+                            bases = "Horizontal";
+                            opt = 1;
+                        }
+                        else if (cursor_position == 4)
+                        {
+                            bases = "Interact";
+                            opt = 2;
+                        }
+                        else if (cursor_position == 5)
+                        {
+                            bases = "Menu";
+                            opt = 3;
+                        }
+                        Debug.Log("This press == " + result.Key.ToString());
+                        List<InputAction> opti = new List<InputAction>();
+                        opti.Add(InputManager.GetAction("Default Controls", "Vertical"));
+                        opti.Add(InputManager.GetAction("Default Controls", "Horizontal"));
+                        opti.Add(InputManager.GetAction("Default Controls", "Interact"));
+                        opti.Add(InputManager.GetAction("Default Controls", "Menu"));
+                        InputAction inputAction = InputManager.GetAction("Default Controls", bases);
+                        Debug.Log("Controls == " + inputAction.Bindings[0].Positive);
+                        bool cori = true;
+                        for (int i = 0; i < opti.Count; i++)
+                        {
+                            if (opti[i].Bindings[0].Positive == result.Key || opti[i].Bindings[0].Negative == result.Key)
+                            {
+                                cori = false;
+                            }
+                        }
+                        if (cori)
+                        {
+                            if (cursor_position != 1 && cursor_position != 2)
+                            {
+                                inputAction.Bindings[0].Positive = result.Key;
+                            }
+                            else
+                            {
+                                inputAction.Bindings[0].Negative = result.Key;
+                            }
+                            Debug.Log("Result == " + result.Key.ToString());
+                            transform.GetChild(1).Find("Controls").GetChild(cursor_position).GetChild(0).GetComponent<Text>().text = result.Key.ToString();
+                        }
+                        else
+                        {
+                            transform.GetChild(1).Find("Controls").GetChild(cursor_position).GetChild(0).GetComponent<Text>().text = prev;
+                        }
+                        return true;
+                    });
+                    selector = false;
+                }
+                menu_input = true;
+            }
+            */
+            else if (InputManager.GetButtonDown("Menu") && !selector)
             {
                 useSound(0);
                 CloseControlMenu();
@@ -411,7 +557,7 @@ public class TitleScreen : MonoBehaviour
         //If looking at slots
         if (!save_select_menu && !confirm_menu)
         {
-            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position >= 0)
+            if (InputManager.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
             {
                 if (!menu_input)
                 {
@@ -421,7 +567,7 @@ public class TitleScreen : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < 3)
+            else if (InputManager.GetAxisRaw("Vertical") < 0.0f && cursor_position < 3)
             {
                 if (!menu_input)
                 {
@@ -431,7 +577,7 @@ public class TitleScreen : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetButtonDown("Interact"))
+            else if (InputManager.GetButtonDown("Interact"))
             {
                 if (!menu_input)
                 {
@@ -440,7 +586,7 @@ public class TitleScreen : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Menu"))
+            else if (InputManager.GetButtonDown("Cancel") || InputManager.GetButtonDown("Menu"))
             {
                 if (!menu_input)
                 {
@@ -458,7 +604,7 @@ public class TitleScreen : MonoBehaviour
         //If choosing what to do at save file
         else if (!confirm_menu)
         {
-            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 4)
+            if (InputManager.GetAxisRaw("Vertical") > 0.0f && cursor_position > 4)
             {
                 if (!menu_input)
                 {
@@ -468,7 +614,7 @@ public class TitleScreen : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < 6)
+            else if (InputManager.GetAxisRaw("Vertical") < 0.0f && cursor_position < 6)
             {
                 if (!menu_input)
                 {
@@ -478,7 +624,7 @@ public class TitleScreen : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetButtonDown("Interact"))
+            else if (InputManager.GetButtonDown("Interact"))
             {
                 if (!menu_input)
                 {
@@ -500,7 +646,7 @@ public class TitleScreen : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Menu"))
+            else if (InputManager.GetButtonDown("Cancel") || InputManager.GetButtonDown("Menu"))
             {
                 if (!menu_input)
                 {
@@ -517,7 +663,7 @@ public class TitleScreen : MonoBehaviour
         //Yes/No
         else
         {
-            if (Input.GetAxisRaw("Vertical") > 0.0f && cursor_position > 7)
+            if (InputManager.GetAxisRaw("Vertical") > 0.0f && cursor_position > 7)
             {
                 if (!menu_input)
                 {
@@ -526,7 +672,7 @@ public class TitleScreen : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetAxisRaw("Vertical") < 0.0f && cursor_position < 8)
+            else if (InputManager.GetAxisRaw("Vertical") < 0.0f && cursor_position < 8)
             {
                 if (!menu_input)
                 {
@@ -535,7 +681,7 @@ public class TitleScreen : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetButtonDown("Interact"))
+            else if (InputManager.GetButtonDown("Interact"))
             {
                 if (!menu_input)
                 {
@@ -549,6 +695,7 @@ public class TitleScreen : MonoBehaviour
                                 case 4:
                                     useSound(1);
                                     PlayerPrefs.SetInt("_active_save_file_", save_slot);
+                                    DontDestroyOnLoad(mani);
                                     //Check save file
                                     switch (save_slot)
                                     {
@@ -621,7 +768,7 @@ public class TitleScreen : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Menu"))
+            else if (InputManager.GetButtonDown("Cancel") || InputManager.GetButtonDown("Menu"))
             {
                 if (!menu_input)
                 {
@@ -816,6 +963,20 @@ public class TitleScreen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        InputManager.Load();
+        transform.GetChild(1).Find("Controls").GetChild(0).GetChild(0).GetComponent<Text>().text = 
+            InputManager.GetAction("Default Controls", "Vertical").Bindings[0].Positive.ToString();
+        transform.GetChild(1).Find("Controls").GetChild(1).GetChild(0).GetComponent<Text>().text =
+            InputManager.GetAction("Default Controls", "Vertical").Bindings[0].Negative.ToString();
+        transform.GetChild(1).Find("Controls").GetChild(2).GetChild(0).GetComponent<Text>().text =
+            InputManager.GetAction("Default Controls", "Horizontal").Bindings[0].Positive.ToString();
+        transform.GetChild(1).Find("Controls").GetChild(3).GetChild(0).GetComponent<Text>().text =
+            InputManager.GetAction("Default Controls", "Horizontal").Bindings[0].Negative.ToString();
+        transform.GetChild(1).Find("Controls").GetChild(4).GetChild(0).GetComponent<Text>().text =
+            InputManager.GetAction("Default Controls", "Interact").Bindings[0].Positive.ToString();
+        transform.GetChild(1).Find("Controls").GetChild(5).GetChild(0).GetComponent<Text>().text =
+            InputManager.GetAction("Default Controls", "Menu").Bindings[0].Positive.ToString();
+
         menus = new List<GameObject>();
         for (int i = 2; i < transform.GetChild(1).childCount - 1; i++)
         {
