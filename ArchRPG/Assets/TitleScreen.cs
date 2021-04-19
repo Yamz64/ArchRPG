@@ -695,7 +695,7 @@ public class TitleScreen : MonoBehaviour
                                 case 4:
                                     useSound(1);
                                     PlayerPrefs.SetInt("_active_save_file_", save_slot);
-                                    DontDestroyOnLoad(mani);
+                                    //DontDestroyOnLoad(mani);
                                     //Check save file
                                     switch (save_slot)
                                     {
