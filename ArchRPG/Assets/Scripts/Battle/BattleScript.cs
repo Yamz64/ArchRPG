@@ -3301,7 +3301,7 @@ public class BattleScript : MonoBehaviour
         }
         bin.CrossFadeAlpha(0, 1f, false);
         yield return new WaitForSeconds(1f);
-        Destroy(bin);
+        Destroy(bin.gameObject);
     }
 
     //Fade into the battle scene (from black to screen)
@@ -3773,21 +3773,21 @@ public class BattleScript : MonoBehaviour
         {
             if (bot.unitWeapon.eldritch)
             {
-
+                bot.unitWeapon.updateStats(bot.unitWeapon.level + 1);
             }
         }
         if (bot.unitArmor != null)
         {
             if (bot.unitArmor.eldritch)
             {
-
+                bot.unitArmor.updateStats(bot.unitArmor.level + 1);
             }
         }
         if (bot.unitTrinket != null)
         {
             if (bot.unitTrinket.eldritch)
             {
-
+                bot.unitTrinket.updateStats(bot.unitTrinket.level + 1);
             }
         }
 
@@ -5471,6 +5471,7 @@ public class BattleScript : MonoBehaviour
             if (mone > 0)
             {
                 dialogue.text = "Received $" + mone + " buckaroos";
+                data.SetMoney(data.GetMoney() + mone);
                 yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
             }
             if (rewards.Count > 0)
@@ -5478,7 +5479,6 @@ public class BattleScript : MonoBehaviour
                 dialogue.text = "Received " + rewards.Count + " items";
                 yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
             }
-            data.SetMoney(data.GetMoney() + mone);
             for (int f = 0; f < rewards.Count; f++)
             {
                 data.AddItem(rewards[f]);
@@ -5675,20 +5675,15 @@ public class BattleScript : MonoBehaviour
     //Flash green in response to healing damage
     public IEnumerator flashHeal(unit bot)
     {
-        Debug.Log("Got into function");
         Color ori = bot.BBackground.color;
         Color green = bot.BBackground.color;
         green.b = 0.0f;
         green.g = 1.0f;
         green.r = 0.0f;
-        Debug.Log("step 1");
         yield return new WaitForSeconds(0.5f);
-        Debug.Log("step 2");
         bot.BBackground.color = green;
         bot.setHUD();
-        Debug.Log("step 3");
         yield return new WaitForSeconds(0.5f);
-        Debug.Log("step 4");
         bot.BBackground.color = ori;
     }
 
