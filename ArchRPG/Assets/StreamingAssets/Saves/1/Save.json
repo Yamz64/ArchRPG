@@ -1,7 +1,7 @@
 {
     "position": {
-        "x": -22.489999771118165,
-        "y": -7.980000019073486
+        "x": -2.359999895095825,
+        "y": -3.0199999809265138
     },
     "flee": false,
     "spent_ep": false,
@@ -30,7 +30,7 @@
         false
     ],
     "dead": [
-        true,
+        false,
         false,
         false
     ],
@@ -38,14 +38,14 @@
     "money": 50,
     "EP": 0,
     "HPs": [
-        0,
-        0,
-        0
+        67,
+        57,
+        25
     ],
     "SPs": [
-        14,
-        2,
-        12
+        22,
+        27,
+        34
     ],
     "SANs": [
         100,
@@ -308,7 +308,7 @@
                 -1,
                 -1,
                 -1,
-                1,
+                -1,
                 -1,
                 -1,
                 -1,
@@ -358,12 +358,17 @@
             ]
         }
     ],
-    "active_scene": "",
+    "active_scene": "SampleScene",
     "names": [
         "Player",
         "Clyve",
         "Jim"
     ],
     "e_abilities": [],
-    "enemy_names": []
+    "enemy_names": [
+        "Locker Lurker",
+        "Locker Lurker",
+        "Locker Lurker",
+        "Locker Lurker"
+    ]
 }
