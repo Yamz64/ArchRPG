@@ -124,8 +124,8 @@ public class SavePointBehavior : InteractableBaseClass
             {
                 if (data.GetPartyMember(i).GetHP() > 0)
                 {
-                    data.GetPartyMember(i).SetHP(data.GetHPMAX());
-                    data.GetPartyMember(i).SetSP(data.GetSPMax());
+                    data.GetPartyMember(i).SetHP(data.GetPartyMember(i).GetHPMAX());
+                    data.GetPartyMember(i).SetSP(data.GetPartyMember(i).GetSPMax());
                 }
             }
 
@@ -226,8 +226,8 @@ public class SavePointBehavior : InteractableBaseClass
             {
                 if (data.GetPartyMember(i).GetHP() > 0)
                 {
-                    data.GetPartyMember(i).SetHP(data.GetHPMAX());
-                    data.GetPartyMember(i).SetSP(data.GetSPMax());
+                    data.GetPartyMember(i).SetHP(data.GetPartyMember(i).GetHPMAX());
+                    data.GetPartyMember(i).SetSP(data.GetPartyMember(i).GetSPMax());
                 }
             }
         }
@@ -268,8 +268,8 @@ public class SavePointBehavior : InteractableBaseClass
             {
                 if (data.GetPartyMember(i).GetHP() > 0)
                 {
-                    data.GetPartyMember(i).SetHP(data.GetHPMAX());
-                    data.GetPartyMember(i).SetSP(data.GetSPMax());
+                    data.GetPartyMember(i).SetHP(data.GetPartyMember(i).GetHPMAX());
+                    data.GetPartyMember(i).SetSP(data.GetPartyMember(i).GetSPMax());
                 }
             }
         }
