@@ -5753,6 +5753,8 @@ public class BattleScript : MonoBehaviour
     //Start the battle
     void Start()
     {
+        InputManager.Load();
+
         StartCoroutine(fadeIn());
         menu_input = false;
         item_select_menu = false;

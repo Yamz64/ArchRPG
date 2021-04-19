@@ -4833,6 +4833,7 @@ public class PauseMenuHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        InputManager.Load();
         menu_mode = false;
         menu_input = false;
         item_select_menu = false;
