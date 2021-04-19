@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Windows;
 using UnityEngine.SceneManagement;
+using System.IO;
 using Luminosity.IO;
 
 public class TitleScreen : MonoBehaviour
