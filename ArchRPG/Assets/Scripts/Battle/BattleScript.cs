@@ -5602,6 +5602,7 @@ public class BattleScript : MonoBehaviour
                 }
             }
         }
+        loader.money = data.GetMoney();
         loader.Save(PlayerPrefs.GetInt("_active_save_file_"));
         yield return new WaitForSeconds(0.5f);
         yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
