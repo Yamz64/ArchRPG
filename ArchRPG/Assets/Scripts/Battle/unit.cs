@@ -985,6 +985,15 @@ public class unit
                     //Not dead
                     if (d == false)
                     {
+                        if (ata.chance2Die > 0)
+                        {
+                            int randi = UnityEngine.Random.Range(0, 101);
+                            if (randi < ata.chance2Die)
+                            {
+                                target.takeDamage(target.maxHP);
+                                return true;
+                            }
+                        }
                         //There is a status effect
                         if (!ata.statusEffect.Equals(""))
                         {
