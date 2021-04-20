@@ -65,23 +65,25 @@ public class WhiteKnightDialogue : NPCDialogue
 
             if (player.GetComponent<PlayerDataMono>().data.GetPartySize() < 3)
             {
+                Debug.Log("Happening");
                 PlayerData data = player.GetComponent<PlayerDataMono>().data;
                 data.AddPartyMember(new WhiteKnight());
                 data.GetPartyMember(data.GetPartySize() - 1).SetHP(data.GetPartyMember(data.GetPartySize() - 1).GetHPMAX());
                 data.GetPartyMember(data.GetPartySize() - 1).SetSP(data.GetPartyMember(data.GetPartySize() - 1).GetSPMax());
                 data.UnlockPartyMember(7);
-                alt_converted_text.Add("White Knight joins the party!");
-                alt_container.Add(new EffectContainer());
-                alt_converted_images.Add(null);
+                text.Add(new ExpandedString("White Knight joins the party!"));
+                container.Add(new EffectContainer());
+                dialogueImages.Add(new DialogueImages(null));
             }
             else
             {
                 player.GetComponent<PlayerDataMono>().data.UnlockPartyMember(7);
-                alt_converted_text.Add("You do not have enough room in your party");
-                alt_container.Add(new EffectContainer());
-                alt_converted_images.Add(null);
+                text.Add(new ExpandedString("You do not have enough room in your party"));
+                container.Add(new EffectContainer());
+                dialogueImages.Add(new DialogueImages(null));
             }
 
+            base.Start();
             base.Interact();
 
             StartCoroutine(LateDestroy());

@@ -285,16 +285,6 @@
             "saves": []
         },
         {
-            "name": "Library",
-            "objects": [
-                {
-                    "o": "White Knight",
-                    "interacted": false
-                }
-            ],
-            "saves": []
-        },
-        {
             "name": "NightclubBackstage",
             "objects": [
                 {
@@ -331,6 +321,16 @@
                 },
                 {
                     "o": "MeatdogEnthusiast",
+                    "interacted": false
+                }
+            ],
+            "saves": []
+        },
+        {
+            "name": "Library",
+            "objects": [
+                {
+                    "o": "White Knight",
                     "interacted": false
                 }
             ],
