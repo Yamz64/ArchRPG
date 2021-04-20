@@ -876,6 +876,10 @@ public class CharacterStatJsonConverter
             //names[num] = go.unitName;
             statuses[num].status_effects = go.statuses;
         }
+        if (go.currentHP <= 0)
+        {
+            dead[num] = true;
+        }
     }
 
     public void UpdatePlayerData(ref PlayerData p)

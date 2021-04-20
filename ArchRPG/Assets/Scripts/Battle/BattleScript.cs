@@ -1885,6 +1885,12 @@ public class BattleScript : MonoBehaviour
             }
             else if (InputManager.GetButtonDown("Interact"))
             {
+                if (highlighted_item >= data.GetInventorySize())
+                {
+                    dialogue.text = "Can't use empty space";
+                    CloseUseItemMenu();
+                    CloseMenu(2);
+                }
                 switch (cursor_position)
                 {
                     case 9:
@@ -5602,6 +5608,7 @@ public class BattleScript : MonoBehaviour
                 }
             }
         }
+        loader.money = data.GetMoney();
         loader.Save(PlayerPrefs.GetInt("_active_save_file_"));
         yield return new WaitForSeconds(0.5f);
         yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
