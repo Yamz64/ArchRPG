@@ -12,6 +12,7 @@ public class PlayerData : CharacterStats
         party_stats = new List<CharacterStats>();
         added_party_members = new bool[u_char_count];
         added_party_sans = new int[u_char_count];
+        dead_party_members = new bool[u_char_count];
         if(l == false)
         {
             CharacterStatJsonConverter data = new CharacterStatJsonConverter(PlayerPrefs.GetInt("_active_save_file_"));
@@ -66,6 +67,7 @@ public class PlayerData : CharacterStats
                 {
                     UnlockPartyMember(i);
                     SetUnlockedSAN(i, temp.GetUnlockedSAN(i));
+                    SetUnlockedDead(i, temp.GetUnlockedDead(i));
                 }
                 else
                 {
@@ -135,7 +137,7 @@ public class PlayerData : CharacterStats
     public void SetSavedPosition(Vector2 p) { saved_position = p; }
 
     //party functions
-    public void AddPartyMember(CharacterStats c) {
+    public void AddPartyMember(CharacterStats c, bool max_hp = true) {
         if (party_stats.Count < 3)
         {
             //loop through party stats to find the first available position for the new party member
@@ -156,8 +158,16 @@ public class PlayerData : CharacterStats
             }
             c.SetLVL(GetLVL());
             c.UpdateStats();
-            c.SetHP(c.GetHPMAX());
-            c.SetSP(c.GetSPMax());
+            if (max_hp)
+            {
+                c.SetHP(c.GetHPMAX());
+                c.SetSP(c.GetSPMax());
+            }
+            else
+            {
+                c.SetHP(0);
+                c.SetSP(0);
+            }
             party_stats.Add(c);
         }
     }
@@ -175,6 +185,8 @@ public class PlayerData : CharacterStats
     }
     public int GetUnlockedSAN(int index) { return added_party_sans[index]; }
     public void SetUnlockedSAN(int index, int SAN) { added_party_sans[index] = SAN; }
+    public bool GetUnlockedDead(int index) { return dead_party_members[index]; }
+    public void SetUnlockedDead(int index, bool DED) { dead_party_members[index] = DED; }
     public void UpdatePartySan()
     {
         for(int i=0; i<party_stats.Count; i++)
@@ -210,6 +222,47 @@ public class PlayerData : CharacterStats
                     break;
                 case "EmberMoon":
                     SetUnlockedSAN(9, party_stats[i].GetSAN());
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    public void UpdatePartyDeath()
+    {
+        for (int i = 0; i < party_stats.Count; i++)
+        {
+            switch (party_stats[i].GetName())
+            {
+                case "Clyve":
+                    SetUnlockedDead(0, party_stats[i].GetDead());
+                    break;
+                case "Jim":
+                    SetUnlockedDead(1, party_stats[i].GetDead());
+                    break;
+                case "Norm":
+                    SetUnlockedDead(2, party_stats[i].GetDead());
+                    break;
+                case "Shirley":
+                    SetUnlockedDead(3, party_stats[i].GetDead());
+                    break;
+                case "Little Ralphy":
+                    SetUnlockedDead(4, party_stats[i].GetDead());
+                    break;
+                case "Lucy":
+                    SetUnlockedDead(5, party_stats[i].GetDead());
+                    break;
+                case "Tim":
+                    SetUnlockedDead(6, party_stats[i].GetDead());
+                    break;
+                case "WhiteKnight":
+                    SetUnlockedDead(7, party_stats[i].GetDead());
+                    break;
+                case "OliverSprout":
+                    SetUnlockedDead(8, party_stats[i].GetDead());
+                    break;
+                case "EmberMoon":
+                    SetUnlockedDead(9, party_stats[i].GetDead());
                     break;
                 default:
                     break;
@@ -836,5 +889,6 @@ public class PlayerData : CharacterStats
      * 9 - Ember Moon
     */
     private bool[] added_party_members;
+    private bool[] dead_party_members;
     private int[] added_party_sans;
 }

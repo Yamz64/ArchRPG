@@ -46,6 +46,7 @@ public class CharacterStats
             HP = h;
             if (HP > HP_max) HP = HP_max;
         }
+        else HP = 0;
         if (HP <= 0)
         {
             HP = 0;
@@ -561,6 +562,7 @@ public class CharacterStatJsonConverter
         spent_ep = false;
         unlocked_sans = new int[10] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         unlocked_characters = new bool[10] { false, false, false, false, false, false, false, false, false, false };
+        unlocked_deaths = new bool[10] { false, false, false, false, false, false, false, false, false, false };
         dead = new bool[1] { false };
         progress = 0;
         money = 0;
@@ -587,6 +589,7 @@ public class CharacterStatJsonConverter
     public CharacterStatJsonConverter(PlayerData p)
     {
         p.UpdatePartySan();
+        p.UpdatePartyDeath();
         flee = false;
         spent_ep = p.GetSpentEP();
         statuses = new List<StatusEffectContainer>();
@@ -645,6 +648,7 @@ public class CharacterStatJsonConverter
         {
             unlocked_sans[i] = p.GetUnlockedSAN(i);
             unlocked_characters[i] = p.GetUnlockedMember(i);
+            unlocked_deaths[i] = p.GetUnlockedDead(i);
         }
 
         dead = new bool[p.GetPartySize() + 1];
@@ -996,10 +1000,12 @@ public class CharacterStatJsonConverter
             {
                 p.UnlockPartyMember(i);
                 p.SetUnlockedSAN(i, unlocked_sans[i]);
+                p.SetUnlockedDead(i, unlocked_deaths[i]);
             }
             else
             {
                 p.SetUnlockedSAN(i, 0);
+                p.SetUnlockedDead(i, unlocked_deaths[i]);
             }
         }
 
@@ -1143,6 +1149,7 @@ public class CharacterStatJsonConverter
     public bool spent_ep;               //flagged as true if the player has spent ep
     public int[] unlocked_sans;         //the sanities of unlocked party members
     public bool[] unlocked_characters;  //list of unlocked characters
+    public bool[] unlocked_deaths;      //list of dead party members
     public bool[] dead;                 //which party members are dead
 
     public int progress;                //how far in the game the player is

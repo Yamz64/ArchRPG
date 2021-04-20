@@ -2939,6 +2939,18 @@ public class PauseMenuHandler : MonoBehaviour
                 case 5:
                     temp = new Lucy();
                     break;
+                case 6:
+                    temp = new Tim();
+                    break;
+                case 7:
+                    temp = new WhiteKnight();
+                    break;
+                case 8:
+                    temp = new OliverSprout();
+                    break;
+                case 9:
+                    temp = new EmberMoon();
+                    break;
                 default:
                     temp = new Clyve();
                     break;
@@ -4280,6 +4292,7 @@ public class PauseMenuHandler : MonoBehaviour
                             UpdatePartySwap();
                             swap_offset = 0;
                             cursor_position = 0;
+                            swap = false;
                             break;
                         case 3:
                             if (warp_unlock)
@@ -4600,13 +4613,24 @@ public class PauseMenuHandler : MonoBehaviour
                     temp.SetPos(data.GetPartyMember(highlighted_party_member).GetPos());
                     temp.SetLVL(data.GetLVL());
                     temp.UpdateStats();
-                    if (!temp.GetDead())
+
+                    //see if the party member that is stored is dead if so then mark temp as dead
+                    if (data.GetUnlockedDead(selected)) temp.SetDead(true);
+                    if (temp.GetDead())
+                    {
+                        temp.SetHP(0);
+                        temp.SetSP(0);
+                    }else if(!temp.GetDead())
                     {
                         temp.SetHP(temp.GetHPMAX());
                         temp.SetSP(temp.GetSPMax());
                     }
+                    data.RemovePartyWeapon(highlighted_party_member);
+                    data.RemovePartyArmor(highlighted_party_member);
+                    data.RemovePartyTrinket(highlighted_party_member);
                     data.RemovePartyMember(highlighted_party_member);
-                    data.AddPartyMember(temp);
+                    if (temp.GetDead()) data.AddPartyMember(temp, false);
+                    else data.AddPartyMember(temp);
                     UpdatePartySwap();
                     cursor_position = 0;
                     swap_offset = 0;
