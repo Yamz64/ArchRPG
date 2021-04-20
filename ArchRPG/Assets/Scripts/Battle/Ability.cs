@@ -3325,14 +3325,14 @@ namespace OliverSproutAbilities
         {
             target = user;
             user.setSP(user.currentSP - cost);
-            //If frontline, swap to Peace
+            //If War, swap to Peace
             if (user.mode == 1)
             {
                 swapper = 2;
                 user.mode = 0;
                 user.ImageFilePath = "CharacterSprites/Oliver_peace";
             }
-            //If backline, swap to war
+            //If Peace, swap to war
             else if (user.mode == 0)
             {
                 swapper = 1;
@@ -3517,7 +3517,7 @@ namespace EmberMoonAbilities
             cost = 8;
             damage = 15;
             damageType = 1;
-            target = 3;
+            target = 0;
             customAbility = 3;
         }
 
@@ -3527,15 +3527,17 @@ namespace EmberMoonAbilities
             {
                 if (targets[i] != null)
                 {
-                    if (i == 0 || i == 2)
+                    if (targets[i].currentHP > 0)
                     {
-                        targets[i].giveStatus("Conductive");
-                    }
-                    else
-                    {
-                        int val = user.takeDamageCalc(targets[i], damage, damageType, false
-);
-                        targets[i].takeDamage(val);
+                        if (i == 0 || i == 2)
+                        {
+                            targets[i].giveStatus("Conductive");
+                        }
+                        else
+                        {
+                            int val = user.takeDamageCalc(targets[i], damage, damageType, false);
+                            targets[i].takeDamage(val);
+                        }
                     }
                 }
             }
