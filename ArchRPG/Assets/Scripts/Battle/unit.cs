@@ -601,7 +601,7 @@ public class unit
         Debug.Log("id == " + id);
         if (id.Equals("OtherworldlyGaze"))
         {
-            abilities.Add(new EldritchAbilities.OtherworldyGaze());
+            abilities.Add(new EldritchAbilities.OtherworldlyGaze());
         }
         else if (id.Equals("RuinousWave"))
         {
@@ -2399,7 +2399,7 @@ public class PlayerUnit : unit
         //Add any eldritch abilities
         if (edi.Contains("OtherworldlyGaze"))
         {
-            abilities.Add(new EldritchAbilities.OtherworldyGaze());
+            abilities.Add(new EldritchAbilities.OtherworldlyGaze());
         }
         if (edi.Contains("RuinousWave"))
         {

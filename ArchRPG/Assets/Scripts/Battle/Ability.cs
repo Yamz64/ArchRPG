@@ -483,7 +483,7 @@ public static class EldritchAbilities
     public static List<Ability> GetAll()
     {
         List<Ability> ebi = new List<Ability>();
-        ebi.Add(new OtherworldyGaze());
+        ebi.Add(new OtherworldlyGaze());
         ebi.Add(new RuinousWave());
         ebi.Add(new VampiricBetrayal());
         ebi.Add(new BeseechTheAbyss());
