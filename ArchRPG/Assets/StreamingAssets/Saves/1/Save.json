@@ -1,7 +1,7 @@
 {
     "position": {
-        "x": -9.5,
-        "y": -6.751721382141113
+        "x": 27.0,
+        "y": 2.5
     },
     "flee": false,
     "spent_ep": false,
@@ -371,17 +371,12 @@
             ]
         }
     ],
-    "active_scene": "FinalCutscene",
+    "active_scene": "",
     "names": [
         "Player",
         "Clyve",
         "Jim"
     ],
     "e_abilities": [],
-    "enemy_names": [
-        "God",
-        "Danny",
-        "",
-        ""
-    ]
+    "enemy_names": []
 }

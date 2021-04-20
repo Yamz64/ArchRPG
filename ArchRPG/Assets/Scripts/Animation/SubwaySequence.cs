@@ -13,6 +13,15 @@ public class SubwaySequence : InteractableBaseClass
     private PlayerDialogueBoxHandler player;
     private PauseMenuHandler pause;
 
+    IEnumerator Load()
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<TransitionHandler>().FadeDriver();
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().interaction_protection = true;
+        yield return new WaitForEndOfFrame();
+        yield return new WaitUntil(() => GameObject.FindGameObjectWithTag("Player").GetComponent<TransitionHandler>().transition_completed);
+        SceneManager.LoadScene("City1");
+    }
+
     IEnumerator HoundEncounter()
     {
         //open text box and initialize writing variables
@@ -160,7 +169,11 @@ public class SubwaySequence : InteractableBaseClass
         }
         else
         {
-            SceneManager.LoadScene("City1");
+            //first save the player's data and set the new spawn position
+            CharacterStatJsonConverter data = new CharacterStatJsonConverter(GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDataMono>().data);
+            data.position = new Vector2(27f, 2.5f);
+            data.Save(PlayerPrefs.GetInt("_active_save_file_"));
+            StartCoroutine(Load());
         }
     }
 }
