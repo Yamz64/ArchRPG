@@ -1543,7 +1543,7 @@ namespace EnemyAbilities
         public ElectricMeat()
         {
             name = "Electric Meat Stimulation";
-            type = 2;
+            type = 1;
             statusEffect = "Chutzpah Electrified";
             defaultPriority = priority = 5;
             nextPriority = 0;
