@@ -2041,9 +2041,6 @@ public class BattleScript : MonoBehaviour
                     ppgs.Add(po1);
                     ppgs.Add(po2);
 
-
-                   
-
                     i1 = currentUnit;
                     i2 = currentAlly;
                     int speed = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI();
@@ -2070,6 +2067,17 @@ public class BattleScript : MonoBehaviour
                     i1 = 5;
                     i2 = 5;
 
+                    pp1 = new GameObject().transform;
+                    pp2 = new GameObject().transform;
+
+                    po1 = new GameObject();
+                    po2 = new GameObject();
+
+                    Destroy(pp1.gameObject);
+                    Destroy(pp2.gameObject);
+                    Destroy(po1.gameObject);
+                    Destroy(po2.gameObject);
+
 
                     if (cursor_position == 1 || cursor_position == 3)
                     {
@@ -2095,7 +2103,8 @@ public class BattleScript : MonoBehaviour
                     }
                     else
                     {
-                        while (partyUnits[currentUnit] == null && currentUnit < partyUnits.Count) currentUnit++;
+                        while ((partyUnits[currentUnit] == null || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.currentHP <= 0) 
+                            && currentUnit < partyUnits.Count) currentUnit++;
                         if (currentUnit >= partyUnits.Count)
                         {
                             moves = 0;
@@ -3080,7 +3089,7 @@ public class BattleScript : MonoBehaviour
                         }
                         else
                         {
-                            dialogue.text = go.unitName + " failed and were unable to escape";
+                            dialogue.text = go.unitName + " failed and was unable to escape";
                             yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         }
                     }
