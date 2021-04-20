@@ -130,6 +130,7 @@ public class CharacterStats
     }
     public virtual void AddAbility(Ability a)
     {
+        if (abilities == null) abilities = new List<Ability>();
         abilities.Add(a);
     }
     public virtual void ClearAbilities() { abilities = new List<Ability>(); }
@@ -822,36 +823,6 @@ public class CharacterStatJsonConverter
             id.GetComponent<UnitMono>().mainUnit.unitName = names[num];
             id.GetComponent<UnitMono>().mainUnit.statuses = statuses[num].status_effects;
             id.GetComponent<UnitMono>().mainUnit.giveStatus("");
-            if (id.GetComponent<UnitMono>().mainUnit.unitName == "Player")
-            {
-                for (int x = 0; x < e_abilities.Length; x++)
-                {
-                    if (e_abilities[x] == "OtherworldlyGaze")
-                    {
-                        id.GetComponent<UnitMono>().mainUnit.abilities.Add(new EldritchAbilities.OtherworldyGaze());
-                    }
-                    else if (e_abilities[x] == "RuinousWave")
-                    {
-                        id.GetComponent<UnitMono>().mainUnit.abilities.Add(new EldritchAbilities.RuinousWave());
-                    }
-                    else if (e_abilities[x] == "VampiricBetrayal")
-                    {
-                        id.GetComponent<UnitMono>().mainUnit.abilities.Add(new EldritchAbilities.VampiricBetrayal());
-                    }
-                    else if (e_abilities[x] == "BeseechTheAbyss")
-                    {
-                        id.GetComponent<UnitMono>().mainUnit.abilities.Add(new EldritchAbilities.BeseechTheAbyss());
-                    }
-                    else if (e_abilities[x] == "SanityBeam")
-                    {
-                        id.GetComponent<UnitMono>().mainUnit.abilities.Add(new EldritchAbilities.SanityBeam());
-                    }
-                    else if (e_abilities[x] == "UltimateSacrifice")
-                    {
-                        id.GetComponent<UnitMono>().mainUnit.abilities.Add(new EldritchAbilities.UltimateSacrifice());
-                    }
-                }
-            }
             
             //id.GetComponent<UnitMono>().mainUnit = g;
             return id;

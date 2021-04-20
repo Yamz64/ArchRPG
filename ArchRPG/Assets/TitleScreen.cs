@@ -53,8 +53,6 @@ public class TitleScreen : MonoBehaviour
     private Color black;
     private Color white;
 
-    private KeyCode presser = KeyCode.Space;
-
     ScanSettings settings = new ScanSettings
     {
         ScanFlags = ScanFlags.Key,

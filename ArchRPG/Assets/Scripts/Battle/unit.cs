@@ -598,27 +598,28 @@ public class unit
 
     public void addEldritch(string id)
     {
-        if (id == "OtherworldlyGaze")
+        Debug.Log("id == " + id);
+        if (id.Equals("OtherworldlyGaze"))
         {
             abilities.Add(new EldritchAbilities.OtherworldyGaze());
         }
-        else if (id == "RuinousWave")
+        else if (id.Equals("RuinousWave"))
         {
             abilities.Add(new EldritchAbilities.RuinousWave());
         }
-        else if (id == "BeseechTheAbyss")
+        else if (id.Equals("BeseechTheAbyss"))
         {
             abilities.Add(new EldritchAbilities.BeseechTheAbyss());
         }
-        if (id == "VampiricBetrayal")
+        if (id.Equals("VampiricBetrayal"))
         {
             abilities.Add(new EldritchAbilities.VampiricBetrayal());
         }
-        else if (id == "SanityBeam")
+        else if (id.Equals("SanityBeam"))
         {
             abilities.Add(new EldritchAbilities.SanityBeam());
         }
-        else if (id == "UltimateSacrifice")
+        else if (id.Equals("UltimateSacrifice"))
         {
             abilities.Add(new EldritchAbilities.UltimateSacrifice());
         }
@@ -8369,7 +8370,7 @@ public class HighwayHorror : unit
     //Uses Hound stats at moment
     public HighwayHorror()
     {
-        ImageFilePath = "";
+        ImageFilePath = "EnemySprites/Highway Horror";
         unitName = "Highway Horror";
         loadSprites();
 

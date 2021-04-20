@@ -3455,9 +3455,17 @@ public class BattleScript : MonoBehaviour
                 if (loader.names[i] == "Player")
                 {
                     pc = unitGo.gameObject.GetComponent<UnitMono>().mainUnit;
+                    List<Ability> ebi = EldritchAbilities.GetEldritchAbilities();
                     for (int h = 0; h < loader.e_abilities.Length; h++)
                     {
-                        unitGo.gameObject.GetComponent<UnitMono>().mainUnit.addEldritch(loader.e_abilities[h]);
+                        for (int v = 0; v < ebi.Count; v++)
+                        {
+                            if (loader.e_abilities[h] == ebi[v].name)
+                            {
+                                unitGo.gameObject.GetComponent<UnitMono>().mainUnit.addEldritch(loader.e_abilities[h]);
+                                break;
+                            }
+                        }
                     }
                 }
                 partyUnits[loader.positions[i]] = unitGo;
@@ -3477,7 +3485,6 @@ public class BattleScript : MonoBehaviour
         {
             if (!loader.enemy_names[i].Equals("")) activeEnemies += 1;
         }
-        Debug.Log("Activee == " + activeEnemies);
 
         if (activeEnemies == 1) targetStations = targetStations1;
         else if (activeEnemies == 2) targetStations = targetStations2;
@@ -5620,7 +5627,12 @@ public class BattleScript : MonoBehaviour
     IEnumerator NextScene()
     {
         yield return new WaitForSeconds(2f);
+        if (state != battleState.LOSE)
         SceneManager.LoadScene(loader.active_scene);
+        else
+        {
+            SceneManager.LoadScene("GameOver");
+        }
     }
 
     //Use to display text when an ability is chosen at the wrong line
