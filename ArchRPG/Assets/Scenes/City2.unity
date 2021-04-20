@@ -13070,6 +13070,7 @@ MonoBehaviour:
   enemy_names:
   - Conniving Cone
   - Highay Horror
+  - Disposal Demon
   roll_delay: 2
   roll_min: 1
   enemy_encounter_chance: 50
