@@ -9,6 +9,15 @@ public class LoadingZoneBehavior : MonoBehaviour
     public Vector2 spawn_position;
     public string scene;
 
+    IEnumerator Load()
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<TransitionHandler>().FadeDriver();
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().interaction_protection = true;
+        yield return new WaitForEndOfFrame();
+        yield return new WaitUntil(() => GameObject.FindGameObjectWithTag("Player").GetComponent<TransitionHandler>().transition_completed);
+        SceneManager.LoadScene(scene);
+    }
+
     public virtual void LoadScene()
     {
         if (mark_interactable)
@@ -29,7 +38,7 @@ public class LoadingZoneBehavior : MonoBehaviour
         data.Save(PlayerPrefs.GetInt("_active_save_file_"));
 
         //load the next scene
-        SceneManager.LoadScene(scene);
+        StartCoroutine(Load());
     }
 
     private void OnTriggerEnter2D(Collider2D other)

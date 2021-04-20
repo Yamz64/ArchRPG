@@ -4834,6 +4834,7 @@ public class PauseMenuHandler : MonoBehaviour
     void Start()
     {
         InputManager.Load();
+        GetComponent<TransitionHandler>().FadeoutDriver();
         menu_mode = false;
         menu_input = false;
         item_select_menu = false;
