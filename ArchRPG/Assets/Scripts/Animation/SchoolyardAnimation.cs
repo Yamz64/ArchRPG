@@ -71,7 +71,7 @@ public class SchoolyardAnimation : InteractableBaseClass
         }
 
         //check to see if the player's progress has advanced past this state, and if so then destroy this gameObject
-        CharacterStatJsonConverter char_info = new CharacterStatJsonConverter(PlayerPrefs.GetInt("_active_save_file_"));
+        CharacterStatJsonConverter char_info = new CharacterStatJsonConverter(player.GetComponent<PlayerDataMono>().data);
         if (char_info.progress > 0) Destroy(gameObject);
 
         //see if Danny has been interacted with and the player has not fleed from combat (this means the player has beat the boss)
@@ -83,20 +83,43 @@ public class SchoolyardAnimation : InteractableBaseClass
             {
                 if (map_manager.current_map.objects[i].interacted)
                 {
-                    if (!char_info.flee && char_info.enemy_names != null)
+                    //check to see if fled from combat
+                    //yes
+                    if (char_info.flee)
                     {
-                        if (char_info.enemy_names[0] == "Student Body") beaten = true;
+                        //check to see if just fought student body
+                        if(char_info.enemy_names != null)
+                        {
+                            if(char_info.enemy_names.GetLength(0) > 0)
+                            {
+                                if(char_info.enemy_names[0] == "Student Body")
+                                {
+                                    interacted = false;
+                                    beaten = false;
+                                }
+                                else
+                                {
+                                    interacted = true;
+                                    beaten = true;
+                                }
+                            }
+                            else
+                            {
+                                interacted = true;
+                                beaten = true;
+                            }
+                        }
                         else
                         {
-                            interacted = false;
-                            map_manager.current_map.objects[i].interacted = false;
+                            interacted = true;
+                            beaten = true;
                         }
-
                     }
+                    //no
                     else
                     {
-                        interacted = false;
-                        map_manager.current_map.objects[i].interacted = false;
+                        interacted = true;
+                        beaten = true;
                     }
                 }
                 break;
