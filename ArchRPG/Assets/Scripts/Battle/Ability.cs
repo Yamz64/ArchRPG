@@ -35,6 +35,73 @@ public class Ability
         statIndex.Add("Madness");         //23
         statIndex.Add("Doomed");          //24
     }
+    public Ability(Ability a)
+    {
+        statIndex = new List<string>();
+        statIndex.Add("Vomiting");        //0
+        statIndex.Add("Aspirating");      //1
+        statIndex.Add("Weeping");         //2
+        statIndex.Add("Eye_Bleeding");    //3
+        statIndex.Add("Blunt_Trauma");    //4
+        statIndex.Add("Hyperactive");     //5
+        statIndex.Add("Inspired");        //6
+        statIndex.Add("Neurotic");        //7
+        statIndex.Add("Restrained");      //8
+        statIndex.Add("Consumed");        //9
+        statIndex.Add("Diseased");        //10
+        statIndex.Add("Flammable");       //11
+        statIndex.Add("Hysteria");        //12
+        statIndex.Add("Analyzed");        //13
+        statIndex.Add("Zealous");         //14
+        statIndex.Add("Cancerous");       //15
+        statIndex.Add("Confident");       //16
+        statIndex.Add("Spasms");          //17
+        statIndex.Add("Conductive");      //18
+        statIndex.Add("Reactive");        //19
+        statIndex.Add("Zonked");          //20
+        statIndex.Add("Chutzpah");        //21
+        statIndex.Add("Lethargic");       //22
+        statIndex.Add("Madness");         //23
+        statIndex.Add("Doomed");          //24
+        eldritch = a.eldritch;
+        target = a.target;
+        enemyTarget = a.enemyTarget;
+        name = a.name;
+        type = a.type;
+        position = a.position;
+        swapper = a.swapper;
+        selfSwapper = a.selfSwapper;
+        cost = a.cost;damage = a.damage;
+        selfDamage = a.selfDamage;
+        sanity_damage = a.sanity_damage;
+        statusEffect = a.statusEffect;
+        selfStatus = a.selfStatus;
+        damageType = a.damageType;
+        level_cost = a.level_cost;
+        image_file_path = a.image_file_path;
+        desc1 = a.desc1;
+        desc2 = a.desc2;
+        fast = a.fast;
+        use_pow = a.use_pow;
+        moneySteal = a.moneySteal;
+        priority = a.priority;
+        defaultPriority = a.defaultPriority;
+        nextPriority = a.nextPriority;
+        statCounter = a.statCounter;
+        bigStatus = a.bigStatus;
+        alteredStatus = a.alteredStatus;
+        alteredCrit = a.alteredCrit;
+        multiHitMin = a.multiHitMin;
+        multiHitMax = a.multiHitMax;
+        chance2Die = a.chance2Die;
+        customAbility = a.customAbility;
+        canUse = a.canUse;
+        doAggro = a.doAggro;
+        randoDamage = a.randoDamage;
+        randoMin = a.randoMin;
+        randoMax = a.randoMax;
+        shuffle = a.shuffle;
+    }
     public virtual void Use(){
         //Used the ability
     }

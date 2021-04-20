@@ -964,7 +964,7 @@ public class CharacterStatJsonConverter
         for (int i=0; i<e_abilities.GetLength(0); i++)
         {
             //try to find a valid eldritch ability, if it exists and add it to the player's abilities
-            System.Type t = System.Type.GetType(e_abilities[i]);
+            System.Type t = typeof(EldritchAbilities).GetNestedType(e_abilities[i]);
             p.AddAbility((Ability)System.Activator.CreateInstance(t));
         }
 

@@ -61,6 +61,17 @@ public class PlayerData : CharacterStats
                 SetUseMP(true);
             }
 
+            //add additional abilities
+            for(int i=0; i<temp.GetAbilityCount(); i++)
+            {
+                bool found_ability = false;
+                for(int j=0; j<GetAbilityCount(); j++)
+                {
+                    if (temp.GetAbility(i).name == GetAbility(j).name) found_ability = true;
+                }
+                if (!found_ability) AddAbility(new Ability(temp.GetAbility(i)));
+            }
+
             for (int i=0; i<u_char_count; i++)
             {
                 if (temp.GetUnlockedMember(i))
