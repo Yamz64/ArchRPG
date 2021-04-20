@@ -1,7 +1,7 @@
 {
     "position": {
-        "x": -2.359999895095825,
-        "y": -3.0199999809265138
+        "x": -9.5,
+        "y": -6.751721382141113
     },
     "flee": false,
     "spent_ep": false,
@@ -359,7 +359,7 @@
             ]
         }
     ],
-    "active_scene": "SampleScene",
+    "active_scene": "FinalCutscene",
     "names": [
         "Player",
         "Clyve",
@@ -367,9 +367,9 @@
     ],
     "e_abilities": [],
     "enemy_names": [
-        "Locker Lurker",
-        "Locker Lurker",
-        "Locker Lurker",
-        "Locker Lurker"
+        "God",
+        "Danny",
+        "",
+        ""
     ]
 }
