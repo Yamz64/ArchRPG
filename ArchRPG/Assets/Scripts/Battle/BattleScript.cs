@@ -3471,6 +3471,7 @@ public class BattleScript : MonoBehaviour
         {
             if (!loader.enemy_names[i].Equals("")) activeEnemies += 1;
         }
+        Debug.Log("Activee == " + activeEnemies);
 
         if (activeEnemies == 1) targetStations = targetStations1;
         else if (activeEnemies == 2) targetStations = targetStations2;
@@ -4337,7 +4338,7 @@ public class BattleScript : MonoBehaviour
                             {
                                 enemyDeaths++;
                                 yield return unitDeath(enemyUnits[x-4].GetComponent<UnitMono>().mainUnit);
-                                if (enemyDeaths == enemyUnits.Count)
+                                if (enemyDeaths == activeEnemies)
                                 {
                                     state = battleState.WIN;
                                     yield return battleEnd();
@@ -4401,8 +4402,8 @@ public class BattleScript : MonoBehaviour
             if (uni.abilities[ata].target == 0)
             {
                 uni.abilities[ata].UseAttack(uni, target);
-                Debug.Log("Used ability");
                 StartCoroutine(flashHeal(target));
+                
             }
             else if (uni.abilities[ata].target == 1)
             {
@@ -4734,7 +4735,6 @@ public class BattleScript : MonoBehaviour
             dialogue.text = doer.OutputText(uni, target);
             yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
         }
-        Debug.Log("Made to end");
     }
 
     //Use a basic attack against the target
@@ -4818,7 +4818,7 @@ public class BattleScript : MonoBehaviour
             enemyDeaths++;
             StartCoroutine(unitDeath(target));
             yield return levelUp(target.giveEXP());
-            if (enemyDeaths == enemyUnits.Count)
+            if (enemyDeaths == activeEnemies)
             {
                 state = battleState.WIN;
                 StartCoroutine(battleEnd());

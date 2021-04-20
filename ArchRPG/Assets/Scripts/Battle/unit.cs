@@ -8846,10 +8846,10 @@ public class God : unit
         LCK = 20;
 
         abilities = new List<Ability>();
-        abilities.Add(new EnemyAbilities.LighterFluid());
-        abilities.Add(new EnemyAbilities.ElectricMeat());
-        abilities.Add(new EnemyAbilities.MeatMold());
-        abilities.Add(new EnemyAbilities.Entrecote());
+        abilities.Add(new EnemyAbilities.IncomprehensibleVisage());
+        abilities.Add(new EnemyAbilities.IncomprehensibleThought());
+        abilities.Add(new EnemyAbilities.IncomprehensibleAssault());
+        abilities.Add(new EnemyAbilities.ExtraplanarParasite());
     }
 }
 
@@ -8881,10 +8881,10 @@ public class God2 : unit
         LCK = 48;
 
         abilities = new List<Ability>();
-        abilities.Add(new EnemyAbilities.LighterFluid());
-        abilities.Add(new EnemyAbilities.ElectricMeat());
-        abilities.Add(new EnemyAbilities.MeatMold());
-        abilities.Add(new EnemyAbilities.Entrecote());
+        abilities.Add(new EnemyAbilities.Doom());
+        abilities.Add(new EnemyAbilities.Paroxysm());
+        abilities.Add(new EnemyAbilities.IncomprehensibleAssault());
+        abilities.Add(new EnemyAbilities.IncomprehensibleThought());
     }
 }
 
