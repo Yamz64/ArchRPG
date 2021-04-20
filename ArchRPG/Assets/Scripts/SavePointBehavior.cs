@@ -218,6 +218,7 @@ public class SavePointBehavior : InteractableBaseClass
             yield return new WaitForEndOfFrame();
 
             GameObject player = GameObject.FindGameObjectWithTag("Player");
+            player.GetComponent<PauseMenuHandler>().warp_unlock = true;
             player.GetComponent<PauseMenuHandler>().menu_mode = true;
             player.GetComponent<PauseMenuHandler>().menu_input = true;
             player.GetComponent<PauseMenuHandler>().OpenMenu(6);

@@ -39321,6 +39321,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1396058554207331182, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: current_map.saves.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331182, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
       propertyPath: current_map.name
       value: City1
       objectReference: {fileID: 0}
@@ -39339,6 +39343,18 @@ PrefabInstance:
     - target: {fileID: 1396058554207331182, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
       propertyPath: current_map.objects.Array.data[3].o
       value: MeatdogEnthusiast
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331182, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: current_map.saves.Array.data[0].name
+      value: Subway Exit
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331182, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: current_map.saves.Array.data[0].location.x
+      value: 0.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331182, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: current_map.saves.Array.data[0].location.y
+      value: -0.52
       objectReference: {fileID: 0}
     - target: {fileID: 1396058554207331183, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
       propertyPath: m_Name

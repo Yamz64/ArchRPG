@@ -125,58 +125,6 @@
             ]
         },
         {
-            "name": "Subway",
-            "objects": [
-                {
-                    "o": "Ralph",
-                    "interacted": false
-                },
-                {
-                    "o": "Lucy",
-                    "interacted": false
-                },
-                {
-                    "o": "SubwayColliders",
-                    "interacted": false
-                },
-                {
-                    "o": "Stretch Resistant Trash Bag",
-                    "interacted": false
-                }
-            ],
-            "saves": [
-                {
-                    "name": "Entrance",
-                    "location": {
-                        "x": -3.9744768142700197,
-                        "y": -27.0
-                    }
-                }
-            ]
-        },
-        {
-            "name": "City1",
-            "objects": [
-                {
-                    "o": "TestSave",
-                    "interacted": false
-                },
-                {
-                    "o": "Tim",
-                    "interacted": true
-                },
-                {
-                    "o": "MeatFactoryLoadingZone",
-                    "interacted": true
-                },
-                {
-                    "o": "MeatdogEnthusiast",
-                    "interacted": false
-                }
-            ],
-            "saves": []
-        },
-        {
             "name": "NightclubDanceFloor",
             "objects": [
                 {
@@ -335,6 +283,66 @@
                 }
             ],
             "saves": []
+        },
+        {
+            "name": "City1",
+            "objects": [
+                {
+                    "o": "TestSave",
+                    "interacted": true
+                },
+                {
+                    "o": "Tim",
+                    "interacted": true
+                },
+                {
+                    "o": "MeatFactoryLoadingZone",
+                    "interacted": true
+                },
+                {
+                    "o": "MeatdogEnthusiast",
+                    "interacted": false
+                }
+            ],
+            "saves": [
+                {
+                    "name": "Subway Exit",
+                    "location": {
+                        "x": 25.5,
+                        "y": 2.5
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Subway",
+            "objects": [
+                {
+                    "o": "Ralph",
+                    "interacted": false
+                },
+                {
+                    "o": "Lucy",
+                    "interacted": false
+                },
+                {
+                    "o": "SubwayColliders",
+                    "interacted": true
+                },
+                {
+                    "o": "Stretch Resistant Trash Bag",
+                    "interacted": false
+                }
+            ],
+            "saves": [
+                {
+                    "name": "Entrance",
+                    "location": {
+                        "x": -3.9744768142700197,
+                        "y": -27.0
+                    }
+                }
+            ]
         }
     ]
 }
