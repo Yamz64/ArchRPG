@@ -595,6 +595,7 @@ public class CharacterStatJsonConverter
         progress = p.GetProgress();
         money = p.GetMoney();
         EP = p.GetEP();
+        sacrifice_count = p.GetSacrificeCount();
 
         //initialize all array savedatas to sizes equal to the party
         HPs = new int[p.GetPartySize()+1];
@@ -880,6 +881,7 @@ public class CharacterStatJsonConverter
         p.SetMoney(money);
         p.SetProgress(progress);
         p.SetEP(EP);
+        p.SetSacrificeCount(sacrifice_count);
         p.SetSpentEP(spent_ep);
 
         //update other stats as well as the experience level
@@ -1146,6 +1148,7 @@ public class CharacterStatJsonConverter
     public int progress;                //how far in the game the player is
     public int money;                   //stores how much money the player has
     public int EP;                      //stores how many eldritch points the player has
+    public int sacrifice_count;         //how many sacrifices the player has made
 
     public int[] HPs;                               //the current hp levels of the party members
     public int[] SPs;                               //the current sp levels of the party members

@@ -10333,6 +10333,10 @@ MonoBehaviour:
     - {fileID: 7850457915285947069}
     - {fileID: 2643416080418757734}
     - {fileID: 2103049879080071079}
+  - positions:
+    - {fileID: 1954380614432503359}
+    - {fileID: 2422871821881304381}
+    - {fileID: 674844520537649291}
   inventory_offset: 0
   equipped_offset: 0
   ability_offset: 0

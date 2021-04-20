@@ -4917,6 +4917,98 @@ public class PauseMenuHandler : MonoBehaviour
         cursor.transform.position = cursor_positions[14].positions[cursor_position].transform.position;
     }
 
+    public void SacrificeMenuRoutine()
+    {
+        if (InputManager.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
+        {
+            if (!menu_input)
+            {
+                cursor_position--;
+                UpdateWarpMenu();
+                audio_handler.PlaySound("Sound/SFX/cursor");
+            }
+            menu_input = true;
+        }
+        else if (InputManager.GetAxisRaw("Vertical") < 0.0f && cursor_position < data.GetPartySize())
+        {
+            if (!menu_input)
+            {
+                cursor_position++;
+                UpdateWarpMenu();
+                audio_handler.PlaySound("Sound/SFX/cursor");
+            }
+            menu_input = true;
+        }
+        else if (InputManager.GetButtonDown("Interact"))
+        {
+            if (!menu_input)
+            {
+                if (cursor_position >= data.GetPartySize()) return;
+
+                //first check to see if the chosen member to sacrifice is valid
+                bool dead = data.GetPartyMember(cursor_position).GetDead();
+
+                if (dead)
+                {
+                    //permanently remove the character from the game
+                    switch (data.GetPartyMember(cursor_position).GetName())
+                    {
+                        case "Clyve":
+                            data.LockPartyMember(0);
+                            break;
+                        case "Jim":
+                            data.LockPartyMember(1);
+                            break;
+                        case "Norm":
+                            data.LockPartyMember(2);
+                            break;
+                        case "Shirley":
+                            data.LockPartyMember(3);
+                            break;
+                        case "Ralph":
+                            data.LockPartyMember(4);
+                            break;
+                        case "Lucy":
+                            data.LockPartyMember(5);
+                            break;
+                        case "Tim":
+                            data.LockPartyMember(6);
+                            break;
+                        case "WhiteKnight":
+                            data.LockPartyMember(7);
+                            break;
+                        case "OliverSprout":
+                            data.LockPartyMember(8);
+                            break;
+                        case "EmberMoon":
+                            data.LockPartyMember(9);
+                            break;
+                        default:
+                            break;
+                    }
+                    //remove party member from party and grant EP
+                    data.RemovePartyMember(cursor_position);
+                    int ep_gain = 0;
+                    if (data.GetSacrificeCount() < 6) ep_gain = 1;
+                    else ep_gain = 2;
+                    data.SetEP(data.GetEP() + ep_gain);
+
+                    //reset cursor position and play sound
+                    cursor_position = 0;
+                    UpdateSacrificeMenu();
+                    audio_handler.PlaySound("Sound/SFX/select");
+                }
+            }
+            menu_input = true;
+        }
+        else
+        {
+            menu_input = false;
+        }
+
+        cursor.transform.position = cursor_positions[15].positions[cursor_position].transform.position;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -5031,6 +5123,9 @@ public class PauseMenuHandler : MonoBehaviour
                     break;
                 case 10:
                     WarpMenuRoutine();
+                    break;
+                case 11:
+                    SacrificeMenuRoutine();
                     break;
                 default:
                     break;

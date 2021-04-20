@@ -26,6 +26,7 @@ public class PlayerData : CharacterStats
             SetMoney(temp.GetMoney());
             SetProgress(temp.GetProgress());
             SetEP(temp.GetEP());
+            SetSacrificeCount(temp.GetSacrificeCount());
             SetSpentEP(temp.GetSpentEP());
             
             for(int i=0; i<temp.GetInventorySize(); i++)
@@ -126,6 +127,8 @@ public class PlayerData : CharacterStats
     public void SetMaxExperience(int e) { max_experience = e; }
     public int GetEP() { return EP; }
     public void SetEP(int e) { EP = e; }
+    public int GetSacrificeCount() { return sacrifice_count; }
+    public void SetSacrificeCount(int s) { sacrifice_count = s; }
     public int GetMoney() { return money; }
     public void SetMoney(int m) { money = m; }
     public Vector2 GetSavedPosition() { return saved_position; }
@@ -164,6 +167,11 @@ public class PlayerData : CharacterStats
     {
         added_party_members[index] = true;
         SetUnlockedSAN(index, 100);
+    }
+    public void LockPartyMember(int index)
+    {
+        added_party_members[index] = false;
+        SetUnlockedSAN(index, 0);
     }
     public int GetUnlockedSAN(int index) { return added_party_sans[index]; }
     public void SetUnlockedSAN(int index, int SAN) { added_party_sans[index] = SAN; }
@@ -808,6 +816,7 @@ public class PlayerData : CharacterStats
     private int experience;
     private int max_experience;
     private int EP;
+    private int sacrifice_count;
     private int money;
     private Vector2 saved_position;
     private List<Item> inventory;
