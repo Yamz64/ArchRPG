@@ -395,6 +395,13 @@ public static class Consumables
         {
             character.SetHP(character.GetHP() + 50);
         }
+
+        public override void Use(unit user)
+        {
+            user.healDamage(50);
+            user.setHP(user.getHP());
+            Remove();
+        }
     }
 
     public class BaconLollipop : Item
@@ -413,6 +420,13 @@ public static class Consumables
         {
             character.SetHP(character.GetHP() + 80);
         }
+
+        public override void Use(unit user)
+        {
+            user.healDamage(80);
+            user.setHP(user.getHP());
+            Remove();
+        }
     }
 
     public class Adderall : Item
@@ -430,6 +444,12 @@ public static class Consumables
         public override void Use()
         {
             character.SetStatus(5, 0);
+            Remove();
+        }
+
+        public override void Use(unit user)
+        {
+            user.statuses[17] = user.statuses[12] = -1;
             Remove();
         }
     }
@@ -451,6 +471,12 @@ public static class Consumables
             character.SetStatus(0, Random.Range(5, 8));
             character.SetStatus(14, Random.Range(5, 8));
         }
+
+        public override void Use(unit user)
+        {
+            user.giveStatus("Vomiting Zealous");
+            Remove();
+        }
     }
 
     public class Cocaine : Item
@@ -469,6 +495,12 @@ public static class Consumables
         {
             character.SetStatus(5, Random.Range(5, 8));
             character.SetStatus(12, Random.Range(7, 10));
+        }
+
+        public override void Use(unit user)
+        {
+            user.giveStatus("Hyperactive Hysteria");
+            Remove();
         }
     }
 
@@ -489,6 +521,13 @@ public static class Consumables
             character.SetStatus(5, 0);
             character.SetStatus(8, Random.Range(1, 2));
         }
+
+        public override void Use(unit user)
+        {
+            user.statuses[12] = -1;
+            user.giveStatus("Restrained");
+            Remove();
+        }
     }
 
     public class PizzaSlice : Item
@@ -507,6 +546,13 @@ public static class Consumables
         {
             character.SetHP(character.GetHP() + 75);
         }
+
+        public override void Use(unit user)
+        {
+            user.healDamage(75);
+            user.setHP(user.getHP());
+            Remove();
+        }
     }
 
     public class Soda : Item
@@ -524,6 +570,12 @@ public static class Consumables
         public override void Use()
         {
             character.SetSP(character.GetSP() + 75);
+        }
+
+        public override void Use(unit user)
+        {
+            user.setSP(user.getSP() + 75);
+            Remove();
         }
     }
 
