@@ -1407,7 +1407,7 @@ public class unit
                 giveStatus(breaker[i]);
             }
         }
-        int ran;
+        int ran = 0;
         bool val = true;
         if (id.Equals("Vomiting")           && statuses[0] == -1)
         {

@@ -2217,7 +2217,7 @@ namespace ClyveAbilities
             cost = 10;
             position = 1;
             chance2Die = 10;
-
+            target = 3;
         }
     }
 
@@ -2403,7 +2403,7 @@ namespace JimAbilities
                 "Can only be used once per combat";
             desc2 = "Ok Jim definitely has magic powers and they are so cool like holy shit.";
             cost = 50;
-            position = 1;
+            position = 2;
             type = 1;
             target = 3;
         }
@@ -3376,8 +3376,9 @@ namespace OliverSproutAbilities
             desc1 = "Swaps to the front, deals restrained via a choking attack, and moderate physical ATK. Takes moderate SAN damage.";
             desc2 = "When someone talks shit about Oliver’s favorite bands, he makes sure that they won’t be able to speak ever again.";
             cost = 16;
-            damage = 14;
+            damage = 17;
             sanity_damage = 10;
+            position = 1;
             statusEffect = "Restrained";
         }
     }
@@ -3393,7 +3394,6 @@ namespace OliverSproutAbilities
             cost = 8;
             damage = 11;
             sanity_damage = 15;
-            position = 1;
             statusEffect = "Eye_Bleeding";
             selfSwapper = 1;
         }
