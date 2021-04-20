@@ -285,20 +285,6 @@
             "saves": []
         },
         {
-            "name": "NightclubBackstage",
-            "objects": [
-                {
-                    "o": "Tim",
-                    "interacted": false
-                },
-                {
-                    "o": "DiscoHooligans",
-                    "interacted": true
-                }
-            ],
-            "saves": []
-        },
-        {
             "name": "NightclubHallway",
             "objects": [
                 {
@@ -331,6 +317,20 @@
             "objects": [
                 {
                     "o": "White Knight",
+                    "interacted": false
+                }
+            ],
+            "saves": []
+        },
+        {
+            "name": "NightclubBackstage",
+            "objects": [
+                {
+                    "o": "Tim",
+                    "interacted": false
+                },
+                {
+                    "o": "DiscoHooligans",
                     "interacted": false
                 }
             ],
