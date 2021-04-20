@@ -936,13 +936,13 @@ public class unit
 
                     if (valS > 0 && enemy)
                     {
-                        //bool s = target.takeSanityDamage(valS);
-                        target.setSAN(target.sanity);
+                        target.takeSanityDamage(valS);
+                        //target.setSAN(target.sanity);
                     }
                     else if (valS > 0 && !enemy)
                     {
-                        //bool s = takeSanityDamage(valS);
-                        setSAN(sanity);
+                        takeSanityDamage(valS);
+                        //setSAN(sanity);
                     }
 
                     //There is a status effect for the user to get
