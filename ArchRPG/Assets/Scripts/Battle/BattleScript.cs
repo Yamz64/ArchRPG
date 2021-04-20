@@ -1885,6 +1885,12 @@ public class BattleScript : MonoBehaviour
             }
             else if (InputManager.GetButtonDown("Interact"))
             {
+                if (highlighted_item >= data.GetInventorySize())
+                {
+                    dialogue.text = "Can't use empty space";
+                    CloseUseItemMenu();
+                    CloseMenu(2);
+                }
                 switch (cursor_position)
                 {
                     case 9:
