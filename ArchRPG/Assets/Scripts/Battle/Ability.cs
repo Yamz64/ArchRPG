@@ -2403,7 +2403,7 @@ namespace JimAbilities
                 "Can only be used once per combat";
             desc2 = "Ok Jim definitely has magic powers and they are so cool like holy shit.";
             cost = 50;
-            position = 1;
+            position = 2;
             type = 1;
             target = 3;
         }
