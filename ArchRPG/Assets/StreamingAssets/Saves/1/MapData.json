@@ -177,24 +177,6 @@
             "saves": []
         },
         {
-            "name": "Pizzeria",
-            "objects": [
-                {
-                    "o": "RatBomb",
-                    "interacted": false
-                },
-                {
-                    "o": "PizzaGuy",
-                    "interacted": false
-                },
-                {
-                    "o": "MeatdogEnthusiast",
-                    "interacted": false
-                }
-            ],
-            "saves": []
-        },
-        {
             "name": "NightclubDanceFloor",
             "objects": [
                 {
@@ -332,6 +314,24 @@
                 {
                     "o": "Bouncer",
                     "interacted": true
+                }
+            ],
+            "saves": []
+        },
+        {
+            "name": "Pizzeria",
+            "objects": [
+                {
+                    "o": "RatBomb",
+                    "interacted": false
+                },
+                {
+                    "o": "PizzaGuy",
+                    "interacted": true
+                },
+                {
+                    "o": "MeatdogEnthusiast",
+                    "interacted": false
                 }
             ],
             "saves": []
