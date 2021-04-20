@@ -4215,6 +4215,12 @@ public class PauseMenuHandler : MonoBehaviour
                                 cursor_position = 0;
                             }
                             break;
+                        case 4:
+                            cursor_position = 0;
+                            break;
+                        case 5:
+                            SceneManager.LoadScene("TitleScreen");
+                            break;
                         default:
                             break;
                     }
