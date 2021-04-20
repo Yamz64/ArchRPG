@@ -494,11 +494,11 @@ public static class EldritchAbilities
 
     //***~RYAN~*** DONE
     //This ability needs to buff the player with both zealous and confident, but inflict weeping on a random party member
-    public class OtherworldyGaze : Ability
+    public class OtherworldlyGaze : Ability
     {
-        public OtherworldyGaze()
+        public OtherworldlyGaze()
         {
-            name = "OtherworldyGaze";
+            name = "OtherworldlyGaze";
             desc1 = "Buffs self with zealous and inspired, inflicts weeping on a random party member";
             desc2 = "You stare into the great beyond and uncover truths unbeknownst to that of your underlings...";
             cost = 8;
