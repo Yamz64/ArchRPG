@@ -501,7 +501,7 @@ public class PlayerData : CharacterStats
     {
         if (member < party_stats.Count)
         {
-            if (party_stats[member].GetWeapon() != null)
+            if (party_stats[member].GetArmor() != null)
             {
                 Armor temp = new Armor(party_stats[member].GetArmor());
                 AddItem(temp);
@@ -559,7 +559,7 @@ public class PlayerData : CharacterStats
     {
         if (member < party_stats.Count)
         {
-            if (party_stats[member].GetWeapon() != null)
+            if (party_stats[member].GetTrinket() != null)
             {
                 Trinket temp = new Trinket(party_stats[member].GetTrinket());
                 AddItem(temp);

@@ -3822,11 +3822,11 @@ public class PauseMenuHandler : MonoBehaviour
                         //no
                         if (highlighted_party_member == 0)
                         {
-                            //see if there is a weapon equipped
+                            //see if there is armor equipped
                             //no
                             if (data.GetArmor() == null)
                             {
-                                //equip the weapon
+                                //equip the armor
                                 data.SetArmor((Armor)equippables[cursor_position - 3 + equipped_offset]);
                             }
                             //yes
