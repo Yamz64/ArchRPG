@@ -3376,8 +3376,9 @@ namespace OliverSproutAbilities
             desc1 = "Swaps to the front, deals restrained via a choking attack, and moderate physical ATK. Takes moderate SAN damage.";
             desc2 = "When someone talks shit about Oliver’s favorite bands, he makes sure that they won’t be able to speak ever again.";
             cost = 16;
-            damage = 14;
+            damage = 17;
             sanity_damage = 10;
+            position = 1;
             statusEffect = "Restrained";
         }
     }
@@ -3393,7 +3394,6 @@ namespace OliverSproutAbilities
             cost = 8;
             damage = 11;
             sanity_damage = 15;
-            position = 1;
             statusEffect = "Eye_Bleeding";
             selfSwapper = 1;
         }
