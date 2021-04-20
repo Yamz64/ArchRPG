@@ -321,13 +321,13 @@ public class unit
             if (hasMP)
             {
                 spSideText.text = "MP";
-                Color temp = new Color(1.0f, 1.0f, 0.0f);
+                Color temp = new Color(0.0f, (174.0f / 255.0f), 1.0f);
                 spBar.color = temp;
             }
             else
             {
                 spSideText.text = "SP";
-                Color temp = new Color(0.0f, (174.0f/255.0f), 1.0f);
+                Color temp = new Color(1.0f, 1.0f, 0.0f);
                 spBar.color = temp;
             }
             if (maxSP <= 0) { maxSP = 1; }
@@ -685,18 +685,24 @@ public class unit
                     {
                         valA = valA * 1.5f;
                     }
-                    if (statuses[14] == -1)
+
+                    if (statuses[2] != -1)
                     {
-                        val += (int)(val * valA);
-                        val2 += (int)(val2 * valA);
+                        valA = valA * 0.66f;
                     }
                     //Zealous
-                    else
+                    if (statuses[14] != -1)
                     {
                         valA = valA * 1.25f;
-                        val += (int)(val * valA);
-                        val2 += (int)(val2 * valA);
                     }
+
+                    if (statuses[6] != -1)
+                    {
+                        valA = valA * 1.25f;
+                    }
+
+                    val += (int)(val * valA);
+                    val2 += (int)(val2 * valA);
 
                     float valD = (float)target.DEF / 300;
 
@@ -742,16 +748,26 @@ public class unit
                     {
                         valD = valD * 1.2f;
                     }
+                    if (statuses[2] != -1)
+                    {
+                        valP = valP * 0.8f;
+                    }
 
 
                     if (sanity < 50 && sanity > 0 && statuses[24] != -1)
                     {
                         valP = valP * 1.25f;
-                        valD = valD * 0.75f;
                     }
                     else if (sanity == 0 && statuses[24] != -1)
                     {
                         valP = valP * 1.50f;
+                    }
+                    if (target.sanity < 50 && sanity > 0)
+                    {
+                        valD = valD * 0.75f;
+                    }
+                    else if (sanity == 0)
+                    {
                         valD = valD * 0.50f;
                     }
                     //Check if POW is affected
@@ -764,7 +780,7 @@ public class unit
                     //Zealous
                     else
                     {
-                        valP = valP * 1.25f;
+                        valP = valP * 1.5f;
                         val += (int)(val * valP);
                         valS += (int)(valS * valP);
                         val2 += (int)(val2 * valP);
@@ -869,22 +885,34 @@ public class unit
                     }
                     if (ran >= reze + statBuff || ran == 1 || ata.type != 0)
                     {
-                        int andi = UnityEngine.Random.Range(0, 4);
+                        int andi = UnityEngine.Random.Range(0, 7);
                         if (andi == 0)
                         {
-                            giveStatus("Vomiting");
+                            target.giveStatus("Vomiting");
                         }
                         else if (andi == 1)
                         {
-                            giveStatus("Weeping");
+                            target.giveStatus("Weeping");
                         }
                         else if (andi == 2)
                         {
-                            giveStatus("Blunt_Trauma");
+                            target.giveStatus("Blunt_Trauma");
                         }
                         else if (andi == 3)
                         {
-                            giveStatus("Lethargic");
+                            target.giveStatus("Lethargic");
+                        }
+                        else if (andi == 4)
+                        {
+                            target.giveStatus("Hyperactive");
+                        }
+                        else if (andi == 5)
+                        {
+                            target.giveStatus("Zealous");
+                        }
+                        else if (andi == 6)
+                        {
+                            target.giveStatus("Spasms");
                         }
                     }
                 }
@@ -905,16 +933,6 @@ public class unit
                     val += (val / 2);
                     critted = true;
                     Debug.Log("Got a crit!");
-                }
-                //If unit has weeping
-                if (statuses[2] != -1)
-                {
-                    int dum = UnityEngine.Random.Range(1, 4);
-                    if (dum == 1)
-                    {
-                        val = val / 5;
-                        reduced = true;
-                    }
                 }
                 //If unit has eye_bleeding
                 if (statuses[3] != -1)
@@ -1452,9 +1470,10 @@ public class unit
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[10] = ran;
-            if (maxHP > 20)
+            int bust = maxHP - ((maxHP / 4) + 5);
+            if (bust > 0)
             {
-                maxHP -= 20;
+                maxHP = bust;
                 if (currentHP > maxHP) currentHP = maxHP;
             }
             
@@ -4946,15 +4965,15 @@ public class RalphUnit : unit
         }
         if (level >= 6)
         {
-            abilities.Add(new RalphAbilities.Taser());
+            abilities.Add(new RalphAbilities.OopsCoffeeSpilled());
         }
         if (level >= 10)
         {
-            abilities.Add(new RalphAbilities.OopsCoffeeSpilled());
+            abilities.Add(new RalphAbilities.LetLooseTheDonuts());
         }
         if (level >= 15)
         {
-            abilities.Add(new RalphAbilities.LetLooseTheDonuts());
+            abilities.Add(new RalphAbilities.Taser());
         }
         if (level >= 20)
         {
@@ -5224,15 +5243,15 @@ public class RalphUnit : unit
         }
         if (level >= 6)
         {
-            abilities.Add(new RalphAbilities.Taser());
+            abilities.Add(new RalphAbilities.OopsCoffeeSpilled());
         }
         if (level >= 10)
         {
-            abilities.Add(new RalphAbilities.OopsCoffeeSpilled());
+            abilities.Add(new RalphAbilities.LetLooseTheDonuts());
         }
         if (level >= 15)
         {
-            abilities.Add(new RalphAbilities.LetLooseTheDonuts());
+            abilities.Add(new RalphAbilities.Taser());
         }
         if (level >= 20)
         {
@@ -5516,15 +5535,15 @@ public class LucyUnit : unit
         }
         if (level >= 8)
         {
-            abilities.Add(new LucyAbilities.FeedTheMasses());
+            abilities.Add(new LucyAbilities.FrenziedInvasion());
         }
         if (level >= 12)
         {
-            abilities.Add(new LucyAbilities.FrenziedInvasion());
+            abilities.Add(new LucyAbilities.PropellorRat());
         }
         if (level >= 17)
         {
-            abilities.Add(new LucyAbilities.PropellorRat());
+            abilities.Add(new LucyAbilities.FeedTheMasses());
         }
         if (level >= 20)
         {
@@ -5794,15 +5813,15 @@ public class LucyUnit : unit
         }
         if (level >= 8)
         {
-            abilities.Add(new LucyAbilities.FeedTheMasses());
+            abilities.Add(new LucyAbilities.FrenziedInvasion());
         }
         if (level >= 12)
         {
-            abilities.Add(new LucyAbilities.FrenziedInvasion());
+            abilities.Add(new LucyAbilities.PropellorRat());
         }
         if (level >= 17)
         {
-            abilities.Add(new LucyAbilities.PropellorRat());
+            abilities.Add(new LucyAbilities.FeedTheMasses());
         }
         if (level >= 20)
         {
@@ -7231,12 +7250,12 @@ public class OliverSproutUnit : unit
         if (level >= 5)
         {
             abilities.Add(new OliverSproutAbilities.GoodVibes());
-            abilities.Add(new OliverSproutAbilities.BohemianGrip());
+            abilities.Add(new OliverSproutAbilities.EyeGouge());
         }
         if (level >= 12)
         {
             abilities.Add(new OliverSproutAbilities.ChillaxDude());
-            abilities.Add(new OliverSproutAbilities.EyeGouge());
+            abilities.Add(new OliverSproutAbilities.BohemianGrip());
         }
         if (level >= 20)
         {
@@ -7503,12 +7522,12 @@ public class OliverSproutUnit : unit
         if (level >= 5)
         {
             abilities.Add(new OliverSproutAbilities.GoodVibes());
-            abilities.Add(new OliverSproutAbilities.BohemianGrip());
+            abilities.Add(new OliverSproutAbilities.EyeGouge());
         }
         if (level >= 12)
         {
             abilities.Add(new OliverSproutAbilities.ChillaxDude());
-            abilities.Add(new OliverSproutAbilities.EyeGouge());
+            abilities.Add(new OliverSproutAbilities.BohemianGrip());
         }
         if (level >= 20)
         {

@@ -2274,7 +2274,7 @@ namespace JimAbilities
             name = "Uncanny Remedy";
             desc1 = "Full party weak heal (scales with POW)";
             desc2 = "The pain is suddenly, gone? It seems Jim’s concussed brain has tapped into some strange curative magic.";
-            cost = 5;
+            cost = 13;
             position = 2;
             type = 1;
             target = 3;
@@ -2307,6 +2307,7 @@ namespace JimAbilities
             cost = 7;
             target = 2;
             statusEffect = "Spasms";
+            selfStatus = "Spasms";
         }
     }
 
@@ -2319,13 +2320,13 @@ namespace JimAbilities
             desc2 = "Jim puts on a funny hat, pulls out some tarot cards, and " +
                 "does an elaborate dance. Not sure if it does anything magic but seeing him try " +
                 "so hard really fills you with the desire to do the same";
-            cost = 9;
+            cost = 12;
             type = 1;
         }
         public override void UseAttack(unit user, unit target)
         {
             target.healDamage(10);
-            target.setSP(target.currentSP + 10);
+            target.setSP(target.currentSP + (10 + (10 * user.getPOW())/100));
         }
     }
 
@@ -2334,10 +2335,10 @@ namespace JimAbilities
         public MagicalInspiration()
         {
             name = "Magical Inspiration";
-            desc1 = "Gives one random ally hyperactive, one random ally inspired, and one random ally confident. " +
+            desc1 = "Gives one random ally hyperactive, one random ally inspired, and one random ally confident. Also heals." +
                 "Can only be used once per combat";
             desc2 = "Ok Jim definitely has magic powers and they are so cool like holy shit.";
-            cost = 12;
+            cost = 50;
             position = 1;
             type = 1;
             target = 3;
@@ -2346,28 +2347,20 @@ namespace JimAbilities
         public override void UseAttack(unit user, List<unit> targets)
         {
             user.setSP(user.currentSP - cost);
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < targets.Count; i++)
             {
-                int ran = Random.Range(0, 4);
-                while (targets[ran] == null || targets[ran].currentHP <= 0)
+                if (targets[i].unitName != "Jim")
                 {
-                    ran = Random.Range(0, 4);
+                    targets[i].giveStatus("Hyperactive");
+                    targets[i].giveStatus("Inspired");
+                    targets[i].giveStatus("Chutzpah");
+                    targets[i].setHP(targets[i].currentHP + user.getPOW());
                 }
-                if (i == 0)
+                else
                 {
-                    targets[ran].giveStatus("Hyperactive");
+                    targets[i].giveStatus("Confident");
                 }
-                else if (i == 1)
-                {
-                    targets[ran].giveStatus("Inspired");
-                }
-                else if (i == 2)
-                {
-                    targets[ran].giveStatus("Confident");
-                }
-                targets[ran].setHP(targets[ran].currentHP + 30);
             }
-            canUse = -1;
         }
     }
 
@@ -2380,7 +2373,7 @@ namespace JimAbilities
             desc2 = "Honestly I don’t wanna tell you what he does because just talking about it makes me want to puke.";
             cost = 14;
             type = 0;
-            damage = 15;
+            damage = 25;
             damageType = 4;
             selfStatus = "Vomiting Aspirating Weeping";
             eldritch = true;
@@ -2794,7 +2787,7 @@ namespace LucyAbilities
             desc1 = "Single target debuff attack (Aspirating)";
             desc2 = "These rats have been bred to be the perfect host " +
                 "for a parasitic fungus, the result is unsightly and churns the stomach to look at.";
-            cost = 4;
+            cost = 6;
             target = 0;
             position = 2;
             statusEffect = "Aspirating";
@@ -2827,7 +2820,7 @@ namespace LucyAbilities
             desc1 = "A strong debuff attack (Consumed)";
             desc2 = "Lucy commands her “children” to feed on a " +
                 "target, their appetite is particularly voracious today.";
-            cost = 8;
+            cost = 10;
             target = 0;
             position = 2;
             statusEffect = "Consumed";
@@ -3292,15 +3285,22 @@ namespace OliverSproutAbilities
             desc1 = "Swaps to the back, moderate Single Target Heal";
             desc2 = "Once you’ve known Oliver long enough, you realize that all you need to do is get him some " +
                 "weed and a cosmic brownie and he probably won’t rip off your arms.";
-            cost = 10;
+            cost = 4;
             type = 1;
             selfSwapper = 2;
         }
 
         public override void UseAttack(unit user, unit target)
         {
-            user.setSP(user.currentSP - cost);
-            target.healDamage(15);
+            if (target != null)
+            {
+                if (target.currentHP > 0)
+                {
+                    user.setSP(user.currentSP - cost);
+                    int dope = 7 * (user.getPOW() / 10);
+                    target.healDamage(dope);
+                }
+            }
         }
     }
 
@@ -3311,11 +3311,9 @@ namespace OliverSproutAbilities
             name = "Bohemian Grip";
             desc1 = "Swaps to the front, deals restrained via a choking attack, and moderate physical ATK. Takes moderate SAN damage.";
             desc2 = "When someone talks shit about Oliver’s favorite bands, he makes sure that they won’t be able to speak ever again.";
-            cost = 10;
+            cost = 16;
             damage = 14;
             sanity_damage = 10;
-
-            swapper = 1;
             statusEffect = "Restrained";
         }
     }
@@ -3328,11 +3326,12 @@ namespace OliverSproutAbilities
             desc1 = "PHAT Single target physical ATK inflicts eye bleed. Takes moderate SAN damage.";
             desc2 = "You thought Oliver keeps the fingernails long on his right hand because he doesn’t " +
                 "use a guitar pick, now you know what that’s for.";
-            cost = 15;
-            damage = 25;
+            cost = 8;
+            damage = 11;
             sanity_damage = 15;
             position = 1;
             statusEffect = "Eye_Bleeding";
+            selfSwapper = 1;
         }
     }
 
@@ -3343,16 +3342,17 @@ namespace OliverSproutAbilities
             name = "Chillax, Dude";
             desc1 = "Group inspired buff, minor HP heal";
             desc2 = "You’re having trouble seeing through all this smoke, but that good feeling is telling you it’ll be all fine.";
-            cost = 15;
+            cost = 16;
             type = 1;
             target = 3;
             position = 2;
-            statusEffect = "Inspired";
+            statusEffect = "Confident";
         }
 
         public override void UseAttack(unit user, List<unit> targets)
         {
             user.setSP(user.currentSP - cost);
+            int dope = 7 * (user.getPOW() / 10);
             for (int i = 0; i < targets.Count; i++)
             {
                 if (targets[i] != null)
@@ -3360,7 +3360,7 @@ namespace OliverSproutAbilities
                     if (targets[i].currentHP > 0 && !targets[i].enemy)
                     {
                         targets[i].giveStatus(statusEffect);
-                        targets[i].healDamage(10);
+                        targets[i].healDamage(dope);
                     }
                 }
             }

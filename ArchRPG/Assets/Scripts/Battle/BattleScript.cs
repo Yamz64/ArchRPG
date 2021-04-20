@@ -2504,7 +2504,7 @@ public class BattleScript : MonoBehaviour
                     if (temp[ind].GetComponent<UnitMono>().mainUnit.statuses[0] != -1)
                     {
                         int dum = UnityEngine.Random.Range(1, 4);
-                        if (dum == 1)
+                        if (dum != 1)
                         {
                             newd = temp[ind].GetComponent<UnitMono>().mainUnit.takeDamage(10);
                             dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " took damage from vomiting.";
