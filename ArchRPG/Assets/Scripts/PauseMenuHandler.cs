@@ -3101,6 +3101,83 @@ public class PauseMenuHandler : MonoBehaviour
         }
     }
 
+    public void UpdateSacrificeMenu()
+    {
+        //update EP
+        menus[11].transform.GetChild(2).GetComponent<Text>().text = "EP: " + data.GetEP().ToString();
+
+        //update party information
+        for(int i=3; i<6; i++)
+        {
+            //if player doesn't have another party member set the display to invisible and continue to the next
+            if (i - 3 >= data.GetPartySize()) {
+
+                //image
+                menus[11].transform.GetChild(i).GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+
+                //bars
+                menus[11].transform.GetChild(i).transform.GetChild(2).GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+                menus[11].transform.GetChild(i).transform.GetChild(3).GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+
+                //text
+                menus[11].transform.GetChild(i).transform.GetChild(1).GetComponent<Text>().color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+                menus[11].transform.GetChild(i).transform.GetChild(2).GetChild(0).GetComponent<Text>().color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+                menus[11].transform.GetChild(i).transform.GetChild(3).GetChild(0).GetComponent<Text>().color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+                continue;
+            }
+
+            bool dead = data.GetPartyMember(i - 3).GetDead();
+
+            //update image
+            menus[11].transform.GetChild(i).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetPartyMember(i - 3).GetImageFilepath());
+
+            //update colors
+            if (dead)
+            {
+                //image
+                menus[11].transform.GetChild(i).GetComponent<Image>().color = Color.white;
+
+                //bars
+                menus[11].transform.GetChild(i).transform.GetChild(2).GetComponent<Image>().color = Color.green;
+                if (!data.GetPartyMember(i - 3).GetUseMP())
+                    menus[11].transform.GetChild(i).transform.GetChild(3).GetComponent<Image>().color = Color.yellow;
+                else
+                    menus[11].transform.GetChild(i).transform.GetChild(3).GetComponent<Image>().color = Color.cyan;
+
+                //text
+                menus[11].transform.GetChild(i).transform.GetChild(1).GetComponent<Text>().color = Color.white;
+                menus[11].transform.GetChild(i).transform.GetChild(2).GetChild(0).GetComponent<Text>().color = Color.white;
+                menus[11].transform.GetChild(i).transform.GetChild(3).GetChild(0).GetComponent<Text>().color = Color.white;
+            }
+            else
+            {
+                //image
+                menus[11].transform.GetChild(i).GetComponent<Image>().color = Color.gray;
+
+                //bars
+                menus[11].transform.GetChild(i).transform.GetChild(2).GetComponent<Image>().color = new Color(0.0f, .5f, 0.0f);
+                if (!data.GetPartyMember(i - 3).GetUseMP())
+                    menus[11].transform.GetChild(i).transform.GetChild(3).GetComponent<Image>().color = new Color(Color.yellow.r/2f, Color.yellow.g/2f, Color.yellow.b/2f);
+                else
+                    menus[11].transform.GetChild(i).transform.GetChild(3).GetComponent<Image>().color = new Color(0.0f, .5f, .5f);
+
+                //text
+                menus[11].transform.GetChild(i).transform.GetChild(1).GetComponent<Text>().color = Color.gray;
+                menus[11].transform.GetChild(i).transform.GetChild(2).GetChild(0).GetComponent<Text>().color = Color.gray;
+                menus[11].transform.GetChild(i).transform.GetChild(3).GetChild(0).GetComponent<Text>().color = Color.gray;
+            }
+
+            //set the bars
+            menus[11].transform.GetChild(i).transform.GetChild(2).GetComponent<Image>().fillAmount = (float)data.GetPartyMember(i - 3).GetHP() / data.GetPartyMember(i - 3).GetHPMAX();
+            menus[11].transform.GetChild(i).transform.GetChild(3).GetComponent<Image>().fillAmount = (float)data.GetPartyMember(i - 3).GetSP() / data.GetPartyMember(i - 3).GetSPMax();
+
+            //set the text
+            menus[11].transform.GetChild(i).transform.GetChild(1).GetComponent<Text>().text = data.GetPartyMember(i - 3).GetName();
+            menus[11].transform.GetChild(i).transform.GetChild(2).GetChild(0).GetComponent<Text>().text = string.Format("({0}/{1})", data.GetPartyMember(i - 3).GetHP(), data.GetPartyMember(i - 3).GetHPMAX());
+            menus[11].transform.GetChild(i).transform.GetChild(3).GetChild(0).GetComponent<Text>().text = string.Format("({0}/{1})", data.GetPartyMember(i - 3).GetSAN(), data.GetPartyMember(i - 3).GetSANMax());
+        }
+    }
+
     public void SetChoiceText(string text, bool choice_text = false)
     {
         if (!choice_text) menus[7].transform.GetChild(0).GetComponent<Text>().text = text;
@@ -4216,6 +4293,10 @@ public class PauseMenuHandler : MonoBehaviour
                             }
                             break;
                         case 4:
+                            CloseMenu(6);
+                            OpenMenu(0);
+                            OpenMenu(11);
+                            UpdateSacrificeMenu();
                             cursor_position = 0;
                             break;
                         case 5:
