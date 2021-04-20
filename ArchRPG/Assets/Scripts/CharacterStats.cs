@@ -686,6 +686,9 @@ public class CharacterStatJsonConverter
         }
 
         //populate a list of eldritch abilities from player's abilities
+        int e_ability_count = 0;
+        for(int i=0; i<p.GetAbilityCount(); i++) { if (p.GetAbility(i).eldritch) e_ability_count++; }
+        e_abilities = new string[e_ability_count];
         for(int i=0; i<p.GetAbilityCount(); i++)
         {
             if (p.GetAbility(i).eldritch) e_abilities[i] = p.GetAbility(i).name;
