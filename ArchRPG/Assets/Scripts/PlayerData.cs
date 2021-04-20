@@ -153,6 +153,8 @@ public class PlayerData : CharacterStats
             }
             c.SetLVL(GetLVL());
             c.UpdateStats();
+            c.SetHP(c.GetHPMAX());
+            c.SetSP(c.GetSPMax());
             party_stats.Add(c);
         }
     }
