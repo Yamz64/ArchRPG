@@ -644,6 +644,7 @@ public class CharacterStatJsonConverter
         //add unlocked characters from the player
         unlocked_sans = new int[p.GetUnlockCount()];
         unlocked_characters = new bool[p.GetUnlockCount()];
+        unlocked_deaths = new bool[p.GetUnlockCount()];
         for(int i=0; i<p.GetUnlockCount(); i++)
         {
             unlocked_sans[i] = p.GetUnlockedSAN(i);
