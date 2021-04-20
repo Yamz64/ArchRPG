@@ -2217,7 +2217,7 @@ namespace ClyveAbilities
             cost = 10;
             position = 1;
             chance2Die = 10;
-
+            target = 3;
         }
     }
 
