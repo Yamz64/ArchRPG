@@ -125,4 +125,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EndingSplashScreen.unity
     guid: c244ad60a39afc24787e15b5926e45be
+  - enabled: 1
+    path: Assets/Scenes/ConstructionYard.unity
+    guid: ea3bafa9ba946a243b6baedf737d01ab
   m_configObjects: {}
