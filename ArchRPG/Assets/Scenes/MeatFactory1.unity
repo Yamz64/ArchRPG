@@ -2246,6 +2246,16 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: 0, y: 51, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 2
+      m_TileSpriteIndex: 2
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   m_AnimatedTiles:
   - first: {x: -1, y: 7, z: 0}
     second:
@@ -2460,8 +2470,8 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: b93e4424f04c68348ba79e6a46f1db37, type: 2}
   - m_RefCount: 26
     m_Data: {fileID: 11400000, guid: 5b930d0249a68f84ca78d5e3b21834e3, type: 2}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: b6b322aa51bcdbb4a80d053eff934446, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: d0d825fed951f624a8a97e9a911d4516, type: 2}
   - m_RefCount: 2
@@ -2479,8 +2489,8 @@ Tilemap:
     m_Data: {fileID: 8299469178004929760, guid: 908c3b766824a054b87fc13e360b6bb3, type: 3}
   - m_RefCount: 26
     m_Data: {fileID: 21300000, guid: 329962c5bb27f604badb939be7c218c5, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: 27c50d12aceaa814e821f7c32aa299bf, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 8d3cfa18df65261459f4f0cfe50f0ab7, type: 3}
   - m_RefCount: 2
@@ -2494,7 +2504,7 @@ Tilemap:
   - m_RefCount: 2
     m_Data: {fileID: 21300000, guid: c62da5bcc7600244a91ca2cde471c53b, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 196
+  - m_RefCount: 197
     m_Data:
       e00: 1
       e01: 0
@@ -2513,13 +2523,13 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 196
+  - m_RefCount: 197
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -18, y: -3, z: 0}
-  m_Size: {x: 31, y: 35, z: 1}
+  m_Size: {x: 31, y: 55, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -9489,7 +9499,7 @@ MonoBehaviour:
   encounter_type: 1
   enemy_names:
   - Conniving Cone
-  - DisposalDemon
+  - Disposal Demon
   - Meat Puppet
   - Meat Puppet
   roll_delay: 2
