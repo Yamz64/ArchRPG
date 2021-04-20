@@ -1135,7 +1135,6 @@ namespace EnemyAbilities
         {
             name = "Bounce";
             damage = 15;
-            enemyTarget = 1;
             swapper = 2;
             priority = defaultPriority = 5;
             statusEffect = "Blunt_Trauma";
@@ -1149,7 +1148,6 @@ namespace EnemyAbilities
             name = "Stun Gun";
             damage = 12;
             damageType = 2;
-            enemyTarget = 1;
             swapper = 2;
             priority = defaultPriority = 2;
             nextPriority = 0;
@@ -1163,7 +1161,6 @@ namespace EnemyAbilities
         {
             name = "Beat it, Kid";
             sanity_damage = 7;
-            enemyTarget = 1;
             swapper = 2;
             priority = defaultPriority = 2;
         }
