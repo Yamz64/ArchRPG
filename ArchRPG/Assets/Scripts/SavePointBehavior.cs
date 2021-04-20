@@ -118,6 +118,7 @@ public class SavePointBehavior : InteractableBaseClass
 
             //heal everyone and restore SP in the party and the player do not heal dead party members unless it's the player
             PlayerData data = player.GetComponent<PlayerDataMono>().data;
+            if (data.GetDead()) data.SetDead(false);
             data.SetHP(data.GetHPMAX());
             data.SetSP(data.GetSPMax());
             for (int i = 0; i < data.GetPartySize(); i++)
@@ -226,6 +227,7 @@ public class SavePointBehavior : InteractableBaseClass
 
             //heal everyone in the party and the player do not heal dead party members unless it's the player
             PlayerData data = player.GetComponent<PlayerDataMono>().data;
+            if (data.GetDead()) data.SetDead(false);
             data.SetHP(data.GetHPMAX());
             data.SetSP(data.GetSPMax());
             for (int i = 0; i < data.GetPartySize(); i++)
@@ -274,6 +276,7 @@ public class SavePointBehavior : InteractableBaseClass
 
             //heal everyone in the party and the player do not heal dead party members unless it's the player
             PlayerData data = player.GetComponent<PlayerDataMono>().data;
+            if (data.GetDead()) data.SetDead(false);
             data.SetHP(data.GetHPMAX());
             data.SetSP(data.GetSPMax());
             for (int i = 0; i < data.GetPartySize(); i++)
