@@ -3326,14 +3326,14 @@ namespace OliverSproutAbilities
             target = user;
             user.setSP(user.currentSP - cost);
             //If frontline, swap to Peace
-            if (user.position == 0)
+            if (user.mode == 1)
             {
                 swapper = 2;
                 user.mode = 0;
                 user.ImageFilePath = "CharacterSprites/Oliver_peace";
             }
             //If backline, swap to war
-            else if (user.position == 1)
+            else if (user.mode == 0)
             {
                 swapper = 1;
                 user.mode = 1;

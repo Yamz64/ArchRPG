@@ -1172,7 +1172,7 @@ public class BattleScript : MonoBehaviour
                                         menu_input = false;
 
                                         //Perform player attacks
-                                        if (moves >= activeUnits)
+                                        if (moves >= activeUnits || currentUnit == 3)
                                         {
                                             moves = 0;
                                             currentUnit = 0;
@@ -1246,7 +1246,7 @@ public class BattleScript : MonoBehaviour
                                         menu_input = false;
 
                                         //Perform player attacks
-                                        if (moves >= activeUnits)
+                                        if (moves >= activeUnits || currentUnit == 3)
                                         {
                                             moves = 0;
                                             currentUnit = 0;
@@ -1295,7 +1295,7 @@ public class BattleScript : MonoBehaviour
                                     menu_input = false;
 
                                     //Perform player attacks
-                                    if (moves >= activeUnits)
+                                    if (moves >= activeUnits || currentUnit == 3)
                                     {
                                         moves = 0;
                                         currentUnit = 0;
@@ -1482,7 +1482,7 @@ public class BattleScript : MonoBehaviour
                 menu_input = true;
 
                 //If this unit is the last one in the party to move
-                if (moves >= activeUnits)
+                if (moves >= activeUnits || currentUnit == 3)
                 {
                     moves = 0;
                     currentUnit = 0;
@@ -1492,7 +1492,7 @@ public class BattleScript : MonoBehaviour
                 else
                 {
                     while ((partyUnits[currentUnit] == null || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
-                                                && currentUnit < partyUnits.Count) currentUnit++;
+                                                && currentUnit < partyUnits.Count && currentUnit < activeUnits) currentUnit++;
                     if (currentUnit >= partyUnits.Count)
                     {
                         moves = 0;
@@ -1645,7 +1645,7 @@ public class BattleScript : MonoBehaviour
                             menu_input = true;
 
                             //If this unit is the last one in the party to move
-                            if (moves >= activeUnits)
+                            if (moves >= activeUnits || currentUnit == 3)
                             {
                                 moves = 0;
                                 currentUnit = 0;
@@ -1713,7 +1713,7 @@ public class BattleScript : MonoBehaviour
                                 menu_input = false;
 
                                 //Perform player attacks
-                                if (moves >= activeUnits)
+                                if (moves >= activeUnits || currentUnit == 3)
                                 {
                                     moves = 0;
                                     currentUnit = 0;
@@ -1913,7 +1913,7 @@ public class BattleScript : MonoBehaviour
                         partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.view.transform.position = here;
                         moves += 1;
 
-                        if (moves >= activeUnits)
+                        if (moves >= activeUnits || currentUnit == 3)
                         {
                             moves = 0;
                             currentUnit = 0;
@@ -2100,7 +2100,7 @@ public class BattleScript : MonoBehaviour
                     CloseMenu(3);
                     menu_input = false;
 
-                    if (moves >= activeUnits)
+                    if (moves >= activeUnits || currentUnit == 3)
                     {
                         moves = 0;
                         currentUnit = 0;
