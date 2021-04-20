@@ -144,8 +144,8 @@ public class MeatFactoryCardReader : InteractableBaseClass
                 }
 
                 interacted = true;
-                GameObject.FindGameObjectWithTag("MapManger").GetComponent<MapDataManager>().SetInteracted(gameObject.name, true);
-                GameObject.FindGameObjectWithTag("MapManger").GetComponent<MapDataManager>().Save();
+                GameObject.FindGameObjectWithTag("MapManager").GetComponent<MapDataManager>().SetInteracted(gameObject.name, true);
+                GameObject.FindGameObjectWithTag("MapManager").GetComponent<MapDataManager>().Save();
                 Destroy(gameObject);
             }
         }
