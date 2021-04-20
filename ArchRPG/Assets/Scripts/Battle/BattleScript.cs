@@ -3182,6 +3182,102 @@ public class BattleScript : MonoBehaviour
                         }
                         else
                         {
+                            //If only targets frontline, switch to next unit
+                            if (enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].enemyTarget == 1)
+                            {
+                                if (actions[z].getTarget() == 0)
+                                {
+                                    if (partyUnits[1] != null)
+                                    {
+                                        if (partyUnits[1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                                        {
+                                            toget = 1;
+                                        }
+                                        else
+                                        {
+                                            dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
+                                                (actions[z].getTarget() + 1) + ", but nobody was there";
+                                        }
+                                    }
+                                    else
+                                    {
+                                        dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
+                                            (actions[z].getTarget() + 1) + ", but nobody was there";
+                                    }
+                                }
+                                else if (actions[z].getTarget() == 1)
+                                {
+                                    if (partyUnits[0] != null)
+                                    {
+                                        if (partyUnits[0].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                                        {
+                                            toget = 0;
+                                        }
+                                        else
+                                        {
+                                            dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
+                                                (actions[z].getTarget() + 1) + ", but nobody was there";
+                                        }
+                                    }
+                                    else
+                                    {
+                                        dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
+                                            (actions[z].getTarget() + 1) + ", but nobody was there";
+                                    }
+                                }
+                            }
+                            //Same, but for backline
+                            else if (enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].enemyTarget == 2)
+                            {
+                                if (actions[z].getTarget() == 2)
+                                {
+                                    if (partyUnits[3] != null)
+                                    {
+                                        if (partyUnits[3].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                                        {
+                                            toget = 3;
+                                        }
+                                        else
+                                        {
+                                            dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
+                                                (actions[z].getTarget() + 1) + ", but nobody was there";
+                                        }
+                                    }
+                                    else
+                                    {
+                                        dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
+                                            (actions[z].getTarget() + 1) + ", but nobody was there";
+                                    }
+                                }
+                                else if (actions[z].getTarget() == 3)
+                                {
+                                    if (partyUnits[2] != null)
+                                    {
+                                        if (partyUnits[2].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                                        {
+                                            toget = 2;
+                                        }
+                                        else
+                                        {
+                                            dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
+                                                (actions[z].getTarget() + 1) + ", but nobody was there";
+                                        }
+                                    }
+                                    else
+                                    {
+                                        dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
+                                            (actions[z].getTarget() + 1) + ", but nobody was there";
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                int baseNum = toget;
+                                while (partyUnits[toget] == null || partyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0 || toget == baseNum)
+                                {
+                                    toget = Random.Range(0, partyUnits.Count);
+                                }
+                            }
                             dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " tried attacking " +
                                 partyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName + ", but they weren't there";
                         }

@@ -1438,7 +1438,7 @@ namespace EnemyAbilities
         public override void UseAttack(unit user, unit target)
         {
             target = user;
-            user.healDamage(15);
+            user.healDamage(35);
         }
     }
 
