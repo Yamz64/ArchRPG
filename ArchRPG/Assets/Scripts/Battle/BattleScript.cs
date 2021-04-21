@@ -72,18 +72,18 @@ public class BattleScript : MonoBehaviour
     public List<MenuPositions> cursor_positions;
 
     //Int to track how many items away from the bottom before the menu can start scrolling
-    public int inventory_offset;
+    private int inventory_offset;
     //Int to track how many abilities away from the bottom before the menu can start scrolling
-    public int ability_offset;
+    private int ability_offset;
     //Int to track how many actions away from the bottom before the menu can start scrolling
-    public int action_offset;
+    private int action_offset;
 
     //Current item (index) being highlighted by cursor
-    public int highlighted_item;
+    private int highlighted_item;
     //Current ability being highlighted
-    public int highlighted_ability;
+    private int highlighted_ability;
     //Current action in base menu (index) being highlighed by cursor
-    public int highlighted_action;
+    private int highlighted_action;
     //Bool to check whether the menu is accepting input
     private bool menu_input;
 
@@ -97,7 +97,7 @@ public class BattleScript : MonoBehaviour
     private bool item_select_menu;
 
     //The chances of the party being able to flee
-    public int fleeChance = 0;
+    private int fleeChance = 0;
 
     unit pc;    //Use as basis for levelling the party
 
@@ -169,22 +169,22 @@ public class BattleScript : MonoBehaviour
     private List<action> actions;
 
     //The current unit in the party that is choosing an action
-    public int currentUnit = 0;
+    private int currentUnit = 0;
 
     //Current ally being selected for using an ability on/swapping
-    public int currentAlly = 0;
+    private int currentAlly = 0;
 
     //The number of moves that should be done by the party
-    public int moves = 0;
+    private int moves = 0;
 
     //The enemy currently being highlighted
-    public int currentEnemy = 0;
+    private int currentEnemy = 0;
 
     //The highest level from the enemies
-    public int highEne = 0;
+    private int highEne = 0;
 
     //The index of the second target (usually for eldritch abilities like sanity beam or ultimate sacrifice)
-    public int target1 = -1;
+    private int target1 = -1;
 
     bool working = false;
 
@@ -5903,10 +5903,12 @@ public class BattleScript : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         if (state != battleState.LOSE)
-        SceneManager.LoadScene(loader.active_scene);
+        {
+            SceneManager.LoadScene(loader.active_scene);
+        }
         else
         {
-            SceneManager.LoadScene("GameOver");
+            SceneManager.LoadScene("GameOverScene");
         }
     }
 
