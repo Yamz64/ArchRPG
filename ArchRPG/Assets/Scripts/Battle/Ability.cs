@@ -507,11 +507,11 @@ public static class EldritchAbilities
             target = 3;
             enemyTarget = -1;
             damage = 0;
-            type = 2;
+            type = 1;
             statusEffect = "Weeping";
             eldritch = true;
         }
-        public void useAttack(unit user, List<unit> targets)
+        public override void UseAttack(unit user, List<unit> targets)
         {
             user.giveStatus("Zealous");
             user.giveStatus("Confident");
@@ -559,7 +559,7 @@ public static class EldritchAbilities
             eldritch = true;
         }
 
-        public void useAttack(unit user, List<unit> targets)
+        public override void UseAttack(unit user, List<unit> targets)
         {
             for (int i = 0; i < targets.Count; i++)
             {
@@ -617,7 +617,7 @@ public static class EldritchAbilities
             eldritch = true;
         }
 
-        public void useAttack(unit user, List<unit> targets)
+        public override void UseAttack(unit user, List<unit> targets)
         {
             user.currentHP = user.maxHP;
             for (int i = 0; i < targets.Count; i++)
@@ -3315,7 +3315,7 @@ namespace OliverSproutAbilities
             cost = 5;
             type = 2;
             shuffle = true;
-            swapper = 1;
+            swapper = 0;
         }
 
         public override void UseAttack(unit user, unit target)

@@ -277,7 +277,13 @@ public class unit
     //Load the sprites for the unit
     public void loadSprites()
     {
-        sprites = Resources.LoadAll<Sprite>(ImageFilePath);
+        if (unitName != "Oliver Sprout") 
+            sprites = Resources.LoadAll<Sprite>(ImageFilePath);
+        else
+        {
+            sprites[0] = Resources.LoadAll<Sprite>("CharacterSprites/Oliver_peace")[0];
+            sprites[1] = Resources.LoadAll<Sprite>("CharacterSprites/Oliver_war")[0];
+        }
     }
 
     //Function to set up the HUD with important data
@@ -285,7 +291,22 @@ public class unit
     {
         if (!pic)
         {
-            view.sprite = sprites[0];
+            if (unitName == "Oliver Sprout")
+            {
+                if (mode == 0)
+                {
+                    view.sprite = Resources.Load<Sprite>("CharacterSprites/Oliver_peace");
+                }
+                else
+                {
+                    view.sprite = Resources.Load<Sprite>("CharacterSprites/Oliver_war");
+                }
+                Debug.Log("sprite == " + view.sprite);
+            }
+            else
+            {
+                view.sprite = sprites[0];
+            }
             if (aggro > 0)
             {
                 Color temp = view.color;
@@ -7000,14 +7021,6 @@ public class OliverSproutUnit : unit
     public OliverSproutUnit(int lev = 1)
     {
         unitName = "Oliver Sprout";
-        if (PlayerPrefs.GetInt("OliverMode") == 1)
-        {
-            ImageFilePath = "CharacterSprites/Oliver_war";
-        }
-        else
-        {
-            ImageFilePath = "CharacterSprites/Oliver_peace";
-        }
         loadSprites();
         level = lev;
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
@@ -7279,6 +7292,11 @@ public class OliverSproutUnit : unit
         {
             abilities.Add(new OliverSproutAbilities.Imagine());
             abilities.Add(new OliverSproutAbilities.RipAndTear());
+        }
+
+        if (sanity <= 50)
+        {
+            abilities.Add(new OliverSproutAbilities.BadVibes());
         }
     }
 
