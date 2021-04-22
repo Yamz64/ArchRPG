@@ -3395,7 +3395,8 @@ public class PauseMenuHandler : MonoBehaviour
                     UpdateInventoryImageandDesc();
                 }
                 menu_input = true;
-            }else if (InputManager.GetButtonDown("Interact"))
+            }
+            /*else if (InputManager.GetButtonDown("Interact"))
             {
                 if (!menu_input)
                 {
@@ -3409,7 +3410,7 @@ public class PauseMenuHandler : MonoBehaviour
                     }
                 }
                 menu_input = true;
-            }
+            }*/
             else
             {
                 menu_input = false;
