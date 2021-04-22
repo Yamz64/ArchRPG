@@ -54,7 +54,7 @@ public class SpeechCutsceneSequence : MonoBehaviour
         {
             for(int j=0; j<unique_dialogues.Count; j++)
             {
-                if(unique_dialogues[j].name == party_members[i].GetName())
+                if(unique_dialogues[j].character_name == party_members[i].GetName())
                 {
                     unique_dialogues[j].UpdateConvertedText();
                     for(int k=0; k<unique_dialogues[j].converted_text.Count; k++) { combined_speeches.Add(unique_dialogues[j].converted_text[k]); }
