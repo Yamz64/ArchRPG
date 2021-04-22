@@ -7,6 +7,7 @@ public class ItemFound : InteractableBaseClass
     public string itemName; //Name of the item
     public string itemDesc; //Text that is displayed after "Found ItemName"
     public string itemID;   //Text ID used to identify item to spawn
+    public bool cani = true;
 
     private PlayerDialogueBoxHandler player;
     private PauseMenuHandler pause;
@@ -55,12 +56,14 @@ public class ItemFound : InteractableBaseClass
         yield return new WaitUntil(() => !player.GetActive());
 
         //Destroy the object so it can't be interacted with again
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        cani = false;
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        cani = true;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDialogueBoxHandler>();
         pause = GameObject.FindGameObjectWithTag("Player").GetComponent<PauseMenuHandler>();
 
@@ -70,7 +73,7 @@ public class ItemFound : InteractableBaseClass
             if (map_manager.current_map.objects[i].o == gameObject.name)
             {
                 if (map_manager.current_map.objects[i].interacted)
-                    Destroy(gameObject);
+                    cani = false;
                 break;
             }
         }
@@ -78,6 +81,7 @@ public class ItemFound : InteractableBaseClass
 
     public override void Interact()
     {
-        StartCoroutine(ItemSequence());
+        if (cani)
+            StartCoroutine(ItemSequence());
     }
 }

@@ -3375,6 +3375,7 @@ MonoBehaviour:
   itemName: Protractor
   itemDesc: You can feel the Mathemtical power flowing through you.
   itemID: Protractor
+  cani: 1
 --- !u!1 &1788079348
 GameObject:
   m_ObjectHideFlags: 0
@@ -3721,7 +3722,7 @@ PrefabInstance:
     - target: {fileID: 4998140645680048167, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 0e04f77c950fab74f8ae78374c1c1af1, type: 3}
+      objectReference: {fileID: 21300000, guid: 433585e284ba70d43929e50edf22dd9f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
 --- !u!1001 &2585402207290697360

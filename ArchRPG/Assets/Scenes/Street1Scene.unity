@@ -10171,7 +10171,7 @@ PrefabInstance:
     - target: {fileID: 4998140645680048167, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 0e04f77c950fab74f8ae78374c1c1af1, type: 3}
+      objectReference: {fileID: 21300000, guid: 433585e284ba70d43929e50edf22dd9f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
 --- !u!1 &1249172613 stripped
@@ -10195,6 +10195,7 @@ MonoBehaviour:
   itemDesc: The first casulty! I'm sure it would want to help prevent more needless
     death.
   itemID: GnomeShard
+  cani: 1
 --- !u!1001 &1260791025
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34722,7 +34723,7 @@ PrefabInstance:
     - target: {fileID: 4998140645680048167, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 0e04f77c950fab74f8ae78374c1c1af1, type: 3}
+      objectReference: {fileID: 21300000, guid: 433585e284ba70d43929e50edf22dd9f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
 --- !u!1 &1951509319 stripped
@@ -34745,6 +34746,7 @@ MonoBehaviour:
   itemName: Mr. Whiskers
   itemDesc: A Cat can count as an item, right?
   itemID: MrWhiskers
+  cani: 1
 --- !u!1 &1953536038
 GameObject:
   m_ObjectHideFlags: 0

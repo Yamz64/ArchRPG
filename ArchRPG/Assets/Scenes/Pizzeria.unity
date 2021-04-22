@@ -3750,7 +3750,7 @@ PrefabInstance:
     - target: {fileID: 4998140645680048167, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 0e04f77c950fab74f8ae78374c1c1af1, type: 3}
+      objectReference: {fileID: 21300000, guid: 433585e284ba70d43929e50edf22dd9f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
 --- !u!1 &2096627587 stripped
@@ -3773,6 +3773,7 @@ MonoBehaviour:
   itemName: Rat Bomb
   itemDesc: The Pizzeria and its Pizzas are lucky this hasn't gone off yet.
   itemID: RatBomb
+  cani: 1
 --- !u!1 &2102447042
 GameObject:
   m_ObjectHideFlags: 0
