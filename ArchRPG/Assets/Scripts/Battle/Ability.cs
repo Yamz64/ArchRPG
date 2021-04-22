@@ -3395,6 +3395,7 @@ namespace OliverSproutAbilities
             damage = 11;
             sanity_damage = 15;
             statusEffect = "Eye_Bleeding";
+            swapper = 1;
             selfSwapper = 1;
         }
     }

@@ -1121,7 +1121,9 @@ public class BattleScript : MonoBehaviour
                             {
                                 match2 = true;
                                 Debug.Log("Ability name == " + partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name
-                                    + ", user mode == " + partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.mode);
+                                    + ", user mode == " + partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.mode 
+                                    + "highlight == " + highlighted_ability);
+                                Debug.Log("Mode 000");
                             }
                             else if ((partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("Bohemian Grip")
                                 || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("Eye Gouge")
@@ -1131,13 +1133,17 @@ public class BattleScript : MonoBehaviour
                             {
                                 match2 = true;
                                 Debug.Log("Ability name == " + partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name
-                                    + ", user mode == " + partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.mode);
+                                    + ", user mode == " + partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.mode
+                                    + "highlight == " + highlighted_ability);
+                                Debug.Log("Mode 111");
                             }
                             else
                             {
                                 match2 = false;
                                 Debug.Log("Ability name == " + partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name
-                                    + ", user mode == " + partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.mode);
+                                    + ", user mode == " + partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.mode
+                                    + "highlight == " + highlighted_ability);
+                                Debug.Log("Mode None");
                             }
                         }
                         else
@@ -1562,8 +1568,9 @@ public class BattleScript : MonoBehaviour
 
                     CloseSelectEnemyMenu();
                     CloseUseAbilityMenu();
+
                     playerTurn();
-                    cursor_position = highlighted_ability + ability_offset;
+                    cursor_position = highlighted_ability - ability_offset;
                     menu_input = false;
                 }
                 else
@@ -1802,7 +1809,7 @@ public class BattleScript : MonoBehaviour
 
                 CloseSelectUnitMenu();
                 CloseUseAbilityMenu();
-                cursor_position = highlighted_ability + ability_offset;
+                cursor_position = highlighted_ability - ability_offset;
                 menu_input = true;
             }
             else
@@ -3690,6 +3697,14 @@ public class BattleScript : MonoBehaviour
                 else if ((loader.names[i] == "Oliver Sprout" || loader.names[i] == "OliverSprout") && !loader.dead[i])
                 {
                     p = new OliverSproutUnit(loader.levels[i]);
+                    if (i < 2)
+                    {
+                        p.mode = 0;
+                    }
+                    else
+                    {
+                        p.mode = 1;
+                    }
                 }
                 else if ((loader.names[i] == "Ember Moon" || loader.names[i] == "EmberMoon") && !loader.dead[i])
                 {
@@ -3738,14 +3753,14 @@ public class BattleScript : MonoBehaviour
                     unitGo.GetComponent<UnitMono>().mainUnit.position = 1;
                     if (unitGo.GetComponent<UnitMono>().mainUnit.unitName == "Oliver Sprout")
                     {
-                        unitGo.GetComponent<UnitMono>().mainUnit.mode = 1;
+                        unitGo.GetComponent<UnitMono>().mainUnit.mode = 0;
                     }
                 }
                 else
                 {
                     if (unitGo.GetComponent<UnitMono>().mainUnit.unitName == "Oliver Sprout")
                     {
-                        unitGo.GetComponent<UnitMono>().mainUnit.mode = 0;
+                        unitGo.GetComponent<UnitMono>().mainUnit.mode = 1;
                     }
                 }
                 p.setHUD();

@@ -301,7 +301,7 @@ public class unit
                 {
                     view.sprite = Resources.Load<Sprite>("CharacterSprites/Oliver_war");
                 }
-                Debug.Log("sprite == " + view.sprite);
+                Debug.Log("sprite == " + view.sprite + " mode == " + mode);
             }
             else
             {
@@ -6153,11 +6153,6 @@ public class TimUnit : unit
         {
             abilities.Add(new TimAbilities.AllYouCanEat());
         }
-
-        if (sanity <= 50)
-        {
-            abilities.Add(new TimAbilities.MysteryMeat());
-        }
     }
 
     public override void updateUnit(int levl = 1)
@@ -7293,17 +7288,13 @@ public class OliverSproutUnit : unit
             abilities.Add(new OliverSproutAbilities.Imagine());
             abilities.Add(new OliverSproutAbilities.RipAndTear());
         }
-
-        if (sanity <= 50)
-        {
-            abilities.Add(new OliverSproutAbilities.BadVibes());
-        }
     }
 
     public override void updateUnit(int levl = 1)
     {
         level = levl;
         currentLevelTop = (int)(2.5 * Mathf.Pow(levl, 4));
+        setHUD();
         switch (level)
         {
             case 1:
