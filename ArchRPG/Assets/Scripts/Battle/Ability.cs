@@ -3443,7 +3443,7 @@ namespace OliverSproutAbilities
             desc2 = "Oliver shows the enemy what true carnage is. It’s moments like these where you forget this guy’s human.";
             cost = 20;
             damage = 30;
-            sanity_damage = 20;
+            sanity_damage = 8;
             target = 3;
             position = 1;
         }
