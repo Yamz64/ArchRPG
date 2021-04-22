@@ -4489,6 +4489,12 @@ public class PauseMenuHandler : MonoBehaviour
                         swap = true;
                         audio_handler.PlaySound("Sound/SFX/select");
                     }
+                    else
+                    {
+                        cursor_position = 0;
+                        swap = true;
+                        audio_handler.PlaySound("Sound/SFX/select");
+                    }
                 }
             }
             else
@@ -4553,8 +4559,17 @@ public class PauseMenuHandler : MonoBehaviour
                 if (!menu_input)
                 {
                     //first find what the player has selected
-                    int selected = cursor_position + swap_offset;
-                    while (!data.GetUnlockedMember(selected)) { selected++; }
+                    List<int> unlocked_members = new List<int>();
+                    for(int i=0; i<data.GetUnlockCount(); i++) { if (data.GetUnlockedMember(i)) unlocked_members.Add(i); }
+                    int selected_index = cursor_position + swap_offset;
+                    if (selected_index >= unlocked_members.Count)
+                    {
+                        cursor_position = 0;
+                        highlighted_party_member = 0;
+                        swap = false;
+                        return;
+                    }
+                    int selected = unlocked_members[selected_index];
 
                     CharacterStats temp = new CharacterStats();
                     switch (selected)
@@ -4593,6 +4608,39 @@ public class PauseMenuHandler : MonoBehaviour
                             temp = new Clyve();
                             break;
                     }
+
+                    //check to see if adding a party member instead of swapping
+                    if(cursor_position >= data.GetPartySize())
+                    {
+                        //if the above 2 cases don't happen then swap the current party member out for the new party member
+                        temp.SetSAN(data.GetUnlockedSAN(selected));
+                        temp.SetPos(data.GetPartyMember(highlighted_party_member).GetPos());
+                        temp.SetLVL(data.GetLVL());
+                        temp.UpdateStats();
+
+                        //see if the party member that is stored is dead if so then mark temp as dead
+                        if (data.GetUnlockedDead(selected)) temp.SetDead(true);
+                        if (temp.GetDead())
+                        {
+                            temp.SetHP(0);
+                            temp.SetSP(0);
+                        }
+                        else if (!temp.GetDead())
+                        {
+                            temp.SetHP(temp.GetHPMAX());
+                            temp.SetSP(temp.GetSPMax());
+                        }
+                        if (temp.GetDead()) data.AddPartyMember(temp, false);
+                        else data.AddPartyMember(temp);
+                        UpdatePartySwap();
+                        cursor_position = 0;
+                        swap_offset = 0;
+                        swap = false;
+                        audio_handler.PlaySound("Sound/SFX/select");
+                        menu_input = true;
+                        return;
+                    }
+
                     //check to see if the selected member is the same as the one being swapped- if so then return to selecting a particular member in the party to swap
                     if(data.GetPartyMember(highlighted_party_member).GetName() == temp.GetName())
                     {
