@@ -1111,6 +1111,7 @@ public class BattleScript : MonoBehaviour
                         {
                             match = true;
                         }
+                        bool match2 = false;
                         if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.unitName.Equals("Oliver Sprout"))
                         {
                             if ((partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("Good Vibes")
@@ -1118,7 +1119,9 @@ public class BattleScript : MonoBehaviour
                                 || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("Imagine"))
                                 && partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.mode == 0)
                             {
-                                match = true;
+                                match2 = true;
+                                Debug.Log("Ability name == " + partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name
+                                    + ", user mode == " + partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.mode);
                             }
                             else if ((partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("Bohemian Grip")
                                 || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("Eye Gouge")
@@ -1126,17 +1129,23 @@ public class BattleScript : MonoBehaviour
                                 || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("Bad Vibes"))
                                 && partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.mode == 1)
                             {
-                                match = true;
+                                match2 = true;
+                                Debug.Log("Ability name == " + partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name
+                                    + ", user mode == " + partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.mode);
                             }
                             else
                             {
-                                match = false;
+                                match2 = false;
                                 Debug.Log("Ability name == " + partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name
                                     + ", user mode == " + partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.mode);
                             }
                         }
+                        else
+                        {
+                            match2 = true;
+                        }
                         if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].position == 0 ||
-                            match)
+                            (match && match2))
                         {
                             if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.currentSP <
                                 partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].cost)
@@ -3730,6 +3739,13 @@ public class BattleScript : MonoBehaviour
                     if (unitGo.GetComponent<UnitMono>().mainUnit.unitName == "Oliver Sprout")
                     {
                         unitGo.GetComponent<UnitMono>().mainUnit.mode = 1;
+                    }
+                }
+                else
+                {
+                    if (unitGo.GetComponent<UnitMono>().mainUnit.unitName == "Oliver Sprout")
+                    {
+                        unitGo.GetComponent<UnitMono>().mainUnit.mode = 0;
                     }
                 }
                 p.setHUD();
