@@ -12,6 +12,7 @@ public class TransitionHandler : MonoBehaviour
 
     IEnumerator BattleTransition()
     {
+        GetComponent<PauseMenuHandler>().pause_menu_protection = true;
         //set all values to 0
         t_canvas.SetActive(true);
         Image b_transition = t_canvas.transform.GetChild(0).GetComponent<Image>();
@@ -34,10 +35,12 @@ public class TransitionHandler : MonoBehaviour
         yield return new WaitForSeconds(1f);
         yield return new WaitUntil(() => GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>().isPlaying == false);
         transition_completed = true;
+        GetComponent<PauseMenuHandler>().pause_menu_protection = false;
     }
 
     IEnumerator Fade(float duration = 1)
     {
+        GetComponent<PauseMenuHandler>().pause_menu_protection = true;
         //set all values to 0
         t_canvas.SetActive(true);
         Image f_transition = t_canvas.transform.GetChild(1).GetComponent<Image>();
@@ -53,10 +56,12 @@ public class TransitionHandler : MonoBehaviour
                 f_transition.color.b, 0.0f), new Color(f_transition.color.r, f_transition.color.g, f_transition.color.b, 1.0f), progress/duration);
         }
         transition_completed = true;
+        GetComponent<PauseMenuHandler>().pause_menu_protection = false;
     }
 
     IEnumerator FadeOut(float duration = 1)
     {
+        GetComponent<PauseMenuHandler>().pause_menu_protection = true;
         //set all values to 0
         t_canvas.SetActive(true);
         Image f_transition = t_canvas.transform.GetChild(1).GetComponent<Image>();
@@ -72,7 +77,7 @@ public class TransitionHandler : MonoBehaviour
                 f_transition.color.b, 1.0f), new Color(f_transition.color.r, f_transition.color.g, f_transition.color.b, 0.0f), progress / duration);
         }
         transition_completed = true;
-
+        GetComponent<PauseMenuHandler>().pause_menu_protection = false;
     }
 
     public void BattleTransitionDriver()

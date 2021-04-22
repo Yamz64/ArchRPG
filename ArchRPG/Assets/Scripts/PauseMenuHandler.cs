@@ -5043,7 +5043,6 @@ public class PauseMenuHandler : MonoBehaviour
         menu_input = false;
         item_select_menu = false;
         equipping = false;
-        pause_menu_protection = false;
 
         //define the cursor's gameObject
         cursor = transform.GetChild(1).GetChild(transform.GetChild(1).childCount - 1).gameObject;
