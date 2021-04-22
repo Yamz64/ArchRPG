@@ -507,7 +507,7 @@ public static class EldritchAbilities
             target = 3;
             enemyTarget = -1;
             damage = 0;
-            type = 2;
+            type = 1;
             statusEffect = "Weeping";
             eldritch = true;
         }
