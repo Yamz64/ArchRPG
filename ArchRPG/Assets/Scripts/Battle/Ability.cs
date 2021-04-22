@@ -3459,6 +3459,7 @@ namespace OliverSproutAbilities
             cost = 20;
             target = 3;
             enemyTarget = 3;
+            customAbility = 2;
         }
         public override void UseAttack(unit user, List<unit> targets)
         {

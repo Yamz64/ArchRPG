@@ -1145,6 +1145,10 @@ public class BattleScript : MonoBehaviour
                                     + "highlight == " + highlighted_ability);
                                 Debug.Log("Mode 111");
                             }
+                            else if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("War and Peace"))
+                            {
+                                match2 = true;
+                            }
                             else
                             {
                                 match2 = false;
