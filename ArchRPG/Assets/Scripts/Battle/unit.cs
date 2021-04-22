@@ -277,7 +277,13 @@ public class unit
     //Load the sprites for the unit
     public void loadSprites()
     {
-        sprites = Resources.LoadAll<Sprite>(ImageFilePath);
+        if (unitName != "Oliver Sprout") 
+            sprites = Resources.LoadAll<Sprite>(ImageFilePath);
+        else
+        {
+            sprites[0] = Resources.Load<Sprite>("Oliver_peace");
+            sprites[1] = Resources.Load<Sprite>("Oliver_war");
+        }
     }
 
     //Function to set up the HUD with important data

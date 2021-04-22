@@ -3684,12 +3684,10 @@ public class BattleScript : MonoBehaviour
                     if (i < 2)
                     {
                         p.mode = 0;
-                        p.setHUD();
                     }
                     else
                     {
                         p.mode = 1;
-                        p.setHUD();
                     }
                 }
                 else if ((loader.names[i] == "Ember Moon" || loader.names[i] == "EmberMoon") && !loader.dead[i])
