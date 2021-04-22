@@ -511,7 +511,7 @@ public static class EldritchAbilities
             statusEffect = "Weeping";
             eldritch = true;
         }
-        public void useAttack(unit user, List<unit> targets)
+        public override void UseAttack(unit user, List<unit> targets)
         {
             user.giveStatus("Zealous");
             user.giveStatus("Confident");
@@ -559,7 +559,7 @@ public static class EldritchAbilities
             eldritch = true;
         }
 
-        public void useAttack(unit user, List<unit> targets)
+        public override void UseAttack(unit user, List<unit> targets)
         {
             for (int i = 0; i < targets.Count; i++)
             {
@@ -617,7 +617,7 @@ public static class EldritchAbilities
             eldritch = true;
         }
 
-        public void useAttack(unit user, List<unit> targets)
+        public override void UseAttack(unit user, List<unit> targets)
         {
             user.currentHP = user.maxHP;
             for (int i = 0; i < targets.Count; i++)
