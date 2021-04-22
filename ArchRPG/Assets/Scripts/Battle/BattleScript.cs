@@ -4757,6 +4757,19 @@ public class BattleScript : MonoBehaviour
             {
                 doer = uni.abilities[ata];
             }
+            if (doer.name == "War and Peace")
+            {
+                if (uni.mode == 0)
+                {
+                    doer.selfSwapper = 1;
+                    doer.swapper = 1;
+                }
+                else
+                {
+                    doer.selfSwapper = 2;
+                    doer.swapper = 2;
+                }
+            }
             //Pull target forward
             if (doer.selfSwapper == 1)
             {
