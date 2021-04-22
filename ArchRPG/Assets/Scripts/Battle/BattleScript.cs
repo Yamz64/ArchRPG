@@ -509,15 +509,15 @@ public class BattleScript : MonoBehaviour
         {
             if (i + ability_offset < partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities.Count)
             {
-                if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAbility(i + ability_offset).eldritch)
+                if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[i + ability_offset].eldritch)
                 {
-                    ability_viewer[i].text = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAbility(i + ability_offset).GetTrueName();
+                    ability_viewer[i].text = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[i + ability_offset].GetTrueName();
                     Color g = new Color(0.0f, 1.0f, 0.0f);
                     ability_viewer[i].color = g;
                 }
                 else
                 {
-                    ability_viewer[i].text = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAbility(i + ability_offset).name;
+                    ability_viewer[i].text = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[i + ability_offset].name;
                 }
             }
             else
@@ -4612,12 +4612,14 @@ public class BattleScript : MonoBehaviour
             {
                 List<bool> priors = new List<bool>();
                 List<unit> actors = new List<unit>();
+                List<int> dams = new List<int>();
 
                 for (int x = 0; x < partyUnits.Count; x++)
                 {
                     if (partyUnits[x] != null)
                     {
                         actors.Add(partyUnits[x].GetComponent<UnitMono>().mainUnit);
+                        dams.Add(partyUnits[x].GetComponent<UnitMono>().mainUnit.currentHP);
                         if (partyUnits[x].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                         {
                             priors.Add(false);
@@ -4631,6 +4633,7 @@ public class BattleScript : MonoBehaviour
                     {
                         priors.Add(false);
                         actors.Add(null);
+                        dams.Add(0);
                     }
                 }
                 for (int x = 0; x < enemyUnits.Count; x++)
@@ -4638,6 +4641,7 @@ public class BattleScript : MonoBehaviour
                     if (enemyUnits[x] != null)
                     {
                         actors.Add(enemyUnits[x].GetComponent<UnitMono>().mainUnit);
+                        dams.Add(enemyUnits[x].GetComponent<UnitMono>().mainUnit.currentHP);
                         if (enemyUnits[x].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                         {
                             priors.Add(false);
@@ -4651,6 +4655,7 @@ public class BattleScript : MonoBehaviour
                     {
                         priors.Add(false);
                         actors.Add(null);
+                        dams.Add(0);
                     }
                 }
                 uni.abilities[ata].UseAttack(uni, actors);
@@ -4660,6 +4665,10 @@ public class BattleScript : MonoBehaviour
                     {
                         if (x < 4)
                         {
+                            if (dams[x] > partyUnits[x].GetComponent<UnitMono>().mainUnit.currentHP)
+                            {
+                                StartCoroutine(flashDamage(partyUnits[x].GetComponent<UnitMono>().mainUnit));
+                            }
                             if (partyUnits[x].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && !priors[x])
                             {
                                 partyDeaths++;
@@ -4673,6 +4682,11 @@ public class BattleScript : MonoBehaviour
                         }
                         else
                         {
+                            if (dams[x] > enemyUnits[x-4].GetComponent<UnitMono>().mainUnit.currentHP)
+                            {
+                                StartCoroutine(flashDamage(partyUnits[x-4].GetComponent<UnitMono>().mainUnit));
+                                StartCoroutine(showDamage(dams[x] - enemyUnits[x - 4].GetComponent<UnitMono>().mainUnit.currentHP));
+                            }
                             if (enemyUnits[x-4].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && !priors[x])
                             {
                                 enemyDeaths++;
@@ -4691,19 +4705,27 @@ public class BattleScript : MonoBehaviour
             {
                 Debug.Log("Starting custom");
                 List<unit> bots = new List<unit>();
+                List<int> dams = new List<int>();
                 if (val - 1 >= 0)
                 {
                     if (enemyUnits[val - 1] != null)
                     {
                         if (enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                        {
                             bots.Add(enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit);
+                            dams.Add(enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.currentHP);
+                        }
                         else
+                        {
                             bots.Add(null);
+                            dams.Add(0);
+                        }
                     }
                 }
                 else
                 {
                     bots.Add(null);
+                    dams.Add(0);
                 }
                 bots.Add(target);
                 if (val + 1 < enemyUnits.Count)
@@ -4711,14 +4733,21 @@ public class BattleScript : MonoBehaviour
                     if (enemyUnits[val + 1] != null)
                     {
                         if (enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                        {
                             bots.Add(enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit);
+                            dams.Add(enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.currentHP);
+                        }
                         else
+                        {
                             bots.Add(null);
+                            dams.Add(0);
+                        }
                     }
                 }
                 else
                 {
                     bots.Add(null);
+                    dams.Add(0);
                 }
                 Debug.Log("Stuff added");
                 uni.abilities[ata].UseAttack(uni, bots);
@@ -4727,7 +4756,11 @@ public class BattleScript : MonoBehaviour
                 {
                     if (bots[b] != null)
                     {
-                        StartCoroutine(flashDamage(bots[b]));
+                        if (dams[b] > bots[b].currentHP)
+                        {
+                            StartCoroutine(flashDamage(bots[b]));
+                            StartCoroutine(showDamage(dams[b] - bots[b].currentHP));
+                        }
                         if (bots[b].currentHP <= 0)
                         {
                             Debug.Log("ind == " + b + ", person died");
