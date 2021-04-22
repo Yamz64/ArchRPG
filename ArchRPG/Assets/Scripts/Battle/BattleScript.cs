@@ -1111,6 +1111,10 @@ public class BattleScript : MonoBehaviour
                         {
                             match = true;
                         }
+                        else if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].position == 0)
+                        {
+                            match = true;
+                        }
                         else
                         {
                             match = false;
@@ -4718,6 +4722,7 @@ public class BattleScript : MonoBehaviour
                 {
                     if (bots[b] != null)
                     {
+                        StartCoroutine(flashDamage(bots[b]));
                         if (bots[b].currentHP <= 0)
                         {
                             Debug.Log("ind == " + b + ", person died");
