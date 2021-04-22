@@ -50,19 +50,29 @@ public class SpeechCutsceneSequence : MonoBehaviour
         List<string> combined_images = new List<string>();
 
         //add party speech text and effects to queue
-        for(int i=0; i<party_members.Count; i++)
+        if (party_members.Count > 0)
         {
-            for(int j=0; j<unique_dialogues.Count; j++)
+            for (int i = 0; i < party_members.Count; i++)
             {
-                if(unique_dialogues[j].character_name == party_members[i].GetName())
+                for (int j = 0; j < unique_dialogues.Count - 1; j++)
                 {
-                    unique_dialogues[j].UpdateConvertedText();
-                    for(int k=0; k<unique_dialogues[j].converted_text.Count; k++) { combined_speeches.Add(unique_dialogues[j].converted_text[k]); }
-                    for(int k=0; k<unique_dialogues[j].effects.Count; k++) { combined_containers.Add(new EffectContainer(unique_dialogues[j].effects[k])); }
-                    for(int k=0; k<unique_dialogues[j].converted_images.Count; k++) { combined_images.Add(unique_dialogues[j].converted_images[k]); }
-                    break;
+                    if (unique_dialogues[j].character_name == party_members[i].GetName() && !party_members[i].GetDead())
+                    {
+                        unique_dialogues[j].UpdateConvertedText();
+                        for (int k = 0; k < unique_dialogues[j].converted_text.Count; k++) { combined_speeches.Add(unique_dialogues[j].converted_text[k]); }
+                        for (int k = 0; k < unique_dialogues[j].effects.Count; k++) { combined_containers.Add(new EffectContainer(unique_dialogues[j].effects[k])); }
+                        for (int k = 0; k < unique_dialogues[j].converted_images.Count; k++) { combined_images.Add(unique_dialogues[j].converted_images[k]); }
+                        break;
+                    }
                 }
             }
+        }
+        else
+        {
+            unique_dialogues[unique_dialogues.Count - 1].UpdateConvertedText();
+            for (int k = 0; k < unique_dialogues[unique_dialogues.Count - 1].converted_text.Count; k++) { combined_speeches.Add(unique_dialogues[unique_dialogues.Count - 1].converted_text[k]); }
+            for (int k = 0; k < unique_dialogues[unique_dialogues.Count - 1].effects.Count; k++) { combined_containers.Add(new EffectContainer(unique_dialogues[unique_dialogues.Count - 1].effects[k])); }
+            for (int k = 0; k < unique_dialogues[unique_dialogues.Count - 1].converted_images.Count; k++) { combined_images.Add(unique_dialogues[unique_dialogues.Count - 1].converted_images[k]); }
         }
 
         //write party special dialogue
