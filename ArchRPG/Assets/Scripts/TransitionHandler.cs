@@ -82,18 +82,21 @@ public class TransitionHandler : MonoBehaviour
 
     public void BattleTransitionDriver()
     {
+        StopAllCoroutines();
         transition_completed = false;
         StartCoroutine(BattleTransition());
     }
 
     public void FadeDriver(float duration = 1)
     {
+        StopAllCoroutines();
         transition_completed = false;
         StartCoroutine(Fade(duration));
     }
 
     public void FadeoutDriver(float duration = 1)
     {
+        StopAllCoroutines();
         transition_completed = false;
         StartCoroutine(FadeOut(duration));
     }
