@@ -1111,19 +1111,19 @@ public class BattleScript : MonoBehaviour
                         {
                             match = true;
                         }
-                        if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.unitName == "Oliver Sprout")
+                        if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.unitName.Equals("Oliver Sprout"))
                         {
-                            if ((partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name == "Good Vibes"
-                                || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name == "Chillax Dude"
-                                || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name == "Imagine")
+                            if ((partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("Good Vibes")
+                                || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("Chillax Dude")
+                                || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("Imagine"))
                                 && partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.mode == 0)
                             {
                                 match = true;
                             }
-                            else if ((partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name == "Bohemian Grip"
-                                || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name == "Eye Gouge"
-                                || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name == "Rip and Tear"
-                                || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name == "Bad Vibes")
+                            else if ((partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("Bohemian Grip")
+                                || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("Eye Gouge")
+                                || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("Rip and Tear")
+                                || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("Bad Vibes"))
                                 && partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.mode == 1)
                             {
                                 match = true;
@@ -1131,6 +1131,8 @@ public class BattleScript : MonoBehaviour
                             else
                             {
                                 match = false;
+                                Debug.Log("Ability name == " + partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name
+                                    + ", user mode == " + partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.mode);
                             }
                         }
                         if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].position == 0 ||
@@ -3062,7 +3064,7 @@ public class BattleScript : MonoBehaviour
                 {
                     int toget = actions[z].getTarget();
 
-                    if (enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
+                    if (enemyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
                     {
                         while (enemyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && toget > 0)
                         {
@@ -3098,7 +3100,7 @@ public class BattleScript : MonoBehaviour
                         if (activeEnemies - enemyDeaths > 1)
                         {
                             int baseNum = toget;
-                            while (enemyUnits[toget] == null || enemyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0 || toget == baseNum)
+                            while (enemyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0 || toget == baseNum)
                             {
                                 toget = Random.Range(0, enemyUnits.Count);
                             }
@@ -3929,7 +3931,7 @@ public class BattleScript : MonoBehaviour
         //If bouncer
         else if (bounce)
         {
-            useSound(6, true, 1);
+            useSound(9, true, 1);
             background.GetComponent<VideoPlayer>().clip = Resources.Load<VideoClip>("Backgrounds/Background7");
         }
         //If The Disco Hooligans

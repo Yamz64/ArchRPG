@@ -3315,7 +3315,7 @@ namespace OliverSproutAbilities
             cost = 5;
             type = 2;
             shuffle = true;
-            swapper = 1;
+            swapper = 0;
         }
 
         public override void UseAttack(unit user, unit target)

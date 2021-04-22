@@ -7280,6 +7280,11 @@ public class OliverSproutUnit : unit
             abilities.Add(new OliverSproutAbilities.Imagine());
             abilities.Add(new OliverSproutAbilities.RipAndTear());
         }
+
+        if (sanity <= 50)
+        {
+            abilities.Add(new OliverSproutAbilities.BadVibes());
+        }
     }
 
     public override void updateUnit(int levl = 1)
