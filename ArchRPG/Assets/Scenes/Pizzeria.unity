@@ -2448,6 +2448,75 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1172772164
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 238241546116224476, guid: 418d9150908dd624ab1dd027018b591d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 238241546116224476, guid: 418d9150908dd624ab1dd027018b591d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 238241546116224476, guid: 418d9150908dd624ab1dd027018b591d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 238241546116224476, guid: 418d9150908dd624ab1dd027018b591d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 238241546116224476, guid: 418d9150908dd624ab1dd027018b591d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 238241546116224476, guid: 418d9150908dd624ab1dd027018b591d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 238241546116224476, guid: 418d9150908dd624ab1dd027018b591d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 238241546116224476, guid: 418d9150908dd624ab1dd027018b591d, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 238241546116224476, guid: 418d9150908dd624ab1dd027018b591d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 238241546116224476, guid: 418d9150908dd624ab1dd027018b591d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 238241546116224476, guid: 418d9150908dd624ab1dd027018b591d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2517797632045173605, guid: 418d9150908dd624ab1dd027018b591d, type: 3}
+      propertyPath: itemName
+      value: Rat Bomb
+      objectReference: {fileID: 0}
+    - target: {fileID: 2517797632045173605, guid: 418d9150908dd624ab1dd027018b591d, type: 3}
+      propertyPath: itemID
+      value: RatBomb
+      objectReference: {fileID: 0}
+    - target: {fileID: 2517797632045173605, guid: 418d9150908dd624ab1dd027018b591d, type: 3}
+      propertyPath: itemDesc
+      value: The Pizzeria and its Pizzas are lucky this hasn't gone off yet.
+      objectReference: {fileID: 0}
+    - target: {fileID: 5582148413103992204, guid: 418d9150908dd624ab1dd027018b591d, type: 3}
+      propertyPath: m_Name
+      value: Rat Bomb
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 418d9150908dd624ab1dd027018b591d, type: 3}
 --- !u!1 &1206968719
 GameObject:
   m_ObjectHideFlags: 0
@@ -3688,104 +3757,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &2096627586
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
-      propertyPath: m_Name
-      value: Rat Bomb
-      objectReference: {fileID: 0}
-    - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.56
-      objectReference: {fileID: 0}
-    - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.338598
-      objectReference: {fileID: 0}
-    - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.338598
-      objectReference: {fileID: 0}
-    - target: {fileID: 4998140645680048166, guid: 52110445f037b614787b39ff46091263, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4998140645680048166, guid: 52110445f037b614787b39ff46091263, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4998140645680048167, guid: 52110445f037b614787b39ff46091263, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 433585e284ba70d43929e50edf22dd9f, type: 3}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
---- !u!1 &2096627587 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
-  m_PrefabInstance: {fileID: 2096627586}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2096627588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2096627587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43afd405cc6945140b993fdd68097df0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemName: Rat Bomb
-  itemDesc: The Pizzeria and its Pizzas are lucky this hasn't gone off yet.
-  itemID: RatBomb
-  cani: 1
 --- !u!1 &2102447042
 GameObject:
   m_ObjectHideFlags: 0

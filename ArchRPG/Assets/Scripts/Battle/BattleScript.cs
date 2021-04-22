@@ -3245,7 +3245,7 @@ public class BattleScript : MonoBehaviour
                             }
                         }
                     }
-                    if (!baddi || enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].target != 0)
+                    if (!baddi)
                     {
                         if (partyUnits[toget] != null)
                         {
