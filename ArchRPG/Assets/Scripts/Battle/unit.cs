@@ -281,8 +281,8 @@ public class unit
             sprites = Resources.LoadAll<Sprite>(ImageFilePath);
         else
         {
-            sprites[0] = Resources.LoadAll<Sprite>("Oliver_peace")[0];
-            sprites[1] = Resources.LoadAll<Sprite>("Oliver_war")[0];
+            sprites[0] = Resources.LoadAll<Sprite>("Character Sprites/Oliver_peace")[0];
+            sprites[1] = Resources.LoadAll<Sprite>("Character Sprites/Oliver_war")[0];
         }
     }
 
@@ -295,11 +295,11 @@ public class unit
             {
                 if (mode == 0)
                 {
-                    view.sprite = Resources.Load<Sprite>("Oliver_peace");
+                    view.sprite = Resources.Load<Sprite>("Character Sprites/Oliver_peace");
                 }
                 else
                 {
-                    view.sprite = Resources.Load<Sprite>("Oliver_war");
+                    view.sprite = Resources.Load<Sprite>("Character Sprites/Oliver_war");
                 }
                 Debug.Log("sprite == " + view.sprite);
             }
