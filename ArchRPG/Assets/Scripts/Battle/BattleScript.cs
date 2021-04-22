@@ -1100,7 +1100,7 @@ public class BattleScript : MonoBehaviour
                 {
                     //Player uses the attack
                     case 4:
-                        bool match = false;
+                        bool match = true;
                         if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.position == 0 &&
                             partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].position == 1)
                         {
@@ -1110,6 +1110,10 @@ public class BattleScript : MonoBehaviour
                             partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].position == 2)
                         {
                             match = true;
+                        }
+                        else
+                        {
+                            match = false;
                         }
                         bool match2 = false;
                         if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.unitName.Equals("Oliver Sprout"))
@@ -1150,7 +1154,7 @@ public class BattleScript : MonoBehaviour
                         {
                             match2 = true;
                         }
-                        if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].position == 0 ||
+                        if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].position == 0 &&
                             (match && match2))
                         {
                             if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.currentSP <
