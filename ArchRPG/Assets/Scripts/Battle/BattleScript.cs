@@ -4751,6 +4751,7 @@ public class BattleScript : MonoBehaviour
                 }
                 Debug.Log("Stuff added");
                 uni.abilities[ata].UseAttack(uni, bots);
+                yield return flashDealDamage(uni);
                 Debug.Log("Ability used");
                 for (int b = 0; b < bots.Count; b++)
                 {
@@ -4765,7 +4766,7 @@ public class BattleScript : MonoBehaviour
                         {
                             Debug.Log("ind == " + b + ", person died");
                             enemyDeaths++;
-                            StartCoroutine(unitDeath(bots[b]));
+                            yield return unitDeath(bots[b]);
                         }
                     }
                 }
