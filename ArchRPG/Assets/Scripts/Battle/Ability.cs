@@ -3325,6 +3325,7 @@ namespace OliverSproutAbilities
             //If War, swap to Peace
             if (user.mode == 1)
             {
+                selfSwapper = 2;
                 swapper = 2;
                 user.mode = 0;
                 user.ImageFilePath = "CharacterSprites/Oliver_peace";
@@ -3332,6 +3333,7 @@ namespace OliverSproutAbilities
             //If Peace, swap to war
             else if (user.mode == 0)
             {
+                selfSwapper = 1;
                 swapper = 1;
                 user.mode = 1;
                 user.ImageFilePath = "CharacterSprites/Oliver_war";
