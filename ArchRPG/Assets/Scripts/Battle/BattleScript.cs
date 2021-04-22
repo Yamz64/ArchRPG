@@ -1122,7 +1122,8 @@ public class BattleScript : MonoBehaviour
                             }
                             else if ((partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name == "Bohemian Grip"
                                 || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name == "Eye Gouge"
-                                || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name == "Rip and Tear")
+                                || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name == "Rip and Tear"
+                                || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name == "Bad Vibes")
                                 && partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.mode == 1)
                             {
                                 match = true;
