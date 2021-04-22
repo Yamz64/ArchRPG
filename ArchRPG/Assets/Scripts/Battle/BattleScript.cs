@@ -4639,31 +4639,49 @@ public class BattleScript : MonoBehaviour
             }
             else if (uni.abilities[ata].customAbility == 3)
             {
+                Debug.Log("Starting custom");
                 List<unit> bots = new List<unit>();
-                if (enemyUnits[val - 1] != null)
+                if (val - 1 >= 0)
                 {
-                    if (enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
-                        bots.Add(enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit);
-                    else
-                        bots.Add(null);
+                    if (enemyUnits[val - 1] != null)
+                    {
+                        if (enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                            bots.Add(enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit);
+                        else
+                            bots.Add(null);
+                    }
+                }
+                else
+                {
+                    bots.Add(null);
                 }
                 bots.Add(target);
-                if (enemyUnits[val + 1] != null)
+                if (val + 1 < enemyUnits.Count)
                 {
-                    if (enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
-                        bots.Add(enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit);
-                    else
-                        bots.Add(null);
+                    if (enemyUnits[val + 1] != null)
+                    {
+                        if (enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                            bots.Add(enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit);
+                        else
+                            bots.Add(null);
+                    }
                 }
+                else
+                {
+                    bots.Add(null);
+                }
+                Debug.Log("Stuff added");
                 uni.abilities[ata].UseAttack(uni, bots);
+                Debug.Log("Ability used");
                 for (int b = 0; b < bots.Count; b++)
                 {
                     if (bots[b] != null)
                     {
                         if (bots[b].currentHP <= 0)
                         {
+                            Debug.Log("ind == " + b + ", person died");
                             enemyDeaths++;
-                            yield return unitDeath(bots[b]);
+                            StartCoroutine(unitDeath(bots[b]));
                         }
                     }
                 }
