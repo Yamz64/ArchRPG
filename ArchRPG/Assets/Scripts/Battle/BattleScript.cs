@@ -4185,6 +4185,107 @@ public class BattleScript : MonoBehaviour
                 minus = true;
             }
 
+            int indi = 0;
+            for (int h = 0; h < 4; h++)
+            {
+                if (partyUnits[h] != null)
+                {
+                    if (partyUnits[h].GetComponent<UnitMono>().mainUnit.unitName == uni.unitName)
+                    {
+                        indi = h;
+                    }
+                }
+            }
+            //Pull self forward
+            if (uni.abilities[ata].swapper == 1)
+            {
+                Transform pp1 = new GameObject().transform;
+                Transform pp2 = new GameObject().transform;
+
+                GameObject po1 = new GameObject();
+                GameObject po2 = new GameObject();
+                //pp1 == target to pull forward
+                pp1.position = allyStations[indi].position;
+                po1 = partyUnits[indi];
+                //Confirm in the right spot
+                if (indi == 2 || indi == 3)
+                {
+                    //change position value
+                    if (indi - 2 == 0 || indi - 2 == 1) po1.GetComponent<UnitMono>().mainUnit.position = 0;
+                    else po1.GetComponent<UnitMono>().mainUnit.position = 1;
+
+                    pp2.position = allyStations[indi - 2].position;
+                    po2 = partyUnits[indi - 2];
+                    if (po2 != null)
+                    {
+                        if (indi == 0 || indi == 1) po2.GetComponent<UnitMono>().mainUnit.position = 0;
+                        else po2.GetComponent<UnitMono>().mainUnit.position = 1;
+                    }
+                    pSpots.Add(pp1);
+                    pSpots.Add(pp2);
+                    ppgs.Add(po1);
+                    ppgs.Add(po2);
+
+                    swaps.Add(partyUnits[indi].gameObject);
+
+                    if (partyUnits[indi - 2] != null)
+                    {
+                        swaps.Add(partyUnits[indi - 2].gameObject);
+                    }
+                    else
+                    {
+                        swaps.Add(null);
+                    }
+
+                    swapInds.Add(indi);
+                    swapInds.Add(indi - 2);
+                    PerformSwaps(swapInds.Count - 2);
+                }
+            }
+            //Push self backwards
+            else if (uni.abilities[ata].swapper == 2)
+            {
+                Transform pp1 = new GameObject().transform;
+                Transform pp2 = new GameObject().transform;
+
+                GameObject po1 = new GameObject();
+                GameObject po2 = new GameObject();
+
+                pp1.position = allyStations[indi].position;
+                po1 = partyUnits[indi];
+                if (indi == 0 || indi == 1)
+                {
+                    if (indi + 2 == 0 || indi + 2 == 1) po1.GetComponent<UnitMono>().mainUnit.position = 0;
+                    else po1.GetComponent<UnitMono>().mainUnit.position = 1;
+                    pp2.position = allyStations[indi + 2].position;
+                    po2 = partyUnits[indi + 2];
+                    if (po2 != null)
+                    {
+                        if (indi == 0 || indi == 1) po2.GetComponent<UnitMono>().mainUnit.position = 0;
+                        else po2.GetComponent<UnitMono>().mainUnit.position = 1;
+                    }
+                    pSpots.Add(pp1);
+                    pSpots.Add(pp2);
+                    ppgs.Add(po1);
+                    ppgs.Add(po2);
+
+                    swaps.Add(partyUnits[indi].gameObject);
+
+                    if (partyUnits[indi + 2] != null)
+                    {
+                        swaps.Add(partyUnits[indi + 2].gameObject);
+                    }
+                    else
+                    {
+                        swaps.Add(null);
+                    }
+
+                    swapInds.Add(indi);
+                    swapInds.Add(indi + 2);
+                    PerformSwaps(swapInds.Count - 2);
+                }
+            }
+
             int looper = 1;
             if (uni.abilities[ata].multiHitMax > 1)
             {
@@ -4499,106 +4600,6 @@ public class BattleScript : MonoBehaviour
                     uni.setSP(uni.currentSP - uni.abilities[ata].cost);
                 }
             }
-            int indi = 0;
-            for (int h = 0; h < 4; h++)
-            {
-                if (partyUnits[h] != null)
-                {
-                    if (partyUnits[h].GetComponent<UnitMono>().mainUnit.unitName == uni.unitName)
-                    {
-                        indi = h;
-                    }
-                }
-            }
-            //Pull self forward
-            if (uni.abilities[ata].swapper == 1)
-            {
-                Transform pp1 = new GameObject().transform;
-                Transform pp2 = new GameObject().transform;
-
-                GameObject po1 = new GameObject();
-                GameObject po2 = new GameObject();
-                //pp1 == target to pull forward
-                pp1.position = allyStations[indi].position;
-                po1 = partyUnits[indi];
-                //Confirm in the right spot
-                if (indi == 2 || indi == 3)
-                {
-                    //change position value
-                    if (indi - 2 == 0 || indi - 2 == 1) po1.GetComponent<UnitMono>().mainUnit.position = 0;
-                    else po1.GetComponent<UnitMono>().mainUnit.position = 1;
-
-                    pp2.position = allyStations[indi - 2].position;
-                    po2 = partyUnits[indi - 2];
-                    if (po2 != null)
-                    {
-                        if (indi == 0 || indi == 1) po2.GetComponent<UnitMono>().mainUnit.position = 0;
-                        else po2.GetComponent<UnitMono>().mainUnit.position = 1;
-                    }
-                    pSpots.Add(pp1);
-                    pSpots.Add(pp2);
-                    ppgs.Add(po1);
-                    ppgs.Add(po2);
-
-                    swaps.Add(partyUnits[indi].gameObject);
-
-                    if (partyUnits[indi - 2] != null)
-                    {
-                        swaps.Add(partyUnits[indi - 2].gameObject);
-                    }
-                    else
-                    {
-                        swaps.Add(null);
-                    }
-
-                    swapInds.Add(indi);
-                    swapInds.Add(indi - 2);
-                    PerformSwaps(swapInds.Count - 2);
-                }
-            }
-            //Push self backwards
-            else if (uni.abilities[ata].swapper == 2)
-            {
-                Transform pp1 = new GameObject().transform;
-                Transform pp2 = new GameObject().transform;
-
-                GameObject po1 = new GameObject();
-                GameObject po2 = new GameObject();
-
-                pp1.position = allyStations[indi].position;
-                po1 = partyUnits[indi];
-                if (indi == 0 || indi == 1)
-                {
-                    if (indi + 2 == 0 || indi + 2 == 1) po1.GetComponent<UnitMono>().mainUnit.position = 0;
-                    else po1.GetComponent<UnitMono>().mainUnit.position = 1;
-                    pp2.position = allyStations[indi + 2].position;
-                    po2 = partyUnits[indi + 2];
-                    if (po2 != null)
-                    {
-                        if (indi == 0 || indi == 1) po2.GetComponent<UnitMono>().mainUnit.position = 0;
-                        else po2.GetComponent<UnitMono>().mainUnit.position = 1;
-                    }
-                    pSpots.Add(pp1);
-                    pSpots.Add(pp2);
-                    ppgs.Add(po1);
-                    ppgs.Add(po2);
-
-                    swaps.Add(partyUnits[indi].gameObject);
-
-                    if (partyUnits[indi + 2] != null)
-                    {
-                        swaps.Add(partyUnits[indi + 2].gameObject);
-                    }
-                    else
-                    {
-                        swaps.Add(null);
-                    }
-
-                    swapInds.Add(indi);
-                    swapInds.Add(indi + 2);
-                    PerformSwaps(swapInds.Count - 2);
-                }
-            }
         }
         //If offensive ability with custom function to use
         else if (uni.abilities[ata].type == 0 && uni.abilities[ata].customAbility != 0 && !uni.abilities[ata].eldritch)
@@ -4752,51 +4753,6 @@ public class BattleScript : MonoBehaviour
                     }
                 }
             }
-            if (uni.abilities[ata].target == 0)
-            {
-                uni.abilities[ata].UseAttack(uni, target);
-                StartCoroutine(flashHeal(target));
-                
-            }
-            else if (uni.abilities[ata].target == 1)
-            {
-                uni.abilities[ata].UseAttack(uni, target);
-                StartCoroutine(flashHeal(target));
-                if ((val == 1 || val == 3) && val-1 >= 0 && partyUnits[val-1] != null)
-                {
-                    if (partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
-                    {
-                        uni.abilities[ata].UseAttack(uni, partyUnits[val-1].GetComponent<UnitMono>().mainUnit);
-                        StartCoroutine(flashHeal(partyUnits[val - 1].GetComponent<UnitMono>().mainUnit));
-                    }
-                }
-                else if ((val == 0 || val == 2) && val + 1 >= 0 && partyUnits[val + 1] != null)
-                {
-                    if (partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
-                    {
-                        uni.abilities[ata].UseAttack(uni, partyUnits[val + 1].GetComponent<UnitMono>().mainUnit);
-                        StartCoroutine(flashHeal(partyUnits[val - 1].GetComponent<UnitMono>().mainUnit));
-                    }
-                }
-            }
-            else if (uni.abilities[ata].target == 3)
-            {
-                List<unit> todos = new List<unit>();
-                for (int x = 0; x < partyUnits.Count; x++)
-                {
-                    if (partyUnits[x] != null)
-                    {
-                        todos.Add(partyUnits[x].GetComponent<UnitMono>().mainUnit);
-                        StartCoroutine(flashHeal(partyUnits[x].GetComponent<UnitMono>().mainUnit));
-                    }
-                    else
-                    {
-                        todos.Add(null);
-                    }
-                }
-                uni.abilities[ata].UseAttack(uni, todos);
-            }
-
             if (ata < uni.abilities.Count)
             {
                 doer = uni.abilities[ata];
@@ -4979,6 +4935,51 @@ public class BattleScript : MonoBehaviour
                     PerformSwaps(swapInds.Count - 2);
                 }
             }
+            if (uni.abilities[ata].target == 0)
+            {
+                uni.abilities[ata].UseAttack(uni, target);
+                StartCoroutine(flashHeal(target));
+                
+            }
+            else if (uni.abilities[ata].target == 1)
+            {
+                uni.abilities[ata].UseAttack(uni, target);
+                StartCoroutine(flashHeal(target));
+                if ((val == 1 || val == 3) && val-1 >= 0 && partyUnits[val-1] != null)
+                {
+                    if (partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                    {
+                        uni.abilities[ata].UseAttack(uni, partyUnits[val-1].GetComponent<UnitMono>().mainUnit);
+                        StartCoroutine(flashHeal(partyUnits[val - 1].GetComponent<UnitMono>().mainUnit));
+                    }
+                }
+                else if ((val == 0 || val == 2) && val + 1 >= 0 && partyUnits[val + 1] != null)
+                {
+                    if (partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                    {
+                        uni.abilities[ata].UseAttack(uni, partyUnits[val + 1].GetComponent<UnitMono>().mainUnit);
+                        StartCoroutine(flashHeal(partyUnits[val - 1].GetComponent<UnitMono>().mainUnit));
+                    }
+                }
+            }
+            else if (uni.abilities[ata].target == 3)
+            {
+                List<unit> todos = new List<unit>();
+                for (int x = 0; x < partyUnits.Count; x++)
+                {
+                    if (partyUnits[x] != null)
+                    {
+                        todos.Add(partyUnits[x].GetComponent<UnitMono>().mainUnit);
+                        StartCoroutine(flashHeal(partyUnits[x].GetComponent<UnitMono>().mainUnit));
+                    }
+                    else
+                    {
+                        todos.Add(null);
+                    }
+                }
+                uni.abilities[ata].UseAttack(uni, todos);
+            }
+
         }
         //If eldritch ability
         else
