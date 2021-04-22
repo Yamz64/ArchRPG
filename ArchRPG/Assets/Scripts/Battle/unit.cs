@@ -281,8 +281,8 @@ public class unit
             sprites = Resources.LoadAll<Sprite>(ImageFilePath);
         else
         {
-            sprites[0] = Resources.Load<Sprite>("Oliver_peace");
-            sprites[1] = Resources.Load<Sprite>("Oliver_war");
+            sprites[0] = Resources.LoadAll<Sprite>("Oliver_peace")[0];
+            sprites[1] = Resources.LoadAll<Sprite>("Oliver_war")[0];
         }
     }
 
