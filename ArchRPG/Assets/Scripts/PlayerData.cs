@@ -125,7 +125,7 @@ public class PlayerData : CharacterStats
 
             for (int i=0; i < temp.GetPartySize(); i++)
             {
-                AddPartyMember(temp.GetPartyMember(i));
+                AddPartyMember(temp.GetPartyMember(i), false, false);
             }
         }
     }
@@ -148,7 +148,7 @@ public class PlayerData : CharacterStats
     public void SetSavedPosition(Vector2 p) { saved_position = p; }
 
     //party functions
-    public void AddPartyMember(CharacterStats c, bool max_hp = true) {
+    public void AddPartyMember(CharacterStats c, bool max_hp = true, bool min_hp = true) {
         if (party_stats.Count < 3)
         {
             //loop through party stats to find the first available position for the new party member
@@ -174,11 +174,12 @@ public class PlayerData : CharacterStats
                 c.SetHP(c.GetHPMAX());
                 c.SetSP(c.GetSPMax());
             }
-            else
+            else if(min_hp)
             {
                 c.SetHP(0);
                 c.SetSP(0);
             }
+
             party_stats.Add(c);
         }
     }

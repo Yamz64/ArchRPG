@@ -1006,7 +1006,7 @@ public class CharacterStatJsonConverter
             temp.SetLVL(levels[i]);
             temp.SetPos(positions[i]);
             temp.UpdateStats();
-
+            
             temp.SetHP(HPs[i]);
             temp.SetSP(SPs[i]);
             temp.SetSAN(SANs[i]);
@@ -1054,8 +1054,7 @@ public class CharacterStatJsonConverter
             }
 
             temp.SetDead(dead[i]);
-            
-            p.AddPartyMember(temp);
+            p.AddPartyMember(temp, false, false);
         }
     }
 
