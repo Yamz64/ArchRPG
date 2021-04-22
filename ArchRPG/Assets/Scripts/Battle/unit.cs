@@ -291,7 +291,21 @@ public class unit
     {
         if (!pic)
         {
-            view.sprite = sprites[0];
+            if (unitName == "Oliver Sprout")
+            {
+                if (mode == 0)
+                {
+                    view.sprite = Resources.Load<Sprite>("Oliver_peace");
+                }
+                else
+                {
+                    view.sprite = Resources.Load<Sprite>("Oliver_war");
+                }
+            }
+            else
+            {
+                view.sprite = sprites[0];
+            }
             if (aggro > 0)
             {
                 Color temp = view.color;
@@ -7006,7 +7020,6 @@ public class OliverSproutUnit : unit
     public OliverSproutUnit(int lev = 1)
     {
         unitName = "Oliver Sprout";
-        ImageFilePath = "CharacterSprites/Oliver_peace";
         loadSprites();
         level = lev;
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));

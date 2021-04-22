@@ -3681,14 +3681,6 @@ public class BattleScript : MonoBehaviour
                 else if ((loader.names[i] == "Oliver Sprout" || loader.names[i] == "OliverSprout") && !loader.dead[i])
                 {
                     p = new OliverSproutUnit(loader.levels[i]);
-                    if (i < 2)
-                    {
-                        p.mode = 0;
-                    }
-                    else
-                    {
-                        p.mode = 1;
-                    }
                 }
                 else if ((loader.names[i] == "Ember Moon" || loader.names[i] == "EmberMoon") && !loader.dead[i])
                 {
