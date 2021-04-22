@@ -4476,6 +4476,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5844719000374183952, guid: 496ca99086a1b1e4981f808320f26f4d, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.013956904
+      objectReference: {fileID: 0}
+    - target: {fileID: 5844719000374183952, guid: 496ca99086a1b1e4981f808320f26f4d, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.31746867
+      objectReference: {fileID: 0}
+    - target: {fileID: 5844719000374183952, guid: 496ca99086a1b1e4981f808320f26f4d, type: 3}
+      propertyPath: m_Size.y
+      value: 0.6805206
+      objectReference: {fileID: 0}
     - target: {fileID: 5844719000374183953, guid: 496ca99086a1b1e4981f808320f26f4d, type: 3}
       propertyPath: m_Name
       value: ApartmentTables
