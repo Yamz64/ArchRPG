@@ -218,6 +218,18 @@ public class PizzeriaBehavior : StoreBehavior
                 images.Add("CharacterSprites/Pizza Worker");
                 images.Add("CharacterSprites/Pizza Worker");
                 images.Add("CharacterSprites/Pizza Worker");
+                
+                MapDataManager data = GameObject.FindGameObjectWithTag("MapManager").GetComponent<MapDataManager>();
+                for (int i = 0; i < data.current_map.objects.Count; i++)
+                {
+                    if (data.current_map.objects[i].o == "PizzaGuy")
+                    {
+                        data.current_map.objects[i].interacted = true;
+                        interacted = true;
+                        data.Save();
+                        break;
+                    }
+                }
             }
             else
             {
