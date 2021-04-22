@@ -276,13 +276,6 @@ MonoBehaviour:
     - {fileID: 471724657}
     - {fileID: 1429065270}
     - {fileID: 1173619641}
-  inventory_offset: 0
-  ability_offset: 0
-  action_offset: 0
-  highlighted_item: 0
-  highlighted_ability: 0
-  highlighted_action: 0
-  fleeChance: 0
   background: {fileID: 2099335486}
   dialogue: {fileID: 1606678685}
   dialogueBox: {fileID: 0}
@@ -318,12 +311,6 @@ MonoBehaviour:
   - {fileID: 1314743688}
   - {fileID: 1163937706}
   - {fileID: 1286840832}
-  currentUnit: 0
-  currentAlly: 0
-  moves: 0
-  currentEnemy: 0
-  highEne: 0
-  target1: -1
 --- !u!114 &43254541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5106,11 +5093,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: b3d12615f4239dc419df7b0dace5b315, type: 3}
-    m_FontSize: 50
+    m_FontSize: 100
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 3
-    m_MaxSize: 50
+    m_MinSize: 1
+    m_MaxSize: 100
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
