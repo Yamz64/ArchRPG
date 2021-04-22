@@ -1158,7 +1158,7 @@ public class BattleScript : MonoBehaviour
                         {
                             match2 = true;
                         }
-                        if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].position == 0 &&
+                        if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].position == 0 ||
                             (match && match2))
                         {
                             if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.currentSP <
