@@ -1133,6 +1133,17 @@ public class BattleScript : MonoBehaviour
                                     + "highlight == " + highlighted_ability);
                                 Debug.Log("Mode 000");
                             }
+                            else if ((partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("Good Vibes")
+                                || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("Chillax, Dude")
+                                || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("Imagine"))
+                                && partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.mode == 1)
+                            {
+                                match2 = false;
+                                Debug.Log("Ability name == " + partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name
+                                    + ", user mode == " + partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.mode
+                                    + "highlight == " + highlighted_ability);
+                                Debug.Log("Mode 001");
+                            }
                             else if ((partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("Bohemian Grip")
                                 || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("Eye Gouge")
                                 || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("Rip and Tear")
@@ -1144,6 +1155,18 @@ public class BattleScript : MonoBehaviour
                                     + ", user mode == " + partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.mode
                                     + "highlight == " + highlighted_ability);
                                 Debug.Log("Mode 111");
+                            }
+                            else if ((partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("Bohemian Grip")
+                                || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("Eye Gouge")
+                                || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("Rip and Tear")
+                                || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("Bad Vibes"))
+                                && partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.mode == 0)
+                            {
+                                match2 = false;
+                                Debug.Log("Ability name == " + partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name
+                                    + ", user mode == " + partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.mode
+                                    + "highlight == " + highlighted_ability);
+                                Debug.Log("Mode 110");
                             }
                             else if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("War and Peace"))
                             {
@@ -1162,8 +1185,7 @@ public class BattleScript : MonoBehaviour
                         {
                             match2 = true;
                         }
-                        if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].position == 0 ||
-                            (match && match2))
+                        if (match && match2)
                         {
                             if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.currentSP <
                                 partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].cost)
@@ -1212,6 +1234,7 @@ public class BattleScript : MonoBehaviour
                                         currentEnemy = 0;
                                         highlighted_ability = 0;
                                         ability_offset = 0;
+                                        playerTurn();
                                         currentUnit += 1;
                                         Vector3 here = partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.view.transform.position;
                                         here.y = partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.backupView.transform.position.y;
@@ -1225,6 +1248,7 @@ public class BattleScript : MonoBehaviour
                                         //Perform player attacks
                                         if (moves >= activeUnits || currentUnit == 4)
                                         {
+                                            
                                             moves = 0;
                                             currentUnit = 0;
                                             state = battleState.ATTACK;

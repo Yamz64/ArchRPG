@@ -345,13 +345,13 @@ public class unit
             if (hasMP)
             {
                 spSideText.text = "MP";
-                Color temp = new Color(0.0f, (174.0f / 255.0f), 1.0f);
+                Color temp = new Color(1.0f, 0.0f, 1.0f);
                 spBar.color = temp;
             }
             else
             {
                 spSideText.text = "SP";
-                Color temp = new Color(1.0f, 1.0f, 0.0f);
+                Color temp = new Color(0.0f, (174.0f / 255.0f), 1.0f);
                 spBar.color = temp;
             }
             if (maxSP <= 0) { maxSP = 1; }
