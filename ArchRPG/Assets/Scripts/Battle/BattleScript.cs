@@ -1358,7 +1358,10 @@ public class BattleScript : MonoBehaviour
                         {
                             dialogue.text = "Can't use ability right now";
                             currentEnemy = 0;
+                            highlighted_ability = 0;
+                            ability_offset = 0;
                             CloseUseAbilityMenu();
+                            CloseMenu(1);
                             menu_input = false;
                             //playerTurn();
                         }
