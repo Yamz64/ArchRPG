@@ -1119,6 +1119,8 @@ public class BattleScript : MonoBehaviour
                                 && partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.mode == 0)
                             {
                                 match = true;
+                                Debug.Log("Ability name == " + partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name
+                                    + ", user mode == " + partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.mode);
                             }
                             else if ((partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("Bohemian Grip")
                                 || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("Eye Gouge")
@@ -1127,6 +1129,8 @@ public class BattleScript : MonoBehaviour
                                 && partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.mode == 1)
                             {
                                 match = true;
+                                Debug.Log("Ability name == " + partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name
+                                    + ", user mode == " + partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.mode);
                             }
                             else
                             {
@@ -3730,6 +3734,13 @@ public class BattleScript : MonoBehaviour
                     if (unitGo.GetComponent<UnitMono>().mainUnit.unitName == "Oliver Sprout")
                     {
                         unitGo.GetComponent<UnitMono>().mainUnit.mode = 1;
+                    }
+                }
+                else
+                {
+                    if (unitGo.GetComponent<UnitMono>().mainUnit.unitName == "Oliver Sprout")
+                    {
+                        unitGo.GetComponent<UnitMono>().mainUnit.mode = 0;
                     }
                 }
                 p.setHUD();
