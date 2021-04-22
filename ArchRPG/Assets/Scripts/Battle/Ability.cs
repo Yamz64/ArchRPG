@@ -514,7 +514,7 @@ public static class EldritchAbilities
         public override void UseAttack(unit user, List<unit> targets)
         {
             user.giveStatus("Zealous");
-            user.giveStatus("Confident");
+            user.giveStatus("Inspired");
             List<int> valid = new List<int>();
             for (int i = 0; i < targets.Count; i++)
             {
@@ -3624,7 +3624,32 @@ namespace EmberMoonAbilities
             damageType = 4;
             use_pow = true;
             target = 3;
+            customAbility = 2;
+        }
 
+        public override void UseAttack(unit user, List<unit> targets)
+        {
+            for (int i = 0; i < targets.Count; i++)
+            {
+                if (targets[i] != null)
+                {
+                    if (targets[i].currentHP > 0)
+                    {
+                        int ran = Random.Range(0, 2);
+                        if (ran == 0)
+                        {
+                            int val = targets[i].takeDamageCalc(targets[i], damage, 4, true);
+                            targets[i].takeDamage(val);
+                        }
+                        else
+                        {
+                            int val = targets[i].takeDamageCalc(targets[i], damage, 3, true);
+                            targets[i].takeDamage(val);
+                        }
+                        targets[i].giveStatus("Zonked");
+                    }
+                }
+            }
         }
     }
 
