@@ -6129,6 +6129,11 @@ public class TimUnit : unit
         {
             abilities.Add(new TimAbilities.AllYouCanEat());
         }
+
+        if (sanity <= 50)
+        {
+            abilities.Add(new TimAbilities.MysteryMeat());
+        }
     }
 
     public override void updateUnit(int levl = 1)
