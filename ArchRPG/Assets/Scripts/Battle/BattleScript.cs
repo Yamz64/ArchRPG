@@ -4508,7 +4508,7 @@ public class BattleScript : MonoBehaviour
                     {
                         for (int b = 0; b < enemyUnits.Count; b++)
                         {
-                            if (enemyUnits[b].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                            if (enemyUnits[b].GetComponent<UnitMono>().mainUnit.currentHP > 0 && enemyUnits[b].GetComponent<UnitMono>().mainUnit != target)
                             {
                                 dif = enemyUnits[b].GetComponent<UnitMono>().mainUnit.currentHP;
                                 dTemp = uni.useAbility(ata, enemyUnits[b].GetComponent<UnitMono>().mainUnit, minus);
