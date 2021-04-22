@@ -301,6 +301,7 @@ public class unit
                 {
                     view.sprite = Resources.Load<Sprite>("Oliver_war");
                 }
+                Debug.Log("sprite == " + view.sprite);
             }
             else
             {
