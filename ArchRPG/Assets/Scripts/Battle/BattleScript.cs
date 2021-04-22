@@ -2077,18 +2077,14 @@ public class BattleScript : MonoBehaviour
                 if (i2 == 5 && currentUnit != currentAlly)
                 {
                     useSound(1);
-                    Transform pp1 = new GameObject().transform;
-                    Transform pp2 = new GameObject().transform;
+                    Transform pp1 = allyStations[currentUnit];
+                    Transform pp2 = allyStations[currentAlly];
 
-                    GameObject po1 = new GameObject();
-                    GameObject po2 = new GameObject();
+                    GameObject po1 = partyUnits[currentUnit];
+                    GameObject po2 = partyUnits[currentAlly];
 
-                    pp1.position = allyStations[currentUnit].position;
-                    po1 = partyUnits[currentUnit];
                     if (currentAlly == 0 || currentAlly == 1) po1.GetComponent<UnitMono>().mainUnit.position = 0;
                     else po1.GetComponent<UnitMono>().mainUnit.position = 1;
-                    pp2.position = allyStations[currentAlly].position;
-                    po2 = partyUnits[currentAlly];
                     if (po2 != null)
                     {
                         if (currentUnit == 0 || currentUnit == 1) po2.GetComponent<UnitMono>().mainUnit.position = 0;
@@ -4659,6 +4655,7 @@ public class BattleScript : MonoBehaviour
                     }
                 }
                 uni.abilities[ata].UseAttack(uni, actors);
+                yield return flashDealDamage(uni);
                 for (int x = 0; x < priors.Count; x++)
                 {
                     if (actors[x] != null)
