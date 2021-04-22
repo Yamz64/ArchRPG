@@ -4771,7 +4771,7 @@ public class BattleScript : MonoBehaviour
                 }
             }
             //Pull target forward
-            if (doer.selfSwapper == 1)
+            if (doer.selfSwapper == 1 && uni.position != 0)
             {
                 Transform pp1 = new GameObject().transform;
                 Transform pp2 = new GameObject().transform;
@@ -4817,7 +4817,7 @@ public class BattleScript : MonoBehaviour
                 }
             }
             //Push target backwards
-            else if (doer.selfSwapper == 2)
+            else if (doer.selfSwapper == 2 && uni.position != 1)
             {
                 Transform pp1 = new GameObject().transform;
                 Transform pp2 = new GameObject().transform;
@@ -4860,7 +4860,7 @@ public class BattleScript : MonoBehaviour
                 }
             }
             //Pull target forward
-            if (doer.swapper == 1)
+            if (doer.swapper == 1 && uni.position != 0)
             {
                 Transform pp1 = new GameObject().transform;
                 Transform pp2 = new GameObject().transform;
@@ -4906,7 +4906,7 @@ public class BattleScript : MonoBehaviour
                 }
             }
             //Push target backwards
-            else if (doer.swapper == 2)
+            else if (doer.swapper == 2 && uni.position != 1)
             {
                 Transform pp1 = new GameObject().transform;
                 Transform pp2 = new GameObject().transform;
