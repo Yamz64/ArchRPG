@@ -1508,11 +1508,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -32.03
+      value: 20.29
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 37.73
+      value: 38.43
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1550,6 +1550,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.338598
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.338598
+      objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048166, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 1
@@ -1562,6 +1570,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 433585e284ba70d43929e50edf22dd9f, type: 3}
+    - target: {fileID: 4998140645680048167, guid: 52110445f037b614787b39ff46091263, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8509804
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998140645680048167, guid: 52110445f037b614787b39ff46091263, type: 3}
+      propertyPath: m_Color.g
+      value: 0.84313726
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998140645680048167, guid: 52110445f037b614787b39ff46091263, type: 3}
+      propertyPath: m_Color.b
+      value: 0.827451
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
 --- !u!1 &513750907 stripped
@@ -24897,7 +24917,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1078748364567200179, guid: ce7220ac87c84e942a7318a566f381b5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -33.27
+      value: 19.049997
       objectReference: {fileID: 0}
     - target: {fileID: 1078748364567200179, guid: ce7220ac87c84e942a7318a566f381b5, type: 3}
       propertyPath: m_LocalPosition.y
