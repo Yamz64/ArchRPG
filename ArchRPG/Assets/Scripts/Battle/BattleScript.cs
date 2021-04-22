@@ -4759,13 +4759,16 @@ public class BattleScript : MonoBehaviour
             }
             if (doer.name == "War and Peace")
             {
+                Debug.Log("Using W&B");
                 if (uni.mode == 0)
                 {
+                    Debug.Log("Swapping forward");
                     doer.selfSwapper = 1;
                     doer.swapper = 1;
                 }
                 else
                 {
+                    Debug.Log("Swapping back");
                     doer.selfSwapper = 2;
                     doer.swapper = 2;
                 }
@@ -4773,6 +4776,7 @@ public class BattleScript : MonoBehaviour
             //Pull target forward
             if (doer.selfSwapper == 1 && uni.position != 0)
             {
+                Debug.Log("Actually forward");
                 Transform pp1 = new GameObject().transform;
                 Transform pp2 = new GameObject().transform;
 
@@ -4819,6 +4823,7 @@ public class BattleScript : MonoBehaviour
             //Push target backwards
             else if (doer.selfSwapper == 2 && uni.position != 1)
             {
+                Debug.Log("Actually back");
                 Transform pp1 = new GameObject().transform;
                 Transform pp2 = new GameObject().transform;
 
@@ -4862,6 +4867,7 @@ public class BattleScript : MonoBehaviour
             //Pull target forward
             if (doer.swapper == 1 && uni.position != 0)
             {
+                Debug.Log("Actually forward");
                 Transform pp1 = new GameObject().transform;
                 Transform pp2 = new GameObject().transform;
 
@@ -4908,6 +4914,7 @@ public class BattleScript : MonoBehaviour
             //Push target backwards
             else if (doer.swapper == 2 && uni.position != 1)
             {
+                Debug.Log("Actually back");
                 Transform pp1 = new GameObject().transform;
                 Transform pp2 = new GameObject().transform;
 
