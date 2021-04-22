@@ -1114,7 +1114,7 @@ public class BattleScript : MonoBehaviour
                         if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.unitName.Equals("Oliver Sprout"))
                         {
                             if ((partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("Good Vibes")
-                                || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("Chillax Dude")
+                                || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("Chillax, Dude")
                                 || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("Imagine"))
                                 && partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.mode == 0)
                             {
@@ -1196,7 +1196,7 @@ public class BattleScript : MonoBehaviour
                                         menu_input = false;
 
                                         //Perform player attacks
-                                        if (moves >= activeUnits || currentUnit == 3)
+                                        if (moves >= activeUnits || currentUnit == 4)
                                         {
                                             moves = 0;
                                             currentUnit = 0;
@@ -1270,7 +1270,7 @@ public class BattleScript : MonoBehaviour
                                         menu_input = false;
 
                                         //Perform player attacks
-                                        if (moves >= activeUnits || currentUnit == 3)
+                                        if (moves >= activeUnits || currentUnit == 4)
                                         {
                                             moves = 0;
                                             currentUnit = 0;
@@ -1319,7 +1319,7 @@ public class BattleScript : MonoBehaviour
                                     menu_input = false;
 
                                     //Perform player attacks
-                                    if (moves >= activeUnits || currentUnit == 3)
+                                    if (moves >= activeUnits || currentUnit == 4)
                                     {
                                         moves = 0;
                                         currentUnit = 0;
@@ -1506,7 +1506,7 @@ public class BattleScript : MonoBehaviour
                 menu_input = true;
 
                 //If this unit is the last one in the party to move
-                if (moves >= activeUnits || currentUnit == 3)
+                if (moves >= activeUnits || currentUnit == 4)
                 {
                     moves = 0;
                     currentUnit = 0;
@@ -1669,7 +1669,7 @@ public class BattleScript : MonoBehaviour
                             menu_input = true;
 
                             //If this unit is the last one in the party to move
-                            if (moves >= activeUnits || currentUnit == 3)
+                            if (moves >= activeUnits || currentUnit == 4)
                             {
                                 moves = 0;
                                 currentUnit = 0;
@@ -1737,7 +1737,7 @@ public class BattleScript : MonoBehaviour
                                 menu_input = false;
 
                                 //Perform player attacks
-                                if (moves >= activeUnits || currentUnit == 3)
+                                if (moves >= activeUnits || currentUnit == 4)
                                 {
                                     moves = 0;
                                     currentUnit = 0;
@@ -1937,7 +1937,7 @@ public class BattleScript : MonoBehaviour
                         partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.view.transform.position = here;
                         moves += 1;
 
-                        if (moves >= activeUnits || currentUnit == 3)
+                        if (moves >= activeUnits || currentUnit == 4)
                         {
                             moves = 0;
                             currentUnit = 0;
@@ -2124,7 +2124,7 @@ public class BattleScript : MonoBehaviour
                     CloseMenu(3);
                     menu_input = false;
 
-                    if (moves >= activeUnits || currentUnit == 3)
+                    if (moves >= activeUnits || currentUnit == 4)
                     {
                         moves = 0;
                         currentUnit = 0;
@@ -3724,11 +3724,15 @@ public class BattleScript : MonoBehaviour
                 p.copyUnitUI(unitGo.GetComponent<UnitMono>().mainUnit);
                 unitGo.GetComponent<UnitMono>().mainUnit.copyUnitStats(p);
                 p.updateUnit(p.level);
-                p.setHUD();
                 if (i == 2 || i == 3)
                 {
                     unitGo.GetComponent<UnitMono>().mainUnit.position = 1;
+                    if (unitGo.GetComponent<UnitMono>().mainUnit.unitName == "Oliver Sprout")
+                    {
+                        unitGo.GetComponent<UnitMono>().mainUnit.mode = 1;
+                    }
                 }
+                p.setHUD();
 
                 if (loader.names[i] == "Player")
                 {

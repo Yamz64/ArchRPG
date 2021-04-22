@@ -7000,14 +7000,6 @@ public class OliverSproutUnit : unit
     public OliverSproutUnit(int lev = 1)
     {
         unitName = "Oliver Sprout";
-        if (PlayerPrefs.GetInt("OliverMode") == 1)
-        {
-            ImageFilePath = "CharacterSprites/Oliver_war";
-        }
-        else
-        {
-            ImageFilePath = "CharacterSprites/Oliver_peace";
-        }
         loadSprites();
         level = lev;
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
