@@ -2256,7 +2256,8 @@ public class BattleScript : MonoBehaviour
                     {
                         if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[j].type == 1 &&
                             enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[j].priority > 0 &&
-                            enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[j].statCounter == 0)
+                            enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[j].statCounter == 0 &&
+                            enemyUnits.Count - enemyDeaths > 1)
                         {
                             self = true;
                         }
@@ -2414,8 +2415,7 @@ public class BattleScript : MonoBehaviour
 
                         int r = Random.Range(0, enemyUnits.Count);
                         bool selfie = true;
-                        if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[x].name == "Extraplanar Parasite" &&
-                            enemyUnits[i].GetComponent<UnitMono>().mainUnit.unitName == enemyUnits[r].GetComponent<UnitMono>().mainUnit.unitName)
+                        if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.unitName == enemyUnits[r].GetComponent<UnitMono>().mainUnit.unitName)
                         {
                             selfie = false;
                         }
