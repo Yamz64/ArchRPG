@@ -127,6 +127,12 @@ public class SavePointBehavior : InteractableBaseClass
                 {
                     data.GetPartyMember(i).SetHP(data.GetPartyMember(i).GetHPMAX());
                     data.GetPartyMember(i).SetSP(data.GetPartyMember(i).GetSPMax());
+
+                    for(int j=0; j<data.GetPartyMember(i).GetStatusCount(); j++)
+                    {
+                        if (data.GetPartyMember(i).GetName() == "Jim" && j == 4) continue;
+                        if (j != 25) data.GetPartyMember(i).SetStatus(j, -1);
+                    }
                 }
             }
 
@@ -237,6 +243,12 @@ public class SavePointBehavior : InteractableBaseClass
                 {
                     data.GetPartyMember(i).SetHP(data.GetPartyMember(i).GetHPMAX());
                     data.GetPartyMember(i).SetSP(data.GetPartyMember(i).GetSPMax());
+
+                    for (int j = 0; j < data.GetPartyMember(i).GetStatusCount(); j++)
+                    {
+                        if (data.GetPartyMember(i).GetName() == "Jim" && j == 4) continue;
+                        if (j != 25) data.GetPartyMember(i).SetStatus(j, -1);
+                    }
                 }
             }
 
@@ -286,6 +298,12 @@ public class SavePointBehavior : InteractableBaseClass
                 {
                     data.GetPartyMember(i).SetHP(data.GetPartyMember(i).GetHPMAX());
                     data.GetPartyMember(i).SetSP(data.GetPartyMember(i).GetSPMax());
+
+                    for (int j = 0; j < data.GetPartyMember(i).GetStatusCount(); j++)
+                    {
+                        if (data.GetPartyMember(i).GetName() == "Jim" && j == 4) continue;
+                        if (j != 25) data.GetPartyMember(i).SetStatus(j, -1);
+                    }
                 }
             }
 
