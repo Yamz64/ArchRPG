@@ -3045,13 +3045,13 @@ public class BattleScript : MonoBehaviour
                         {
                             dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " + abiName;
                             yield return playerAbility(actions[z].getIndex(), toget,
-                                    temp[ind].GetComponent<UnitMono>().mainUnit, enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit);
+                                    temp[ind].GetComponent<UnitMono>().mainUnit, enemyUnits[toget].GetComponent<UnitMono>().mainUnit);
                         }
                         else
                         {
                             dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " + abiName;
                             yield return playerAbility(actions[z].getIndex(), toget,
-                                   temp[ind].GetComponent<UnitMono>().mainUnit, enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit,
+                                   temp[ind].GetComponent<UnitMono>().mainUnit, enemyUnits[toget].GetComponent<UnitMono>().mainUnit,
                                    enemyUnits[actions[z].getSecond()].GetComponent<UnitMono>().mainUnit);
                         }
                     }
