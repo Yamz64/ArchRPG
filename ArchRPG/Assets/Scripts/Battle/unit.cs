@@ -371,10 +371,20 @@ public class unit
                 statusText.text += statusIndex[i] + ":" + statuses[i] + "\n";
                 sdnum++;
             }
+            else if (i == 24 && sanity < 50)
+            {
+                statusText.text += statusIndex[i] + ": 9+\n";
+                sdnum++;
+            }
+            else if (i == 25 && sanity <= 0)
+            {
+                statusText.text += statusIndex[i] + ": 9+\n";
+                sdnum++;
+            }
         }
         for (int i = 0; i < statuses.Count; i++)
         {
-            if (statuses[i] != -1)
+            if (statuses[i] != -1 || (i == 24 && sanity < 50) || (i == 25 && sanity <= 0))
             {
                 sdnum++;
                 if (num < 8)

@@ -5065,7 +5065,6 @@ public class BattleScript : MonoBehaviour
             {
                 uni.abilities[ata].UseAttack(uni, target);
                 StartCoroutine(flashHeal(target));
-                
             }
             else if (uni.abilities[ata].target == 1)
             {
@@ -5109,6 +5108,8 @@ public class BattleScript : MonoBehaviour
                 uni.abilities[ata].UseAttack(uni, todos);
             }
 
+            uni.setSP(uni.getSP() - uni.abilities[ata].cost);
+            uni.setHUD();
         }
         //If eldritch ability
         else
