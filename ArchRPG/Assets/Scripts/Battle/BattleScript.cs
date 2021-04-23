@@ -509,7 +509,8 @@ public class BattleScript : MonoBehaviour
         {
             if (i + ability_offset < partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities.Count)
             {
-                if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[i + ability_offset].eldritch)
+                if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[i + ability_offset].eldritch 
+                    && partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.unitName == "Player")
                 {
                     ability_viewer[i].text = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[i + ability_offset].GetTrueName();
                     Color g = new Color(0.0f, 1.0f, 0.0f);
@@ -518,6 +519,8 @@ public class BattleScript : MonoBehaviour
                 else
                 {
                     ability_viewer[i].text = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[i + ability_offset].name;
+                    Color g = new Color(1.0f, 1.0f,1.0f);
+                    ability_viewer[i].color = g;
                 }
             }
             else
@@ -652,7 +655,6 @@ public class BattleScript : MonoBehaviour
                 switch (cursor_position)
                 {
                     case 0:
-                        
                         useSound(1);
                         if (enemyUnits.Count - enemyDeaths > 1)
                         {
@@ -1185,7 +1187,7 @@ public class BattleScript : MonoBehaviour
                         {
                             match2 = true;
                         }
-                        if (match && match2)
+                        if ((match || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].position == 0) && match2)
                         {
                             if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.currentSP <
                                 partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].cost)
@@ -1248,7 +1250,6 @@ public class BattleScript : MonoBehaviour
                                         //Perform player attacks
                                         if (moves >= activeUnits || currentUnit == 4)
                                         {
-                                            
                                             moves = 0;
                                             currentUnit = 0;
                                             state = battleState.ATTACK;
@@ -2126,7 +2127,7 @@ public class BattleScript : MonoBehaviour
                     {
                         speed = (int)(speed * 0.75);
                     }
-                    actions.Add(new action(currentUnit, "swap", i1, i2, speed));
+                    actions.Add(new action(currentUnit, "swap", i1, i2, speed, false, partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.unitName));
 
                     swaps.Add(partyUnits[i1].gameObject);
 
@@ -2145,6 +2146,7 @@ public class BattleScript : MonoBehaviour
                     i1 = 5;
                     i2 = 5;
 
+                    /*
                     pp1 = new GameObject().transform;
                     pp2 = new GameObject().transform;
 
@@ -2155,6 +2157,7 @@ public class BattleScript : MonoBehaviour
                     Destroy(pp2.gameObject);
                     Destroy(po1.gameObject);
                     Destroy(po2.gameObject);
+                    */
 
 
                     if (cursor_position == 1 || cursor_position == 3)
@@ -2242,6 +2245,7 @@ public class BattleScript : MonoBehaviour
             //allyStations[swapInds[indi + 1]].SetSiblingIndex(allyStations[swapInds[indi]].GetSiblingIndex());     
         }
 
+
         //allyStations[swapInds[0]] = pSpots[1];                    //Swap locations
         //allyStations[swapInds[1]] = pSpots[0];
 
@@ -2278,6 +2282,16 @@ public class BattleScript : MonoBehaviour
             {
                 partyUnits[swapInds[indi+1]].GetComponent<UnitMono>().mainUnit.position = 1;
                 //partyUnits[swapInds[1]].GetComponent<UnitMono>().mainUnit.view.canvas.sortingOrder = 1;
+            }
+        }
+        for (int i = 0; i < 4; i++)
+        {
+            if (partyUnits[i] != null)
+            {
+                if (partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                {
+                    partyUnits[i].GetComponent<UnitMono>().mainUnit.setHUD();
+                }
             }
         }
         swapInds.RemoveAt(indi);
@@ -3071,40 +3085,34 @@ public class BattleScript : MonoBehaviour
                             }
                         }
                     }
-                    /*
-                    else if (partyUnits[pose].GetComponent<UnitMono>().mainUnit.unitName != actions[z].getName())
+                    string abiName = temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                    if (temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].eldritch)
                     {
-                        for (int i = 0; i < 4; i++)
+                        abiName = temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].GetTrueName();
+                    }
+                    if (temp[pose] != null)
+                    {
+                        if (temp[pose].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                         {
-                            if (partyUnits[i] != null)
+                            if (temp[ind].GetComponent<UnitMono>().mainUnit.sanity >= 50 &&
+                                actions[z].getIndex() >= temp[ind].GetComponent<UnitMono>().mainUnit.abilities.Count)
                             {
-                                if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName == actions[z].getName())
-                                {
-                                    pose = i;
-                                    break;
-                                }
+                                dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " was cured of madness. Their ability is gone";
+                                yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                                continue;
                             }
+                            dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " + abiName;
+                            yield return playerAbility(actions[z].getIndex(), pose,
+                                temp[ind].GetComponent<UnitMono>().mainUnit, temp[pose].GetComponent<UnitMono>().mainUnit);
+                        }
+                        else
+                        {
+                            dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " + abiName + ", but they were too late";
                         }
                     }
-                    */
-
-                    if (temp[pose].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                    else
                     {
-                        if (temp[ind].GetComponent<UnitMono>().mainUnit.sanity >= 50 &&
-                            actions[z].getIndex() >= temp[ind].GetComponent<UnitMono>().mainUnit.abilities.Count)
-                        {
-                            dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " was cured of madness. Their ability is gone";
-                            yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
-                            continue;
-                        }
-                        string abiName = temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
-                        if (temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].eldritch)
-                        {
-                            abiName = temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].GetTrueName();
-                        }
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " + abiName;
-                        yield return playerAbility(actions[z].getIndex(), pose,
-                            temp[ind].GetComponent<UnitMono>().mainUnit, temp[pose].GetComponent<UnitMono>().mainUnit);
+                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " + abiName + ", but nobody was there";
                     }
                 }
                 //Use basic attack
@@ -3179,17 +3187,23 @@ public class BattleScript : MonoBehaviour
                 //Swap unit locations
                 else if (actions[z].getType() == "swap" && state == battleState.ATTACK)
                 {
+                    int bo = 0;
+                    string nami = actions[z].getName();
+                    while ((temp[swapInds[bo]] == null || temp[swapInds[bo]].GetComponent<UnitMono>().mainUnit.unitName != nami) && bo % 2 != 0 && bo < swapInds.Count)
+                    {
+                        bo++;
+                    }
                     if (temp[actions[z].getTarget()] != null)
                     {
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " swapped places with "
+                        dialogue.text = nami + " swapped places with "
                             + temp[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName;
                     }
                     else
                     {
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " moved to position "
+                        dialogue.text = nami + " moved to position "
                             + (actions[z].getTarget() + 1);
                     }
-                    PerformSwaps();
+                    PerformSwaps(bo);
                 }
                 //Attempt to flee from battle
                 else if (actions[z].getType() == "Flee" && state == battleState.ATTACK)
@@ -5075,8 +5089,11 @@ public class BattleScript : MonoBehaviour
                 {
                     if (partyUnits[x] != null)
                     {
-                        todos.Add(partyUnits[x].GetComponent<UnitMono>().mainUnit);
-                        StartCoroutine(flashHeal(partyUnits[x].GetComponent<UnitMono>().mainUnit));
+                        if (partyUnits[x].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                        {
+                            todos.Add(partyUnits[x].GetComponent<UnitMono>().mainUnit);
+                            StartCoroutine(flashHeal(partyUnits[x].GetComponent<UnitMono>().mainUnit));
+                        }
                     }
                     else
                     {
@@ -5101,8 +5118,16 @@ public class BattleScript : MonoBehaviour
                     {
                         if (partyUnits[g] != null)
                         {
-                            tore.Add(partyUnits[g].GetComponent<UnitMono>().mainUnit);
-                            ori.Add(partyUnits[g].GetComponent<UnitMono>().mainUnit);
+                            if (partyUnits[g].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                            {
+                                tore.Add(partyUnits[g].GetComponent<UnitMono>().mainUnit);
+                                ori.Add(partyUnits[g].GetComponent<UnitMono>().mainUnit);
+                            }
+                            else
+                            {
+                                tore.Add(null);
+                                ori.Add(null);
+                            }
                         }
                         else
                         {
@@ -5157,7 +5182,7 @@ public class BattleScript : MonoBehaviour
                     }
                     if (tore[g].currentHP <= 0 && ori[g].currentHP > 0)
                     {
-                        StartCoroutine(unitDeath(tore[g]));
+                        yield return unitDeath(tore[g]);
                         if (tore[g].enemy == true)
                         {
                             expHere += tore[g].expGain;
@@ -5179,6 +5204,7 @@ public class BattleScript : MonoBehaviour
         if (doer.selfDamage != 0)
         {
             uni.takeDamage(doer.selfDamage);
+            StartCoroutine(flashDamage(uni));
         }
         if (uni.currentHP <= 0)
         {
