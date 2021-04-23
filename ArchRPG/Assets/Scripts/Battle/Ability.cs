@@ -140,6 +140,7 @@ public class Ability
     }
 
     public bool eldritch = false;   //Whether the ability is eldritch or not
+    public bool madness = false;
     public int target = 0;          //0-Single, 1-Across, 2-2 Adjacent enemies, 3-All
     public int enemyTarget = -1;    //Targets for the ability: 0-Any, 1-Front, 2-Back, 3-Self
     public string name = "";        //The name of the ability
@@ -2127,7 +2128,7 @@ namespace PlayerAbilities
             position = 2;
             type = 2;
             statusEffect = "Confident Neurotic Hysteria";
-            eldritch = true;
+            madness = true;
         }
 
         public override void UseAttack(unit user, unit target)
@@ -2272,12 +2273,12 @@ namespace ClyveAbilities
         {
             name = "Dysentery";
             desc1 = "Inflicts diseased on Clyve and on all enemies.";
-            desc2 = "Not added yet";
+            desc2 = "Description not added yet";
             cost = 10;
             target = 3;
             statusEffect = "Diseased";
             selfStatus = "Diseased";
-            eldritch = true;
+            madness = true;
         }
     }
 }
@@ -2440,7 +2441,7 @@ namespace JimAbilities
             damage = 25;
             damageType = 4;
             selfStatus = "Vomiting Aspirating Weeping";
-            eldritch = true;
+            madness = true;
         }
     }
 }
@@ -2555,7 +2556,7 @@ namespace NormAbilities
             cost = 7;
             type = 2;
             statusEffect = "Neurotic Weeping";
-            eldritch = true;
+            madness = true;
         }
 
         public override void UseAttack(unit user, unit target)
@@ -2698,7 +2699,7 @@ namespace ShirleyAbilities
             damage = 25;
             swapper = 1;
             selfStatus = "Zealous";
-            eldritch = true;
+            madness = true;
         }
     }
 }
@@ -2817,7 +2818,7 @@ namespace RalphAbilities
             cost = 10;
             position = 2;
             type = 2;
-            eldritch = true;
+            madness = true;
         }
 
         public override void UseAttack(unit user, unit target)
@@ -2950,7 +2951,7 @@ namespace LucyAbilities
             type = 2;
             swapper = 1;
             selfStatus = "Zealous Neurotic";
-            eldritch = true;
+            madness = true;
         }
 
         public override void UseAttack(unit user, unit target)
@@ -3124,7 +3125,7 @@ namespace TimAbilities
             position = 1;
             statusEffect = "Aspirating Eye_Bleeding";
             selfStatus = "Vomiting Weeping";
-            eldritch = true;
+            madness = true;
         }
     }
 }
@@ -3296,8 +3297,22 @@ namespace WhiteKnightAbilities
                 "Is he wrong? Have all my ventures in the internet… been for nought?";
             cost = 10;
             type = 0;
-            eldritch = true;
-            //Will need to implement random damage and targetting
+            randoMin = 15;
+            randoMax = 25;
+            customAbility = 3;
+            madness = true;
+        }
+
+        public override void UseAttack(unit user, List<unit> targets)
+        {
+            int ran = Random.Range(0, targets.Count);
+            while (targets[ran] == null || targets[ran].currentHP <= 0)
+            {
+                ran = Random.Range(0, targets.Count);
+            }
+            int dami = Random.Range(randoMin, randoMax + 1);
+            user.takeDamageCalc(targets[ran], dami, 0, true);
+            targets[ran].takeDamage(dami);
         }
     }
 }
@@ -3501,7 +3516,8 @@ namespace OliverSproutAbilities
             sanity_damage = 15;
             target = 3;
             statusEffect = "Blunt_Trauma Weeping";
-            eldritch = true;
+            use_pow = true;
+            madness = true;
         }
     }
 }
@@ -3608,7 +3624,6 @@ namespace EmberMoonAbilities
         }
     }
 
-    //Will need to hash out what ability should do, seems all over the place
     public class HogWild : Ability
     {
         public HogWild()

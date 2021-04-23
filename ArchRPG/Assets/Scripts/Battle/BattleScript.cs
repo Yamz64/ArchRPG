@@ -516,6 +516,12 @@ public class BattleScript : MonoBehaviour
                     Color g = new Color(0.0f, 1.0f, 0.0f);
                     ability_viewer[i].color = g;
                 }
+                else if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[i + ability_offset].madness)
+                {
+                    ability_viewer[i].text = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[i + ability_offset].GetTrueName();
+                    Color g = new Color(1.0f, 0.0f, 1.0f);
+                    ability_viewer[i].color = g;
+                }
                 else
                 {
                     ability_viewer[i].text = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[i + ability_offset].name;
