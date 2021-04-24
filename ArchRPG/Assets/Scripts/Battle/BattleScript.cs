@@ -3184,8 +3184,8 @@ public class BattleScript : MonoBehaviour
                 {
                     dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
                         data.GetItem(actions[z].getIndex()).name;
-                    data.UseItem(actions[z].getIndex(), temp[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit);
-                    StartCoroutine(flashHeal(temp[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit));
+                    data.UseItem(actions[z].getIndex(), temp[ind].GetComponent<UnitMono>().mainUnit);
+                    StartCoroutine(flashHeal(temp[ind].GetComponent<UnitMono>().mainUnit));
                     UpdateInventoryItems();
                     UpdateInventoryImageandDesc();
 
@@ -5314,12 +5314,12 @@ public class BattleScript : MonoBehaviour
         if (dead)
         {
             enemyDeaths++;
-            StartCoroutine(unitDeath(target));
+            yield return unitDeath(target);
             yield return levelUp(target.giveEXP());
-            if (enemyDeaths == activeEnemies)
+            if (enemyDeaths == enemyUnits.Count)
             {
                 state = battleState.WIN;
-                StartCoroutine(battleEnd());
+                yield return battleEnd();
             }
         }
     }
