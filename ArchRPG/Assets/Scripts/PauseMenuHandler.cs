@@ -110,6 +110,114 @@ public class PauseMenuHandler : MonoBehaviour
         }
     }
 
+    public void OpenPreviousMenu()
+    {
+        switch (active_menu)
+        {
+            case 0:
+                if (!base_pause_character_select)
+                {
+                    CloseAllMenus();
+                    Time.timeScale = 1;
+                }
+                else base_pause_character_select = true;
+                audio_handler.PlaySound("Sound/SFX/select");
+                break;
+            case 1:
+                CloseMenu(1);
+                active_menu = 0;
+                audio_handler.PlaySound("Sound/SFX/select");
+                break;
+            case 2:
+                if (!equipping)
+                {
+                    CloseMenu(2);
+                    active_menu = 0;
+                }
+                else
+                {
+                    equipping = false;
+                    UpdateEquipMenuInfo();
+                }
+                audio_handler.PlaySound("Sound/SFX/select");
+                break;
+            case 3:
+                if(highlighted_swap == -1)
+                {
+                    CloseMenu(3);
+                    active_menu = 0;
+                }
+                else
+                {
+                    highlighted_swap = -1;
+                    UpdatePositionMenu();
+                }
+                audio_handler.PlaySound("Sound/SFX/select");
+                break;
+            case 4:
+                CloseMenu(4);
+                active_menu = 0;
+                audio_handler.PlaySound("Sound/SFX/select");
+                break;
+            case 5:
+                CloseMenu(5);
+                active_menu = 0;
+                audio_handler.PlaySound("Sound/SFX/select");
+                break;
+            case 6:
+                CloseAllMenus();
+                Time.timeScale = 1;
+                audio_handler.PlaySound("Sound/SFX/select");
+                break;
+            case 7:
+                break;
+            case 8:
+                CloseAllMenus();
+                menu_mode = true;
+                menu_input = true;
+                OpenMenu(6);
+                ActivateCursor();
+                UpdateSaveMenu();
+                GetComponent<PlayerMovement>().interaction_protection = true;
+                break;
+            case 9:
+                if (!store_select)
+                {
+                    CloseAllMenus();
+                    Time.timeScale = 1;
+                    break;
+                }
+                else
+                {
+                    store_select = false;
+                    UpdateStoreMenu();
+                }
+                audio_handler.PlaySound("Sound/SFX/cursor");
+                break;
+            case 10:
+                CloseAllMenus();
+                menu_mode = true;
+                menu_input = true;
+                OpenMenu(6);
+                ActivateCursor();
+                UpdateSaveMenu();
+                GetComponent<PlayerMovement>().interaction_protection = true;
+                break;
+            case 11:
+                CloseAllMenus();
+                menu_mode = true;
+                menu_input = true;
+                OpenMenu(6);
+                ActivateCursor();
+                UpdateSaveMenu();
+                GetComponent<PlayerMovement>().interaction_protection = true;
+                break;
+            default:
+                break;
+        }
+        cursor_position = 0;
+    }
+
     public void CloseMenu(int index)
     {
         cursor_position = 0;
@@ -5246,8 +5354,7 @@ public class PauseMenuHandler : MonoBehaviour
             }
             else
             {
-                CloseAllMenus();
-                Time.timeScale = 1;
+                OpenPreviousMenu();
             }
         }
 
