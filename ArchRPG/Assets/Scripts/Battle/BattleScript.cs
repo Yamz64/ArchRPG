@@ -1127,6 +1127,7 @@ public class BattleScript : MonoBehaviour
                         {
                             match = false;
                         }
+
                         bool match2 = false;
                         if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.unitName.Equals("Oliver Sprout"))
                         {
@@ -5116,7 +5117,7 @@ public class BattleScript : MonoBehaviour
         {
             int expHere = 0;
             List<unit> tore = new List<unit>();
-            List<unit> ori = new List<unit>();
+            List<int> ori = new List<int>();
             if (uni.abilities[ata].target != -1)
             {
                 if (uni.abilities[ata].target == 3)
@@ -5128,25 +5129,25 @@ public class BattleScript : MonoBehaviour
                             if (partyUnits[g].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                             {
                                 tore.Add(partyUnits[g].GetComponent<UnitMono>().mainUnit);
-                                ori.Add(partyUnits[g].GetComponent<UnitMono>().mainUnit);
+                                ori.Add(partyUnits[g].GetComponent<UnitMono>().mainUnit.currentHP);
                             }
                             else
                             {
                                 tore.Add(null);
-                                ori.Add(null);
+                                ori.Add(0);
                             }
                         }
                         else
                         {
                             tore.Add(null);
-                            ori.Add(null);
+                            ori.Add(0);
                         }
                     }
                 }
                 else if (uni.abilities[ata].target == 0)
                 {
                     tore.Add(target);
-                    ori.Add(target);
+                    ori.Add(target.currentHP);
                 }
             }
             if (uni.abilities[ata].enemyTarget != -1)
@@ -5156,7 +5157,7 @@ public class BattleScript : MonoBehaviour
                     for (int g = 0; g < enemyUnits.Count; g++)
                     {
                         tore.Add(enemyUnits[g].GetComponent<UnitMono>().mainUnit);
-                        ori.Add(enemyUnits[g].GetComponent<UnitMono>().mainUnit);
+                        ori.Add(enemyUnits[g].GetComponent<UnitMono>().mainUnit.currentHP);
                     }
                 }
                 else if (uni.abilities[ata].enemyTarget == 0)
@@ -5164,14 +5165,14 @@ public class BattleScript : MonoBehaviour
                     if (uni.abilities[ata].target != 0)
                     {
                         tore.Add(target);
-                        ori.Add(target);
+                        ori.Add(target.currentHP);
                     }
                     else
                     {
                         if (second != null)
                         {
                             tore.Add(second);
-                            ori.Add(second);
+                            ori.Add(second.currentHP);
                         }
                     }
                 }
@@ -5182,18 +5183,28 @@ public class BattleScript : MonoBehaviour
             {
                 if (tore[g] != null)
                 {
-                    if (tore[g].currentHP < ori[g].currentHP)
+                    if (tore[g].currentHP < ori[g] || (tore[g].currentHP == ori[g] && tore[g].currentHP == 0))
                     {
                         StartCoroutine(flashDamage(tore[g]));
                         StartCoroutine(flashDealDamage(uni));
+                        if (tore[g].enemy)
+                        {
+                            int v = 0;
+                            while (tore[g] != enemyUnits[v].GetComponent<UnitMono>().mainUnit && v < enemyUnits.Count)
+                            {
+                                v++;
+                            }
+                            StartCoroutine(showDamage(ori[g] - tore[g].currentHP, v));
+                        }
                     }
-                    if (tore[g].currentHP <= 0 && ori[g].currentHP > 0)
+                    if (tore[g].currentHP <= 0 && ori[g] > 0)
                     {
                         yield return unitDeath(tore[g]);
                         if (tore[g].enemy == true)
                         {
                             expHere += tore[g].expGain;
                             enemyDeaths++;
+
                         }
                         else
                         {
@@ -5227,6 +5238,11 @@ public class BattleScript : MonoBehaviour
         {
             dialogue.text = doer.OutputText(uni, target);
             yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+        }
+        if (enemyDeaths == enemyUnits.Count)
+        {
+            state = battleState.WIN;
+            yield return battleEnd();
         }
     }
 
