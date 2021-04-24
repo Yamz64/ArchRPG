@@ -13069,7 +13069,7 @@ MonoBehaviour:
   encounter_type: 1
   enemy_names:
   - Conniving Cone
-  - Highay Horror
+  - Highway Horror
   - Disposal Demon
   roll_delay: 2
   roll_min: 1
