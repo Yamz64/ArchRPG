@@ -311,6 +311,11 @@ MonoBehaviour:
   distance_factor: 1.5
   text: {fileID: 9165280652639038118, guid: fad40c291a8704843be6e51e5a5f6762, type: 3}
   text_spawn: {fileID: 801274173}
+  background_images:
+  - {fileID: 21300000, guid: 0e1b9130ad5e3764fadf1b812bc5a505, type: 3}
+  - {fileID: 21300000, guid: f2088e2ef0a6c1a4280a69ff2f38f918, type: 3}
+  - {fileID: 21300000, guid: 9619cea9c0ea61a4e941fe55f6d19895, type: 3}
+  - {fileID: 21300000, guid: d0f264212cf43574f8a067e22a759dda, type: 3}
 --- !u!114 &724664476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1093,7 +1098,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1769817755
 MonoBehaviour:
@@ -1108,7 +1113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

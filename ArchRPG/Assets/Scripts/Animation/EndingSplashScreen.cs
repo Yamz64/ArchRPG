@@ -14,11 +14,13 @@ public class EndingSplashScreen : MonoBehaviour
     public float distance_factor;
     public Object text;
     public GameObject text_spawn;
+    public List<Sprite> background_images;
 
     private int index;
     private float text_spawn_max;
     private List<string> ending_text;
     private List<GameObject> existing_text;
+    private Image background;
 
     IEnumerator LoadTitleScreen()
     {
@@ -66,11 +68,14 @@ public class EndingSplashScreen : MonoBehaviour
 
     private void Start()
     {
+        background = transform.GetChild(0).GetComponent<Image>();
         index = 0;
         //populate ending text depending on what ending the player achieved
         ending_text = new List<string>();
         switch (PlayerPrefs.GetInt("_ending_")) {
+            //good
             case 0:
+                background.sprite = background_images[0];
                 ending_text.Add("With that we defeated God.");
                 ending_text.Add("My comrades and I saved the world, along with the lives of the people that reside in it.");
                 ending_text.Add("Things have returned to normal, or as normal as they usually are in Brown Trout City.");
@@ -79,14 +84,18 @@ public class EndingSplashScreen : MonoBehaviour
                 ending_text.Add("That sounds...");
                 ending_text.Add("Fun.");
                 break;
+            //normal
             case 1:
+                background.sprite = background_images[1];
                 ending_text.Add("With that, I repelled God.");
                 ending_text.Add("I saved the world, along with the lives of those oblivious people that reside in it.");
                 ending_text.Add("However, there is still corruption, as evidenced by the recurring supernatural occurrences.");
                 ending_text.Add("Dealing with these incidents fills a lot of my time, as I await the day of God's return.");
                 ending_text.Add("Although I do fear that day, I feel I'll be prepared to face it again.");
                 break;
+            //bad
             case 2:
+                background.sprite = background_images[2];
                 ending_text.Add("With that, I repelled God.");
                 ending_text.Add("I saved the world, but at what cost?");
                 ending_text.Add("The corruption continues to worsen as more lives are lost to it.");
@@ -95,7 +104,9 @@ public class EndingSplashScreen : MonoBehaviour
                 ending_text.Add("I spend my time preparing by increasing my own power...");
                 ending_text.Add("By sacrificing those beneath me.");
                 break;
+            //doomed
             case 3:
+                background.sprite = background_images[3];
                 ending_text.Add("With that, I defeated God.");
                 ending_text.Add("Not only did I defeat it, I superseded it.");
                 ending_text.Add("I am god");
@@ -106,7 +117,9 @@ public class EndingSplashScreen : MonoBehaviour
                 ending_text.Add("If I want to be heard,");
                 ending_text.Add("I can simply will it.");
                 break;
+            //default
             default:
+                background.sprite = background_images[0];
                 ending_text.Add("With that we defeated God.");
                 ending_text.Add("My comrades and I saved the world, along with the lives of the people that reside in it.");
                 ending_text.Add("Things have returned to normal, or as normal as they usually are in Brown Trout City.");
