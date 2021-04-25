@@ -534,7 +534,7 @@ public static class EldritchAbilities
             if (valid.Count > 0)
             {
                 int ran = Random.Range(0, valid.Count);
-                targets[ran].giveStatus("Weeping");
+                targets[valid[ran]].giveStatus("Weeping");
             }
             user.currentSP -= cost;
         }
