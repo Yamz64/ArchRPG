@@ -3327,7 +3327,7 @@ namespace OliverSproutAbilities
             desc2 = "Oliver has two modes, an angered mode that ups ATK and a peaceful mode that ups DEF. " +
                 "When you use this ability he swaps between modes. Swapping to War moves him to the frontline " +
                 "and swapping to Peace moves him to the backline. His mode also dictates which abilities he can use.";
-            cost = 5;
+            cost = 0;
             type = 2;
             shuffle = true;
             swapper = 0;
