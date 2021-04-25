@@ -1686,7 +1686,35 @@ public class BattleScript : MonoBehaviour
                 {
                     if (partyUnits[currentAlly].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                     {
-                        if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].enemyTarget != 0)
+                        if (partyUnits[currentAlly].GetComponent<UnitMono>().mainUnit.unitName == "Player" 
+                            && partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name == "VampiricBetrayal")
+                        {
+                            dialogue.text = "Can't use this ability on yourself";
+                            Image[] opts = transform.GetChild(1).Find("AbilityMenu").GetComponentsInChildren<Image>();
+                            foreach (Image child in opts)
+                            {
+                                Color temp = child.color;
+                                temp.a = 1.0f;
+                                child.color = temp;
+                            }
+                            Text[] ts = transform.GetChild(1).Find("AbilityMenu").GetComponentsInChildren<Text>();
+                            foreach (Text child in ts)
+                            {
+                                Color temp = child.color;
+                                temp.a = 1.0f;
+                                child.color = temp;
+                            }
+                            currentAlly = 0;
+                            highlighted_ability = 0;
+                            ability_offset = 0;
+                            cursor.SetActive(true);
+                            CloseSelectUnitMenu();
+                            CloseUseAbilityMenu();
+                            CloseMenu(1);
+                            unit_select_menu = false;
+                            menu_input = true;
+                        }
+                        else if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].enemyTarget != 0)
                         {
                             useSound(1);
                             int speed = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI();
@@ -4847,7 +4875,7 @@ public class BattleScript : MonoBehaviour
             }
         }
         //If support ability and Not eldritch
-        else if (uni.abilities[ata].type == 1 || uni.abilities[ata].type == 2 && !uni.abilities[ata].eldritch)
+        else if ((uni.abilities[ata].type == 1 || uni.abilities[ata].type == 2) && !uni.abilities[ata].eldritch)
         {
             int hereVal = 0;
             for (int x = 0; x < 4; x++)
@@ -5177,8 +5205,13 @@ public class BattleScript : MonoBehaviour
                     }
                 }
             }
-           
+            int vam = uni.currentHP;
+            Debug.Log("User == " + uni.unitName);
             uni.abilities[ata].UseAttack(uni, tore);
+            if (uni.currentHP > vam)
+            {
+                StartCoroutine(flashHeal(uni));
+            }
             for (int g = 0; g < tore.Count; g++)
             {
                 if (tore[g] != null)
