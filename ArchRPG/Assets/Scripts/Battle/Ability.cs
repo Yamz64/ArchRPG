@@ -1289,7 +1289,7 @@ namespace EnemyAbilities
             target = 1;
             priority = defaultPriority = 3;
             nextPriority = 1;
-            statusEffect = "Disco Fever";
+            statusEffect = "Disco_Fever";
             swapper = 1;
             shuffle = true;
         }

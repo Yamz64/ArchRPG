@@ -1612,7 +1612,7 @@ public class unit
         {
             statuses[25] = int.MaxValue;
         }
-        else if (id.Equals("Disco Fever")   && statuses[26] == -1)
+        else if (id.Equals("Disco_Fever")   && statuses[26] == -1)
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[20] = ran;

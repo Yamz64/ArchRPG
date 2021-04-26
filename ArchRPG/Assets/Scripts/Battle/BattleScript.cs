@@ -5935,8 +5935,17 @@ public class BattleScript : MonoBehaviour
     {
         if (uni.abilities[ata].target == 0)
         {
+            int tempi = target.currentHP;
             uni.abilities[ata].UseAttack(uni, target);
-            StartCoroutine(flashBuff(target));
+            if (target.currentHP > tempi)
+            {
+                StartCoroutine(flashHeal(target));
+                StartCoroutine(showDamage(target.currentHP - tempi, val));
+            }
+            else
+            {
+                StartCoroutine(flashBuff(target));
+            }
             if (uni.abilities[ata].OutputText(uni, target) != null)
             {
                 dialogue.text = uni.abilities[ata].OutputText(uni, target);
@@ -5946,14 +5955,26 @@ public class BattleScript : MonoBehaviour
         else if (uni.abilities[ata].target == 3)
         {
             List<unit> buds = new List<unit>();
+            List<int> hps = new List<int>();
             for (int i = 0; i < enemyUnits.Count; i++)
             {
                 buds.Add(enemyUnits[i].GetComponent<UnitMono>().mainUnit);
+                hps.Add(enemyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP);
             }
             uni.abilities[ata].UseAttack(uni, buds);
-            for (int i = 0; i < enemyUnits.Count; i++)
+            for (int i = 0; i < buds.Count; i++)
             {
-                StartCoroutine(flashBuff(buds[i]));
+                if (buds[i].currentHP > 0)
+                {
+                    if (buds[i].currentHP > hps[i])
+                    {
+                        StartCoroutine(showDamage(buds[i].currentHP - hps[i], i));
+                    }
+                    else
+                    {
+                        StartCoroutine(flashBuff(buds[i]));
+                    }
+                }
             }
             if (uni.abilities[ata].OutputText(uni, target) != null)
             {
