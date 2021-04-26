@@ -3637,10 +3637,10 @@ public class BattleScript : MonoBehaviour
                         temp[ind].GetComponent<UnitMono>().mainUnit.setSP(temp[ind].GetComponent<UnitMono>().mainUnit.currentSP + 
                             temp[ind].GetComponent<UnitMono>().mainUnit.currentSP / 10);
                         temp[ind].GetComponent<UnitMono>().mainUnit.setHUD();
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " regained some MP";
+                        //dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " regained some MP";
                         yield return flashBuff(temp[ind].GetComponent<UnitMono>().mainUnit);
                        
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                     }
                 }
             }

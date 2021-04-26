@@ -628,7 +628,7 @@ public static class EldritchAbilities
                     if (targets[i].enemy == false && targets[i].currentHP > 0 && targets[i].unitName != user.unitName)
                     {
                         int ran = Random.Range(0, statIndex.Count);
-                        while(targets[i].statuses[ran] != -1)
+                        while(targets[i].statuses[ran] != -1 || ran == 24 || ran == 25 || ran == 26)
                         {
                             ran = Random.Range(0, statIndex.Count);
                         }
@@ -2594,7 +2594,7 @@ namespace NormAbilities
         public override void UseAttack(unit user, unit target)
         {
             target = user;
-            user.setSP(user.currentSP - cost);
+            //user.setSP(user.currentSP - cost);
             user.giveStatus(statusEffect);
             user.setSAN(user.sanity + 5);
         }
