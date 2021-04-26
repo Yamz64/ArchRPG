@@ -887,7 +887,7 @@ namespace EnemyAbilities
             name = "Door Slam";
             cost = 0;
             target = 1;
-            damage = 18;
+            damage = 12;
             damageType = 0;
             statusEffect = "Blunt_Trauma";
             priority = defaultPriority = 3;
