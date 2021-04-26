@@ -4683,19 +4683,10 @@ public class PauseMenuHandler : MonoBehaviour
             {
                 if (!menu_input)
                 {
-                    if (cursor_position < data.GetPartySize())
-                    {
-                        highlighted_party_member = cursor_position;
-                        cursor_position = 0;
-                        swap = true;
-                        audio_handler.PlaySound("Sound/SFX/select");
-                    }
-                    else
-                    {
-                        cursor_position = 0;
-                        swap = true;
-                        audio_handler.PlaySound("Sound/SFX/select");
-                    }
+                    highlighted_party_member = cursor_position;
+                    cursor_position = 0;
+                    swap = true;
+                    audio_handler.PlaySound("Sound/SFX/select");
                 }
             }
             else
@@ -4811,11 +4802,20 @@ public class PauseMenuHandler : MonoBehaviour
                     }
 
                     //check to see if adding a party member instead of swapping
-                    if(cursor_position >= data.GetPartySize())
+                    if(highlighted_party_member >= data.GetPartySize())
                     {
-                        //if the above 2 cases don't happen then swap the current party member out for the new party member
                         temp.SetSAN(data.GetUnlockedSAN(selected));
-                        temp.SetPos(data.GetPartyMember(highlighted_party_member).GetPos());
+                        //find the first available spot to put the new party member in
+                        List<int> party_locations = new List<int>();
+                        for(int i=0; i<data.GetPartySize(); i++) { party_locations.Add(data.GetPartyMember(i).GetPos()); }
+                        party_locations.Sort();
+                        int location = 0;
+                        for(int i=0; i<party_locations.Count; i++) {
+                            location = i;
+                            if (i != party_locations[i]) break;
+                        }
+                        temp.SetPos(location);
+
                         temp.SetLVL(data.GetLVL());
                         temp.UpdateStats();
 
