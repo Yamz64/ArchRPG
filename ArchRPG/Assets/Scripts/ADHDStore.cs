@@ -26,7 +26,7 @@ public class ADHDStore : StoreBehavior
         temp_effect.effects.Add(new TextEffectClass(temp));
         effect_queue.Add(new EffectContainer(temp_effect));
 
-        image_queue.Add("CharacterSprites/BackgroundCharacters/Background Kid");
+        image_queue.Add("CharacterSprites/BackgroundCharacters/ADHD Drug Dealer");
 
         player.SetWriteQueue(dialogue_queue);
         player.SetEffectQueue(effect_queue);
