@@ -22,6 +22,8 @@ public class action
         priority = false;
         targetName = "op";
     }
+    //who == index of the user
+    //todo == type of action
     public action(int who, string todo, int what, int where, int agi, bool p = false, string st = "", int u2 = -1)
     {
         id = who;
@@ -1203,7 +1205,9 @@ public class BattleScript : MonoBehaviour
                             }
                             else
                             {
-                                if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].type == 0)
+                                if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].type == 0 && 
+                                    (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name != "SanityBeam" &&
+                                    partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name != "UltimateSacrice"))
                                 {
                                     //If more than one enemy exists
                                     if ((activeEnemies > 1 || enemyUnits.Count - enemyDeaths > 1) &&
@@ -1280,7 +1284,9 @@ public class BattleScript : MonoBehaviour
                                         }
                                     }
                                 }
-                                else if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].type == 1)
+                                else if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].type == 1 ||
+                                    partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name == "SanityBeam" ||
+                                    partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name == "UltimateSacrice")
                                 {
                                     if ((activeUnits > 1 || partyUnits.Count - partyDeaths > 1)
                                         && partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].target != 3)
@@ -1519,17 +1525,17 @@ public class BattleScript : MonoBehaviour
                 {
                     speed = (int)(speed * 0.75);
                 }
+                Debug.Log("Target1 == " + target1);
                 if (target1 == -1)
                 {
                     actions.Add(new action(currentUnit, "ability", highlighted_ability, currentEnemy, speed,
                         partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].fast));
                 }
-
                 else
                 {
-                    actions.Add(new action(currentUnit, "ability", highlighted_ability, target1, speed,
+                    actions.Add(new action(currentUnit, "ability", highlighted_ability, currentEnemy, speed,
                         partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].fast, 
-                        partyUnits[target1].GetComponent<UnitMono>().mainUnit.unitName, currentEnemy));
+                        partyUnits[target1].GetComponent<UnitMono>().mainUnit.unitName, target1));
                 }
                 target1 = -1;
                 currentEnemy = 0;
@@ -3081,7 +3087,7 @@ public class BattleScript : MonoBehaviour
                             dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " + abiName;
                             yield return playerAbility(actions[z].getIndex(), toget,
                                    temp[ind].GetComponent<UnitMono>().mainUnit, enemyUnits[toget].GetComponent<UnitMono>().mainUnit,
-                                   enemyUnits[actions[z].getSecond()].GetComponent<UnitMono>().mainUnit);
+                                   temp[actions[z].getSecond()].GetComponent<UnitMono>().mainUnit);
                         }
                     }
                     else if (temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].target == 0)
@@ -3098,7 +3104,7 @@ public class BattleScript : MonoBehaviour
                             dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " + abiName + ", but spasmed and hit themself";
                             yield return playerAbility(actions[z].getIndex(), ind,
                                    temp[ind].GetComponent<UnitMono>().mainUnit, temp[ind].GetComponent<UnitMono>().mainUnit,
-                                   enemyUnits[actions[z].getSecond()].GetComponent<UnitMono>().mainUnit);
+                                   temp[actions[z].getSecond()].GetComponent<UnitMono>().mainUnit);
                         }
                     }
                 }
@@ -3631,8 +3637,9 @@ public class BattleScript : MonoBehaviour
                         temp[ind].GetComponent<UnitMono>().mainUnit.setSP(temp[ind].GetComponent<UnitMono>().mainUnit.currentSP + 
                             temp[ind].GetComponent<UnitMono>().mainUnit.currentSP / 10);
                         temp[ind].GetComponent<UnitMono>().mainUnit.setHUD();
-                        StartCoroutine(flashBuff(temp[ind].GetComponent<UnitMono>().mainUnit));
                         dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " regained some MP";
+                        yield return flashBuff(temp[ind].GetComponent<UnitMono>().mainUnit);
+                       
                         yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                     }
                 }
@@ -4051,6 +4058,7 @@ public class BattleScript : MonoBehaviour
             eGo.GetComponent<UnitMono>().mainUnit.copyUnitStats(enen);
             eGo.GetComponent<UnitMono>().mainUnit.unitName = enen.unitName;
             eGo.GetComponent<UnitMono>().mainUnit.capital = enen.capital;
+            eGo.GetComponent<UnitMono>().mainUnit.enemy = true;
             enemyUnits.Add(eGo.gameObject);
             if (eGo.GetComponent<UnitMono>().mainUnit.level > highEne)
             {
@@ -5157,7 +5165,7 @@ public class BattleScript : MonoBehaviour
             List<int> ori = new List<int>();
             if (uni.abilities[ata].target != -1)
             {
-                if (uni.abilities[ata].target == 3)
+                if (uni.abilities[ata].target == 3 || uni.abilities[ata].name == "UltimateSacrifice")
                 {
                     for (int g = 0; g < partyUnits.Count; g++)
                     {
@@ -5187,6 +5195,13 @@ public class BattleScript : MonoBehaviour
                     ori.Add(target.currentHP);
                 }
             }
+            int insan = 0;
+            if (second != null)
+            {
+                tore.Add(second);
+                ori.Add(second.currentHP);
+                insan = second.sanity;
+            }
             if (uni.abilities[ata].enemyTarget != -1)
             {
                 if (uni.abilities[ata].enemyTarget == 3)
@@ -5211,16 +5226,28 @@ public class BattleScript : MonoBehaviour
                             tore.Add(second);
                             ori.Add(second.currentHP);
                         }
+                        else if (uni.abilities[ata].name == "UltimateSacrifice")
+                        {
+                            tore.Add(target);
+                            ori.Add(target.currentHP);
+                        }
                     }
                 }
             }
             int vam = uni.currentHP;
-            Debug.Log("User == " + uni.unitName);
+            for (int i = 0; i < tore.Count; i++)
+            {
+                if (tore[i] != null)
+                {
+                    Debug.Log("Unit " + i + " is " + tore[i].unitName);
+                }
+            }
             uni.abilities[ata].UseAttack(uni, tore);
             if (uni.currentHP > vam)
             {
                 StartCoroutine(flashHeal(uni));
             }
+
             for (int g = 0; g < tore.Count; g++)
             {
                 if (tore[g] != null)

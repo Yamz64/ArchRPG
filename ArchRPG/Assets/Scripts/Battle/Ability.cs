@@ -647,6 +647,8 @@ public static class EldritchAbilities
             name = "SanityBeam";
             desc1 = "Inflicts moderate sanity damage on an ally and does high weird POW to an enemy.";
             level_cost = 5;
+            damage = 30;
+            damageType = 4;
             type = 0;
             target = 0;
             enemyTarget = 0;
@@ -663,7 +665,7 @@ public static class EldritchAbilities
                 }
                 else
                 {
-                    int dam = user.takeDamageCalc(targets[i], 30, 4, true);
+                    int dam = user.takeDamageCalc(targets[i], damage, damageType, true);
                     targets[i].takeDamage(dam);
                 }
             }
@@ -685,23 +687,53 @@ public static class EldritchAbilities
 
         public override void UseAttack(unit user, List<unit> targets)
         {
+            int ps = 0;
+            int indi = 0;
             for (int i = 0; i < targets.Count; i++)
             {
-                if (!targets[i].enemy)
+                if (targets[i] != null && !targets[i].enemy && targets[indi].currentHP > 0 && targets[i] != user)
                 {
-                    targets[i].takeDamage(targets[i].defMaxHP);
+                    ps++;
+                    indi = i;
                 }
-                else
+            }
+            if (ps > 1)
+            {
+                indi = Random.Range(0, targets.Count);
+                while (targets[indi] == null || targets[indi].currentHP <= 0 || targets[indi].enemy || targets[indi] == user)
                 {
-                    targets[i].giveStatus("Vomiting");
-                    targets[i].giveStatus("Aspirating");
-                    targets[i].giveStatus("Weeping");
-                    targets[i].giveStatus("Eye_Bleeding");
-                    targets[i].giveStatus("Blunt_Trauma");
-                    targets[i].giveStatus("Lethargic");
-                    targets[i].giveStatus("Spasms");
-                    int dam = user.takeDamageCalc(targets[i], 30, 4, true);
-                    targets[i].takeDamage(dam);
+                    indi = Random.Range(0, targets.Count);
+                }
+            }
+            if (ps >= 1)
+            { 
+                for (int i = 0; i < targets.Count; i++)
+                {
+                    if (targets[i] != null)
+                    {
+                        if (targets[i].currentHP > 0)
+                        {
+                            Debug.Log("This unit == " + targets[i].unitName);
+                            Debug.Log("Unit is enemy? " + targets[i].enemy);
+                            if (i == indi)
+                            {
+                                Debug.Log("Unit to die == " + targets[i].unitName + ", max == " + targets[i].maxHP);
+                                targets[i].takeDamage(targets[i].maxHP);
+                            }
+                            else if (targets[i].enemy)
+                            {
+                                targets[i].giveStatus("Vomiting");
+                                targets[i].giveStatus("Aspirating");
+                                targets[i].giveStatus("Weeping");
+                                targets[i].giveStatus("Eye_Bleeding");
+                                targets[i].giveStatus("Blunt_Trauma");
+                                targets[i].giveStatus("Lethargic");
+                                targets[i].giveStatus("Spasms");
+                                int dam = user.takeDamageCalc(targets[i], 30, 4, true);
+                                targets[i].takeDamage(dam);
+                            }
+                        }
+                    }
                 }
             }
         }
