@@ -1294,24 +1294,36 @@ public class unit
             {
                 reze = (int)(reze * 1.25);
             }
-            if (ran >= reze || ran == 1 || typer != 0)
+            if (ran >= reze || ran == 1)
             {
-                int andi = UnityEngine.Random.Range(0, 4);
+                int andi = UnityEngine.Random.Range(0, 7);
                 if (andi == 0)
                 {
-                    giveStatus("Vomiting");
+                    target.giveStatus("Vomiting");
                 }
                 else if (andi == 1)
                 {
-                    giveStatus("Weeping");
+                    target.giveStatus("Weeping");
                 }
                 else if (andi == 2)
                 {
-                    giveStatus("Blunt_Trauma");
+                    target.giveStatus("Blunt_Trauma");
                 }
                 else if (andi == 3)
                 {
-                    giveStatus("Lethargic");
+                    target.giveStatus("Lethargic");
+                }
+                else if (andi == 4)
+                {
+                    target.giveStatus("Hyperactive");
+                }
+                else if (andi == 5)
+                {
+                    target.giveStatus("Zealous");
+                }
+                else if (andi == 6)
+                {
+                    target.giveStatus("Spasms");
                 }
             }
         }

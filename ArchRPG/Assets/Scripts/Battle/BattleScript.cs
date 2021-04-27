@@ -667,10 +667,20 @@ public class BattleScript : MonoBehaviour
                         if (enemyUnits.Count - enemyDeaths > 1)
                         {
                             currentEnemy = 0;
-                            while (enemyUnits[currentEnemy].GetComponent<UnitMono>().mainUnit.currentHP <= 0) currentEnemy++;
-                            OpenSelectEnemyMenu();
-                            enemy_select_menu = true;
-                            menu_input = false;
+                            while (enemyUnits[currentEnemy].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && currentEnemy < enemyUnits.Count) currentEnemy++; ;
+                            if (currentEnemy >= enemyUnits.Count)
+                            {
+                                battleState temp = state;
+                                state = battleState.WIN;
+                                if (temp != state)
+                                StartCoroutine(battleEnd());
+                            }
+                            else
+                            {
+                                OpenSelectEnemyMenu();
+                                enemy_select_menu = true;
+                                menu_input = false;
+                            }
                         }
                         else
                         {
@@ -678,30 +688,21 @@ public class BattleScript : MonoBehaviour
                             while (enemyUnits[val].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && val < enemyUnits.Count) val++;
                             if (val >= enemyUnits.Count)
                             {
-                                moves = 0;
-                                currentUnit = 0;
-                                state = battleState.ATTACK;
-                                StartCoroutine(performActions());
-                            }
-                            actions.Add(new action(currentUnit, "basic attack", 0, val, partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI()));
-                            currentUnit += 1;
-                            Vector3 here = partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.view.transform.position;
-                            here.y = partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.backupView.transform.position.y;
-                            partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.view.transform.position = here;
-                            moves += 1;
-
-                            if (moves >= (activeUnits-partyDeaths))
-                            {
-                                moves = 0;
-                                currentUnit = 0;
-                                state = battleState.ATTACK;
-                                StartCoroutine(performActions());
+                                battleState temp = state;
+                                state = battleState.WIN;
+                                if (temp != state)
+                                    StartCoroutine(battleEnd());
                             }
                             else
                             {
-                                while ((partyUnits[currentUnit] == null || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.currentHP <= 0) 
-                                    && currentUnit < partyUnits.Count) currentUnit++;
-                                if (currentUnit >= partyUnits.Count)
+                                actions.Add(new action(currentUnit, "basic attack", 0, val, partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI()));
+                                currentUnit += 1;
+                                Vector3 here = partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.view.transform.position;
+                                here.y = partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.backupView.transform.position.y;
+                                partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.view.transform.position = here;
+                                moves += 1;
+
+                                if (moves >= (activeUnits - partyDeaths))
                                 {
                                     moves = 0;
                                     currentUnit = 0;
@@ -710,7 +711,19 @@ public class BattleScript : MonoBehaviour
                                 }
                                 else
                                 {
-                                    playerTurn();
+                                    while ((partyUnits[currentUnit] == null || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
+                                        && currentUnit < partyUnits.Count) currentUnit++;
+                                    if (currentUnit >= partyUnits.Count)
+                                    {
+                                        moves = 0;
+                                        currentUnit = 0;
+                                        state = battleState.ATTACK;
+                                        StartCoroutine(performActions());
+                                    }
+                                    else
+                                    {
+                                        playerTurn();
+                                    }
                                 }
                             }
                         }
@@ -4623,7 +4636,7 @@ public class BattleScript : MonoBehaviour
                                 dif = enemyUnits[b].GetComponent<UnitMono>().mainUnit.currentHP;
                                 dTemp = uni.useAbility(ata, enemyUnits[b].GetComponent<UnitMono>().mainUnit, minus);
                                 dif -= enemyUnits[b].GetComponent<UnitMono>().mainUnit.currentHP;
-                                if (dif != 0)
+                                if (dif > 0)
                                     StartCoroutine(showDamage(dif, val));
 
                                 if (enemyUnits[b].GetComponent<UnitMono>().mainUnit.weaknesses[uni.abilities[ata].damageType]) good = true;
