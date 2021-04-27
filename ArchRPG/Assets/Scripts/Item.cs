@@ -579,6 +579,30 @@ public static class Consumables
         }
     }
 
+    public class DoctorSoda : Item
+    {
+        public DoctorSoda()
+        {
+            name = "Doctor Soda";
+            description = "They thought that giving this beverage an online doctorate would help it sell better. Recovers 35 SP when consumed!";
+            image_file_path = "";
+            amount = 1;
+            limit = 99;
+            cost = 3;
+        }
+
+        public override void Use()
+        {
+            character.SetSP(character.GetSP() + 35);
+        }
+
+        public override void Use(unit user)
+        {
+            user.setSP(user.getSP() + 35);
+            Remove();
+        }
+    }
+
     public class SeniorMeatSalesmanID : Item
     {
         public SeniorMeatSalesmanID()
