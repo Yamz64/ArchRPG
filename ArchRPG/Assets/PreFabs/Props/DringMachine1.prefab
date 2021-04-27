@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 1388020737284421439}
   - component: {fileID: 1388020737284421376}
   - component: {fileID: 1388020737284421438}
-  m_Layer: 0
+  - component: {fileID: 3212104164044203891}
+  m_Layer: 8
   m_Name: DringMachine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,3 +110,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.3565118, y: 1.8684225}
   m_EdgeRadius: 0
+--- !u!114 &3212104164044203891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1388020737284421377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f43b670a4b35cc48ad26f0a8d83d2a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  items:
+  - name: Meat Dog
+    cost: 15
+    type: 0
+  - name: Doctor Soda
+    cost: 6
+    type: 0
