@@ -1594,8 +1594,8 @@ public class BattleScript : MonoBehaviour
                 else
                 {
                     while ((partyUnits[currentUnit] == null || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
-                                                && currentUnit < partyUnits.Count && currentUnit < activeUnits) currentUnit++;
-                    if (currentUnit >= partyUnits.Count)
+                                                && currentUnit < partyUnits.Count) currentUnit++;
+                    if (currentUnit >= partyUnits.Count || partyUnits[currentUnit] == null)
                     {
                         moves = 0;
                         currentUnit = 0;
@@ -4096,7 +4096,7 @@ public class BattleScript : MonoBehaviour
         else if (boss31)
         {
             useSound(6, true, 1);
-            background.GetComponent<VideoPlayer>().clip = Resources.Load<VideoClip>("Backgrounds/Background7");
+            background.GetComponent<VideoPlayer>().clip = Resources.Load<VideoClip>("Backgrounds/Background7Compressed");
         }
         //If bouncer
         else if (bounce)
@@ -5319,6 +5319,7 @@ public class BattleScript : MonoBehaviour
         if (doer.OutputText(uni, target) != null)
         {
             dialogue.text = doer.OutputText(uni, target);
+            yield return new WaitForSeconds(0.5f);
             yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
         }
         if (enemyDeaths == enemyUnits.Count)

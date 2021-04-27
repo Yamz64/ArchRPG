@@ -1565,6 +1565,7 @@ namespace EnemyAbilities
         public LighterFluid()
         {
             name = "Goodmeat Brand BBQ Lighter fluid™";
+            damage = 8;
             statusEffect = "Flammable";
             priority = defaultPriority = 5;
             nextPriority = 3;
