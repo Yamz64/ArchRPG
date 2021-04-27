@@ -1017,7 +1017,7 @@ public class CharacterStatJsonConverter
             }
 
             temp.SetDead(dead[i]);
-            p.AddPartyMember(temp, false, false);
+            p.AddPartyMember(temp, false, false, false);
             
             if (weapons[i].name != "")
             {

@@ -125,7 +125,7 @@ public class PlayerData : CharacterStats
 
             for (int i=0; i < temp.GetPartySize(); i++)
             {
-                AddPartyMember(temp.GetPartyMember(i), false, false);
+                AddPartyMember(temp.GetPartyMember(i), false, false, false);
             }
         }
     }
@@ -148,24 +148,28 @@ public class PlayerData : CharacterStats
     public void SetSavedPosition(Vector2 p) { saved_position = p; }
 
     //party functions
-    public void AddPartyMember(CharacterStats c, bool max_hp = true, bool min_hp = true) {
+    public void AddPartyMember(CharacterStats c, bool max_hp = true, bool min_hp = true, bool new_pos = true) {
         if (party_stats.Count < 3)
         {
             //loop through party stats to find the first available position for the new party member
-            for(int i=0; i<4; i++)
+            if (new_pos)
             {
-                bool valid_position = true;
-                if (GetPos() == i) valid_position = false;
-                for(int j=0; j<party_stats.Count; j++)
+                for (int i = 0; i < 4; i++)
                 {
-                    if (party_stats[j].GetPos() == i) {
-                        valid_position = false;
-                        break;
+                    bool valid_position = true;
+                    if (GetPos() == i) valid_position = false;
+                    for (int j = 0; j < party_stats.Count; j++)
+                    {
+                        if (party_stats[j].GetPos() == i)
+                        {
+                            valid_position = false;
+                            break;
+                        }
                     }
+                    if (!valid_position) continue;
+                    c.SetPos(i);
+                    break;
                 }
-                if (!valid_position) continue;
-                c.SetPos(i);
-                break;
             }
             c.SetLVL(GetLVL());
             c.UpdateStats();
