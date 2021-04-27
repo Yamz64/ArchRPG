@@ -166,6 +166,7 @@ public class TitleScreen : MonoBehaviour
     {
         transform.GetChild(1).Find("SaveBlocks").GetChild(4).gameObject.SetActive(false);
         cursor_position = save_slot;
+
         save_select_menu = false;
     }
 
@@ -608,7 +609,7 @@ public class TitleScreen : MonoBehaviour
                 {
                     useSound(0);
                     cursor_position--;
-                    save_choice = cursor_position;
+                    save_choice--;
                 }
                 menu_input = true;
             }
@@ -618,7 +619,7 @@ public class TitleScreen : MonoBehaviour
                 {
                     useSound(0);
                     cursor_position++;
-                    save_choice = cursor_position;
+                    save_choice++;
                 }
                 menu_input = true;
             }
@@ -683,6 +684,9 @@ public class TitleScreen : MonoBehaviour
             {
                 if (!menu_input)
                 {
+                    Debug.Log("Cursor == " + cursor_position);
+                    Debug.Log("Save == " + save_choice);
+                    Debug.Log("Save slot == " + save_slot);
                     switch (cursor_position)
                     {
                         //Yes
@@ -695,6 +699,8 @@ public class TitleScreen : MonoBehaviour
                                     PlayerPrefs.SetInt("_active_save_file_", save_slot);
                                     //DontDestroyOnLoad(mani);
                                     //Check save file
+                                    //bool good = true;
+                                    MapSaveData mapio = new MapSaveData();
                                     switch (save_slot)
                                     {
                                         case 0:
@@ -703,7 +709,6 @@ public class TitleScreen : MonoBehaviour
                                             else
                                             {
                                                 save1.Save(0);
-                                                MapSaveData mapio = new MapSaveData();
                                                 mapio.Save();
                                                 SceneManager.LoadScene("BedroomCutscene");
                                             }
@@ -714,7 +719,6 @@ public class TitleScreen : MonoBehaviour
                                             else
                                             {
                                                 save2.Save(1);
-                                                MapSaveData mapio = new MapSaveData();
                                                 mapio.Save();
                                                 SceneManager.LoadScene("BedroomCutscene");
                                             }
@@ -725,7 +729,6 @@ public class TitleScreen : MonoBehaviour
                                             else
                                             {
                                                 save3.Save(2);
-                                                MapSaveData mapio = new MapSaveData();
                                                 mapio.Save();
                                                 SceneManager.LoadScene("BedroomCutscene");
                                             }
@@ -736,7 +739,6 @@ public class TitleScreen : MonoBehaviour
                                             else
                                             {
                                                 save4.Save(3);
-                                                MapSaveData mapio = new MapSaveData();
                                                 mapio.Save();
                                                 SceneManager.LoadScene("BedroomCutscene");
                                             }
@@ -763,6 +765,7 @@ public class TitleScreen : MonoBehaviour
                             CloseConfirmSlotMenu();
                             break;
                     }
+                    save_choice = 4;
                 }
                 menu_input = true;
             }
