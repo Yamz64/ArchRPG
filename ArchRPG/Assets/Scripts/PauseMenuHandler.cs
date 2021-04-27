@@ -3451,6 +3451,7 @@ public class PauseMenuHandler : MonoBehaviour
                     case 2:
                         equipping = false;
                         cursor_position = 0;
+                        highlighted_party_member = 0;
                         equip_type = 0;
                         equipped_offset = 0;
                         ability_select = false;
@@ -3465,6 +3466,7 @@ public class PauseMenuHandler : MonoBehaviour
                     case 4:
                         cursor_position = 0;
                         ability_offset = 0;
+                        highlighted_party_member = 0;
                         ability_select = true;
                         base_pause_character_select = true;
                         break;

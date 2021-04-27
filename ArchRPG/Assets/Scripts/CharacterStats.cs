@@ -1011,14 +1011,22 @@ public class CharacterStatJsonConverter
             temp.SetSP(SPs[i]);
             temp.SetSAN(SANs[i]);
 
+            for(int j=0; j<statuses[i].status_effects.Count; j++)
+            {
+                temp.SetStatus(j, statuses[i].status_effects[j]);
+            }
+
+            temp.SetDead(dead[i]);
+            p.AddPartyMember(temp, false, false);
+            
             if (weapons[i].name != "")
             {
                 p.AddItem(weapons[i]);
                 for (int j = 0; j < p.GetInventorySize(); j++)
                 {
-                    if (p.GetItem(j).name == weapons[0].name)
+                    if (p.GetItem(j).name == weapons[i].name)
                     {
-                        p.SetWeapon((Weapon)p.GetItem(j));
+                        p.SetPartyWeapon((Weapon)p.GetItem(j), i - 1);
                         break;
                     }
                 }
@@ -1028,9 +1036,9 @@ public class CharacterStatJsonConverter
                 p.AddItem(armors[i]);
                 for (int j = 0; j < p.GetInventorySize(); j++)
                 {
-                    if (p.GetItem(j).name == armors[0].name)
+                    if (p.GetItem(j).name == armors[i].name)
                     {
-                        p.SetArmor((Armor)p.GetItem(j));
+                        p.SetPartyArmor((Armor)p.GetItem(j), i - 1);
                         break;
                     }
                 }
@@ -1040,21 +1048,13 @@ public class CharacterStatJsonConverter
                 p.AddItem(trinkets[i]);
                 for (int j = 0; j < p.GetInventorySize(); j++)
                 {
-                    if (p.GetItem(j).name == trinkets[0].name)
+                    if (p.GetItem(j).name == trinkets[i].name)
                     {
-                        p.SetTrinket((Trinket)p.GetItem(j));
+                        p.SetPartyTrinket((Trinket)p.GetItem(j), i - 1);
                         break;
                     }
                 }
             }
-
-            for(int j=0; j<statuses[i].status_effects.Count; j++)
-            {
-                temp.SetStatus(j, statuses[i].status_effects[j]);
-            }
-
-            temp.SetDead(dead[i]);
-            p.AddPartyMember(temp, false, false);
         }
     }
 
