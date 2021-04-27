@@ -879,17 +879,20 @@ public class BattleScript : MonoBehaviour
                     //If there is more than one enemy remaining
                     if (enemyUnits.Count - enemyDeaths > 1)
                     {
-                        //If the enemy to the right is alive
+                        //If the enemy to the right is dead
                         if (enemyUnits[currentEnemy + 1].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
                         {
                             int temp = currentEnemy;
+                            Debug.Log("Temp == " + temp);
                             currentEnemy++;
-                            while (enemyUnits[currentEnemy].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && currentEnemy < enemyUnits.Count)
+                            while (currentEnemy < enemyUnits.Count && enemyUnits[currentEnemy].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
                             {
+                                Debug.Log("Enemy000 == " + currentEnemy);
                                 currentEnemy++;
                             }
                             if (currentEnemy < enemyUnits.Count)
                             {
+                                Debug.Log("Enemy == " + currentEnemy);
                                 useSound(0);
                                 enemySelect(currentEnemy);
                             }
@@ -1465,17 +1468,20 @@ public class BattleScript : MonoBehaviour
                     //If there is more than one enemy remaining
                     if (enemyUnits.Count - enemyDeaths > 1)
                     {
-                        //If the enemy to the right is alive
+                        //If the enemy to the right is dead
                         if (enemyUnits[currentEnemy + 1].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
                         {
                             int temp = currentEnemy;
+                            Debug.Log("Temp == " + temp);
                             currentEnemy++;
-                            while (enemyUnits[currentEnemy].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && currentEnemy < enemyUnits.Count)
+                            while (currentEnemy < enemyUnits.Count && enemyUnits[currentEnemy].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
                             {
+                                Debug.Log("Enemy000 == " + currentEnemy);
                                 currentEnemy++;
                             }
                             if (currentEnemy < enemyUnits.Count)
                             {
+                                Debug.Log("Enemy == " + currentEnemy);
                                 useSound(0);
                                 enemySelect(currentEnemy);
                             }
