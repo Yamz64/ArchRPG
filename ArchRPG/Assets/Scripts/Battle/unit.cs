@@ -8328,6 +8328,7 @@ public class StudentBody : unit
         loadSprites();
         level = 5;
         maxHP = currentHP = 75;
+        expGain = 1000;
         ATK = 50;
         DEF = 75;
         POW = 30;
@@ -8368,7 +8369,7 @@ public class Vermin : unit
         AGI = 28;
         LCK = 48;
 
-        expGain = 60;
+        expGain = 120;
         enemy = true;
         capital = 4;
 
@@ -8391,7 +8392,7 @@ public class Hound : unit
 
         level = 6;
         maxHP = currentHP = 95;
-        expGain = 60;
+        expGain = 2500;
         enemy = true;
         capital = 8;
 
