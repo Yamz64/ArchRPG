@@ -2105,7 +2105,6 @@ namespace PlayerAbilities
 
         public override void UseAttack(unit user, List<unit> targets)
         {
-            user.setSP(user.currentSP - cost);
             for (int i = 0; i < targets.Count; i++)
             {
                 if (targets[i] != null)
@@ -2135,7 +2134,6 @@ namespace PlayerAbilities
 
         public override void UseAttack(unit user, List<unit> targets)
         {
-            user.setSP(user.currentSP - cost);
             for (int i = 0; i < targets.Count; i++)
             {
                 if (targets[i] != null)
@@ -2166,7 +2164,6 @@ namespace PlayerAbilities
 
         public override void UseAttack(unit user, unit target)
         {
-            user.setSP(user.currentSP - cost);
             target = user;
             target.giveStatus(statusEffect);
         }
@@ -2335,7 +2332,6 @@ namespace JimAbilities
 
         public override void UseAttack(unit user, unit target)
         {
-            user.setSP(user.getSP() - cost);
             if (target.statuses[0] != -1) target.statuses[0] = -1;
             if (target.statuses[2] != -1) target.statuses[2] = -1;
         }
@@ -2357,8 +2353,6 @@ namespace JimAbilities
 
         public override void UseAttack(unit user, unit target)
         {
-            user.setSP(user.getSP() - cost);
-
             target.setHP(target.getHP() + 15 + (target.maxHP / 10));
 
             if (target.getHP() > target.maxHP) target.setHP(target.maxHP);
@@ -2380,7 +2374,6 @@ namespace JimAbilities
 
         public override void UseAttack(unit user, List<unit> targets)
         {
-            user.setSP(user.currentSP - cost);
             for (int i = 0; i < targets.Count; i++)
             {
                 if (targets[i] != null)
@@ -2444,7 +2437,6 @@ namespace JimAbilities
 
         public override void UseAttack(unit user, List<unit> targets)
         {
-            user.setSP(user.currentSP - cost);
             for (int i = 0; i < targets.Count; i++)
             {
                 if (targets[i].unitName != "Jim")
@@ -2654,18 +2646,18 @@ namespace ShirleyAbilities
             type = 1;
             target = 1;
             position = 2;
+            statusEffect = "Confident";
         }
 
         public override void UseAttack(unit user, List<unit> targets)
         {
-            user.setSP(user.currentSP - cost);
             for (int i = 0; i < targets.Count; i++)
             {
                 if (targets[i] != null)
                 {
                     if (targets[i].currentHP > 0)
                     {
-                        //Give the party units confidence
+                        targets[i].giveStatus(statusEffect);
                     }
                 }
             }
@@ -2857,7 +2849,6 @@ namespace RalphAbilities
         public override void UseAttack(unit user, unit target)
         {
             target = user;
-            user.setSP(user.currentSP - cost);
             int ran = Random.Range(0, 3);
             if (ran == 0)
             {
@@ -2990,7 +2981,6 @@ namespace LucyAbilities
         public override void UseAttack(unit user, unit target)
         {
             target = user;
-            user.setSP(user.currentSP - cost);
             user.giveStatus(selfStatus);
         }
     }
@@ -3010,7 +3000,6 @@ namespace TimAbilities
         }
         public override void UseAttack(unit user, unit target)
         {
-            user.setSP(user.currentSP - cost);
             target.healDamage(20);
         }
     }
@@ -3029,7 +3018,6 @@ namespace TimAbilities
 
         public override void UseAttack(unit user, List<unit> targets)
         {
-            user.setSP(user.currentSP - cost);
             for (int i = 0; i < targets.Count; i++)
             {
                 if (targets[i] != null)
@@ -3074,7 +3062,6 @@ namespace TimAbilities
 
         public override void UseAttack(unit user, List<unit> targets)
         {
-            user.setSP(user.currentSP - cost);
             for (int i = 0; i < targets.Count; i++)
             {
                 if (targets[i] != null)
@@ -3130,7 +3117,6 @@ namespace TimAbilities
 
         public override void UseAttack(unit user, List<unit> targets)
         {
-            user.setSP(user.currentSP - cost);
             for (int i = 0; i < targets.Count; i++)
             {
                 if (targets[i] != null)
@@ -3212,7 +3198,6 @@ namespace WhiteKnightAbilities
 
         public override void UseAttack(unit user, List<unit> targets)
         {
-            user.setSP(user.currentSP - cost);
             for (int i = 0; i < targets.Count; i++)
             {
                 if (targets[i] != null)
@@ -3410,7 +3395,6 @@ namespace OliverSproutAbilities
             {
                 if (target.currentHP > 0)
                 {
-                    user.setSP(user.currentSP - cost);
                     int dope = 7 * (user.getPOW() / 10);
                     target.healDamage(dope);
                 }
@@ -3466,7 +3450,6 @@ namespace OliverSproutAbilities
 
         public override void UseAttack(unit user, List<unit> targets)
         {
-            user.setSP(user.currentSP - cost);
             int dope = 7 * (user.getPOW() / 10);
             for (int i = 0; i < targets.Count; i++)
             {
@@ -3511,7 +3494,6 @@ namespace OliverSproutAbilities
         }
         public override void UseAttack(unit user, List<unit> targets)
         {
-            user.setSP(user.currentSP - cost);
             for (int i = 0; i < targets.Count; i++)
             {
                 if (targets[i] != null)

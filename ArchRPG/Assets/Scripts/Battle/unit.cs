@@ -8618,7 +8618,7 @@ public class DisposalDemon : unit
         loadSprites();
 
         level = 8;
-        maxHP = currentHP = 500;
+        maxHP = currentHP = 50;
         expGain = 60;
         enemy = true;
         capital = 8;
