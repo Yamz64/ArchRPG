@@ -8949,9 +8949,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   encounter_type: 1
   enemy_names:
-  - Killer Cone
-  - Thrash Can
-  - Locker Lurker
+  - enemy_name: Killer Cone
+    encounter_priority: 6
+  - enemy_name: Thrash Can
+    encounter_priority: 3
+  - enemy_name: Locker Lurker
+    encounter_priority: 2
+  maximum_enemies: {x: 2, y: 3}
   roll_delay: 2
   roll_min: 1
   enemy_encounter_chance: 50
