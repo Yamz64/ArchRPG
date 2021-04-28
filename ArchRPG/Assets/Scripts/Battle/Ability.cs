@@ -536,7 +536,7 @@ public static class EldritchAbilities
                 int ran = Random.Range(0, valid.Count);
                 targets[valid[ran]].giveStatus("Weeping");
             }
-            user.currentSP -= cost;
+            user.setSP(user.currentSP - cost);
         }
     }
 
@@ -572,6 +572,7 @@ public static class EldritchAbilities
                     }
                 }
             }
+            user.setSP(user.currentSP - cost);
         }
     }
 
@@ -597,6 +598,7 @@ public static class EldritchAbilities
             targets[0].takeDamage(val);
             user.healDamage(val);
             user.giveStatus("Inspired");
+            user.setSP(user.currentSP - cost);
         }
     }
 
@@ -636,7 +638,7 @@ public static class EldritchAbilities
                     }
                 }
             }
-            user.currentSP -= cost;
+            user.setSP(user.currentSP - cost);
         }
     }
 
@@ -669,6 +671,7 @@ public static class EldritchAbilities
                     targets[i].takeDamage(dam);
                 }
             }
+            user.setSP(user.currentSP - cost);
         }
     }
 
@@ -736,6 +739,7 @@ public static class EldritchAbilities
                     }
                 }
             }
+            user.setSP(user.currentSP - cost);
         }
     }
 }
