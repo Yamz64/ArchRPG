@@ -2246,9 +2246,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   encounter_type: 1
   enemy_names:
-  - Conniving Cone
-  - Vermin
-  - Disposal Demon
+  - enemy_name: Vermin
+    encounter_priority: 5
+  - enemy_name: Conniving Cone
+    encounter_priority: 3
+  - enemy_name: Disposal Demon
+    encounter_priority: 3
+  maximum_enemies: {x: 1, y: 4}
   roll_delay: 2
   roll_min: 1
   enemy_encounter_chance: 50

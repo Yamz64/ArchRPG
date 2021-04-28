@@ -6374,7 +6374,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   encounter_type: 0
   enemy_names:
-  - God's Hand
+  - enemy_name: God's Hand
+    encounter_priority: 3
+  maximum_enemies: {x: 1, y: 3}
   roll_delay: 10
   roll_min: 7
   enemy_encounter_chance: 0.3

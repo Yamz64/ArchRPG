@@ -13068,9 +13068,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   encounter_type: 1
   enemy_names:
-  - Conniving Cone
-  - Highway Horror
-  - Disposal Demon
+  - enemy_name: Highway Horror
+    encounter_priority: 2
+  - enemy_name: Conniving Cone
+    encounter_priority: 3
+  - enemy_name: Disposal Demon
+    encounter_priority: 2
+  maximum_enemies: {x: 1, y: 3}
   roll_delay: 2
   roll_min: 1
   enemy_encounter_chance: 50

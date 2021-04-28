@@ -2067,9 +2067,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   encounter_type: 1
   enemy_names:
-  - Killer Cone
-  - Thrash Can
-  - Vermin
+  - enemy_name: Killer Cone
+    encounter_priority: 3
+  - enemy_name: Thrash Can
+    encounter_priority: 4
+  - enemy_name: Vermin
+    encounter_priority: 4
+  maximum_enemies: {x: 2, y: 4}
   roll_delay: 2
   roll_min: 1
   enemy_encounter_chance: 50
