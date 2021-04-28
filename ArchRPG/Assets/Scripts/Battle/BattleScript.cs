@@ -3662,6 +3662,16 @@ public class BattleScript : MonoBehaviour
                         //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                     }
                 }
+                if (partyDeaths == activeUnits)
+                {
+                    state = battleState.LOSE;
+                    yield return battleEnd();
+                }
+                else if (enemyDeaths == enemyUnits.Count)
+                {
+                    state = battleState.WIN;
+                    yield return battleEnd();
+                }
             }
             for (int i = 0; i < partyUnits.Count; i++)
             {
@@ -5388,9 +5398,12 @@ public class BattleScript : MonoBehaviour
             tv++;
         }
         int dif = target.currentHP;
+        Debug.Log("Current HP == " + dif);
         bool dead = target.takeDamage(val);
         target.setHP(target.currentHP);
+        Debug.Log("New HP == " + target.currentHP);
         dif -= target.currentHP;
+        Debug.Log("Current dif == " + dif);
 
         if (dif > 0)
         {
