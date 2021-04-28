@@ -5262,7 +5262,10 @@ public class PauseMenuHandler : MonoBehaviour
                         default:
                             break;
                     }
-                    //remove party member from party and grant EP
+                    //remove party member's equipment, remove party member from party and grant EP
+                    data.RemovePartyWeapon(cursor_position);
+                    data.RemovePartyArmor(cursor_position);
+                    data.RemovePartyTrinket(cursor_position);
                     data.RemovePartyMember(cursor_position);
                     int ep_gain = 0;
                     if (data.GetSacrificeCount() < 6) ep_gain = 1;
