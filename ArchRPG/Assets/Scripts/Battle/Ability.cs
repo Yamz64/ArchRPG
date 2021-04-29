@@ -2774,7 +2774,7 @@ namespace RalphAbilities
             int rol = Random.Range(1, 101);
             if (rol < target.RES)
             {
-                if (target.statuses[15] != -1)  target.giveStatus("Cancerous");
+                if (target.statuses[15] == -1)  target.giveStatus("Cancerous");
             }
         }
     }

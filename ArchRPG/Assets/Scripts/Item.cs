@@ -113,6 +113,7 @@ public class Weapon : Item
     public bool promising = false;
     public int level = 0;
     public int winCounter = 0;
+    public int damageType = 0;
 }
 
 //base class handling all armor
@@ -697,6 +698,7 @@ public static class Weapons
             amount = 1;
             type = 1;
             damage_buff = 5;
+            damageType = 3;
             //Will need to add chem damage
         }
     }
