@@ -580,11 +580,11 @@ public static class Consumables
         }
     }
 
-    public class DoctorSoda : Item
+    public class DoctorPP: Item
     {
-        public DoctorSoda()
+        public DoctorPP()
         {
-            name = "Doctor Soda";
+            name = "Doctor PP";
             description = "They thought that giving this beverage an online doctorate would help it sell better. Recovers 35 SP when consumed!";
             image_file_path = "";
             amount = 1;

@@ -127,6 +127,6 @@ MonoBehaviour:
   - name: Meat Dog
     cost: 15
     type: 0
-  - name: Doctor Soda
+  - name: Doctor PP
     cost: 6
     type: 0
