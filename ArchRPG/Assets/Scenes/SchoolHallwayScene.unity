@@ -8950,9 +8950,9 @@ MonoBehaviour:
   encounter_type: 1
   enemy_names:
   - enemy_name: Killer Cone
-    encounter_priority: 6
+    encounter_priority: 9
   - enemy_name: Thrash Can
-    encounter_priority: 3
+    encounter_priority: 5
   - enemy_name: Locker Lurker
     encounter_priority: 2
   maximum_enemies: {x: 2, y: 3}
