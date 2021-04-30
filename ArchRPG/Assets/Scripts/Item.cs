@@ -411,7 +411,7 @@ public static class Consumables
         {
             name = "Bacon Lollipop";
             description = "Why would someone make this? Heals 80 HP when eaten.";
-            image_file_path = null;
+            image_file_path = "ItemSprites/ConsumableIcon1";
             amount = 1;
             limit = 1;
             cost = 15;
@@ -436,7 +436,7 @@ public static class Consumables
         {
             name = "Adderall";
             description = "A medication usually used to treat ADHD. Cures spasms and removes hyperactive.";
-            image_file_path = "";
+            image_file_path = "ConsumableIcon3";
             amount = 1;
             limit = 99;
             cost = 10;
@@ -461,7 +461,7 @@ public static class Consumables
         {
             name = "Beer";
             description = "A medication for curing sadness. Drink responsibly! Causes vomiting and Zealous!";
-            image_file_path = "";
+            image_file_path = "ConsumableIcon2";
             amount = 1;
             limit = 99;
             cost = 5;
@@ -486,7 +486,7 @@ public static class Consumables
         {
             name = "Cocaine";
             description = "Very dangerous, very addictive, and very illegal!  Inflicts hyperactive and hysteria!";
-            image_file_path = "";
+            image_file_path = "ConsumableIcon3";
             amount = 1;
             limit = 99;
             cost = 20;
@@ -511,7 +511,7 @@ public static class Consumables
         {
             name = "Xanax";
             description = "Used by doctors to cure depression... still very addictive. Cures hysteria and inflicts restrained!";
-            image_file_path = "";
+            image_file_path = "ConsumableIcon3";
             amount = 1;
             limit = 99;
             cost = 15;
@@ -537,7 +537,7 @@ public static class Consumables
         {
             name = "Pizza Slice";
             description = "A slice of a balanced food that contains all 6 of the major food groups. Heals 75 HP when eaten!";
-            image_file_path = "";
+            image_file_path = "ConsumableIcon1";
             amount = 1;
             limit = 99;
             cost = 10;
@@ -562,7 +562,7 @@ public static class Consumables
         {
             name = "Soda";
             description = "Most of the soda water has congealed at the bottom... Recovers 75 SP when consumed!";
-            image_file_path = "";
+            image_file_path = "ConsumableIcon2";
             amount = 1;
             limit = 99;
             cost = 6;
@@ -586,7 +586,7 @@ public static class Consumables
         {
             name = "Doctor PP";
             description = "They thought that giving this beverage an online doctorate would help it sell better. Recovers 35 SP when consumed!";
-            image_file_path = "";
+            image_file_path = "ConsumableIcon2";
             amount = 1;
             limit = 99;
             cost = 3;
