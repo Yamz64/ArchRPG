@@ -21,6 +21,7 @@ public class TitleScreen : MonoBehaviour
 
     public int save_slot = 0;
     public int save_choice = 4;
+    private int checkNum = 0;
 
     //A list of positions the cursor can go through
     [SerializeField]
@@ -232,17 +233,26 @@ public class TitleScreen : MonoBehaviour
             {
                 switch (cursor_position)
                 {
+                    //New game
                     case 0:
+                        useSound(1);
+                        CloseMenu(0);
+                        OpenMenu(4);
+                        break;
+                    //Load file
+                    case 1:
                         useSound(1);
                         CloseMenu(0);
                         OpenMenu(2);
                         break;
-                    case 1:
+                    //Settings
+                    case 2:
                         useSound(1);
                         CloseMenu(0);
                         OpenMenu(1);
                         break;
-                    case 2:
+                    //Quit
+                    case 3:
                         useSound(0);
                         Application.Quit();
                         break;
@@ -786,6 +796,93 @@ public class TitleScreen : MonoBehaviour
         cursor.transform.position = cursor_positions[active_menu].positions[cursor_position].position;
     }
 
+    public void NewGameRoutine()
+    {
+        if (InputManager.GetAxisRaw("Horizontal") < 0.0f && cursor_position > 0)
+        {
+            if (!menu_input)
+            {
+                useSound(0);
+                cursor_position--;
+            }
+            menu_input = true;
+        }
+        else if (InputManager.GetAxisRaw("Horizontal") > 0.0f && cursor_position < 1)
+        {
+            if (!menu_input)
+            {
+                useSound(0);
+                cursor_position++;
+            }
+            menu_input = true;
+        }
+        else if (InputManager.GetButtonDown("Interact"))
+        {
+            if (!menu_input)
+            {
+                switch(cursor_position)
+                {
+                    case 0:
+                        useSound(1);
+                        if (checkNum == 0)
+                        {
+                            transform.GetChild(1).GetChild(5).GetChild(0).GetChild(0).GetComponent<Text>().text = "Are you REALLY sure? There's no going back.";
+                            checkNum += 1;
+                        }
+                        else if (checkNum == 1)
+                        {
+                            transform.GetChild(1).GetChild(5).GetChild(0).GetChild(0).GetComponent<Text>().text = "Are you REALLY ABSOLUTELY sure?";
+                            checkNum += 1;
+                        }
+                        else if (checkNum == 2)
+                        {
+                            transform.GetChild(1).GetChild(5).GetChild(0).GetChild(0).GetComponent<Text>().text = "Ok, if you say so.";
+                            for (int i = 0; i < 4; i++)
+                            {
+                                CharacterStatJsonConverter copy = new CharacterStatJsonConverter();
+                                MapSaveData mapi = new MapSaveData();
+                                copy.Save(i, true);
+                                PlayerPrefs.SetInt("_active_save_file_", i);
+                                mapi.Save(true);
+                                CloseConfirmSlotMenu();
+                                CloseUseSlotMenu();
+                                SaveUpdater();
+                            }
+                            PlayerPrefs.SetInt("_active_save_file_", 0);
+                            MapSaveData mapio = new MapSaveData();
+                            save1.Save(0);
+                            mapio.Save();
+                            SceneManager.LoadScene("BedroomCutscene");
+                        }
+                        break;
+                    case 1:
+                        useSound(0);
+                        transform.GetChild(1).GetChild(5).GetChild(0).GetChild(0).GetComponent<Text>().text = "Are you sure? Any and All save data will be erased by doing this.";
+                        checkNum = 0;
+                        CloseMenu(4);
+                        OpenMenu(0);
+                        break;
+                }
+            }
+            menu_input = true;
+        }
+        else if (InputManager.GetButtonDown("Menu"))
+        {
+            if (!menu_input)
+            {
+                useSound(0);
+                CloseMenu(4);
+                OpenMenu(0);
+            }
+            menu_input = true;
+        }
+        else
+        {
+            menu_input = false;
+        }
+        cursor.transform.position = cursor_positions[active_menu].positions[cursor_position].position;
+    }
+
     //Update save file character portraits
     public void SaveUpdater()
     {
@@ -979,7 +1076,7 @@ public class TitleScreen : MonoBehaviour
             InputManager.GetAction("Default Controls", "Menu").Bindings[0].Positive.ToString();
 
         menus = new List<GameObject>();
-        for (int i = 2; i < transform.GetChild(1).childCount - 1; i++)
+        for (int i = 1; i < transform.GetChild(1).childCount - 1; i++)
         {
             menus.Add(transform.GetChild(1).GetChild(i).gameObject);
         }
@@ -1059,6 +1156,9 @@ public class TitleScreen : MonoBehaviour
                 break;
             case 3:
                 OptionRoutine();
+                break;
+            case 4:
+                NewGameRoutine();
                 break;
             default:
                 break;
