@@ -405,6 +405,7 @@ public class BattleScript : MonoBehaviour
                 i += 1;
             }
         }
+        if (!stop) i = 0;
         currentAlly = i;
         dialogue.text = "Select Target";
         cursor.SetActive(false);
@@ -757,7 +758,7 @@ public class BattleScript : MonoBehaviour
                         UpdateInventoryImageandDesc();
                         break;
 
-                    //Skip to next turn
+                    //Swap menu
                     case 3:
                         useSound(0);
                         OpenSelectUnitMenu();
@@ -2187,7 +2188,7 @@ public class BattleScript : MonoBehaviour
                     {
                         speed = (int)(speed * 0.75);
                     }
-                    actions.Add(new action(currentUnit, "swap", i1, i2, speed, false, partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.unitName));
+                    actions.Add(new action(currentUnit, "swap", i1, i2, speed, false, partyUnits[i1].GetComponent<UnitMono>().mainUnit.unitName, i2));
 
                     swaps.Add(partyUnits[i1].gameObject);
 
@@ -2360,6 +2361,114 @@ public class BattleScript : MonoBehaviour
         pSpots.RemoveAt(indi);
         ppgs.RemoveAt(indi);
         ppgs.RemoveAt(indi);
+    }
+
+    public void Swap2(int indi1, int indi2, string title)
+    {
+        if (partyUnits[indi1] != null)
+        {
+            if (!partyUnits[indi1].GetComponent<UnitMono>().mainUnit.unitName.Equals(title))
+            {
+                for (int i = 0; i < partyUnits.Count; i++)
+                {
+                    if (partyUnits[i] != null)
+                    {
+                        if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName.Equals(title))
+                        {
+                            indi1 = i;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < partyUnits.Count; i++)
+            {
+                if (partyUnits[i] != null)
+                {
+                    if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName.Equals(title))
+                    {
+                        indi1 = i;
+                        break;
+                    }
+                }
+            }
+        }
+        if (indi1 > indi2)
+        {
+            allyStations[indi2].SetSiblingIndex(allyStations[indi1].GetSiblingIndex());     //Swap in hierarchy to have front/back appearance
+        }
+        else
+        {
+            allyStations[indi1].SetSiblingIndex(allyStations[indi2].GetSiblingIndex());
+        }
+
+        Transform tempi1;
+        tempi1 = allyStations[indi1];
+        Transform tempi;
+        tempi = allyStations[indi2];
+
+        partyUnits[indi1].transform.position = tempi.position;
+        if (partyUnits[indi2] != null)
+        {
+            partyUnits[indi2].transform.position = tempi1.position;
+        }
+        GameObject tempg1 = new GameObject();
+        tempg1 = partyUnits[indi1];
+        GameObject tempg = new GameObject();
+        tempg = partyUnits[indi2];
+
+        partyUnits[indi1] = tempg;      //Switch indices to match with visible order
+        partyUnits[indi2] = tempg1;
+
+
+        if (partyUnits[indi1] != null)
+        {
+            if (indi1 == 0 || indi1 == 1)
+            {
+                partyUnits[indi1].GetComponent<UnitMono>().mainUnit.position = 0;
+            }
+            else
+            {
+                partyUnits[indi1].GetComponent<UnitMono>().mainUnit.position = 1;
+            }
+        }
+        if (partyUnits[indi2] != null)
+        {
+            if (indi2 == 0 || indi2 == 1)
+            {
+                partyUnits[indi2].GetComponent<UnitMono>().mainUnit.position = 0;
+            }
+            else
+            {
+                partyUnits[indi2].GetComponent<UnitMono>().mainUnit.position = 1;
+            }
+        }
+        for (int i = 0; i < 4; i++)
+        {
+            if (partyUnits[i] != null)
+            {
+                for (int x = 0; x < 4; x++)
+                {
+                    Debug.Log("x == " + x + ", i == " + i);
+                    if (partyUnits[i].transform.position == allyStations[x].position)
+                    {
+                        allyStations[x].SetSiblingIndex(i);
+                        break;
+                    }
+                }
+            }
+            if (partyUnits[i] != null)
+            {
+                if (partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                {
+                    partyUnits[i].GetComponent<UnitMono>().mainUnit.setHUD();
+                }
+            }
+        }
+        
     }
 
     //Start the enemy attack routine
@@ -3249,21 +3358,59 @@ public class BattleScript : MonoBehaviour
                 {
                     int bo = 0;
                     string nami = actions[z].getName();
-                    while ((temp[swapInds[bo]] == null || temp[swapInds[bo]].GetComponent<UnitMono>().mainUnit.unitName != nami) && bo % 2 != 0 && bo < swapInds.Count)
+                    while ((temp[bo] == null || !temp[bo].GetComponent<UnitMono>().mainUnit.unitName.Equals(nami)) && bo < partyUnits.Count)
                     {
                         bo++;
                     }
                     if (temp[actions[z].getTarget()] != null)
                     {
-                        dialogue.text = nami + " swapped places with "
-                            + temp[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName;
+                        if (temp[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                        {
+                            if (partyUnits[actions[z].getTarget()] != null 
+                                && temp[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName.Equals(partyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName))
+                            {
+                                dialogue.text = nami + " swapped places with "
+                                    + temp[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName;
+                            }
+                            else
+                            {
+                                if (partyUnits[actions[z].getTarget()] != null)
+                                {
+                                    dialogue.text = nami + " swapped places with "
+                                       + partyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName;
+                                }
+                                else
+                                {
+                                    dialogue.text = nami + " moved to position "
+                                        + (actions[z].getTarget() + 1);
+                                }
+
+                            }
+                        }
+                        else
+                        {
+                            dialogue.text = nami + " moved to position "
+                            + (actions[z].getTarget() + 1);
+                        }
                     }
                     else
                     {
                         dialogue.text = nami + " moved to position "
                             + (actions[z].getTarget() + 1);
                     }
-                    PerformSwaps(bo);
+                    Debug.Log("Bo == " + bo);
+                    Swap2(bo, actions[z].getTarget(), actions[z].getName());
+                    for (int g = 0; g < 4; g++)
+                    {
+                        if (partyUnits[g] != null)
+                        {
+                            //Debug.Log("SwapParty " + g + " == " + partyUnits[g].GetComponent<UnitMono>().mainUnit.unitName);
+                        }
+                        else
+                        {
+                            //Debug.Log("SWapParty " + g + " == null");
+                        }
+                    }
                 }
                 //Attempt to flee from battle
                 else if (actions[z].getType() == "Flee" && state == battleState.ATTACK)
@@ -3296,13 +3443,26 @@ public class BattleScript : MonoBehaviour
                 //Enemy performs an attack
                 else if (actions[z].getType() == "enemyAttack" && state == battleState.ATTACK)
                 {
+                    for (int g = 0; g < 4; g++)
+                    {
+                        if (partyUnits[g] != null)
+                        {
+                            Debug.Log("Party " + g + " == " + partyUnits[g].GetComponent<UnitMono>().mainUnit.unitName);
+                        }
+                        else
+                        {
+                            Debug.Log("Party " + g + " == null");
+                        }
+                    }
                     enemyUnits[ind].GetComponent<UnitMono>().mainUnit.changeSprite(1);
+                    Debug.Log("Target here == " + actions[z].getTarget());
                     int toget = actions[z].getTarget();
                     bool baddi = false;
                     int chance = Random.Range(0, 2);
                     //If the enemy has spasms
                     if (enemyUnits[ind].GetComponent<UnitMono>().mainUnit.statuses[17] != -1 && activeUnits - partyDeaths > 1 && chance == 0)
                     {
+                        Debug.Log("This shouldn't happen");
                         chance = Random.Range(0, 6);
                         if (chance == 0)
                         {
@@ -3372,14 +3532,17 @@ public class BattleScript : MonoBehaviour
                     }
                     if (!baddi)
                     {
+                        Debug.Log("Got into null");
                         if (partyUnits[toget] != null)
                         {
-                            if (partyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                            Debug.Log("Target hp isn't 0");
+                            if (partyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                             {
+                                Debug.Log("target is actually == " + toget);
                                 dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
                                     enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
-                                yield return enemyAttack(actions[z].getIndex(), actions[z].getTarget(),
-                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit, partyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit);
+                                yield return enemyAttack(actions[z].getIndex(), toget,
+                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit, partyUnits[toget].GetComponent<UnitMono>().mainUnit);
                             }
                             //If dead unit at position
                             else
@@ -3394,6 +3557,10 @@ public class BattleScript : MonoBehaviour
                                             if (partyUnits[1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                                             {
                                                 toget = 1;
+                                                dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                                                yield return enemyAttack(actions[z].getIndex(), toget,
+                                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit, partyUnits[toget].GetComponent<UnitMono>().mainUnit);
                                             }
                                             else
                                             {
@@ -3414,6 +3581,10 @@ public class BattleScript : MonoBehaviour
                                             if (partyUnits[0].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                                             {
                                                 toget = 0;
+                                                dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                                                yield return enemyAttack(actions[z].getIndex(), toget,
+                                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit, partyUnits[toget].GetComponent<UnitMono>().mainUnit);
                                             }
                                             else
                                             {
@@ -3438,6 +3609,10 @@ public class BattleScript : MonoBehaviour
                                             if (partyUnits[3].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                                             {
                                                 toget = 3;
+                                                dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                                                yield return enemyAttack(actions[z].getIndex(), toget,
+                                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit, partyUnits[toget].GetComponent<UnitMono>().mainUnit);
                                             }
                                             else
                                             {
@@ -3458,6 +3633,10 @@ public class BattleScript : MonoBehaviour
                                             if (partyUnits[2].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                                             {
                                                 toget = 2;
+                                                dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                                                yield return enemyAttack(actions[z].getIndex(), toget,
+                                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit, partyUnits[toget].GetComponent<UnitMono>().mainUnit);
                                             }
                                             else
                                             {
@@ -3480,6 +3659,10 @@ public class BattleScript : MonoBehaviour
                                     {
                                         toget = Random.Range(0, partyUnits.Count);
                                     }
+                                    dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                                    yield return enemyAttack(actions[z].getIndex(), toget,
+                                        enemyUnits[ind].GetComponent<UnitMono>().mainUnit, partyUnits[toget].GetComponent<UnitMono>().mainUnit);
                                 }
                             }
                         }
@@ -3494,7 +3677,12 @@ public class BattleScript : MonoBehaviour
                                     {
                                         if (partyUnits[1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                                         {
+                                            Debug.Log("Nulli1");
                                             toget = 1;
+                                            dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                                            yield return enemyAttack(actions[z].getIndex(), toget,
+                                                enemyUnits[ind].GetComponent<UnitMono>().mainUnit, partyUnits[toget].GetComponent<UnitMono>().mainUnit);
                                         }
                                         else
                                         {
@@ -3514,7 +3702,12 @@ public class BattleScript : MonoBehaviour
                                     {
                                         if (partyUnits[0].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                                         {
+                                            Debug.Log("Nulli2");
                                             toget = 0;
+                                            dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                                            yield return enemyAttack(actions[z].getIndex(), toget,
+                                                enemyUnits[ind].GetComponent<UnitMono>().mainUnit, partyUnits[toget].GetComponent<UnitMono>().mainUnit);
                                         }
                                         else
                                         {
@@ -3538,7 +3731,12 @@ public class BattleScript : MonoBehaviour
                                     {
                                         if (partyUnits[3].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                                         {
+                                            Debug.Log("Nulli3");
                                             toget = 3;
+                                            dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                                            yield return enemyAttack(actions[z].getIndex(), toget,
+                                                enemyUnits[ind].GetComponent<UnitMono>().mainUnit, partyUnits[toget].GetComponent<UnitMono>().mainUnit);
                                         }
                                         else
                                         {
@@ -3558,7 +3756,12 @@ public class BattleScript : MonoBehaviour
                                     {
                                         if (partyUnits[2].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                                         {
+                                            Debug.Log("Nulli4");
                                             toget = 2;
+                                            dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                                            yield return enemyAttack(actions[z].getIndex(), toget,
+                                                enemyUnits[ind].GetComponent<UnitMono>().mainUnit, partyUnits[toget].GetComponent<UnitMono>().mainUnit);
                                         }
                                         else
                                         {
@@ -3576,11 +3779,16 @@ public class BattleScript : MonoBehaviour
                             //If any target is valid
                             else
                             {
+                                Debug.Log("Nulli5");
                                 int baseNum = toget;
                                 while (partyUnits[toget] == null || partyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0 || toget == baseNum)
                                 {
                                     toget = Random.Range(0, partyUnits.Count);
                                 }
+                                dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                                yield return enemyAttack(actions[z].getIndex(), toget,
+                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit, partyUnits[toget].GetComponent<UnitMono>().mainUnit);
                             }
                         }
                     }
@@ -3625,6 +3833,7 @@ public class BattleScript : MonoBehaviour
                 {
                     dialogue.text = "Invalid action selected";
                 }
+                yield return new WaitForSeconds(0.5f);
                 if (!skipper)
                 {
                     yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
@@ -3695,19 +3904,6 @@ public class BattleScript : MonoBehaviour
 
             if (state != battleState.WIN && state != battleState.LOSE && state != battleState.FLEE && enemyDeaths < enemyUnits.Count && partyDeaths < activeUnits)
             {
-                /*
-                for (int i = 0; i < partyUnits.Count; i++)
-                {
-                    if (partyUnits[i] != null)
-                    {
-                        if (partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP > 0 && partyUnits[i].GetComponent<UnitMono>().mainUnit.hasMP)
-                        {
-                            partyUnits[i].GetComponent<UnitMono>().mainUnit.setSP(partyUnits[i].GetComponent<UnitMono>().mainUnit.currentSP + 5);
-                            StartCoroutine(flashBuff2(partyUnits[i].GetComponent<UnitMono>().mainUnit));
-                        }
-                    }
-                }
-                */
                 yield return new WaitForSeconds(1.5f);
                 state = battleState.PLAYER;
                 cursor.SetActive(true);
@@ -4328,6 +4524,7 @@ public class BattleScript : MonoBehaviour
                 minus = true;
             }
 
+            int val2 = 0;
             int indi = 0;
             for (int h = 0; h < 4; h++)
             {
@@ -4382,7 +4579,9 @@ public class BattleScript : MonoBehaviour
 
                     swapInds.Add(indi);
                     swapInds.Add(indi - 2);
-                    PerformSwaps(swapInds.Count - 2);
+                    val2 = val - 2;
+                    //PerformSwaps(swapInds.Count - 2);
+                    Swap2(val, val2, uni.unitName);
                 }
             }
             //Push self backwards
@@ -4425,7 +4624,9 @@ public class BattleScript : MonoBehaviour
 
                     swapInds.Add(indi);
                     swapInds.Add(indi + 2);
-                    PerformSwaps(swapInds.Count - 2);
+                    val2 = indi + 2;
+                    //PerformSwaps(swapInds.Count - 2);
+                    Swap2(val, val2, uni.unitName);
                 }
             }
 
@@ -4998,7 +5199,8 @@ public class BattleScript : MonoBehaviour
 
                     swapInds.Add(hereVal);
                     swapInds.Add(hereVal - 2);
-                    PerformSwaps(swapInds.Count - 2);
+                    //PerformSwaps(swapInds.Count - 2);
+                    Swap2(hereVal, hereVal - 2, uni.unitName);
                 }
             }
             //Push target backwards
@@ -5042,7 +5244,8 @@ public class BattleScript : MonoBehaviour
 
                     swapInds.Add(hereVal);
                     swapInds.Add(hereVal + 2);
-                    PerformSwaps(swapInds.Count - 2);
+                    //PerformSwaps(swapInds.Count - 2);
+                    Swap2(hereVal, hereVal + 2, uni.unitName);
                 }
             }
             //Pull target forward
@@ -5089,7 +5292,8 @@ public class BattleScript : MonoBehaviour
 
                     swapInds.Add(val);
                     swapInds.Add(val - 2);
-                    PerformSwaps(swapInds.Count - 2);
+                    //PerformSwaps(swapInds.Count - 2);
+                    Swap2(val, val - 2, target.unitName);
                 }
             }
             //Push target backwards
@@ -5133,7 +5337,8 @@ public class BattleScript : MonoBehaviour
 
                     swapInds.Add(val);
                     swapInds.Add(val + 2);
-                    PerformSwaps(swapInds.Count - 2);
+                    //PerformSwaps(swapInds.Count - 2);
+                    Swap2(val, val + 2, target.unitName);
                 }
             }
             if (uni.abilities[ata].target == 0)
@@ -5476,6 +5681,8 @@ public class BattleScript : MonoBehaviour
     //target - target of attack
     IEnumerator enemyAttack(int ata, int val, unit uni, unit target)
     {
+        Debug.Log("Unit name == " + uni.unitName);
+        Debug.Log("Target name == " + target.unitName);
         bool good = false;
         bool bad = false;
         bool dead = false;
@@ -5627,6 +5834,7 @@ public class BattleScript : MonoBehaviour
                 if (target.critted)
                 {
                     dialogue.text = "The attack hit a weak spot!";
+                    yield return new WaitForSeconds(0.5f);
                     yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                     skipper = true;
                     target.critted = false;
@@ -5635,6 +5843,7 @@ public class BattleScript : MonoBehaviour
                 {
                     //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                     dialogue.text = "It did a lot of damage!";
+                    yield return new WaitForSeconds(0.5f);
                     yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                     skipper = true;
                     good = false;
@@ -5642,6 +5851,7 @@ public class BattleScript : MonoBehaviour
                 else if (bad)
                 {
                     dialogue.text = "It didn't do too much damage.";
+                    yield return new WaitForSeconds(0.5f);
                     yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                     skipper = true;
                     bad = false;
@@ -5650,11 +5860,13 @@ public class BattleScript : MonoBehaviour
                 if (target.lived)
                 {
                     dialogue.text = target.unitName + " barely survived...";
+                    yield return new WaitForSeconds(0.5f);
                     yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                     skipper = true;
                     target.lived = false;
                 }
 
+                int val2 = 0;
                 //Pull forward
                 if (uni.abilities[ata].swapper == 1)
                 {
@@ -5694,7 +5906,9 @@ public class BattleScript : MonoBehaviour
 
                         swapInds.Add(val);
                         swapInds.Add(val - 2);
-                        PerformSwaps(swapInds.Count - 2);
+                        val2 = val - 2;
+                        //PerformSwaps(swapInds.Count - 2);
+                        Swap2(val, val2, target.unitName);
                     }
                 }
                 //Push Back
@@ -5737,7 +5951,9 @@ public class BattleScript : MonoBehaviour
 
                         swapInds.Add(val);
                         swapInds.Add(val + 2);
-                        PerformSwaps(swapInds.Count - 2);
+                        val2 = val + 2;
+                        //PerformSwaps(swapInds.Count - 2);
+                        Swap2(val, val2, target.unitName);
                     }
                 }
             }
@@ -5758,6 +5974,7 @@ public class BattleScript : MonoBehaviour
                     if (partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.critted)
                     {
                         dialogue.text = "The attack hit a weak spot!";
+                        yield return new WaitForSeconds(0.5f);
                         yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         skipper = true;
                         partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.critted = false;
@@ -5766,6 +5983,7 @@ public class BattleScript : MonoBehaviour
                     {
                         //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         dialogue.text = "It did a lot of damage!";
+                        yield return new WaitForSeconds(0.5f);
                         yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         skipper = true;
                         good = false;
@@ -5773,6 +5991,7 @@ public class BattleScript : MonoBehaviour
                     else if (bad)
                     {
                         dialogue.text = "It didn't do too much damage.";
+                        yield return new WaitForSeconds(0.5f);
                         yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         skipper = true;
                         bad = false;
@@ -5780,6 +5999,7 @@ public class BattleScript : MonoBehaviour
                     if (partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.lived)
                     {
                         dialogue.text = partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.unitName + " barely survived...";
+                        yield return new WaitForSeconds(0.5f);
                         yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         skipper = true;
                         partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.lived = false;
@@ -5800,6 +6020,7 @@ public class BattleScript : MonoBehaviour
                     if (partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.critted)
                     {
                         dialogue.text = "The attack hit a weak spot!";
+                        yield return new WaitForSeconds(0.5f);
                         yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         skipper = true;
                         partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.critted = false;
@@ -5808,6 +6029,7 @@ public class BattleScript : MonoBehaviour
                     {
                         //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         dialogue.text = "It did a lot of damage!";
+                        yield return new WaitForSeconds(0.5f);
                         yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         skipper = true;
                         good = false;
@@ -5815,6 +6037,7 @@ public class BattleScript : MonoBehaviour
                     else if (bad)
                     {
                         dialogue.text = "It didn't do too much damage.";
+                        yield return new WaitForSeconds(0.5f);
                         yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         skipper = true;
                         bad = false;
@@ -5869,6 +6092,7 @@ public class BattleScript : MonoBehaviour
                         if (partyUnits[i].GetComponent<UnitMono>().mainUnit.critted)
                         {
                             dialogue.text = "The attack hit a weak spot!";
+                            yield return new WaitForSeconds(0.5f);
                             yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                             skipper = true;
                             partyUnits[i].GetComponent<UnitMono>().mainUnit.critted = false;
@@ -5877,6 +6101,7 @@ public class BattleScript : MonoBehaviour
                         {
                             //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                             dialogue.text = "It did a lot of damage!";
+                            yield return new WaitForSeconds(0.5f);
                             yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                             skipper = true;
                             good = false;
@@ -5884,6 +6109,7 @@ public class BattleScript : MonoBehaviour
                         else if (bad)
                         {
                             dialogue.text = "It didn't do too much damage.";
+                            yield return new WaitForSeconds(0.5f);
                             yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                             skipper = true;
                             bad = false;
@@ -5891,6 +6117,7 @@ public class BattleScript : MonoBehaviour
                         if (partyUnits[i].GetComponent<UnitMono>().mainUnit.lived)
                         {
                             dialogue.text = partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName + " barely survived...";
+                            yield return new WaitForSeconds(0.5f);
                             yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                             skipper = true;
                             partyUnits[i].GetComponent<UnitMono>().mainUnit.lived = false;
@@ -5905,10 +6132,10 @@ public class BattleScript : MonoBehaviour
             {
                 data.SetMoney(data.GetMoney() - uni.abilities[ata].moneySteal);
                 dialogue.text = uni.unitName + " stole $" + uni.abilities[ata].moneySteal + " buckaroos";
+                yield return new WaitForSeconds(0.5f);
                 yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
             }
 
-            yield return new WaitForSeconds(1f);
             //If enemy is dead, battle is won
             if (uni.abilities[ata].target <= 2 || uni.abilities[ata].customAbility == 1)
             {
