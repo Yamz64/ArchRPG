@@ -15,6 +15,7 @@ public class Item
         amount = i.amount;
         limit = i.limit;
         type = i.type;
+        id = i.id;
         cost = i.cost;
         character = i.character;
         useable = i.useable;
@@ -49,6 +50,7 @@ public class Item
     public int limit;
     public int type;                    //0 = item, 1 = weapon, 2 = armor, 3 = trinket
     public int cost;                    //the cost of the item being sold;
+    public string id;
     public CharacterStats character;
 }
 
@@ -337,6 +339,21 @@ public class EldritchTrinket : Trinket
 //--DERIVED ITEMS--
 public static class Consumables
 {
+    //return a specific type given an item id
+    public static dynamic InstanceSubclass(string id)
+    {
+        System.Type item = typeof(Consumables);
+        System.Type[] temp = item.GetNestedTypes();
+
+        for(int i=0; i < temp.GetLength(0); i++)
+        {
+            System.Type type = temp[i];
+            var instance = (dynamic)System.Activator.CreateInstance(type);
+            if (instance.id == id) return instance;
+        }
+        return null;
+    }
+
     public static List<Item> GetItems()
     {
         System.Type item = typeof(Consumables);
@@ -358,6 +375,7 @@ public static class Consumables
         public HotDog()
         {
             name = "Hot Dog";
+            id = "consumables:hotdog";
             description = "A tube of unidentified, but delicious meat!  Heals 50 HP when eaten!";
             image_file_path = "ItemSprites/HotDog";
             amount = 1;
@@ -384,6 +402,7 @@ public static class Consumables
         public MeatDog()
         {
             name = "Meat Dog";
+            id = "consumables:meatdog";
             description = "A tube of unidentified, but delicious meat! Heals 50 HP when eaten!";
             image_file_path = "ItemSprites/HotDog";
             amount = 1;
@@ -410,6 +429,7 @@ public static class Consumables
         public BaconLollipop()
         {
             name = "Bacon Lollipop";
+            id = "consumables:baconlollipop";
             description = "Why would someone make this? Heals 80 HP when eaten.";
             image_file_path = "ItemSprites/ConsumableIcon1";
             amount = 1;
@@ -435,8 +455,9 @@ public static class Consumables
         public Adderall()
         {
             name = "Adderall";
+            id = "consumables:adderall";
             description = "A medication usually used to treat ADHD. Cures spasms and removes hyperactive.";
-            image_file_path = "ConsumableIcon3";
+            image_file_path = "ItemSprites/ConsumableIcon3";
             amount = 1;
             limit = 99;
             cost = 10;
@@ -460,8 +481,9 @@ public static class Consumables
         public Beer()
         {
             name = "Beer";
+            id = "consumables:beer";
             description = "A medication for curing sadness. Drink responsibly! Causes vomiting and Zealous!";
-            image_file_path = "ConsumableIcon2";
+            image_file_path = "ItemSprites/ConsumableIcon2";
             amount = 1;
             limit = 99;
             cost = 5;
@@ -485,8 +507,9 @@ public static class Consumables
         public Cocaine()
         {
             name = "Cocaine";
+            id = "consumables:cocaine";
             description = "Very dangerous, very addictive, and very illegal!  Inflicts hyperactive and hysteria!";
-            image_file_path = "ConsumableIcon3";
+            image_file_path = "ItemSprites/ConsumableIcon3";
             amount = 1;
             limit = 99;
             cost = 20;
@@ -510,8 +533,9 @@ public static class Consumables
         public Xanax()
         {
             name = "Xanax";
+            id = "consumables:xanax";
             description = "Used by doctors to cure depression... still very addictive. Cures hysteria and inflicts restrained!";
-            image_file_path = "ConsumableIcon3";
+            image_file_path = "ItemSprites/ConsumableIcon3";
             amount = 1;
             limit = 99;
             cost = 15;
@@ -536,8 +560,9 @@ public static class Consumables
         public PizzaSlice()
         {
             name = "Pizza Slice";
+            id = "consumables:pizzaslice";
             description = "A slice of a balanced food that contains all 6 of the major food groups. Heals 75 HP when eaten!";
-            image_file_path = "ConsumableIcon1";
+            image_file_path = "ItemSprites/ConsumableIcon1";
             amount = 1;
             limit = 99;
             cost = 10;
@@ -561,8 +586,9 @@ public static class Consumables
         public Soda()
         {
             name = "Soda";
+            id = "consumables:soda";
             description = "Most of the soda water has congealed at the bottom... Recovers 75 SP when consumed!";
-            image_file_path = "ConsumableIcon2";
+            image_file_path = "ItemSprites/ConsumableIcon2";
             amount = 1;
             limit = 99;
             cost = 6;
@@ -585,8 +611,9 @@ public static class Consumables
         public DoctorPP()
         {
             name = "Doctor PP";
+            id = "consumables:doctorpp";
             description = "They thought that giving this beverage an online doctorate would help it sell better. Recovers 35 SP when consumed!";
-            image_file_path = "ConsumableIcon2";
+            image_file_path = "ItemSprites/ConsumableIcon2";
             amount = 1;
             limit = 99;
             cost = 3;
@@ -609,6 +636,7 @@ public static class Consumables
         public SeniorMeatSalesmanID()
         {
             name = "Senior Meat Salesman ID";
+            id = "consumables:seniormeatsalesmanid";
             description = "A high quality replica of a Senior Meat Salesman ID.  It reads \"Rusty Shackleford.\"";
             image_file_path = "";
             amount = 1;
@@ -622,6 +650,21 @@ public static class Consumables
 
 public static class Weapons
 {
+    //return a specific type given an item id
+    public static dynamic InstanceSubclass(string id)
+    {
+        System.Type item = typeof(Weapons);
+        System.Type[] temp = item.GetNestedTypes();
+
+        for (int i = 0; i < temp.GetLength(0); i++)
+        {
+            System.Type type = temp[i];
+            var instance = (dynamic)System.Activator.CreateInstance(type);
+            if (instance.id == id) return instance;
+        }
+        return null;
+    }
+
     public static List<Weapon> GetWeapons()
     {
         System.Type weapon = typeof(Weapons);
@@ -643,6 +686,7 @@ public static class Weapons
         public TestWeapon()
         {
             name = "TestWeapon";
+            id = "consumables:testweapon";
             image_file_path = "ItemSprites/Weapon_1";
             description = "A weapon of code!  Made for debugging so it's not really good...";
             limit = 1;
@@ -664,6 +708,7 @@ public static class Weapons
         public Protractor()
         {
             name = "Protractor";
+            id = "consumables:protractor";
             image_file_path = "ItemSprites/Weapon_0";
             description = "This plastic graded semicircle is a monument to mathematical precision... some of the numbers are worn off.";
             limit = 1;
@@ -678,6 +723,7 @@ public static class Weapons
         public GnomeShard()
         {
             name = "Gnome Shard";
+            id = "consumables:gnomeshard";
             image_file_path = "ItemSprites/Weapon_0";
             description = "The remains of a garden gnome homicide, you feel like you’re tampering with evidence here. It stares at you blankly.";
             limit = 1;
@@ -692,6 +738,7 @@ public static class Weapons
         public RatBomb()
         {
             name = "Rat Bomb";
+            id = "consumables:ratbomb";
             image_file_path = "ItemSprites/Weapon_0";
             description = "This isn’t actually a rat bomb, this is more like a bomb that a rat left behind...";
             limit = 1;
@@ -708,6 +755,7 @@ public static class Weapons
         public ReplicaFlintlock()
         {
             name = "Replica Flintlock";
+            id = "consumables:replicaflintlock";
             image_file_path = "ItemSprites/Weapon_0";
             description = "";
             limit = 1;
@@ -723,6 +771,7 @@ public static class Weapons
         public NightStick()
         {
             name = "Night Stick";
+            id = "consumables:nightstick";
             image_file_path = "ItemSprites/Weapon_0";
             limit = 1;
             amount = 1;
@@ -735,6 +784,21 @@ public static class Weapons
 
 public static class Armors
 {
+    //return a specific type given an item id
+    public static dynamic InstanceSubclass(string id)
+    {
+        System.Type item = typeof(Armors);
+        System.Type[] temp = item.GetNestedTypes();
+
+        for (int i = 0; i < temp.GetLength(0); i++)
+        {
+            System.Type type = temp[i];
+            var instance = (dynamic)System.Activator.CreateInstance(type);
+            if (instance.id == id) return instance;
+        }
+        return null;
+    }
+
     public static List<Armor> GetArmors()
     {
         System.Type armor = typeof(Armors);
@@ -756,6 +820,7 @@ public static class Armors
         public TestArmor()
         {
             name = "TestArmor";
+            id = "consumables:testarmor";
             image_file_path = "ItemSprites/Armor_1";
             description = "A suit of armor made of code!  Awkward and clunky, just like a programmer's first draft...";
             limit = 1;
@@ -777,6 +842,7 @@ public static class Armors
         public RadFlatCap()
         {
             name = "Rad Flat Cap";
+            id = "consumables:radflatcap";
             image_file_path = "ItemSprites/Armor_0";
             description = "This hat bears the insignia of a radical, the mathematical one of course… you feel real cool in this hat.";
             limit = 1;
@@ -792,6 +858,7 @@ public static class Armors
         public StrResTrashBag()
         {
             name = "Strech Resistant Trash Bag";
+            id = "consumables:strrestrashbag";
             image_file_path = "ItemSprites/Armor_0";
             description = "You figure by fitting your arms and legs through 4 conveniently ripped holes in this trash bag and donning it, " +
                 "this would make good protection against any attack that might stretch you out...";
@@ -808,6 +875,7 @@ public static class Armors
         public CommemorativeTShirt()
         {
             name = "Commemorative T-Shirt";
+            id = "consumables:commemorativetshirt";
             image_file_path = "ItemSprites/Armor_0";
             description = "Armor that smells like feet-I mean... cheese... yeah cheese...";
             limit = 1;
@@ -822,6 +890,21 @@ public static class Armors
 
 public static class Trinkets
 {
+    //return a specific type given an item id
+    public static dynamic InstanceSubclass(string id)
+    {
+        System.Type item = typeof(Trinkets);
+        System.Type[] temp = item.GetNestedTypes();
+
+        for (int i = 0; i < temp.GetLength(0); i++)
+        {
+            System.Type type = temp[i];
+            var instance = (dynamic)System.Activator.CreateInstance(type);
+            if (instance.id == id) return instance;
+        }
+        return null;
+    }
+
     public static List<Trinket> GetTrinkets()
     {
         System.Type trinket = typeof(Trinkets);
@@ -843,6 +926,7 @@ public static class Trinkets
         public TestTrinket()
         {
             name = "TestTrinket";
+            id = "consumables:testtrinket";
             image_file_path = "ItemSprites/Trinket_1";
             description = "The jewel on the ring is valued at 1 bit!  Not one bitcoin, like an actual bit of memory...";
             limit = 1;
@@ -863,6 +947,7 @@ public static class Trinkets
         public MrWhiskers()
         {
             name = "Mr Whiskers";
+            id = "consumables:mrwhiskers";
             image_file_path = "ItemSprites/Trinket_0";
             description = "You figure if you don’t return your neighbor’s cat, it can never escape again, and thus your fish " +
                 "will always be safe from his nemesis.";
@@ -879,6 +964,7 @@ public static class Trinkets
         public ClayAmulet()
         {
             name = "Clay Amulet";
+            id = "consumables:clayamulet";
             image_file_path = "ItemSprites/Trinket_1";
             description = "They say the humanities are what keeps us human, but the arts and crafts class is what keeps some " +
                 "students sane.  Clearly, some student rejected their humanity by throwing this project away...";

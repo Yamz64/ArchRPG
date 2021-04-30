@@ -5333,10 +5333,6 @@ public class PauseMenuHandler : MonoBehaviour
                 break;
             }
         }
-
-        //unlock party members
-        data.UnlockPartyMember(0);
-        data.UnlockPartyMember(1);
     }
 
     // Update is called once per frame
