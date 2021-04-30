@@ -564,25 +564,25 @@ public class BattleScript : MonoBehaviour
         {
             Item item = data.GetItem(cursor_position + inventory_offset);
 
-            transform.GetChild(1).Find("ItemMenu").GetChild(10).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            transform.GetChild(1).Find("ItemMenu").GetChild(11).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
             //try to update the image first
             if (item.image_file_path == "" || item.image_file_path == null)
             {
-                transform.GetChild(1).Find("ItemMenu").GetChild(10).GetComponent<Image>().sprite = Resources.Load<Sprite>("ItemSprites/NullItem");
+                transform.GetChild(1).Find("ItemMenu").GetChild(11).GetComponent<Image>().sprite = Resources.Load<Sprite>("ItemSprites/NullItem");
             }
             else
             {
-                transform.GetChild(1).Find("ItemMenu").GetChild(10).GetComponent<Image>().sprite = Resources.Load<Sprite>(item.image_file_path);
+                transform.GetChild(1).Find("ItemMenu").GetChild(11).GetComponent<Image>().sprite = Resources.Load<Sprite>(item.image_file_path);
             }
 
             //update item description
-            transform.GetChild(1).Find("ItemMenu").GetChild(9).GetComponent<Text>().text = item.description;
+            transform.GetChild(1).Find("ItemMenu").GetChild(10).GetComponent<Text>().text = item.description;
         }
         else
         {
-            transform.GetChild(1).Find("ItemMenu").GetChild(10).GetComponent<Image>().sprite = null;
-            transform.GetChild(1).Find("ItemMenu").GetChild(10).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-            transform.GetChild(1).Find("ItemMenu").GetChild(9).GetComponent<Text>().text = "";
+            transform.GetChild(1).Find("ItemMenu").GetChild(11).GetComponent<Image>().sprite = null;
+            transform.GetChild(1).Find("ItemMenu").GetChild(11).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+            transform.GetChild(1).Find("ItemMenu").GetChild(10).GetComponent<Text>().text = "";
         }
     }
 
@@ -2737,6 +2737,7 @@ public class BattleScript : MonoBehaviour
             actions.Sort((a, b) => { return b.getFast().CompareTo(a.getFast()); });
             for (int z = 0; z < actions.Count; z++)
             {
+                Debug.Log("Z == " + z);
                 bool sane = false;
                 bool sane2 = false;
                 string sc = actions[z].getType();
@@ -3345,8 +3346,10 @@ public class BattleScript : MonoBehaviour
                 //Use item
                 else if (actions[z].getType() == "item" && state == battleState.ATTACK)
                 {
+                    Debug.Log("Got into item");
                     dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
                         data.GetItem(actions[z].getIndex()).name;
+                    Debug.Log("Text is here");
                     data.UseItem(actions[z].getIndex(), temp[ind].GetComponent<UnitMono>().mainUnit);
                     StartCoroutine(flashHeal(temp[ind].GetComponent<UnitMono>().mainUnit));
                     UpdateInventoryItems();
@@ -3398,19 +3401,7 @@ public class BattleScript : MonoBehaviour
                         dialogue.text = nami + " moved to position "
                             + (actions[z].getTarget() + 1);
                     }
-                    Debug.Log("Bo == " + bo);
                     Swap2(bo, actions[z].getTarget(), actions[z].getName());
-                    for (int g = 0; g < 4; g++)
-                    {
-                        if (partyUnits[g] != null)
-                        {
-                            //Debug.Log("SwapParty " + g + " == " + partyUnits[g].GetComponent<UnitMono>().mainUnit.unitName);
-                        }
-                        else
-                        {
-                            //Debug.Log("SWapParty " + g + " == null");
-                        }
-                    }
                 }
                 //Attempt to flee from battle
                 else if (actions[z].getType() == "Flee" && state == battleState.ATTACK)
@@ -3443,19 +3434,7 @@ public class BattleScript : MonoBehaviour
                 //Enemy performs an attack
                 else if (actions[z].getType() == "enemyAttack" && state == battleState.ATTACK)
                 {
-                    for (int g = 0; g < 4; g++)
-                    {
-                        if (partyUnits[g] != null)
-                        {
-                            Debug.Log("Party " + g + " == " + partyUnits[g].GetComponent<UnitMono>().mainUnit.unitName);
-                        }
-                        else
-                        {
-                            Debug.Log("Party " + g + " == null");
-                        }
-                    }
                     enemyUnits[ind].GetComponent<UnitMono>().mainUnit.changeSprite(1);
-                    Debug.Log("Target here == " + actions[z].getTarget());
                     int toget = actions[z].getTarget();
                     bool baddi = false;
                     int chance = Random.Range(0, 2);
@@ -3532,13 +3511,10 @@ public class BattleScript : MonoBehaviour
                     }
                     if (!baddi)
                     {
-                        Debug.Log("Got into null");
                         if (partyUnits[toget] != null)
                         {
-                            Debug.Log("Target hp isn't 0");
                             if (partyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                             {
-                                Debug.Log("target is actually == " + toget);
                                 dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
                                     enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
                                 yield return enemyAttack(actions[z].getIndex(), toget,
@@ -3677,7 +3653,6 @@ public class BattleScript : MonoBehaviour
                                     {
                                         if (partyUnits[1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                                         {
-                                            Debug.Log("Nulli1");
                                             toget = 1;
                                             dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
                                     enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
@@ -3702,7 +3677,6 @@ public class BattleScript : MonoBehaviour
                                     {
                                         if (partyUnits[0].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                                         {
-                                            Debug.Log("Nulli2");
                                             toget = 0;
                                             dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
                                     enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
@@ -3731,7 +3705,6 @@ public class BattleScript : MonoBehaviour
                                     {
                                         if (partyUnits[3].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                                         {
-                                            Debug.Log("Nulli3");
                                             toget = 3;
                                             dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
                                     enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
@@ -3756,7 +3729,6 @@ public class BattleScript : MonoBehaviour
                                     {
                                         if (partyUnits[2].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                                         {
-                                            Debug.Log("Nulli4");
                                             toget = 2;
                                             dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
                                     enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
@@ -3779,7 +3751,6 @@ public class BattleScript : MonoBehaviour
                             //If any target is valid
                             else
                             {
-                                Debug.Log("Nulli5");
                                 int baseNum = toget;
                                 while (partyUnits[toget] == null || partyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0 || toget == baseNum)
                                 {
@@ -4346,6 +4317,10 @@ public class BattleScript : MonoBehaviour
             //Start background music
             useSound(3, true, 1);
         }
+
+        data.AddItem(new Consumables.HotDog());
+        data.AddItem(new Consumables.BaconLollipop());
+        data.AddItem(new Consumables.HotDog());
 
         //Define actions list
         actions = new List<action>();
@@ -5044,7 +5019,6 @@ public class BattleScript : MonoBehaviour
             }
             else if (uni.abilities[ata].customAbility == 3)
             {
-                Debug.Log("Starting custom");
                 List<unit> bots = new List<unit>();
                 List<int> dams = new List<int>();
                 if (val - 1 >= 0)
@@ -5090,10 +5064,8 @@ public class BattleScript : MonoBehaviour
                     bots.Add(null);
                     dams.Add(0);
                 }
-                Debug.Log("Stuff added");
                 uni.abilities[ata].UseAttack(uni, bots);
                 yield return flashDealDamage(uni);
-                Debug.Log("Ability used");
                 for (int b = 0; b < bots.Count; b++)
                 {
                     if (bots[b] != null)
@@ -5108,7 +5080,6 @@ public class BattleScript : MonoBehaviour
                         }
                         if (bots[b].currentHP <= 0)
                         {
-                            Debug.Log("ind == " + b + ", person died");
                             enemyDeaths++;
                             yield return unitDeath(bots[b]);
                         }
@@ -5141,16 +5112,13 @@ public class BattleScript : MonoBehaviour
             }
             if (doer.name == "War and Peace")
             {
-                Debug.Log("Using W&B");
                 if (uni.mode == 0)
                 {
-                    Debug.Log("Swapping forward");
                     doer.selfSwapper = 1;
                     doer.swapper = 1;
                 }
                 else
                 {
-                    Debug.Log("Swapping back");
                     doer.selfSwapper = 2;
                     doer.swapper = 2;
                 }
@@ -5158,7 +5126,6 @@ public class BattleScript : MonoBehaviour
             //Pull target forward
             if (doer.selfSwapper == 1 && uni.position != 0)
             {
-                Debug.Log("Actually forward");
                 Transform pp1 = new GameObject().transform;
                 Transform pp2 = new GameObject().transform;
 
@@ -5206,7 +5173,6 @@ public class BattleScript : MonoBehaviour
             //Push target backwards
             else if (doer.selfSwapper == 2 && uni.position != 1)
             {
-                Debug.Log("Actually back");
                 Transform pp1 = new GameObject().transform;
                 Transform pp2 = new GameObject().transform;
 
@@ -5251,7 +5217,6 @@ public class BattleScript : MonoBehaviour
             //Pull target forward
             if (doer.swapper == 1 && uni.position != 0)
             {
-                Debug.Log("Actually forward");
                 Transform pp1 = new GameObject().transform;
                 Transform pp2 = new GameObject().transform;
 
@@ -5299,7 +5264,6 @@ public class BattleScript : MonoBehaviour
             //Push target backwards
             else if (doer.swapper == 2 && uni.position != 1)
             {
-                Debug.Log("Actually back");
                 Transform pp1 = new GameObject().transform;
                 Transform pp2 = new GameObject().transform;
 
@@ -5469,13 +5433,6 @@ public class BattleScript : MonoBehaviour
                 }
             }
             int vam = uni.currentHP;
-            for (int i = 0; i < tore.Count; i++)
-            {
-                if (tore[i] != null)
-                {
-                    Debug.Log("Unit " + i + " is " + tore[i].unitName);
-                }
-            }
             uni.abilities[ata].UseAttack(uni, tore);
             if (uni.currentHP > vam)
             {
@@ -5603,12 +5560,9 @@ public class BattleScript : MonoBehaviour
             tv++;
         }
         int dif = target.currentHP;
-        Debug.Log("Current HP == " + dif);
         bool dead = target.takeDamage(val);
         target.setHP(target.currentHP);
-        Debug.Log("New HP == " + target.currentHP);
         dif -= target.currentHP;
-        Debug.Log("Current dif == " + dif);
 
         if (dif > 0)
         {
