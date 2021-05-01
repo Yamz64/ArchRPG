@@ -470,8 +470,16 @@ public class BattleScript : MonoBehaviour
         {
             if (i + inventory_offset < data.GetInventorySize())
             {
+                int off = 0;
+                for (int x = 0; x < actions.Count; x++)
+                {
+                    if (actions[x].getType() == "item" && actions[x].getIndex() == i + inventory_offset)
+                    {
+                        off += 1;
+                    }
+                }
                 item_viewer_name[i].text = data.GetItem(i + inventory_offset).name;
-                item_viewer_name[i].transform.GetChild(0).GetComponent<Text>().text = "x " + data.GetItem(i + inventory_offset).amount.ToString();
+                item_viewer_name[i].transform.GetChild(0).GetComponent<Text>().text = "x " + (data.GetItem(i + inventory_offset).amount - off).ToString();
             }
             else
             {
@@ -2065,40 +2073,50 @@ public class BattleScript : MonoBehaviour
                 switch (cursor_position)
                 {
                     case 9:
-                        useSound(1);
-                        int speed = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI();
-                        if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[5] != -1)
+                        int off = 0;
+                        for (int x = 0; x < actions.Count; x++)
                         {
-                            speed = (int)(speed * 1.25f);
+                            if (actions[x].getType() == "item" && actions[x].getIndex() == highlighted_item)
+                            {
+                                off += 1;
+                            }
                         }
-                        if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[22] != -1)
+                        if (off == data.GetItem(highlighted_item).amount)
                         {
-                            speed = (int)(speed * 0.75f);
-                        }
-                        actions.Add(new action(currentUnit, "item", highlighted_item, currentUnit, speed));
-                        //data.UseItem(highlighted_item);
-                        UpdateInventoryItems();
-                        UpdateInventoryImageandDesc();
-                        CloseUseItemMenu();
-                        CloseMenu(2);
-                        highlighted_item = 0;
-                        currentUnit += 1;
-                        Vector3 here = partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.view.transform.position;
-                        here.y = partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.backupView.transform.position.y;
-                        partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.view.transform.position = here;
-                        moves += 1;
-
-                        if (moves >= activeUnits || currentUnit == 4)
-                        {
-                            moves = 0;
-                            currentUnit = 0;
-                            state = battleState.ATTACK;
-                            StartCoroutine(performActions());
+                            dialogue.text = "Can't use current item";
+                            useSound(0);
+                            CloseUseItemMenu();
+                            CloseMenu(2);
+                            highlighted_item = 0;
+                            inventory_offset = 0;
                         }
                         else
                         {
-                            while (partyUnits[currentUnit] == null && currentUnit < partyUnits.Count) currentUnit++;
-                            if (currentUnit >= partyUnits.Count)
+                            useSound(1);
+                            int speed = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI();
+                            if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[5] != -1)
+                            {
+                                speed = (int)(speed * 1.25f);
+                            }
+                            if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[22] != -1)
+                            {
+                                speed = (int)(speed * 0.75f);
+                            }
+                            actions.Add(new action(currentUnit, "item", highlighted_item, currentUnit, speed));
+                            //data.UseItem(highlighted_item);
+                            UpdateInventoryItems();
+                            UpdateInventoryImageandDesc();
+                            CloseUseItemMenu();
+                            CloseMenu(2);
+                            highlighted_item = 0;
+                            inventory_offset = 0;
+                            currentUnit += 1;
+                            Vector3 here = partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.view.transform.position;
+                            here.y = partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.backupView.transform.position.y;
+                            partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.view.transform.position = here;
+                            moves += 1;
+
+                            if (moves >= activeUnits || currentUnit == 4)
                             {
                                 moves = 0;
                                 currentUnit = 0;
@@ -2107,7 +2125,18 @@ public class BattleScript : MonoBehaviour
                             }
                             else
                             {
-                                playerTurn();
+                                while (partyUnits[currentUnit] == null && currentUnit < partyUnits.Count) currentUnit++;
+                                if (currentUnit >= partyUnits.Count)
+                                {
+                                    moves = 0;
+                                    currentUnit = 0;
+                                    state = battleState.ATTACK;
+                                    StartCoroutine(performActions());
+                                }
+                                else
+                                {
+                                    playerTurn();
+                                }
                             }
                         }
                         break;
