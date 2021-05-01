@@ -721,19 +721,25 @@ public class unit
                         valA = valA * 1.5f;
                     }
 
+                    //Weeping
                     if (statuses[2] != -1)
                     {
-                        valA = valA * 0.66f;
+                        valA = valA * 0.75f;
+                    }
+                    //Eye Bleed
+                    if (statuses[3] != -1)
+                    {
+                        valA = valA * 0.5f;
                     }
                     //Zealous
                     if (statuses[14] != -1)
                     {
-                        valA = valA * 1.25f;
+                        valA = valA * 1.5f;
                     }
-
+                    //Inspired
                     if (statuses[6] != -1)
                     {
-                        valA = valA * 1.25f;
+                        valA = valA * 1.33f;
                     }
 
                     val += (int)(val * valA);
@@ -746,30 +752,22 @@ public class unit
                         valD = valD * 1.5f;
                     }
 
-                    //Zealous reduce DEF by 17%
-                    //Check if DEF is reduced by a status like Blunt Trauma
-                    if (target.statuses[4] == -1 && target.statuses[7] == -1)
-                    {
-                        val -= (int)(val * valD);
-                    }
                     //Blunt Trauma
-                    else if (target.statuses[4] != -1 && target.statuses[7] == -1)
+                    if (target.statuses[4] != -1)
                     {
                         valD = valD * 0.75f;
-                        val -= (int)(val * valD);
                     }
                     //Neurotic
-                    else if (target.statuses[4] == -1 && target.statuses[7] != -1)
+                    if (target.statuses[7] != -1)
                     {
                         valD = valD * 1.5f; 
-                        val -= (int)(val * valD);
                     }
-                    //Both
-                    else
+                    //Zealous
+                    if (target.statuses[14] != -1)
                     {
-                        valD = valD * 1.25f;
-                        val -= (int)(val * valD);
+                        valD = valD * 0.85f;
                     }
+                    val -= (int)(val * valD);
                 }
                 else
                 {
@@ -806,21 +804,25 @@ public class unit
                     {
                         valD = valD * 0.50f;
                     }
-                    //Check if POW is affected
-                    if (statuses[14] == -1)
+                    //Weeping
+                    if (statuses[2] != -1)
                     {
-                        val += (int)(val * valP);
-                        valS += (int)(valS * valP);
-                        val2 += (int)(val2 * valP);
+                        valP = valP * 0.85f;
+                    }
+                    //Eye Bleed
+                    if (statuses[3] != -1)
+                    {
+                        valP = valP * 0.66f;
                     }
                     //Zealous
-                    else
+                    if (statuses[14] != -1)
                     {
                         valP = valP * 1.5f;
-                        val += (int)(val * valP);
-                        valS += (int)(valS * valP);
-                        val2 += (int)(val2 * valP);
                     }
+
+                    val += (int)(val * valP);
+                    valS += (int)(valS * valP);
+                    val2 += (int)(val2 * valP);
 
 
                     //If neurotic
@@ -836,7 +838,7 @@ public class unit
                     //If Confident
                     if (target.statuses[16] != -1)
                     {
-                        valD = valD * 1.25f;
+                        valD = valD * 1.33f;
                     }
                     val -= (int)(val * valD);
                     valS -= (int)(valS * valD);
@@ -962,6 +964,7 @@ public class unit
                 {
                     critBuff += 15;
                 }
+                //If target has confident
                 if (target.statuses[16] != -1)
                 {
                     critBuff += critBuff / 2;
@@ -1042,7 +1045,7 @@ public class unit
                             int statBuff = ata.alteredStatus;
                             int reze = target.RES;
                             //If target has Chutzpah
-                            if (statuses[21] != -1)
+                            if (target.statuses[21] != -1)
                             {
                                 reze = (int)(reze * 1.25);
                             }
@@ -1479,47 +1482,47 @@ public class unit
         bool val = true;
         if (id.Equals("Vomiting")           && statuses[0] == -1)
         {
-            ran = 5;
+            ran = UnityEngine.Random.Range(5, 6);
             statuses[0] = ran;
         }
         else if (id.Equals("Aspirating")    && statuses[1] == -1)
         {
-            ran = 5;
+            ran = UnityEngine.Random.Range(5, 6);
             statuses[1] = ran;
         }
         else if (id.Equals("Weeping")       && statuses[2] == -1)
         {
-            ran = 5;
+            ran = UnityEngine.Random.Range(5, 6);
             statuses[2] = ran;
             
         }
         else if (id.Equals("Eye_Bleeding")  && statuses[3] == -1)
         {
-            ran = 5;
+            ran = UnityEngine.Random.Range(5, 6);
             statuses[3] = ran;
             
         }
         else if (id.Equals("Blunt_Trauma")  && statuses[4] == -1)
         {
-            ran = UnityEngine.Random.Range(5, 9);
+            ran = UnityEngine.Random.Range(5, 6);
             statuses[4] = ran;
             
         }
         else if (id.Equals("Hyperactive")   && statuses[5] == -1)
         {
-            ran = UnityEngine.Random.Range(5, 9);
+            ran = UnityEngine.Random.Range(5, 6);
             statuses[5] = ran;
             
         }
         else if (id.Equals("Inspired")      && statuses[6] == -1)
         {
-            ran = UnityEngine.Random.Range(5, 9);
+            ran = UnityEngine.Random.Range(5, 6);
             statuses[6] = ran;
             
         }
         else if (id.Equals("Neurotic")      && statuses[7] == -1)
         {
-            ran = UnityEngine.Random.Range(5, 9);
+            ran = UnityEngine.Random.Range(5, 6);
             statuses[7] = ran;
             
         }
@@ -1537,7 +1540,7 @@ public class unit
         }
         else if (id.Equals("Diseased")      && statuses[10] == -1)
         {
-            ran = UnityEngine.Random.Range(5, 9);
+            ran = UnityEngine.Random.Range(5, 6);
             statuses[10] = ran;
             int bust = maxHP - ((maxHP / 4) + 5);
             if (bust > 0)
@@ -1556,25 +1559,25 @@ public class unit
         }
         else if (id.Equals("Hysteria")      && statuses[12] == -1)
         {
-            ran = UnityEngine.Random.Range(7, 11);
+            ran = UnityEngine.Random.Range(6, 7);
             statuses[12] = ran;
             
         }
         else if (id.Equals("Analyzed")      && statuses[13] == -1)
         {
-            ran = UnityEngine.Random.Range(5, 9);
+            ran = UnityEngine.Random.Range(5, 6);
             statuses[13] = ran;
             
         }
         else if (id.Equals("Zealous")       && statuses[14] == -1)
         {
-            ran = UnityEngine.Random.Range(5, 9);
+            ran = UnityEngine.Random.Range(5, 6);
             statuses[14] = ran;
             
         }
         else if (id.Equals("Cancerous")     && statuses[15] == -1)
         {
-            ran = UnityEngine.Random.Range(5, 9);
+            ran = 99;
             statuses[15] = ran;
             maxHP = (int)(0.7f * maxHP);
 
@@ -1583,49 +1586,49 @@ public class unit
         }
         else if (id.Equals("Confident")     && statuses[16] == -1)
         {
-            ran = UnityEngine.Random.Range(5, 9);
+            ran = UnityEngine.Random.Range(5, 6);
             statuses[16] = ran;
             
         }
         else if (id.Equals("Spasms")        && statuses[17] == -1)
         {
-            ran = UnityEngine.Random.Range(5, 9);
+            ran = UnityEngine.Random.Range(5, 6);
             statuses[17] = ran;
             
         }
         else if (id.Equals("Conductive")    && statuses[18] == -1)
         {
-            ran = UnityEngine.Random.Range(5, 9);
+            ran = UnityEngine.Random.Range(7, 8);
             statuses[18] = ran;
             
         }
         else if (id.Equals("Reactive")      && statuses[19] == -1)
         {
-            ran = UnityEngine.Random.Range(5, 9);
+            ran = UnityEngine.Random.Range(7, 8);
             statuses[19] = ran;
             
         }
         else if (id.Equals("Zonked")        && statuses[20] == -1)
         {
-            ran = UnityEngine.Random.Range(5, 9);
+            ran = UnityEngine.Random.Range(7, 8);
             statuses[20] = ran;
             
         }
         else if (id.Equals("Chutzpah")      && statuses[21] == -1)
         {
-            ran = UnityEngine.Random.Range(5, 9);
+            ran = UnityEngine.Random.Range(5, 6);
             statuses[21] = ran;
             
         }
         else if (id.Equals("Lethargic")     && statuses[22] == -1)
         {
-            ran = UnityEngine.Random.Range(5, 9);
+            ran = UnityEngine.Random.Range(5, 6);
             statuses[22] = ran;
             
         }
         else if (id.Equals("Electrified")   && statuses[23] == -1)
         {
-            ran = UnityEngine.Random.Range(5, 9);
+            ran = UnityEngine.Random.Range(5, 6);
             statuses[23] = ran;
             
         }
@@ -1640,8 +1643,8 @@ public class unit
         }
         else if (id.Equals("Disco_Fever")   && statuses[26] == -1)
         {
-            ran = UnityEngine.Random.Range(5, 9);
-            statuses[20] = ran;
+            ran = UnityEngine.Random.Range(6, 7);
+            statuses[26] = ran;
             
         }
         else
@@ -1692,9 +1695,21 @@ public class unit
                     if (statuses[i] == 0)
                     {
                         statuses[i] = -1;
-                        if (i == 11)
+                        if (i == 10 && statuses[15] == -1)
                         {
                             maxHP = defMaxHP;
+                        }
+                        else if (i == 10 && statuses[15] != -1)
+                        {
+                            maxHP = (int)(0.7f * defMaxHP);
+                        }
+                        if (i == 15 && statuses[10] == -1)
+                        {
+                            maxHP = defMaxHP;
+                        }
+                        else if (i == 15 && statuses[10] != -1)
+                        {
+                            maxHP = defMaxHP - ((defMaxHP / 4) + 5);
                         }
                     }
                 }
@@ -2151,7 +2166,7 @@ public class PlayerUnit : unit
         }
         if (level >= 4)
         {
-            abilities.Add(new PlayerAbilities.Diagnosis());
+            abilities.Add(new PlayerAbilities.RudeReassurance());
         }
         if (level >= 7)
         {

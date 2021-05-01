@@ -1952,15 +1952,31 @@ namespace PlayerAbilities
 
         public override string OutputText(unit user, unit target)
         {
+            string output = "";
+            float percent = target.getHP() / target.maxHP;
+
+            if (percent > .7f)
+            {
+                output = "The " + target.unitName + " is looking healthy!";
+            }
+            else if (percent < .2f)
+            {
+                output = "The " + target.unitName + " is on the ropes!";
+            }
+            else
+            {
+                output = "The " + target.unitName + " is wounded!";
+            }
+
             List<string> actual = new List<string>();
 
             //see if the target has any weaknesses
             //no
-            if (target.weaknesses == null) return target.unitName + " has no weaknesses!";
+            if (target.weaknesses == null) return output + "\n" + target.unitName + " has no weaknesses!";
             //if (target.weaknesses.GetLength(0) == 0) return target.unitName + " has no weaknesses!";
 
             //yes
-            string output = target.unitName + " is weak to ";
+            output += "\n" + target.unitName + " is weak to ";
 
             //construct the output
             for(int i=0; i<target.weaknesses.GetLength(0); i++)
@@ -1991,33 +2007,14 @@ namespace PlayerAbilities
                     }
                     actual.Add(weakness);
                 }
-
-                /*
-                //the end of the list
-                if(i == target.weaknesses.GetLength(0) - 1)
-                {
-                    if (i == 0)
-                        output += weakness + " damage.";
-                    else
-                        output += "and " + weakness + " damage.";
-                }
-                //not the end of the list
-                else
-                {
-                    if (i == 0)
-                        output += weakness;
-                    else
-                        output += ", " + weakness;
-                }
-                */
             }
             if (actual.Count == 0)
             {
-                return target.unitName + " has no weaknesses!";
+                return output + "\n" + target.unitName + " has no weaknesses!";
             }
             else
             {
-                output = target.unitName + " is weak to";
+                output += "\n" + target.unitName + " is weak to";
                 for (int i = 0; i < actual.Count; i++)
                 {
                     if (i == 0)
@@ -2044,6 +2041,38 @@ namespace PlayerAbilities
         }
     }
 
+    public class RudeReassurance : Ability
+    {
+        public RudeReassurance()
+        {
+            name = "Rude Reassurance";
+            desc1 = "Weak group heal, gives all other party members weeping";
+            desc2 = "Desc. not added yet";
+            cost = 6;
+            position = 0;
+            type = 1;
+            target = 3;
+        }
+
+        public override void UseAttack(unit user, List<unit> targets)
+        {
+            for (int i = 0; i < targets.Count; i++)
+            {
+                if (targets[i] != null)
+                {
+                    if (targets[i].currentHP > 0)
+                    {
+                        targets[i].healDamage(5 * (user.getPOW() / 4));
+                    }
+                    if (!targets[i].player)
+                    {
+                        targets[i].giveStatus("Weeping");
+                    }
+                }
+            }
+        }
+    }
+
     public class Diagnosis : Ability
     {
         public Diagnosis()
@@ -2066,14 +2095,18 @@ namespace PlayerAbilities
             //determine target's percentage of remaining health
             float percent = target.getHP() / target.maxHP;
 
-            if(percent > .5f)
+            if (percent > .5f)
             {
                 return "The " + target.unitName + " is looking healthy!";
-            }else if(percent < .1f)
+            }
+            else if (percent < .1f)
             {
                 return "The " + target.unitName + " is on the ropes!";
             }
-            return "The " + target.unitName + " is wounded!";
+            else
+            {
+                return "The " + target.unitName + " is wounded!";
+            }
         }
     }
 

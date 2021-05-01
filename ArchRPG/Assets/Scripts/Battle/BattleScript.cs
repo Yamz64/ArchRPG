@@ -696,7 +696,16 @@ public class BattleScript : MonoBehaviour
                             }
                             else
                             {
-                                actions.Add(new action(currentUnit, "basic attack", 0, val, partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI()));
+                                int speed = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI();
+                                if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[5] != -1)
+                                {
+                                    speed = (int)(speed * 1.25f);
+                                }
+                                if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[22] != -1)
+                                {
+                                    speed = (int)(speed * 0.75f);
+                                }
+                                actions.Add(new action(currentUnit, "basic attack", 0, val, speed));
                                 currentUnit += 1;
                                 Vector3 here = partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.view.transform.position;
                                 here.y = partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.backupView.transform.position.y;
@@ -1255,9 +1264,13 @@ public class BattleScript : MonoBehaviour
                                     {
                                         useSound(1);
                                         int speed = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI();
+                                        if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[5] != -1)
+                                        {
+                                            speed = (int)(speed * 1.25f);
+                                        }
                                         if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[22] != -1)
                                         {
-                                            speed = (int)(speed * 0.75);
+                                            speed = (int)(speed * 0.75f);
                                         }
                                         actions.Add(new action(currentUnit, "ability", highlighted_ability, currentEnemy, speed,
                                             partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].fast));
@@ -1332,9 +1345,13 @@ public class BattleScript : MonoBehaviour
                                     {
                                         useSound(1);
                                         int speed = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI();
+                                        if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[5] != -1)
+                                        {
+                                            speed = (int)(speed * 1.25f);
+                                        }
                                         if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[22] != -1)
                                         {
-                                            speed = (int)(speed * 0.75);
+                                            speed = (int)(speed * 0.75f);
                                         }
                                         actions.Add(new action(currentUnit, "ability1", highlighted_ability, currentUnit, speed,
                                             partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].fast));
@@ -1381,9 +1398,13 @@ public class BattleScript : MonoBehaviour
                                 {
                                     useSound(1);
                                     int speed = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI();
+                                    if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[5] != -1)
+                                    {
+                                        speed = (int)(speed * 1.25f);
+                                    }
                                     if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[22] != -1)
                                     {
-                                        speed = (int)(speed * 0.75);
+                                        speed = (int)(speed * 0.75f);
                                     }
                                     actions.Add(new action(currentUnit, "ability1", highlighted_ability, currentUnit, speed,
                                         partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].fast));
@@ -1541,9 +1562,13 @@ public class BattleScript : MonoBehaviour
             {
                 useSound(1);
                 int speed = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI();
+                if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[5] != -1)
+                {
+                    speed = (int)(speed * 1.25f);
+                }
                 if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[22] != -1)
                 {
-                    speed = (int)(speed * 0.75);
+                    speed = (int)(speed * 0.75f);
                 }
                 Debug.Log("Target1 == " + target1);
                 if (target1 == -1)
@@ -1712,7 +1737,7 @@ public class BattleScript : MonoBehaviour
                 {
                     if (partyUnits[currentAlly].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                     {
-                        if (partyUnits[currentAlly].GetComponent<UnitMono>().mainUnit.unitName == "Player" 
+                        if (partyUnits[currentAlly].GetComponent<UnitMono>().mainUnit.unitName.Equals("Player") 
                             && partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name == "VampiricBetrayal")
                         {
                             dialogue.text = "Can't use this ability on yourself";
@@ -1744,9 +1769,13 @@ public class BattleScript : MonoBehaviour
                         {
                             useSound(1);
                             int speed = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI();
+                            if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[5] != -1)
+                            {
+                                speed = (int)(speed * 1.25f);
+                            }
                             if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[22] != -1)
                             {
-                                speed = (int)(speed * 0.75);
+                                speed = (int)(speed * 0.75f);
                             }
                             actions.Add(new action(currentUnit, "ability1", highlighted_ability, currentAlly, speed,
                                 partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].fast,
@@ -1830,9 +1859,13 @@ public class BattleScript : MonoBehaviour
                                 }
                                 useSound(1);
                                 int speed = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI();
+                                if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[5] != -1)
+                                {
+                                    speed = (int)(speed * 1.25f);
+                                }
                                 if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[22] != -1)
                                 {
-                                    speed = (int)(speed * 0.75);
+                                    speed = (int)(speed * 0.75f);
                                 }
                                 actions.Add(new action(currentUnit, "ability", highlighted_ability, currentAlly, speed,
                                     partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].fast, "", bot));
@@ -2034,9 +2067,13 @@ public class BattleScript : MonoBehaviour
                     case 9:
                         useSound(1);
                         int speed = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI();
+                        if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[5] != -1)
+                        {
+                            speed = (int)(speed * 1.25f);
+                        }
                         if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[22] != -1)
                         {
-                            speed = (int)(speed * 0.75);
+                            speed = (int)(speed * 0.75f);
                         }
                         actions.Add(new action(currentUnit, "item", highlighted_item, currentUnit, speed));
                         //data.UseItem(highlighted_item);
@@ -2184,9 +2221,13 @@ public class BattleScript : MonoBehaviour
                     i1 = currentUnit;
                     i2 = currentAlly;
                     int speed = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI();
+                    if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[5] != -1)
+                    {
+                        speed = (int)(speed * 1.25f);
+                    }
                     if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[22] != -1)
                     {
-                        speed = (int)(speed * 0.75);
+                        speed = (int)(speed * 0.75f);
                     }
                     actions.Add(new action(currentUnit, "swap", i1, i2, speed, false, partyUnits[i1].GetComponent<UnitMono>().mainUnit.unitName, i2));
 
@@ -2620,6 +2661,10 @@ public class BattleScript : MonoBehaviour
 
                         //Set speed to modified enemy agility
                         int speed = enemyUnits[i].GetComponent<UnitMono>().mainUnit.getAGI();
+                        if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.statuses[5] != -1)
+                        {
+                            speed = (int)(speed * 1.25);
+                        }
                         if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.statuses[22] != -1)
                         {
                             speed = (int)(speed * 0.75);
@@ -2664,6 +2709,10 @@ public class BattleScript : MonoBehaviour
                         }
 
                         int speed = enemyUnits[i].GetComponent<UnitMono>().mainUnit.getAGI();
+                        if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.statuses[5] != -1)
+                        {
+                            speed = (int)(speed * 1.25);
+                        }
                         if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.statuses[22] != -1)
                         {
                             speed = (int)(speed * 0.75);
@@ -2691,6 +2740,10 @@ public class BattleScript : MonoBehaviour
                             x = probos[Random.Range(0, probos.Count)];
                         }
                         int speed = enemyUnits[i].GetComponent<UnitMono>().mainUnit.getAGI();
+                        if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.statuses[5] != -1)
+                        {
+                            speed = (int)(speed * 1.25);
+                        }
                         if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.statuses[22] != -1)
                         {
                             speed = (int)(speed * 0.75);
