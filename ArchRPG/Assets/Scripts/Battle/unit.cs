@@ -703,6 +703,7 @@ public class unit
                 }
 
                 float valL = (float)LCK;
+                if (valL < 5) valL = 5;
                 if (sanity < 50 && sanity > 0 && statuses[24] != -1)
                 {
                     valL = valL * 0.75f;
@@ -745,6 +746,7 @@ public class unit
                         valD = valD * 1.5f;
                     }
 
+                    //Zealous reduce DEF by 17%
                     //Check if DEF is reduced by a status like Blunt Trauma
                     if (target.statuses[4] == -1 && target.statuses[7] == -1)
                     {
@@ -853,13 +855,14 @@ public class unit
                 //If flammable + fire damage
                 if (target.statuses[11] != -1 && ata.damageType == 1)
                 {
-                    val = (int)(val * 1.25);
+                    val = (int)(val * 1.5);
                 }
 
                 //If electrified + electric damage
-                if (target.statuses[23] != -1 && ata.damageType == 2)
+                if (target.statuses[23] != -1 && ata.damageType == 0)
                 {
                     val = (int)(val * 1.25);
+                    val = takeDamageCalc(target, val, 2);
                 }
 
                 //If conductive + electric damage
@@ -959,9 +962,13 @@ public class unit
                 {
                     critBuff += 15;
                 }
+                if (target.statuses[16] != -1)
+                {
+                    critBuff += critBuff / 2;
+                }
 
                 //Check if the unit gets a crit
-                int crit = UnityEngine.Random.Range(1, 101);
+                int crit = UnityEngine.Random.Range(3, 101);
                 if (crit < ((valL / 3) + critBuff))
                 {
                     val += (val / 2);
@@ -1075,7 +1082,7 @@ public class unit
         if (currentHP <= 0)
         {
             int chance = UnityEngine.Random.Range(0, 101);
-            if (chance < (LCK / 2) + 20)
+            if (chance < (LCK / 2) + 40)
             {
                 lived = true;
                 currentHP = 1;
@@ -1343,12 +1350,19 @@ public class unit
         //If unit has weeping
         if (statuses[2] != -1)
         {
-            int dum = UnityEngine.Random.Range(1, 4);
-            if (dum == 1)
+            //int dum = UnityEngine.Random.Range(1, 4);
+            //if (dum == 1)
+            //{
+            if (!powe)
             {
-                val = val / 5;
-                reduced = true;
+                val = (int)(val * 0.75f);
             }
+            else
+            {
+                val = (int)(val * 0.85f);
+            }
+            reduced = true;
+            //}
         }
         //If unit has eye_bleeding
         if (statuses[3] != -1)
@@ -1465,23 +1479,23 @@ public class unit
         bool val = true;
         if (id.Equals("Vomiting")           && statuses[0] == -1)
         {
-            ran = UnityEngine.Random.Range(5, 9);
+            ran = 5;
             statuses[0] = ran;
         }
         else if (id.Equals("Aspirating")    && statuses[1] == -1)
         {
-            ran = UnityEngine.Random.Range(5, 9);
+            ran = 5;
             statuses[1] = ran;
         }
         else if (id.Equals("Weeping")       && statuses[2] == -1)
         {
-            ran = UnityEngine.Random.Range(5, 9);
+            ran = 5;
             statuses[2] = ran;
             
         }
         else if (id.Equals("Eye_Bleeding")  && statuses[3] == -1)
         {
-            ran = UnityEngine.Random.Range(5, 9);
+            ran = 5;
             statuses[3] = ran;
             
         }
@@ -1511,13 +1525,13 @@ public class unit
         }
         else if (id.Equals("Restrained")    && statuses[8] == -1)
         {
-            ran = UnityEngine.Random.Range(1, 3);
+            ran = 2;
             statuses[8] = ran;
             
         }
         else if (id.Equals("Consumed")      && statuses[9] == -1)
         {
-            ran = UnityEngine.Random.Range(1, 3);
+            ran = 2;
             statuses[9] = ran;
             
         }
@@ -1562,7 +1576,8 @@ public class unit
         {
             ran = UnityEngine.Random.Range(5, 9);
             statuses[15] = ran;
-            maxHP = maxHP / 4;
+            maxHP = (int)(0.7f * maxHP);
+
             if (currentHP > maxHP) currentHP = maxHP;
             
         }
@@ -8298,7 +8313,7 @@ public class LockerLurker : unit
         unitName = "Locker Lurker";
         loadSprites();
         level = 4;
-        maxHP = currentHP = 30;
+        maxHP = currentHP = 33;
         expGain = 50;
         enemy = true;
         capital = 3;
@@ -8359,7 +8374,7 @@ public class Vermin : unit
         loadSprites();
         weaknesses[1] = true;
         level = 5;
-        maxHP = currentHP = 35;
+        maxHP = currentHP = 40;
         
         ATK = 50;
         DEF = 15;

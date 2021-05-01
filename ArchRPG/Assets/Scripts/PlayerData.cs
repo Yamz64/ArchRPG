@@ -303,7 +303,7 @@ public class PlayerData : CharacterStats
 
     public void UseItem(int index, unit user)
     {
-        inventory[index].Use(user);
+        Consumables.InstanceSubclass(inventory[index].id).Use(user);
         if (inventory[index].amount <= 1) inventory.RemoveAt(index);
     }
     public void AddItem(Item item)

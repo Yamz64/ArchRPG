@@ -502,7 +502,7 @@ public static class EldritchAbilities
             name = "OtherworldlyGaze";
             desc1 = "Buffs self with zealous and inspired, inflicts weeping on a random party member";
             desc2 = "You stare into the great beyond and uncover truths unbeknownst to that of your underlings...";
-            cost = 8;
+            cost = 5;
             level_cost = 1;
             position = 0;
             target = 3;
@@ -548,7 +548,7 @@ public static class EldritchAbilities
         {
             name = "RuinousWave";
             desc2 = "You manifest the darkest dregs of your psyche and let out a destructive wave to damage those of inferior understanding.";
-            cost = 12;
+            cost = 10;
             level_cost = 2;
             position = 1;
             target = 3;
@@ -568,7 +568,14 @@ public static class EldritchAbilities
                 {
                     if (targets[i].currentHP > 0 && targets[i].unitName != user.unitName)
                     {
-                        targets[i].takeDamage(user.takeDamageCalc(targets[i], 20, 4, true));
+                        if (targets[i].enemy)
+                        {
+                            targets[i].takeDamage(user.takeDamageCalc(targets[i], 20, 4, true));
+                        }
+                        else
+                        {
+                            targets[i].takeDamage(10);
+                        }
                     }
                 }
             }
@@ -582,7 +589,8 @@ public static class EldritchAbilities
         public VampiricBetrayal()
         {
             name = "VampiricBetrayal";
-            desc1 = "Inflicts high weird POW to an ally and you gain that much life, also grants you inspired";
+            desc1 = "Inflicts high weird POW to an ally and you gain that much life, also grants you Chutzpah and Confident";
+            cost = 12;
             level_cost = 3;
             type = 1;
             damage = 20;
@@ -594,10 +602,10 @@ public static class EldritchAbilities
 
         public override void UseAttack(unit user, List<unit> targets)
         {
-            int val = user.takeDamageCalc(targets[0], damage, damageType, true);
+            int val = targets[0].maxHP/4;
             targets[0].takeDamage(val);
-            user.healDamage(val);
-            user.giveStatus("Inspired");
+            user.healDamage((int)(val*1.75));
+            user.giveStatus("Chutzpah");
             user.setSP(user.currentSP - cost);
         }
     }
@@ -648,6 +656,7 @@ public static class EldritchAbilities
         {
             name = "SanityBeam";
             desc1 = "Inflicts moderate sanity damage on an ally and does high weird POW to an enemy.";
+            cost = 16;
             level_cost = 5;
             damage = 30;
             damageType = 4;
@@ -1012,9 +1021,9 @@ namespace EnemyAbilities
             name = "Critter Crunch";
             cost = 0;
             priority = defaultPriority = 4;
-            damage = 5;
+            damage = 12;
             damageType = 0;
-            alteredCrit = 10;
+            alteredCrit = 34;
         }
     }
 
@@ -1037,7 +1046,7 @@ namespace EnemyAbilities
             damageType = 3;
             damage = 8;
             multiHitMax = 3;
-            multiHitMin = 1;
+            multiHitMin = 2;
             priority = defaultPriority = 2;
             nextPriority = 1;
             statusEffect = "Hysteria";
@@ -2088,7 +2097,7 @@ namespace PlayerAbilities
             name = "Manic Rant";
             desc1 = "Inflicts weeping and restrained on an enemy";
             desc2 = "You drop a massive truth bomb on an enemy, making them question everything they’ve ever known.";
-            cost = 8;
+            cost = 13;
             position = 1;
             statusEffect = "Weeping Restrained";
         }
@@ -2101,7 +2110,7 @@ namespace PlayerAbilities
             name = "Incoherent Ramblings";
             desc1 = "Minor group sanity heal";
             desc2 = "You try to make sense of what’s happening around you. It’s comforting that one of us understands what’s going on.";
-            cost = 12;
+            cost = 6;
             position = 2;
             type = 1;
             target = 3;
@@ -2128,9 +2137,9 @@ namespace PlayerAbilities
         public CharismaticFervor()
         {
             name = "Charismatic Fervor";
-            desc1 = "Moderate group sanity heal. Buff everyone with inspired or group sanity debuff, buffs everyone with zealous";
+            desc1 = "Moderate group sanity heal. Buff everyone with inspired";
             desc2 = "Not added yet";
-            cost = 12;
+            cost = 16;
             position = 2;
             type = 1;
             target = 3;
@@ -2159,7 +2168,7 @@ namespace PlayerAbilities
             name = "Narcissism";
             desc1 = "Buffs self with confident, neurotic, and inflicts hysteria on self";
             desc2 = "Desc not added yet";
-            cost = 16;
+            cost = 3;
             position = 2;
             type = 2;
             statusEffect = "Confident Neurotic Hysteria";
@@ -2217,7 +2226,7 @@ namespace ClyveAbilities
             name = "Halitosis";
             desc1 = "AOE status effect attack";
             desc2 = "It is quite clear the Clyve hasn’t brushed his teeth… like ever, it’s remarkable he still has his teeth.";
-            cost = 6;
+            cost = 8;
             position = 1;
             damage = 5;
             damageType = 3;
@@ -2265,7 +2274,7 @@ namespace ClyveAbilities
             desc2 = "After a lot of convincing, Clyve takes a searing hot shower to cleanse himself of " +
                 "years of filth and grime. Everyone feels a lot better afterward, and Clyve makes sure to shower the enemy as well.";
             cost = 12;
-            damage = 8;
+            damage = 13;
             damageType = 1;
             target = 3;
             position = 1;
@@ -2287,7 +2296,7 @@ namespace ClyveAbilities
                         {
                             if (targets[i].unitName == user.unitName)
                             {
-                                targets[i].takeDamage(dam);
+                                targets[i].takeDamage(30);
                             }
                             targets[i].giveStatus("Confident");
                         }
@@ -2327,7 +2336,7 @@ namespace JimAbilities
             desc1 = "Cure vomiting and weeping";
             desc2 = "Jim has always been a sickly child, so his mom has sent him to school with these miracle tablets for as long as you can remember." +
                 "They cure vomiting and other such stomach ailments.";
-            cost = 3;
+            cost = 4;
             target = 0;
             type = 1;
             damage = 0;
@@ -2337,7 +2346,9 @@ namespace JimAbilities
         public override void UseAttack(unit user, unit target)
         {
             if (target.statuses[0] != -1) target.statuses[0] = -1;
+            if (target.statuses[1] != -1) target.statuses[1] = -1;
             if (target.statuses[2] != -1) target.statuses[2] = -1;
+            if (target.statuses[3] != -1) target.statuses[3] = -1;
         }
     }
 
@@ -2348,7 +2359,7 @@ namespace JimAbilities
             name = "Bandaid";
             desc1 = "Heal a friend by 15+ HP";
             desc2 = "Jim produces a small adhesive bandage from his belongings to ease the pain of others.";
-            cost = 3;
+            cost = 4;
             target = 0;
             type = 1;
             damage = 0;
@@ -2396,13 +2407,13 @@ namespace JimAbilities
         public TelekineticProwess()
         {
             name = "Telekinetic Prowess";
-            desc1 = "Inflicts spasms on 2 adjacent enemies and himself";
+            desc1 = "Inflicts spasms on 2 adjacent enemies and zonked on himself";
             desc2 = "Jim does some crazy shit and totally flips out and I guess maybe " +
                 "it affects the baddies too? Honestly it’s really hard to tell if he’s doing anything";
             cost = 7;
             target = 2;
             statusEffect = "Spasms";
-            selfStatus = "Spasms";
+            selfStatus = "Zonked";
         }
     }
 
@@ -2422,6 +2433,7 @@ namespace JimAbilities
         {
             target.healDamage(10);
             target.setSP(target.currentSP + (10 + (10 * user.getPOW())/100));
+            if (target.statuses[12] != -1) target.statuses[12] = -1;
         }
     }
 
@@ -3004,7 +3016,9 @@ namespace TimAbilities
         }
         public override void UseAttack(unit user, unit target)
         {
-            target.healDamage(20);
+            target.healDamage(20 + (int)(target.maxHP * 0.15));
+            if (target.statuses[2] != -1) target.statuses[2] = -1;
+            if (target.statuses[22] != -1) target.statuses[22] = -1;
         }
     }
 
@@ -3028,7 +3042,10 @@ namespace TimAbilities
                 {
                     if (targets[i].currentHP > 0 && !targets[i].enemy)
                     {
-                        targets[i].healDamage(12);
+                        targets[i].healDamage(20 + (int)(targets[i].currentHP * 0.15));
+                        if (targets[i].statuses[2] != -1) targets[i].statuses[2] = -1;
+                        if (targets[i].statuses[3] != -1) targets[i].statuses[3] = -1;
+                        if (targets[i].statuses[4] != -1) targets[i].statuses[4] = -1;
                     }
                 }
             }
