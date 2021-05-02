@@ -235,6 +235,8 @@ public class TitleScreen : MonoBehaviour
                 {
                     //New game
                     case 0:
+                        checkNum = 0;
+                        transform.GetChild(1).GetChild(5).GetChild(0).GetChild(0).GetComponent<Text>().text = "Are you sure? Any and All save data will be erased by doing this.";
                         useSound(1);
                         CloseMenu(0);
                         OpenMenu(4);
@@ -796,6 +798,7 @@ public class TitleScreen : MonoBehaviour
         cursor.transform.position = cursor_positions[active_menu].positions[cursor_position].position;
     }
 
+    //Go through new-game text
     public void NewGameRoutine()
     {
         if (InputManager.GetAxisRaw("Horizontal") < 0.0f && cursor_position > 0)

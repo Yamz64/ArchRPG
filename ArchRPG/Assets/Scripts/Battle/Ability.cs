@@ -1975,9 +1975,6 @@ namespace PlayerAbilities
             if (target.weaknesses == null) return output + "\n" + target.unitName + " has no weaknesses!";
             //if (target.weaknesses.GetLength(0) == 0) return target.unitName + " has no weaknesses!";
 
-            //yes
-            output += "\n" + target.unitName + " is weak to ";
-
             //construct the output
             for(int i=0; i<target.weaknesses.GetLength(0); i++)
             {
