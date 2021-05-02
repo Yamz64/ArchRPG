@@ -460,6 +460,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 56675563}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &56675565 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 56675563}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &56675566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56675565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &70837690
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -583,6 +608,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 94054091}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &94054093 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 94054091}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &94054094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94054093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &106088834
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -645,6 +695,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 106088834}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &106088836 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 106088834}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &106088837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106088836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &119668981
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -983,6 +1058,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 160728630}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &160728632 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 160728630}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &160728633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160728632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &183864007
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1049,6 +1149,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 183864007}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &183864009 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 183864007}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &183864010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183864009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &184168292
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1115,6 +1240,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 184168292}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &184168294 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 184168292}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &184168295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184168294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1 &186168873
 GameObject:
   m_ObjectHideFlags: 0
@@ -6034,6 +6184,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 197101250}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &197101252 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 197101250}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &197101253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197101252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &209377127
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6100,6 +6275,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 209377127}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &209377129 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 209377127}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &209377130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209377129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &219516864
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6166,6 +6366,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 219516864}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &219516866 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 219516864}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &219516867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219516866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &236483539
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6464,6 +6689,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 320796759}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &320796761 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 320796759}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &320796762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320796761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &380414462
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6530,6 +6780,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 380414462}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &380414464 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 380414462}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &380414465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380414464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &387983642
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18214,6 +18489,37 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: aedc30d11e81a1341a2a465d9dda1ff7, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &511529601 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 511529600}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &511529602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511529601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: She's staring at something shambling across the road.
+  - text: ...
+  - text: That's a weird dog.
+  container:
+  - effects: []
+  - effects: []
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid19_front
+    lines: 2
+  player: {fileID: 0}
 --- !u!1001 &511892607
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18280,6 +18586,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 511892607}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &511892609 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 511892607}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &511892610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511892609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &513628784
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18342,6 +18673,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 513628784}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &513628786 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 513628784}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &513628787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 513628786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &524786661
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18408,6 +18764,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 524786661}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &524786663 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 524786661}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &524786664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 524786663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &531371333
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18595,6 +18976,32 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 41e5eec3d1b1cd640b85384587625e7e, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &571237601 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 571237600}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &571237602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571237601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: It is near statistically impossible for Mr. Goodmeat to have put on this
+      parade for nothing!
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid18_front
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &576916566
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18718,6 +19125,33 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 62e7c5b41b19fb24f899871166b35391, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &587693071 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 587693070}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &587693072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587693071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: Even though tigers are carnivores, trees are still important to them.
+  - text: What would the tiger's food eat if they didn't eat trees!
+  container:
+  - effects: []
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid16_front
+    lines: 2
+  player: {fileID: 0}
 --- !u!1001 &605370486
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18836,6 +19270,34 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 0c0742543028cf04ea5c6e8cf309aeea, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &608829079 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 608829078}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &608829080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608829079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: Bro like I just got attacked by a really weird oversized rat.
+  - text: They can afford a parade to celebrate trees, but can't afford a pest control
+      unit?
+  container:
+  - effects: []
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid15_front
+    lines: 2
+  player: {fileID: 0}
 --- !u!1001 &609363823
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18902,6 +19364,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 609363823}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &609363825 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 609363823}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &609363826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609363825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &630736103
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19025,6 +19512,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 637926411}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &637926413 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 637926411}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &637926414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637926413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &639462913
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19143,6 +19655,36 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 9f20a5d49dcc4564baf12cf050c33990, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &650788332 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 650788331}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &650788333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650788332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: Whaddya mean these buildings are collapsing?
+  - text: I say it's a design choice to let rain in! It keeps the dust down and the
+      humidity up!
+  - text: It also adds a nice layer of green smelly wallpaper!
+  container:
+  - effects: []
+  - effects: []
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid8_front
+    lines: 3
+  player: {fileID: 0}
 --- !u!1001 &652273909
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19209,6 +19751,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 652273909}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &652273911 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 652273909}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &652273912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652273911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1 &669379023
 GameObject:
   m_ObjectHideFlags: 0
@@ -22668,6 +23235,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 694182253}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &694182255 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 694182253}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &694182256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 694182255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &704204268
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22730,6 +23322,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 704204268}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &704204270 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 704204268}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &704204271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704204270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &711325332
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22852,6 +23469,35 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 909d375cd59b6d3458586530fb5e34d7, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &719768073 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 719768072}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &719768074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719768073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: I too thought Arbor Day was a nothing holiday.
+  - text: Then I found out you need trees to breathe.
+  - text: It then became my third favorite non Federal and non Christian holiday!
+  container:
+  - effects: []
+  - effects: []
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprite/BackgroundCharacters/Kid12_front
+    lines: 3
+  player: {fileID: 0}
 --- !u!1 &733974548
 GameObject:
   m_ObjectHideFlags: 0
@@ -39501,6 +40147,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 754676165}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &754676167 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 754676165}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &754676168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754676167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1 &779466298
 GameObject:
   m_ObjectHideFlags: 0
@@ -39649,6 +40320,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 786613187}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &786613189 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 786613187}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &786613190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786613189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &792109754
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39772,6 +40468,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 798372917}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &798372919 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 798372917}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &798372920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798372919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1 &824333922
 GameObject:
   m_ObjectHideFlags: 0
@@ -42104,6 +42825,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 842980019}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &842980021 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 842980019}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &842980022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842980021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &845288633
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42222,6 +42968,36 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 7669bd1351c16e84b969dc34dbbd41ea, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &850237540 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 850237539}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &850237541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850237540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: 'My mom told me if I wanted to celebrate the parade:'
+  - text: I had to stand away from the large crowds for safety!
+  - text: So I'm going to stand in the safety of this here building with questionable
+      primary structural elements!
+  container:
+  - effects: []
+  - effects: []
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid7_front
+    lines: 3
+  player: {fileID: 0}
 --- !u!1001 &867530020
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42349,6 +43125,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 878369595}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &878369597 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 878369595}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &878369598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878369597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1 &948421035
 GameObject:
   m_ObjectHideFlags: 0
@@ -42506,6 +43307,31 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 31dc03a55982e6541924353e6b2654a6, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &968518114 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 968518113}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &968518115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968518114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: Yo am I late for the parade?
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid6_front
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &972693658
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42641,6 +43467,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 991198331}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &991198333 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 991198331}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &991198334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991198333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &993908679
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42702,6 +43553,59 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: b9aa1d99f33bd9a42af19795f4a143d2, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &993908680 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 993908679}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &993908681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993908680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: Wow would you look at the size of those MEATDOGS!!!
+  - text: Wooooowwww!
+  - text: Amazing right? So how d'you think we'd get our hands on them?
+  - text: Well you need a meat salesman id to get into the factory right?
+  - text: Screw that! Where's that brick you were carrying earlier?
+  container:
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 31
+      upper: 41
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 10
+  - effects: []
+  - effects:
+    - name: Color
+      color: {r: 1, g: 1, b: 0, a: 1}
+      lower: 12
+      upper: 25
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid4_front
+    lines: 1
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid3_front
+    lines: 1
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid4_front
+    lines: 1
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid3_front
+    lines: 1
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid4_front
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &999210750
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43743,6 +44647,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1090956416}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1090956418 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1090956416}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1090956419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090956418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &1113965621
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43809,6 +44738,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1113965621}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1113965623 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1113965621}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1113965624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113965623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &1121087426
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43875,6 +44829,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1121087426}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1121087428 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1121087426}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1121087429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121087428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &1149771219
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43941,6 +44920,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1149771219}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1149771221 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1149771219}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1149771222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149771221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &1161291511
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44064,6 +45068,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1166189487}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1166189489 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1166189487}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1166189490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166189489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &1173766211
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44187,6 +45216,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1187866542}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1187866544 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1187866542}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1187866545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1187866544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &1191338230
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44449,6 +45503,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1209719710}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1209719712 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1209719710}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1209719713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209719712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &1221770446
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44761,6 +45840,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &1242869377 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1242869376}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1242869378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242869377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: Pheeewww, can't believe that I made it!
+  - text: Almost missed the subway car there!
+  container:
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 8
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 2
+  player: {fileID: 0}
 --- !u!1001 &1283598293
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44932,6 +46042,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &1289862650 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1289862649}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1289862651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289862650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: It's amazing the city is still able to function when 95% of the city's
+      public fund goes to Mr. Goodmeat's salary.
+  - text: A meatbased economy is trully the most efficient economy in existence!
+  container:
+  - effects: []
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 2
+  player: {fileID: 0}
 --- !u!1 &1305073682
 GameObject:
   m_ObjectHideFlags: 0
@@ -45076,6 +46214,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1339624678}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1339624680 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1339624678}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1339624681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339624680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &1350517084
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45301,6 +46464,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1391151116}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1391151118 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1391151116}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1391151119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391151118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &1412467989
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45480,6 +46668,59 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: c1b10f861cb6428478e4c21322889a71, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &1420623538 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1420623537}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1420623539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1420623538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: Wow would you look at the size of those MEATDOGS!!!
+  - text: Wooooowwww!
+  - text: Amazing right? So how d'you think we'd get our hands on them?
+  - text: Well you need a meat salesman id to get into the factory right?
+  - text: Screw that! Where's that brick you were carrying earlier?
+  container:
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 31
+      upper: 41
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 10
+  - effects: []
+  - effects:
+    - name: Color
+      color: {r: 1, g: 1, b: 0, a: 1}
+      lower: 12
+      upper: 25
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid4_front
+    lines: 1
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid3_front
+    lines: 1
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid4_front
+    lines: 1
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid3_front
+    lines: 1
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid4_front
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1424085937
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45603,6 +46844,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1430150356}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1430150358 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1430150356}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1430150359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1430150358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &1433667427
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45669,6 +46935,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1433667427}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1433667429 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1433667427}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1433667430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433667429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &1462841679
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45875,6 +47166,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1486951534}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1486951536 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1486951534}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1486951537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486951536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1 &1515505788
 GameObject:
   m_ObjectHideFlags: 0
@@ -46162,6 +47478,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1532919179}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1532919181 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1532919179}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1532919182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532919181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &1555409719
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46285,6 +47626,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1562239170}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1562239172 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1562239170}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1562239173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562239172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1 &1573893819
 GameObject:
   m_ObjectHideFlags: 0
@@ -46538,6 +47904,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1680853229}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1680853231 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1680853229}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1680853232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680853231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &1707442875
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46665,6 +48056,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1711842879}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1711842881 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1711842879}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1711842882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711842881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &1720673937
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46845,6 +48261,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1726294306}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1726294308 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1726294306}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1726294309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726294308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &1745072113
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46911,6 +48352,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1745072113}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1745072115 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1745072113}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1745072116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745072115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &1761161973
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46977,6 +48443,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1761161973}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1761161975 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1761161973}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1761161976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1761161975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &1768207646
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47173,6 +48664,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1898411920}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1898411922 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1898411920}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1898411923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898411922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &1925976032
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47657,6 +49173,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 2002789132}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2002789134 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 2002789132}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2002789135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002789134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &2006361641
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47866,6 +49407,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 2028388997}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2028388999 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 2028388997}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2028389000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2028388999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1 &2035532183 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
@@ -47957,6 +49523,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 2044109642}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2044109644 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 2044109642}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2044109645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044109644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &2088916966
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48023,6 +49614,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 2088916966}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2088916968 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 2088916966}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2088916969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088916968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're too busy celebrating Arbor Day to pay you any mind...
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 0
+  player: {fileID: 0}
 --- !u!1001 &2127825179
 PrefabInstance:
   m_ObjectHideFlags: 0

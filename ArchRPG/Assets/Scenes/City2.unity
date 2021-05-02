@@ -540,6 +540,47 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 276be077bcf801e48bc6d6e79e46cd19, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &144062343 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 144062342}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &144062344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144062343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: You ever heard of The Walking Trashcan?
+  - text: YOOO their music totally slaps am I right?
+  - text: ...
+  - text: Wait you weren't talking about the thrash metal band?
+  - text: Then WHAT were you talking about man?
+  container:
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 3
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 4
+      upper: 7
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid5_front
+    lines: 5
+  player: {fileID: 0}
 --- !u!1 &144529339
 GameObject:
   m_ObjectHideFlags: 0
@@ -7062,6 +7103,7 @@ MonoBehaviour:
     limit: 2
     type: 0
     cost: 0
+    id: 
   scenes:
   - City1
   - NightclubDanceFloor
@@ -15748,6 +15790,33 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: b9aa1d99f33bd9a42af19795f4a143d2, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &1341276947 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1341276946}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1341276948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1341276947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: Man first street has the parade, and third street has the nightclub.
+  - text: But I'm stuck on second street, where things are lame like you!
+  container:
+  - effects: []
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/Kid4_front
+    lines: 2
+  player: {fileID: 0}
 --- !u!1 &1346178542
 GameObject:
   m_ObjectHideFlags: 0
@@ -45807,6 +45876,41 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &1620268029 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1620268028}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1620268030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1620268029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: BRO I almost just got crushed by a tree!
+  - text: Not like a falling tree, but like an ALIVE tree!
+  - text: It was also made of metal and had 3 colored eyes man!
+  - text: I can see why we have a holiday dedicated for trees man, they're so cool!
+  container:
+  - effects: []
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 29
+      upper: 33
+  - effects: []
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 4
+  player: {fileID: 0}
 --- !u!1001 &1645206529
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45998,6 +46102,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &1732734152 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1732734151}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1732734153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732734152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: It's so dark man!
+  - text: I can't see my face!
+  container:
+  - effects: []
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 2
+  player: {fileID: 0}
 --- !u!1001 &1751226740
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46385,6 +46516,33 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 56b487f82c509a943ab77e53f3fb61c2, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &1915820172 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1915820171}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1915820173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915820172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: I'm trying to get to the nightclub on third street to meet up with my friends.
+  - text: But I'm afraid of the dark!
+  container:
+  - effects: []
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid2_front
+    lines: 2
+  player: {fileID: 0}
 --- !u!1001 &1936937298
 PrefabInstance:
   m_ObjectHideFlags: 0

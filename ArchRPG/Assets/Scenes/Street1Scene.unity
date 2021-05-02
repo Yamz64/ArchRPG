@@ -3763,6 +3763,37 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 2e1dd6eeb7497ca4aa072bc84cfe12d1, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &465241255 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 465241254}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &465241256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465241255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: Just a heads up bro, if you're skipping school...
+  - text: There's a truancy officer in the subway that likes to catch students!
+  container:
+  - effects: []
+  - effects:
+    - name: Color
+      color: {r: 1, g: 0, b: 0, a: 1}
+      lower: 8
+      upper: 21
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid21_front
+    lines: 2
+  player: {fileID: 0}
 --- !u!1001 &469143746
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8820,6 +8851,41 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: aeba6c6b168ea4242a7939993975ccf3, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &670098277 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 670098276}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &670098278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670098277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: YO they cleared the road!
+  - text: Pretty rad right?
+  - text: Because it was there this morning I couldn't go to school.
+  - text: That makes it double rad!
+  container:
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 11
+      upper: 20
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid14_front
+    lines: 4
+  player: {fileID: 0}
 --- !u!1001 &675131971
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9766,6 +9832,41 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 9f20a5d49dcc4564baf12cf050c33990, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &963800567 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 963800566}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &963800568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963800567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: What I would do for a Doctor PP right now...
+  - text: It's the only soda with a doctorate you know!
+  - text: It's a shame I don't have any spare cash.
+  - text: And it's also a shame that there's no vending machine nearby to buy one...
+  container:
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects:
+    - name: Color
+      color: {r: 0, g: 1, b: 0.96513176, a: 1}
+      lower: 30
+      upper: 43
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid8_front
+    lines: 4
+  player: {fileID: 0}
 --- !u!1001 &1084098510
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34430,6 +34531,48 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &1784589091 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1784589090}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1784589092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784589091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: This is the subway entrance, and coincidentally the only way into the city.
+  - text: Don't you think that's a terrible design choice?
+  - text: No?
+  - text: Because who am I to question the hard work of Brown Trout City's civil
+      engineers?
+  - text: Even if they're all unergraduate interns...
+  container:
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 58
+      upper: 62
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 1
+  - sprite_path: CharacterSprites/PC
+    lines: 1
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 3
+  player: {fileID: 0}
 --- !u!1 &1809560099 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}

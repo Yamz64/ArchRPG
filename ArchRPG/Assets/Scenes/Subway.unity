@@ -19277,7 +19277,9 @@ MonoBehaviour:
   container:
   - effects: []
   - effects: []
-  dialogueImages: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid9_back
+    lines: 2
   player: {fileID: 0}
 --- !u!1001 &1064319253
 PrefabInstance:

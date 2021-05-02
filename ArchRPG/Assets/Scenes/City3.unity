@@ -14400,6 +14400,35 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 31dc03a55982e6541924353e6b2654a6, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &405224879 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 405224878}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &405224880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 405224879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: Phewww, I made it, now to get into my apartment.
+  - text: ...
+  - text: I forgot my keys...
+  container:
+  - effects: []
+  - effects: []
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid6_front
+    lines: 3
+  player: {fileID: 0}
 --- !u!1001 &430204836
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14615,6 +14644,37 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 0c0742543028cf04ea5c6e8cf309aeea, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &556409848 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 556409847}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &556409849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556409848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: That wierd-ass hippie got us thrown out of the nightclub!
+  - text: SHHHH, don't let him hear you!
+  - text: Did you see what he did to those other clubbers?
+  container:
+  - effects: []
+  - effects: []
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid15_front
+    lines: 1
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid20_front
+    lines: 2
+  player: {fileID: 0}
 --- !u!1001 &568354856
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14676,6 +14736,31 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 2e1dd6eeb7497ca4aa072bc84cfe12d1, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &568354857 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 568354856}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &568354858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568354857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: Excuse me... the vanilla club experience is the optimal way to enjoy clubbing!
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid21_front
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &577428473
 GameObject:
   m_ObjectHideFlags: 0
@@ -15174,6 +15259,34 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 021e6147c27763442b3ce1997dddc034, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &888191013 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 888191012}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &888191014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888191013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: 'Pay no mind to my brother, he''s not grinning at you:'
+  - text: His face has been stuck that way ever since he got stung by one of those
+      weird pigeon rat things.
+  container:
+  - effects: []
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid9_front
+    lines: 2
+  player: {fileID: 0}
 --- !u!1 &914145537
 GameObject:
   m_ObjectHideFlags: 0
@@ -21918,6 +22031,34 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 4de254175c93d5f41969d181eecc02a0, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &1038955289 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1038955288}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1038955290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038955289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: 'Pay no mind to my brother, he''s not grinning at you:'
+  - text: His face has been stuck that way ever since he got stung by one of those
+      weird pigeon rat things.
+  container:
+  - effects: []
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid9_front
+    lines: 2
+  player: {fileID: 0}
 --- !u!1001 &1039838792
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22040,6 +22181,33 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 656260c0b640a4f40b29b8a0f24f3328, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &1103811181 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1103811180}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1103811182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103811181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: Yo, don't talk smack around those bouncers!
+  - text: They've been real wierd and angry recently!
+  container:
+  - effects: []
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid17_front
+    lines: 2
+  player: {fileID: 0}
 --- !u!1 &1142973036
 GameObject:
   m_ObjectHideFlags: 0
@@ -22230,6 +22398,38 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 7669bd1351c16e84b969dc34dbbd41ea, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &1261352876 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1261352875}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1261352877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261352876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: Where's my hand?
+  - text: Oh I tried to pet one of those nice cone-shaped dogs on second street.
+  - text: It was so cute that I wante to give it a treat, but I didn't have any food
+      on me.
+  - text: So I gave it my hand!
+  container:
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid7_front
+    lines: 4
+  player: {fileID: 0}
 --- !u!1001 &1297779606
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22291,6 +22491,32 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: aeba6c6b168ea4242a7939993975ccf3, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &1297779607 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1297779606}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1297779608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297779607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: I am personally of the opinion that taking psychedelics before clubbing
+      enhances the experience.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid14_front
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &1299804162
 GameObject:
   m_ObjectHideFlags: 0
@@ -28682,3 +28908,28 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 94ae5784a23361546af74fb1cede64d2, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &2038272432 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 2038272431}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2038272433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038272432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: I'm too cool for this club anyway!
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid20_front
+    lines: 1
+  player: {fileID: 0}

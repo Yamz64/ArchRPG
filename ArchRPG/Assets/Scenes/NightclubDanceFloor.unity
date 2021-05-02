@@ -189,6 +189,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 4843057}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4843059 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 4843057}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4843060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4843059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &10179467
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -255,6 +281,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 10179467}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &10179469 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 10179467}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &10179470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10179469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &10763357
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,6 +586,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 81079981}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &81079983 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 81079981}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &81079984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81079983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &141013362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -596,6 +674,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 141013362}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &141013364 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 141013362}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &141013365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141013364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &147731250
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -662,6 +766,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 147731250}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &147731252 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 147731250}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &147731253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147731252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &152533801
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -728,6 +858,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 152533801}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &152533803 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 152533801}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &152533804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152533803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &155502991
 GameObject:
   m_ObjectHideFlags: 0
@@ -876,6 +1032,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 156167080}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &156167082 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 156167080}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &156167083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156167082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &171456097
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -942,6 +1124,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 171456097}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &171456099 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 171456097}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &171456100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171456099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &186222632
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1008,6 +1216,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 186222632}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &186222634 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 186222632}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &186222635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 186222634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &199327062
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1070,6 +1304,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 199327062}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &199327064 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 199327062}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &199327065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199327064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &207627635
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1127,6 +1387,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &207627636 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 207627635}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &207627637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207627636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: Woah, you can't bother me while I'm on stage right now!
+  - text: Go bother one of the other singers, they're not doing anything!
+  container:
+  - effects: []
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 2
+  player: {fileID: 0}
 --- !u!1001 &222896165
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1184,6 +1471,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &222896166 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 222896165}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &222896167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222896166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: Woah, you can't bother me while I'm on stage right now!
+  - text: Go bother one of the other singers, they're not doing anything!
+  container:
+  - effects: []
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 2
+  player: {fileID: 0}
 --- !u!1001 &225374701
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1246,6 +1560,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 225374701}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &225374703 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 225374701}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &225374704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 225374703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &246773200
 GameObject:
   m_ObjectHideFlags: 0
@@ -1733,6 +2073,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 309609807}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &309609809 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 309609807}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &309609810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309609809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &320494986
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1795,6 +2161,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 320494986}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &320494988 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 320494986}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &320494989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320494988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &321998354
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1861,6 +2253,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 321998354}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &321998356 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 321998354}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &321998357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321998356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &323135366
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1923,6 +2341,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 323135366}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &323135368 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 323135366}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &323135369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323135368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &331431658
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1989,6 +2433,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 331431658}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &331431660 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 331431658}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &331431661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331431660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &334235735
 GameObject:
   m_ObjectHideFlags: 0
@@ -2096,6 +2566,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 337287541}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &337287543 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 337287541}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &337287544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 337287543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &342629915
 GameObject:
   m_ObjectHideFlags: 0
@@ -2793,6 +3289,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 353090918}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &353090920 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 353090918}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &353090921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353090920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &377167956
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2855,6 +3377,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 377167956}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &377167958 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 377167956}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &377167959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377167958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &401396119
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2917,6 +3465,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 401396119}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &401396121 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 401396119}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &401396122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 401396121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &447790133
 GameObject:
   m_ObjectHideFlags: 0
@@ -3059,6 +3633,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 460756722}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &460756724 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 460756722}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &460756725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 460756724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &469448405
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3125,6 +3725,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 469448405}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &469448407 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 469448405}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &469448408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 469448407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &480810610
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3268,6 +3894,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 482855453}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &482855455 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 482855453}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &482855456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482855455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &506107590
 GameObject:
   m_ObjectHideFlags: 0
@@ -4433,6 +5085,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 521735901}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &521735903 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 521735901}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &521735904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521735903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &526693867
 GameObject:
   m_ObjectHideFlags: 0
@@ -10743,6 +11421,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 529485900}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &529485902 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 529485900}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &529485903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529485902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &530189616
 GameObject:
   m_ObjectHideFlags: 0
@@ -10844,6 +11548,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 539200928}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &539200930 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 539200928}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &539200931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539200930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &576392950
 GameObject:
   m_ObjectHideFlags: 0
@@ -11155,6 +11885,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 621846523}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &621846525 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 621846523}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &621846526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621846525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &630126492
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11278,6 +12034,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 634160902}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &634160904 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 634160902}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &634160905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634160904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &655942808
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11340,6 +12122,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 655942808}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &655942810 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 655942808}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &655942811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655942810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &659679664
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11402,6 +12210,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 659679664}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &659679666 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 659679664}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &659679667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659679666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &661944376
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11468,6 +12302,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 661944376}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &661944378 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 661944376}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &661944379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661944378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &710212056
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11530,6 +12390,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 710212056}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &710212058 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 710212056}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &710212059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710212058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &721402811
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11592,6 +12478,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 721402811}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &721402813 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 721402811}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &721402814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721402813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &736722495
 GameObject:
   m_ObjectHideFlags: 0
@@ -11864,6 +12776,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 764760181}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &764760183 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 764760181}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &764760184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764760183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &776189455
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11930,6 +12868,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 776189455}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &776189457 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 776189455}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &776189458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776189457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &793849886
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11996,6 +12960,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 793849886}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &793849888 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 793849886}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &793849889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 793849888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &806158582
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12062,6 +13052,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 806158582}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &806158584 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 806158582}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &806158585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806158584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &816801597
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12128,6 +13144,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 816801597}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &816801599 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 816801597}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &816801600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816801599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &828362065
 GameObject:
   m_ObjectHideFlags: 0
@@ -12280,6 +13322,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 842683488}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &842683490 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 842683488}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &842683491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842683490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &843246761
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12346,6 +13414,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 843246761}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &843246763 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 843246761}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &843246764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843246763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &858154312
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12412,6 +13506,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 858154312}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &858154314 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 858154312}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &858154315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858154314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &860042837
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12478,6 +13598,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 860042837}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &860042839 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 860042837}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &860042840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860042839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &865578924
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12540,6 +13686,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 865578924}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &865578926 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 865578924}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &865578927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865578926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &867330030
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12606,6 +13778,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 867330030}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &867330032 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 867330030}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &867330033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867330032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &868732961
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12672,6 +13870,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 868732961}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &868732963 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 868732961}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &868732964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868732963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &876465872
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12738,6 +13962,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 876465872}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &876465874 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 876465872}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &876465875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 876465874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &889639387
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12804,6 +14054,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 889639387}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &889639389 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 889639387}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &889639390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889639389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &891108995
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12870,6 +14146,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 891108995}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &891108997 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 891108995}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &891108998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 891108997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &891999802
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12932,6 +14234,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 891999802}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &891999804 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 891999802}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &891999805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 891999804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &894487833
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12998,6 +14326,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 894487833}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &894487835 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 894487833}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &894487836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894487835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &915380168
 GameObject:
   m_ObjectHideFlags: 0
@@ -13098,6 +14452,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 916337857}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &916337859 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 916337857}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &916337860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916337859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &931728377
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13164,6 +14544,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 931728377}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &931728379 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 931728377}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &931728380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931728379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &939122130
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13230,6 +14636,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 939122130}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &939122132 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 939122130}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &939122133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939122132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &941943037
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13292,6 +14724,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 941943037}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &941943039 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 941943037}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &941943040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 941943039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &944064696
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13358,6 +14816,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 944064696}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &944064698 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 944064696}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &944064699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 944064698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &944817799
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13424,6 +14908,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 944817799}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &944817801 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 944817799}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &944817802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 944817801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &946529380
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13486,6 +14996,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 946529380}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &946529382 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 946529380}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &946529383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946529382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &947982114
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13552,6 +15088,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 947982114}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &947982116 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 947982114}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &947982117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 947982116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &971832509
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13614,6 +15176,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 971832509}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &971832511 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 971832509}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &971832512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971832511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &971927935
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13680,6 +15268,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 971927935}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &971927937 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 971927935}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &971927938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971927937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &972024389
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13742,6 +15356,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 972024389}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &972024391 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 972024389}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &972024392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972024391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &989560883
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13804,6 +15444,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 989560883}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &989560885 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 989560883}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &989560886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989560885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1006259173
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13870,6 +15536,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1006259173}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1006259175 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1006259173}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1006259176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006259175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1008881463
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13936,6 +15628,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1008881463}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1008881465 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1008881463}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1008881466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008881465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1029320045
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14002,6 +15720,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1029320045}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1029320047 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1029320045}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1029320048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029320047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1042079863
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14068,6 +15812,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1042079863}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1042079865 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1042079863}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1042079866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042079865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1060650488
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14130,6 +15900,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1060650488}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1060650490 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1060650488}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1060650491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1060650490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1074875362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14196,6 +15992,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1074875362}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1074875364 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1074875362}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1074875365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1074875364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1078259706
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14258,6 +16080,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1078259706}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1078259708 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1078259706}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1078259709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078259708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1130155110
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14324,6 +16172,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1130155110}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1130155112 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1130155110}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1130155113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130155112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1133021426
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14386,6 +16260,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1133021426}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1133021428 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1133021426}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1133021429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133021428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1134943979
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14448,6 +16348,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1134943979}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1134943981 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1134943979}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1134943982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134943981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1136812418
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14505,6 +16431,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &1136812419 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1136812418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1136812420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136812419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: Listen I'm just here to make sure the turntable and soundboard don't catch
+      fire.
+  - text: The other 3 guys?
+  - text: They're just roadies, but everyone thinks they're singing!
+  container:
+  - effects: []
+  - effects: []
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 3
+  player: {fileID: 0}
 --- !u!1001 &1149164537
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14624,6 +16580,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1151972374}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1151972376 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1151972374}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1151972377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151972376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1165271859
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14690,6 +16672,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1165271859}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1165271861 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1165271859}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1165271862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1165271861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1169327468
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14837,6 +16845,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1195625100}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1195625102 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1195625100}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1195625103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195625102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1203296721
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14899,6 +16933,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1203296721}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1203296723 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1203296721}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1203296724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1203296723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1204046574
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14961,6 +17021,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1204046574}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1204046576 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1204046574}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1204046577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1204046576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1213936966
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15027,6 +17113,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1213936966}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1213936968 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1213936966}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1213936969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213936968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &1226118698
 GameObject:
   m_ObjectHideFlags: 0
@@ -15131,6 +17243,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1242592009}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1242592011 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1242592009}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1242592012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242592011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &1247670584
 GameObject:
   m_ObjectHideFlags: 0
@@ -15445,6 +17583,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1276295978}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1276295980 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1276295978}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1276295981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276295980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1276544002
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15507,6 +17671,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1276544002}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1276544004 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1276544002}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1276544005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276544004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1282725605
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15716,6 +17906,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1293996465}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1293996467 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1293996465}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1293996468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293996467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &1294533503
 GameObject:
   m_ObjectHideFlags: 0
@@ -15891,6 +18107,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1304294940}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1304294942 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1304294940}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1304294943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304294942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1314306854
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15957,6 +18199,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1314306854}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1314306856 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1314306854}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1314306857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314306856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1314512847
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16023,6 +18291,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1314512847}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1314512849 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1314512847}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1314512850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314512849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1331343773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16202,6 +18496,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1334924308}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1334924310 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1334924308}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1334924311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334924310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &1344391340
 GameObject:
   m_ObjectHideFlags: 0
@@ -16373,6 +18693,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1350789666}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1350789668 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1350789666}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1350789669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350789668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &1355520806
 GameObject:
   m_ObjectHideFlags: 0
@@ -16521,6 +18867,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1358535254}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1358535256 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1358535254}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1358535257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358535256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1366523498
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16583,6 +18955,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1366523498}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1366523500 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1366523498}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1366523501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366523500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1371418519
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16645,6 +19043,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1371418519}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1371418521 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1371418519}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1371418522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371418521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1396947601
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16707,6 +19131,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1396947601}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1396947603 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1396947601}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1396947604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1396947603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1412056449
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16773,6 +19223,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1412056449}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1412056451 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1412056449}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1412056452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412056451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &1420987740
 GameObject:
   m_ObjectHideFlags: 0
@@ -17822,6 +20298,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1429633586}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1429633588 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1429633586}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1429633589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429633588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1433526165
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17888,6 +20390,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1433526165}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1433526167 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1433526165}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1433526168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433526167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1444851279
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17954,6 +20482,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1444851279}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1444851281 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1444851279}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1444851282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444851281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1448629116
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18016,6 +20570,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1448629116}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1448629118 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1448629116}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1448629119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448629118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1462202420
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18082,6 +20662,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1462202420}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1462202422 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1462202420}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1462202423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462202422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &1474220364
 GameObject:
   m_ObjectHideFlags: 0
@@ -18330,6 +20936,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1491321429}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1491321431 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1491321429}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1491321432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491321431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1501278240
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18392,6 +21024,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1501278240}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1501278242 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1501278240}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1501278243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501278242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &1502306939
 GameObject:
   m_ObjectHideFlags: 0
@@ -18500,6 +21158,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1507270096}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1507270098 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1507270096}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1507270099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507270098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1514451690
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18562,6 +21246,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1514451690}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1514451692 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1514451690}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1514451693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514451692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &1519642145
 GameObject:
   m_ObjectHideFlags: 0
@@ -18661,6 +21371,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1534862558}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1534862560 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1534862558}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1534862561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534862560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1547803165
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18723,6 +21459,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1547803165}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1547803167 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1547803165}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1547803168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547803167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1552693341
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18870,6 +21632,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1555687356}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1555687358 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1555687356}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1555687359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555687358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1555962090
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18936,6 +21724,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1555962090}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1555962092 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1555962090}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1555962093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555962092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &1559894494
 GameObject:
   m_ObjectHideFlags: 0
@@ -19059,6 +21873,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1561026296}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1561026298 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1561026296}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1561026299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1561026298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1561108343
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19121,6 +21961,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1561108343}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1561108345 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1561108343}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1561108346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1561108345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1565022235
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19187,6 +22053,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1565022235}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1565022237 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1565022235}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1565022238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565022237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1575912743
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19253,6 +22145,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1575912743}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1575912745 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1575912743}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1575912746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575912745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1591738059
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19315,6 +22233,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1591738059}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1591738061 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1591738059}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1591738062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591738061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1594521738
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19381,6 +22325,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1594521738}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1594521740 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1594521738}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1594521741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594521740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1596951887
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19447,6 +22417,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1596951887}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1596951889 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1596951887}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1596951890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596951889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1622226006
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19509,6 +22505,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1622226006}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1622226008 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1622226006}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1622226009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622226008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1630487082
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19571,6 +22593,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1630487082}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1630487084 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1630487082}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1630487085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630487084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &1634120024
 GameObject:
   m_ObjectHideFlags: 0
@@ -19682,6 +22730,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1634276880}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1634276882 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1634276880}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1634276883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634276882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &1640365698
 GameObject:
   m_ObjectHideFlags: 0
@@ -19801,6 +22875,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1644378620}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1644378622 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1644378620}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1644378623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644378622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1651182086
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19863,6 +22963,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1651182086}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1651182088 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1651182086}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1651182089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651182088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1696152844
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19929,6 +23055,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1696152844}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1696152846 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1696152844}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1696152847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696152846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &1699574503
 GameObject:
   m_ObjectHideFlags: 0
@@ -20036,6 +23188,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1701128096}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1701128098 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1701128096}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1701128099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701128098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &1703331740
 GameObject:
   m_ObjectHideFlags: 0
@@ -20207,6 +23385,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1722157597}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1722157599 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1722157597}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1722157600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722157599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1722680633
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20269,6 +23473,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1722680633}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1722680635 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1722680633}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1722680636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722680635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1740881201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20335,6 +23565,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1740881201}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1740881203 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1740881201}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1740881204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1740881203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1745036365
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20401,6 +23657,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1745036365}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1745036367 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1745036365}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1745036368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745036367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1771548775
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20467,6 +23749,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1771548775}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1771548777 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1771548775}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1771548778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771548777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1776570508
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20533,6 +23841,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1776570508}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1776570510 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1776570508}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1776570511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1776570510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1782068236
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20599,6 +23933,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1782068236}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1782068238 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1782068236}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1782068239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782068238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1784908174
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20661,6 +24021,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1784908174}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1784908176 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1784908174}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1784908177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784908176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &1796764358
 GameObject:
   m_ObjectHideFlags: 0
@@ -20829,6 +24215,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1798974362}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1798974364 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1798974362}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1798974365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798974364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1807929698
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20895,6 +24307,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1807929698}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1807929700 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1807929698}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1807929701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807929700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &1813763885
 GameObject:
   m_ObjectHideFlags: 0
@@ -21070,6 +24508,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1815330477}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1815330479 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1815330477}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1815330480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815330479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1821986623
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21136,6 +24600,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1821986623}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1821986625 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1821986623}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1821986626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821986625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1821993717
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21202,6 +24692,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1821993717}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1821993719 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1821993717}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1821993720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821993719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1839371740
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21264,6 +24780,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1839371740}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1839371742 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1839371740}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1839371743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839371742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1842473792
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21326,6 +24868,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1842473792}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1842473794 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1842473792}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1842473795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1842473794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1854080113
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21392,6 +24960,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1854080113}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1854080115 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1854080113}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1854080116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1854080115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &1856756940
 GameObject:
   m_ObjectHideFlags: 0
@@ -21522,6 +25116,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &1866761545 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1866761544}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1866761546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866761545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: Woah, you can't bother me while I'm on stage right now!
+  - text: Go bother one of the other singers, they're not doing anything!
+  container:
+  - effects: []
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+    lines: 2
+  player: {fileID: 0}
 --- !u!1001 &1868050177
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21588,6 +25209,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1868050177}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1868050179 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1868050177}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1868050180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868050179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1883177635
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21654,6 +25301,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1883177635}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1883177637 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1883177635}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1883177638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883177637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &1894139934
 GameObject:
   m_ObjectHideFlags: 0
@@ -22020,6 +25693,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1923146601}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1923146603 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1923146601}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1923146604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1923146603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &1923221989
 GameObject:
   m_ObjectHideFlags: 0
@@ -22234,6 +25933,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1926038081}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1926038083 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1926038081}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1926038084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926038083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1938669895
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22300,6 +26025,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1938669895}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1938669897 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1938669895}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1938669898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938669897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1960298618
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22512,6 +26263,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1988552848}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1988552850 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1988552848}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1988552851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988552850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1991352527
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22574,6 +26351,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1991352527}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1991352529 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1991352527}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1991352530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991352529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &1998739513
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22636,6 +26439,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 1998739513}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1998739515 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1998739513}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1998739516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998739515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &2013045520
 GameObject:
   m_ObjectHideFlags: 0
@@ -22784,6 +26613,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 2022140963}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2022140965 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 2022140963}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2022140966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022140965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &2023304922
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22846,6 +26701,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 2023304922}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2023304924 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 2023304922}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2023304925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023304924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &2027253154
 GameObject:
   m_ObjectHideFlags: 0
@@ -23021,6 +26902,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 2029440245}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2029440247 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 2029440245}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2029440248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029440247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &2032095261
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23087,6 +26994,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 2032095261}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2032095263 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 2032095261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2032095264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032095263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &2046342178
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23153,6 +27086,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 2046342178}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2046342180 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 2046342178}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2046342181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046342180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &2061014165
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23219,6 +27178,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 2061014165}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2061014167 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 2061014165}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2061014168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061014167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &2079750055
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23281,6 +27266,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 2079750055}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2079750057 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 2079750055}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2079750058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079750057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &2095723503
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23347,6 +27358,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 2095723503}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2095723505 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 2095723503}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2095723506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095723505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &2098484802
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23413,6 +27450,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 2098484802}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2098484804 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 2098484802}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2098484805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098484804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &2099425962
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23479,6 +27542,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 2099425962}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2099425964 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 2099425962}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2099425965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099425964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &2106270804
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23545,6 +27634,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 2106270804}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2106270806 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 2106270804}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2106270807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106270806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &2117447255
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23607,6 +27722,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 2117447255}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2117447257 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 2117447255}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2117447258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117447257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1001 &2117901057
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23669,6 +27810,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 2117901057}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2117901059 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 2117901057}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2117901060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117901059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
 --- !u!1 &2141392870
 GameObject:
   m_ObjectHideFlags: 0
@@ -23841,3 +28008,29 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
   m_PrefabInstance: {fileID: 2146212934}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2146212936 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 2146212934}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2146212937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146212936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: They're bumping too hard to the music to pay attention to you, or move
+      out of the way.
+  container:
+  - effects: []
+  dialogueImages:
+  - sprite_path: 
+    lines: 1
+  player: {fileID: 0}
