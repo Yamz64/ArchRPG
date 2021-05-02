@@ -2812,7 +2812,7 @@ namespace RalphAbilities
         public override void UseAttack(unit user, unit target)
         {
             user.setSP(user.getSP() - cost);
-            target.sanity += 2;
+            target.setSAN(target.sanity + 10);
             int rol = Random.Range(1, 101);
             if (rol < target.RES)
             {

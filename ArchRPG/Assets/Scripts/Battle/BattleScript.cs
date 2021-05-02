@@ -2724,14 +2724,14 @@ public class BattleScript : MonoBehaviour
 
                         int r = Random.Range(0, enemyUnits.Count);
                         bool selfie = true;
-                        if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.unitName == enemyUnits[r].GetComponent<UnitMono>().mainUnit.unitName)
+                        if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.unitName.Equals(enemyUnits[r].GetComponent<UnitMono>().mainUnit.unitName))
                         {
                             selfie = false;
                         }
                         while (enemyUnits[r].GetComponent<UnitMono>().mainUnit.currentHP <= 0 || !selfie)
                         {
                             r = Random.Range(0, enemyUnits.Count);
-                            if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.unitName != enemyUnits[r].GetComponent<UnitMono>().mainUnit.unitName)
+                            if (!enemyUnits[i].GetComponent<UnitMono>().mainUnit.unitName.Equals(enemyUnits[r].GetComponent<UnitMono>().mainUnit.unitName))
                             {
                                 selfie = true;
                             }
@@ -3915,12 +3915,33 @@ public class BattleScript : MonoBehaviour
                         //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                     }
                 }
-                if (partyDeaths == activeUnits)
+                int tempPD = 0;
+                int tempPA = 0;
+                for (int i = 0; i < 4; i++)
+                {
+                    if (partyUnits[i] != null)
+                    {
+                        tempPA += 1;
+                        if (partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
+                        {
+                            tempPD += 1;
+                        }
+                    }
+                }
+                int tempED = 0;
+                for (int i = 0; i < enemyUnits.Count; i++)
+                {
+                    if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
+                    {
+                        tempED += 1;
+                    }
+                }
+                if (partyDeaths >= activeUnits || tempPA == tempPD)
                 {
                     state = battleState.LOSE;
                     yield return battleEnd();
                 }
-                else if (enemyDeaths == enemyUnits.Count)
+                else if (enemyDeaths >= enemyUnits.Count || tempED == enemyUnits.Count)
                 {
                     state = battleState.WIN;
                     yield return battleEnd();
