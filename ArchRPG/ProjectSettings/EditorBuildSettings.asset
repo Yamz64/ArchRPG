@@ -149,4 +149,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Casino.unity
     guid: 2d101c32d78930e44a953fc83d4cad6c
+  - enabled: 1
+    path: Assets/Scenes/SmutShop.unity
+    guid: 02b40b6529f33624e9a2692e630c3f5d
+  - enabled: 1
+    path: Assets/Scenes/Psychic.unity
+    guid: 931fd271eaa2fcc4b805ff9a52f7c7f7
   m_configObjects: {}
