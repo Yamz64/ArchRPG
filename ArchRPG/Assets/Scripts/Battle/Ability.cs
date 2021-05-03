@@ -2684,7 +2684,7 @@ namespace ShirleyAbilities
         public BugleCall()
         {
             name = "Bugle Call";
-            desc1 = "Backline support ability";
+            desc1 = "Give Inspired to target";
             desc2 = "You’re not sure where Shirley got a bugle from, " +
                 "in fact it might just be a car funnel taped to a kazoo, " +
                 "all you know is that you’re real confident you’re gonna win this!";

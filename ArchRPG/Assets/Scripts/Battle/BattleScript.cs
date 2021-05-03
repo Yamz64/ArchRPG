@@ -410,6 +410,37 @@ public class BattleScript : MonoBehaviour
         dialogue.text = "Select Target";
         cursor.SetActive(false);
         unitSelect(i);
+        if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].target == 1)
+        {
+            if (i == 0 && partyUnits[1] != null)
+            {
+                if (partyUnits[1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                {
+                    unitSelect(i, i + 1);
+                }
+            }
+            else if (i == 1 && partyUnits[0] != null)
+            {
+                if (partyUnits[0].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                {
+                    unitSelect(i, i -1);
+                }
+            }
+            else if (i == 2 && partyUnits[3] != null)
+            {
+                if (partyUnits[3].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                {
+                    unitSelect(i, i + 1);
+                }
+            }
+            else if (i == 3 && partyUnits[2] != null)
+            {
+                if (partyUnits[2].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                {
+                    unitSelect(i, i - 1);
+                }
+            }
+        }
     }
 
     //Close the enemy select menu
@@ -432,19 +463,19 @@ public class BattleScript : MonoBehaviour
     }
 
     //Make one party member appear highlighted compared to the other ones
-    public void unitSelect(int act)
+    public void unitSelect(int act, int act2 = -1)
     {
         for (int i = 0; i < partyUnits.Count; i++)
         {
             if (partyUnits[i] != null)
             {
-                if (i != act && partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                if (i != act && i != act2 && partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                 {
                     Color temp = partyUnits[i].GetComponent<UnitMono>().mainUnit.view.color;
                     temp.a = 0.6f;
                     partyUnits[i].GetComponent<UnitMono>().mainUnit.view.color = temp;
                 }
-                else if (i == act)
+                else if (i == act || i == act2)
                 {
                     Color temp = partyUnits[i].GetComponent<UnitMono>().mainUnit.view.color;
                     temp.a = 1.0f;
@@ -1702,7 +1733,21 @@ public class BattleScript : MonoBehaviour
                 {
                     useSound(0);
                     currentAlly += 2;
-                    unitSelect(currentAlly);
+                    if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].target == 1)
+                    {
+                        if (currentAlly == 0 || currentAlly == 2)
+                        {
+                            unitSelect(currentAlly, currentAlly + 1);
+                        }
+                        else
+                        {
+                            unitSelect(currentAlly, currentAlly - 1);
+                        }
+                    }
+                    else
+                    {
+                        unitSelect(currentAlly);
+                    }
                 }
                 menu_input = true;
             }
@@ -1713,7 +1758,21 @@ public class BattleScript : MonoBehaviour
                 {
                     useSound(0);
                     currentAlly -= 2;
-                    unitSelect(currentAlly);
+                    if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].target == 1)
+                    {
+                        if (currentAlly == 0 || currentAlly == 2)
+                        {
+                            unitSelect(currentAlly, currentAlly + 1);
+                        }
+                        else
+                        {
+                            unitSelect(currentAlly, currentAlly - 1);
+                        }
+                    }
+                    else
+                    {
+                        unitSelect(currentAlly);
+                    }
                 }
                 menu_input = true;
             }
@@ -1724,7 +1783,21 @@ public class BattleScript : MonoBehaviour
                 {
                     useSound(0);
                     currentAlly += 1;
-                    unitSelect(currentAlly);
+                    if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].target == 1)
+                    {
+                        if (currentAlly == 0 || currentAlly == 2)
+                        {
+                            unitSelect(currentAlly, currentAlly + 1);
+                        }
+                        else
+                        {
+                            unitSelect(currentAlly, currentAlly - 1);
+                        }
+                    }
+                    else
+                    {
+                        unitSelect(currentAlly);
+                    }
                 }
                 menu_input = true;
             }
@@ -1735,7 +1808,21 @@ public class BattleScript : MonoBehaviour
                 {
                     useSound(0);
                     currentAlly -= 1;
-                    unitSelect(currentAlly);
+                    if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].target == 1)
+                    {
+                        if (currentAlly == 0 || currentAlly == 2)
+                        {
+                            unitSelect(currentAlly, currentAlly + 1);
+                        }
+                        else
+                        {
+                            unitSelect(currentAlly, currentAlly - 1);
+                        }
+                    }
+                    else
+                    {
+                        unitSelect(currentAlly);
+                    }
                 }
                 menu_input = true;
             }
@@ -5226,6 +5313,7 @@ public class BattleScript : MonoBehaviour
                     doer.swapper = 2;
                 }
             }
+            Debug.Log("Before swap now");
             //Pull target forward
             if (doer.selfSwapper == 1 && uni.position != 0)
             {
@@ -5408,29 +5496,37 @@ public class BattleScript : MonoBehaviour
                     Swap2(val, val + 2, target.unitName);
                 }
             }
+            Debug.Log("After swap now");
+
             if (uni.abilities[ata].target == 0)
             {
+                Debug.Log("Attack not used yet");
                 uni.abilities[ata].UseAttack(uni, target);
                 StartCoroutine(flashHeal(target));
             }
             else if (uni.abilities[ata].target == 1)
             {
+                Debug.Log("Attack not used yet");
                 uni.abilities[ata].UseAttack(uni, target);
+                Debug.Log("Attack has been used");
                 StartCoroutine(flashHeal(target));
+
                 if ((val == 1 || val == 3) && val-1 >= 0 && partyUnits[val-1] != null)
                 {
+                    Debug.Log("vali 1");
                     if (partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                     {
                         uni.abilities[ata].UseAttack(uni, partyUnits[val-1].GetComponent<UnitMono>().mainUnit);
                         StartCoroutine(flashHeal(partyUnits[val - 1].GetComponent<UnitMono>().mainUnit));
                     }
                 }
-                else if ((val == 0 || val == 2) && val + 1 >= 0 && partyUnits[val + 1] != null)
+                else if ((val == 0 || val == 2) && val + 1 >= 0 && val + 1 < 4 && partyUnits[val + 1] != null)
                 {
+                    Debug.Log("vali 2");
                     if (partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                     {
                         uni.abilities[ata].UseAttack(uni, partyUnits[val + 1].GetComponent<UnitMono>().mainUnit);
-                        StartCoroutine(flashHeal(partyUnits[val - 1].GetComponent<UnitMono>().mainUnit));
+                        StartCoroutine(flashHeal(partyUnits[val + 1].GetComponent<UnitMono>().mainUnit));
                     }
                 }
             }
