@@ -3243,8 +3243,10 @@ public class BattleScript : MonoBehaviour
                     }
                     bool baddi = false;
                     int randi = Random.Range(0, 2);
-                    //If current unit has spasms
-                    if (temp[ind].GetComponent<UnitMono>().mainUnit.statuses[17] != -1 && randi == 0)
+                    //If current unit has spasms (and ability isn't multi-target)
+                    if (temp[ind].GetComponent<UnitMono>().mainUnit.statuses[17] != -1 && randi == 0 
+                        && temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].target == 0 
+                        && temp[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].customAbility == 0)
                     {
                         randi = Random.Range(0, 6);
                         if (randi == 0)
@@ -4972,9 +4974,16 @@ public class BattleScript : MonoBehaviour
                 //yield return new WaitForSeconds(0.5f);
 
                 //If enemy is actually dead
-                if (dead && target.currentHP <= 0)
+                if (dead && target.currentHP <= 0 && target.enemy)
                 {
                     enemyDeaths++;
+                    StartCoroutine(unitDeath(target));
+                    expHere += target.expGain;
+                    //yield return levelUp(target.giveEXP());
+                }
+                else if (dead && target.currentHP <= 0 && !target.enemy)
+                {
+                    partyDeaths++;
                     StartCoroutine(unitDeath(target));
                     expHere += target.expGain;
                     //yield return levelUp(target.giveEXP());
@@ -5597,6 +5606,11 @@ public class BattleScript : MonoBehaviour
         if (enemyDeaths == enemyUnits.Count)
         {
             state = battleState.WIN;
+            yield return battleEnd();
+        }
+        else if (partyDeaths == activeUnits)
+        {
+            state = battleState.LOSE;
             yield return battleEnd();
         }
     }

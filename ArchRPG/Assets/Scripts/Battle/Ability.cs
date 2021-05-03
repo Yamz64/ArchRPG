@@ -1941,8 +1941,8 @@ namespace PlayerAbilities
         public Scrutinize()
         {
             name = "Scrutinize";
-            desc1 = "Look for a weak spot";
-            desc2 = "You remove your glasses so that you can closely inspect your enemies with your near-sightedness - reveals an enemy's weakness";
+            desc1 = "Checks on enemy health and weaknesses";
+            desc2 = "You remove your glasses so that you can closely inspect your enemies with your near-sightedness - reveals an enemy's weakness and general health";
             cost = 2;
             position = 0;
             type = 0;
@@ -2112,7 +2112,7 @@ namespace PlayerAbilities
         public Analysis()
         {
             name = "Analysis";
-            desc1 = "Opens the enemy up to more effective attacks";
+            desc1 = "Opens the enemy up to more critical hits";
             desc2 = "After putting aside your clear superiority, you come up with an unbiased view of the enemies weakness and how to exploit it.";
             cost = 4;
             position = 1;

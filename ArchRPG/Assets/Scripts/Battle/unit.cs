@@ -1130,16 +1130,29 @@ public class unit
             {
                 valA = valA * 1.5f;
             }
-            if (statuses[14] == -1)
+
+            //Weeping
+            if (statuses[2] != -1)
             {
-                val += (int)(val * valA);
+                valA = valA * 0.75f;
+            }
+            //Eye Bleed
+            if (statuses[3] != -1)
+            {
+                valA = valA * 0.5f;
             }
             //Zealous
-            else
+            if (statuses[14] != -1)
             {
-                valA = valA * 1.25f;
-                val += (int)(val * valA);
+                valA = valA * 1.5f;
             }
+            //Inspired
+            if (statuses[6] != -1)
+            {
+                valA = valA * 1.33f;
+            }
+
+            val += (int)(val * valA);
 
             float valD = (float)target.DEF / 300;
 
@@ -1148,29 +1161,22 @@ public class unit
                 valD = valD * 1.5f;
             }
 
-            //Check if DEF is reduced by a status like Blunt Trauma
-            if (target.statuses[4] == -1 && target.statuses[7] == -1)
-            {
-                val -= (int)(val * valD);
-            }
             //Blunt Trauma
-            else if (target.statuses[4] != -1 && target.statuses[7] == -1)
+            if (target.statuses[4] != -1)
             {
                 valD = valD * 0.75f;
-                val -= (int)(val * valD);
             }
             //Neurotic
-            else if (target.statuses[4] == -1 && target.statuses[7] != -1)
+            if (target.statuses[7] != -1)
             {
                 valD = valD * 1.5f;
-                val -= (int)(val * valD);
             }
-            //Both
-            else
+            //Zealous
+            if (target.statuses[14] != -1)
             {
-                valD = valD * 1.25f;
-                val -= (int)(val * valD);
+                valD = valD * 0.85f;
             }
+            val -= (int)(val * valD);
         }
         else
         {
@@ -1185,30 +1191,45 @@ public class unit
             {
                 valD = valD * 1.2f;
             }
+            if (statuses[2] != -1)
+            {
+                valP = valP * 0.8f;
+            }
 
 
             if (sanity < 50 && sanity > 0 && statuses[24] != -1)
             {
                 valP = valP * 1.25f;
-                valD = valD * 0.75f;
             }
             else if (sanity == 0 && statuses[24] != -1)
             {
                 valP = valP * 1.50f;
+            }
+            if (target.sanity < 50 && sanity > 0)
+            {
+                valD = valD * 0.75f;
+            }
+            else if (sanity == 0)
+            {
                 valD = valD * 0.50f;
             }
-            //Check if POW is affected
-            if (statuses[14] == -1)
+            //Weeping
+            if (statuses[2] != -1)
             {
-                val += (int)(val * valP);
+                valP = valP * 0.85f;
+            }
+            //Eye Bleed
+            if (statuses[3] != -1)
+            {
+                valP = valP * 0.66f;
             }
             //Zealous
-            else
+            if (statuses[14] != -1)
             {
-                valP = valP * 1.25f;
-                val += (int)(val * valP);
+                valP = valP * 1.5f;
             }
 
+            val += (int)(val * valP);
 
             //If neurotic
             if (target.statuses[7] != -1)
@@ -1223,7 +1244,7 @@ public class unit
             //If Confident
             if (target.statuses[16] != -1)
             {
-                valD = valD * 1.25f;
+                valD = valD * 1.33f;
             }
             val -= (int)(val * valD);
         }
@@ -1349,33 +1370,6 @@ public class unit
         {
             val += (val / 2);
             //Debug.Log("Got a crit!");
-        }
-        //If unit has weeping
-        if (statuses[2] != -1)
-        {
-            //int dum = UnityEngine.Random.Range(1, 4);
-            //if (dum == 1)
-            //{
-            if (!powe)
-            {
-                val = (int)(val * 0.75f);
-            }
-            else
-            {
-                val = (int)(val * 0.85f);
-            }
-            reduced = true;
-            //}
-        }
-        //If unit has eye_bleeding
-        if (statuses[3] != -1)
-        {
-            int dum = UnityEngine.Random.Range(1, 3);
-            if (dum == 1)
-            {
-                val = val / 5;
-                reduced = true;
-            }
         }
 
         return val;
@@ -2457,7 +2451,7 @@ public class PlayerUnit : unit
         }
         if (level >= 4)
         {
-            abilities.Add(new PlayerAbilities.Diagnosis());
+            abilities.Add(new PlayerAbilities.RudeReassurance());
         }
         if (level >= 7)
         {
