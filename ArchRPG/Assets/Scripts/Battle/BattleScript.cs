@@ -6415,7 +6415,7 @@ public class BattleScript : MonoBehaviour
             if (partyUnits[i] != null)
             {
                 if (partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP > 0 &&
-                    partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName != "Player")
+                    !partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName.Equals("Player"))
                 {
                     abiSizes.Add(partyUnits[i].GetComponent<UnitMono>().mainUnit.abilities.Count);
                     partyUnits[i].GetComponent<UnitMono>().mainUnit.gainEXP(expGained);
