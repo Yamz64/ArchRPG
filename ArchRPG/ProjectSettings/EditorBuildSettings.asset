@@ -137,4 +137,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Library.unity
     guid: 6c8e36632376e12429fefe0fe2e61000
+  - enabled: 1
+    path: Assets/Scenes/Bakery.unity
+    guid: f48e0a0cff23ccb46909c5ca5410bd17
+  - enabled: 1
+    path: Assets/Scenes/BakeryStorage.unity
+    guid: c3c874f1c5da6944c8ab668144a620ef
+  - enabled: 1
+    path: Assets/Scenes/Bar.unity
+    guid: 3be574d290469cc4bac1881361a8aedf
+  - enabled: 1
+    path: Assets/Scenes/Casino.unity
+    guid: 2d101c32d78930e44a953fc83d4cad6c
   m_configObjects: {}
