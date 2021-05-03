@@ -155,4 +155,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Psychic.unity
     guid: 931fd271eaa2fcc4b805ff9a52f7c7f7
+  - enabled: 1
+    path: Assets/Scenes/SelfDefenseEmporium.unity
+    guid: 20b84a0c5150f07458d15d8f1cd01df1
   m_configObjects: {}
