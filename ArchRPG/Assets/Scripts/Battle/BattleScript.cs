@@ -6419,7 +6419,32 @@ public class BattleScript : MonoBehaviour
                 {
                     abiSizes.Add(partyUnits[i].GetComponent<UnitMono>().mainUnit.abilities.Count);
                     partyUnits[i].GetComponent<UnitMono>().mainUnit.gainEXP(expGained);
+                    int levi = partyUnits[i].GetComponent<UnitMono>().mainUnit.level;
                     partyUnits[i].GetComponent<UnitMono>().mainUnit.updateUnit(partyUnits[i].GetComponent<UnitMono>().mainUnit.level);
+                    if (partyUnits[i].GetComponent<UnitMono>().mainUnit.level > levi)
+                    {
+                        if (partyUnits[i].GetComponent<UnitMono>().mainUnit.statuses[10] != -1)
+                        {
+                            int bust = partyUnits[i].GetComponent<UnitMono>().mainUnit.maxHP - ((partyUnits[i].GetComponent<UnitMono>().mainUnit.maxHP / 4) + 5);
+                            if (bust > 0)
+                            {
+                                partyUnits[i].GetComponent<UnitMono>().mainUnit.maxHP = bust;
+                                if (partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP > partyUnits[i].GetComponent<UnitMono>().mainUnit.maxHP)
+                                {
+                                    partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP = partyUnits[i].GetComponent<UnitMono>().mainUnit.maxHP;
+                                }
+                            }
+                        }
+                        if (partyUnits[i].GetComponent<UnitMono>().mainUnit.statuses[15] != -1)
+                        {
+                            partyUnits[i].GetComponent<UnitMono>().mainUnit.maxHP = (int)(0.7f * partyUnits[i].GetComponent<UnitMono>().mainUnit.maxHP);
+                            if (partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP > partyUnits[i].GetComponent<UnitMono>().mainUnit.maxHP)
+                            {
+                                partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP = partyUnits[i].GetComponent<UnitMono>().mainUnit.maxHP;
+                            }
+                        }
+                    }
+
                 }
                 else
                 {

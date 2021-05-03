@@ -8258,7 +8258,7 @@ public class KillerCone : unit
         unitName = "Killer Cone";
         loadSprites();
         level = 3;
-        maxHP = currentHP = 15;
+        SetHPMax(15);
         expGain = 30;
         enemy = true;
         capital = 2;
@@ -8291,7 +8291,7 @@ public class ThrashCan : unit
         unitName = "Thrash Can";
         loadSprites();
         level = 3;
-        maxHP = currentHP = (int)(0.67 * Math.Pow(level, 2)) + 19;
+        SetHPMax(25);
         expGain = 30;
         enemy = true;
         capital = 1;
@@ -8322,7 +8322,7 @@ public class LockerLurker : unit
         unitName = "Locker Lurker";
         loadSprites();
         level = 4;
-        maxHP = currentHP = 33;
+        SetHPMax(33);
         expGain = 50;
         enemy = true;
         capital = 3;
@@ -8351,6 +8351,7 @@ public class StudentBody : unit
         unitName = "Student Body";
         loadSprites();
         level = 5;
+        SetHPMax(75);
         maxHP = currentHP = 75;
         expGain = 1000;
         ATK = 50;
@@ -8383,7 +8384,7 @@ public class Vermin : unit
         loadSprites();
         weaknesses[1] = true;
         level = 5;
-        maxHP = currentHP = 40;
+        SetHPMax(40);
         
         ATK = 50;
         DEF = 15;
@@ -8415,6 +8416,7 @@ public class Hound : unit
         weaknesses[4] = true;
 
         level = 6;
+        SetHPMax(95);
         maxHP = currentHP = 95;
         expGain = 2500;
         enemy = true;
@@ -8439,7 +8441,6 @@ public class Hound : unit
 
 public class HighwayHorror : unit
 {
-    //Uses Hound stats at moment
     public HighwayHorror()
     {
         ImageFilePath = "EnemySprites/Highway Horror";
@@ -8447,7 +8448,7 @@ public class HighwayHorror : unit
         loadSprites();
 
         level = 9;
-        maxHP = currentHP = 70;
+        SetHPMax(70);
         expGain = 150;
         enemy = true;
         capital = 8;
@@ -8480,7 +8481,7 @@ public class Bouncer : unit
         weaknesses[4] = true;
 
         level = 12;
-        maxHP = currentHP = 100;
+        SetHPMax(100);
         expGain = 5184;
         enemy = true;
         capital = 8;
@@ -8513,6 +8514,7 @@ public class DiscoHooliganDan : unit
         weaknesses[3] = true;
 
         level = 15;
+        SetHPMax(150);
         maxHP = currentHP = 150;
         expGain = 42187;
         enemy = true;
@@ -8547,7 +8549,7 @@ public class DiscoHooliganDylan : unit
         weaknesses[2] = true;
 
         level = 15;
-        maxHP = currentHP = 150;
+        SetHPMax(150);
         expGain = 42187;
         enemy = true;
         capital = 8;
@@ -8581,7 +8583,7 @@ public class DiscoHooliganBrian : unit
         weaknesses[1] = true;
 
         level = 15;
-        maxHP = currentHP = 150;
+        SetHPMax(150);
         expGain = 42187;
         enemy = true;
         capital = 8;
@@ -8613,7 +8615,7 @@ public class ConnivingCone : unit
         weaknesses[1] = true;
 
         level = 7;
-        maxHP = currentHP = 60;
+        SetHPMax(60);
         expGain = 240;
         enemy = true;
         capital = 8;
@@ -8643,7 +8645,7 @@ public class DisposalDemon : unit
         loadSprites();
 
         level = 8;
-        maxHP = currentHP = 50;
+        SetHPMax(50);
         expGain = 60;
         enemy = true;
         capital = 8;
@@ -8676,7 +8678,7 @@ public class TheSquatter : unit
         weaknesses[3] = true;
 
         level = 13;
-        maxHP = currentHP = 350;
+        SetHPMax(350);
         expGain = 71402;
         enemy = true;
         capital = 75;
@@ -8709,7 +8711,7 @@ public class MeatPuppet : unit
         weaknesses[2] = true;
 
         level = 16;
-        maxHP = currentHP = 100;
+        SetHPMax(100);
         expGain = 8192;
         enemy = true;
         capital = 8;
@@ -8742,7 +8744,7 @@ public class MeatGolem : unit
         weaknesses[3] = true;
 
         level = 18;
-        maxHP = currentHP = 400;
+        SetHPMax(400);
         expGain = 196830;
         enemy = true;
         capital = 8;
@@ -8774,7 +8776,7 @@ public class MrGoodMeat : unit
         weaknesses[4] = true;
 
         level = 6;
-        maxHP = currentHP = 100;
+        SetHPMax(100);
         expGain = 65610;
         enemy = true;
         capital = 8;
@@ -8808,7 +8810,7 @@ public class ConstructionCreeper : unit
         weaknesses[3] = true;
 
         level = 19;
-        maxHP = currentHP = 100;
+        SetHPMax(100);
         expGain = 10497;
         enemy = true;
         capital = 8;
@@ -8841,7 +8843,7 @@ public class Danny : unit
         weaknesses[2] = true;
 
         level = 19;
-        maxHP = currentHP = 200;
+        SetHPMax(200);
         expGain = 97741;
         enemy = true;
         capital = 8;
@@ -8874,7 +8876,7 @@ public class GodsHand : unit
         weaknesses[2] = true;
 
         level = 19;
-        maxHP = currentHP = 230;
+        SetHPMax(230);
         expGain = 15746;
         enemy = true;
         capital = 8;
@@ -8905,7 +8907,7 @@ public class God : unit
         resistances[0] = true;
 
         level = 20;
-        maxHP = currentHP = 500;
+        SetHPMax(500);
         expGain = 228061;
         enemy = true;
         capital = 8;
@@ -8939,7 +8941,7 @@ public class God2 : unit
         weaknesses[2] = true;
 
         level = 20;
-        maxHP = currentHP = 500;
+        SetHPMax(500);
         expGain = 0;
         enemy = true;
         capital = 8;
