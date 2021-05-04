@@ -2288,7 +2288,7 @@ namespace ClyveAbilities
             name = "Smell of Death";
             desc1 = "Has a very low random chance to instantly kill all non-boss enemies that increases based on each target’s remaining health.";
             desc2 = "Clyve realized he’d been carrying his dead hamster in his pocket. Anyone that smells it will surely meet the same fate as that rodent.";
-            cost = 10;
+            cost = 15;
             damage = 2;
             position = 1;
             statusEffect = "Reactive";
@@ -2439,7 +2439,7 @@ namespace JimAbilities
         public TelekineticProwess()
         {
             name = "Telekinetic Prowess";
-            desc1 = "Inflicts spasms on 2 adjacent enemies and zonked on himself";
+            desc1 = "Inflicts spasms and zonked on 2 adjacent enemies and zonked on himself";
             desc2 = "Jim does some crazy shit and totally flips out and I guess maybe " +
                 "it affects the baddies too? Honestly it’s really hard to tell if he’s doing anything";
             cost = 7;
@@ -2666,7 +2666,7 @@ namespace ShirleyAbilities
         public Frontline()
         {
             name = "To the Frontlines!";
-            desc1 = "Induce Zealous on an ally";
+            desc1 = "Induce inspired on an ally";
             desc2 = "After letting out a zealous warcry, Shirley commands a party member to the frontline, they seem really fired up though.  Buffs ally with Zealous";
             cost = 5;
             damage = 0;
@@ -2735,7 +2735,7 @@ namespace ShirleyAbilities
         public ShotgunBlast()
         {
             name = "Shotgun Blast";
-            desc1 = "Inflicts fire damage on two adjacent enemies and has a chance to inflict vomiting on the enemies hit";
+            desc1 = "Inflicts fire damage on two adjacent enemies and has a chance to inflict vomiting and conductive on the enemies hit";
             desc2 = "You’re not sure if they used shotguns in the civil war but Shirley sure as hell seems like she knows how to use one.";
             cost = 11;
             position = 2;
@@ -2846,7 +2846,7 @@ namespace RalphAbilities
         public OopsCoffeeSpilled()
         {
             name = "Oops, Coffee Spilled";
-            desc1 = "Low chemical ATK, inflicts spasms";
+            desc1 = "Low chemical ATK, inflicts spasms and conductive";
             desc2 = "Ah nuts, I was looking forward to that...Welp, have fun with caffeine in the eyes";
             cost = 10;
             damage = 10;
@@ -2962,6 +2962,8 @@ namespace LucyAbilities
             desc2 = "Lucy commands her “children” to feed on a " +
                 "target, their appetite is particularly voracious today.";
             cost = 17;
+            damage = 10;
+            damageType = 3;
             target = 0;
             position = 2;
             statusEffect = "Consumed";
@@ -2981,6 +2983,22 @@ namespace LucyAbilities
             statusEffect = "Reactive";
             multiHitMin = 2;
             multiHitMax = 6;
+            customAbility = 2;
+        }
+
+        public override void UseAttack(unit user, List<unit> targets)
+        {
+            int rani = Random.Range(multiHitMin, multiHitMax + 1);
+            for (int i = 0; i < rani; i++)
+            {
+                int togo = Random.Range(0, targets.Count);
+                while (targets[i] == null || !targets[i].enemy || targets[i].currentHP <= 0)
+                {
+                    togo = Random.Range(0, targets.Count);
+                }
+                int val = user.takeDamageCalc(targets[togo], damage, damageType);
+                targets[togo].takeDamage(val);
+            }
         }
     }
 
@@ -3116,7 +3134,8 @@ namespace TimAbilities
             desc1 = "Moderate AoE heal grants Chutzpah to allies";
             desc2 = "Tim stops to create a well balanced meal of the 4 major food groups: sausages, " +
                 "vienna sausages, red meat, and white meat.  You are well filled after it’s consumption.";
-            cost = 10;
+            cost = 18
+;
             type = 1;
             target = 3;
             position = 2;
@@ -3131,9 +3150,41 @@ namespace TimAbilities
                 {
                     if (targets[i].currentHP > 0 && !targets[i].enemy)
                     {
-                        targets[i].healDamage(25 + (int)(user.POW * 0.2f));
+                        targets[i].healDamage(25 + (int)(targets[i].maxHP * 0.2f));
                         targets[i].giveStatus(statusEffect);
                     }
+                }
+            }
+        }
+    }
+
+    public class ExoticMeel : Ability
+    {
+        public ExoticMeel()
+        {
+            name = "Exotic MEel";
+            desc1 = "Deals 5 electric ATK AoE. Buffs party member with Electrified and heals them for 30+ hp";
+            desc2 = "Tim decides to incorporate seafood into his catalog of dishes and cooks up an electric eel." +
+                "It seems a little unsafe but you trust Tim enough to try it.";
+            damage = 5;
+            damageType = 2;
+            type = 1;
+
+        }
+
+        public override void UseAttack(unit user, List<unit> targets)
+        {
+            for (int i = 0; i < targets.Count; i++)
+            {
+                if (targets[i].enemy)
+                {
+                    int val = user.takeDamageCalc(targets[i], damage, damageType);
+                    targets[i].takeDamage(val);
+                }
+                else
+                {
+                    targets[i].giveStatus("Electrified");
+                    targets[i].healDamage(30 + (int)(user.getPOW() * 0.3f));
                 }
             }
         }
@@ -3200,11 +3251,11 @@ namespace TimAbilities
             name = "Mystery Meat";
             desc1 = "Inflicts aspirating and eye bleed on an enemy. Inflicts vomiting and weeping on self.";
             desc2 = "You don’t know what it is, but Tim is failing to serve it without gagging.";
-            cost = 12;
+            cost = 10;
             type = 0;
             position = 1;
             statusEffect = "Aspirating Eye_Bleeding";
-            selfStatus = "Vomiting Weeping";
+            selfStatus = "Vomiting,Weeping";
             madness = true;
         }
     }
@@ -3396,6 +3447,10 @@ namespace WhiteKnightAbilities
             int dami = Random.Range(randoMin, user.level * 4);
             user.takeDamageCalc(targets[ran], dami, 0, true);
             targets[ran].takeDamage(dami);
+            if (targets[ran].currentHP > 0)
+            {
+                targets[ran].giveStatus(statusEffect);
+            }
         }
     }
 }

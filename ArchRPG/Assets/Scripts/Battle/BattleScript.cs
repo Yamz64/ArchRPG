@@ -5283,7 +5283,7 @@ public class BattleScript : MonoBehaviour
             }
         }
         //If support ability and Not eldritch
-        else if ((uni.abilities[ata].type == 1 || uni.abilities[ata].type == 2) && !uni.abilities[ata].eldritch)
+        else if ((uni.abilities[ata].type == 1 || uni.abilities[ata].type == 2) && !uni.abilities[ata].eldritch && uni.abilities[ata].customAbility == 0)
         {
             int hereVal = 0;
             for (int x = 0; x < 4; x++)
@@ -5553,6 +5553,59 @@ public class BattleScript : MonoBehaviour
 
             uni.setSP(uni.getSP() - uni.abilities[ata].cost);
             uni.setHUD();
+        }
+        //If custom support ability
+        else if ((uni.abilities[ata].type == 1 || uni.abilities[ata].type == 2) && !uni.abilities[ata].eldritch)
+        {
+            int expHere = 0;
+            List<unit> tore = new List<unit>();
+            List<int> ori = new List<int>();
+            if (uni.abilities[ata].name.Equals("Exotic MEel"))
+            {
+                tore.Add(target);
+                ori.Add(target.currentHP);
+
+                for (int i = 0; i < enemyUnits.Count; i++)
+                {
+                    if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                    {
+                        tore.Add(enemyUnits[i].GetComponent<UnitMono>().mainUnit);
+                        ori.Add(enemyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP);
+                    }
+                }
+            }
+            uni.abilities[ata].UseAttack(uni, tore);
+            StartCoroutine(flashDealDamage(uni));
+            for (int i = 0; i < tore.Count; i++)
+            {
+                if (tore[i].enemy)
+                {
+                    if (tore[i].currentHP < ori[i])
+                    {
+                        StartCoroutine(flashDamage(tore[i]));
+                        StartCoroutine(showDamage(ori[i] - tore[i].currentHP, i - 1));
+                    }
+                }
+                else
+                {
+                    StartCoroutine(flashHeal(tore[i]));
+                }
+            }
+            for (int i = 0; i < tore.Count; i++)
+            {
+                if (tore[i].currentHP <= 0)
+                {
+                    yield return unitDeath(tore[i]);
+                    if (tore[i].enemy)
+                    {
+                        expHere += tore[i].expGain;
+                    }
+                }
+            }
+            if (expHere > 0)
+            {
+                yield return levelUp(expHere);
+            }
         }
         //If eldritch ability
         else

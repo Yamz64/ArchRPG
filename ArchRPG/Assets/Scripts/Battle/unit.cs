@@ -1472,6 +1472,25 @@ public class unit
                 giveStatus(breaker[i]);
             }
         }
+        if (id.Contains(","))
+        {
+            string[] breaker = id.Split(',');
+            for (int i = 0; i < breaker.Length; i++)
+            {
+                //Roll numbers to check if status effect is given
+                int rando = UnityEngine.Random.Range(1, 101);
+                int reze = RES;
+                //If target has Chutzpah
+                if (statuses[21] != -1)
+                {
+                    reze = (int)(reze * 1.25);
+                }
+                if (rando >= reze || rando == 1)
+                {
+                    giveStatus(breaker[i]);
+                }
+            }
+        }
         int ran = 0;
         bool val = true;
         if (id.Equals("Vomiting")           && statuses[0] == -1)
@@ -6192,7 +6211,7 @@ public class TimUnit : unit
         }
         if (level >= 18)
         {
-            abilities.Add(new TimAbilities.BigMeatTM());
+            abilities.Add(new TimAbilities.ExoticMeel());
         }
         if (level >= 20)
         {
@@ -6470,7 +6489,7 @@ public class TimUnit : unit
         }
         if (level >= 18)
         {
-            abilities.Add(new TimAbilities.BigMeatTM());
+            abilities.Add(new TimAbilities.ExoticMeel());
         }
         if (level >= 20)
         {
