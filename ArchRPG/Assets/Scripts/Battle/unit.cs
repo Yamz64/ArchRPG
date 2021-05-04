@@ -864,7 +864,7 @@ public class unit
                 if (target.statuses[23] != -1 && ata.damageType == 0)
                 {
                     val = (int)(val * 1.25);
-                    val = takeDamageCalc(target, val, 2);
+                    val = takeDamageCalc(target, val, 2, abilities[index].use_pow);
                 }
 
                 //If conductive + electric damage
@@ -1030,7 +1030,7 @@ public class unit
                     {
                         if (ata.chance2Die > 0)
                         {
-                            int randi = UnityEngine.Random.Range(0, 101);
+                            int randi = UnityEngine.Random.Range(0, target.currentHP);
                             if (randi < ata.chance2Die)
                             {
                                 target.takeDamage(target.maxHP);
@@ -1573,7 +1573,7 @@ public class unit
         {
             ran = 99;
             statuses[15] = ran;
-            maxHP = (int)(0.7f * maxHP);
+            maxHP = maxHP - (int)(0.7f * maxHP);
 
             if (currentHP > maxHP) currentHP = maxHP;
             
@@ -3912,11 +3912,11 @@ public class NormUnit : unit
         }
         if (level >= 12)
         {
-            abilities.Add(new NormAbilities.ApeArmbar());
+            abilities.Add(new NormAbilities.OrangutanRage());
         }
         if (level >= 16)
         {
-            abilities.Add(new NormAbilities.OrangutanRage());
+            abilities.Add(new NormAbilities.ApeArmbar());
         }
         if (level >= 20)
         {
@@ -4190,11 +4190,11 @@ public class NormUnit : unit
         }
         if (level >= 12)
         {
-            abilities.Add(new NormAbilities.ApeArmbar());
+            abilities.Add(new NormAbilities.OrangutanRage());
         }
         if (level >= 16)
         {
-            abilities.Add(new NormAbilities.OrangutanRage());
+            abilities.Add(new NormAbilities.ApeArmbar());
         }
         if (level >= 20)
         {
@@ -6499,6 +6499,7 @@ public class WhiteKnightUnit : unit
         resistances[4] = true;
         //Electric
         weaknesses[2] = true;
+        hasMP = true;
 
         switch (level)
         {
@@ -7627,6 +7628,7 @@ public class EmberMoonUnit : unit
         resistances[1] = true;
         //Electric
         weaknesses[2] = true;
+        hasMP = true;
 
         switch (level)
         {

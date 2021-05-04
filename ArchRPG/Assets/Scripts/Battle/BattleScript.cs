@@ -5719,11 +5719,17 @@ public class BattleScript : MonoBehaviour
         //bool good = false;
         bool bad = false;
 
+        int op = 0;
+        if (uni.unitWeapon != null)
+        {
+            op = uni.unitWeapon.damageType;
+        }
+
         yield return new WaitForSeconds(1f);
         int val = 5;
         //if (uni.ATK > uni.POW)
         //{
-            val = uni.takeDamageCalc(target, val, 0);
+            val = uni.takeDamageCalc(target, val, op);
         //}
         
         //else

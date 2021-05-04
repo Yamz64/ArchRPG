@@ -2225,7 +2225,7 @@ namespace ClyveAbilities
             cost = 3;
             target = 0;
             type = 0;
-            damage = 0;
+            damage = 2;
             position = 0;
             damageType = 3;
             statusEffect = "Vomiting";
@@ -2242,7 +2242,7 @@ namespace ClyveAbilities
             cost = 4;
             target = 0;
             type = 0;
-            damage = 0;
+            damage = 2;
             position = 0;
             damageType = 3;
             statusEffect = "Weeping";
@@ -2289,8 +2289,10 @@ namespace ClyveAbilities
             desc1 = "Has a very low random chance to instantly kill all non-boss enemies that increases based on each target’s remaining health.";
             desc2 = "Clyve realized he’d been carrying his dead hamster in his pocket. Anyone that smells it will surely meet the same fate as that rodent.";
             cost = 10;
+            damage = 2;
             position = 1;
-            chance2Die = 10;
+            statusEffect = "Reactive";
+            chance2Die = 5;
             target = 3;
         }
     }
@@ -2441,8 +2443,9 @@ namespace JimAbilities
             desc2 = "Jim does some crazy shit and totally flips out and I guess maybe " +
                 "it affects the baddies too? Honestly it’s really hard to tell if he’s doing anything";
             cost = 7;
+            damage = 2;
             target = 2;
-            statusEffect = "Spasms";
+            statusEffect = "Spasms Zonked";
             selfStatus = "Zonked";
         }
     }
@@ -2561,12 +2564,12 @@ namespace NormAbilities
         public PrimatePowerbomb()
         {
             name = "Primate Powerbomb";
-            desc1 = "Powerful Physical attack to hit 2 enemies";
+            desc1 = "Powerful Physical attack to hit all enemies";
             desc2 = "Norm has always been a large fan of professional wrestling, and decides to practice some of his moves.";
             cost = 8;
-            target = 2;
+            target = 3;
             position = 1;
-            damage = 15;
+            damage = 10;
         }
     }
 
@@ -2594,9 +2597,9 @@ namespace NormAbilities
             name = "Orangutan Rage";
             desc1 = "Deals moderate physical ATK inflicts weeping and spasms";
             desc2 = "Norm enters a primal fury and beats his enemy to a pulp, they are left in a blinding fit of pain afterwards.";
-            cost = 12;
+            cost = 8;
             damage = 12;
-            statusEffect = "Weeping Spasms";
+            statusEffect = "Eye_Bleed Spasms";
         }
     }
 
@@ -2605,13 +2608,13 @@ namespace NormAbilities
         public ChimpChop()
         {
             name = "CHIMP CHOP";
-            desc1 = "Deals moderate physical ATK hits 4-8 times each hit may cause Blunt Trauma";
+            desc1 = "Deals moderate physical ATK hits 4-8 times each hit may cause Blunt Trauma or Zonked";
             desc2 = "Norm spins his arms without restraint, brutally beating in the skull of his poor unfortunate victim.";
             cost = 16;
             target = 0;
             position = 1;
             damage = 12;
-            statusEffect = "Blunt_Trauma";
+            statusEffect = "Blunt_Trauma Zonked";
             multiHitMin = 4;
             multiHitMax = 9;
         }
@@ -2635,7 +2638,7 @@ namespace NormAbilities
             target = user;
             //user.setSP(user.currentSP - cost);
             user.giveStatus(statusEffect);
-            user.setSAN(user.sanity + 5);
+            user.setSAN(user.sanity + 7);
         }
     }
 }
@@ -2649,7 +2652,7 @@ namespace ShirleyAbilities
             name = "Open Fire";
             desc1 = "Shoot at the enemy to deal 10 fire damage";
             desc2 = "Shirley quickly draws an Aston Model 1842 flintlock pistol replica, fires at the enemy, and stows it away.  This ability is very quick.";
-            cost = 4;
+            cost = 5;
             target = 0;
             damage = 10;
             damageType = 1;
@@ -2665,17 +2668,17 @@ namespace ShirleyAbilities
             name = "To the Frontlines!";
             desc1 = "Induce Zealous on an ally";
             desc2 = "After letting out a zealous warcry, Shirley commands a party member to the frontline, they seem really fired up though.  Buffs ally with Zealous";
-            cost = 6;
+            cost = 5;
             damage = 0;
             swapper = 1;
             type = 1;
             position = 0;
-            statusEffect = "Zealous";
+            statusEffect = "Inspired";
         }
 
         public override void UseAttack(unit user, unit target)
         {
-            target.giveStatus("Zealous");
+            target.giveStatus(statusEffect);
         }
     }
 
@@ -2719,9 +2722,11 @@ namespace ShirleyAbilities
             desc2 = "Turns out all that talking about battle formations and river crossings or " +
                 "whatever actually helped Shirley learn a thing or two about combat. Good for her I guess.";
             cost = 9;
+            damage = 2;
+            damageType = 4;
             position = 2;
             target = 2;
-            statusEffect = "Analyzed";
+            statusEffect = "Analyzed Lethargic";
         }
     }
 
@@ -2736,9 +2741,9 @@ namespace ShirleyAbilities
             position = 2;
             use_pow = true;
             target = 2;
-            damage = 20;
+            damage = 15;
             damageType = 1;
-            statusEffect = "Vomiting";
+            statusEffect = "Vomiting Conductive";
         }
     }
 
@@ -2846,7 +2851,7 @@ namespace RalphAbilities
             cost = 10;
             damage = 10;
             damageType = 3;
-            statusEffect = "Spasms";
+            statusEffect = "Spasms Conductive";
         }
     }
 
@@ -2926,7 +2931,7 @@ namespace LucyAbilities
             target = 0;
             position = 2;
             statusEffect = "Aspirating";
-            damage = 0;
+            damage = 2;
             damageType = 3;
         }
     }
@@ -2943,7 +2948,8 @@ namespace LucyAbilities
             target = 0;
             position = 2;
             statusEffect = "Flammable";
-            damageType = 1;
+            damage = 2;
+            damageType = 3;
         }
     }
 
@@ -2955,7 +2961,7 @@ namespace LucyAbilities
             desc1 = "A strong debuff attack (Consumed)";
             desc2 = "Lucy commands her “children” to feed on a " +
                 "target, their appetite is particularly voracious today.";
-            cost = 10;
+            cost = 17;
             target = 0;
             position = 2;
             statusEffect = "Consumed";
@@ -2971,6 +2977,8 @@ namespace LucyAbilities
             desc2 = "With sheer numbers, it should be no issue to simply overrun your opponents. Good practice for the eventual rodent uprising.";
             cost = 12;
             damage = 8;
+            target = 3;
+            statusEffect = "Reactive";
             multiHitMin = 2;
             multiHitMax = 6;
         }
@@ -2985,6 +2993,7 @@ namespace LucyAbilities
             desc2 = "Don’t worry this is a highly trained rat, totally a professional, don’t question why it’s crashing into its target.";
             cost = 15;
             damage = 12;
+            damageType = 2;
             position = 2;
             statusEffect = "Eye_Bleeding";
             multiHitMin = 1;
@@ -3001,10 +3010,11 @@ namespace LucyAbilities
                 "instantly kill a non-boss target that increases based on the target’s remaining health";
             desc2 = "The culmination of Lucy’s work, after all these years, she’s finally come up with a plague that can wipe " +
                 "humanity off the face of the earth, she couldn’t have done it without you!";
-            cost = 18;
+            cost = 20;
             damage = 10;
+            damageType = 3;
             position = 2;
-            statusEffect = "Aspirating Diseased";
+            statusEffect = "Vomiting Aspirating Diseased";
             chance2Die = 10;
         }
     }
@@ -3017,7 +3027,7 @@ namespace LucyAbilities
             desc1 = "Shuffles Lucy to the frontlines gives zealous and neurotic " +
                 "(this ability will periodically happen without the player selecting it)";
             desc2 = "They can never take my children!... NEVER!!!!!";
-            cost = 10;
+            cost = 5;
             type = 2;
             swapper = 1;
             selfStatus = "Zealous Neurotic";
@@ -3091,6 +3101,8 @@ namespace TimAbilities
             desc2 = "Tim empties the tray of his portable, propane fueled, limited edition Goodmeat " +
                 "brand hotdog grill onto his enemies to inflict them with flammable!";
             cost = 12;
+            damage = 2;
+            damageType = 3;
             target = 2;
             statusEffect = "Flammable";
         }
@@ -3104,7 +3116,7 @@ namespace TimAbilities
             desc1 = "Moderate AoE heal grants Chutzpah to allies";
             desc2 = "Tim stops to create a well balanced meal of the 4 major food groups: sausages, " +
                 "vienna sausages, red meat, and white meat.  You are well filled after it’s consumption.";
-            cost = 20;
+            cost = 10;
             type = 1;
             target = 3;
             position = 2;
@@ -3119,7 +3131,7 @@ namespace TimAbilities
                 {
                     if (targets[i].currentHP > 0 && !targets[i].enemy)
                     {
-                        targets[i].healDamage(20);
+                        targets[i].healDamage(25 + (int)(user.POW * 0.2f));
                         targets[i].giveStatus(statusEffect);
                     }
                 }
@@ -3158,10 +3170,10 @@ namespace TimAbilities
         public AllYouCanEat()
         {
             name = "All You Can Eat";
-            desc1 = "Heals everyone to max. Once per combat.";
+            desc1 = "Heals everyone to max. Use it sparingly";
             desc2 = "After feeding you guys so much, it seems that you’ve earned enough credit for a free all you can eat buffet!  " +
                 "Tim fixes up the largest, and heartiest meal he can cook up and serves it to his good friends!";
-            cost = 25;
+            cost = 50;
             type = 1;
             target = 3;
         }
@@ -3178,8 +3190,6 @@ namespace TimAbilities
                     }
                 }
             }
-            canUse = -1;
-
         }
     }
 
@@ -3190,7 +3200,7 @@ namespace TimAbilities
             name = "Mystery Meat";
             desc1 = "Inflicts aspirating and eye bleed on an enemy. Inflicts vomiting and weeping on self.";
             desc2 = "You don’t know what it is, but Tim is failing to serve it without gagging.";
-            cost = 14;
+            cost = 12;
             type = 0;
             position = 1;
             statusEffect = "Aspirating Eye_Bleeding";
@@ -3279,6 +3289,8 @@ namespace WhiteKnightAbilities
                 "reads wise words from Kawaī Neko No On'nanoko to the enemy Pagans. Get that Jap cartoon shit out of here!";
             cost = 16;
             type = 0;
+            damage = 5;
+            damageType = 2;
             target = 3;
             doAggro = true;
         }
@@ -3297,6 +3309,7 @@ namespace WhiteKnightAbilities
             damage = 18;
             damageType = 1;
             target = 3;
+            statusEffect = "Conductive";
             use_pow = true;
             customAbility = 3;
         }
@@ -3338,7 +3351,7 @@ namespace WhiteKnightAbilities
 
         public override void UseAttack(unit user, List<unit> targets)
         {
-            user.setSP(user.currentSP - cost);
+            //user.setSP(user.currentSP - cost);
             for (int i = 0; i < targets.Count; i++)
             {
                 if (targets[i] != null)
@@ -3348,7 +3361,7 @@ namespace WhiteKnightAbilities
                         targets[i].giveStatus(statusEffect);
                         if (targets[i].unitName.Equals(user.unitName))
                         {
-                            targets[i].setSAN(targets[i].sanity + 5);
+                            targets[i].setSAN(targets[i].sanity + 20);
                         }
                     }
                 }
@@ -3366,10 +3379,11 @@ namespace WhiteKnightAbilities
                 "Is he wrong? Have all my ventures in the internet… been for nought?";
             cost = 10;
             type = 0;
-            randoMin = 15;
-            randoMax = 25;
+            randoMin = 1;
+            randoMax = 50;
             customAbility = 3;
             madness = true;
+            statusEffect = "Zonked";
         }
 
         public override void UseAttack(unit user, List<unit> targets)
@@ -3379,7 +3393,7 @@ namespace WhiteKnightAbilities
             {
                 ran = Random.Range(0, targets.Count);
             }
-            int dami = Random.Range(randoMin, randoMax + 1);
+            int dami = Random.Range(randoMin, user.level * 4);
             user.takeDamageCalc(targets[ran], dami, 0, true);
             targets[ran].takeDamage(dami);
         }
@@ -3636,8 +3650,11 @@ namespace EmberMoonAbilities
             desc2 = "You’d think that the baddies wouldn’t want to take drugs from the kids they’re fighting, " +
                 "but Ember’s peer pressure aura is impossible, even for the lowliest of life forms, to defeat.";
             cost = 12;
-            statusEffect = "Reactive";
-            selfStatus = "Hyperactive";
+            damage = 2;
+            damageType = 3;
+            use_pow = true;
+            statusEffect = "Lethargic Reactive";
+            selfStatus = "Hyperactive Chutzpah";
         }
     }
 
@@ -3677,7 +3694,7 @@ namespace EmberMoonAbilities
         public MindCrush()
         {
             name = "Mind Crush";
-            desc1 = "Ember inflicts consumed on a non-boss enemy, heals herself for an amount based on POW, " +
+            desc1 = "Ember inflicts consumed on a enemy, heals herself for an amount based on POW, " +
                 "and deals Weird damage based on POW";
             desc2 = "Ember staring at you is already pretty scary, but when her third eye opens up and she starts " +
                 "speaking in tongues you better get the hell out of there.";
@@ -3727,7 +3744,7 @@ namespace EmberMoonAbilities
                             int val = targets[i].takeDamageCalc(targets[i], damage, 3, true);
                             targets[i].takeDamage(val);
                         }
-                        targets[i].giveStatus("Zonked");
+                        targets[i].giveStatus("Conductive");
                     }
                 }
             }
