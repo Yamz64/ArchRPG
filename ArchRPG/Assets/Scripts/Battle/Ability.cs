@@ -1375,7 +1375,7 @@ namespace EnemyAbilities
         public PylonDriver()
         {
             name = "Pylon Driver";
-            damage = 50;
+            damage = 25;
             statusEffect = "Blunt_Trauma Spasms";
             priority = defaultPriority = 1;
         }
