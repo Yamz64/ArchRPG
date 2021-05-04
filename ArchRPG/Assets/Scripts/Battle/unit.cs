@@ -85,30 +85,30 @@ public class unit
         statusIconIndex.Add("doomed");          //25
         statusIconIndex.Add("disco_fever");     //26
 
-        statBlurbIndex.Add("Deals 10 damage before the unit acts");                                 //0
-        statBlurbIndex.Add("Deals 1/16 of the units Max HP as damage before the unit acts");        //1
-        statBlurbIndex.Add("Has a 33% chance of reducing the units attack damage by 80%");          //2
-        statBlurbIndex.Add("Has a 50% chance of reducing the units attack damage by 80%");          //3
+        statBlurbIndex.Add("Deals 4 damage before the unit acts");                                  //0
+        statBlurbIndex.Add("Deals 8 damage before the unit acts");                                  //1
+        statBlurbIndex.Add("Reduce ATK by 25% and POW by 15%");                                     //2
+        statBlurbIndex.Add("Reduce ATK by 50% and POW by 33%");                                     //3
         statBlurbIndex.Add("Unit's DEFENCE reduced by 25%");                                        //4
         statBlurbIndex.Add("Unit's AGILITY increased by 25%");                                      //5
-        statBlurbIndex.Add("Unit's ATTACK increased by 25%");                                       //6
+        statBlurbIndex.Add("Unit's ATTACK increased by 33%");                                       //6
         statBlurbIndex.Add("Unit's DEFENCE reduced by 50%, WILLPOWER reduced by 25%");              //7
         statBlurbIndex.Add("Unit is unable to perform actions while restrained");                   //8
         statBlurbIndex.Add("Unit is unable to act and is damaged in the process of consumption");   //9
-        statBlurbIndex.Add("Unit's Maximum HP is reduced by 20HP while diseased");                  //10
+        statBlurbIndex.Add("Unit's Maximum HP is reduced by 25% while diseased");                   //10
         statBlurbIndex.Add("Fire attacks will deal extra damage against this unit");                //11
         statBlurbIndex.Add("Unit loses sanity each turn");                                          //12
         statBlurbIndex.Add("Critical hits are more likely to occur against this unit");             //13
-        statBlurbIndex.Add("ATTACK and POWER are increased by 25%, and DEFENCE is reduced by 25%"); //14
-        statBlurbIndex.Add("Maximum HP and WILLPOWER are reduced");                                 //15
-        statBlurbIndex.Add("WILLPOWER and LUCK are increaed by 25%");                               //16
-        statBlurbIndex.Add("This unit has a 33% chance of acting on a different target");           //17
+        statBlurbIndex.Add("ATK increased by 33%, POW increased by 50%, and DEF is reduced by 15%");//14
+        statBlurbIndex.Add("Max HP reduced by 70%, and WILL reduced by 25%");                       //15
+        statBlurbIndex.Add("WILL increased by 33%, LUCK increased by 50%");                         //16
+        statBlurbIndex.Add("This unit has a 50% chance of acting on a different target");           //17
         statBlurbIndex.Add("Electrical attacks have a chance of inflicting paralysis (restrained)");//18
         statBlurbIndex.Add("Chemical attacks have a chance of increasing the duration of all active status effects by 1");  //19
         statBlurbIndex.Add("Weird attacks have a chance of inflicting a random, low level status effect");                  //20
         statBlurbIndex.Add("This Unit's RESISTANCE is increased by 25%");                           //21
         statBlurbIndex.Add("This Unit's speed is reduced by 25%");                                  //22
-        statBlurbIndex.Add("Electrical attacks will deal 10 more damage");                          //23
+        statBlurbIndex.Add("Physical attacks convert to electrical, and deal extra damage");        //23
         statBlurbIndex.Add("Madness");                                                              //24
         statBlurbIndex.Add("There is no respite, only doom");                                       //25
         statBlurbIndex.Add("Theres no time, just boogie! Deal sanity damage while dancing");        //26
