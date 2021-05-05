@@ -5022,7 +5022,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   encounter_type: 0
   enemy_names:
-  - Eldritch Gunner
+  - enemy_name: 
+    encounter_priority: 0
+  maximum_enemies: {x: 0, y: 0}
   roll_delay: 5
   roll_min: 2
   enemy_encounter_chance: 50
@@ -5050,10 +5052,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3435720644519311162, guid: 1f43982e2a230d947830355b5f90e117, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3435720644578515772, guid: 1f43982e2a230d947830355b5f90e117, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}

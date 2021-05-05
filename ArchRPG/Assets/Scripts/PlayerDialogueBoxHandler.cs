@@ -15,6 +15,7 @@ public class PlayerDialogueBoxHandler : MonoBehaviour
     private List<string> image_queue;
     private List<EffectContainer> effect_queue;
     private GameObject dialogue_box;
+    private GameObject finished_dialogue_image;
     private TMP_Text text;
     private Image speaker_image;
     private PlayerMovement movement;
@@ -188,6 +189,7 @@ public class PlayerDialogueBoxHandler : MonoBehaviour
     void Start()
     {
         dialogue_box = transform.GetChild(1).GetChild(0).gameObject;
+        finished_dialogue_image = dialogue_box.transform.GetChild(2).gameObject;
         text = dialogue_box.transform.GetChild(0).GetComponent<TMP_Text>();
         speaker_image = dialogue_box.transform.GetChild(1).GetComponent<Image>();
         movement = GetComponent<PlayerMovement>();
@@ -229,6 +231,8 @@ public class PlayerDialogueBoxHandler : MonoBehaviour
                     effect_queue.Clear();
                     CloseTextBox();
                 }
+                if (write_queue.Count == 0 && !finished_dialogue_image.activeInHierarchy) finished_dialogue_image.SetActive(true);
+                else if(write_queue.Count > 0 && finished_dialogue_image.activeInHierarchy) finished_dialogue_image.SetActive(false);
             }
 
             if (image_queue != null)
