@@ -502,6 +502,15 @@ public static class Consumables
         }
     }
 
+    //Need stuff
+    public class Reeb : Item
+    {
+        public Reeb()
+        {
+
+        }
+    }
+
     public class Cocaine : Item
     {
         public Cocaine()
@@ -646,6 +655,313 @@ public static class Consumables
             useable = false;
         }
     }
+
+    //Need stuff
+    public class GlutenFreeCrackers : Item
+    {
+        public GlutenFreeCrackers()
+        {
+
+        }
+    }
+
+    //Need stuff
+    public class GlutenFreeBread : Item
+    {
+        public GlutenFreeBread()
+        {
+
+        }
+    }
+
+    //Need stuff
+    public class GlutenFreeBrioche : Item
+    {
+        public GlutenFreeBrioche()
+        {
+
+        }
+    }
+
+    //Need stuff
+    public class PootBeer : Item
+    {
+        public PootBeer()
+        {
+
+        }
+    }
+
+    //Need stuff
+    public class PissCola : Item
+    {
+        public PissCola()
+        {
+
+        }
+    }
+
+    //Need stuff
+    public class ChiliDog : Item
+    {
+        public ChiliDog()
+        {
+
+        }
+    }
+
+    //Need stuff
+    public class GingerAle : Item
+    {
+        public GingerAle()
+        {
+
+        }
+
+        public override void Use()
+        {
+            character.SetStatus(0, 0);
+        }
+
+        public override void Use(unit user)
+        {
+            user.statuses[0] = -1;
+            Remove();
+        }
+    }
+
+    //Need stuff
+    public class StomachPump : Item
+    {
+        public StomachPump()
+        {
+
+        }
+
+        public override void Use()
+        {
+            character.SetStatus(0, 0);
+            character.SetStatus(1, 0);
+        }
+
+        public override void Use(unit user)
+        {
+            user.statuses[0] = -1;
+            user.statuses[1] = -1;
+            Remove();
+        }
+    }
+
+    //Need stuff
+    public class Tissues : Item
+    {
+        public Tissues()
+        {
+
+        }
+
+        public override void Use()
+        {
+            character.SetStatus(2, 0);
+        }
+
+        public override void Use(unit user)
+        {
+            user.statuses[2] = -1;
+            Remove();
+        }
+    }
+
+    //Need stuff
+    public class EyeDrops : Item
+    {
+        public EyeDrops()
+        {
+
+        }
+
+        public override void Use()
+        {
+            character.SetStatus(2, 0);
+            character.SetStatus(3, 0);
+        }
+
+        public override void Use(unit user)
+        {
+            user.statuses[2] = -1;
+            user.statuses[3] = -1;
+            Remove();
+        }
+    }
+
+    //Need stuff
+    public class SmellingSalts : Item
+    {
+        public SmellingSalts()
+        {
+
+        }
+
+        public override void Use()
+        {
+            character.SetStatus(4, 0);
+        }
+
+        public override void Use(unit user)
+        {
+            user.statuses[4] = -1;
+            Remove();
+        }
+    }
+
+    //Need stuff
+    public class Leeches : Item
+    {
+        public Leeches()
+        {
+
+        }
+
+        public override void Use()
+        {
+            character.SetStatus(10, 0);
+        }
+
+        public override void Use(unit user)
+        {
+            user.statuses[10] = -1;
+            Remove();
+        }
+    }
+
+    //Need stuff
+    public class MineralWater : Item
+    {
+        public MineralWater()
+        {
+
+        }
+
+        public override void Use()
+        {
+            character.SetStatus(11, 0);
+        }
+
+        public override void Use(unit user)
+        {
+            user.statuses[11] = -1;
+            Remove();
+        }
+    }
+
+    //Need stuff
+    public class TinfoilHat : Item
+    {
+        public TinfoilHat()
+        {
+
+        }
+
+        public override void Use()
+        {
+            character.SetStatus(13, 0);
+        }
+
+        public override void Use(unit user)
+        {
+            user.statuses[13] = -1;
+            Remove();
+        }
+    }
+
+    //Need stuff
+    public class CaffeineGum : Item
+    {
+        public CaffeineGum()
+        {
+
+        }
+
+        public override void Use()
+        {
+            character.SetStatus(22, 0);
+        }
+
+        public override void Use(unit user)
+        {
+            user.statuses[22] = -1;
+            Remove();
+        }
+    }
+
+    //Need stuff
+    public class LightningRod : Item
+    {
+        public LightningRod()
+        {
+
+        }
+
+        public override void Use()
+        {
+            character.SetStatus(18, 0);
+        }
+
+        public override void Use(unit user)
+        {
+            user.statuses[18] = -1;
+            Remove();
+        }
+    }
+
+    //Need stuff
+    public class Litter : Item
+    {
+        public Litter()
+        {
+
+        }
+
+        public override void Use()
+        {
+            character.SetStatus(19, 0);
+        }
+
+        public override void Use(unit user)
+        {
+            user.statuses[19] = -1;
+            Remove();
+        }
+    }
+
+    //Need stuff
+    public class AnActualPepper : Item
+    {
+        public AnActualPepper()
+        {
+
+        }
+
+        public override void Use()
+        {
+            character.SetStatus(20, 0);
+        }
+
+        public override void Use(unit user)
+        {
+            user.statuses[20] = -1;
+            Remove();
+        }
+    }
+
+    //Need stuff
+    public class WinningLotteryTicket : Item
+    {
+        public WinningLotteryTicket()
+        {
+
+        }
+    }
 }
 
 public static class Weapons
@@ -780,6 +1096,51 @@ public static class Weapons
             luck_buff = 4;
         }
     }
+
+    //Needs stuff
+    public class Baton : Weapon
+    {
+        public Baton()
+        {
+
+        }
+    }
+
+    //Needs stuff
+    public class Bokken : Weapon
+    {
+        public Bokken()
+        {
+
+        }
+    }
+
+    //Needs stuff
+    public class Book : Weapon
+    {
+        public Book()
+        {
+
+        }
+    }
+
+    //Needs stuff
+    public class ExplicitMagazine : Weapon
+    {
+        public ExplicitMagazine()
+        {
+
+        }
+    }
+
+    //Needs stuff
+    public class BeanBagGun : Weapon
+    {
+        public BeanBagGun()
+        {
+
+        }
+    }
 }
 
 public static class Armors
@@ -886,6 +1247,33 @@ public static class Armors
             will_buff = 6;
         }
     }
+
+    //Needs stuff
+    public class BulletProofSocks : Armor
+    {
+        public BulletProofSocks()
+        {
+
+        }
+    }
+
+    //Needs stuff
+    public class WoodPlanks : Armor
+    {
+        public WoodPlanks()
+        {
+
+        }
+    }
+
+    //Needs stuff
+    public class UnwrappedExpiredRubber : Armor
+    {
+        public UnwrappedExpiredRubber()
+        {
+
+        }
+    }
 }
 
 public static class Trinkets
@@ -972,6 +1360,24 @@ public static class Trinkets
             amount = 1;
             type = 3;
             will_buff = 3;
+        }
+    }
+
+    //Needs stuff
+    public class PetRock : Trinket
+    {
+        public PetRock()
+        {
+
+        }
+    }
+
+    //Needs stuff
+    public class AdultVideo : Trinket
+    {
+        public AdultVideo()
+        {
+
         }
     }
 }
