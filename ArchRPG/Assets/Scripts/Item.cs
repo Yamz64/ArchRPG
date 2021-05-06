@@ -507,7 +507,13 @@ public static class Consumables
     {
         public Reeb()
         {
-
+            name = "Reeb";
+            id = "consumables:reeb";
+            description = "A very potent alcoholic beverage, known to cause drunkenness by just looking at it.";
+            image_file_path = "ItemSprites/ConsumableIcon2";
+            amount = 1;
+            limit = 99;
+            cost = 10;
         }
     }
 
@@ -647,7 +653,7 @@ public static class Consumables
             name = "Senior Meat Salesman ID";
             id = "consumables:seniormeatsalesmanid";
             description = "A high quality replica of a Senior Meat Salesman ID.  It reads \"Rusty Shackleford.\"";
-            image_file_path = "";
+            image_file_path = "ItemSprites/ConsumableIcon4";
             amount = 1;
             limit = 1;
             cost = 50;
@@ -661,7 +667,25 @@ public static class Consumables
     {
         public GlutenFreeCrackers()
         {
+            name = "Gluten Free Crackers";
+            id = "consumables:crackers";
+            description = "We got crackers, no gluten... Heals 50 HP when consumed";
+            image_file_path = "ItemSprites/ConsumableIcon1";
+            amount = 1;
+            limit = 99;
+            cost = 5;
+        }
 
+        public override void Use()
+        {
+            character.SetHP(character.GetHP() + 50);
+        }
+
+        public override void Use(unit user)
+        {
+            user.healDamage(50);
+            user.setHP(user.getHP());
+            Remove();
         }
     }
 
@@ -670,7 +694,25 @@ public static class Consumables
     {
         public GlutenFreeBread()
         {
+            name = "Gluten Free Bread";
+            id = "consumables:bread";
+            description = "It's gluten-free. Heals 100 HP when consumed.";
+            image_file_path = "ItemSprites/ConsumableIcon1";
+            amount = 1;
+            limit = 99;
+            cost = 10;
+        }
 
+        public override void Use()
+        {
+            character.SetHP(character.GetHP() + 100);
+        }
+
+        public override void Use(unit user)
+        {
+            user.healDamage(100);
+            user.setHP(user.getHP());
+            Remove();
         }
     }
 
@@ -679,7 +721,25 @@ public static class Consumables
     {
         public GlutenFreeBrioche()
         {
+            name = "Gluten Free Brioche";
+            id = "consumables:brioche";
+            description = "Listen, I just need a baguette and a brioche. Heals 200 HP when cosumed";
+            image_file_path = "ItemSprites/ConsumableIcon1";
+            amount = 1;
+            limit = 99;
+            cost = 15;
+        }
 
+        public override void Use()
+        {
+            character.SetHP(character.GetHP() + 200);
+        }
+
+        public override void Use(unit user)
+        {
+            user.healDamage(200);
+            user.setHP(user.getHP());
+            Remove();
         }
     }
 
@@ -688,7 +748,24 @@ public static class Consumables
     {
         public PootBeer()
         {
+            name = "Poot Beer";
+            id = "consumables:pootbeer";
+            description = "A smooth yet strong tasting soda. Restores 115 SP when consumed";
+            image_file_path = "ItemSprites/ConsumableIcon2";
+            amount = 1;
+            limit = 99;
+            cost = 15;
+        }
 
+        public override void Use()
+        {
+            character.SetSP(character.GetSP() + 115);
+        }
+
+        public override void Use(unit user)
+        {
+            user.setSP(user.getSP() + 115);
+            Remove();
         }
     }
 
@@ -697,7 +774,24 @@ public static class Consumables
     {
         public PissCola()
         {
+            name = "Piss Cola";
+            id = "consumables:pisscola";
+            description = "Most of the soda water has congealed at the bottom... Recovers 75 SP when consumed!";
+            image_file_path = "ItemSprites/ConsumableIcon2";
+            amount = 1;
+            limit = 99;
+            cost = 6;
+        }
 
+        public override void Use()
+        {
+            character.SetSP(character.GetSP() + 75);
+        }
+
+        public override void Use(unit user)
+        {
+            user.setSP(user.getSP() + 75);
+            Remove();
         }
     }
 
@@ -706,7 +800,26 @@ public static class Consumables
     {
         public ChiliDog()
         {
+            name = "Chili Dog";
+            id = "consumables:chilidog";
+            description = "In a stroke of incredible genius Mr. Goodmeat combined a traditional American cuisine with acquired Texan cuisine, creating the worlds first chilidog!" +
+                "Heals 150 HP when eaten!";
+            image_file_path = "ItemSprites/ConsumableIcon1";
+            amount = 1;
+            limit = 99;
+            cost = 12;
+        }
 
+        public override void Use()
+        {
+            character.SetHP(character.GetHP() + 150);
+        }
+
+        public override void Use(unit user)
+        {
+            user.healDamage(150);
+            user.setHP(user.getHP());
+            Remove();
         }
     }
 
@@ -715,7 +828,14 @@ public static class Consumables
     {
         public GingerAle()
         {
-
+            name = "Ginger Ale";
+            id = "consumables:gingerale";
+            description = "While ginger is known to settle the stomach, you're seriously going to use that sugary soda to cure your serious case of gastroenteritis?" +
+                "Cures Vomiting";
+            image_file_path = "ItemSprites/ConsumableIcon2";
+            amount = 1;
+            limit = 99;
+            cost = 5;
         }
 
         public override void Use()
@@ -735,7 +855,14 @@ public static class Consumables
     {
         public StomachPump()
         {
-
+            name = "Stomach Pump";
+            id = "consumables:stomachpump";
+            description = "You'd tell the cashier that this is clearly a bicycle pump with the word 'stomach pump' crudely written on the side," +
+                "but you don't think he'd believe you. Cures vomiting and aspirating";
+            image_file_path = "ItemSprites/ConsumableIcon3";
+            amount = 1;
+            limit = 99;
+            cost = 10;
         }
 
         public override void Use()
@@ -757,7 +884,14 @@ public static class Consumables
     {
         public Tissues()
         {
-
+            name = "Tissues";
+            id = "consumables:tissues";
+            description = "With the brilliant idea of putting lotion into these cottony pieces of paper took off, they thought, \"Why stop there\" and decided to put " +
+                "insecticides in their new product. Cures weeping.";
+            image_file_path = "ItemSprites/ConsumableIcon3";
+            amount = 1;
+            limit = 99;
+            cost = 5;
         }
 
         public override void Use()
@@ -777,7 +911,13 @@ public static class Consumables
     {
         public EyeDrops()
         {
-
+            name = "Eye Drops";
+            id = "consumables:eyedrops";
+            description = "Ok, so everything else in this store has been of questionable quality, so you expect me to put that in my eye!??! Cures weeping and aspirating";
+            image_file_path = "ItemSprites/ConsumableIcon3";
+            amount = 1;
+            limit = 99;
+            cost = 10;
         }
 
         public override void Use()
@@ -799,7 +939,13 @@ public static class Consumables
     {
         public SmellingSalts()
         {
-
+            name = "Smelling Salts";
+            id = "consumables:smellingsalts";
+            description = "Ah yes please bring me to my senses by stimulating my respiratory tract with a corrosive material! Cures Blunt Trauma";
+            image_file_path = "ItemSprites/ConsumableIcon3";
+            amount = 1;
+            limit = 99;
+            cost = 5;
         }
 
         public override void Use()
@@ -819,7 +965,13 @@ public static class Consumables
     {
         public Leeches()
         {
-
+            name = "Leeches";
+            id = "consumables:leeches";
+            description = "A jar of highly trained leeches that only feed on bad blood and pathogens! Cures Diseased!";
+            image_file_path = "ItemSprites/ConsumableIcon3";
+            amount = 1;
+            limit = 99;
+            cost = 5;
         }
 
         public override void Use()
@@ -839,7 +991,14 @@ public static class Consumables
     {
         public MineralWater()
         {
-
+            name = "Mineral Water";
+            id = "consumables:mineralwater";
+            description = "Why not douse yourself with plain water? It's simply not the same as showering yourself with this particular brand of liquid pretension!" +
+                " Cures Flammable!";
+            image_file_path = "ItemSprites/ConsumableIcon2";
+            amount = 1;
+            limit = 99;
+            cost = 5;
         }
 
         public override void Use()
@@ -859,7 +1018,13 @@ public static class Consumables
     {
         public TinfoilHat()
         {
-
+            name = "Tinfoil Hat";
+            id = "consumables:tinfoilhat";
+            description = "Shroud yourself from those hidden gazes that would seek to encroach on your private thoughts with a state of the art tinfoil hat!";
+            image_file_path = "ItemSprites/ConsumableIcon3";
+            amount = 1;
+            limit = 99;
+            cost = 5;
         }
 
         public override void Use()
@@ -879,7 +1044,13 @@ public static class Consumables
     {
         public CaffeineGum()
         {
-
+            name = "Caffeine Gum";
+            id = "consumables:gum";
+            description = "Unleash your inner college student and put aside your bodily needs to stay awake for another hour! Cures Lethargic!";
+            image_file_path = "ItemSprites/ConsumableIcon3";
+            amount = 1;
+            limit = 99;
+            cost = 5;
         }
 
         public override void Use()
@@ -899,7 +1070,14 @@ public static class Consumables
     {
         public LightningRod()
         {
-
+            name = "Lightning Rod";
+            id = "consumables:lightningrod";
+            description = "A misunderstood device, although most people think it attracts electricity it's actually " +
+                "designed to provide a path of little resistance for strong amounts of electricity to discharge safely! Cures Conductive!";
+            image_file_path = "ItemSprites/ConsumableIcon3";
+            amount = 1;
+            limit = 99;
+            cost = 5;
         }
 
         public override void Use()
@@ -919,7 +1097,14 @@ public static class Consumables
     {
         public Litter()
         {
-
+            name = "Litter";
+            id = "consumables:litter";
+            description = "Chemists will sometimes cover weak acid spills with sand to neutralize them. The closest thing this store had to sand was cat litter..." +
+                " Cures Reactive!";
+            image_file_path = "ItemSprites/ConsumableIcon3";
+            amount = 1;
+            limit = 99;
+            cost = 5;
         }
 
         public override void Use()
@@ -939,7 +1124,13 @@ public static class Consumables
     {
         public AnActualPepper()
         {
-
+            name = "An Actual Pepper";
+            id = "consumables:pepper";
+            description = "It's just a regular pepper. Cures Zonked";
+            image_file_path = "ItemSprites/ConsumableIcon3";
+            amount = 1;
+            limit = 99;
+            cost = 5;
         }
 
         public override void Use()
@@ -959,7 +1150,24 @@ public static class Consumables
     {
         public WinningLotteryTicket()
         {
+            name = "Winning Lottery Ticket!";
+            id = "consumables:lotteryticket";
+            description = "The lottery has been indefinitely suspended, but when it does return you'll surely cash this in and not feel guilty about buying a " +
+                "lottery ticket in the first place! Heals a small amount of sanity on use!";
+            amount = 1;
+            limit = 99;
+            cost = 20;
+        }
 
+        public override void Use()
+        {
+            character.SetSAN(character.GetSAN() + Random.Range(1, 11));
+        }
+
+        public override void Use(unit user)
+        {
+            user.setSAN(user.getSAN() + Random.Range(1, 11));
+            Remove();
         }
     }
 }
