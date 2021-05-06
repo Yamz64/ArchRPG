@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.Video;
 using UnityEngine.SceneManagement;
 using Luminosity.IO;
@@ -111,11 +112,14 @@ public class BattleScript : MonoBehaviour
     public GameObject background;
 
     //Main text to let player know state of battle
-    public Text dialogue;
+    private TMP_Text dialogue;
 
-    public PlayerDialogueBoxHandler dialogueBox;
-
+    private List<string> write_queue;
+    private List<string> image_queue;
     public List<string> dialogueText;
+    public float scroll_speed;
+    private bool active;
+    private bool writing;
 
     public Text damageText;
 
@@ -335,15 +339,22 @@ public class BattleScript : MonoBehaviour
     //Open the enemy select menu
     public void OpenSelectEnemyMenu()
     {
+        Debug.Log("In function");
         int i = 0;
-        while (enemyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
+        while (enemyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && i < enemyUnits.Count)
         {
             i += 1;
+            if (i >= enemyUnits.Count)
+            {
+                break;
+            }
         }
+        if (i >= enemyUnits.Count) i = 0;
         currentEnemy = i;
-        dialogue.text = "Select Target";
+        Debug.Log("Current enemy == " + currentEnemy + ", i == " + i);
+        StartCoroutine(textDisplay("Select Target"));
         cursor.SetActive(false);
-        enemySelect(i);
+        enemySelect(currentEnemy);
     }
 
     //Close the enemy select menu
@@ -365,7 +376,7 @@ public class BattleScript : MonoBehaviour
     //Make one enemy appear highlighted compared to the other ones
     public void enemySelect(int act)
     {
-        for (int i = 0; i < activeEnemies; i++)
+        for (int i = 0; i < enemyUnits.Count; i++)
         {
             if (i != act && enemyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP > 0)
             {
@@ -407,7 +418,7 @@ public class BattleScript : MonoBehaviour
         }
         if (!stop) i = 0;
         currentAlly = i;
-        dialogue.text = "Select Target";
+        StartCoroutine(textDisplay("Select Target"));
         cursor.SetActive(false);
         unitSelect(i);
         if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].target == 1)
@@ -707,7 +718,15 @@ public class BattleScript : MonoBehaviour
                         if (enemyUnits.Count - enemyDeaths > 1)
                         {
                             currentEnemy = 0;
-                            while (enemyUnits[currentEnemy].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && currentEnemy < enemyUnits.Count) currentEnemy++; ;
+                            while (enemyUnits[currentEnemy].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && currentEnemy < enemyUnits.Count)
+                            {
+                                Debug.Log("Enemy health " + currentEnemy + " == " + enemyUnits[currentEnemy].GetComponent<UnitMono>().mainUnit.currentHP);
+                                currentEnemy++;
+                                if (currentEnemy >= enemyUnits.Count)
+                                {
+                                    break;
+                                }
+                            }
                             if (currentEnemy >= enemyUnits.Count)
                             {
                                 battleState temp = state;
@@ -717,7 +736,9 @@ public class BattleScript : MonoBehaviour
                             }
                             else
                             {
+                                Debug.Log("About to select");
                                 OpenSelectEnemyMenu();
+                                Debug.Log("has fon");
                                 enemy_select_menu = true;
                                 menu_input = false;
                             }
@@ -1127,7 +1148,7 @@ public class BattleScript : MonoBehaviour
                     else
                     {
                         useSound(0);
-                        dialogue.text = "Ability can not be used again";
+                        StartCoroutine(textDisplay("Ability can not be used again"));
                     }
                 }
                 menu_input = true;
@@ -1266,7 +1287,7 @@ public class BattleScript : MonoBehaviour
                             if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.currentSP <
                                 partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].cost)
                             {
-                                dialogue.text = "Insufficient SP";
+                                StartCoroutine(textDisplay("Insufficient SP"));
                             }
                             else
                             {
@@ -1489,7 +1510,7 @@ public class BattleScript : MonoBehaviour
                         }
                         else
                         {
-                            dialogue.text = "Can't use ability right now";
+                            StartCoroutine(textDisplay("Can't use ability right now"));
                             currentEnemy = 0;
                             highlighted_ability = 0;
                             ability_offset = 0;
@@ -1835,7 +1856,7 @@ public class BattleScript : MonoBehaviour
                         if (partyUnits[currentAlly].GetComponent<UnitMono>().mainUnit.unitName.Equals("Player") 
                             && partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name == "VampiricBetrayal")
                         {
-                            dialogue.text = "Can't use this ability on yourself";
+                            StartCoroutine(textDisplay("Can't use this ability on yourself"));
                             Image[] opts = transform.GetChild(1).Find("AbilityMenu").GetComponentsInChildren<Image>();
                             foreach (Image child in opts)
                             {
@@ -2006,12 +2027,12 @@ public class BattleScript : MonoBehaviour
                     }
                     else
                     {
-                        dialogue.text = "Invalid space selected. Try again";
+                        StartCoroutine(textDisplay("Invalid space selected. Try again"));
                     }
                 }
                 else
                 {
-                    dialogue.text = "Invalid space selected. Try again";
+                    StartCoroutine(textDisplay("Invalid space selected. Try again"));
                 }
             }
             //Make menus visible again to select new attack
@@ -2153,7 +2174,7 @@ public class BattleScript : MonoBehaviour
             {
                 if (highlighted_item >= data.GetInventorySize())
                 {
-                    dialogue.text = "Can't use empty space";
+                    StartCoroutine(textDisplay("Can't use empty space"));
                     CloseUseItemMenu();
                     CloseMenu(2);
                 }
@@ -2170,7 +2191,7 @@ public class BattleScript : MonoBehaviour
                         }
                         if (off == data.GetItem(highlighted_item).amount)
                         {
-                            dialogue.text = "Can't use current item";
+                            StartCoroutine(textDisplay("Can't use current item"));
                             useSound(0);
                             CloseUseItemMenu();
                             CloseMenu(2);
@@ -2935,91 +2956,17 @@ public class BattleScript : MonoBehaviour
                     //Check for vomiting
                     if (temp[ind].GetComponent<UnitMono>().mainUnit.statuses[0] != -1)
                     {
-                        //int dum = UnityEngine.Random.Range(1, 4);
-                        //if (dum != 1)
-                        //{
                         newd = temp[ind].GetComponent<UnitMono>().mainUnit.takeDamage(4);
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " took damage from vomiting.";
-                        yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
-                        //}
-                        /*
-                        if (temp[ind + 1] != null)
-                        {
-                            if (temp[ind + 1].GetComponent<UnitMono>().mainUnit.currentHP > 0 &&
-                                temp[ind + 1].GetComponent<UnitMono>().mainUnit.statuses[0] == -1)
-                            {
-                                int rol = UnityEngine.Random.Range(1, 101);
-                                if (rol > temp[ind + 1].GetComponent<UnitMono>().mainUnit.RES)
-                                {
-                                    temp[ind + 1].GetComponent<UnitMono>().mainUnit.giveStatus(temp[ind].GetComponent<UnitMono>().mainUnit.statusIndex[0]);
-                                    dialogue.text = temp[ind + 1].GetComponent<UnitMono>().mainUnit.unitName + " was inflicted with " +
-                                        temp[ind + 1].GetComponent<UnitMono>().mainUnit.statusIndex[0] + " from " + 
-                                        temp[ind].GetComponent<UnitMono>().mainUnit.unitName;
-                                    yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
-                                    yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
-                                }
-                            }
-                        }
-                        if (temp[ind - 1] != null)
-                        {
-                            if (temp[ind - 1].GetComponent<UnitMono>().mainUnit.currentHP > 0 &&
-                                temp[ind - 1].GetComponent<UnitMono>().mainUnit.statuses[0] == -1)
-                            {
-                                int rol = UnityEngine.Random.Range(1, 101);
-                                if (rol > temp[ind - 1].GetComponent<UnitMono>().mainUnit.RES)
-                                {
-                                    temp[ind - 1].GetComponent<UnitMono>().mainUnit.giveStatus(temp[ind].GetComponent<UnitMono>().mainUnit.statusIndex[0]);
-                                    dialogue.text = temp[ind - 1].GetComponent<UnitMono>().mainUnit.unitName + " was inflicted with " +
-                                        temp[ind - 1].GetComponent<UnitMono>().mainUnit.statusIndex[0] + " from " +
-                                        temp[ind].GetComponent<UnitMono>().mainUnit.unitName;
-                                    yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
-                                    yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
-                                }
-                            }
-                        }
-                        if (temp[ind + 2] != null)
-                        {
-                            if (temp[ind + 2].GetComponent<UnitMono>().mainUnit.currentHP > 0 &&
-                                temp[ind + 2].GetComponent<UnitMono>().mainUnit.statuses[0] == -1)
-                            {
-                                int rol = UnityEngine.Random.Range(1, 101);
-                                if (rol > temp[ind + 2].GetComponent<UnitMono>().mainUnit.RES)
-                                {
-                                    temp[ind + 2].GetComponent<UnitMono>().mainUnit.giveStatus(temp[ind].GetComponent<UnitMono>().mainUnit.statusIndex[0]);
-                                    dialogue.text = temp[ind + 2].GetComponent<UnitMono>().mainUnit.unitName + " was inflicted with " +
-                                        temp[ind + 2].GetComponent<UnitMono>().mainUnit.statusIndex[0] + " from " +
-                                        temp[ind].GetComponent<UnitMono>().mainUnit.unitName;
-                                    yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
-                                    yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
-                                }
-                            }
-                        }
-                        if (temp[ind - 2] != null)
-                        {
-                            if (temp[ind - 2].GetComponent<UnitMono>().mainUnit.currentHP > 0 &&
-                                temp[ind - 2].GetComponent<UnitMono>().mainUnit.statuses[0] == -1)
-                            {
-                                int rol = UnityEngine.Random.Range(1, 101);
-                                if (rol > temp[ind - 2].GetComponent<UnitMono>().mainUnit.RES)
-                                {
-                                    temp[ind - 2].GetComponent<UnitMono>().mainUnit.giveStatus(temp[ind].GetComponent<UnitMono>().mainUnit.statusIndex[0]);
-                                    dialogue.text = temp[ind - 2].GetComponent<UnitMono>().mainUnit.unitName + " was inflicted with " +
-                                        temp[ind - 2].GetComponent<UnitMono>().mainUnit.statusIndex[0] + " from " +
-                                        temp[ind].GetComponent<UnitMono>().mainUnit.unitName;
-                                    yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
-                                    yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
-                                }
-                            }
-                        }
-                        */
+                        StartCoroutine(flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit));
+                        yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " took damage from vomiting.", true);
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                     }
                     if (newd)
                     {
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " threw up too much.";
-                        yield return unitDeath(temp[ind].GetComponent<UnitMono>().mainUnit);
+                        StartCoroutine(unitDeath(temp[ind].GetComponent<UnitMono>().mainUnit));
+                        yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " threw up too much.", true);
                         partyDeaths++;
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         if (partyDeaths == activeUnits)
                         {
                             state = battleState.LOSE;
@@ -3032,21 +2979,17 @@ public class BattleScript : MonoBehaviour
                     if (temp[ind].GetComponent<UnitMono>().mainUnit.statuses[1] != -1)
                     {
                         int perc = 8;
-                        //int dum = UnityEngine.Random.Range(1, 4);
-                        //if (dum == 1)
-                        //{
                         newd = temp[ind].GetComponent<UnitMono>().mainUnit.takeDamage(perc);
-                            dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " took damage from aspirating.";
-                            yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
-                            yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
-                        //}
-                    }
+                        StartCoroutine(flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit));
+                        yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " took damage from aspirating.", true);
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                                            }
                     if (newd)
                     {
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " threw up too much blood.";
-                        yield return unitDeath(temp[ind].GetComponent<UnitMono>().mainUnit);
+                        StartCoroutine(unitDeath(temp[ind].GetComponent<UnitMono>().mainUnit));
+                        yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " threw up too much blood.", true);
                         partyDeaths++;
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         if (partyDeaths == activeUnits)
                         {
                             state = battleState.LOSE;
@@ -3061,16 +3004,16 @@ public class BattleScript : MonoBehaviour
                         int perc = temp[ind].GetComponent<UnitMono>().mainUnit.maxHP / 12;
                         newd = temp[ind].GetComponent<UnitMono>().mainUnit.takeDamage(perc);
                         newds = temp[ind].GetComponent<UnitMono>().mainUnit.takeSanityDamage(7);
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " is being consumed.";
-                        yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        StartCoroutine(flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit));
+                        yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " is being consumed.", true);
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                     }
                     if (newd)
                     {
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " has been consumed";
-                        yield return unitDeath(temp[ind].GetComponent<UnitMono>().mainUnit);
+                        StartCoroutine(unitDeath(temp[ind].GetComponent<UnitMono>().mainUnit));
+                        yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " has been consumed", true);
                         partyDeaths++;
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         if (partyDeaths == activeUnits)
                         {
                             state = battleState.LOSE;
@@ -3083,24 +3026,24 @@ public class BattleScript : MonoBehaviour
                     if (temp[ind].GetComponent<UnitMono>().mainUnit.statuses[12] != -1)
                     {
                         newd = temp[ind].GetComponent<UnitMono>().mainUnit.takeSanityDamage(3);
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " is suffering from Hysteria.";
-                        yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        StartCoroutine(flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit));
+                        yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " is suffering from Hysteria.", true);
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                     }
                     if (newd)
                     {
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " is on the verge of Insanity.";
-                        yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        StartCoroutine(flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit));
+                        yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " is on the verge of Insanity.", true);
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                     }
 
                     //Check for Disco Fever
                     if (temp[ind].GetComponent<UnitMono>().mainUnit.statuses[26] != -1)
                     {
                         newd = temp[ind].GetComponent<UnitMono>().mainUnit.takeSanityDamage(6);
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " must boogie against their will.";
-                        yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        StartCoroutine(flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit));
+                        yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " must boogie against their will.", true);
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
 
                         if (temp[ind + 1] != null)
                         {
@@ -3111,11 +3054,11 @@ public class BattleScript : MonoBehaviour
                                 if (rol > temp[ind + 1].GetComponent<UnitMono>().mainUnit.RES)
                                 {
                                     temp[ind + 1].GetComponent<UnitMono>().mainUnit.giveStatus(temp[ind].GetComponent<UnitMono>().mainUnit.statusIndex[26]);
-                                    dialogue.text = temp[ind + 1].GetComponent<UnitMono>().mainUnit.unitName + " was inflicted with " +
+                                    StartCoroutine(flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit));
+                                    yield return textDisplay(temp[ind + 1].GetComponent<UnitMono>().mainUnit.unitName + " was inflicted with " +
                                         temp[ind + 1].GetComponent<UnitMono>().mainUnit.statusIndex[26] + " from " +
-                                        temp[ind].GetComponent<UnitMono>().mainUnit.unitName;
-                                    yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
-                                    yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                                        temp[ind].GetComponent<UnitMono>().mainUnit.unitName, true);
+                                    //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                                 }
                             }
                         }
@@ -3128,11 +3071,10 @@ public class BattleScript : MonoBehaviour
                                 if (rol > temp[ind - 1].GetComponent<UnitMono>().mainUnit.RES)
                                 {
                                     temp[ind - 1].GetComponent<UnitMono>().mainUnit.giveStatus(temp[ind].GetComponent<UnitMono>().mainUnit.statusIndex[26]);
-                                    dialogue.text = temp[ind - 1].GetComponent<UnitMono>().mainUnit.unitName + " was inflicted with " +
+                                    StartCoroutine(flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit));
+                                    yield return textDisplay(temp[ind - 1].GetComponent<UnitMono>().mainUnit.unitName + " was inflicted with " +
                                         temp[ind - 1].GetComponent<UnitMono>().mainUnit.statusIndex[26] + " from " +
-                                        temp[ind].GetComponent<UnitMono>().mainUnit.unitName;
-                                    yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
-                                    yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                                        temp[ind].GetComponent<UnitMono>().mainUnit.unitName, true);
                                 }
                             }
                         }
@@ -3145,11 +3087,10 @@ public class BattleScript : MonoBehaviour
                                 if (rol > temp[ind + 2].GetComponent<UnitMono>().mainUnit.RES)
                                 {
                                     temp[ind + 2].GetComponent<UnitMono>().mainUnit.giveStatus(temp[ind].GetComponent<UnitMono>().mainUnit.statusIndex[26]);
-                                    dialogue.text = temp[ind + 2].GetComponent<UnitMono>().mainUnit.unitName + " was inflicted with " +
+                                    StartCoroutine(flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit));
+                                    yield return textDisplay(temp[ind + 2].GetComponent<UnitMono>().mainUnit.unitName + " was inflicted with " +
                                         temp[ind + 2].GetComponent<UnitMono>().mainUnit.statusIndex[26] + " from " +
-                                        temp[ind].GetComponent<UnitMono>().mainUnit.unitName;
-                                    yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
-                                    yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                                        temp[ind].GetComponent<UnitMono>().mainUnit.unitName, true);
                                 }
                             }
                         }
@@ -3162,11 +3103,10 @@ public class BattleScript : MonoBehaviour
                                 if (rol > temp[ind - 2].GetComponent<UnitMono>().mainUnit.RES)
                                 {
                                     temp[ind - 2].GetComponent<UnitMono>().mainUnit.giveStatus(temp[ind].GetComponent<UnitMono>().mainUnit.statusIndex[26]);
-                                    dialogue.text = temp[ind - 2].GetComponent<UnitMono>().mainUnit.unitName + " was inflicted with " +
+                                    StartCoroutine(flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit));
+                                    yield return textDisplay(temp[ind - 2].GetComponent<UnitMono>().mainUnit.unitName + " was inflicted with " +
                                         temp[ind - 2].GetComponent<UnitMono>().mainUnit.statusIndex[26] + " from " +
-                                        temp[ind].GetComponent<UnitMono>().mainUnit.unitName;
-                                    yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
-                                    yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                                        temp[ind].GetComponent<UnitMono>().mainUnit.unitName, true);
                                 }
                             }
                         }
@@ -3174,9 +3114,9 @@ public class BattleScript : MonoBehaviour
                     }
                     if (newd)
                     {
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " is on the verge of Insanity.";
-                        yield return flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit);
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        StartCoroutine(flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit));
+                        yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " is on the verge of Insanity.", true);
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                     }
                 }
                 //Check if an enemy should take damage from a status effect
@@ -3190,21 +3130,17 @@ public class BattleScript : MonoBehaviour
                     //Check for vomiting
                     if (enemyUnits[ind].GetComponent<UnitMono>().mainUnit.statuses[0] != -1)
                     {
-                        //int dum = UnityEngine.Random.Range(1, 4);
-                        //if (dum == 1)
-                        //{
-                            newd = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.takeDamage(4);
-                            dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " took damage from vomiting";
-                            yield return flashDamage(enemyUnits[ind].GetComponent<UnitMono>().mainUnit);
-                            yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
-                        //}
+                        newd = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.takeDamage(4);
+                        StartCoroutine(flashDamage(enemyUnits[ind].GetComponent<UnitMono>().mainUnit));
+                        yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " took damage from vomiting", true);
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                     }
                     if (newd)
                     {
-                        dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " threw up too much.";
-                        yield return unitDeath(enemyUnits[ind].GetComponent<UnitMono>().mainUnit);
+                        StartCoroutine(unitDeath(enemyUnits[ind].GetComponent<UnitMono>().mainUnit));
+                        yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " threw up too much.", true);
                         enemyDeaths++;
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         if (enemyDeaths == activeEnemies)
                         {
                             state = battleState.WIN;
@@ -3217,21 +3153,17 @@ public class BattleScript : MonoBehaviour
                     if (enemyUnits[ind].GetComponent<UnitMono>().mainUnit.statuses[1] != -1)
                     {
                         int perc = 8;
-                        //int dum = UnityEngine.Random.Range(1, 4);
-                        //if (dum == 1)
-                        //{
                         newd = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.takeDamage(perc);
-                        dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " took damage from aspirating.";
-                        yield return flashDamage(enemyUnits[ind].GetComponent<UnitMono>().mainUnit);
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
-                        //}
+                        StartCoroutine(flashDamage(enemyUnits[ind].GetComponent<UnitMono>().mainUnit));
+                        yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " took damage from aspirating.", true);
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                     }
                     if (newd)
                     {
-                        dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " threw up too much blood.";
-                        yield return unitDeath(enemyUnits[ind].GetComponent<UnitMono>().mainUnit);
+                        StartCoroutine(unitDeath(enemyUnits[ind].GetComponent<UnitMono>().mainUnit));
+                        yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " threw up too much blood.", true);
                         partyDeaths++;
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         if (partyDeaths == activeUnits)
                         {
                             state = battleState.LOSE;
@@ -3245,16 +3177,16 @@ public class BattleScript : MonoBehaviour
                     {
                         int perc = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.maxHP / 12;
                         newd = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.takeDamage(perc);
-                        dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " is being consumed.";
-                        yield return flashDamage(enemyUnits[ind].GetComponent<UnitMono>().mainUnit);
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        StartCoroutine(flashDamage(enemyUnits[ind].GetComponent<UnitMono>().mainUnit));
+                        yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " is being consumed.", true);
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                     }
                     if (newd)
                     {
-                        dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " has been consumed";
-                        yield return unitDeath(enemyUnits[ind].GetComponent<UnitMono>().mainUnit);
+                        StartCoroutine(unitDeath(enemyUnits[ind].GetComponent<UnitMono>().mainUnit));
+                        yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " has been consumed", true);
                         partyDeaths++;
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         if (partyDeaths == activeUnits)
                         {
                             state = battleState.LOSE;
@@ -3267,15 +3199,15 @@ public class BattleScript : MonoBehaviour
                     if (enemyUnits[ind].GetComponent<UnitMono>().mainUnit.statuses[12] != -1)
                     {
                         newd = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.takeSanityDamage(3);
-                        dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " is suffering from Hysteria.";
-                        yield return flashDamage(enemyUnits[ind].GetComponent<UnitMono>().mainUnit);
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        StartCoroutine(flashDamage(enemyUnits[ind].GetComponent<UnitMono>().mainUnit));
+                        yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " is suffering from Hysteria.", true);
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                     }
                     if (newd)
                     {
-                        dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " is on the verge of Insanity.";
-                        yield return flashDamage(enemyUnits[ind].GetComponent<UnitMono>().mainUnit);
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        StartCoroutine(flashDamage(enemyUnits[ind].GetComponent<UnitMono>().mainUnit));
+                        yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " is on the verge of Insanity.", true);
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                     }
                 }
 
@@ -3286,9 +3218,9 @@ public class BattleScript : MonoBehaviour
                     if ((temp[ind].GetComponent<UnitMono>().mainUnit.statuses[8] != -1
                     || temp[ind].GetComponent<UnitMono>().mainUnit.statuses[9] != -1))
                     {
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " is unable to move";
+                        yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " is unable to move");
                         yield return new WaitForSeconds(0.5f);
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         continue;
                     }
                 }
@@ -3298,9 +3230,9 @@ public class BattleScript : MonoBehaviour
                     if ((enemyUnits[ind].GetComponent<UnitMono>().mainUnit.statuses[8] != -1
                     || enemyUnits[ind].GetComponent<UnitMono>().mainUnit.statuses[9] != -1))
                     {
-                        dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " is unable to move";
+                        yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " is unable to move");
                         yield return new WaitForSeconds(0.5f);
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         continue;
                     }
                 }
@@ -3354,8 +3286,8 @@ public class BattleScript : MonoBehaviour
                     if (temp[ind].GetComponent<UnitMono>().mainUnit.sanity >= 50 &&
                             actions[z].getIndex() >= temp[ind].GetComponent<UnitMono>().mainUnit.abilities.Count)
                     {
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " was cured of madness. Their ability is gone";
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " was cured of madness. Their ability is gone");
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         continue;
                     }
 
@@ -3371,13 +3303,13 @@ public class BattleScript : MonoBehaviour
                         //If no second target
                         if (actions[z].getSecond() == -1)
                         {
-                            dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " + abiName;
+                            yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " + abiName);
                             yield return playerAbility(actions[z].getIndex(), toget,
                                     temp[ind].GetComponent<UnitMono>().mainUnit, enemyUnits[toget].GetComponent<UnitMono>().mainUnit);
                         }
                         else
                         {
-                            dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " + abiName;
+                            yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " + abiName);
                             yield return playerAbility(actions[z].getIndex(), toget,
                                    temp[ind].GetComponent<UnitMono>().mainUnit, enemyUnits[toget].GetComponent<UnitMono>().mainUnit,
                                    temp[actions[z].getSecond()].GetComponent<UnitMono>().mainUnit);
@@ -3388,13 +3320,15 @@ public class BattleScript : MonoBehaviour
                         //If no second target
                         if (actions[z].getSecond() == -1)
                         {
-                            dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " + abiName + ", but spasmed and hit themself";
+                            yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + 
+                                " used " + abiName + ", but spasmed and hit themself");
                             yield return playerAbility(actions[z].getIndex(), ind,
                                     temp[ind].GetComponent<UnitMono>().mainUnit, temp[ind].GetComponent<UnitMono>().mainUnit);
                         }
                         else
                         {
-                            dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " + abiName + ", but spasmed and hit themself";
+                            yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + 
+                                " used " + abiName + ", but spasmed and hit themself");
                             yield return playerAbility(actions[z].getIndex(), ind,
                                    temp[ind].GetComponent<UnitMono>().mainUnit, temp[ind].GetComponent<UnitMono>().mainUnit,
                                    temp[actions[z].getSecond()].GetComponent<UnitMono>().mainUnit);
@@ -3431,22 +3365,22 @@ public class BattleScript : MonoBehaviour
                             if (temp[ind].GetComponent<UnitMono>().mainUnit.sanity >= 50 &&
                                 actions[z].getIndex() >= temp[ind].GetComponent<UnitMono>().mainUnit.abilities.Count)
                             {
-                                dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " was cured of madness. Their ability is gone";
-                                yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                                yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " was cured of madness. Their ability is gone", true);
+                                //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                                 continue;
                             }
-                            dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " + abiName;
+                            yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " + abiName);
                             yield return playerAbility(actions[z].getIndex(), pose,
                                 temp[ind].GetComponent<UnitMono>().mainUnit, temp[pose].GetComponent<UnitMono>().mainUnit);
                         }
                         else
                         {
-                            dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " + abiName + ", but they were too late";
+                            StartCoroutine(textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " + abiName + ", but they were too late"));
                         }
                     }
                     else
                     {
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " + abiName + ", but nobody was there";
+                        StartCoroutine(textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " + abiName + ", but nobody was there"));
                     }
                 }
                 //Use basic attack
@@ -3498,20 +3432,20 @@ public class BattleScript : MonoBehaviour
                     }
                     if (!baddi)
                     {
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked the enemy";
+                        yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked the enemy", true);
                         yield return basicAttack(temp[ind].GetComponent<UnitMono>().mainUnit, enemyUnits[toget].GetComponent<UnitMono>().mainUnit);
                     }
                     else
                     {
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " spasmed and hit themself";
+                        yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " spasmed and hit themself", true);
                         yield return basicAttack(temp[ind].GetComponent<UnitMono>().mainUnit, temp[ind].GetComponent<UnitMono>().mainUnit);
                     }
                 }
                 //Use item
                 else if (actions[z].getType() == "item" && state == battleState.ATTACK)
                 {
-                    dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
-                        data.GetItem(actions[z].getIndex()).name;
+                    yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                        data.GetItem(actions[z].getIndex()).name, true);
                     data.UseItem(actions[z].getIndex(), temp[ind].GetComponent<UnitMono>().mainUnit);
                     StartCoroutine(flashHeal(temp[ind].GetComponent<UnitMono>().mainUnit));
                     UpdateInventoryItems();
@@ -3534,34 +3468,34 @@ public class BattleScript : MonoBehaviour
                             if (partyUnits[actions[z].getTarget()] != null 
                                 && temp[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName.Equals(partyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName))
                             {
-                                dialogue.text = nami + " swapped places with "
-                                    + temp[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName;
+                                StartCoroutine(textDisplay(nami + " swapped places with "
+                                    + temp[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName));
                             }
                             else
                             {
                                 if (partyUnits[actions[z].getTarget()] != null)
                                 {
-                                    dialogue.text = nami + " swapped places with "
-                                       + partyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName;
+                                    StartCoroutine(textDisplay(nami + " swapped places with "
+                                       + partyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName));
                                 }
                                 else
                                 {
-                                    dialogue.text = nami + " moved to position "
-                                        + (actions[z].getTarget() + 1);
+                                    StartCoroutine(textDisplay(nami + " moved to position "
+                                        + (actions[z].getTarget() + 1)));
                                 }
 
                             }
                         }
                         else
                         {
-                            dialogue.text = nami + " moved to position "
-                            + (actions[z].getTarget() + 1);
+                            StartCoroutine(textDisplay(nami + " moved to position "
+                            + (actions[z].getTarget() + 1)));
                         }
                     }
                     else
                     {
-                        dialogue.text = nami + " moved to position "
-                            + (actions[z].getTarget() + 1);
+                        StartCoroutine(textDisplay(nami + " moved to position "
+                            + (actions[z].getTarget() + 1)));
                     }
                     Swap2(bo, actions[z].getTarget(), actions[z].getName());
                 }
@@ -3570,8 +3504,8 @@ public class BattleScript : MonoBehaviour
                 {
                     if (temp[actions[z].getID()].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                     {
-                        dialogue.text = temp[actions[z].getID()].GetComponent<UnitMono>().mainUnit.unitName + " attempted to flee.";
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        yield return textDisplay(temp[actions[z].getID()].GetComponent<UnitMono>().mainUnit.unitName + " attempted to flee.", true);
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         unit go = temp[actions[z].getID()].GetComponent<UnitMono>().mainUnit;
                         double chance = ((20 / Mathf.Floor((float)((1.4 * go.level + 10) / 2))) * ((float)go.AGI / 200)
                             * ((float)go.level / highEne) + 0.02);
@@ -3581,15 +3515,15 @@ public class BattleScript : MonoBehaviour
                         int ran = Random.Range(0, 100);
                         if (ran < chance2)
                         {
-                            dialogue.text = go.unitName + " and the party escaped from the enemy";
-                            yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                            yield return textDisplay(go.unitName + " and the party escaped from the enemy", true);
+                            //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                             state = battleState.FLEE;
                             yield return battleEnd();
                         }
                         else
                         {
-                            dialogue.text = go.unitName + " failed and was unable to escape";
-                            yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                            yield return textDisplay(go.unitName + " failed and was unable to escape", true);
+                            //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         }
                     }
                 }
@@ -3677,8 +3611,8 @@ public class BattleScript : MonoBehaviour
                         {
                             if (partyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                             {
-                                dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
-                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                                yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name, true);
                                 yield return enemyAttack(actions[z].getIndex(), toget,
                                     enemyUnits[ind].GetComponent<UnitMono>().mainUnit, partyUnits[toget].GetComponent<UnitMono>().mainUnit);
                             }
@@ -3695,21 +3629,21 @@ public class BattleScript : MonoBehaviour
                                             if (partyUnits[1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                                             {
                                                 toget = 1;
-                                                dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
-                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                                                yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name, true);
                                                 yield return enemyAttack(actions[z].getIndex(), toget,
                                                     enemyUnits[ind].GetComponent<UnitMono>().mainUnit, partyUnits[toget].GetComponent<UnitMono>().mainUnit);
                                             }
                                             else
                                             {
-                                                dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
-                                                    (actions[z].getTarget() + 1) + ", but nobody was there";
+                                                yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
+                                                    (actions[z].getTarget() + 1) + ", but nobody was there");
                                             }
                                         }
                                         else
                                         {
-                                            dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
-                                                (actions[z].getTarget() + 1) + ", but nobody was there";
+                                            yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
+                                                (actions[z].getTarget() + 1) + ", but nobody was there");
                                         }
                                     }
                                     else if (actions[z].getTarget() == 1)
@@ -3719,21 +3653,21 @@ public class BattleScript : MonoBehaviour
                                             if (partyUnits[0].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                                             {
                                                 toget = 0;
-                                                dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
-                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                                                yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name);
                                                 yield return enemyAttack(actions[z].getIndex(), toget,
                                                     enemyUnits[ind].GetComponent<UnitMono>().mainUnit, partyUnits[toget].GetComponent<UnitMono>().mainUnit);
                                             }
                                             else
                                             {
-                                                dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
-                                                    (actions[z].getTarget() + 1) + ", but nobody was there";
+                                                yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
+                                                    (actions[z].getTarget() + 1) + ", but nobody was there");
                                             }
                                         }
                                         else
                                         {
-                                            dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
-                                                (actions[z].getTarget() + 1) + ", but nobody was there";
+                                            yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
+                                                (actions[z].getTarget() + 1) + ", but nobody was there");
                                         }
                                     }
                                 }
@@ -3747,21 +3681,21 @@ public class BattleScript : MonoBehaviour
                                             if (partyUnits[3].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                                             {
                                                 toget = 3;
-                                                dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
-                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                                                yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name);
                                                 yield return enemyAttack(actions[z].getIndex(), toget,
                                                     enemyUnits[ind].GetComponent<UnitMono>().mainUnit, partyUnits[toget].GetComponent<UnitMono>().mainUnit);
                                             }
                                             else
                                             {
-                                                dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
-                                                    (actions[z].getTarget() + 1) + ", but nobody was there";
+                                                yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
+                                                    (actions[z].getTarget() + 1) + ", but nobody was there");
                                             }
                                         }
                                         else
                                         {
-                                            dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
-                                                (actions[z].getTarget() + 1) + ", but nobody was there";
+                                            yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
+                                                (actions[z].getTarget() + 1) + ", but nobody was there");
                                         }
                                     }
                                     else if (actions[z].getTarget() == 3)
@@ -3771,21 +3705,21 @@ public class BattleScript : MonoBehaviour
                                             if (partyUnits[2].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                                             {
                                                 toget = 2;
-                                                dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
-                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                                                yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name);
                                                 yield return enemyAttack(actions[z].getIndex(), toget,
                                                     enemyUnits[ind].GetComponent<UnitMono>().mainUnit, partyUnits[toget].GetComponent<UnitMono>().mainUnit);
                                             }
                                             else
                                             {
-                                                dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
-                                                    (actions[z].getTarget() + 1) + ", but nobody was there";
+                                                yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
+                                                    (actions[z].getTarget() + 1) + ", but nobody was there");
                                             }
                                         }
                                         else
                                         {
-                                            dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
-                                                (actions[z].getTarget() + 1) + ", but nobody was there";
+                                            yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
+                                                (actions[z].getTarget() + 1) + ", but nobody was there");
                                         }
                                     }
                                 }
@@ -3797,8 +3731,8 @@ public class BattleScript : MonoBehaviour
                                     {
                                         toget = Random.Range(0, partyUnits.Count);
                                     }
-                                    dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
-                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                                    yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name);
                                     yield return enemyAttack(actions[z].getIndex(), toget,
                                         enemyUnits[ind].GetComponent<UnitMono>().mainUnit, partyUnits[toget].GetComponent<UnitMono>().mainUnit);
                                 }
@@ -3816,21 +3750,21 @@ public class BattleScript : MonoBehaviour
                                         if (partyUnits[1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                                         {
                                             toget = 1;
-                                            dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
-                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                                            yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name);
                                             yield return enemyAttack(actions[z].getIndex(), toget,
                                                 enemyUnits[ind].GetComponent<UnitMono>().mainUnit, partyUnits[toget].GetComponent<UnitMono>().mainUnit);
                                         }
                                         else
                                         {
-                                            dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
-                                                (actions[z].getTarget() + 1) + ", but nobody was there";
+                                            yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
+                                                (actions[z].getTarget() + 1) + ", but nobody was there");
                                         }
                                     }
                                     else
                                     {
-                                        dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
-                                            (actions[z].getTarget() + 1) + ", but nobody was there";
+                                        yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
+                                            (actions[z].getTarget() + 1) + ", but nobody was there");
                                     }
                                 }
                                 else if (actions[z].getTarget() == 1)
@@ -3840,21 +3774,21 @@ public class BattleScript : MonoBehaviour
                                         if (partyUnits[0].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                                         {
                                             toget = 0;
-                                            dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
-                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                                            yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name);
                                             yield return enemyAttack(actions[z].getIndex(), toget,
                                                 enemyUnits[ind].GetComponent<UnitMono>().mainUnit, partyUnits[toget].GetComponent<UnitMono>().mainUnit);
                                         }
                                         else
                                         {
-                                            dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
-                                                (actions[z].getTarget() + 1) + ", but nobody was there";
+                                            yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
+                                                (actions[z].getTarget() + 1) + ", but nobody was there", true);
                                         }
                                     }
                                     else
                                     {
-                                        dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
-                                            (actions[z].getTarget() + 1) + ", but nobody was there";
+                                        yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
+                                            (actions[z].getTarget() + 1) + ", but nobody was there");
                                     }
                                 }
                             }
@@ -3868,21 +3802,21 @@ public class BattleScript : MonoBehaviour
                                         if (partyUnits[3].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                                         {
                                             toget = 3;
-                                            dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
-                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                                            yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name);
                                             yield return enemyAttack(actions[z].getIndex(), toget,
                                                 enemyUnits[ind].GetComponent<UnitMono>().mainUnit, partyUnits[toget].GetComponent<UnitMono>().mainUnit);
                                         }
                                         else
                                         {
-                                            dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
-                                                (actions[z].getTarget() + 1) + ", but nobody was there";
+                                            yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
+                                                (actions[z].getTarget() + 1) + ", but nobody was there");
                                         }
                                     }
                                     else
                                     {
-                                        dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
-                                            (actions[z].getTarget() + 1) + ", but nobody was there";
+                                        yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
+                                            (actions[z].getTarget() + 1) + ", but nobody was there");
                                     }
                                 }
                                 else if (actions[z].getTarget() == 3)
@@ -3892,21 +3826,21 @@ public class BattleScript : MonoBehaviour
                                         if (partyUnits[2].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                                         {
                                             toget = 2;
-                                            dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
-                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                                            yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name);
                                             yield return enemyAttack(actions[z].getIndex(), toget,
                                                 enemyUnits[ind].GetComponent<UnitMono>().mainUnit, partyUnits[toget].GetComponent<UnitMono>().mainUnit);
                                         }
                                         else
                                         {
-                                            dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
-                                                (actions[z].getTarget() + 1) + ", but nobody was there";
+                                            yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
+                                                (actions[z].getTarget() + 1) + ", but nobody was there");
                                         }
                                     }
                                     else
                                     {
-                                        dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
-                                            (actions[z].getTarget() + 1) + ", but nobody was there";
+                                        yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
+                                            (actions[z].getTarget() + 1) + ", but nobody was there");
                                     }
                                 }
                             }
@@ -3918,8 +3852,8 @@ public class BattleScript : MonoBehaviour
                                 {
                                     toget = Random.Range(0, partyUnits.Count);
                                 }
-                                dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
-                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                                yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name);
                                 yield return enemyAttack(actions[z].getIndex(), toget,
                                     enemyUnits[ind].GetComponent<UnitMono>().mainUnit, partyUnits[toget].GetComponent<UnitMono>().mainUnit);
                             }
@@ -3927,8 +3861,8 @@ public class BattleScript : MonoBehaviour
                     }
                     else if (baddi)
                     {
-                        dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
-                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name + ", but spasmed and hit themself";
+                        yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name + ", but spasmed and hit themself");
                         yield return enemyAttack(actions[z].getIndex(), actions[z].getTarget(),
                             enemyUnits[ind].GetComponent<UnitMono>().mainUnit, enemyUnits[ind].GetComponent<UnitMono>().mainUnit);
                     }
@@ -3943,28 +3877,28 @@ public class BattleScript : MonoBehaviour
                     {
                         if (enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                         {
-                            dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
-                                enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name;
+                            yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                                enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name);
                             yield return enemyAbility(actions[z].getIndex(), actions[z].getTarget(),
                                 enemyUnits[ind].GetComponent<UnitMono>().mainUnit, enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit);
                         }
                         else
                         {
-                            dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " tried supporting " +
-                                enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName + ", but they weren't there";
+                            yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " tried supporting " +
+                                enemyUnits[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName + ", but they weren't there");
                         }
                     }
                     else
                     {
-                        dialogue.text = enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " tried using ability," +
-                            " but nobody was there";
+                        yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " tried using ability," +
+                            " but nobody was there");
                     }
                     yield return new WaitForSeconds(0.5f);
                     enemyUnits[ind].GetComponent<UnitMono>().mainUnit.changeSprite(0);
                 }
                 else
                 {
-                    dialogue.text = "Invalid action selected";
+                    yield return textDisplay("Invalid action selected");
                 }
                 yield return new WaitForSeconds(0.5f);
                 if (!skipper)
@@ -3977,21 +3911,21 @@ public class BattleScript : MonoBehaviour
                 {
                     if (sane == true && temp[ind].GetComponent<UnitMono>().mainUnit.sanity < 50)
                     {
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " has Delved into Madness!";
+                        yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " has Delved into Madness!", true);
                         yield return new WaitForSeconds(0.5f);
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                     }
                     else if (sane == false && temp[ind].GetComponent<UnitMono>().mainUnit.sanity >= 50)
                     {
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " has Recovered from Madness!";
+                        yield return textDisplay(dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " has Recovered from Madness!", true);
                         yield return new WaitForSeconds(0.5f);
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                     }
                     if (sane2 == true && temp[ind].GetComponent<UnitMono>().mainUnit.sanity <= 0)
                     {
-                        dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " is Doomed to Insanity!";
+                        yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " is Doomed to Insanity!", true);
                         yield return new WaitForSeconds(0.5f);
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                     }
                     if (temp[ind].GetComponent<UnitMono>().mainUnit.hasMP)
                     {
@@ -4436,8 +4370,10 @@ public class BattleScript : MonoBehaviour
             enen.setHUD();
             eGo.GetComponent<UnitMono>().mainUnit.copyUnitStats(enen);
             eGo.GetComponent<UnitMono>().mainUnit.unitName = enen.unitName;
+            eGo.GetComponent<UnitMono>().mainUnit.currentHP = enen.defMaxHP;
             eGo.GetComponent<UnitMono>().mainUnit.capital = enen.capital;
             eGo.GetComponent<UnitMono>().mainUnit.enemy = true;
+            Debug.Log("Enemey s hp == " + eGo.GetComponent<UnitMono>().mainUnit.currentHP);
             enemyUnits.Add(eGo.gameObject);
             if (eGo.GetComponent<UnitMono>().mainUnit.level > highEne)
             {
@@ -4510,16 +4446,16 @@ public class BattleScript : MonoBehaviour
 
         if (currentUnit == 4)
         {
-            dialogue.text = "But the party wasn't there...";
-            yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+            yield return textDisplay("But the party wasn't there...", true);
+            //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
             state = battleState.HUH;
             StartCoroutine(battleEnd());
         }
 
         if (activeEnemies <= 0)
         {
-            dialogue.text = "But nobody was there...";
-            yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+            yield return textDisplay("But nobody was there...", true);
+            //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
             state = battleState.HUH;
             StartCoroutine( battleEnd() );
         }
@@ -4530,11 +4466,11 @@ public class BattleScript : MonoBehaviour
             if (enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName[0] != 'T' && enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName[1] != 'e'
                 && enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName[2] != 'e' && enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName[3] != ' ')
             {
-                dialogue.text = "The " + enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName + " appears.";
+                yield return textDisplay("The " + enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName + " appears.", true);
             }
             else
             {
-                dialogue.text = enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName + " appears.";
+                yield return textDisplay(enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName + " appears.", true);
             }
 
         }
@@ -4542,17 +4478,17 @@ public class BattleScript : MonoBehaviour
         {
             if (enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName != enemyUnits[1].GetComponent<UnitMono>().mainUnit.unitName)
             {
-                dialogue.text = "The " + enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName + " and "
-                    + enemyUnits[1].GetComponent<UnitMono>().mainUnit.unitName + " appeared";
+                yield return textDisplay("The " + enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName + " and "
+                    + enemyUnits[1].GetComponent<UnitMono>().mainUnit.unitName + " appeared", true);
             }
             else
             {
-                dialogue.text = "The " + enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName + "'s appeared";
+                yield return textDisplay("The " + enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName + "'s appeared", true);
             }
         }
         else if (activeEnemies >= 3)
         {
-            dialogue.text = "A group of enemies appeared";
+            yield return textDisplay("A group of enemies appeared", true);
         }
         int less = -1;
         for (int v = 0; v < 4; v++)
@@ -4577,7 +4513,7 @@ public class BattleScript : MonoBehaviour
         currentUnit = less;
 
         //Start player turn
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         state = battleState.PLAYER;
         playerTurn();
     }
@@ -4585,7 +4521,7 @@ public class BattleScript : MonoBehaviour
     //Fade out a unit from the screen when they die
     IEnumerator unitDeath(unit bot)
     {
-        dialogue.text = bot.unitName + " has been defeated";
+        StartCoroutine(textDisplay(bot.unitName + " has been defeated"));
         yield return new WaitForSeconds(1f);
         bot.view.CrossFadeAlpha(0, 2f, false);
         bot.nameText.CrossFadeAlpha(0, 2f, false);
@@ -4642,7 +4578,44 @@ public class BattleScript : MonoBehaviour
     //Player turn, display relevant text
     void playerTurn()
     {
-        dialogue.text = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.unitName + "'s Turn";
+        StartCoroutine(textDisplay( partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.unitName + "'s Turn"));
+    }
+
+    //public function for clearing the text of the textbox
+    public void Clear()
+    {
+        dialogue.text = "";
+    }
+
+    IEnumerator textDisplay(string tt, bool stop = false)
+    {
+        Debug.Log("Queue length == " + write_queue.Count);
+        Debug.Log("tt == " + tt);
+        Clear();
+        write_queue.Add(tt);
+        Debug.Log("Queue length == " + write_queue.Count);
+        Debug.Log("queue 0 == " + write_queue[0]);
+        writing = true;
+        for (int i = 0; i < write_queue[0].Length; i++)
+        {
+            if (InputManager.GetButtonDown("Interact") && writing && stop)
+            {
+                Clear();
+                dialogue.text = write_queue[0];
+                write_queue.RemoveAt(0);
+                writing = false;
+                yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                continue;
+            }
+            yield return new WaitForSeconds(1f / scroll_speed);
+            dialogue.text += write_queue[0][i];
+        }
+        writing = false;
+        write_queue.RemoveAt(0);
+        if (stop)
+        {
+            yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+        }
     }
 
     //Deal damage to enemy, check if it is dead, and act accordingly (win battle or enemy turn)
@@ -4810,23 +4783,23 @@ public class BattleScript : MonoBehaviour
                     yield return flashDealDamage(uni);
                     if (target.critted)
                     {
-                        dialogue.text = "The attack hit a weak spot!";
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        yield return textDisplay("The attack hit a weak spot!", true);
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         skipper = true;
                         target.critted = false;
                     }
                     if (good)
                     {
                         //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
-                        dialogue.text = "It did a lot of damage!";
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        yield return textDisplay("It did a lot of damage!", true);
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         skipper = true;
                         good = false;
                     }
                     else if (bad || uni.reduced)
                     {
-                        dialogue.text = "It didn't do too much damage.";
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        yield return textDisplay("It didn't do too much damage.", true);
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         skipper = true;
                         bad = false;
                         uni.reduced = false;
@@ -4850,23 +4823,23 @@ public class BattleScript : MonoBehaviour
                                 yield return flashDealDamage(uni);
                                 if (enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.critted)
                                 {
-                                    dialogue.text = "The attack hit a weak spot!";
-                                    yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                                    yield return textDisplay("The attack hit a weak spot!", true);
+                                    //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                                     skipper = true;
                                     enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.critted = false;
                                 }
                                 if (good)
                                 {
                                     //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
-                                    dialogue.text = "It did a lot of damage!";
-                                    yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                                    yield return textDisplay("It did a lot of damage!", true);
+                                    //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                                     skipper = true;
                                     good = false;
                                 }
                                 else if (bad || uni.reduced)
                                 {
-                                    dialogue.text = "It didn't do too much damage.";
-                                    yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                                    yield return textDisplay("It didn't do too much damage.", true);
+                                    //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                                     skipper = true;
                                     bad = false;
                                     uni.reduced = false;
@@ -4890,23 +4863,23 @@ public class BattleScript : MonoBehaviour
                                 yield return flashDealDamage(uni);
                                 if (enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.critted)
                                 {
-                                    dialogue.text = "The attack hit a weak spot!";
-                                    yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                                    yield return textDisplay("The attack hit a weak spot!", true);
+                                    //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                                     skipper = true;
                                     enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.critted = false;
                                 }
                                 if (good)
                                 {
                                     //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
-                                    dialogue.text = "It did a lot of damage!";
-                                    yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                                    yield return textDisplay("It did a lot of damage!", true);
+                                    //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                                     skipper = true;
                                     good = false;
                                 }
                                 else if (bad || uni.reduced)
                                 {
-                                    dialogue.text = "It didn't do too much damage.";
-                                    yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                                    yield return textDisplay("It didn't do too much damage.", true);
+                                    //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                                     skipper = true;
                                     bad = false;
                                     uni.reduced = false;
@@ -4934,23 +4907,23 @@ public class BattleScript : MonoBehaviour
                                 yield return flashDealDamage(uni);
                                 if (enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.critted)
                                 {
-                                    dialogue.text = "The attack hit a weak spot!";
-                                    yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                                    yield return textDisplay("The attack hit a weak spot!", true);
+                                    //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                                     skipper = true;
                                     enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.critted = false;
                                 }
                                 if (good)
                                 {
                                     //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
-                                    dialogue.text = "It did a lot of damage!";
-                                    yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                                    yield return textDisplay("It did a lot of damage!", true);
+                                    //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                                     skipper = true;
                                     good = false;
                                 }
                                 else if (bad || uni.reduced)
                                 {
-                                    dialogue.text = "It didn't do too much damage.";
-                                    yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                                    yield return textDisplay("It didn't do too much damage.", true);
+                                    //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                                     skipper = true;
                                     bad = false;
                                     uni.reduced = false;
@@ -4978,23 +4951,23 @@ public class BattleScript : MonoBehaviour
                                 yield return flashDealDamage(uni);
                                 if (enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.critted)
                                 {
-                                    dialogue.text = "The attack hit a weak spot!";
-                                    yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                                    yield return textDisplay("The attack hit a weak spot!", true);
+                                    //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                                     skipper = true;
                                     enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.critted = false;
                                 }
                                 if (good)
                                 {
                                     //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
-                                    dialogue.text = "It did a lot of damage!";
-                                    yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                                    yield return textDisplay("It did a lot of damage!", true);
+                                    //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                                     skipper = true;
                                     good = false;
                                 }
                                 else if (bad || uni.reduced)
                                 {
-                                    dialogue.text = "It didn't do too much damage.";
-                                    yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                                    yield return textDisplay("It didn't do too much damage.", true);
+                                    //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                                     skipper = true;
                                     bad = false;
                                     uni.reduced = false;
@@ -5021,23 +4994,23 @@ public class BattleScript : MonoBehaviour
                                 yield return flashDealDamage(uni);
                                 if (enemyUnits[b].GetComponent<UnitMono>().mainUnit.critted)
                                 {
-                                    dialogue.text = "The attack hit a weak spot!";
-                                    yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                                    yield return textDisplay("The attack hit a weak spot!", true);
+                                    //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                                     skipper = true;
                                     enemyUnits[b].GetComponent<UnitMono>().mainUnit.critted = false;
                                 }
                                 if (good)
                                 {
                                     //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
-                                    dialogue.text = "It did a lot of damage!";
-                                    yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                                    yield return textDisplay("It did a lot of damage!", true);
+                                    //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                                     skipper = true;
                                     good = false;
                                 }
                                 else if (bad || uni.reduced)
                                 {
-                                    dialogue.text = "It didn't do too much damage.";
-                                    yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                                    yield return textDisplay("It didn't do too much damage.", true);
+                                    //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                                     skipper = true;
                                     bad = false;
                                     uni.reduced = false;
@@ -5053,8 +5026,8 @@ public class BattleScript : MonoBehaviour
                 }
                 else if (dead == false && uni.abilities[ata].OutputText(uni, target) == null && precS != target.statuses)
                 {
-                    dialogue.text = uni.unitName + " missed the enemy";
-                    yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                    yield return textDisplay(uni.unitName + " missed the enemy", true);
+                    //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                     skipper = true;
                 }
 
@@ -5077,8 +5050,8 @@ public class BattleScript : MonoBehaviour
                 }
                 else if (dead && (preh == target.currentHP || precS == target.statuses))
                 {
-                    dialogue.text = "Used attack in wrong row";
-                    yield return new WaitForSeconds(1f);
+                    yield return textDisplay("Used attack in wrong row", true);
+                    //yield return new WaitForSeconds(1f);
                 }
                 if (deadL && enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
                 {
@@ -5748,9 +5721,9 @@ public class BattleScript : MonoBehaviour
         }
         if (doer.OutputText(uni, target) != null)
         {
-            dialogue.text = doer.OutputText(uni, target);
+            yield return (textDisplay(doer.OutputText(uni, target)));
             yield return new WaitForSeconds(0.5f);
-            yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+            //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
         }
         if (enemyDeaths == enemyUnits.Count)
         {
@@ -5838,14 +5811,14 @@ public class BattleScript : MonoBehaviour
         if (crite)
         {
             //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
-            dialogue.text = "It's a critical hit!";
-            yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+            yield return textDisplay("It's a critical hit!", true);
+            //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
             skipper = true;
         }
         if (bad == true)
         {
-            dialogue.text = "It didn't do too much damage..";
-            yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+            yield return textDisplay("It didn't do too much damage..", true);
+            //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
         }
 
         yield return new WaitForSeconds(0.5f);
@@ -5920,31 +5893,31 @@ public class BattleScript : MonoBehaviour
             yield return flashDealDamage(uni);
             if (target.critted)
             {
-                dialogue.text = "The attack hit a weak spot!";
-                yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                yield return textDisplay("The attack hit a weak spot!", true);
+                //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                 skipper = true;
                 target.critted = false;
             }
             if (good)
             {
                 //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
-                dialogue.text = "It did a lot of damage!";
-                yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                yield return textDisplay("It did a lot of damage!", true);
+                //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                 skipper = true;
                 good = false;
             }
             else if (bad)
             {
-                dialogue.text = "It didn't do too much damage.";
-                yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                yield return textDisplay("It didn't do too much damage.", true);
+                //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                 skipper = true;
                 bad = false;
             }
 
             if (target.lived)
             {
-                dialogue.text = target.unitName + " barely survived...";
-                yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                yield return textDisplay(target.unitName + " barely survived...", true);
+                //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                 skipper = true;
                 target.lived = false;
             }
@@ -5994,8 +5967,8 @@ public class BattleScript : MonoBehaviour
 
                     if (partyUnits[i].GetComponent<UnitMono>().mainUnit.critted)
                     {
-                        dialogue.text = "The attack hit a weak spot!";
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        yield return textDisplay("The attack hit a weak spot!", true);
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         skipper = true;
                         partyUnits[i].GetComponent<UnitMono>().mainUnit.critted = false;
                     }
@@ -6017,8 +5990,8 @@ public class BattleScript : MonoBehaviour
 
                     if (partyUnits[i].GetComponent<UnitMono>().mainUnit.lived)
                     {
-                        dialogue.text = partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName + " barely survived...";
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        yield return textDisplay(partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName + " barely survived...", true);
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         skipper = true;
                         partyUnits[i].GetComponent<UnitMono>().mainUnit.lived = false;
                     }
@@ -6050,35 +6023,35 @@ public class BattleScript : MonoBehaviour
                 yield return flashDealDamage(uni);
                 if (target.critted)
                 {
-                    dialogue.text = "The attack hit a weak spot!";
+                    yield return textDisplay("The attack hit a weak spot!", true);
                     yield return new WaitForSeconds(0.5f);
-                    yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                    //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                     skipper = true;
                     target.critted = false;
                 }
                 if (good)
                 {
                     //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
-                    dialogue.text = "It did a lot of damage!";
+                    yield return textDisplay("It did a lot of damage!", true);
                     yield return new WaitForSeconds(0.5f);
-                    yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                    //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                     skipper = true;
                     good = false;
                 }
                 else if (bad)
                 {
-                    dialogue.text = "It didn't do too much damage.";
+                    yield return textDisplay("It didn't do too much damage.", true);
                     yield return new WaitForSeconds(0.5f);
-                    yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                    //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                     skipper = true;
                     bad = false;
                 }
 
                 if (target.lived)
                 {
-                    dialogue.text = target.unitName + " barely survived...";
+                    yield return textDisplay(target.unitName + " barely survived...", true);
                     yield return new WaitForSeconds(0.5f);
-                    yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                    //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                     skipper = true;
                     target.lived = false;
                 }
@@ -6190,34 +6163,34 @@ public class BattleScript : MonoBehaviour
                     yield return flashDealDamage(uni);
                     if (partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.critted)
                     {
-                        dialogue.text = "The attack hit a weak spot!";
+                        yield return textDisplay("The attack hit a weak spot!", true);
                         yield return new WaitForSeconds(0.5f);
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         skipper = true;
                         partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.critted = false;
                     }
                     if (good)
                     {
                         //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
-                        dialogue.text = "It did a lot of damage!";
+                        yield return textDisplay("It did a lot of damage!", true);
                         yield return new WaitForSeconds(0.5f);
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         skipper = true;
                         good = false;
                     }
                     else if (bad)
                     {
-                        dialogue.text = "It didn't do too much damage.";
+                        yield return textDisplay("It didn't do too much damage.", true);
                         yield return new WaitForSeconds(0.5f);
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         skipper = true;
                         bad = false;
                     }
                     if (partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.lived)
                     {
-                        dialogue.text = partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.unitName + " barely survived...";
+                        yield return textDisplay(partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.unitName + " barely survived...", true);
                         yield return new WaitForSeconds(0.5f);
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         skipper = true;
                         partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.lived = false;
                     }
@@ -6236,33 +6209,33 @@ public class BattleScript : MonoBehaviour
                     yield return flashDealDamage(uni);
                     if (partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.critted)
                     {
-                        dialogue.text = "The attack hit a weak spot!";
+                        yield return textDisplay("The attack hit a weak spot!", true);
                         yield return new WaitForSeconds(0.5f);
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         skipper = true;
                         partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.critted = false;
                     }
                     if (good)
                     {
                         //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
-                        dialogue.text = "It did a lot of damage!";
+                        yield return textDisplay("It did a lot of damage!", true);
                         yield return new WaitForSeconds(0.5f);
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         skipper = true;
                         good = false;
                     }
                     else if (bad)
                     {
-                        dialogue.text = "It didn't do too much damage.";
+                        yield return textDisplay("It didn't do too much damage.", true);
                         yield return new WaitForSeconds(0.5f);
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         skipper = true;
                         bad = false;
                     }
                     if (partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.lived)
                     {
-                        dialogue.text = partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.unitName + " barely survived...";
-                        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                        yield return textDisplay(partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.unitName + " barely survived...", true);
+                        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         skipper = true;
                         partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.lived = false;
                     }
@@ -6308,34 +6281,34 @@ public class BattleScript : MonoBehaviour
                         yield return flashDealDamage(uni);
                         if (partyUnits[i].GetComponent<UnitMono>().mainUnit.critted)
                         {
-                            dialogue.text = "The attack hit a weak spot!";
+                            yield return textDisplay("The attack hit a weak spot!", true);
                             yield return new WaitForSeconds(0.5f);
-                            yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                            //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                             skipper = true;
                             partyUnits[i].GetComponent<UnitMono>().mainUnit.critted = false;
                         }
                         if (good)
                         {
                             //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
-                            dialogue.text = "It did a lot of damage!";
+                            yield return textDisplay("It did a lot of damage!", true);
                             yield return new WaitForSeconds(0.5f);
-                            yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                            //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                             skipper = true;
                             good = false;
                         }
                         else if (bad)
                         {
-                            dialogue.text = "It didn't do too much damage.";
+                            yield return textDisplay("It didn't do too much damage.", true);
                             yield return new WaitForSeconds(0.5f);
-                            yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                            //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                             skipper = true;
                             bad = false;
                         }
                         if (partyUnits[i].GetComponent<UnitMono>().mainUnit.lived)
                         {
-                            dialogue.text = partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName + " barely survived...";
+                            yield return textDisplay(partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName + " barely survived...", true);
                             yield return new WaitForSeconds(0.5f);
-                            yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                            //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                             skipper = true;
                             partyUnits[i].GetComponent<UnitMono>().mainUnit.lived = false;
                         }
@@ -6348,9 +6321,9 @@ public class BattleScript : MonoBehaviour
             if (uni.abilities[ata].moneySteal > 0)
             {
                 data.SetMoney(data.GetMoney() - uni.abilities[ata].moneySteal);
-                dialogue.text = uni.unitName + " stole $" + uni.abilities[ata].moneySteal + " buckaroos";
+                yield return textDisplay(uni.unitName + " stole $" + uni.abilities[ata].moneySteal + " buckaroos", true);
                 yield return new WaitForSeconds(0.5f);
-                yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
             }
 
             //If enemy is dead, battle is won
@@ -6425,8 +6398,8 @@ public class BattleScript : MonoBehaviour
             }
             if (uni.abilities[ata].OutputText(uni, target) != null)
             {
-                dialogue.text = uni.abilities[ata].OutputText(uni, target);
-                yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                yield return textDisplay(uni.abilities[ata].OutputText(uni, target), true);
+                //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
             }
         }
         else if (uni.abilities[ata].target == 3)
@@ -6455,8 +6428,8 @@ public class BattleScript : MonoBehaviour
             }
             if (uni.abilities[ata].OutputText(uni, target) != null)
             {
-                dialogue.text = uni.abilities[ata].OutputText(uni, target);
-                yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                yield return textDisplay(uni.abilities[ata].OutputText(uni, target), true);
+                //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
             }
         }
     }
@@ -6467,7 +6440,6 @@ public class BattleScript : MonoBehaviour
         //Make a list to check if any abilities are added
         List<int> abiSizes = new List<int>();
 
-        dialogue.text = "Gained " + expGained + " exp";
         //Loop through party and add the size of each ability list, have each unti gain the exp, and update the stats if they leveled up
         for (int i = 0; i < partyUnits.Count; i++)
         {
@@ -6516,10 +6488,11 @@ public class BattleScript : MonoBehaviour
             }
         }
         bool boost = pc.gainEXP(expGained);
-        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+        yield return textDisplay("Gained " + expGained + " exp", true);
+        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
         if (boost == true)
         {
-            dialogue.text = "Leveled up!";
+            yield return textDisplay("Leveled up!");
             for (int i = 0; i < partyUnits.Count; i++)
             {
                 if (partyUnits[i] != null)
@@ -6530,13 +6503,13 @@ public class BattleScript : MonoBehaviour
                         partyUnits[i].GetComponent<UnitMono>().mainUnit.setHUD(true);
                         if (partyUnits[i].GetComponent<UnitMono>().mainUnit.abilities.Count > abiSizes[i])
                         {
-                            yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
-                            dialogue.text = partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName + " gained a new ability!";
+                            //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                            yield return textDisplay(partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName + " gained a new ability!", true);
                         }
                     }
                 }
             }
-            yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+            //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
         }
     }
 
@@ -6552,13 +6525,13 @@ public class BattleScript : MonoBehaviour
         {
             if (enemyUnits.Count == 1)
             {
-                dialogue.text = "The " + enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName + " has been defeated";
+                yield return textDisplay("The " + enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName + " has been defeated", true);
             }
             else if (enemyUnits.Count > 1)
             {
-                dialogue.text = "The group of enemies have been defeated";
+                yield return textDisplay("The group of enemies have been defeated", true);
             }
-            yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+            //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
             int avg = 0;
             int num = 0;
             for (int i = 0; i < partyUnits.Count; i++)
@@ -6589,14 +6562,14 @@ public class BattleScript : MonoBehaviour
             }
             if (mone > 0)
             {
-                dialogue.text = "Received $" + mone + " buckaroos";
+                yield return textDisplay("Received $" + mone + " buckaroos", true);
                 data.SetMoney(data.GetMoney() + mone);
-                yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
             }
             if (rewards.Count > 0)
             {
-                dialogue.text = "Received " + rewards.Count + " items";
-                yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                yield return textDisplay("Received " + rewards.Count + " items", true);
+                //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
             }
             for (int f = 0; f < rewards.Count; f++)
             {
@@ -6605,17 +6578,17 @@ public class BattleScript : MonoBehaviour
         }
         else if (state == battleState.LOSE)
         {
-            dialogue.text = "You Died";
+            yield return textDisplay("You Died", true);
             loader.flee = true;
         }
         else if (state == battleState.FLEE)
         {
-            dialogue.text = "The party managed to escape";
+            yield return textDisplay("The party managed to escape", true);
             loader.flee = true;
         }
         else if (state == battleState.HUH)
         {
-            dialogue.text = "Nothing really happened";
+            yield return textDisplay("Nothing really happened", true);
         }
         for (int i = 0; i < partyUnits.Count; i++)
         {
@@ -6629,9 +6602,9 @@ public class BattleScript : MonoBehaviour
                         if (partyUnits[i].GetComponent<UnitMono>().mainUnit.statuses[25] != -1 && pc.statuses[25] == -1)
                         {
                             data.SetEP(data.GetEP() + 6);
-                            dialogue.text = "Gained 6 Eldritch Points";
+                            yield return textDisplay("Gained 6 Eldritch Points", true);
                             yield return new WaitForSeconds(0.5f);
-                            yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                            //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         }
                     }
                     if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName == partyNames[x])
@@ -6710,8 +6683,8 @@ public class BattleScript : MonoBehaviour
         }
         loader.money = data.GetMoney();
         loader.Save(PlayerPrefs.GetInt("_active_save_file_"));
-        yield return new WaitForSeconds(0.5f);
-        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+        //yield return new WaitForSeconds(0.5f);
+        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
         yield return fadeOut();
         StartCoroutine(NextScene());
     }
@@ -6734,7 +6707,6 @@ public class BattleScript : MonoBehaviour
     IEnumerator WrongLine()
     {
         working = true;
-        dialogue.text = "Cannot use ability at current position.";
         CloseUseAbilityMenu();
         Image[] opts = transform.GetChild(1).Find("AbilityMenu").GetComponentsInChildren<Image>();
         foreach (Image child in opts)
@@ -6752,7 +6724,8 @@ public class BattleScript : MonoBehaviour
             child.color = temp;
         }
 
-        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+        yield return textDisplay("Cannot use ability at current position.", true);
+        //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
         foreach (Image child in opts)
         {
             Color temp = child.color;
@@ -6908,6 +6881,10 @@ public class BattleScript : MonoBehaviour
         //Define audio object
         audio_handler = GetComponent<PlayerOverworldAudioHandler>();
 
+        dialogue = transform.GetChild(1).Find("DialogueMenu").Find("DialogueText").GetComponent<TMP_Text>();
+        write_queue = new List<string>();
+        scroll_speed = 20;
+
         //Define the lists
         swaps = new List<GameObject>();
         pSpots = new List<Transform>();
@@ -6923,6 +6900,7 @@ public class BattleScript : MonoBehaviour
 
     void Update()
     {
+
         //If the state is such that an action menu should be open, make the cursor visible
         if (!enemy_select_menu && state != battleState.ATTACK
              && state != battleState.WIN && state != battleState.LOSE && state != battleState.HUH

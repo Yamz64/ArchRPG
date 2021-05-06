@@ -120,6 +120,8 @@ public class unit
         level = ver.level;
         currentLevelTop = (int)(2.5 * Mathf.Pow(level, 4));
         maxHP = ver.maxHP;
+        defMaxHP = maxHP;
+        Debug.Log("Max hp == " + maxHP);
         currentHP = ver.currentHP;
         ImageFilePath = ver.ImageFilePath;
         if (!ver.enemy)
@@ -340,7 +342,7 @@ public class unit
         hpReadOut.text = currentHP + " / " + maxHP;
         if (!enemy)
         {
-            if (sanity < 50) hasMP = true;
+            if (sanity < 50 || unitName == "Ember Moon" || unitName == "White Knight") hasMP = true;
             if (hasMP)
             {
                 spSideText.text = "MP";
@@ -463,7 +465,11 @@ public class unit
     public int getAGI()     { return AGI; }
     public int getLUCK()    { return LCK; }
 
-    public void SetHPMax(int hp) { maxHP = defMaxHP = hp; }
+    public void SetHPMax(int hp)
+    {
+        maxHP = hp;
+        defMaxHP = hp;
+    }
     public void SetSPMax(int sp) { maxSP = sp; }
 
     //Set the HP (Within bounds)
