@@ -2044,7 +2044,7 @@ namespace PlayerAbilities
         {
             name = "Rude Reassurance";
             desc1 = "Weak group heal, gives all other party members weeping";
-            desc2 = "Desc. not added yet";
+            desc2 = "You try to tell your allies that things will be fine, but maybe using words like 'Shut Up you Insolent Whelps' didn't have the right effect";
             cost = 6;
             position = 0;
             type = 1;
@@ -2168,7 +2168,7 @@ namespace PlayerAbilities
         {
             name = "Charismatic Fervor";
             desc1 = "Moderate group sanity heal. Buff everyone with inspired";
-            desc2 = "Not added yet";
+            desc2 = "You start getting caught up in the passion of strategy, and your energy seems to leak into your comrades";
             cost = 16;
             position = 2;
             type = 1;
@@ -2197,7 +2197,7 @@ namespace PlayerAbilities
         {
             name = "Narcissism";
             desc1 = "Buffs self with confident, neurotic, and inflicts hysteria on self";
-            desc2 = "Desc not added yet";
+            desc2 = "After all of these battles, it might be better not to have these nimrods dragging you down so much.";
             cost = 3;
             position = 2;
             type = 2;
@@ -2348,7 +2348,7 @@ namespace ClyveAbilities
         {
             name = "Dysentery";
             desc1 = "Inflicts diseased on Clyve and on all enemies.";
-            desc2 = "Description not added yet";
+            desc2 = "Clyve's lack of hygeine has become too much for even him to handle. At least he isn't some 19th century homesteader on the trail.";
             cost = 10;
             target = 3;
             statusEffect = "Diseased";
@@ -3165,7 +3165,7 @@ namespace TimAbilities
             name = "Exotic MEel";
             desc1 = "Deals 5 electric ATK AoE. Buffs party member with Electrified and heals them for 30+ hp";
             desc2 = "Tim decides to incorporate seafood into his catalog of dishes and cooks up an electric eel." +
-                "It seems a little unsafe but you trust Tim enough to try it.";
+                "It seems a little unsafe with all the sparks but you trust Tim enough to try it.";
             damage = 5;
             damageType = 2;
             type = 1;
