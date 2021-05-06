@@ -1,9 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GD.MinMaxSlider;
 
 public class RoamingEnemySpawnerBehavior : MonoBehaviour
 {
+    [System.Serializable]
+    public struct EncounterObject
+    {
+        public string enemy_name;
+        public int encounter_priority;
+    }
+
     public float move_speed;
     public float aggro_range;
     public float attack_delay;
@@ -14,8 +22,11 @@ public class RoamingEnemySpawnerBehavior : MonoBehaviour
     [SerializeField]
     public Sprite[] anim_sprites;
     [SerializeField]
-    public List<string> enemy_names;
+    public List<EncounterObject> enemy_names;
     public Object enemy_prefab;
+
+    [MinMaxSlider(1, 4)]
+    public Vector2Int maximum_enemies;
 
     // Start is called before the first frame update
     void Start()
@@ -41,13 +52,19 @@ public class RoamingEnemySpawnerBehavior : MonoBehaviour
             for(int i=0; i<anim_sprites.Length; i++) { enemy.GetComponent<NPCAnimationHandler>().idle_sprites_up.Add(anim_sprites[i]); }
             //initialize enemy spawn list
             enemy.GetComponent<OverworldEncounter>().enemy_names.Clear();
-            for(int i=0; i<enemy_names.Count; i++) { enemy.GetComponent<OverworldEncounter>().enemy_names.Add(enemy_names[i]); }
+            for(int i=0; i<enemy_names.Count; i++) {
+                OverworldEncounter.EncounterObject temp = new OverworldEncounter.EncounterObject();
+                temp.encounter_priority = enemy_names[i].encounter_priority;
+                temp.enemy_name = enemy_names[i].enemy_name;
+                enemy.GetComponent<OverworldEncounter>().enemy_names.Add(temp);
+            }
             //determine the type of encounter
             enemy.GetComponent<OverworldEncounter>().SetEncounterType(hoard);
             //set other variables
             enemy.GetComponent<OverworldEncounter>().move_speed = move_speed;
             enemy.GetComponent<OverworldEncounter>().aggro_range = aggro_range;
             enemy.GetComponent<OverworldEncounter>().attack_delay = attack_delay;
+            enemy.GetComponent<OverworldEncounter>().maximum_enemies = maximum_enemies;
         }
     }
 

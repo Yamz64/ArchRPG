@@ -9295,6 +9295,22 @@ PrefabInstance:
       propertyPath: enemy_names.Array.data[2]
       value: Locker Lurker
       objectReference: {fileID: 0}
+    - target: {fileID: 7182115991402305304, guid: 0c91a21f74f9d7f4e8246f595de4e9c2, type: 3}
+      propertyPath: maximum_enemies.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7182115991402305304, guid: 0c91a21f74f9d7f4e8246f595de4e9c2, type: 3}
+      propertyPath: maximum_enemies.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7182115991402305304, guid: 0c91a21f74f9d7f4e8246f595de4e9c2, type: 3}
+      propertyPath: enemy_names.Array.data[0].enemy_name
+      value: Killer Cone
+      objectReference: {fileID: 0}
+    - target: {fileID: 7182115991402305304, guid: 0c91a21f74f9d7f4e8246f595de4e9c2, type: 3}
+      propertyPath: enemy_names.Array.data[0].encounter_priority
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7182115991402305308, guid: 0c91a21f74f9d7f4e8246f595de4e9c2, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 1.5
