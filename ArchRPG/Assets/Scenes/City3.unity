@@ -14511,7 +14511,7 @@ MonoBehaviour:
   - effects: []
   - effects: []
   dialogueImages:
-  - sprite_path: CharacterSprites/BackgroundCharacters/Kid6_front
+  - sprite_path: CharacterSprites/BackgroundCharacters/depressedMan2
     lines: 3
   player: {fileID: 0}
 --- !u!1001 &430204836
@@ -14970,9 +14970,9 @@ MonoBehaviour:
   - effects: []
   - effects: []
   dialogueImages:
-  - sprite_path: CharacterSprites/BackgroundCharacters/Kid15_front
+  - sprite_path: CharacterSprites/BackgroundCharacters/depressedMan1
     lines: 1
-  - sprite_path: CharacterSprites/BackgroundCharacters/Kid20_front
+  - sprite_path: CharacterSprites/BackgroundCharacters/snootyMan1
     lines: 2
   player: {fileID: 0}
 --- !u!1001 &568354856
@@ -22826,7 +22826,7 @@ MonoBehaviour:
   - effects: []
   - effects: []
   dialogueImages:
-  - sprite_path: CharacterSprites/BackgroundCharacters/Kid17_front
+  - sprite_path: CharacterSprites/BackgroundCharacters/punkWoman2
     lines: 2
   player: {fileID: 0}
 --- !u!1 &1120073854
@@ -23311,7 +23311,7 @@ MonoBehaviour:
   text:
   - text: Where's my hand?
   - text: Oh I tried to pet one of those nice cone-shaped dogs on second street.
-  - text: It was so cute that I wante to give it a treat, but I didn't have any food
+  - text: It was so cute! I wanted to give it a treat, but I didn't have any food
       on me.
   - text: So I gave it my hand!
   container:
