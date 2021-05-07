@@ -1738,6 +1738,7 @@ public static class Trinkets
             type = 3;
             power_buff = 5;
             speed_buff = 5;
+            cost = 12;
         }
     }
 
@@ -1756,6 +1757,7 @@ public static class Trinkets
             will_buff = -2;
             resistance_buff = 7;
             power_buff = 8;
+            cost = 15;
         }
     }
 
@@ -1774,6 +1776,7 @@ public static class Trinkets
             power_buff = 10;
             will_buff = 5;
             luck_buff = 15;
+            cost = 20;
         }
     }
 
@@ -1794,6 +1797,7 @@ public static class Trinkets
             luck_buff = 10;
             speed_buff = 10;
             resistance_buff = -2;
+            cost = 30;
         }
     }
 }

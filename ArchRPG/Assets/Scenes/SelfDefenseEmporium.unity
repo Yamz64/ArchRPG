@@ -3464,12 +3464,98 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4998140645680048166, guid: 52110445f037b614787b39ff46091263, type: 3}
+      propertyPath: m_Offset.y
+      value: -1.876226
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998140645680048166, guid: 52110445f037b614787b39ff46091263, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 2.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998140645680048166, guid: 52110445f037b614787b39ff46091263, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 2.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998140645680048166, guid: 52110445f037b614787b39ff46091263, type: 3}
+      propertyPath: m_Size.y
+      value: 0.5050564
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998140645680048166, guid: 52110445f037b614787b39ff46091263, type: 3}
+      propertyPath: m_Size.x
+      value: 1.77
+      objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048167, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 9157fe50e68337b419d73a26d23f0d20, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &1731643938 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1731643937}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1731643939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731643938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 527d3d7f364a2d4449e7dcb532321c72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  items:
+  - name: Night Stick
+    cost: 8
+    type: 1
+  - name: Taser
+    cost: 45
+    type: 1
+  - name: Pepper Spray
+    cost: 45
+    type: 1
+  - name: Bean Bag Gun
+    cost: 75
+    type: 1
+  - name: Bullet Proof Socks
+    cost: 30
+    type: 2
+  - name: Bullet Proof Pants
+    cost: 38
+    type: 2
+  - name: Riot Shield
+    cost: 45
+    type: 2
+  - name: Adrenaline Syringe
+    cost: 45
+    type: 3
+  text:
+  - text: Welcome to the self defense emporium!
+  - text: We sell all manner of armaments to all manners of people!
+  - text: Doesn't matter if you're a baby a girlie, or a GOD DAMNED COMMIE!!!!
+  - text: Because that would be a violation against your civil rights, a violation
+      of the second Amendment of the US constitution,
+  - text: and a violation against company policy...
+  - text: So, what can I do for ya!\
+  container:
+  - effects: []
+  - effects: []
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 37
+      upper: 55
+  - effects: []
+  - effects: []
+  - effects: []
+  images:
+  - sprite_path: CharacterSprites/BackgroundCharacters/shotgunMan
+    lines: 6
+  player: {fileID: 0}
 --- !u!1001 &1823145437
 PrefabInstance:
   m_ObjectHideFlags: 0
