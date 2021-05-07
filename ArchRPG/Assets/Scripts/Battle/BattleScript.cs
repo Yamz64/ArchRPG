@@ -686,7 +686,7 @@ public class BattleScript : MonoBehaviour
     //Used to navigate the basic action menu
     public void BaseActionMenuRoutine()
     {
-        if (state == battleState.PLAYER && !enemy_select_menu)
+        if (state == battleState.PLAYER && !enemy_select_menu && !writing)
         {
             //change position of cursor in the menu
             if (InputManager.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
@@ -720,7 +720,6 @@ public class BattleScript : MonoBehaviour
                             currentEnemy = 0;
                             while (enemyUnits[currentEnemy].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && currentEnemy < enemyUnits.Count)
                             {
-                                Debug.Log("Enemy health " + currentEnemy + " == " + enemyUnits[currentEnemy].GetComponent<UnitMono>().mainUnit.currentHP);
                                 currentEnemy++;
                                 if (currentEnemy >= enemyUnits.Count)
                                 {
@@ -736,9 +735,7 @@ public class BattleScript : MonoBehaviour
                             }
                             else
                             {
-                                Debug.Log("About to select");
                                 OpenSelectEnemyMenu();
-                                Debug.Log("has fon");
                                 enemy_select_menu = true;
                                 menu_input = false;
                             }
@@ -939,7 +936,7 @@ public class BattleScript : MonoBehaviour
             cursor.transform.position = cursor_positions[active_menu].positions[cursor_position].position;
         }
         
-        else if (enemy_select_menu && state == battleState.PLAYER)
+        else if (enemy_select_menu && state == battleState.PLAYER && !writing)
         {
             //If input is right and not at very edge
             if (InputManager.GetAxisRaw("Horizontal") > 0.0f && currentEnemy < enemyUnits.Count - 1)
@@ -4578,7 +4575,8 @@ public class BattleScript : MonoBehaviour
     //Player turn, display relevant text
     void playerTurn()
     {
-        StartCoroutine(textDisplay( partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.unitName + "'s Turn"));
+        Clear();
+        StartCoroutine(textDisplay(partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.unitName + "'s Turn"));
     }
 
     //public function for clearing the text of the textbox
@@ -4589,12 +4587,9 @@ public class BattleScript : MonoBehaviour
 
     IEnumerator textDisplay(string tt, bool stop = false)
     {
-        Debug.Log("Queue length == " + write_queue.Count);
-        Debug.Log("tt == " + tt);
+        //StopCoroutine("textDisplay");
         Clear();
         write_queue.Add(tt);
-        Debug.Log("Queue length == " + write_queue.Count);
-        Debug.Log("queue 0 == " + write_queue[0]);
         writing = true;
         for (int i = 0; i < write_queue[0].Length; i++)
         {
