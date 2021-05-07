@@ -357,6 +357,16 @@
                 }
             ],
             "saves": []
+        },
+        {
+            "name": "Psychic",
+            "objects": [
+                {
+                    "o": "OverworldEquipment",
+                    "interacted": false
+                }
+            ],
+            "saves": []
         }
     ]
 }
