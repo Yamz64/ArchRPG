@@ -1785,6 +1785,7 @@ MonoBehaviour:
     limit: 1
     type: 0
     cost: 50
+    id: 
 --- !u!1001 &390584783
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3203,10 +3204,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4998140645680048166, guid: 52110445f037b614787b39ff46091263, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.2120589
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998140645680048166, guid: 52110445f037b614787b39ff46091263, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 2.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998140645680048166, guid: 52110445f037b614787b39ff46091263, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 2.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998140645680048166, guid: 52110445f037b614787b39ff46091263, type: 3}
+      propertyPath: m_Size.y
+      value: 1.1830704
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998140645680048166, guid: 52110445f037b614787b39ff46091263, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.015862465
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998140645680048166, guid: 52110445f037b614787b39ff46091263, type: 3}
+      propertyPath: m_Size.x
+      value: 0.90032387
+      objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048167, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 3ad638fd536df364d93dad6b884e1cbe, type: 3}
+      objectReference: {fileID: 21300000, guid: 9edbe11a7f6a74a43ab93f14e92cb38a, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
 --- !u!1 &1421935167 stripped
@@ -3254,15 +3279,15 @@ MonoBehaviour:
       lower: 18
       upper: 21
   dialogueImages:
-  - sprite_path: CharacterSprites/Tim
+  - sprite_path: CharacterSprites/BackgroundCharacters/crustyManGoodmeat
     lines: 1
   - sprite_path: CharacterSprites/PC
     lines: 1
-  - sprite_path: CharacterSprites/Tim
+  - sprite_path: CharacterSprites/BackgroundCharacters/crustyManGoodmeat
     lines: 2
   - sprite_path: CharacterSprites/PC
     lines: 1
-  - sprite_path: CharacterSprites/Tim
+  - sprite_path: CharacterSprites/BackgroundCharacters/crustyManGoodmeat
     lines: 1
   player: {fileID: 0}
   alt_text:
@@ -3272,7 +3297,7 @@ MonoBehaviour:
   - effects: []
   - effects: []
   alt_dialogueImages:
-  - sprite_path: CharacterSprites/Tim
+  - sprite_path: CharacterSprites/BackgroundCharacters/crustyManGoodmeat
     lines: 2
   no_text:
   - text: Look buddy I can't leave from this spot and all I've had to eat has been
@@ -3288,11 +3313,11 @@ MonoBehaviour:
       lower: 22
       upper: 35
   no_dialogueImages:
-  - sprite_path: CharacterSprites/Tim
+  - sprite_path: CharacterSprites/BackgroundCharacters/crustyManGoodmeat
     lines: 1
   - sprite_path: CharacterSprites/PC
     lines: 1
-  - sprite_path: CharacterSprites/Tim
+  - sprite_path: CharacterSprites/BackgroundCharacters/crustyManGoodmeat
     lines: 1
 --- !u!1 &1524079915
 GameObject:

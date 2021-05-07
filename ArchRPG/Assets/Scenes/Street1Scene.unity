@@ -34855,7 +34855,7 @@ MonoBehaviour:
     lines: 1
   - sprite_path: CharacterSprites/PC
     lines: 1
-  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+  - sprite_path: CharacterSprites/BackgroundCharacters/obliviousMan2
     lines: 3
   player: {fileID: 0}
 --- !u!1 &1809560099 stripped
