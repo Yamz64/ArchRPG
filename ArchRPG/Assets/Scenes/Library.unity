@@ -1872,6 +1872,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CityBookshelf (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 7506790444702031840, guid: 6aa445bbf2eb93a44b2e516758d66449, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7506790444702031843, guid: 6aa445bbf2eb93a44b2e516758d66449, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.72
@@ -1918,6 +1922,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6aa445bbf2eb93a44b2e516758d66449, type: 3}
+--- !u!1 &256315087 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7506790444702031840, guid: 6aa445bbf2eb93a44b2e516758d66449, type: 3}
+  m_PrefabInstance: {fileID: 256315086}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &256315088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256315087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 216d950d517a4824ba2728f3341cff1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quick: 0
+  destroy_in_overworld: 0
+  item:
+    useable: 1
+    name: 
+    description: 
+    image_file_path: 
+    amount: 0
+    limit: 0
+    type: 0
+    cost: 0
+    id: 
+  id: weapons:book
+  get_item_text: You got an Occult Text!
+  used_text: There's nothing else of interest in the bookshelf...
+  type: 1
+  get_item_effect:
+    effects:
+    - name: Color
+      color: {r: 1, g: 1, b: 0, a: 1}
+      lower: 8
+      upper: 18
+  used_item_effect:
+    effects:
+    - name: 
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 0
 --- !u!1001 &438554378
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2250,7 +2299,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1396058554207331182, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
       propertyPath: current_map.objects.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1396058554207331182, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
       propertyPath: current_map.name
@@ -2259,6 +2308,10 @@ PrefabInstance:
     - target: {fileID: 1396058554207331182, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
       propertyPath: current_map.objects.Array.data[0].o
       value: White Knight
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331182, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: current_map.objects.Array.data[1].o
+      value: CityBookshelf (8)
       objectReference: {fileID: 0}
     - target: {fileID: 1396058554207331183, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
       propertyPath: m_Name

@@ -261,16 +261,6 @@
             "saves": []
         },
         {
-            "name": "Library",
-            "objects": [
-                {
-                    "o": "White Knight",
-                    "interacted": false
-                }
-            ],
-            "saves": []
-        },
-        {
             "name": "NightclubBackstage",
             "objects": [
                 {
@@ -349,6 +339,20 @@
             "objects": [
                 {
                     "o": "OverworldEquipment",
+                    "interacted": false
+                }
+            ],
+            "saves": []
+        },
+        {
+            "name": "Library",
+            "objects": [
+                {
+                    "o": "White Knight",
+                    "interacted": false
+                },
+                {
+                    "o": "CityBookshelf (8)",
                     "interacted": false
                 }
             ],
