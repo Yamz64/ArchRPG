@@ -44,7 +44,7 @@ public class RecruiterDialogue : InteractableBaseClass
         effects.Add(new EffectContainer(container));
 
         //image
-        images.Add("CharacterSprites/BackgroundCharacters/Background Kid");
+        images.Add("CharacterSprites/BackgroundCharacters/punkMan3");
 
         //set queues
         player.SetWriteQueue(text);
@@ -128,11 +128,11 @@ public class RecruiterDialogue : InteractableBaseClass
             container.effects.Add(new TextEffectClass(effect));
             effects.Add(new EffectContainer(container));
 
-            images.Add("CharacterSprites/BackgroundCharacters/Background Kid");
-            images.Add("CharacterSprites/BackgroundCharacters/Background Kid");
+            images.Add("CharacterSprites/BackgroundCharacters/punkMan3");
+            images.Add("CharacterSprites/BackgroundCharacters/punkMan3");
             images.Add(null);
-            images.Add("CharacterSprites/BackgroundCharacters/Background Kid");
-            images.Add("CharacterSprites/BackgroundCharacters/Background Kid");
+            images.Add("CharacterSprites/BackgroundCharacters/punkMan3");
+            images.Add("CharacterSprites/BackgroundCharacters/punkMan3");
 
             //set queues
             player.SetWriteQueue(text);
@@ -201,9 +201,9 @@ public class RecruiterDialogue : InteractableBaseClass
                 container.effects.Add(new TextEffectClass(effect));
                 effects.Add(new EffectContainer(container));
 
-                images.Add("CharacterSprites/BackgroundCharacters/Background Kid");
+                images.Add("CharacterSprites/BackgroundCharacters/punkMan3");
                 images.Add(null);
-                images.Add("CharacterSprites/BackgroundCharacters/Background Kid");
+                images.Add("CharacterSprites/BackgroundCharacters/punkMan3");
 
                 //set queues
                 player.SetWriteQueue(text);
@@ -231,7 +231,7 @@ public class RecruiterDialogue : InteractableBaseClass
                 container.effects.Add(new TextEffectClass(effect));
                 effects.Add(new EffectContainer(container));
 
-                images.Add("CharacterSprites/BackgroundCharacter/Background Kid");
+                images.Add("CharacterSprites/BackgroundCharacter/punkMan3");
 
                 //set queues
                 player.SetWriteQueue(text);
@@ -258,8 +258,8 @@ public class RecruiterDialogue : InteractableBaseClass
             container.effects.Add(new TextEffectClass(effect));
             effects.Add(new EffectContainer(container));
 
-            images.Add("CharacterSprites/BackgroundCharacters/Background Kid");
-            images.Add("CharacterSprites/BackgroundCharacters/Background Kid");
+            images.Add("CharacterSprites/BackgroundCharacters/punkMan3");
+            images.Add("CharacterSprites/BackgroundCharacters/punkMan3");
 
             //set queues
             player.SetWriteQueue(text);
@@ -306,7 +306,7 @@ public class RecruiterDialogue : InteractableBaseClass
                 container.effects.Add(new TextEffectClass(effect));
                 effects.Add(new EffectContainer(container));
 
-                images.Add("CharacterSprites/BackgroundCharacters/Background Kid");
+                images.Add("CharacterSprites/BackgroundCharacters/punkMan3");
 
                 //set queues
                 player.SetWriteQueue(text);
@@ -361,11 +361,11 @@ public class RecruiterDialogue : InteractableBaseClass
                 container.effects.Add(new TextEffectClass(effect));
                 effects.Add(new EffectContainer(container));
 
-                images.Add("CharacterSprites/BackgroundCharacters/Background Kid");
-                images.Add("CharacterSprites/BackgroundCharacters/Background Kid");
+                images.Add("CharacterSprites/BackgroundCharacters/punkMan3");
+                images.Add("CharacterSprites/BackgroundCharacters/punkMan3");
                 images.Add(null);
-                images.Add("CharacterSprites/BackgroundCharacters/Background Kid");
-                images.Add("CharacterSprites/BackgroundCharacters/Background Kid");
+                images.Add("CharacterSprites/BackgroundCharacters/punkMan3");
+                images.Add("CharacterSprites/BackgroundCharacters/punkMan3");
 
                 //set queues
                 player.SetWriteQueue(text);
@@ -434,9 +434,9 @@ public class RecruiterDialogue : InteractableBaseClass
                     container.effects.Add(new TextEffectClass(effect));
                     effects.Add(new EffectContainer(container));
 
-                    images.Add("CharacterSprites/BackgroundCharacters/Background Kid");
+                    images.Add("CharacterSprites/BackgroundCharacters/punkMan3");
                     images.Add(null);
-                    images.Add("CharacterSprites/BackgroundCharacters/Background Kid");
+                    images.Add("CharacterSprites/BackgroundCharacters/punkMan3");
 
                     //set queues
                     player.SetWriteQueue(text);
@@ -464,7 +464,7 @@ public class RecruiterDialogue : InteractableBaseClass
                     container.effects.Add(new TextEffectClass(effect));
                     effects.Add(new EffectContainer(container));
 
-                    images.Add("CharacterSprites/BackgroundCharacter/Background Kid");
+                    images.Add("CharacterSprites/BackgroundCharacter/punkMan3");
 
                     //set queues
                     player.SetWriteQueue(text);
@@ -508,9 +508,9 @@ public class RecruiterDialogue : InteractableBaseClass
         container.effects.Add(new TextEffectClass(effect));
         effects.Add(new EffectContainer(container));
 
-        images.Add("CharacterSprites/BackgroundCharacters/Background Kid");
+        images.Add("CharacterSprites/BackgroundCharacters/punkMan3");
         images.Add("CharacterSprites/PC");
-        images.Add("CharacterSprites/BackgroundCharacters/Background Kid");
+        images.Add("CharacterSprites/BackgroundCharacters/punkMan3");
 
         player.SetWriteQueue(text);
         player.SetEffectQueue(effects);
@@ -553,8 +553,8 @@ public class RecruiterDialogue : InteractableBaseClass
         container.effects.Add(new TextEffectClass(effect));
         effects.Add(new EffectContainer(container));
 
-        images.Add("CharacterSprites/BackgroundCharacters/Background Kid");
-        images.Add("CharacterSprites/BackgroundCharacters/Background Kid");
+        images.Add("CharacterSprites/BackgroundCharacters/punkMan3");
+        images.Add("CharacterSprites/BackgroundCharacters/punkMan3");
         images.Add(null);
 
         player.SetWriteQueue(text);
@@ -595,8 +595,8 @@ public class RecruiterDialogue : InteractableBaseClass
         container.effects.Add(new TextEffectClass(effect));
         effects.Add(new EffectContainer(container));
 
-        images.Add("CharacterSprites/BackgroundCharacters/Background Kid");
-        images.Add("CharacterSprites/BackgroundCharacters/Background Kid");
+        images.Add("CharacterSprites/BackgroundCharacters/punkMan3");
+        images.Add("CharacterSprites/BackgroundCharacters/punkMan3");
 
         player.SetWriteQueue(text);
         player.SetEffectQueue(effects);
