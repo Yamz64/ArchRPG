@@ -200,6 +200,7 @@ public class unit
     public int LCK;                 //Luck stat of unit
     public string status;           //String to say what status effect the unit has
     public int mode = 0;            //The unit's mode (ex. Oliver's Rage and Peace modes)
+    string aggroText = "The unit is in a state of frenzy. Specifically towards the annoying one.";
     //public int statusCounter = 0;   //Int to track how many more turns the unit will have the status for
 
 
@@ -365,6 +366,11 @@ public class unit
         int sdnum = 0;
         int num = 0;
         statusText.text = "";
+        if (aggro >= 1)
+        {
+            statusText.text += "Aggro:" + aggro + "\n";
+            sdnum++;
+        }
         for (int i = 0; i < statuses.Count; i++)
         {
             if (statuses[i] != -1)
@@ -382,6 +388,34 @@ public class unit
                 statusText.text += statusIndex[i] + ": 9+\n";
                 sdnum++;
             }
+        }
+        if (aggro >= 1)
+        {
+            sdnum++;
+            Color temp = statusIcons[num].color;
+            temp.a = 1.0f;
+            statusIcons[num].color = temp;
+            statusIcons[num].GetComponent<statIcon>().desc = aggroText;
+            statusIcons[num].GetComponent<statIcon>().count = aggro;
+            statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_aggro");
+            if (aggro < 9)
+            {
+                statusIcons[num].transform.GetChild(0).GetChild(2).GetComponent<Text>().text = "" + aggro;
+            }
+            else
+            {
+                statusIcons[num].transform.GetChild(0).GetChild(2).GetComponent<Text>().text = "9+";
+            }
+
+            temp = statusIcons[num].transform.GetChild(0).GetChild(0).GetComponent<Image>().color;
+            temp.a = 1.0f;
+            statusIcons[num].transform.GetChild(0).GetChild(0).GetComponent<Image>().color = temp;
+
+            temp = statusIcons[num].transform.GetChild(0).GetChild(1).GetComponent<Image>().color;
+            temp.a = 1.0f;
+            statusIcons[num].transform.GetChild(0).GetChild(1).GetComponent<Image>().color = temp;
+
+            num += 1;
         }
         for (int i = 0; i < statuses.Count; i++)
         {
@@ -1704,6 +1738,12 @@ public class unit
     public void statusTurn()
     {
         bool no = false;
+        if (aggro > 0) aggro -= 1;
+        if (aggro <= 0)
+        {
+            aggroTarget = "";
+            setHUD();
+        }
         for (int i = 0; i < statuses.Count; i++)
         {
             if (statuses[i] > -1)
@@ -1738,6 +1778,10 @@ public class unit
                 no = true;
             }
         }
+        if (aggro > 1)
+        {
+            no = true;
+        }
         if (!no)
         {
             statusBackW.gameObject.SetActive(false);
@@ -1748,6 +1792,28 @@ public class unit
         {
             status = "";
             int num = 0;
+            if (aggro > 0)
+            {
+                status += "Aggro:" + aggro + "\n";
+                if (num < 8)
+                {
+                    Color temp = statusIcons[num].color;
+                    temp.a = 1.0f;
+                    statusIcons[num].color = temp;
+                    statusIcons[num].sprite = Resources.Load<Sprite>("UISprites/StatusEffects/status_effect_aggro");
+                    statusIcons[num].transform.GetChild(0).GetChild(2).GetComponent<Text>().text = "" + aggro;
+
+                    temp = statusIcons[num].transform.GetChild(0).GetChild(0).GetComponent<Image>().color;
+                    temp.a = 1.0f;
+                    statusIcons[num].transform.GetChild(0).GetChild(0).GetComponent<Image>().color = temp;
+
+                    temp = statusIcons[num].transform.GetChild(0).GetChild(1).GetComponent<Image>().color;
+                    temp.a = 1.0f;
+                    statusIcons[num].transform.GetChild(0).GetChild(1).GetComponent<Image>().color = temp;
+
+                    num += 1;
+                }
+            }
 
             for (int i = 0; i < statuses.Count; i++)
             {
@@ -1807,8 +1873,6 @@ public class unit
         {
             if (abilities[i].statCounter > 0) abilities[i].statCounter -= 1;
         }
-        if (aggro > 0) aggro -= 1;
-        if (aggro == 0) aggroTarget = "";
     }
 
     //Give this unit its assigned eldritch/madness ability

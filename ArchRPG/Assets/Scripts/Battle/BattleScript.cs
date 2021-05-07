@@ -1075,7 +1075,7 @@ public class BattleScript : MonoBehaviour
     public void AbilityMenuRoutine()
     {
         //change position of cursor in the menu if in item select mode
-        if (ability_select_menu == false && state == battleState.PLAYER)
+        if (ability_select_menu == false && state == battleState.PLAYER && !writing)
         {
             //If input is up and cursor is not at the top yet
             if (InputManager.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
@@ -1164,7 +1164,7 @@ public class BattleScript : MonoBehaviour
             }
         }
         //Use attack menu is open
-        else if (enemy_select_menu == false && unit_select_menu == false && state == battleState.PLAYER)
+        else if (enemy_select_menu == false && unit_select_menu == false && state == battleState.PLAYER && !writing)
         {
             //If input is up and in the attack select menu
             if (InputManager.GetAxisRaw("Vertical") > 0.0f && cursor_position > 3)
@@ -1331,11 +1331,10 @@ public class BattleScript : MonoBehaviour
                                         }
                                         actions.Add(new action(currentUnit, "ability", highlighted_ability, currentEnemy, speed,
                                             partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].fast));
+                                        currentUnit += 1;
                                         currentEnemy = 0;
                                         highlighted_ability = 0;
                                         ability_offset = 0;
-                                        playerTurn();
-                                        currentUnit += 1;
                                         Vector3 here = partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.view.transform.position;
                                         here.y = partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.backupView.transform.position.y;
                                         partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.view.transform.position = here;
@@ -1537,7 +1536,7 @@ public class BattleScript : MonoBehaviour
             }
         }
         //Enemy select menu is open
-        else if (state == battleState.PLAYER && unit_select_menu == false)
+        else if (state == battleState.PLAYER && unit_select_menu == false && !writing)
         {
             //If input is right and not at very edge
             if (InputManager.GetAxisRaw("Horizontal") > 0.0f && currentEnemy < enemyUnits.Count - 1)
@@ -1742,7 +1741,7 @@ public class BattleScript : MonoBehaviour
             }
         }
         //Unit select menu open
-        else if (state == battleState.PLAYER && enemy_select_menu == false)
+        else if (state == battleState.PLAYER && enemy_select_menu == false && !writing)
         {
             //If input is down and the cursor is not at the bottom yet
             if (InputManager.GetAxisRaw("Vertical") < 0.0f && currentAlly < 2)
@@ -2703,13 +2702,13 @@ public class BattleScript : MonoBehaviour
                             {
                                 tochoos.Add(f);
                             }
-                            //If an active unit that is using aggro, add 10 times
+                            //If an active unit that is using aggro, add 100 times
                             if (partyUnits[f] != null)
                             {
                                 if (partyUnits[f].GetComponent<UnitMono>().mainUnit.currentHP > 0 &&
                                     enemyUnits[i].GetComponent<UnitMono>().mainUnit.aggroTarget.Equals(partyUnits[f].GetComponent<UnitMono>().mainUnit.unitName))
                                 {
-                                    for (int g = 0; g < 10; g++)
+                                    for (int g = 0; g < 100; g++)
                                     {
                                         tochoos.Add(f);
                                     }
@@ -4576,6 +4575,7 @@ public class BattleScript : MonoBehaviour
     void playerTurn()
     {
         Clear();
+        write_queue.Clear();
         StartCoroutine(textDisplay(partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.unitName + "'s Turn"));
     }
 
