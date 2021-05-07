@@ -1210,7 +1210,7 @@ public static class Weapons
         public TestWeapon()
         {
             name = "TestWeapon";
-            id = "consumables:testweapon";
+            id = "weapons:testweapon";
             image_file_path = "ItemSprites/Weapon_1";
             description = "A weapon of code!  Made for debugging so it's not really good...";
             limit = 1;
@@ -1232,13 +1232,14 @@ public static class Weapons
         public Protractor()
         {
             name = "Protractor";
-            id = "consumables:protractor";
+            id = "weapons:protractor";
             image_file_path = "ItemSprites/Weapon_0";
             description = "This plastic graded semicircle is a monument to mathematical precision... some of the numbers are worn off.";
-            limit = 1;
+            limit = 10;
             amount = 1;
             type = 1;
             power_buff = 1;
+            cost = 1;
         }
     }
 
@@ -1247,13 +1248,14 @@ public static class Weapons
         public GnomeShard()
         {
             name = "Gnome Shard";
-            id = "consumables:gnomeshard";
+            id = "weapons:gnomeshard";
             image_file_path = "ItemSprites/Weapon_0";
             description = "The remains of a garden gnome homicide, you feel like you’re tampering with evidence here. It stares at you blankly.";
-            limit = 1;
+            limit = 10;
             amount = 1;
             type = 1;
             damage_buff = 3;
+            cost = 2;
         }
     }
 
@@ -1262,15 +1264,16 @@ public static class Weapons
         public RatBomb()
         {
             name = "Rat Bomb";
-            id = "consumables:ratbomb";
+            id = "weapons:ratbomb";
             image_file_path = "ItemSprites/Weapon_0";
             description = "This isn’t actually a rat bomb, this is more like a bomb that a rat left behind...";
-            limit = 1;
+            limit = 10;
             amount = 1;
             type = 1;
             damage_buff = 5;
             damageType = 3;
             //Will need to add chem damage
+            cost = 3;
         }
     }
 
@@ -1279,14 +1282,15 @@ public static class Weapons
         public ReplicaFlintlock()
         {
             name = "Replica Flintlock";
-            id = "consumables:replicaflintlock";
+            id = "weapons:replicaflintlock";
             image_file_path = "ItemSprites/Weapon_0";
-            description = "";
-            limit = 1;
+            description = "A nearly 1 to 1 replica of a Stocking Model 1850 Shirley made in art class out of popsicle sticks, a lighter, and a toy car!";
+            limit = 10;
             amount = 1;
             type = 1;
             damage_buff = 2;
             speed_buff = 1;
+            cost = 2;
         }
     }
 
@@ -1295,22 +1299,15 @@ public static class Weapons
         public NightStick()
         {
             name = "Night Stick";
-            id = "consumables:nightstick";
+            id = "weapons:nightstick";
             image_file_path = "ItemSprites/Weapon_0";
-            limit = 1;
+            description = "Kind of bizarre how the modern police man's weapon of choice is basically the same as that of 5th century barbarian: a stick.";
+            limit = 10;
             amount = 1;
             type = 1;
             damage_buff = 6;
             luck_buff = 4;
-        }
-    }
-
-    //Needs stuff
-    public class Baton : Weapon
-    {
-        public Baton()
-        {
-
+            cost = 5;
         }
     }
 
@@ -1319,7 +1316,17 @@ public static class Weapons
     {
         public Bokken()
         {
-
+            name = "Bokken";
+            id = "weapons:bokken";
+            image_file_path = "ItemSprites/Weapon_1";
+            description = "The training weapon of an honorable samurai! It's also legal to carry around, because it cannot be classified as a bladed weapon " +
+                "under Chapter 46 of the Brown Trout City Penal Code!";
+            limit = 10;
+            amount = 1;
+            type = 1;
+            damage_buff = 6;
+            power_buff = 20;
+            cost = 5;
         }
     }
 
@@ -1328,7 +1335,17 @@ public static class Weapons
     {
         public Book()
         {
-
+            name = "Occult Text";
+            id = "weapons:book";
+            image_file_path = "ItemSprites/Weapon_1";
+            description = "A book of unspeakable truths bound in the flesh of a 10th century heretic. Consequently it has a good heft to it!";
+            limit = 10;
+            amount = 1;
+            type = 1;
+            damage_buff = 8;
+            power_buff = 22;
+            //needs to do weird damage
+            cost = 15;
         }
     }
 
@@ -1337,7 +1354,17 @@ public static class Weapons
     {
         public ExplicitMagazine()
         {
-
+            name = "Explicit Magazine";
+            id = "weapons:magazine";
+            image_file_path = "ItemSprites/Weapon_1";
+            description = "A magazine full of smut. You noticed after rolling it up to hide the unspeakable cover art, it makes a very good club!";
+            limit = 10;
+            amount = 1;
+            type = 1;
+            damage_buff = 12;
+            resistance_buff = 7;
+            luck_buff = 8;
+            cost = 10;
         }
     }
 
@@ -1346,7 +1373,51 @@ public static class Weapons
     {
         public BeanBagGun()
         {
+            name = "Bean Bag Gun";
+            id = "weapons:beangun";
+            image_file_path = "Itemsprites/Weapon_2";
+            description = "Who knew that a children's toy launched at 300 feet per second could be so deadly. The police certainly did, and that's why" +
+                " this weapon was invented for riots!";
+            limit = 10;
+            amount = 1;
+            type = 1;
+            damage_buff = 30;
+            cost = 50;
+        }
+    }
 
+    public class Taser : Weapon
+    {
+        public Taser()
+        {
+            name = "Taser";
+            id = "weapons:taser";
+            image_file_path = "ItemSprites/Weapon_2";
+            description = "Everyone confuses tasers for stun guns, that is until you've tased them. Then they'll never have trouble telling the difference again.";
+            limit = 10;
+            amount = 1;
+            type = 1;
+            damage_buff = 20;
+            cost = 30;
+            //needs to do electric damage
+        }
+    }
+
+    public class PepperSpray : Weapon
+    {
+        public PepperSpray()
+        {
+            name = "Pepper Spray";
+            id = "weapons:pepperspray";
+            image_file_path = "ItemSprites/Weapon_1";
+            description = "There's nothing cowardly or unmanly about spraying capsaicin into an assailants eyes! You just had something in your eye and wanted to " +
+                "even the playing field!";
+            limit = 10;
+            amount = 1;
+            type = 1;
+            damageType = 15;
+            cost = 30;
+            //needsd to do fire damage
         }
     }
 }
@@ -1389,10 +1460,10 @@ public static class Armors
         public TestArmor()
         {
             name = "TestArmor";
-            id = "consumables:testarmor";
+            id = "armors:testarmor";
             image_file_path = "ItemSprites/Armor_1";
             description = "A suit of armor made of code!  Awkward and clunky, just like a programmer's first draft...";
-            limit = 1;
+            limit = 10;
             amount = 1;
             type = 2;
             cost = 7;
@@ -1411,10 +1482,10 @@ public static class Armors
         public RadFlatCap()
         {
             name = "Rad Flat Cap";
-            id = "consumables:radflatcap";
+            id = "armors:radflatcap";
             image_file_path = "ItemSprites/Armor_0";
             description = "This hat bears the insignia of a radical, the mathematical one of course… you feel real cool in this hat.";
-            limit = 1;
+            limit = 10;
             amount = 1;
             type = 2;
             will_buff = 2;
@@ -1427,15 +1498,16 @@ public static class Armors
         public StrResTrashBag()
         {
             name = "Strech Resistant Trash Bag";
-            id = "consumables:strrestrashbag";
+            id = "armors:strrestrashbag";
             image_file_path = "ItemSprites/Armor_0";
             description = "You figure by fitting your arms and legs through 4 conveniently ripped holes in this trash bag and donning it, " +
                 "this would make good protection against any attack that might stretch you out...";
-            limit = 1;
+            limit = 10;
             amount = 1;
             type = 2;
             defense_buff = 4;
             speed_buff = -2;
+            cost = 5;
         }
     }
 
@@ -1444,10 +1516,10 @@ public static class Armors
         public CommemorativeTShirt()
         {
             name = "Commemorative T-Shirt";
-            id = "consumables:commemorativetshirt";
+            id = "armors:commemorativetshirt";
             image_file_path = "ItemSprites/Armor_0";
             description = "Armor that smells like feet-I mean... cheese... yeah cheese...";
-            limit = 1;
+            limit = 10;
             amount = 1;
             type = 2;
             cost = 15;
@@ -1461,7 +1533,15 @@ public static class Armors
     {
         public BulletProofSocks()
         {
-
+            name = "Bullet Proof Socks";
+            id = "armors:socks";
+            image_file_path = "ItemSprites/Armor_1";
+            description = "Armor for not... getting your feet shot off? I don't really think the weapons engineers thought this one through.";
+            limit = 10;
+            amount = 1;
+            type = 2;
+            cost = 20;
+            defense_buff = 10;
         }
     }
 
@@ -1470,7 +1550,17 @@ public static class Armors
     {
         public WoodPlanks()
         {
-
+            name = "Wooden Planks";
+            id = "armors:woodplanks";
+            image_file_path = "ItemSprites/Armor_1";
+            description = "Those school mandatory shop classes are finally paying off! After many attempts and splinters, you managed to make some rudimentary" +
+                " armor out of wood!";
+            limit = 10;
+            amount = 1;
+            type = 2;
+            cost = 15;
+            defense_buff = 8;
+            speed_buff = -3;
         }
     }
 
@@ -1479,7 +1569,51 @@ public static class Armors
     {
         public UnwrappedExpiredRubber()
         {
+            name = "Unwrapped Expired Rubber";
+            id = "armors:rubber";
+            image_file_path = "ItemSprites/Armor_1";
+            description = "To be clear, this was NOT used. However, it's still expired and somehow hardened, you're not planning on using that... right?";
+            limit = 10;
+            amount = 1;
+            type = 2;
+            cost = 15;
+            defense_buff = 10;
+            resistance_buff = 4;
+        }
+    }
 
+    public class BulletProofPants : Armor
+    {
+        public BulletProofPants()
+        {
+            name = "Bulletproof Pants";
+            id = "armors:pants";
+            image_file_path = "ItemSprites/Armor_2";
+            description = "Well at least people will think twice about attacking you below the waist.";
+            limit = 10;
+            amount = 1;
+            type = 2;
+            cost = 25;
+            defense_buff = 15;
+            speed_buff = 10;
+        }
+    }
+
+    public class RiotShield : Armor
+    {
+        public RiotShield()
+        {
+            name = "Riot Shield";
+            id = "armors:riotshield";
+            image_file_path = "ItemSprites/Armor_2";
+            description = "This is actually an antique 9th century targe shield, with the words, 'Riot Shield,' spray painted on the front of it";
+            limit = 10;
+            amount = 1;
+            type = 2;
+            cost = 30;
+            defense_buff = 12;
+            damage_buff = 10;
+            speed_buff = 8;
         }
     }
 }
@@ -1522,10 +1656,10 @@ public static class Trinkets
         public TestTrinket()
         {
             name = "TestTrinket";
-            id = "consumables:testtrinket";
+            id = "trinkets:testtrinket";
             image_file_path = "ItemSprites/Trinket_1";
             description = "The jewel on the ring is valued at 1 bit!  Not one bitcoin, like an actual bit of memory...";
-            limit = 1;
+            limit = 10;
             amount = 1;
             type = 3;
             cost = 10;
@@ -1543,15 +1677,16 @@ public static class Trinkets
         public MrWhiskers()
         {
             name = "Mr Whiskers";
-            id = "consumables:mrwhiskers";
+            id = "trinkets:mrwhiskers";
             image_file_path = "ItemSprites/Trinket_0";
             description = "You figure if you don’t return your neighbor’s cat, it can never escape again, and thus your fish " +
                 "will always be safe from his nemesis.";
-            limit = 1;
+            limit = 10;
             amount = 1;
             type = 3;
             luck_buff = 5;
             speed_buff = 5;
+            cost = 2;
         }
     }
 
@@ -1560,14 +1695,15 @@ public static class Trinkets
         public ClayAmulet()
         {
             name = "Clay Amulet";
-            id = "consumables:clayamulet";
+            id = "trinkets:clayamulet";
             image_file_path = "ItemSprites/Trinket_1";
             description = "They say the humanities are what keeps us human, but the arts and crafts class is what keeps some " +
                 "students sane.  Clearly, some student rejected their humanity by throwing this project away...";
-            limit = 1;
+            limit = 10;
             amount = 1;
             type = 3;
             will_buff = 3;
+            cost = 3;
         }
     }
 
@@ -1576,7 +1712,32 @@ public static class Trinkets
     {
         public PetRock()
         {
+            name = "Pet Rock";
+            id = "trinkets:petrock";
+            image_file_path = "ItemSprites/Trinket_1";
+            description = "It's entirely self sufficient, it doesn't talk back, and it always listens: the perfect companion for the likes of you! Shhhh... " +
+                "don't tell fish!";
+            limit = 10;
+            amount = 1;
+            type = 3;
+            will_buff = 6;
+            cost = 5;
+        }
+    }
 
+    public class GalaxyGuyActionFigure : Trinket
+    {
+        public GalaxyGuyActionFigure()
+        {
+            name = "Galaxy Guy Action Figure";
+            id = "trinkets:actionfigure";
+            image_file_path = "ItemSprites/Trinket_1";
+            description = "The most powerful action figure, you know the guy? That's right it's Galaxy Guy! Wielding the all powerful indivisible particle smasher!";
+            limit = 10;
+            amount = 1;
+            type = 3;
+            power_buff = 5;
+            speed_buff = 5;
         }
     }
 
@@ -1585,7 +1746,54 @@ public static class Trinkets
     {
         public AdultVideo()
         {
+            name = "Adult Video";
+            id = "trinkets:adultvideo";
+            image_file_path = "ItemSprites/Trinket_2";
+            description = "It's in Spanish";
+            limit = 10;
+            amount = 1;
+            type = 3;
+            will_buff = -2;
+            resistance_buff = 7;
+            power_buff = 8;
+        }
+    }
 
+    public class BrokenGlassSphere : Trinket
+    {
+        public BrokenGlassSphere()
+        {
+            name = "BrokenGlassSphere";
+            id = "trinkets:brokenglasssphere";
+            image_file_path = "ItemSprites/Trinket_2";
+            description = "When they call it a crystal ball it sounds a whole lot more believable, but it's actually made of glass.";
+            limit = 10;
+            amount = 1;
+            type = 3;
+            damage_buff = 10;
+            power_buff = 10;
+            will_buff = 5;
+            luck_buff = 15;
+        }
+    }
+
+    public class AdrenalineSyringe : Trinket
+    {
+        public AdrenalineSyringe()
+        {
+            name = "Adrenaline Syringe";
+            id = "trinkets:adrenalinesyringe";
+            image_file_path = "ItemSprites/Trinket_2";
+            description = "You don't think you're supposed to leave that in, but whatever, you feel hyped so you couldn't care less";
+            limit = 10;
+            amount = 1;
+            type = 3;
+            damage_buff = 8;
+            power_buff = 8;
+            will_buff = 10;
+            luck_buff = 10;
+            speed_buff = 10;
+            resistance_buff = -2;
         }
     }
 }
