@@ -1884,12 +1884,71 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4998140645680048166, guid: 52110445f037b614787b39ff46091263, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 2.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998140645680048166, guid: 52110445f037b614787b39ff46091263, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 2.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998140645680048166, guid: 52110445f037b614787b39ff46091263, type: 3}
+      propertyPath: m_Offset.y
+      value: -1.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998140645680048166, guid: 52110445f037b614787b39ff46091263, type: 3}
+      propertyPath: m_Size.x
+      value: 1.15
+      objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048167, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 3b1f158820e706f42a771cf6ce9316ff, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &1233001384 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1233001383}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1233001385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233001384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 527d3d7f364a2d4449e7dcb532321c72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  items:
+  - name: Explicit Magazine
+    cost: 15
+    type: 1
+  - name: Unwrapped Expired Rubber
+    cost: 22
+    type: 2
+  - name: Adult Video
+    cost: 22
+    type: 3
+  text:
+  - text: Welcome to Sal's Smut Shop!
+  - text: We know you don't wanna be here.
+  - text: We also don't wanna be here!
+  - text: But we know ya want the goods so buy something will ya, and don't make
+      this more awkward than it needs to be!
+  container:
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  images:
+  - sprite_path: CharacterSprites/BackgroundCharacters/depressedMan2
+    lines: 4
+  player: {fileID: 0}
 --- !u!1001 &1509615930
 PrefabInstance:
   m_ObjectHideFlags: 0
