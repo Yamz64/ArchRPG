@@ -4341,7 +4341,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048166, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_Offset.x
-      value: -0.050310522
+      value: -1.48
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048166, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_Size.x
@@ -4353,7 +4353,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048166, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_Size.y
-      value: 1.1483536
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048167, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_Sprite
@@ -4375,18 +4375,57 @@ MonoBehaviour:
   m_GameObject: {fileID: 1644584668}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Script: {fileID: 11500000, guid: 527d3d7f364a2d4449e7dcb532321c72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
+  items:
+  - name: Ginger Ale
+    cost: 7
+    type: 0
+  - name: Stomach Pump
+    cost: 15
+    type: 0
+  - name: Tissues
+    cost: 7
+    type: 0
+  - name: Eye Drops
+    cost: 15
+    type: 0
+  - name: Smelling Salts
+    cost: 7
+    type: 0
+  - name: Leeches
+    cost: 7
+    type: 0
+  - name: Mineral Water
+    cost: 7
+    type: 0
+  - name: Tinfoil Hat
+    cost: 7
+    type: 0
+  - name: Caffeine Gum
+    cost: 7
+    type: 0
+  - name: Lightning Rod
+    cost: 7
+    type: 0
+  - name: Litter
+    cost: 7
+    type: 0
+  - name: An Actual Pepper
+    cost: 7
+    type: 0
+  - name: '"Winning" Lottery Ticket!'
+    cost: 30
+    type: 0
   text:
-  - text: This man has a crippling gambling addiction.
-  - text: 'He didn''t tell you or anything. But it''s obvious. Just look at him.
-
-'
+  - text: '*Sigh,* all set to check out?'
   container:
   - effects: []
-  - effects: []
-  dialogueImages: []
+  images:
+  - sprite_path: CharacterSprites/BackgroundCharacters/depressedMan3
+    lines: 1
   player: {fileID: 0}
 --- !u!1001 &1652778508
 PrefabInstance:

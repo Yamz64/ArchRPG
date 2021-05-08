@@ -831,7 +831,7 @@ public static class Consumables
             name = "Ginger Ale";
             id = "consumables:gingerale";
             description = "While ginger is known to settle the stomach, you're seriously going to use that sugary soda to cure your serious case of gastroenteritis?" +
-                "Cures Vomiting";
+                " Cures Vomiting";
             image_file_path = "ItemSprites/ConsumableIcon2";
             amount = 1;
             limit = 99;
@@ -1150,10 +1150,11 @@ public static class Consumables
     {
         public WinningLotteryTicket()
         {
-            name = "Winning Lottery Ticket!";
+            name = "\"Winning\" Lottery Ticket!";
             id = "consumables:lotteryticket";
             description = "The lottery has been indefinitely suspended, but when it does return you'll surely cash this in and not feel guilty about buying a " +
                 "lottery ticket in the first place! Heals a small amount of sanity on use!";
+            image_file_path = "ItemSprites/ConsumableIcon3";
             amount = 1;
             limit = 99;
             cost = 20;
