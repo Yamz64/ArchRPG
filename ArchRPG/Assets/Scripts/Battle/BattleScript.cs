@@ -2069,7 +2069,7 @@ public class BattleScript : MonoBehaviour
     public void ItemMenuRoutine()
     {
         //change position of cursor in the menu if in item select mode
-        if (item_select_menu == false && state == battleState.PLAYER)
+        if (item_select_menu == false && state == battleState.PLAYER && !writing)
         {
             //If input is up and not at top of menu
             if (InputManager.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
@@ -2146,7 +2146,7 @@ public class BattleScript : MonoBehaviour
                 menu_input = false;
             }
         }
-        else if (state == battleState.PLAYER)
+        else if (state == battleState.PLAYER && !writing)
         {
             if (InputManager.GetAxisRaw("Vertical") > 0.0f && cursor_position > 9)
             {
@@ -2280,7 +2280,7 @@ public class BattleScript : MonoBehaviour
     //Use to navigate through the swap process
     public void SwapMenuRoutine()
     {
-        if (state == battleState.PLAYER)
+        if (state == battleState.PLAYER && !writing)
         {
             //If second unit hasn't been selected
             if (i2 == 5)
@@ -4620,7 +4620,7 @@ public class BattleScript : MonoBehaviour
                 write_queue.RemoveAt(0);
                 writing = false;
                 yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
-                continue;
+                break;
             }
             yield return new WaitForSeconds(1f / scroll_speed);
             dialogue.text += write_queue[0][i];
@@ -6499,7 +6499,7 @@ public class BattleScript : MonoBehaviour
         //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
         if (boost == true)
         {
-            yield return textDisplay("Leveled up!");
+            yield return textDisplay("Leveled up!", true);
             for (int i = 0; i < partyUnits.Count; i++)
             {
                 if (partyUnits[i] != null)
