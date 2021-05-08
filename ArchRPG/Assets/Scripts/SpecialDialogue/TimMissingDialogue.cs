@@ -38,7 +38,7 @@ public class TimMissingDialogue : NPCDialogue
             container.Add(new EffectContainer(effect_container));
 
             dialogueImages.Clear();
-            dialogueImages.Add(new DialogueImages("CharacterSprites/BackgroundCharacters/Background Kid", 3));
+            dialogueImages.Add(new DialogueImages("CharacterSprites/BackgroundCharacters/obliviousMan3", 3));
 
             base.Start();
         }
