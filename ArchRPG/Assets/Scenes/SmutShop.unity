@@ -886,7 +886,7 @@ Transform:
   - {fileID: 105279609}
   - {fileID: 1653778071}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &288624132
 PrefabInstance:
@@ -1025,7 +1025,7 @@ Transform:
   m_LocalScale: {x: 4, y: 4.41, z: 0.027435476}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1001 &506800277
 PrefabInstance:
@@ -1713,7 +1713,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &705870361
 PrefabInstance:
@@ -1770,7 +1770,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: OverworldEquipment
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2517797632045173605, guid: 418d9150908dd624ab1dd027018b591d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 418d9150908dd624ab1dd027018b591d, type: 3}
 --- !u!1001 &1101247773
 PrefabInstance:
@@ -1829,6 +1830,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6aa445bbf2eb93a44b2e516758d66449, type: 3}
+--- !u!1 &1190465545 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5582148413103992204, guid: 418d9150908dd624ab1dd027018b591d, type: 3}
+  m_PrefabInstance: {fileID: 705870361}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1190465546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190465545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 216d950d517a4824ba2728f3341cff1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quick: 0
+  destroy_in_overworld: 0
+  item:
+    useable: 1
+    name: 
+    description: 
+    image_file_path: 
+    amount: 0
+    limit: 0
+    type: 0
+    cost: 0
+    id: 
+  id: trinkets:actionfigure
+  get_item_text: You got a Galaxy Guy Action Figure!
+  used_text: You don't want to put your hand back in there!
+  type: 3
+  get_item_effect:
+    effects:
+    - name: Color
+      color: {r: 1, g: 1, b: 0, a: 1}
+      lower: 7
+      upper: 28
+  used_item_effect:
+    effects:
+    - name: 
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 0
 --- !u!1001 &1233001383
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1949,6 +1995,75 @@ MonoBehaviour:
   - sprite_path: CharacterSprites/BackgroundCharacters/depressedMan2
     lines: 4
   player: {fileID: 0}
+--- !u!1001 &1277015683
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331181, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331182, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: current_map.objects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331182, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: current_map.name
+      value: SmutShop
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331182, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: current_map.objects.Array.data[0].o
+      value: OverworldEquipment
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396058554207331183, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
+      propertyPath: m_Name
+      value: MapManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4bd7f47095d327647a9f11efba248500, type: 3}
 --- !u!1001 &1509615930
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3251,7 +3366,7 @@ Transform:
   m_LocalScale: {x: 1.002375, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1653778070
 GameObject:
@@ -3863,7 +3978,7 @@ Transform:
   m_LocalScale: {x: 0.4, y: 1.2, z: 0.0083359955}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1001 &1918607582
 PrefabInstance:

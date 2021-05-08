@@ -367,6 +367,36 @@
                 }
             ],
             "saves": []
+        },
+        {
+            "name": "Bakery",
+            "objects": [
+                {
+                    "o": "OverworldEquipment",
+                    "interacted": false
+                }
+            ],
+            "saves": []
+        },
+        {
+            "name": "SmutShop",
+            "objects": [
+                {
+                    "o": "OverworldEquipment",
+                    "interacted": false
+                }
+            ],
+            "saves": []
+        },
+        {
+            "name": "SelfDefenseEmporium",
+            "objects": [
+                {
+                    "o": "Trash Can",
+                    "interacted": false
+                }
+            ],
+            "saves": []
         }
     ]
 }
