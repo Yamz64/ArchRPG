@@ -336,47 +336,256 @@ public class PlayerData : CharacterStats
     //Use to add an item to the inventory based on their name/id
     public void AddItem(string id)
     {
-        if (id == "Protractor")
+        switch(id)
         {
-            AddItem(new Weapons.Protractor());
-        }
-        else if (id == "GnomeShard" || id == "Gnome Shard")
-        {
-            AddItem(new Weapons.GnomeShard());
-        }
-        else if (id == "RatBomb" || id == "Rat Bomb")
-        {
-            AddItem(new Weapons.RatBomb());
-        }
-        else if (id == "ReplicaFlintlock" || id == "Replica Flintlock")
-        {
-            AddItem(new Weapons.ReplicaFlintlock());
-        }
-        else if (id == "NightStick" || id == "Night Stick")
-        {
-            AddItem(new Weapons.NightStick());
-        }
-        else if (id == "RadFlatCap" || id == "Rad Flat Cap")
-        {
-            AddItem(new Armors.RadFlatCap());
-        }
-        else if (id == "StrResTrashBag" || id == "Stretch Resistant Trash Bag")
-        {
-            AddItem(new Armors.StrResTrashBag());
-        }
-        else if (id == "CommemorativeTShirt" || id == "Commemorative T-Shirt")
-        {
-            AddItem(new Armors.CommemorativeTShirt());
-        }
-        else if (id == "MrWhiskers" || id == "Mr Whiskers" || id == "Mr. Whiskers")
-        {
-            AddItem(new Trinkets.MrWhiskers());
-        }
-        else if (id == "ClayAmulet" || id == "Clay Amulet")
-        {
-            AddItem(new Trinkets.ClayAmulet());
-        }
+            //Consumables
+            case "Hot Dog":
+                AddItem(new Consumables.HotDog());
+                break;
+            case "Meat Dog":
+                AddItem(new Consumables.MeatDog());
+                break;
+            case "Bacon Lollipop":
+                AddItem(new Consumables.BaconLollipop());
+                break;
+            case "Adderall":
+                AddItem(new Consumables.Adderall());
+                break;
+            case "Beer":
+                AddItem(new Consumables.Beer());
+                break;
+            case "Reeb":
+                AddItem(new Consumables.Reeb());
+                break;
+            case "Cocaine":
+                AddItem(new Consumables.Cocaine());
+                break;
+            case "Xanax":
+                AddItem(new Consumables.Xanax());
+                break;
+            case "Pizza Slice":
+                AddItem(new Consumables.PizzaSlice());
+                break;
+            case "Soda":
+                AddItem(new Consumables.Soda());
+                break;
+            case "Doctor PP":
+                AddItem(new Consumables.DoctorPP());
+                break;
+            case "Senior Meat Salesman ID":
+                AddItem(new Consumables.SeniorMeatSalesmanID());
+                break;
+            case "Gluten Free Crackers":
+                AddItem(new Consumables.GlutenFreeCrackers());
+                break;
+            case "Gluten Free Bread":
+                AddItem(new Consumables.GlutenFreeBread());
+                break;
+            case "Gluten Free Brioche":
+                AddItem(new Consumables.GlutenFreeBrioche());
+                break;
+            case "Poot Beer":
+                AddItem(new Consumables.PootBeer());
+                break;
+            case "Piss Cola":
+                AddItem(new Consumables.PissCola());
+                break;
+            case "Chili Dog":
+                AddItem(new Consumables.ChiliDog());
+                break;
+            case "Ginger Ale":
+                AddItem(new Consumables.GingerAle());
+                break;
+            case "Stomach Pump":
+                AddItem(new Consumables.StomachPump());
+                break;
+            case "Tissues":
+                AddItem(new Consumables.Tissues());
+                break;
+            case "Eye Drops":
+                AddItem(new Consumables.EyeDrops());
+                break;
+            case "Smelling Salts":
+                AddItem(new Consumables.SmellingSalts());
+                break;
+            case "Leeches":
+                AddItem(new Consumables.Leeches());
+                break;
+            case "Mineral Water":
+                AddItem(new Consumables.MineralWater());
+                break;
+            case "Tinfoil Hat":
+                AddItem(new Consumables.TinfoilHat());
+                break;
+            case "Caffeine Gum":
+                AddItem(new Consumables.CaffeineGum());
+                break;
+            case "Lightning Rod":
+                AddItem(new Consumables.LightningRod());
+                break;
+            case "Litter":
+                AddItem(new Consumables.Litter());
+                break;
+            case "An Actual Pepper":
+                AddItem(new Consumables.AnActualPepper());
+                break;
+            case "Winning Lottery Ticket!":
+                AddItem(new Consumables.WinningLotteryTicket());
+                break;
 
+            //Weapons
+            case "Protractor":
+                AddItem(new Weapons.Protractor());
+                break;
+            case "GnomeShard":
+                AddItem(new Weapons.GnomeShard());
+                break;
+            case "Gnome Shard":
+                AddItem(new Weapons.GnomeShard());
+                break;
+            case "RatBomb":
+                AddItem(new Weapons.RatBomb());
+                break;
+            case "Rat Bomb":
+                AddItem(new Weapons.RatBomb());
+                break;
+            case "ReplicaFlintlock":
+                AddItem(new Weapons.ReplicaFlintlock());
+                break;
+            case "Replica Flintlock":
+                AddItem(new Weapons.ReplicaFlintlock());
+                break;
+            case "NightStick":
+                AddItem(new Weapons.NightStick());
+                break;
+            case "Night Stick":
+                AddItem(new Weapons.NightStick());
+                break;
+            case "Bokken":
+                AddItem(new Weapons.Bokken());
+                break;
+            case "Book":
+                AddItem(new Weapons.Book());
+                break;
+            case "ExplicitMagazine":
+                AddItem(new Weapons.ExplicitMagazine());
+                break;
+            case "Explicit Magazine":
+                AddItem(new Weapons.ExplicitMagazine());
+                break;
+            case "Bean Bag Gun":
+                AddItem(new Weapons.BeanBagGun());
+                break;
+            case "BeanBagGun":
+                AddItem(new Weapons.BeanBagGun());
+                break;
+            case "Taser":
+                AddItem(new Weapons.Taser());
+                break;
+            case "Pepper Spray":
+                AddItem(new Weapons.PepperSpray());
+                break;
+            case "PepperSpray":
+                AddItem(new Weapons.PepperSpray());
+                break;
+
+            //Armor
+            case "RadFlatCap":
+                AddItem(new Armors.RadFlatCap());
+                break;
+            case "Rad Flat Cap":
+                AddItem(new Armors.RadFlatCap());
+                break;
+            case "StrResTrashBag":
+                AddItem(new Armors.StrResTrashBag());
+                break;
+            case "Stretch Resistant Trash Bag":
+                AddItem(new Armors.StrResTrashBag());
+                break;
+            case "CommemorativeTShirt":
+                AddItem(new Armors.CommemorativeTShirt());
+                break;
+            case "Commemorative T-Shirt":
+                AddItem(new Armors.CommemorativeTShirt());
+                break;
+            case "Bullet Proof Socks":
+                AddItem(new Armors.BulletProofSocks());
+                break;
+            case "BulletProofSocks":
+                AddItem(new Armors.BulletProofSocks());
+                break;
+            case "Wooden Planks":
+                AddItem(new Armors.WoodPlanks());
+                break;
+            case "WoodenPlanks":
+                AddItem(new Armors.WoodPlanks());
+                break;
+            case "Unwrapped Expired Rubber":
+                AddItem(new Armors.UnwrappedExpiredRubber());
+                break;
+            case "UnwrappedExpiredRubber":
+                AddItem(new Armors.UnwrappedExpiredRubber());
+                break;
+            case "Bullet Proof Pants":
+                AddItem(new Armors.BulletProofPants());
+                break;
+            case "BulletProofPants":
+                AddItem(new Armors.BulletProofPants());
+                break;
+            case "Riot Shield":
+                AddItem(new Armors.RiotShield());
+                break;
+            case "RiotShield":
+                AddItem(new Armors.RiotShield());
+                break;
+
+            //Trinkets
+            case "MrWhiskers":
+                AddItem(new Trinkets.MrWhiskers());
+                break;
+            case "Mr Whiskers":
+                AddItem(new Trinkets.MrWhiskers());
+                break;
+            case "Mr. Whiskers":
+                AddItem(new Trinkets.MrWhiskers());
+                break;
+            case "ClayAmulet":
+                AddItem(new Trinkets.ClayAmulet());
+                break;
+            case "Clay Amulet":
+                AddItem(new Trinkets.ClayAmulet());
+                break;
+            case "Pet Rock":
+                AddItem(new Trinkets.PetRock());
+                break;
+            case "PetRock":
+                AddItem(new Trinkets.PetRock());
+                break;
+            case "Galaxy Guy Action Figure":
+                AddItem(new Trinkets.GalaxyGuyActionFigure());
+                break;
+            case "GalaxyGuyActionFigure":
+                AddItem(new Trinkets.GalaxyGuyActionFigure());
+                break;
+            case "Adult Video":
+                AddItem(new Trinkets.AdultVideo());
+                break;
+            case "AdultVideo":
+                AddItem(new Trinkets.AdultVideo());
+                break;
+            case "Broken Glass Sphere":
+                AddItem(new Trinkets.BrokenGlassSphere());
+                break;
+            case "BrokenGlassSphere":
+                AddItem(new Trinkets.BrokenGlassSphere());
+                break;
+            case "Adrenaline Syringe":
+                AddItem(new Trinkets.AdrenalineSyringe());
+                break;
+            case "AdrenalineSyringe":
+                AddItem(new Trinkets.AdrenalineSyringe());
+                break;
+        }
     }
     public void RemoveItem(int index)
     {

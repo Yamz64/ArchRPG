@@ -5748,27 +5748,19 @@ public class BattleScript : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
         int val = 5;
-        //if (uni.ATK > uni.POW)
-        //{
-            val = uni.takeDamageCalc(target, val, op);
-        //}
-        
-        //else
-        //{
-        //    val = uni.takeDamageCalc(target, val, 0, true);
-        //}
+        val = uni.takeDamageCalc(target, val, op);
         
         //Check if target is weak or resistant to a certain damage type
-        /*
-        if (target.weaknesses[ata.damageType] == true)
+        
+        if (target.weaknesses[op] == true)
         {
             val = (int)(val * 1.5);
         }
-        else if (target.resistances[ata.damageType] == true)
+        else if (target.resistances[op] == true)
         {
             val = (int)(val * 0.5);
         }
-        */
+        
         //Check if the unit gets a crit
         int crit = Random.Range(1, 101);
         if (crit <= (uni.LCK/4)+3)

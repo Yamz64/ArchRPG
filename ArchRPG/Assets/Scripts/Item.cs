@@ -1344,6 +1344,7 @@ public static class Weapons
             type = 1;
             damage_buff = 8;
             power_buff = 22;
+            damageType = 4;
             //needs to do weird damage
             cost = 15;
         }
@@ -1399,6 +1400,7 @@ public static class Weapons
             type = 1;
             damage_buff = 20;
             cost = 30;
+            damageType = 2;
             //needs to do electric damage
         }
     }
@@ -1417,6 +1419,7 @@ public static class Weapons
             type = 1;
             damageType = 15;
             cost = 30;
+            damageType = 1;
             //needsd to do fire damage
         }
     }
