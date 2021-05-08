@@ -3299,13 +3299,13 @@ public class BattleScript : MonoBehaviour
                         //If no second target
                         if (actions[z].getSecond() == -1)
                         {
-                            yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " + abiName);
+                            yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " + abiName, true);
                             yield return playerAbility(actions[z].getIndex(), toget,
                                     temp[ind].GetComponent<UnitMono>().mainUnit, enemyUnits[toget].GetComponent<UnitMono>().mainUnit);
                         }
                         else
                         {
-                            yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " + abiName);
+                            yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " + abiName, true);
                             yield return playerAbility(actions[z].getIndex(), toget,
                                    temp[ind].GetComponent<UnitMono>().mainUnit, enemyUnits[toget].GetComponent<UnitMono>().mainUnit,
                                    temp[actions[z].getSecond()].GetComponent<UnitMono>().mainUnit);
@@ -4482,11 +4482,11 @@ public class BattleScript : MonoBehaviour
             if (enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName[0] != 'T' && enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName[1] != 'e'
                 && enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName[2] != 'e' && enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName[3] != ' ')
             {
-                yield return textDisplay("The " + enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName + " appears.", true);
+                yield return textDisplay("The " + enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName + " appears.");
             }
             else
             {
-                yield return textDisplay(enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName + " appears.", true);
+                yield return textDisplay(enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName + " appears.");
             }
 
         }
@@ -4495,16 +4495,16 @@ public class BattleScript : MonoBehaviour
             if (enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName != enemyUnits[1].GetComponent<UnitMono>().mainUnit.unitName)
             {
                 yield return textDisplay("The " + enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName + " and "
-                    + enemyUnits[1].GetComponent<UnitMono>().mainUnit.unitName + " appeared", true);
+                    + enemyUnits[1].GetComponent<UnitMono>().mainUnit.unitName + " appeared");
             }
             else
             {
-                yield return textDisplay("The " + enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName + "'s appeared", true);
+                yield return textDisplay("The " + enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName + "'s appeared");
             }
         }
         else if (activeEnemies >= 3)
         {
-            yield return textDisplay("A group of enemies appeared", true);
+            yield return textDisplay("A group of enemies appeared");
         }
         int less = -1;
         for (int v = 0; v < 4; v++)
@@ -4611,21 +4611,25 @@ public class BattleScript : MonoBehaviour
         Clear();
         write_queue.Add(tt);
         writing = true;
-        for (int i = 0; i < write_queue[0].Length; i++)
+        for (int i = 0; i < write_queue[0].Length && writing; i++)
         {
             if (InputManager.GetButtonDown("Interact") && writing && stop)
             {
                 Clear();
-                dialogue.text = write_queue[0];
+                dialogue.text = tt;
                 write_queue.RemoveAt(0);
                 writing = false;
                 yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                 break;
             }
-            yield return new WaitForSeconds(1f / scroll_speed);
-            dialogue.text += write_queue[0][i];
+            if (writing)
+            {
+                yield return new WaitForSeconds(1f / scroll_speed);
+                dialogue.text += write_queue[0][i];
+            }
         }
         writing = false;
+        if (write_queue.Count > 0)
         write_queue.RemoveAt(0);
         if (stop)
         {
@@ -5757,7 +5761,7 @@ public class BattleScript : MonoBehaviour
     {
         //dialogue.text = "Player used " + ata.name;
         bool crite = false;
-        //bool good = false;
+        bool good = false;
         bool bad = false;
 
         int op = 0;
@@ -5775,10 +5779,12 @@ public class BattleScript : MonoBehaviour
         if (target.weaknesses[op] == true)
         {
             val = (int)(val * 1.5);
+            good = true;
         }
         else if (target.resistances[op] == true)
         {
             val = (int)(val * 0.5);
+            bad = true;
         }
         
         //Check if the unit gets a crit
@@ -5822,10 +5828,17 @@ public class BattleScript : MonoBehaviour
             //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
             skipper = true;
         }
-        if (bad == true)
+        if (good)
+        {
+            yield return textDisplay("It did a lot of damage!", true);
+            //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+            skipper = true;
+        }
+        if (bad)
         {
             yield return textDisplay("It didn't do too much damage..", true);
             //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+            skipper = true;
         }
 
         yield return new WaitForSeconds(0.5f);
