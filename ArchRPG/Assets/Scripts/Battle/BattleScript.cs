@@ -4005,8 +4005,12 @@ public class BattleScript : MonoBehaviour
     }
 
     //Display visible damage numbers
-    IEnumerator showDamage(int dam, int location = 0)
+    IEnumerator showDamage(int dam, int location = 0, int type = 0)
     {
+        Color fire = new Color(1.0f, 198.0f / 255.0f, 0.0f);
+        Color chem = new Color(136.0f / 255.0f, 1.0f, 0.0f);
+        Color elec = new Color(0.0f, 186.0f/255.0f, 1.0f);
+        Color weird = new Color(132.0f / 255.0f, 0.0f, 1.0f);
         yield return new WaitForSeconds(1f);
         Text bin;
         Transform spot = new GameObject().transform;
@@ -4032,6 +4036,22 @@ public class BattleScript : MonoBehaviour
                 targetStations[location].transform.position.y + 0.72f, 0);
         }
         bin = Instantiate(damageText, spot.position, blank, damage1);
+        if (type == 1)
+        {
+            bin.color = fire;
+        }
+        if (type == 2)
+        {
+            bin.color = elec;
+        }
+        if (type == 3)
+        {
+            bin.color = chem;
+        }
+        if (type == 4)
+        {
+            bin.color = weird;
+        }
         bin.text = "" + dam;
         float count = 0.0f;
         while (count < 2.0f)
@@ -4771,7 +4791,7 @@ public class BattleScript : MonoBehaviour
                 //If some effect from ability
                 if (preh != target.currentHP || precS != target.statuses)
                 {
-                    StartCoroutine(showDamage(dif, val));
+                    StartCoroutine(showDamage(dif, val, uni.abilities[ata].damageType));
                     if (target.weaknesses[uni.abilities[ata].damageType]) good = true;
                     if (target.resistances[uni.abilities[ata].damageType]) bad = true;
                     StartCoroutine(flashDamage(target));
@@ -4809,7 +4829,7 @@ public class BattleScript : MonoBehaviour
                                 deadL = uni.useAbility(ata, enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit, minus);
                                 dif -= enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.currentHP;
                                 if (dif != 0)
-                                    StartCoroutine(showDamage(dif, val));
+                                    StartCoroutine(showDamage(dif, val, uni.abilities[ata].damageType));
 
                                 if (enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.weaknesses[uni.abilities[ata].damageType]) good = true;
                                 if (enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.resistances[uni.abilities[ata].damageType]) bad = true;
@@ -4849,7 +4869,7 @@ public class BattleScript : MonoBehaviour
                                 deadR = uni.useAbility(ata, enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit, minus);
                                 dif -= enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.currentHP;
                                 if (dif != 0)
-                                    StartCoroutine(showDamage(dif, val));
+                                    StartCoroutine(showDamage(dif, val, uni.abilities[ata].damageType));
 
                                 if (enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.weaknesses[uni.abilities[ata].damageType]) good = true;
                                 if (enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.resistances[uni.abilities[ata].damageType]) bad = true;
@@ -4893,7 +4913,7 @@ public class BattleScript : MonoBehaviour
                                 deadL = uni.useAbility(ata, enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit, minus);
                                 dif -= enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.currentHP;
                                 if (dif != 0)
-                                    StartCoroutine(showDamage(dif, val));
+                                    StartCoroutine(showDamage(dif, val, uni.abilities[ata].damageType));
 
                                 if (enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.weaknesses[uni.abilities[ata].damageType]) good = true;
                                 if (enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.resistances[uni.abilities[ata].damageType]) bad = true;
@@ -4937,7 +4957,7 @@ public class BattleScript : MonoBehaviour
                                 deadR = uni.useAbility(ata, enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit, minus);
                                 dif -= enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.currentHP;
                                 if (dif != 0)
-                                    StartCoroutine(showDamage(dif, val));
+                                    StartCoroutine(showDamage(dif, val, uni.abilities[ata].damageType));
 
                                 if (enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.weaknesses[uni.abilities[ata].damageType]) good = true;
                                 if (enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.resistances[uni.abilities[ata].damageType]) bad = true;
@@ -4980,7 +5000,7 @@ public class BattleScript : MonoBehaviour
                                 dTemp = uni.useAbility(ata, enemyUnits[b].GetComponent<UnitMono>().mainUnit, minus);
                                 dif -= enemyUnits[b].GetComponent<UnitMono>().mainUnit.currentHP;
                                 if (dif > 0)
-                                    StartCoroutine(showDamage(dif, val));
+                                    StartCoroutine(showDamage(dif, val, uni.abilities[ata].damageType));
 
                                 if (enemyUnits[b].GetComponent<UnitMono>().mainUnit.weaknesses[uni.abilities[ata].damageType]) good = true;
                                 if (enemyUnits[b].GetComponent<UnitMono>().mainUnit.resistances[uni.abilities[ata].damageType]) bad = true;
@@ -5159,7 +5179,7 @@ public class BattleScript : MonoBehaviour
                             if (dams[x] > enemyUnits[x-4].GetComponent<UnitMono>().mainUnit.currentHP)
                             {
                                 StartCoroutine(flashDamage(partyUnits[x-4].GetComponent<UnitMono>().mainUnit));
-                                StartCoroutine(showDamage(dams[x] - enemyUnits[x - 4].GetComponent<UnitMono>().mainUnit.currentHP, x-4));
+                                StartCoroutine(showDamage(dams[x] - enemyUnits[x - 4].GetComponent<UnitMono>().mainUnit.currentHP, x-4, uni.abilities[ata].damageType));
                             }
                             if (enemyUnits[x-4].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && !priors[x])
                             {
@@ -5551,7 +5571,7 @@ public class BattleScript : MonoBehaviour
                     if (tore[i].currentHP < ori[i])
                     {
                         StartCoroutine(flashDamage(tore[i]));
-                        StartCoroutine(showDamage(ori[i] - tore[i].currentHP, i - 1));
+                        StartCoroutine(showDamage(ori[i] - tore[i].currentHP, i - 1, uni.abilities[ata].damageType));
                     }
                 }
                 else
@@ -5789,7 +5809,7 @@ public class BattleScript : MonoBehaviour
 
         if (dif > 0)
         {
-            StartCoroutine(showDamage(dif, tv));
+            StartCoroutine(showDamage(dif, tv, op));
         }
         //uni.setSP(uni.currentSP - 2);
         StartCoroutine(flashDamage(target));
