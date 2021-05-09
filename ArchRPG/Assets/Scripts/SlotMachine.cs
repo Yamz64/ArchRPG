@@ -285,6 +285,14 @@ public class SlotMachine : InteractableBaseClass
             //if cancel roll a fight
             else
             {
+                player.SetWriteQueue(dialogue_queue);
+                player.SetEffectQueue(effect_queue);
+                player.SetImageQueue(image_queue);
+                player.WriteDriver();
+
+                yield return new WaitForEndOfFrame();
+                yield return new WaitUntil(() => player.GetActive() == false);
+
                 loop = false;
 
                 string[] enemies = new string[] { "Killer Cone", "Killer Cone", "Killer Cone", "Killer Cone" };
