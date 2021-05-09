@@ -559,6 +559,7 @@ public class CharacterStatJsonConverter
     public CharacterStatJsonConverter()
     {
         position = Vector2.zero;
+        saved = false;
         flee = false;
         spent_ep = false;
         unlocked_sans = new int[10] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -592,6 +593,7 @@ public class CharacterStatJsonConverter
         p.UpdatePartySan();
         p.UpdatePartyDeath();
         flee = false;
+        saved = p.GetSaved();
         spent_ep = p.GetSpentEP();
         statuses = new List<StatusEffectContainer>();
         //set the position and progress of the player
@@ -868,6 +870,7 @@ public class CharacterStatJsonConverter
         p.SetEP(EP);
         p.SetSacrificeCount(sacrifice_count);
         p.SetSpentEP(spent_ep);
+        p.SetSaved(saved);
 
         //update other stats as well as the experience level
         p.UpdateStats();
@@ -1126,6 +1129,7 @@ public class CharacterStatJsonConverter
 
     public Vector2 position;            //current position in the world (ignored except for after battles)
 
+    public bool saved;                  //marks as true if the player has saved once
     public bool flee;                   //marked as true if the party just fleed from combat
     public bool spent_ep;               //flagged as true if the player has spent ep
     public int[] unlocked_sans;         //the sanities of unlocked party members

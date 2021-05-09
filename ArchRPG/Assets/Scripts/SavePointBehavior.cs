@@ -22,7 +22,7 @@ public class SavePointBehavior : InteractableBaseClass
         List<string> image_queue = new List<string>();
 
         //see if this is the first time interacting with a save point
-        if (PlayerPrefs.GetInt("Saved") == 0)
+        if (!GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDataMono>().data.GetSaved() && SceneManager.GetActiveScene().name != "BedroomScene")
         {
             //start populating with dialogue
             dialogue_queue.Add("Fish! What are you doing so far from home!");
@@ -31,7 +31,7 @@ public class SavePointBehavior : InteractableBaseClass
             dialogue_queue.Add("Perhaps we can use this to access and create more favorable timelines to ensure we reach our goal!");
             dialogue_queue.Add("...");
             dialogue_queue.Add("That's right fish, this isn't exactly a Save System,");
-            dialogue_queue.Add("some timelines we create might become warped in ways we could not comprehend!");
+            dialogue_queue.Add("some timelines we create might become warped in ways we could not understand!");
             dialogue_queue.Add("Blub blub.");
 
             //effects
@@ -143,7 +143,7 @@ public class SavePointBehavior : InteractableBaseClass
             }
 
             //mark savepoints as having been visited
-            PlayerPrefs.SetInt("Saved", 1);
+            data.SetSaved(true);
         }
         //see if the player should do the city sequence
         else if (city_sequence)
