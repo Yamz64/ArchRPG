@@ -10267,6 +10267,27 @@ MonoBehaviour:
   direction: 2
   move_speed: 5
   interaction_distance: 1
+  alt_idle_sprites_up:
+  - {fileID: 900593163875503324, guid: dab7fcda7320c214fb6dd593ea3588ca, type: 3}
+  alt_idle_sprites_side:
+  - {fileID: 4875703676724451753, guid: dab7fcda7320c214fb6dd593ea3588ca, type: 3}
+  alt_idle_sprites_down:
+  - {fileID: -2949948815601804075, guid: dab7fcda7320c214fb6dd593ea3588ca, type: 3}
+  alt_walk_sprites_up:
+  - {fileID: -7089152570818063574, guid: dab7fcda7320c214fb6dd593ea3588ca, type: 3}
+  - {fileID: 2182396083370216527, guid: dab7fcda7320c214fb6dd593ea3588ca, type: 3}
+  - {fileID: -6064869741693134526, guid: dab7fcda7320c214fb6dd593ea3588ca, type: 3}
+  - {fileID: 2182396083370216527, guid: dab7fcda7320c214fb6dd593ea3588ca, type: 3}
+  alt_walk_sprites_side:
+  - {fileID: -4438538266390755766, guid: dab7fcda7320c214fb6dd593ea3588ca, type: 3}
+  - {fileID: -3261145236897159273, guid: dab7fcda7320c214fb6dd593ea3588ca, type: 3}
+  - {fileID: -6627773370809381138, guid: dab7fcda7320c214fb6dd593ea3588ca, type: 3}
+  - {fileID: -3261145236897159273, guid: dab7fcda7320c214fb6dd593ea3588ca, type: 3}
+  alt_walk_sprites_down:
+  - {fileID: 5952894879975759792, guid: dab7fcda7320c214fb6dd593ea3588ca, type: 3}
+  - {fileID: 2831247485348041819, guid: dab7fcda7320c214fb6dd593ea3588ca, type: 3}
+  - {fileID: 8071474041824770809, guid: dab7fcda7320c214fb6dd593ea3588ca, type: 3}
+  - {fileID: 2831247485348041819, guid: dab7fcda7320c214fb6dd593ea3588ca, type: 3}
 --- !u!114 &3435720644805111878
 MonoBehaviour:
   m_ObjectHideFlags: 0

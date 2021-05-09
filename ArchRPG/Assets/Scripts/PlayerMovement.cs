@@ -15,6 +15,16 @@ public class PlayerMovement : CharacterAnimationHandler
 
     private Rigidbody2D rb;
 
+    [SerializeField]
+    public List<Sprite> alt_idle_sprites_up,
+        alt_idle_sprites_side,
+        alt_idle_sprites_down;
+
+    [SerializeField]
+    public List<Sprite> alt_walk_sprites_up,
+        alt_walk_sprites_side,
+        alt_walk_sprites_down;
+
     IEnumerator i_frame_sequence()
     {
         intangible = true;
@@ -35,6 +45,27 @@ public class PlayerMovement : CharacterAnimationHandler
         if (data.flee)
         {
             StartCoroutine(i_frame_sequence());
+        }
+
+        //if the player is doomed then replace all of the idle and walksprites with the doomed version
+        if(GetComponent<PlayerDataMono>().data.GetStatus(25) > 0)
+        {
+            //clear all existing data
+            idle_sprites_up.Clear();
+            idle_sprites_side.Clear();
+            idle_sprites_down.Clear();
+            walk_sprites_up.Clear();
+            walk_sprites_side.Clear();
+            walk_sprites_down.Clear();
+
+            //populate new walksprites to old walksprites
+            for(int i=0; i<alt_idle_sprites_up.Count; i++) { idle_sprites_up.Add(alt_idle_sprites_up[i]); }
+            for(int i=0; i<alt_idle_sprites_side.Count; i++) { idle_sprites_side.Add(alt_idle_sprites_side[i]); }
+            for(int i=0; i<alt_idle_sprites_down.Count; i++) { idle_sprites_down.Add(alt_idle_sprites_down[i]); }
+            for(int i=0; i<alt_walk_sprites_up.Count; i++) { walk_sprites_up.Add(alt_walk_sprites_up[i]); }
+            for(int i=0; i<alt_walk_sprites_side.Count; i++) { walk_sprites_side.Add(alt_walk_sprites_side[i]); }
+            for(int i=0; i<alt_walk_sprites_down.Count; i++) { walk_sprites_down.Add(alt_walk_sprites_down[i]); }
+
         }
     }
 
