@@ -765,7 +765,8 @@ GameObject:
   - component: {fileID: 139163070}
   - component: {fileID: 139163069}
   - component: {fileID: 139163068}
-  m_Layer: 0
+  - component: {fileID: 139163071}
+  m_Layer: 8
   m_Name: CitySlotMachine (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -863,6 +864,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &139163071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139163067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58330813b66ebd8409816f500f3c2b2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &161390505
 GameObject:
   m_ObjectHideFlags: 0
@@ -2573,7 +2586,8 @@ GameObject:
   - component: {fileID: 347991545}
   - component: {fileID: 347991544}
   - component: {fileID: 347991543}
-  m_Layer: 0
+  - component: {fileID: 347991546}
+  m_Layer: 8
   m_Name: CitySlotMachine (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2671,6 +2685,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &347991546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347991542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58330813b66ebd8409816f500f3c2b2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &731661439
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2739,7 +2765,8 @@ GameObject:
   - component: {fileID: 824094213}
   - component: {fileID: 824094212}
   - component: {fileID: 824094211}
-  m_Layer: 0
+  - component: {fileID: 824094214}
+  m_Layer: 8
   m_Name: CitySlotMachine (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2837,6 +2864,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &824094214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824094210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58330813b66ebd8409816f500f3c2b2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1063394264
 GameObject:
   m_ObjectHideFlags: 0
@@ -2848,7 +2887,8 @@ GameObject:
   - component: {fileID: 1063394267}
   - component: {fileID: 1063394266}
   - component: {fileID: 1063394265}
-  m_Layer: 0
+  - component: {fileID: 1063394268}
+  m_Layer: 8
   m_Name: CitySlotMachine (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2946,6 +2986,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1063394268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063394264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58330813b66ebd8409816f500f3c2b2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1123183763
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3031,6 +3083,33 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 46e92b913592ea24f8a86b517a03da2e, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &1123183764 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1123183763}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1123183765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123183764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: Do you know if this thing takes quarters?
+  - text: No seriously all I've got left is 2 quarters, and a wad of pocket lint!
+  container:
+  - effects: []
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/obliviousMan3
+    lines: 2
+  player: {fileID: 0}
 --- !u!1001 &1256987407
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3099,7 +3178,8 @@ GameObject:
   - component: {fileID: 1301297724}
   - component: {fileID: 1301297723}
   - component: {fileID: 1301297722}
-  m_Layer: 0
+  - component: {fileID: 1301297725}
+  m_Layer: 8
   m_Name: CitySlotMachine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3197,6 +3277,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1301297725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1301297721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58330813b66ebd8409816f500f3c2b2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1622700275
 GameObject:
   m_ObjectHideFlags: 0
@@ -3208,7 +3300,8 @@ GameObject:
   - component: {fileID: 1622700278}
   - component: {fileID: 1622700277}
   - component: {fileID: 1622700276}
-  m_Layer: 0
+  - component: {fileID: 1622700279}
+  m_Layer: 8
   m_Name: CitySlotMachine (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3306,6 +3399,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1622700279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622700275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58330813b66ebd8409816f500f3c2b2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1810114697
 GameObject:
   m_ObjectHideFlags: 0
@@ -3440,6 +3545,79 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: dba38dafb6881e64ca07b245b289d9d7, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &1840815049 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1840815048}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1840815050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840815049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: Listen, you gotta get out of here! Don't touch the slot machines or he'll
+      get ya!
+  - text: Or who'll get me?
+  - text: Him! He's already cost me my life's savings, my car, my insurance, and
+      both of my kidneys!
+  - text: "ARRRGGHHH, IT\u2019S TOO LATE HE\u2019S HERE!!!!!!!"
+  - text: '*HACK COUGH,* you know you shouldn''t fight me shorty!'
+  - text: Oh and you, ugly.
+  - text: Stay a bit and gamble, don't be like this fuckin' loser that can't win
+      a single slot!
+  - text: '*COUGH COUGH,* Hey I''m no loser! I''ll show you I''ve still got my liver
+      and pancreas left!'
+  - text: That's gotta be worth something!
+  container:
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 55
+      upper: 59
+  - effects: []
+  - effects:
+    - name: Wave
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 3
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 35
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 11
+  - effects: []
+  - effects: []
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 0
+      upper: 12
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Jerma
+    lines: 1
+  - sprite_path: CharacterSprites/PC
+    lines: 1
+  - sprite_path: CharacterSprites/BackgroundCharacters/Jerma
+    lines: 2
+  - sprite_path: CharacterSprites/BackgroundCharacters/Mr. Green
+    lines: 3
+  - sprite_path: CharacterSprites/BackgroundCharacters/Jerma
+    lines: 2
+  player: {fileID: 0}
 --- !u!1 &1882123922
 GameObject:
   m_ObjectHideFlags: 0
@@ -4029,9 +4207,63 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4998140645680048166, guid: 52110445f037b614787b39ff46091263, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 2.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998140645680048166, guid: 52110445f037b614787b39ff46091263, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 2.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998140645680048166, guid: 52110445f037b614787b39ff46091263, type: 3}
+      propertyPath: m_Offset.y
+      value: -1.5771143
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998140645680048166, guid: 52110445f037b614787b39ff46091263, type: 3}
+      propertyPath: m_Size.y
+      value: 0.7437706
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998140645680048166, guid: 52110445f037b614787b39ff46091263, type: 3}
+      propertyPath: m_Size.x
+      value: 0.95
+      objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048167, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 496b0c167dff4684ba3c63d39e0db9c4, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
+--- !u!1 &1941613185 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998140645680048161, guid: 52110445f037b614787b39ff46091263, type: 3}
+  m_PrefabInstance: {fileID: 1941613184}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1941613186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941613185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6a60c0f0a72434a98635109f24d515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - text: A kid in the casino?
+  - text: ...
+  - text: Listen kid, if you don't tell anyone you were here so I don't get arrested
+      for promoting child gambling...
+  - text: I'll let you gamble at the machines!
+  - text: Alright, now go have fun!
+  container:
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  - effects: []
+  dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/snootyMan3
+    lines: 5
+  player: {fileID: 0}
