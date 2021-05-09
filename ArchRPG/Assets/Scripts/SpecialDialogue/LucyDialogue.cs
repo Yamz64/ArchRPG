@@ -21,7 +21,6 @@ public class LucyDialogue : InteractableBaseClass
         if (!interacted)
         {
             //--DIALOGUE--
-            dialogue_queue.Add("Ok, so Rattus Tunneyi tend to have a higher chance of albino mutation in their children-");
             dialogue_queue.Add("Ummm greetings?");
             dialogue_queue.Add("Not now I am on the verge of a breakthrough.");
             dialogue_queue.Add("Ok?");
@@ -31,8 +30,7 @@ public class LucyDialogue : InteractableBaseClass
             dialogue_queue.Add("How dare you call Parcival, a fine specimen of plague rat a \"Sewer Rat,\" if man hadn't made sewers,");
             dialogue_queue.Add("then the rats wouldn't be forced to cower in them!");
             dialogue_queue.Add("Now if you don't mind I almost lost my train of thought!");
-            dialogue_queue.Add("Hmmm... Parcival, however fond I've grown of your company, you seem to bear inconsistent results in breeding as of late...");
-            dialogue_queue.Add("...");
+            dialogue_queue.Add("Hmmm...");
             dialogue_queue.Add("OF COURSE!!! Eureka! I've found a solution");
             dialogue_queue.Add("Do tell?");
             dialogue_queue.Add("If I were to cross a member of Rattus Tunneyi with Rattus Norvegicus, I could produce a baseline rat with an insatiable appetite!");
@@ -42,11 +40,6 @@ public class LucyDialogue : InteractableBaseClass
             dialogue_queue.Add("That would be a brown rat, and please hurry, I do not have all day.");
 
             //--EFFECTS--
-            temp.name = "_NO_EFFECT_";
-            temp_effect.effects.Add(new TextEffectClass(temp));
-            effect_queue.Add(new EffectContainer(temp_effect));
-
-            temp_effect.effects.Clear();
             temp.name = "_NO_EFFECT_";
             temp_effect.effects.Add(new TextEffectClass(temp));
             effect_queue.Add(new EffectContainer(temp_effect));
@@ -131,11 +124,6 @@ public class LucyDialogue : InteractableBaseClass
             effect_queue.Add(new EffectContainer(temp_effect));
 
             temp_effect.effects.Clear();
-            temp.name = "_NO_EFFECT_";
-            temp_effect.effects.Add(new TextEffectClass(temp));
-            effect_queue.Add(new EffectContainer(temp_effect));
-
-            temp_effect.effects.Clear();
             temp.name = "Color";
             temp.lower = 12;
             temp.upper = 20;
@@ -144,14 +132,12 @@ public class LucyDialogue : InteractableBaseClass
             effect_queue.Add(new EffectContainer(temp_effect));
 
             //--IMAGES--
-            image_queue.Add("CharacterSprites/Lucy");
             image_queue.Add("CharacterSprites/PC");
             image_queue.Add("CharacterSprites/Lucy");
             image_queue.Add("CharacterSprites/PC");
             image_queue.Add("CharacterSprites/Lucy");
             image_queue.Add("CharacterSprites/Lucy");
             image_queue.Add("CharacterSprites/PC");
-            image_queue.Add("CharacterSprites/Lucy");
             image_queue.Add("CharacterSprites/Lucy");
             image_queue.Add("CharacterSprites/Lucy");
             image_queue.Add("CharacterSprites/Lucy");
