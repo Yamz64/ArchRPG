@@ -79,12 +79,14 @@ public class ShirleyDialogue : InteractableBaseClass
             if (has_room)
             {
                 data.AddPartyMember(new Shirley());
+                data.SetPartyWeapon(new Weapons.ReplicaFlintlock(), data.GetPartySize() - 1);
                 data.UnlockPartyMember(3);
                 question_queue.Add("Shirley joined the party!");
             }
             else
             {
                 data.UnlockPartyMember(3);
+                data.AddItem(new Weapons.ReplicaFlintlock());
                 question_queue.Add("You do not have enough room in your party.");
             }
             player.SetWriteQueue(question_queue);

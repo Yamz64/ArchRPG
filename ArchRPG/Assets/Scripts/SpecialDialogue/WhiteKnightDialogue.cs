@@ -71,6 +71,7 @@ public class WhiteKnightDialogue : NPCDialogue
                 data.GetPartyMember(data.GetPartySize() - 1).SetHP(data.GetPartyMember(data.GetPartySize() - 1).GetHPMAX());
                 data.GetPartyMember(data.GetPartySize() - 1).SetSP(data.GetPartyMember(data.GetPartySize() - 1).GetSPMax());
                 data.UnlockPartyMember(7);
+                data.SetPartyWeapon(new Weapons.Bokken(), data.GetPartySize() - 1);
                 text.Add(new ExpandedString("White Knight joins the party!"));
                 container.Add(new EffectContainer());
                 dialogueImages.Add(new DialogueImages(null));
@@ -78,6 +79,7 @@ public class WhiteKnightDialogue : NPCDialogue
             else
             {
                 player.GetComponent<PlayerDataMono>().data.UnlockPartyMember(7);
+                player.GetComponent<PlayerDataMono>().data.AddItem(new Weapons.Bokken());
                 text.Add(new ExpandedString("You do not have enough room in your party"));
                 container.Add(new EffectContainer());
                 dialogueImages.Add(new DialogueImages(null));

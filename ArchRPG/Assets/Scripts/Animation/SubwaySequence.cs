@@ -112,7 +112,7 @@ public class SubwaySequence : InteractableBaseClass
         yield return new WaitForSeconds(.375f);
 
         CharacterStatJsonConverter data = new CharacterStatJsonConverter(GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDataMono>().data);
-        data.SaveEnemyNames("The Hound");
+        data.SaveEnemyNames("Vermin" ,"The Hound", "Vermin");
         data.active_scene = SceneManager.GetActiveScene().name;
         data.position = GameObject.FindGameObjectWithTag("Player").transform.position;
         data.Save(PlayerPrefs.GetInt("_active_save_file_"));

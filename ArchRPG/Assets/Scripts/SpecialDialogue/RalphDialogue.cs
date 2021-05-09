@@ -194,11 +194,13 @@ public class RalphDialogue : InteractableBaseClass
                 data.GetPartyMember(data.GetPartySize() - 1).SetHP(data.GetPartyMember(data.GetPartySize() - 1).GetHPMAX());
                 data.GetPartyMember(data.GetPartySize() - 1).SetSP(data.GetPartyMember(data.GetPartySize() - 1).GetSPMax());
                 data.UnlockPartyMember(4);
+                data.SetPartyWeapon(new Weapons.NightStick(), data.GetPartySize() - 1);
                 dialogue_queue.Add("Ralph joins the party!");
             }
             else
             {
                 player.GetComponent<PlayerDataMono>().data.UnlockPartyMember(4);
+                player.GetComponent<PlayerDataMono>().data.AddItem(new Weapons.NightStick());
                 dialogue_queue.Add("You do not have enough room in your party");
             }
 
