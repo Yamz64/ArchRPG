@@ -360,7 +360,7 @@ PrefabInstance:
     - target: {fileID: 4998140645680048167, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: c1b10f861cb6428478e4c21322889a71, type: 3}
+      objectReference: {fileID: 21300000, guid: c857638b4205c6848aeeb4ab05f98bc6, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
 --- !u!1001 &452026596
@@ -421,7 +421,7 @@ PrefabInstance:
     - target: {fileID: 4998140645680048167, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 2e1dd6eeb7497ca4aa072bc84cfe12d1, type: 3}
+      objectReference: {fileID: 21300000, guid: 45ab4b9e938d41a4bafdfb14cfa6cc56, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
 --- !u!1001 &596031409
@@ -504,7 +504,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text:
   - text: The kid to my right from your perspective is actually on my left.  Kinda
-      fucked how that works.
+      bizarre how that works.
   container:
   - effects: []
   dialogueImages:
@@ -554,7 +554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text:
-  - text: The kid to my right is a total fucking dweeb!
+  - text: The kid to my right is a total dweeb!
   container:
   - effects: []
   dialogueImages:
@@ -574,11 +574,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.273351
+      value: -12.34
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.791779
+      value: 9.73
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4999,13 +4999,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text:
-  - text: I heard that the school was upgrading from grade F- food to just plain
-      old grade F food.
+  - text: I don't like that new kid who hangs out at the schoolyard.
+  - text: Disembowling fellow students is definitely against school policy.
   container:
   - effects: []
+  - effects: []
   dialogueImages:
-  - sprite_path: CharacterSprites/BackgroundCharacters/Kid3_front
-    lines: 1
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid21_front
+    lines: 2
   player: {fileID: 0}
 --- !u!1 &1334689330 stripped
 GameObject:
@@ -5122,11 +5123,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.085336044
+      value: -12.59
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.2470117
+      value: 4.24
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5300,11 +5301,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.8083196
+      value: -0.21
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.729214
+      value: -1.31
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5345,7 +5346,7 @@ PrefabInstance:
     - target: {fileID: 4998140645680048167, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 4431d8ddc513fb343a8a1bfb739d1e6e, type: 3}
+      objectReference: {fileID: 21300000, guid: a6bb70a7f1eea8247a826e32ee856b58, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52110445f037b614787b39ff46091263, type: 3}
 --- !u!1 &1633790905 stripped
@@ -5375,7 +5376,7 @@ MonoBehaviour:
       lower: 28
       upper: 34
   dialogueImages:
-  - sprite_path: CharacterSprites/Background Kid
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid11_front
     lines: 1
   player: {fileID: 0}
 --- !u!1 &1731215166
@@ -8999,11 +9000,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 238241546116224476, guid: 418d9150908dd624ab1dd027018b591d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.75
+      value: 2.98
       objectReference: {fileID: 0}
     - target: {fileID: 238241546116224476, guid: 418d9150908dd624ab1dd027018b591d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.26
+      value: 10.18
       objectReference: {fileID: 0}
     - target: {fileID: 238241546116224476, guid: 418d9150908dd624ab1dd027018b591d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9823,11 +9824,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.897533
+      value: -13.514183
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.788517
+      value: 9.726738
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9962,11 +9963,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text:
-  - text: Yo could you spare me some lunch money?  My parents didn't send me with
+  - text: Yo could you spare me some lunch money? My parents didn't send me with
       any.
   - text: They said I needed to go on a diet and that the school lunch wasn't good
       for my health.
-  - text: 'No?  *sigh* I didn''t think so...
+  - text: 'No? *sigh* I didn''t think so...
 
 '
   container:
@@ -9974,7 +9975,7 @@ MonoBehaviour:
   - effects: []
   - effects: []
   dialogueImages:
-  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid3_front
     lines: 3
   player: {fileID: 0}
 --- !u!1001 &1388020738632348447

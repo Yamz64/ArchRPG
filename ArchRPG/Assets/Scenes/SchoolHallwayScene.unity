@@ -12142,7 +12142,7 @@ MonoBehaviour:
   container:
   - effects: []
   dialogueImages:
-  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid23_front
     lines: 1
   player: {fileID: 0}
 --- !u!1 &1245677628
@@ -15937,6 +15937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 216d950d517a4824ba2728f3341cff1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  quick: 1
   destroy_in_overworld: 0
   item:
     useable: 1
@@ -15949,8 +15950,10 @@ MonoBehaviour:
     type: 0
     cost: 0
     id: 
+  id: 
   get_item_text: You got a Browned Banana from the Trash!
   used_text: The trashcan is empty.
+  type: 0
   get_item_effect:
     effects: []
   used_item_effect:
