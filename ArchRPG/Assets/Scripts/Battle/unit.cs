@@ -280,7 +280,7 @@ public class unit
     //Load the sprites for the unit
     public void loadSprites()
     {
-        if (unitName != "Oliver Sprout") 
+        if (unitName != "Oliver") 
             sprites = Resources.LoadAll<Sprite>(ImageFilePath);
         else
         {
@@ -294,7 +294,7 @@ public class unit
     {
         if (!pic)
         {
-            if (unitName == "Oliver Sprout")
+            if (unitName == "Oliver")
             {
                 if (mode == 0)
                 {
@@ -343,7 +343,7 @@ public class unit
         hpReadOut.text = currentHP + " / " + maxHP;
         if (!enemy)
         {
-            if (sanity < 50 || unitName == "Ember Moon" || unitName == "White Knight") hasMP = true;
+            if (sanity < 50 || unitName == "Ember" || unitName == "White Knight") hasMP = true;
             if (hasMP)
             {
                 spSideText.text = "MP";
@@ -584,7 +584,7 @@ public class unit
                 else if (sanity >= 50 && oriSan < 50)
                 {
                     statuses[24] = -1;
-                    if (hasMP && unitName != "Jim" && unitName != "Ember Moon" && unitName != "White Knight")
+                    if (hasMP && unitName != "Jim" && unitName != "Ember" && unitName != "White Knight")
                     {
                         hasMP = false;
                     }
@@ -756,7 +756,7 @@ public class unit
                 if (!ata.use_pow)
                 {
                     float valA = (float)ATK / 100;
-                    if (mode == 1 && unitName == "Oliver Sprout")
+                    if (mode == 1 && unitName == "Oliver")
                     {
                         valA = valA * 1.5f;
                     }
@@ -787,7 +787,7 @@ public class unit
 
                     float valD = (float)target.DEF / 300;
 
-                    if (target.unitName == "Oliver Sprout" && target.mode == 0)
+                    if (target.unitName == "Oliver" && target.mode == 0)
                     {
                         valD = valD * 1.5f;
                     }
@@ -814,11 +814,11 @@ public class unit
                     float valP = (float)POW / 100;
                     float valD = (float)target.WILL / 300;
 
-                    if (unitName == "Oliver Sprout" && mode == 1)
+                    if (unitName == "Oliver" && mode == 1)
                     {
                         valP = valP * 1.2f;
                     }
-                    else if (target.unitName == "Oliver Sprout" && target.mode == 0)
+                    else if (target.unitName == "Oliver" && target.mode == 0)
                     {
                         valD = valD * 1.2f;
                     }
@@ -1166,7 +1166,7 @@ public class unit
         if (!powe)
         {
             float valA = (float)ATK / 100;
-            if (mode == 1 && unitName == "Oliver Sprout")
+            if (mode == 1 && unitName == "Oliver")
             {
                 valA = valA * 1.5f;
             }
@@ -1196,7 +1196,7 @@ public class unit
 
             float valD = (float)target.DEF / 300;
 
-            if (target.unitName == "Oliver Sprout" && target.mode == 0)
+            if (target.unitName == "Oliver" && target.mode == 0)
             {
                 valD = valD * 1.5f;
             }
@@ -1223,11 +1223,11 @@ public class unit
             float valP = (float)POW / 100;
             float valD = (float)target.WILL / 300;
 
-            if (unitName == "Oliver Sprout" && mode == 1)
+            if (unitName == "Oliver" && mode == 1)
             {
                 valP = valP * 1.2f;
             }
-            else if (target.unitName == "Oliver Sprout" && target.mode == 0)
+            else if (target.unitName == "Oliver" && target.mode == 0)
             {
                 valD = valD * 1.2f;
             }
@@ -1442,7 +1442,7 @@ public class unit
             else if (sanity >= 50)
             {
                 statuses[24] = -1;
-                if (hasMP && unitName != "Jim" && unitName != "Ember Moon" && unitName != "White Knight")
+                if (hasMP && unitName != "Jim" && unitName != "Ember" && unitName != "White Knight")
                 {
                     hasMP = false;
                 }
@@ -1910,11 +1910,11 @@ public class unit
         {
             abilities.Add(new WhiteKnightAbilities.HereticalCharge());
         }
-        else if (unitName == "Oliver Sprout")
+        else if (unitName == "Oliver")
         {
             abilities.Add(new OliverSproutAbilities.BadVibes());
         }
-        else if (unitName == "Ember Moon")
+        else if (unitName == "Ember")
         {
             abilities.Add(new EmberMoonAbilities.BurnItAll());
         }
@@ -7150,7 +7150,7 @@ public class OliverSproutUnit : unit
 {
     public OliverSproutUnit(int lev = 1)
     {
-        unitName = "Oliver Sprout";
+        unitName = "Oliver";
         loadSprites();
         level = lev;
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
@@ -7708,7 +7708,7 @@ public class EmberMoonUnit : unit
 {
     public EmberMoonUnit(int lev = 1)
     {
-        unitName = "Ember Moon";
+        unitName = "Ember";
         ImageFilePath = "CharacterSprites/Ember Moon";
         loadSprites();
         level = lev;
