@@ -19,7 +19,7 @@ public class ClyveDialogue : InteractableBaseClass
 
         //populate variables for Clyve dialogue segment
         //dialogue
-        dialogue_queue.Add("Oh Hello there... Clyve, failed to shower again I see.");
+        dialogue_queue.Add("Oh Hello there... Clyve. Failed to shower again I see.");
         dialogue_queue.Add("No uh... I totally showered today. See, look! There's no mud caked into this part of my arm!");
         dialogue_queue.Add("*Sigh*, very well Clyve. (I know if I push this further, this conversation won't end until Easter)");
         dialogue_queue.Add("Shall we proceed to our state mandated mind numbing facility?");
