@@ -563,7 +563,8 @@ public class BattleScript : MonoBehaviour
             if (i + ability_offset < partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities.Count)
             {
                 if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[i + ability_offset].eldritch 
-                    && partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.unitName == "Player")
+                    && (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.unitName == "Player" 
+                    || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.unitName == "Albert"))
                 {
                     ability_viewer[i].text = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[i + ability_offset].GetTrueName();
                     Color g = new Color(0.0f, 1.0f, 0.0f);
@@ -4183,6 +4184,11 @@ public class BattleScript : MonoBehaviour
                     p.maxSP = p.currentSP;
                 }
                 p.sanity = loader.SANs[i];
+                if (loader.names[i] == "Player" && p.sanity <= 0)
+                {
+                    p.ImageFilePath = "CharacterSprites/pc_spritesheet_doomed";
+                    p.loadSprites();
+                }
                 for (int v = 0; v < loader.statuses[i].status_effects.Count; v++)
                 {
                     if (p.statuses[v] == -1)

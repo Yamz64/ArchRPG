@@ -1878,7 +1878,7 @@ public class unit
     //Give this unit its assigned eldritch/madness ability
     public void giveEldritchAbility()
     {
-        if (unitName == "Player")
+        if (unitName == "Player" || unitName == "Albert")
         {
             abilities.Add(new PlayerAbilities.Narcissism());
         }
@@ -1989,7 +1989,7 @@ public class PlayerUnit : unit
 {
     public PlayerUnit(int lev = 1)
     {
-        unitName = "Player";
+        unitName = "Albert";
         level = lev;
         ImageFilePath = "CharacterSprites/PC";
         loadSprites();
@@ -8485,7 +8485,7 @@ public class Vermin : unit
         AGI = 28;
         LCK = 48;
 
-        expGain = 120;
+        expGain = 360;
         enemy = true;
         capital = 4;
 
@@ -8509,7 +8509,7 @@ public class Hound : unit
         level = 6;
         SetHPMax(95);
         maxHP = currentHP = 95;
-        expGain = 2500;
+        expGain = 3500;
         enemy = true;
         capital = 8;
 
@@ -8540,7 +8540,7 @@ public class HighwayHorror : unit
 
         level = 9;
         SetHPMax(70);
-        expGain = 150;
+        expGain = 600;
         enemy = true;
         capital = 8;
         
@@ -8707,7 +8707,7 @@ public class ConnivingCone : unit
 
         level = 7;
         SetHPMax(60);
-        expGain = 240;
+        expGain = 640;
         enemy = true;
         capital = 8;
         
@@ -8737,7 +8737,7 @@ public class DisposalDemon : unit
 
         level = 8;
         SetHPMax(50);
-        expGain = 60;
+        expGain = 700;
         enemy = true;
         capital = 8;
         
