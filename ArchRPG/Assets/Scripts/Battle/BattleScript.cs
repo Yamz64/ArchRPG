@@ -4103,12 +4103,12 @@ public class BattleScript : MonoBehaviour
             if (loader.HPs[i] > 0)
             {
                 unit p;
-                if (loader.names[i] == "Player" && !loader.dead[i])
+                if (loader.names[i] == "Albert" && !loader.dead[i])
                 {
                     p = new PlayerUnit(loader.levels[i]);
                     pc = p;
                 }
-                else if (loader.names[i] == "Player" && loader.dead[i])
+                else if (loader.names[i] == "Albert" && loader.dead[i])
                 {
                     p = new EldritchPartyUnit(loader.levels[i]);
                     pc = p;
