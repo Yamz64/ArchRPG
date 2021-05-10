@@ -292,7 +292,12 @@ public class PauseMenuHandler : MonoBehaviour
             if (i < data.GetPartySize() + 1)
             {
                 //set the name, character's image, level text, xp fill, HP info/fill, MP info/fill
-                party_info[i].transform.GetChild(1).GetComponent<Text>().text = data.GetPartyMember(i-1).GetName();
+                if(data.GetPartyMember(i-1).GetName() != "OliverSprout" && data.GetPartyMember(i-1).GetName() != "EmberMoon")
+                    party_info[i].transform.GetChild(1).GetComponent<Text>().text = data.GetPartyMember(i-1).GetName();
+                else if (data.GetPartyMember(i-1).GetName() == "EmberMoon")
+                    party_info[i].transform.GetChild(1).GetComponent<Text>().text = "Ember";
+                else if (data.GetPartyMember(i-1).GetName() == "OliverSprout")
+                    party_info[i].transform.GetChild(1).GetComponent<Text>().text = "Oliver";
 
                 party_info[i].GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
                 party_info[i].GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetPartyMember(i-1).GetImageFilepath());
@@ -430,7 +435,14 @@ public class PauseMenuHandler : MonoBehaviour
         if (highlighted_party_member == 0)
             menus[2].transform.GetChild(0).GetComponent<Text>().text = data.GetName();
         else
-            menus[2].transform.GetChild(0).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member-1).GetName();
+        {
+            if (data.GetPartyMember(highlighted_party_member - 1).GetName() != "EmberMoon" && data.GetPartyMember(highlighted_party_member - 1).GetName() != "OliverSprout")
+                menus[2].transform.GetChild(0).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetName();
+            else if (data.GetPartyMember(highlighted_party_member - 1).GetName() == "EmberMoon")
+                menus[2].transform.GetChild(0).GetComponent<Text>().text = "Ember";
+            else if (data.GetPartyMember(highlighted_party_member - 1).GetName() == "OliverSprout")
+                menus[2].transform.GetChild(0).GetComponent<Text>().text = "Oliver";
+        }
 
         //--UPDATE IMAGE--
         if (highlighted_party_member == 0)
@@ -1169,7 +1181,14 @@ public class PauseMenuHandler : MonoBehaviour
         if (highlighted_party_member == 0)
             menus[2].transform.GetChild(0).GetComponent<Text>().text = data.GetName();
         else
-            menus[2].transform.GetChild(0).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetName();
+        {
+            if (data.GetPartyMember(highlighted_party_member - 1).GetName() != "EmberMoon" && data.GetPartyMember(highlighted_party_member - 1).GetName() != "OliverSprout")
+                menus[2].transform.GetChild(0).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetName();
+            else if (data.GetPartyMember(highlighted_party_member - 1).GetName() == "EmberMoon")
+                menus[2].transform.GetChild(0).GetComponent<Text>().text = "Ember";
+            else if (data.GetPartyMember(highlighted_party_member - 1).GetName() == "OliverSprout")
+                menus[2].transform.GetChild(0).GetComponent<Text>().text = "Oliver";
+        }
 
         //--UPDATE IMAGE--
         if (highlighted_party_member == 0)
@@ -1908,7 +1927,14 @@ public class PauseMenuHandler : MonoBehaviour
         if (highlighted_party_member == 0)
             menus[2].transform.GetChild(0).GetComponent<Text>().text = data.GetName();
         else
-            menus[2].transform.GetChild(0).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetName();
+        {
+            if (data.GetPartyMember(highlighted_party_member - 1).GetName() != "EmberMoon" && data.GetPartyMember(highlighted_party_member - 1).GetName() != "OliverSprout")
+                menus[2].transform.GetChild(0).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetName();
+            else if (data.GetPartyMember(highlighted_party_member - 1).GetName() == "EmberMoon")
+                menus[2].transform.GetChild(0).GetComponent<Text>().text = "Ember";
+            else if (data.GetPartyMember(highlighted_party_member - 1).GetName() == "OliverSprout")
+                menus[2].transform.GetChild(0).GetComponent<Text>().text = "Oliver";
+        }
 
         //--UPDATE IMAGE--
         if (highlighted_party_member == 0)
@@ -2694,7 +2720,12 @@ public class PauseMenuHandler : MonoBehaviour
             //show the card, update the name on the card, update the image, update the level, xp, hp, mp, and sanity bars and text objects
             cards[data.GetPartyMember(i).GetPos()].SetActive(true);
             cards[data.GetPartyMember(i).GetPos()].GetComponent<Image>().color = Color.white;
-            cards[data.GetPartyMember(i).GetPos()].transform.GetChild(1).GetComponent<Text>().text = data.GetPartyMember(i).GetName();
+            if (data.GetPartyMember(i).GetName() != "EmberMoon" && data.GetPartyMember(i).GetName() != "OliverSprout")
+                cards[data.GetPartyMember(i).GetPos()].transform.GetChild(1).GetComponent<Text>().text = data.GetPartyMember(i).GetName();
+            else if (data.GetPartyMember(i).GetName() == "EmberMoon")
+                cards[data.GetPartyMember(i).GetPos()].transform.GetChild(1).GetComponent<Text>().text = "Ember";
+            else if(data.GetPartyMember(i).GetName() == "OliverSprout")
+                cards[data.GetPartyMember(i).GetPos()].transform.GetChild(1).GetComponent<Text>().text = "Oliver";
             cards[data.GetPartyMember(i).GetPos()].transform.GetChild(2).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetPartyMember(i).GetImageFilepath());
 
             //level and xp
@@ -2731,7 +2762,15 @@ public class PauseMenuHandler : MonoBehaviour
     {
         //--UPDATE NAME--
         if (highlighted_party_member == 0) menus[4].transform.GetChild(0).GetComponent<Text>().text = data.GetName();
-        else menus[4].transform.GetChild(0).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetName();
+        else
+        {
+            if(data.GetPartyMember(highlighted_party_member - 1).GetName() != "EmberMoon" && data.GetPartyMember(highlighted_party_member - 1).GetName() != "OliverSprout")
+                menus[4].transform.GetChild(0).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetName();
+            else if(data.GetPartyMember(highlighted_party_member - 1).GetName() == "EmberMoon")
+                menus[4].transform.GetChild(0).GetComponent<Text>().text = "Ember";
+            else if (data.GetPartyMember(highlighted_party_member - 1).GetName() == "OliverSprout")
+                menus[4].transform.GetChild(0).GetComponent<Text>().text = "Oliver";
+        }
 
         //--UPDATE THE CHARACTER IMAGE--
         if (highlighted_party_member == 0) menus[4].transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>(data.GetImageFilepath());
@@ -3158,7 +3197,12 @@ public class PauseMenuHandler : MonoBehaviour
             }
             card.GetComponent<Image>().color = Color.white;
             card.GetComponent<Image>().sprite = Resources.Load<Sprite>(temp.GetImageFilepath());
-            card.transform.GetChild(1).GetComponent<Text>().text = temp.GetName();
+            if (temp.GetName() != "EmberMoon" && temp.GetName() != "OliverSprout")
+                card.transform.GetChild(1).GetComponent<Text>().text = temp.GetName();
+            else if (temp.GetName() == "EmberMoon")
+                card.transform.GetChild(1).GetComponent<Text>().text = "Ember";
+            else if (temp.GetName() == "OliverSprout")
+                card.transform.GetChild(1).GetComponent<Text>().text = "Oliver";
             card.transform.GetChild(2).GetComponent<Text>().text = "SAN";
             card.transform.GetChild(2).GetChild(0).GetComponent<Image>().color = Color.white;
             card.transform.GetChild(2).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetUnlockedSAN(unlocked_char + swap_offset) / temp.GetSANMax();
@@ -3385,7 +3429,13 @@ public class PauseMenuHandler : MonoBehaviour
             menus[11].transform.GetChild(i).transform.GetChild(3).GetComponent<Image>().fillAmount = (float)data.GetPartyMember(i - 3).GetSP() / data.GetPartyMember(i - 3).GetSPMax();
 
             //set the text
-            menus[11].transform.GetChild(i).transform.GetChild(1).GetComponent<Text>().text = data.GetPartyMember(i - 3).GetName();
+            if (data.GetPartyMember(i - 3).GetName() != "EmberMoon" && data.GetPartyMember(i - 3).GetName() != "OliverSprout")
+                menus[11].transform.GetChild(i).transform.GetChild(1).GetComponent<Text>().text = data.GetPartyMember(i - 3).GetName();
+            else if (data.GetPartyMember(i - 3).GetName() == "EmberMoon")
+                menus[11].transform.GetChild(i).transform.GetChild(1).GetComponent<Text>().text = "Ember";
+            else if(data.GetPartyMember(i - 3).GetName() == "OliverSprout")
+                menus[11].transform.GetChild(i).transform.GetChild(1).GetComponent<Text>().text = "Oliver";
+            
             menus[11].transform.GetChild(i).transform.GetChild(2).GetChild(0).GetComponent<Text>().text = string.Format("({0}/{1})", data.GetPartyMember(i - 3).GetHP(), data.GetPartyMember(i - 3).GetHPMAX());
             menus[11].transform.GetChild(i).transform.GetChild(3).GetChild(0).GetComponent<Text>().text = string.Format("({0}/{1})", data.GetPartyMember(i - 3).GetSAN(), data.GetPartyMember(i - 3).GetSANMax());
         }
