@@ -28,7 +28,7 @@ public class ClassAAnimationHelper : MonoBehaviour
         TextEffectClass temp = new TextEffectClass();
 
         //teacher opens conversation (populate dialogue and effects then open text box)
-        dialogue.Add("Ok class it's time to present our current events.  Make sure to be a good audience.");
+        dialogue.Add("Ok class, it's time to present our current events. Make sure to be a good audience.");
         dialogue.Add("Maintain eye contact!");
         dialogue.Add("The presenter should NOT be comfortable with how painfully observant you are.");
         dialogue.Add("I'll take away points if you don't stare at them hard enough, and blink indiscriminately.");
@@ -105,19 +105,19 @@ public class ClassAAnimationHelper : MonoBehaviour
         dialogue.Clear();
         images.Clear();
         effects.Clear();
-        dialogue.Add("(Alright, I worry that the simpletons will not be able to comprehend the complexity of my project,");
+        dialogue.Add("(Alright, I worry that these simpletons will not be able to comprehend the complexity of my project,");
         dialogue.Add("but I've definitely come across some very important information.");
         dialogue.Add("These events are too impactful for them to ignore.");
         dialogue.Add("I can only hope they will be able to appreciate the genius of my insights.)");
         dialogue.Add("While you were all preoccupied with your inane social lives, I was busy unraveling the complex mysteries within our town.");
         dialogue.Add("First, there was the recent gym slime incident, which piqued my interest,");
-        dialogue.Add("but immediately after there was also the bizarre situation with the alleged demons at the bakeryー");
+        dialogue.Add("but immediately after there was also the bizarre situation with the alleged demons at the bakery---");
         dialogue.Add("Hey! The gym doesn’t have anything to do with the bakery!");
         dialogue.Add("Shut up, sulfur-brain, I'm getting to that.");
-        dialogue.Add("There’s been a whole slew of these unnatural, maybe even supernatural phenomenonー");
+        dialogue.Add("There’s been a whole slew of these unnatural, maybe even supernatural phenomena---");
         dialogue.Add("Supernatural phenomena? What do you think this is pal, clown school???");
         dialogue.Add("That stuff happened last week! That's not current!");
-        dialogue.Add("All this stuff happening in the same place at the same time? It's obviously suspicious!");
+        dialogue.Add("All of this stuff happening in the same place at the same time? It's obviously suspicious!");
         dialogue.Add("Uhhh, they said on the news that we shouldn't worry about any of those things you just said. Do you not watch it or something?!");
         dialogue.Add("And you're ugly too!");
         dialogue.Add("Yeah, he's heinous!");
@@ -253,7 +253,7 @@ public class ClassAAnimationHelper : MonoBehaviour
         dialogue.Clear();
         images.Clear();
         effects.Clear();
-        dialogue.Add("Alright Danny you're presenting now. Can you please cleanse our palates?");
+        dialogue.Add("Alright Danny, you're presenting now. Can you please cleanse our palates?");
         dialogue.Add("Dude sweet.");
 
         images.Add("CharacterSprites/Teacher2");
@@ -308,15 +308,15 @@ public class ClassAAnimationHelper : MonoBehaviour
         dialogue.Add("so we went to the school gym to summon it.");
         dialogue.Add("I don't think it worked right because the gym was set up for badminton, not basketball,");
         dialogue.Add("so we didn't summon that math demon, however we did summon what you might call God.");
-        dialogue.Add("God real?");
+        dialogue.Add("God? Real?");
         dialogue.Add("Man, if anyone could do that, it would totally be you Danny.");
         dialogue.Add("Surely this accomplishment excuses Danny of any and all wrongdoings.");
         dialogue.Add("SCORE!");
         dialogue.Add("Well it's kind of like God in that it's all powerful and indifferent to our existence.");
         dialogue.Add("The entity that I have summoned is to us as we are to ants, and, from what I can tell, it's about to step on us.");
         dialogue.Add("Personally, I don't really like the idea of being an ant, so I'm gonna try and merge with this thing.");
-        dialogue.Add("I have realized that morality, society, hygeine, wearing pants... none of this stuff matters,");
-        dialogue.Add("but I want to matter, so I should become God.");
+        dialogue.Add("I have realized that morality, society, hygeine, wearing pants... none of this stuff matters.");
+        dialogue.Add("But I want to matter, so I should become God.");
         dialogue.Add("(So it seems my deduction was correct. The end of the world really is coming...)");
         dialogue.Add("Yeah Danny that's epic!");
         dialogue.Add("I'd pray to you!");
@@ -325,13 +325,13 @@ public class ClassAAnimationHelper : MonoBehaviour
         dialogue.Add("In all my years of teaching, I have never heard anything more beautifully profound. A+ Danny. Well done.");
         dialogue.Add("Uhh...");
         dialogue.Add("Danny, you do realize your monumentally idiotic, and selfish actions have brought the apocalypse upon us?");
-        dialogue.Add("Yes");
+        dialogue.Add("Yes.");
         dialogue.Add("Hey, and he talked about the same event that I did! How was mine fake news?");
         dialogue.Add("Your analysis of the situation was shallow, and I found that the analytical framework");
         dialogue.Add("from which Danny formulated his thesis was much more academically rigorous and mentally stimulating.");
         dialogue.Add("Yeah, I'm stimulated!");
         dialogue.Add("...");
-        dialogue.Add("Well I'm gonna go to lunch.  If you wanna be stimulated come meet me in the bathroom.");
+        dialogue.Add("Well I'm gonna go to lunch. If you wanna be stimulated come meet me in the bathroom.");
         dialogue.Add("I'm gonna be dispensing some more of my ideas.");
 
         images.Add("CharacterSprites/Danny2");
@@ -532,8 +532,8 @@ public class ClassAAnimationHelper : MonoBehaviour
         effects.Add(new EffectContainer(line_effects));
         line_effects.effects.Clear();
         temp.name = "Wave";
-        temp.lower = 32;
-        temp.upper = 38;
+        temp.lower = 28;
+        temp.upper = 40;
         line_effects.effects.Add(new TextEffectClass(temp));
         effects.Add(new EffectContainer(line_effects));
         line_effects.effects.Clear();

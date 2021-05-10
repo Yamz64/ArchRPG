@@ -18,9 +18,9 @@ public class ItemFound : InteractableBaseClass
 
         //Add text to queue
         List<string> textQueue = new List<string>();
-        textQueue.Add("You found The " + itemName);
+        textQueue.Add("You found The " + itemName + "!");
         textQueue.Add(itemDesc);
-        textQueue.Add("You put away the " + itemName);
+        textQueue.Add("You put away the " + itemName + ".");
         player.SetWriteQueue(textQueue);
 
         //Add effects to queue
