@@ -178,6 +178,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3212104164044203891, guid: 69283d65531311c4b8d15bafa571c9c5, type: 3}
+      propertyPath: items.Array.data[0].name
+      value: Bacon Lollipop
+      objectReference: {fileID: 0}
+    - target: {fileID: 3212104164044203891, guid: 69283d65531311c4b8d15bafa571c9c5, type: 3}
+      propertyPath: items.Array.data[0].cost
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 3212104164044203891, guid: 69283d65531311c4b8d15bafa571c9c5, type: 3}
+      propertyPath: items.Array.data[1].name
+      value: Piss Cola
+      objectReference: {fileID: 0}
+    - target: {fileID: 3212104164044203891, guid: 69283d65531311c4b8d15bafa571c9c5, type: 3}
+      propertyPath: items.Array.data[1].cost
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69283d65531311c4b8d15bafa571c9c5, type: 3}
 --- !u!1 &455550718
@@ -251,7 +267,7 @@ Transform:
   m_LocalScale: {x: 1.002375, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &505877501
 PrefabInstance:
@@ -2692,7 +2708,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1176945170
 PrefabInstance:
@@ -3654,18 +3670,18 @@ MonoBehaviour:
   text:
   - text: Welcome to the self defense emporium!
   - text: We sell all manner of armaments to all manners of people!
-  - text: Doesn't matter if you're a baby a girlie, or a GOD DAMNED COMMIE!!!!
+  - text: Doesn't matter if you're a baby, a girlie, or a GOD DAMNED COMMIE!!!!
   - text: Because that would be a violation against your civil rights, a violation
       of the second Amendment of the US constitution,
   - text: and a violation against company policy...
-  - text: So, what can I do for ya!\
+  - text: So, what can I do for ya!
   container:
   - effects: []
   - effects: []
   - effects:
     - name: Quake
       color: {r: 0, g: 0, b: 0, a: 0}
-      lower: 37
+      lower: 38
       upper: 55
   - effects: []
   - effects: []

@@ -807,7 +807,7 @@ public static class Consumables
             image_file_path = "ItemSprites/ConsumableIcon1";
             amount = 1;
             limit = 99;
-            cost = 12;
+            cost = 16;
         }
 
         public override void Use()

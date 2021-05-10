@@ -4808,6 +4808,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3212104164044203891, guid: 69283d65531311c4b8d15bafa571c9c5, type: 3}
+      propertyPath: items.Array.data[0].name
+      value: Chili Dog
+      objectReference: {fileID: 0}
+    - target: {fileID: 3212104164044203891, guid: 69283d65531311c4b8d15bafa571c9c5, type: 3}
+      propertyPath: items.Array.data[0].cost
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3212104164044203891, guid: 69283d65531311c4b8d15bafa571c9c5, type: 3}
+      propertyPath: items.Array.data[1].name
+      value: Poot Beer
+      objectReference: {fileID: 0}
+    - target: {fileID: 3212104164044203891, guid: 69283d65531311c4b8d15bafa571c9c5, type: 3}
+      propertyPath: items.Array.data[1].cost
+      value: 17
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69283d65531311c4b8d15bafa571c9c5, type: 3}
 --- !u!1001 &1084609495
