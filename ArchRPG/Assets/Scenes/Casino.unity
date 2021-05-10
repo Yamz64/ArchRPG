@@ -3565,15 +3565,15 @@ MonoBehaviour:
   text:
   - text: Listen, you gotta get out of here! Don't touch the slot machines or he'll
       get ya!
-  - text: Or who'll get me?
+  - text: Or who will get me?
   - text: Him! He's already cost me my life's savings, my car, my insurance, and
       both of my kidneys!
-  - text: "ARRRGGHHH, IT\u2019S TOO LATE HE\u2019S HERE!!!!!!!"
-  - text: '*HACK COUGH,* you know you shouldn''t fight me shorty!'
-  - text: Oh and you, ugly.
-  - text: Stay a bit and gamble, don't be like this fuckin' loser that can't win
+  - text: ARRRGGHHH, IT'S TOO LATE HE'S HERE!!!
+  - text: '*HACK COUGH* You know you shouldn''t fight me shorty!'
+  - text: Oh and you too, ugly.
+  - text: Stay a bit and gamble! Don't be like this fuckin' loser that can't win
       a single slot!
-  - text: '*COUGH COUGH,* Hey I''m no loser! I''ll show you I''ve still got my liver
+  - text: '*COUGH COUGH* Hey I''m no loser! I''ll show you I''ve still got my liver
       and pancreas left!'
   - text: That's gotta be worth something!
   container:
