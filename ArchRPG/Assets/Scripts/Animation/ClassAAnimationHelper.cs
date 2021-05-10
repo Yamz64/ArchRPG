@@ -111,10 +111,10 @@ public class ClassAAnimationHelper : MonoBehaviour
         dialogue.Add("I can only hope they will be able to appreciate the genius of my insights.)");
         dialogue.Add("While you were all preoccupied with your inane social lives, I was busy unraveling the complex mysteries within our town.");
         dialogue.Add("First, there was the recent gym slime incident, which piqued my interest,");
-        dialogue.Add("but immediately after there was also the bizarre situation with the alleged demons at the bakeryー");
+        dialogue.Add("but immediately after there was also the bizarre situation with the alleged demons at the bakery---");
         dialogue.Add("Hey! The gym doesn’t have anything to do with the bakery!");
         dialogue.Add("Shut up, sulfur-brain, I'm getting to that.");
-        dialogue.Add("There’s been a whole slew of these unnatural, maybe even supernatural phenomenaー");
+        dialogue.Add("There’s been a whole slew of these unnatural, maybe even supernatural phenomena---");
         dialogue.Add("Supernatural phenomena? What do you think this is pal, clown school???");
         dialogue.Add("That stuff happened last week! That's not current!");
         dialogue.Add("All of this stuff happening in the same place at the same time? It's obviously suspicious!");
@@ -532,8 +532,8 @@ public class ClassAAnimationHelper : MonoBehaviour
         effects.Add(new EffectContainer(line_effects));
         line_effects.effects.Clear();
         temp.name = "Wave";
-        temp.lower = 31;
-        temp.upper = 37;
+        temp.lower = 28;
+        temp.upper = 40;
         line_effects.effects.Add(new TextEffectClass(temp));
         effects.Add(new EffectContainer(line_effects));
         line_effects.effects.Clear();
