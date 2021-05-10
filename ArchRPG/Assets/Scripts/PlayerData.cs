@@ -19,7 +19,7 @@ public class PlayerData : CharacterStats
             PlayerData temp = new PlayerData(true);
             data.UpdatePlayerData(ref temp);
             SetImageFilepath("CharacterSprites/PC");
-            SetDesc("The player character");
+            SetDesc("He's a bit of a skeptic, and is convinced that the world is ending. Everyone calls him ugly, not sure why though.");
             SetName(temp.GetName());
             SetLVL(temp.GetLVL());
             SetPos(temp.GetPos());

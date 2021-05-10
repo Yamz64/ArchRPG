@@ -582,7 +582,7 @@ public class CharacterStatJsonConverter
         statuses = new List<StatusEffectContainer>();
         statuses.Add(new StatusEffectContainer());
         active_scene = "";
-        names = new string[1] { "Player" };
+        names = new string[1] { "Albert" };
         e_abilities = new string[0];
         enemy_names = new string[0];
     }
@@ -1197,7 +1197,7 @@ class Clyve : CharacterStats
         SetImageFilepath("CharacterSprites/Clyve");
 
         SetName("Clyve");
-        SetDesc("Your best friend?  Well, he's the only one that really seems to like talking to you.  Too bad he smells...");
+        SetDesc("Your best friend? Well, he's the only one that really seems to like talking to you. Too bad he smells...");
 
         SetLVL(1);
 
@@ -1520,7 +1520,7 @@ class Jim : CharacterStats
         SetImageFilepath("CharacterSprites/Accident Jim");
 
         SetName("Jim");
-        SetDesc("Being the most accident prone kid on the block has earned him the title of \"Accident Jim.\"  He seems a little confused...");
+        SetDesc("Being the most accident prone kid on the block has earned him the title of \"Accident Jim.\" He seems a little confused...");
 
         SetLVL(1);
 
@@ -1842,7 +1842,7 @@ class Norm : CharacterStats
         SetImageFilepath("CharacterSprites/Norm2");
 
         SetName("Norm");
-        SetDesc("You once tried telling your classmates that Norm is clearly an orangutan, and not a human.  But they put you in detention for bullying the new kid: how insensitive of you!");
+        SetDesc("You once tried telling your classmates that Norm is clearly an orangutan, and not a human. But they put you in detention for bullying the new kid: how insensitive of you!");
 
         SetLVL(1);
 
@@ -2164,7 +2164,7 @@ class Shirley : CharacterStats
         SetImageFilepath("CharacterSprites/Shirley");
 
         SetName("Shirley");
-        SetDesc("Shirley always shows up to school in uniform... Union soldier uniform that is.  She has an obsession with the history of the Civil War and takes the Battle of Shiloh very seriously.");
+        SetDesc("Shirley always shows up to school in uniform... Union soldier uniform that is. She has an obsession with the history of the Civil War and takes the Battle of Shiloh very seriously.");
 
         SetLVL(1);
 
@@ -3764,7 +3764,7 @@ class OliverSprout : CharacterStats
         SetImageFilepath("CharacterSprites/Oliver_peace");
 
         SetName("OliverSprout");
-        SetDesc("Oliver Sprout is an altruistic, peaceful, and at one with nature... Or so he looks at first glance: Oliver has serious anger issues and will frequently get violent...  He will tear your throat out if you say anything negative against his favorite musician, John Lemon.");
+        SetDesc("Oliver Sprout is an altruistic, peaceful, and at one with nature... Or so he looks at first glance: Oliver has serious anger issues and will frequently get violent... He will tear your throat out if you say anything negative against his favorite musician, John Lemon.");
 
         SetLVL(1);
 
@@ -4085,7 +4085,7 @@ class EmberMoon : CharacterStats
         SetImageFilepath("CharacterSprites/Ember Moon");
 
         SetName("EmberMoon");
-        SetDesc("\"I know magic's real. Let's go hog wild. The end is coming. Let's burn it all down!\" Ember Moon is a punk rock, goth chick that doesn't give a shit, and the coming apocalypse doesn't change that for her. The only thing she fears is static electricity.");
+        SetDesc("\"I know magic's real. Let's go hog wild. The end is coming. Let's burn it all down!\" Ember Moon is a punk rock chick that doesn't give a shit, and the coming apocalypse doesn't change that for her. The only thing she fears is static electricity.");
 
         SetLVL(1);
 
