@@ -16468,7 +16468,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Equipment
+  m_Text: Equip/Stats
 --- !u!1 &3435720645382568470
 GameObject:
   m_ObjectHideFlags: 0
@@ -19775,7 +19775,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Level Up
+  m_Text: Commune
 --- !u!1 &3435720645673596910
 GameObject:
   m_ObjectHideFlags: 0

@@ -592,9 +592,9 @@ public class PauseMenuHandler : MonoBehaviour
 
             //POW
             if (highlighted_party_member == 0)
-                menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPOW().ToString();
+                menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t" + data.GetPOW().ToString();
             else
-                menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString();
+                menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString();
 
             //DEF
             if (highlighted_party_member == 0)
@@ -1338,9 +1338,9 @@ public class PauseMenuHandler : MonoBehaviour
 
             //POW
             if (highlighted_party_member == 0)
-                menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPOW().ToString();
+                menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t" + data.GetPOW().ToString();
             else
-                menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString();
+                menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString();
 
             //DEF
             if (highlighted_party_member == 0)
@@ -2084,9 +2084,9 @@ public class PauseMenuHandler : MonoBehaviour
 
             //POW
             if (highlighted_party_member == 0)
-                menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPOW().ToString();
+                menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t" + data.GetPOW().ToString();
             else
-                menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString();
+                menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString();
 
             //DEF
             if (highlighted_party_member == 0)
