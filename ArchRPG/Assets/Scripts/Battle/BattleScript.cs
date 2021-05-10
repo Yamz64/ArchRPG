@@ -120,6 +120,7 @@ public class BattleScript : MonoBehaviour
     public float scroll_speed;
     private bool active;
     private bool writing;
+    private bool ender = false;
 
     public Text damageText;
 
@@ -2925,7 +2926,6 @@ public class BattleScript : MonoBehaviour
             actions.Sort((a, b) => { return b.getFast().CompareTo(a.getFast()); });
             for (int z = 0; z < actions.Count; z++)
             {
-                Debug.Log("Z == " + z);
                 bool sane = false;
                 bool sane2 = false;
                 string sc = actions[z].getType();
@@ -3216,7 +3216,7 @@ public class BattleScript : MonoBehaviour
                     || temp[ind].GetComponent<UnitMono>().mainUnit.statuses[9] != -1))
                     {
                         yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " is unable to move");
-                        yield return new WaitForSeconds(0.5f);
+                        //yield return new WaitForSeconds(0.5f);
                         //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         continue;
                     }
@@ -3228,7 +3228,7 @@ public class BattleScript : MonoBehaviour
                     || enemyUnits[ind].GetComponent<UnitMono>().mainUnit.statuses[9] != -1))
                     {
                         yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " is unable to move");
-                        yield return new WaitForSeconds(0.5f);
+                        //yield return new WaitForSeconds(0.5f);
                         //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         continue;
                     }
@@ -4614,19 +4614,21 @@ public class BattleScript : MonoBehaviour
 
     IEnumerator textDisplay(string tt, bool stop = false)
     {
+        ender = stop;
         //StopCoroutine("textDisplay");
         Clear();
         write_queue.Add(tt);
         writing = true;
         for (int i = 0; i < write_queue[0].Length && writing; i++)
         {
-            if (InputManager.GetButtonDown("Interact") && writing && stop)
+            if (InputManager.GetButtonDown("Interact") && stop)
             {
+                Debug.Log("Should stop now");
                 Clear();
                 dialogue.text = tt;
                 write_queue.RemoveAt(0);
                 writing = false;
-                yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+                //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                 break;
             }
             if (writing)
@@ -4638,6 +4640,7 @@ public class BattleScript : MonoBehaviour
         writing = false;
         if (write_queue.Count > 0)
         write_queue.RemoveAt(0);
+        dialogue.text = tt;
         if (stop)
         {
             yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
@@ -5848,7 +5851,7 @@ public class BattleScript : MonoBehaviour
             skipper = true;
         }
 
-        yield return new WaitForSeconds(0.5f);
+        //yield return new WaitForSeconds(0.5f);
 
         //If enemy is dead, battle is won
         if (dead)
@@ -6927,7 +6930,10 @@ public class BattleScript : MonoBehaviour
 
     void Update()
     {
-
+        if (InputManager.GetButtonDown("Interact") && writing && ender)
+        {
+            writing = false;
+        }
         //If the state is such that an action menu should be open, make the cursor visible
         if (!enemy_select_menu && state != battleState.ATTACK
              && state != battleState.WIN && state != battleState.LOSE && state != battleState.HUH
