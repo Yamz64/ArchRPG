@@ -4615,6 +4615,14 @@ public class BattleScript : MonoBehaviour
     IEnumerator textDisplay(string tt, bool stop = false)
     {
         ender = stop;
+        if (!stop && state != battleState.START)
+        {
+            scroll_speed = 40;
+        }
+        else
+        {
+            scroll_speed = 20;
+        }
         //StopCoroutine("textDisplay");
         Clear();
         write_queue.Add(tt);
