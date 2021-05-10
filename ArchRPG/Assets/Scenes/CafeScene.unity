@@ -9963,17 +9963,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text:
-  - text: Yo could you spare me some lunch money? My parents didn't send me with
-      any.
-  - text: They said I needed to go on a diet and that the school lunch wasn't good
-      for my health.
-  - text: 'No? *sigh* I didn''t think so...
-
-'
+  - text: Darn it, my mom made me a bread sandwich for lunch again.
+  - text: I'd kill for some Goodmeat brand meatdogs.
   container:
   - effects: []
-  - effects: []
-  - effects: []
+  - effects:
+    - name: Quake
+      color: {r: 0, g: 0, b: 0, a: 0}
+      lower: 3
+      upper: 6
   dialogueImages:
   - sprite_path: CharacterSprites/BackgroundCharacters/Kid3_front
     lines: 3
