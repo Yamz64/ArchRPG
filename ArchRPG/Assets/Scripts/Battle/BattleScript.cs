@@ -1215,7 +1215,7 @@ public class BattleScript : MonoBehaviour
                         }
 
                         bool match2 = false;
-                        if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.unitName.Equals("Oliver Sprout"))
+                        if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.unitName.Equals("Oliver"))
                         {
                             if ((partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("Good Vibes")
                                 || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name.Equals("Chillax, Dude")
@@ -4207,18 +4207,19 @@ public class BattleScript : MonoBehaviour
                 if (i == 2 || i == 3)
                 {
                     unitGo.GetComponent<UnitMono>().mainUnit.position = 1;
-                    if (unitGo.GetComponent<UnitMono>().mainUnit.unitName == "Oliver Sprout")
+                    if (unitGo.GetComponent<UnitMono>().mainUnit.unitName == "Oliver")
                     {
                         unitGo.GetComponent<UnitMono>().mainUnit.mode = 0;
                     }
                 }
                 else
                 {
-                    if (unitGo.GetComponent<UnitMono>().mainUnit.unitName == "Oliver Sprout")
+                    if (unitGo.GetComponent<UnitMono>().mainUnit.unitName == "Oliver")
                     {
                         unitGo.GetComponent<UnitMono>().mainUnit.mode = 1;
                     }
                 }
+                Debug.Log("Unit == " + unitGo.GetComponent<UnitMono>().mainUnit.unitName + ", mode == " + unitGo.GetComponent<UnitMono>().mainUnit.mode);
                 p.setHUD();
 
                 if (loader.names[i] == "Player")
@@ -4459,9 +4460,9 @@ public class BattleScript : MonoBehaviour
             useSound(3, true, 1);
         }
 
-        data.AddItem(new Consumables.HotDog());
-        data.AddItem(new Consumables.BaconLollipop());
-        data.AddItem(new Consumables.HotDog());
+        //data.AddItem(new Consumables.HotDog());
+        //data.AddItem(new Consumables.BaconLollipop());
+        //data.AddItem(new Consumables.HotDog());
 
         //Define actions list
         actions = new List<action>();
