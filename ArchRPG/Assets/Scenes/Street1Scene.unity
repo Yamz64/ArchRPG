@@ -8466,10 +8466,10 @@ MonoBehaviour:
   - text: I dropped out of medical school, but I learned plenty about status effects!
   - text: When you get a status effect, it may make it easier or harder to win one
       of those schoolyard brawls that you kids seem to enjoy having.
-  - text: If you wish to learn more about status effects, I set up a board to teach
-      everyone what I learned in meical school...
-  - text: ...without paying hundreds of thousands of dollars to some institution
-      that didn't even give me a degree!
+  - text: For example, if you are weeping, you'll do less damage. To avoid that,
+      try using items or abilities to cure your status effects.
+  - text: Aren't you glad you learned about that without having to pay thousands
+      of dollars to some institution that didn't even give you a degree!
   - text: Take that college tuition fees!
   container:
   - effects:
@@ -9439,7 +9439,11 @@ MonoBehaviour:
       or worse!
   - text: Your friend there, he could actually die. No respawning here!
   container:
-  - effects: []
+  - effects:
+    - name: Color
+      color: {r: 0, g: 1, b: 0.0384748, a: 1}
+      lower: 4
+      upper: 9
   - effects: []
   - effects:
     - name: Wave
