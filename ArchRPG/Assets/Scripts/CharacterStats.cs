@@ -582,7 +582,7 @@ public class CharacterStatJsonConverter
         statuses = new List<StatusEffectContainer>();
         statuses.Add(new StatusEffectContainer());
         active_scene = "";
-        names = new string[1] { "Player" };
+        names = new string[1] { "Albert" };
         e_abilities = new string[0];
         enemy_names = new string[0];
     }
