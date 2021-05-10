@@ -906,7 +906,7 @@ public class TitleScreen : MonoBehaviour
         for (int i = 0; i < save1.names.Length; i++)
         {
             string temp = "";
-            if (save1.names[i] == "Player") temp = "CharacterSprites/PC";
+            if (save1.names[i] == "Player" || save1.names[i] == "Albert") temp = "CharacterSprites/PC";
             else if (save1.names[i] == "Clyve") temp = "CharacterSprites/Clyve";
             else if (save1.names[i] == "Jim") temp = "CharacterSprites/Accident Jim";
             else if (save1.names[i] == "Shirley") temp = "CharacterSprites/Shirley";
@@ -914,8 +914,8 @@ public class TitleScreen : MonoBehaviour
             else if (save1.names[i] == "Lucy") temp = "CharacterSprites/Lucy";
             else if (save1.names[i] == "Tim") temp = "CharacterSprites/Tim";
             else if (save1.names[i] == "White Knight") temp = "CharacterSprites/White Knight";
-            else if (save1.names[i] == "Oliver Sprout") temp = "CharacterSprites/Oliver Sprout";
-            else if (save1.names[i] == "Ember Moon") temp = "CharacterSprites/Ember Moon";
+            else if (save1.names[i] == "Oliver Sprout" || save1.names[i] == "Oliver") temp = "CharacterSprites/Oliver Sprout";
+            else if (save1.names[i] == "Ember Moon" || save1.names[i] == "Ember") temp = "CharacterSprites/Ember Moon";
             if (i == 0) f1 = temp;
             else if (i == 1) f2 = temp;
             else if (i == 2) f3 = temp;
@@ -945,7 +945,7 @@ public class TitleScreen : MonoBehaviour
         for (int i = 0; i < save2.names.Length; i++)
         {
             string temp = "";
-            if (save2.names[i] == "Player") temp = "CharacterSprites/PC";
+            if (save2.names[i] == "Player" || save2.names[i] == "Albert") temp = "CharacterSprites/PC";
             else if (save2.names[i] == "Clyve") temp = "CharacterSprites/Clyve";
             else if (save2.names[i] == "Jim") temp = "CharacterSprites/Accident Jim";
             else if (save2.names[i] == "Shirley") temp = "CharacterSprites/Shirley";
@@ -953,8 +953,8 @@ public class TitleScreen : MonoBehaviour
             else if (save2.names[i] == "Lucy") temp = "CharacterSprites/Lucy";
             else if (save2.names[i] == "Tim") temp = "CharacterSprites/Tim";
             else if (save2.names[i] == "White Knight") temp = "CharacterSprites/White Knight";
-            else if (save2.names[i] == "Oliver Sprout") temp = "CharacterSprites/Oliver Sprout";
-            else if (save2.names[i] == "Ember Moon") temp = "CharacterSprites/Ember Moon";
+            else if (save2.names[i] == "Oliver Sprout" || save2.names[i] == "Oliver") temp = "CharacterSprites/Oliver Sprout";
+            else if (save2.names[i] == "Ember Moon" || save2.names[i] == "Ember") temp = "CharacterSprites/Ember Moon";
             if (i == 0) f1 = temp;
             else if (i == 1) f2 = temp;
             else if (i == 2) f3 = temp;
@@ -984,7 +984,7 @@ public class TitleScreen : MonoBehaviour
         for (int i = 0; i < save3.names.Length; i++)
         {
             string temp = "";
-            if (save3.names[i] == "Player") temp = "CharacterSprites/PC";
+            if (save3.names[i] == "Player" || save3.names[i] == "Albert") temp = "CharacterSprites/PC";
             else if (save3.names[i] == "Clyve") temp = "CharacterSprites/Clyve";
             else if (save3.names[i] == "Jim") temp = "CharacterSprites/Accident Jim";
             else if (save3.names[i] == "Shirley") temp = "CharacterSprites/Shirley";
@@ -992,8 +992,8 @@ public class TitleScreen : MonoBehaviour
             else if (save3.names[i] == "Lucy") temp = "CharacterSprites/Lucy";
             else if (save3.names[i] == "Tim") temp = "CharacterSprites/Tim";
             else if (save3.names[i] == "White Knight") temp = "CharacterSprites/White Knight";
-            else if (save3.names[i] == "Oliver Sprout") temp = "CharacterSprites/Oliver Sprout";
-            else if (save3.names[i] == "Ember Moon") temp = "CharacterSprites/Ember Moon";
+            else if (save3.names[i] == "Oliver Sprout" || save1.names[i] == "Oliver") temp = "CharacterSprites/Oliver Sprout";
+            else if (save3.names[i] == "Ember Moon" || save1.names[i] == "Ember") temp = "CharacterSprites/Ember Moon";
             if (i == 0) f1 = temp;
             else if (i == 1) f2 = temp;
             else if (i == 2) f3 = temp;
@@ -1024,7 +1024,7 @@ public class TitleScreen : MonoBehaviour
         for (int i = 0; i < save4.names.Length; i++)
         {
             string temp = "";
-            if (save4.names[i] == "Player") temp = "CharacterSprites/PC";
+            if (save4.names[i] == "Player" || save4.names[i] == "Albert") temp = "CharacterSprites/PC"; 
             else if (save4.names[i] == "Clyve") temp = "CharacterSprites/Clyve";
             else if (save4.names[i] == "Jim") temp = "CharacterSprites/Accident Jim";
             else if (save4.names[i] == "Shirley") temp = "CharacterSprites/Shirley";
@@ -1032,8 +1032,8 @@ public class TitleScreen : MonoBehaviour
             else if (save4.names[i] == "Lucy") temp = "CharacterSprites/Lucy";
             else if (save4.names[i] == "Tim") temp = "CharacterSprites/Tim";
             else if (save4.names[i] == "White Knight") temp = "CharacterSprites/White Knight";
-            else if (save4.names[i] == "Oliver Sprout") temp = "CharacterSprites/Oliver Sprout";
-            else if (save4.names[i] == "Ember Moon") temp = "CharacterSprites/Ember Moon";
+            else if (save4.names[i] == "Oliver Sprout" || save1.names[i] == "Oliver") temp = "CharacterSprites/Oliver Sprout";
+            else if (save4.names[i] == "Ember Moon" || save1.names[i] == "Ember") temp = "CharacterSprites/Ember Moon";
             if (i == 0) f1 = temp;
             else if (i == 1) f2 = temp;
             else if (i == 2) f3 = temp;
