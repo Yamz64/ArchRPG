@@ -872,7 +872,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text:
   - text: You're that kid that sent that crazy letter to the paper right?
-  - text: You stay off myproperty, I don't want any crazies like you near my roses,
+  - text: You stay off my property! I don't want any crazies like you near my roses,
       you hear?
   container:
   - effects: []
@@ -8464,9 +8464,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text:
   - text: I dropped out of medical school, but I learned plenty about status effects!
-      When you get a status effect,
-  - text: it may make it easier or harder to win one of those schoolyard brawls that
-      you kids seem to enjoy having.
+  - text: When you get a status effect, it may make it easier or harder to win one
+      of those schoolyard brawls that you kids seem to enjoy having.
   - text: If you wish to learn more about status effects, I set up a board to teach
       everyone what I learned in meical school...
   - text: ...without paying hundreds of thousands of dollars to some institution
@@ -8939,11 +8938,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.5328827
+      value: 1.44
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.3024334
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9002,18 +9001,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text:
   - text: Back in the day, when I was your age, I was the leader of the infamous
-      schoolyard gang, the Brown Trout City Sharkz, you mighta hearda us?
-  - text: you might have heard of us?
-  - text: "No.\t"
+      schoolyard gang, the Brown Trout City Sharkz.
+  - text: You heard of us?
+  - text: No?
   - text: Oh, well then we had this legendary tactic that made us the strongest kids
-      around, and no one could touch us! It was called *positioning.*
-  - text: We stuck two kids in the front and two kids in the back, the guys in the
-      front were able to kick more ass, than the guys in the back.
-  - text: The guys in the back, they were well protected by the frontliners.
-  - text: "Some of our fighting styles were better suited for the backline and couldn\u2019t
-      be used so much in the front, and vice versa."
-  - text: I didn't hang out in the back line, because I was scared or nothin', I
-      was just better suited for that lifestyle.
+      around. No one could touch us! It was called *positioning.*
+  - text: We stuck two kids in the front and two kids in the back. The guys in the
+      front were able to kick ass,
+  - text: and the guys in the back, were well protected.
+  - text: Some of our fighting styles were better suited for the backline and couldn't
+      be used so much in the front, and vice versa.
+  - text: I hung out in the front line, because I wasn't scared of nothin', I was
+      just better suited for that lifestyle.
   container:
   - effects: []
   - effects: []
@@ -9021,11 +9020,11 @@ MonoBehaviour:
   - effects:
     - name: Wave
       color: {r: 0, g: 0, b: 0, a: 0}
-      lower: 100
+      lower: 97
       upper: 113
     - name: Color
       color: {r: 1, g: 0.4796099, b: 0, a: 1}
-      lower: 100
+      lower: 97
       upper: 113
   - effects: []
   - effects: []
@@ -9435,16 +9434,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text:
-  - text: Woah <Player>, you sure you wanna go help Jim?
+  - text: Woah Albert, you sure you wanna go help Jim?
   - text: This isn't one of those video games everyone plays, you could get hurt
       or worse!
   - text: Your friend there, he could actually die. No respawning here!
   container:
-  - effects:
-    - name: Color
-      color: {r: 0, g: 1, b: 0, a: 1}
-      lower: 4
-      upper: 11
+  - effects: []
   - effects: []
   - effects:
     - name: Wave
@@ -9781,8 +9776,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2517797632045173605, guid: 418d9150908dd624ab1dd027018b591d, type: 3}
       propertyPath: itemDesc
-      value: The first casulty! I'm sure it would want to help prevent more needless
-        death.
+      value: The first casualty! I'm sure it would want to help prevent more needless
+        deaths.
       objectReference: {fileID: 0}
     - target: {fileID: 5582148413103992204, guid: 418d9150908dd624ab1dd027018b591d, type: 3}
       propertyPath: m_Name
@@ -9976,7 +9971,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.5428848
+      value: 3.07
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10397,11 +10392,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.3171158
+      value: -2.57
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.6575663
+      value: 1.33
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10710,11 +10705,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.8371124
+      value: -0.58
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.7975667
+      value: 1.58
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10995,7 +10990,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text:
-  - text: 'As crazy as you look kid, I''m willing to bet you''re kinda sane.  When
+  - text: 'As crazy as you look kid, I''m willing to bet you''re kinda sane. When
       most people go insane, either from work or the wife at home, '
   - text: they just kinda give up, but other people see the world in a new light.
   - text: Me? I'm not insane, I wouldn't wanna go insane kid.
@@ -11342,11 +11337,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.44288635
+      value: 1.31
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.7975667
+      value: 1.45
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.z
@@ -42816,7 +42811,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3435720645812828543, guid: 1f43982e2a230d947830355b5f90e117, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.43
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f43982e2a230d947830355b5f90e117, type: 3}
@@ -42904,7 +42899,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2135361892}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.5, y: 7.5, z: 0}
+  m_LocalPosition: {x: -11.55, y: 7.82, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
