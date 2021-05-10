@@ -18717,22 +18717,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text:
-  - text: Hey kid, I got a secret for ya. You're a hero right?
-  - text: Uh, yeah. Sure.
-  - text: My brother has a hidden treasure that he can bestow upon heroes like yourself.
-  - text: Just look for a guy who looks exactly like me.
+  - text: The turnstiles are broken, so I guess that means we don't have to pay a
+      fare to get into the subway.
+  - text: I'm gonna ride the train all day!
   container:
-  - effects: []
-  - effects: []
   - effects: []
   - effects: []
   dialogueImages:
   - sprite_path: CharacterSprites/BackgroundCharacters/obliviousMan1
     lines: 1
-  - sprite_path: CharacterSprites/PC
-    lines: 1
-  - sprite_path: CharacterSprites/BackgroundCharacters/obliviousMan1
-    lines: 2
   player: {fileID: 0}
 --- !u!1001 &772066848
 PrefabInstance:
@@ -19134,11 +19127,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.46
+      value: -4.01
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -29.26
+      value: -31.82
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.z
@@ -19494,9 +19487,7 @@ MonoBehaviour:
   container:
   - effects: []
   - effects: []
-  dialogueImages:
-  - sprite_path: CharacterSprites/BackgroundCharacters/obliviousMan3
-    lines: 2
+  dialogueImages: []
   player: {fileID: 0}
 --- !u!1001 &1064319253
 PrefabInstance:
@@ -24778,7 +24769,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1078748364567200179, guid: ce7220ac87c84e942a7318a566f381b5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.6117787
+      value: -10.02
       objectReference: {fileID: 0}
     - target: {fileID: 1078748364567200179, guid: ce7220ac87c84e942a7318a566f381b5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -25081,11 +25072,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.5671284
+      value: -10.02
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -16.959826
+      value: -27.96
       objectReference: {fileID: 0}
     - target: {fileID: 4998140645680048164, guid: 52110445f037b614787b39ff46091263, type: 3}
       propertyPath: m_LocalPosition.z
