@@ -19610,8 +19610,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text:
-  - text: It is near statistically impossible for Mr. Goodmeat to have put on this
-      parade for nothing!
+  - text: It is statistically impossible for Mr. Goodmeat to have put on this parade
+      for nothing!
   container:
   - effects: []
   dialogueImages:
@@ -19920,7 +19920,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text:
-  - text: Bro like I just got attacked by a really weird oversized rat.
+  - text: Bro I just got, like, attacked by a really weird oversized rat.
   - text: They can afford a parade to celebrate trees, but can't afford a pest control
       unit?
   container:
@@ -24246,7 +24246,7 @@ MonoBehaviour:
   text:
   - text: I too thought Arbor Day was a nothing holiday.
   - text: Then I found out you need trees to breathe.
-  - text: It then became my third favorite non Federal and non Christian holiday!
+  - text: It then became my third favorite non-Federal and non-Christian holiday!
   container:
   - effects: []
   - effects: []
@@ -44053,17 +44053,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text:
-  - text: 'My mom told me if I wanted to celebrate the parade:'
-  - text: I had to stand away from the large crowds for safety!
+  - text: My mom told me that if I wanted to celebrate the parade I would have to
+      stand away from the large crowds for safety!
   - text: So I'm going to stand in the safety of this here building with questionable
       primary structural elements!
   container:
   - effects: []
   - effects: []
-  - effects: []
   dialogueImages:
   - sprite_path: CharacterSprites/BackgroundCharacters/Kid7_front
-    lines: 3
+    lines: 2
   player: {fileID: 0}
 --- !u!1001 &867530020
 PrefabInstance:
@@ -44440,7 +44439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text:
-  - text: Yo am I late for the parade?
+  - text: Yo, am I late for the parade?
   container:
   - effects: []
   dialogueImages:
@@ -44709,7 +44708,7 @@ MonoBehaviour:
   - text: Wow would you look at the size of those MEATDOGS!!!
   - text: Wooooowwww!
   - text: Amazing right? So how d'you think we'd get our hands on them?
-  - text: Well you need a meat salesman id to get into the factory right?
+  - text: Well you need a meat salesman ID to get into the factory right?
   - text: Screw that! Where's that brick you were carrying earlier?
   container:
   - effects:
@@ -47643,7 +47642,7 @@ MonoBehaviour:
   text:
   - text: It's amazing the city is still able to function when 95% of the city's
       public fund goes to Mr. Goodmeat's salary.
-  - text: A meatbased economy is trully the most efficient economy in existence!
+  - text: A meat-based economy is truly the most efficient economy in existence!
   container:
   - effects: []
   - effects: []
@@ -48367,7 +48366,7 @@ MonoBehaviour:
   - text: Wow would you look at the size of those MEATDOGS!!!
   - text: Wooooowwww!
   - text: Amazing right? So how d'you think we'd get our hands on them?
-  - text: Well you need a meat salesman id to get into the factory right?
+  - text: Well you need a meat salesman ID to get into the factory right?
   - text: Screw that! Where's that brick you were carrying earlier?
   container:
   - effects:

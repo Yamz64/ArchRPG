@@ -23836,7 +23836,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text:
-  - text: God that guy over there is so much cooler than us
+  - text: God that guy over there is so much cooler than us.
   container: []
   dialogueImages:
   - sprite_path: CharacterSprites/BackgroundCharacters/punkMan2
