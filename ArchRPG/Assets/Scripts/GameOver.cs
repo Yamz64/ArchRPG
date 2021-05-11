@@ -66,6 +66,70 @@ public class GameOver : MonoBehaviour
     {
         cursor = transform.GetChild(3).gameObject;
         cursor.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+
+        //--HANDLE OVERWRITING OF SAVE DATA FOR PERMADEATH--
+        CharacterStatJsonConverter data = new CharacterStatJsonConverter(PlayerPrefs.GetInt("_active_save_file_"));
+        CharacterStatJsonConverter old_data = new CharacterStatJsonConverter(PlayerPrefs.GetInt("_active_save_file_"), true);
+
+        //loop through the dead party members and mark them dead in the old_data if the player is not alone
+        if (data.dead.Length > 1)
+        {
+            for (int i = 1; i < data.dead.Length; i++)
+            {
+                //get name and convert to int id
+                int id = 0;
+                switch (data.names[i]) {
+                    case "Clyve":
+                        id = 0;
+                        break;
+                    case "Jim":
+                        id = 1;
+                        break;
+                    case "Norm":
+                        id = 2;
+                        break;
+                    case "Shirley":
+                        id = 3;
+                        break;
+                    case "Ralph":
+                        id = 4;
+                        break;
+                    case "Lucy":
+                        id = 5;
+                        break;
+                    case "Tim":
+                        id = 6;
+                        break;
+                    case "WhiteKnight":
+                        id = 7;
+                        break;
+                    case "OliverSprout":
+                        id = 8;
+                        break;
+                    case "EmberMoon":
+                        id = 9;
+                        break;
+                    default:
+                        break;
+                }
+
+                //check to see if the party member has been unlocked in the old save file then mark them as dead if not then continue
+                if (old_data.unlocked_characters[id] == false) continue;
+                else old_data.unlocked_deaths[id] = true;
+
+                //check to see if the party member in question is a party member in the old_data if so then mark them as dead there as well
+                if (old_data.names.Length > 1)
+                {
+                    for (int j = 1; j < old_data.names.Length; j++)
+                    {
+                        if (data.names[i] == old_data.names[j]) old_data.dead[j] = true;
+                    }
+                }
+            }
+            //save the old save data to kill off party members
+            old_data.Save(PlayerPrefs.GetInt("_active_save_file_"), true);
+        }
+
         StartCoroutine(GameOverSequence());
     }
 
