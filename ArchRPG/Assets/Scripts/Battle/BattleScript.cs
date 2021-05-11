@@ -4272,6 +4272,7 @@ public class BattleScript : MonoBehaviour
         bool boss5 = false;
         bool boss6 = false;
         bool bounce = false;
+        bool hand = false;
 
         int z = 0;
         for (int i = 0; i < loader.enemy_names.Length && z < 4; i++)
@@ -4361,6 +4362,7 @@ public class BattleScript : MonoBehaviour
             else if (loader.enemy_names[i] == "God's Hand")
             {
                 enen = new GodsHand();
+                hand = true;
             }
             else if (loader.enemy_names[i] == "Danny")
             {
@@ -4449,6 +4451,12 @@ public class BattleScript : MonoBehaviour
         {
             useSound(11, true, 1);
             background.GetComponent<VideoPlayer>().clip = Resources.Load<VideoClip>("Backgrounds/FinalBossBackground");
+        }
+        //If God's Hand
+        else if (hand)
+        {
+            useSound(3, true, 1);
+            background.GetComponent<VideoPlayer>().clip = Resources.Load<VideoClip>("Backgrounds/Background3Edited");
         }
         //If normal enemy
         else
