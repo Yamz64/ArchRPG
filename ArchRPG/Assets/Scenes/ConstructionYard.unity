@@ -3124,6 +3124,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 03739cc100e3e30408620282c38d9d71, type: 3}
+    - target: {fileID: 7810348273678539813, guid: 48dcc6fddc4f71043ba92fa797cea459, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48dcc6fddc4f71043ba92fa797cea459, type: 3}
 --- !u!1 &714672538
@@ -7379,7 +7383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mark_interactable: 0
-  spawn_position: {x: 0, y: 3}
+  spawn_position: {x: -22.5, y: 7.5}
   scene: City1
 --- !u!61 &1149717710
 BoxCollider2D:
@@ -16757,6 +16761,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 03739cc100e3e30408620282c38d9d71, type: 3}
+    - target: {fileID: 7810348273678539813, guid: 48dcc6fddc4f71043ba92fa797cea459, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48dcc6fddc4f71043ba92fa797cea459, type: 3}
 --- !u!1 &1590478746
@@ -18141,11 +18149,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3435720644805111882, guid: 1f43982e2a230d947830355b5f90e117, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.04
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3435720644805111882, guid: 1f43982e2a230d947830355b5f90e117, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.73
+      value: -8.5
       objectReference: {fileID: 0}
     - target: {fileID: 3435720644805111882, guid: 1f43982e2a230d947830355b5f90e117, type: 3}
       propertyPath: m_LocalPosition.z
