@@ -478,76 +478,6 @@ public class TitleScreen : MonoBehaviour
                 }
                 menu_input = true;
             }
-
-            /*
-            else if (InputManager.anyKeyDown && selector)
-            {
-                if (!menu_input)
-                {
-                    InputManager.StartInputScan(settings, result =>
-                    {
-                        string bases = "";
-                        int opt = cursor_position;
-                        if (cursor_position == 0 || cursor_position == 1)
-                        {
-                            bases = "Vertical";
-                            opt = 0;
-                        }
-                        else if (cursor_position == 2 || cursor_position == 3)
-                        {
-                            bases = "Horizontal";
-                            opt = 1;
-                        }
-                        else if (cursor_position == 4)
-                        {
-                            bases = "Interact";
-                            opt = 2;
-                        }
-                        else if (cursor_position == 5)
-                        {
-                            bases = "Menu";
-                            opt = 3;
-                        }
-                        Debug.Log("This press == " + result.Key.ToString());
-                        List<InputAction> opti = new List<InputAction>();
-                        opti.Add(InputManager.GetAction("Default Controls", "Vertical"));
-                        opti.Add(InputManager.GetAction("Default Controls", "Horizontal"));
-                        opti.Add(InputManager.GetAction("Default Controls", "Interact"));
-                        opti.Add(InputManager.GetAction("Default Controls", "Menu"));
-                        InputAction inputAction = InputManager.GetAction("Default Controls", bases);
-                        Debug.Log("Controls == " + inputAction.Bindings[0].Positive);
-                        bool cori = true;
-                        for (int i = 0; i < opti.Count; i++)
-                        {
-                            if (opti[i].Bindings[0].Positive == result.Key || opti[i].Bindings[0].Negative == result.Key)
-                            {
-                                cori = false;
-                            }
-                        }
-                        if (cori)
-                        {
-                            if (cursor_position != 1 && cursor_position != 2)
-                            {
-                                inputAction.Bindings[0].Positive = result.Key;
-                            }
-                            else
-                            {
-                                inputAction.Bindings[0].Negative = result.Key;
-                            }
-                            Debug.Log("Result == " + result.Key.ToString());
-                            transform.GetChild(1).Find("Controls").GetChild(cursor_position).GetChild(0).GetComponent<Text>().text = result.Key.ToString();
-                        }
-                        else
-                        {
-                            transform.GetChild(1).Find("Controls").GetChild(cursor_position).GetChild(0).GetComponent<Text>().text = prev;
-                        }
-                        return true;
-                    });
-                    selector = false;
-                }
-                menu_input = true;
-            }
-            */
             else if (InputManager.GetButtonDown("Menu") && !selector)
             {
                 useSound(0);
@@ -717,7 +647,11 @@ public class TitleScreen : MonoBehaviour
                                     {
                                         case 0:
                                             if (!save1.active_scene.Equals(""))
+                                            {
+                                                save1 = new CharacterStatJsonConverter(0, true);
+                                                mapio.Load(true);
                                                 SceneManager.LoadScene(save1.active_scene);
+                                            }
                                             else
                                             {
                                                 save1.Save(0);
@@ -727,7 +661,11 @@ public class TitleScreen : MonoBehaviour
                                             break;
                                         case 1:
                                             if (!save2.active_scene.Equals(""))
+                                            {
+                                                save2 = new CharacterStatJsonConverter(1, true);
+                                                mapio.Load(true);
                                                 SceneManager.LoadScene(save2.active_scene);
+                                            }
                                             else
                                             {
                                                 save2.Save(1);
@@ -737,7 +675,11 @@ public class TitleScreen : MonoBehaviour
                                             break;
                                         case 2:
                                             if (!save3.active_scene.Equals(""))
+                                            {
+                                                save3 = new CharacterStatJsonConverter(2, true);
+                                                mapio.Load(true);
                                                 SceneManager.LoadScene(save3.active_scene);
+                                            }
                                             else
                                             {
                                                 save3.Save(2);
@@ -747,7 +689,11 @@ public class TitleScreen : MonoBehaviour
                                             break;
                                         case 3:
                                             if (!save4.active_scene.Equals(""))
+                                            {
+                                                save4 = new CharacterStatJsonConverter(3, true);
+                                                mapio.Load(true);
                                                 SceneManager.LoadScene(save4.active_scene);
+                                            }
                                             else
                                             {
                                                 save4.Save(3);
@@ -1065,17 +1011,17 @@ public class TitleScreen : MonoBehaviour
     void Start()
     {
         InputManager.Load();
-        transform.GetChild(1).Find("Controls").GetChild(0).GetChild(0).GetComponent<Text>().text = 
+        transform.GetChild(1).Find("Controls").GetChild(1).GetChild(0).GetComponent<Text>().text = 
             InputManager.GetAction("Default Controls", "Vertical").Bindings[0].Positive.ToString();
-        transform.GetChild(1).Find("Controls").GetChild(1).GetChild(0).GetComponent<Text>().text =
-            InputManager.GetAction("Default Controls", "Vertical").Bindings[0].Negative.ToString();
         transform.GetChild(1).Find("Controls").GetChild(2).GetChild(0).GetComponent<Text>().text =
-            InputManager.GetAction("Default Controls", "Horizontal").Bindings[0].Positive.ToString();
+            InputManager.GetAction("Default Controls", "Vertical").Bindings[0].Negative.ToString();
         transform.GetChild(1).Find("Controls").GetChild(3).GetChild(0).GetComponent<Text>().text =
-            InputManager.GetAction("Default Controls", "Horizontal").Bindings[0].Negative.ToString();
+            InputManager.GetAction("Default Controls", "Horizontal").Bindings[0].Positive.ToString();
         transform.GetChild(1).Find("Controls").GetChild(4).GetChild(0).GetComponent<Text>().text =
-            InputManager.GetAction("Default Controls", "Interact").Bindings[0].Positive.ToString();
+            InputManager.GetAction("Default Controls", "Horizontal").Bindings[0].Negative.ToString();
         transform.GetChild(1).Find("Controls").GetChild(5).GetChild(0).GetComponent<Text>().text =
+            InputManager.GetAction("Default Controls", "Interact").Bindings[0].Positive.ToString();
+        transform.GetChild(1).Find("Controls").GetChild(6).GetChild(0).GetComponent<Text>().text =
             InputManager.GetAction("Default Controls", "Menu").Bindings[0].Positive.ToString();
 
         menus = new List<GameObject>();
