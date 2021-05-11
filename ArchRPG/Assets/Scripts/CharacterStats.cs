@@ -3418,7 +3418,7 @@ class Tim : CharacterStats
         if (GetLVL() >= 5) AddAbility(new TimAbilities.BackyardBBQ());
         if (GetLVL() >= 8) AddAbility(new TimAbilities.GreaseTrap());
         if (GetLVL() >= 14) AddAbility(new TimAbilities.HeartyDinner());
-        if (GetLVL() >= 18) AddAbility(new TimAbilities.BigMeatTM());
+        if (GetLVL() >= 18) AddAbility(new TimAbilities.ExoticMeel());
         if (GetLVL() >= 20) AddAbility(new TimAbilities.AllYouCanEat());
 
         //see if the player's sanity is below 50 if so give them maddened

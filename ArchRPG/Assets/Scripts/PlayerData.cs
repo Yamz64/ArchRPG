@@ -1084,7 +1084,7 @@ public class PlayerData : CharacterStats
         //add abilties
         ClearAbilities();
         if(GetLVL() >= 1) AddAbility(new PlayerAbilities.Scrutinize());
-        if (GetLVL() >= 4) AddAbility(new PlayerAbilities.Diagnosis());
+        if (GetLVL() >= 4) AddAbility(new PlayerAbilities.RudeReassurance());
         if (GetLVL() >= 7) AddAbility(new PlayerAbilities.Analysis());
         if (GetLVL() >= 11) AddAbility(new PlayerAbilities.ManicRant());
         if (GetLVL() >= 15) AddAbility(new PlayerAbilities.IncoherentRamblings());
