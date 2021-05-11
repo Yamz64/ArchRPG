@@ -1756,17 +1756,16 @@ MonoBehaviour:
       in Disco History!
   - text: Some kid told us he was awakening an elder god-
   - text: He said if we kidnapped a small innocent child-
-  - text: "And sacrificed the child to the elder god, we\u2019d be young forever-"
-  - text: "So naturally we\u2019d take the opportunity to make music for the rest
-      of time!"
+  - text: And sacrificed the child to the elder god, we'd be young forever-
+  - text: So naturally we'd take the opportunity to make music for the rest of time!
   - text: Uh... I don't think we should be sayin' this in front of the kid that just
       waltzed in...
   - text: I just had an idea, what if we sacrificed the kid we nabbed, AND the new
       kid!
   - text: Then we'd be killin' two baby birds with one stone!
   - text: That's not exactly what I meant-
-  - text: "There\u2019s a reason you two have the tightest fros, and that\u2019s
-      to hide the tightest brains OOOWWW!\r\n"
+  - text: "There's a reason you two have the tightest fros, and that\u2019s to hide
+      the tightest brains OOOWWW!\r\n"
   container:
   - effects:
     - name: Wave
@@ -2222,17 +2221,16 @@ MonoBehaviour:
       in Disco History!
   - text: Some kid told us he was awakening an elder god-
   - text: He said if we kidnapped a small innocent child-
-  - text: "And sacrificed the child to the elder god, we\u2019d be young forever-"
-  - text: "So naturally we\u2019d take the opportunity to make music for the rest
-      of time!"
+  - text: And sacrificed the child to the elder god, we'd be young forever-
+  - text: So naturally we'd take the opportunity to make music for the rest of time!
   - text: Uh... I don't think we should be sayin' this in front of the kid that just
       waltzed in...
   - text: I just had an idea, what if we sacrificed the kid we nabbed, AND the new
       kid!
   - text: Then we'd be killin' two baby birds with one stone!
   - text: That's not exactly what I meant-
-  - text: "There\u2019s a reason you two have the tightest fros, and that\u2019s
-      to hide the tightest brains OOOWWW!\r\n"
+  - text: "There's a reason you two have the tightest fros, and that\u2019s to hide
+      the tightest brains OOOWWW!\r\n"
   container:
   - effects:
     - name: Wave
@@ -3089,6 +3087,7 @@ MonoBehaviour:
     limit: 2
     type: 0
     cost: 0
+    id: 
 --- !u!1001 &1292559124
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4211,17 +4210,16 @@ MonoBehaviour:
       in Disco History!
   - text: Some kid told us he was awakening an elder god-
   - text: He said if we kidnapped a small innocent child-
-  - text: "And sacrificed the child to the elder god, we\u2019d be young forever-"
-  - text: "So naturally we\u2019d take the opportunity to make music for the rest
-      of time!"
+  - text: And sacrificed the child to the elder god, we'd be young forever-
+  - text: So naturally we'd take the opportunity to make music for the rest of time!
   - text: Uh... I don't think we should be sayin' this in front of the kid that just
       waltzed in...
   - text: I just had an idea, what if we sacrificed the kid we nabbed, AND the new
       kid!
   - text: Then we'd be killin' two baby birds with one stone!
   - text: That's not exactly what I meant-
-  - text: "There\u2019s a reason you two have the tightest fros, and that\u2019s
-      to hide the tightest brains OOOWWW!\r\n"
+  - text: "There's a reason you two have the tightest fros, and that\u2019s to hide
+      the tightest brains OOOWWW!\r\n"
   container:
   - effects:
     - name: Wave
