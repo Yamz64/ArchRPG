@@ -99,9 +99,6 @@ public class BattleScript : MonoBehaviour
     //Bool to check whether the player has the item menu open
     private bool item_select_menu;
 
-    //The chances of the party being able to flee
-    private int fleeChance = 0;
-
     unit pc;    //Use as basis for levelling the party
 
     private GameObject cursor;                      //The animated cursor 
@@ -3138,7 +3135,7 @@ public class BattleScript : MonoBehaviour
                         yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " threw up too much.", true);
                         enemyDeaths++;
                         //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
-                        if (enemyDeaths == activeEnemies)
+                        if (enemyDeaths == enemyUnits.Count)
                         {
                             state = battleState.WIN;
                             yield return battleEnd();
@@ -4646,8 +4643,10 @@ public class BattleScript : MonoBehaviour
             }
         }
         writing = false;
-        if (write_queue.Count > 0)
-        write_queue.RemoveAt(0);
+        if (write_queue.Count >= 1)
+        {
+            write_queue.RemoveAt(0);
+        }
         dialogue.text = tt;
         if (stop)
         {
