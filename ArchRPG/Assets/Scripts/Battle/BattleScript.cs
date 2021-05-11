@@ -2860,6 +2860,14 @@ public class BattleScript : MonoBehaviour
     //Start the enemy attack routine
     public void enemyAttacks()
     {
+        int other = 0;
+        for (int i = 0; i < enemyUnits.Count; i++)
+        {
+            if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+            {
+                other += 1;
+            }
+        }
         //For each of the enemies present
         for (int i = 0; i < enemyUnits.Count; i++)
         {
@@ -2878,7 +2886,7 @@ public class BattleScript : MonoBehaviour
                         if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[j].type == 1 &&
                             enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[j].priority > 0 &&
                             enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[j].statCounter == 0 &&
-                            (enemyUnits.Count - enemyDeaths) > 1)
+                            (enemyUnits.Count - enemyDeaths) > 1 && other > 1)
                         {
                             self = true;
                         }

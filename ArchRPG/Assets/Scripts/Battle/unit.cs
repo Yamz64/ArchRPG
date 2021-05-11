@@ -2273,7 +2273,7 @@ public class PlayerUnit : unit
         {
             abilities.Add(new PlayerAbilities.IncoherentRamblings());
         }
-        if (level >= 15)
+        if (level >= 17)
         {
             abilities.Add(new PlayerAbilities.ManicRant());
         }
@@ -2562,11 +2562,11 @@ public class PlayerUnit : unit
         }
         if (level >= 11)
         {
-            abilities.Add(new PlayerAbilities.ManicRant());
-        }
-        if (level >= 15)
-        {
             abilities.Add(new PlayerAbilities.IncoherentRamblings());
+        }
+        if (level >= 17)
+        {
+            abilities.Add(new PlayerAbilities.ManicRant());
         }
         if (level >= 20)
         {

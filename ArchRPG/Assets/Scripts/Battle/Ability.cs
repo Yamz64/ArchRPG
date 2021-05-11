@@ -934,7 +934,7 @@ namespace EnemyAbilities
             cost = 0;
             target = 0;
             enemyTarget = 1;
-            damage = 30;
+            damage = 15;
             damageType = 0;
             swapper = 2;
             priority = defaultPriority = 5;
@@ -1929,7 +1929,7 @@ namespace EnemyAbilities
             for (int i = 0; i < ran && checker < targets.Count; i++)
             {
                 int alo = Random.Range(0, targets.Count);
-                while (targets[alo].currentHP < 0)
+                while (targets[alo].currentHP <= 0)
                 {
                     alo = Random.Range(0, targets.Count);
                 }
