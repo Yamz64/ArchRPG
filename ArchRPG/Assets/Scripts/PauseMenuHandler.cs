@@ -23,6 +23,7 @@ public class PauseMenuHandler : MonoBehaviour
 
     public int cursor_position;
     public int active_menu;
+    public bool quitting;
     public bool menu_mode;
     public bool pause_menu_protection;
 
@@ -3526,6 +3527,24 @@ public class PauseMenuHandler : MonoBehaviour
                         UpdateLevelUpMenu();
                         OpenMenu(5);
                         break;
+                    case 6:
+                        //ask the player if they want to quit to title
+                        List<string> queue = new List<string>();
+                        queue.Add("Are you sure you want to quit to title? All new save progress will be lost");
+                        GetComponent<PlayerDialogueBoxHandler>().OpenTextBox();
+                        GetComponent<PlayerDialogueBoxHandler>().SetWriteQueue(queue);
+                        GetComponent<PlayerDialogueBoxHandler>().SetEffectQueue(new List<EffectContainer>());
+                        GetComponent<PlayerDialogueBoxHandler>().WriteDriver();
+                        quitting = true;
+                        menu_mode = true;
+                        pause_menu_protection = false;
+                        OpenMenu(7);
+                        cursor_position = 0;
+                        ActivateCursor();
+                        UpdateSaveMenu();
+                        SetChoiceText("Yes", false);
+                        SetChoiceText("No", true);
+                        break;
                     default:
                         break;
                 }
@@ -4704,6 +4723,31 @@ public class PauseMenuHandler : MonoBehaviour
         }
         else
         {
+            if (quitting)
+            {
+                if (InputManager.GetButtonDown("Interact"))
+                {
+                    if (!menu_input)
+                    {
+                        //check if the player wants to quit
+                        if (choice == false) SceneManager.LoadScene("TitleScreen");
+                        else
+                        {
+                            //reset to base pause menu
+                            CloseAllMenus();
+                            audio_handler.PlaySound("Sound/SFX/select");
+                            GetComponent<PlayerMovement>().interaction_protection = true;
+                            cursor.SetActive(true);
+                            highlighted_party_member = 0;
+                            OpenMenu(0);
+                            UpdateMoneyCount();
+                            UpdatePartyInfo();
+                            Time.timeScale = 0;
+                            menu_mode = true;
+                        }
+                    }
+                }
+            }
             menu_input = false;
         }
         cursor.transform.position = cursor_positions[9].positions[cursor_position].transform.position;
@@ -5343,6 +5387,7 @@ public class PauseMenuHandler : MonoBehaviour
     {
         InputManager.Load();
         GetComponent<TransitionHandler>().FadeoutDriver();
+        quitting = false;
         menu_mode = false;
         menu_input = false;
         item_select_menu = false;
