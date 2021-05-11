@@ -32,8 +32,10 @@ public class Ability
         statIndex.Add("Zonked");          //20
         statIndex.Add("Chutzpah");        //21
         statIndex.Add("Lethargic");       //22
-        statIndex.Add("Madness");         //23
-        statIndex.Add("Doomed");          //24
+        statIndex.Add("Electrified");     //23
+        statIndex.Add("Madness");         //24
+        statIndex.Add("Doomed");          //25
+        statIndex.Add("Disco_Fever");     //26
     }
     public Ability(Ability a)
     {
@@ -61,8 +63,11 @@ public class Ability
         statIndex.Add("Zonked");          //20
         statIndex.Add("Chutzpah");        //21
         statIndex.Add("Lethargic");       //22
-        statIndex.Add("Madness");         //23
-        statIndex.Add("Doomed");          //24
+        statIndex.Add("Electrified");     //23
+        statIndex.Add("Madness");         //24
+        statIndex.Add("Doomed");          //25
+        statIndex.Add("Disco_Fever");     //26
+
         eldritch = a.eldritch;
         target = a.target;
         enemyTarget = a.enemyTarget;
@@ -2197,7 +2202,7 @@ namespace PlayerAbilities
                     if (targets[i].currentHP > 0)
                     {
                         targets[i].setSAN(targets[i].sanity + 20);
-                        targets[i].giveStatus("Inspired");
+                        targets[i].giveStatus("Zealous");
                     }
                 }
             }
@@ -3409,7 +3414,7 @@ namespace WhiteKnightAbilities
             cost = 25;
             type = 1;
             target = 3;
-            statusEffect = "Confident Inspired";
+            statusEffect = "Confident Zealous";
         }
 
         public override void UseAttack(unit user, List<unit> targets)
