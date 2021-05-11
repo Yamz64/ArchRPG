@@ -292,6 +292,8 @@ public class unit
     //Function to set up the HUD with important data
     public void setHUD(bool pic = false) 
     {
+        Color black = new Color(0.0f, 0.0f, 0.0f);
+        BBackground.color = black;
         if (!pic)
         {
             if (unitName == "Oliver")

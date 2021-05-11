@@ -1971,7 +1971,7 @@ namespace PlayerAbilities
         public override string OutputText(unit user, unit target)
         {
             string output = "";
-            float percent = target.getHP() / target.maxHP;
+            float percent = (float)target.getHP() / (float)target.maxHP;
 
             if (percent > .7f)
             {

@@ -2214,9 +2214,9 @@ MonoBehaviour:
   - text: MMMM TASTY WOOOWWW!
   - text: "Ummm\u2026"
   - text: Allow us to introduce ourselves to YOU.
-  - text: "I\u2019m DISCO DAN YOOOWWW!"
-  - text: "I\u2019m DISCO DYLAN WOOOWWW!"
-  - text: "and I\u2019m DISCO BRIAN OOOWWW!"
+  - text: I'm DISCO DAN YOOOWWW!
+  - text: I'm DISCO DYLAN WOOOWWW!
+  - text: and I'm DISCO BRIAN OOOWWW!
   - text: And we are the Disco Hooligans! Here to make the funkiest sacrifice ever
       in Disco History!
   - text: Some kid told us he was awakening an elder god-
@@ -2229,8 +2229,10 @@ MonoBehaviour:
       kid!
   - text: Then we'd be killin' two baby birds with one stone!
   - text: That's not exactly what I meant-
-  - text: "There's a reason you two have the tightest fros, and that\u2019s to hide
-      the tightest brains OOOWWW!\r\n"
+  - text: 'There''s a reason you two have the tightest fros, and that''s to hide
+      the tightest brains OOOWWW!
+
+'
   container:
   - effects:
     - name: Wave

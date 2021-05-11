@@ -4124,7 +4124,7 @@ public class BattleScript : MonoBehaviour
                 }
                 else skipper = false;
                 if (sc == "attack" || sc == "ability" || sc == "ability1" || sc == "item" || sc == "swap" || sc == "basic attack"
-                    || sc == "Flee")
+                    || sc == "Flee" || sc == "revive")
                 {
                     if (sane == true && temp[ind].GetComponent<UnitMono>().mainUnit.sanity < 50)
                     {
@@ -4147,7 +4147,7 @@ public class BattleScript : MonoBehaviour
                     if (temp[ind].GetComponent<UnitMono>().mainUnit.hasMP)
                     {
                         temp[ind].GetComponent<UnitMono>().mainUnit.setSP(temp[ind].GetComponent<UnitMono>().mainUnit.currentSP + 
-                            temp[ind].GetComponent<UnitMono>().mainUnit.currentSP / 10);
+                            temp[ind].GetComponent<UnitMono>().mainUnit.maxSP / 16);
                         temp[ind].GetComponent<UnitMono>().mainUnit.setHUD();
                         //dialogue.text = temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " regained some MP";
                         yield return flashBuff(temp[ind].GetComponent<UnitMono>().mainUnit);
@@ -7094,7 +7094,7 @@ public class BattleScript : MonoBehaviour
     //Flash red in response to damage
     public IEnumerator flashDamage(unit bot)
     {
-        Color ori = bot.BBackground.color;
+        Color ori = new Color(0.0f, 0.0f, 0.0f);
         Color red = bot.BBackground.color;
         red.b = 0.0f;
         red.g = 0.0f;
@@ -7109,7 +7109,7 @@ public class BattleScript : MonoBehaviour
     //Flash orange when dealing damage
     public IEnumerator flashDealDamage(unit bot)
     {
-        Color ori = bot.BBackground.color;
+        Color ori = new Color(0.0f, 0.0f, 0.0f);
         Color now = bot.BBackground.color;
         now.b = 0.0f;
         now.g = 0.5f;
@@ -7124,7 +7124,7 @@ public class BattleScript : MonoBehaviour
     //Flash green in response to healing damage
     public IEnumerator flashHeal(unit bot)
     {
-        Color ori = bot.BBackground.color;
+        Color ori = new Color(0.0f, 0.0f, 0.0f);
         Color green = bot.BBackground.color;
         green.b = 0.0f;
         green.g = 1.0f;
@@ -7139,7 +7139,7 @@ public class BattleScript : MonoBehaviour
     //Flash blue in response to leveling up
     public IEnumerator flashLevel(unit bot)
     {
-        Color ori = bot.BBackground.color;
+        Color ori = new Color(0.0f, 0.0f, 0.0f);
         Color green = bot.BBackground.color;
         green.b = 0.5f;
         green.g = 1.0f;
@@ -7154,7 +7154,7 @@ public class BattleScript : MonoBehaviour
     //Flash purple to show a buff (usually for enemy)
     public IEnumerator flashBuff(unit bot)
     {
-        Color ori = bot.BBackground.color;
+        Color ori = new Color(0.0f, 0.0f, 0.0f);
         Color green = bot.BBackground.color;
         green.b = 1.0f;
         green.g = 0.0f;
@@ -7169,7 +7169,7 @@ public class BattleScript : MonoBehaviour
     //Flash pink to show a buff (usually for party units)
     public IEnumerator flashBuff2(unit bot)
     {
-        Color ori = bot.BBackground.color;
+        Color ori = new Color(0.0f, 0.0f, 0.0f);
         Color green = bot.BBackground.color;
         green.b = 1.0f;
         green.g = 0.0f;
