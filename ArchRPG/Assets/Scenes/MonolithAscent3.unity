@@ -6372,14 +6372,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eb0044b0366a974993a0b39369c881f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  encounter_type: 0
+  encounter_type: 1
   enemy_names:
   - enemy_name: God's Hand
     encounter_priority: 3
   maximum_enemies: {x: 1, y: 3}
   roll_delay: 10
   roll_min: 7
-  enemy_encounter_chance: 0.3
+  enemy_encounter_chance: 30
 --- !u!19719996 &1709112105
 TilemapCollider2D:
   m_ObjectHideFlags: 0
