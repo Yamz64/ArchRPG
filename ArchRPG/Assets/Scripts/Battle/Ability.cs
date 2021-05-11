@@ -3448,7 +3448,7 @@ namespace WhiteKnightAbilities
             cost = 10;
             type = 0;
             randoMin = 1;
-            randoMax = 50;
+            randoMax = 30;
             customAbility = 3;
             madness = true;
             statusEffect = "Zonked";
@@ -3663,7 +3663,7 @@ namespace OliverSproutAbilities
             desc2 = "Oliver can’t deal with all this negativity in the air and decides to give into it " +
                 "as he beats the everloving shit out of the enemy, injuring himself in the process.";
             cost = 16;
-            damage = 24;
+            damage = 20;
             damageType = 4;
             selfDamage = 12;
             sanity_damage = 15;
@@ -3688,7 +3688,8 @@ namespace EmberMoonAbilities
             damage = 15;
             damageType = 1;
             target = 0;
-            customAbility = 3;
+            statusEffect = "Conductive";
+            //customAbility = 3;
         }
 
         public override void UseAttack(unit user, List<unit> targets)
@@ -3719,7 +3720,7 @@ namespace EmberMoonAbilities
         public SwappinPills()
         {
             name = "Swappin’ Pills";
-            desc1 = "Target enemy gains reactive and Ember gains hyperactive.";
+            desc1 = "Target enemy gains reactive & lethargic, and Ember gains hyperactive & chutzpah.";
             desc2 = "You’d think that the baddies wouldn’t want to take drugs from the kids they’re fighting, " +
                 "but Ember’s peer pressure aura is impossible, even for the lowliest of life forms, to defeat.";
             cost = 12;
@@ -3800,13 +3801,19 @@ namespace EmberMoonAbilities
 
         public override void UseAttack(unit user, List<unit> targets)
         {
+            int done = -1;
             for (int i = 0; i < targets.Count; i++)
             {
                 if (targets[i] != null)
                 {
-                    if (targets[i].currentHP > 0)
+                    if (targets[i].currentHP > 0 && targets[i].enemy)
                     {
                         int ran = Random.Range(0, 2);
+                        while (ran == done)
+                        {
+                            ran = Random.Range(0, 2);
+                        }
+                        if (done == -1) done = ran;
                         if (ran == 0)
                         {
                             int val = targets[i].takeDamageCalc(targets[i], damage, 4, true);

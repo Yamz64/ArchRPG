@@ -5187,6 +5187,7 @@ public class BattleScript : MonoBehaviour
                     }
                     else if (uni.abilities[ata].target == 2)
                     {
+                        Debug.Log("Please let the magical shit work");
                         bool change = false;
                         if (val - 1 >= 0)
                         {
@@ -5477,6 +5478,7 @@ public class BattleScript : MonoBehaviour
                         }
                     }
                 }
+                uni.setSP(uni.currentSP - uni.abilities[ata].cost);
             }
             else if (uni.abilities[ata].customAbility == 3)
             {
@@ -5546,6 +5548,7 @@ public class BattleScript : MonoBehaviour
                         }
                     }
                 }
+                uni.setSP(uni.currentSP - uni.abilities[ata].cost);
                 if (enemyDeaths == activeEnemies)
                 {
                     state = battleState.WIN;

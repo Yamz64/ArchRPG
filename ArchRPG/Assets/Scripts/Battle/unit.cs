@@ -1061,6 +1061,7 @@ public class unit
                     //There is a status effect for the user to get
                     if (!ata.selfStatus.Equals(""))
                     {
+                        
                         //Roll numbers to check if status effect is given
                         int ran = UnityEngine.Random.Range(1, 101);
                         int statBuff = ata.alteredStatus;
