@@ -3843,6 +3843,18 @@ namespace EmberMoonAbilities
             statusEffect = "Reactive Conductive Flammable Zonked";
             selfStatus = statusEffect;
             eldritch = true;
+            customAbility = 2;
+        }
+
+        public override void UseAttack(unit user, List<unit> targets)
+        {
+            int ran = 0; 
+            while (targets[ran] == null || !targets[ran].enemy || targets[ran].currentHP <= 0)
+            {
+                ran = Random.Range(0, targets.Count);
+            }
+            targets[ran].giveStatus(statusEffect);
+            user.giveStatus(statusEffect);
         }
     }
 }
