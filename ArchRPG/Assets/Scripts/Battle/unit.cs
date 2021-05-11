@@ -911,7 +911,7 @@ public class unit
                 if (target.statuses[18] != -1 && ata.damageType == 2)
                 {
                     //Roll numbers to check if status effect is given
-                    int ran = UnityEngine.Random.Range(1, 101);
+                    int ran = UnityEngine.Random.Range(50, 101);
                     int statBuff = ata.alteredStatus;
                     int reze = target.RES;
                     //If target has Chutzpah
@@ -1109,7 +1109,7 @@ public class unit
                         if (ata.doAggro)
                         {
                             target.aggroTarget = unitName;
-                            target.aggro = UnityEngine.Random.Range(1, 5);
+                            target.aggro = UnityEngine.Random.Range(4, 6);
                         }
                     }
                     return d;
@@ -6595,7 +6595,7 @@ public class WhiteKnightUnit : unit
         level = lev;
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
         //Physical
-        resistances[0] = true;
+        //resistances[0] = true;
         //Weird
         resistances[4] = true;
         //Electric

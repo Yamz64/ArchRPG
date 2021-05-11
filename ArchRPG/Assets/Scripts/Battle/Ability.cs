@@ -3030,8 +3030,8 @@ namespace LucyAbilities
             damageType = 2;
             position = 2;
             statusEffect = "Eye_Bleeding";
-            multiHitMin = 1;
-            multiHitMax = 3;
+            multiHitMin = 2;
+            multiHitMax = 5;
         }
     }
 

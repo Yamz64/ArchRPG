@@ -2874,10 +2874,11 @@ public class BattleScript : MonoBehaviour
                     //Check if the enemy has any support abilities
                     for (int j = 0; j < enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities.Count; j++)
                     {
+                        Debug.Log("Ability chosoer should work correctly");
                         if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[j].type == 1 &&
                             enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[j].priority > 0 &&
                             enemyUnits[i].GetComponent<UnitMono>().mainUnit.abilities[j].statCounter == 0 &&
-                            enemyUnits.Count - enemyDeaths > 1)
+                            (enemyUnits.Count - enemyDeaths) > 1)
                         {
                             self = true;
                         }
@@ -4648,7 +4649,7 @@ public class BattleScript : MonoBehaviour
         else if (bounce)
         {
             useSound(9, true, 1);
-            background.GetComponent<VideoPlayer>().clip = Resources.Load<VideoClip>("Backgrounds/Background7");
+            background.GetComponent<VideoPlayer>().clip = Resources.Load<VideoClip>("Backgrounds/Background5");
         }
         //If The Disco Hooligans
         else if (boss32)
@@ -5008,9 +5009,9 @@ public class BattleScript : MonoBehaviour
 
                     swapInds.Add(indi);
                     swapInds.Add(indi - 2);
-                    val2 = val - 2;
+                    val2 = indi - 2;
                     //PerformSwaps(swapInds.Count - 2);
-                    Swap2(val, val2, uni.unitName);
+                    Swap2(indi, val2, uni.unitName);
                 }
             }
             //Push self backwards
@@ -5055,7 +5056,7 @@ public class BattleScript : MonoBehaviour
                     swapInds.Add(indi + 2);
                     val2 = indi + 2;
                     //PerformSwaps(swapInds.Count - 2);
-                    Swap2(val, val2, uni.unitName);
+                    Swap2(indi, val2, uni.unitName);
                 }
             }
 
