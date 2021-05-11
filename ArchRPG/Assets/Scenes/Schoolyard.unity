@@ -1955,7 +1955,7 @@ MonoBehaviour:
   container:
   - effects: []
   dialogueImages:
-  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid18_front
     lines: 1
   player: {fileID: 0}
 --- !u!1001 &1076977365
@@ -2042,7 +2042,7 @@ MonoBehaviour:
   container:
   - effects: []
   dialogueImages:
-  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid14_front
     lines: 1
   player: {fileID: 0}
 --- !u!1 &1435986317 stripped
@@ -2068,7 +2068,7 @@ MonoBehaviour:
   container:
   - effects: []
   dialogueImages:
-  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid17_front
     lines: 1
   player: {fileID: 0}
 --- !u!1 &1443948483
@@ -3818,7 +3818,7 @@ MonoBehaviour:
   - effects: []
   - effects: []
   dialogueImages:
-  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid20_front
     lines: 2
   player: {fileID: 0}
 --- !u!1 &1624084365
@@ -4630,7 +4630,7 @@ MonoBehaviour:
   container:
   - effects: []
   dialogueImages:
-  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid12_front
     lines: 1
   player: {fileID: 0}
 --- !u!1 &1819056196
