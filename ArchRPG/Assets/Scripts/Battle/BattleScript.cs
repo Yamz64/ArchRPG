@@ -6625,6 +6625,51 @@ public class BattleScript : MonoBehaviour
         {
             yield return textDisplay("You Died", true);
             loader.flee = true;
+            for (int i = 0; i < 4; i++)
+            {
+                if (partyUnits[i] != null)
+                {
+                    if (partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
+                    {
+                        switch (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName)
+                        {
+                            case "Albert":
+                                loader.dead[0] = true;
+                                break;
+                            case "Clyve":
+                                loader.dead[1] = true;
+                                break;
+                            case "Jim":
+                                loader.dead[2] = true;
+                                break;
+                            case "Norm":
+                                loader.dead[3] = true;
+                                break;
+                            case "Shirley":
+                                loader.dead[4] = true;
+                                break;
+                            case "Ralph":
+                                loader.dead[5] = true;
+                                break;
+                            case "Lucy":
+                                loader.dead[6] = true;
+                                break;
+                            case "Tim":
+                                loader.dead[7] = true;
+                                break;
+                            case "White Knight":
+                                loader.dead[8] = true;
+                                break;
+                            case "Oliver":
+                                loader.dead[9] = true;
+                                break;
+                            case "Ember":
+                                loader.dead[10] = true;
+                                break;
+                        }
+                    }
+                }
+            }
         }
         else if (state == battleState.FLEE)
         {
