@@ -381,7 +381,7 @@ public class BattleScript : MonoBehaviour
             if (i != act && enemyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP > 0)
             {
                 Color temp = enemyUnits[i].GetComponent<UnitMono>().mainUnit.view.color;
-                temp.a = 0.6f;
+                temp.a = 0.4f;
                 enemyUnits[i].GetComponent<UnitMono>().mainUnit.view.color = temp;
             }
             else if (i == act)
@@ -4236,64 +4236,71 @@ public class BattleScript : MonoBehaviour
     //Display visible damage numbers
     IEnumerator showDamage(int dam, int location = 0, int type = 0)
     {
-        Color fire = new Color(1.0f, 198.0f / 255.0f, 0.0f);
-        Color chem = new Color(136.0f / 255.0f, 1.0f, 0.0f);
-        Color elec = new Color(0.0f, 186.0f/255.0f, 1.0f);
-        Color weird = new Color(132.0f / 255.0f, 0.0f, 1.0f);
-        yield return new WaitForSeconds(1f);
-        Text bin;
-        Transform spot = new GameObject().transform;
-        Quaternion blank = new Quaternion();
-        if (enemyUnits.Count == 1)
+        if (dam > 0)
         {
-            spot.position = new Vector3(targetStations1[location].transform.position.x - 2.51f, 
-                targetStations1[location].transform.position.y + 0.72f, 0);
-        }
-        else if (enemyUnits.Count == 2)
-        {
-            spot.position = new Vector3(targetStations2[location].transform.position.x - 2.51f, 
-                targetStations2[location].transform.position.y + 0.72f, 0);
-        }
-        else if (enemyUnits.Count == 3)
-        {
-            spot.position = new Vector3(targetStations3[location].transform.position.x - 2.51f, 
-                targetStations3[location].transform.position.y + 0.72f, 0);
+            Color fire = new Color(1.0f, 198.0f / 255.0f, 0.0f);
+            Color chem = new Color(136.0f / 255.0f, 1.0f, 0.0f);
+            Color elec = new Color(0.0f, 186.0f / 255.0f, 1.0f);
+            Color weird = new Color(132.0f / 255.0f, 0.0f, 1.0f);
+            yield return new WaitForSeconds(1f);
+            Text bin;
+            Transform spot = new GameObject().transform;
+            Quaternion blank = new Quaternion();
+            if (enemyUnits.Count == 1)
+            {
+                spot.position = new Vector3(targetStations1[location].transform.position.x - 2.51f,
+                    targetStations1[location].transform.position.y + 0.72f, 0);
+            }
+            else if (enemyUnits.Count == 2)
+            {
+                spot.position = new Vector3(targetStations2[location].transform.position.x - 2.51f,
+                    targetStations2[location].transform.position.y + 0.72f, 0);
+            }
+            else if (enemyUnits.Count == 3)
+            {
+                spot.position = new Vector3(targetStations3[location].transform.position.x - 2.51f,
+                    targetStations3[location].transform.position.y + 0.72f, 0);
+            }
+            else
+            {
+                spot.position = new Vector3(targetStations[location].transform.position.x - 2.51f,
+                    targetStations[location].transform.position.y + 0.72f, 0);
+            }
+            bin = Instantiate(damageText, spot.position, blank, damage1);
+            if (type == 1)
+            {
+                bin.color = fire;
+            }
+            if (type == 2)
+            {
+                bin.color = elec;
+            }
+            if (type == 3)
+            {
+                bin.color = chem;
+            }
+            if (type == 4)
+            {
+                bin.color = weird;
+            }
+            bin.text = "" + dam;
+            float count = 0.0f;
+            while (count < 2.0f)
+            {
+                count += Time.deltaTime;
+                Vector3 newt = bin.transform.position;
+                newt.y += Time.deltaTime;
+                bin.transform.position = newt;
+            }
+            bin.CrossFadeAlpha(0, 1f, false);
+            yield return new WaitForSeconds(1f);
+            Destroy(bin.gameObject);
+            Destroy(spot.gameObject);
         }
         else
         {
-            spot.position = new Vector3(targetStations[location].transform.position.x - 2.51f, 
-                targetStations[location].transform.position.y + 0.72f, 0);
+            yield return new WaitForSeconds(0.1f); ;
         }
-        bin = Instantiate(damageText, spot.position, blank, damage1);
-        if (type == 1)
-        {
-            bin.color = fire;
-        }
-        if (type == 2)
-        {
-            bin.color = elec;
-        }
-        if (type == 3)
-        {
-            bin.color = chem;
-        }
-        if (type == 4)
-        {
-            bin.color = weird;
-        }
-        bin.text = "" + dam;
-        float count = 0.0f;
-        while (count < 2.0f)
-        {
-            count += Time.deltaTime;
-            Vector3 newt = bin.transform.position;
-            newt.y += Time.deltaTime;
-            bin.transform.position = newt;
-        }
-        bin.CrossFadeAlpha(0, 1f, false);
-        yield return new WaitForSeconds(1f);
-        Destroy(bin.gameObject);
-        Destroy(spot.gameObject);
     }
 
     //Fade into the battle scene (from black to screen)
@@ -4921,6 +4928,7 @@ public class BattleScript : MonoBehaviour
         dialogue.text = tt;
         if (stop)
         {
+            yield return new WaitForSeconds(0.2f);
             yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
         }
     }
