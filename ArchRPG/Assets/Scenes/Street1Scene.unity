@@ -709,7 +709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text:
-  - text: Yeah I set up that hockey prank. They'll be talking about it for years!
+  - text: Yeah I set up that gym prank. They'll be talking about it for years!
   - text: No you didn't.
   - text: Ok, so it wasn't on purpose, but I still did it!
   - text: I thought it was that Danny kid.
@@ -733,7 +733,21 @@ MonoBehaviour:
   - effects: []
   dialogueImages:
   - sprite_path: CharacterSprites/BackgroundCharacters/Kid18_front
-    lines: 8
+    lines: 1
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid12_front
+    lines: 1
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid18_front
+    lines: 1
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid12_front
+    lines: 1
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid18_front
+    lines: 1
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid12_front
+    lines: 1
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid18_front
+    lines: 1
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid12_front
+    lines: 1
   player: {fileID: 0}
 --- !u!1001 &213903823
 PrefabInstance:
@@ -9065,7 +9079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text:
-  - text: Yeah I set up that hockey prank. They'll be talking about it for years!
+  - text: Yeah I set up that gym prank. They'll be talking about it for years!
   - text: No you didn't.
   - text: Ok, so it wasn't on purpose, but I still did it!
   - text: I thought it was that Danny kid.
@@ -9088,8 +9102,22 @@ MonoBehaviour:
   - effects: []
   - effects: []
   dialogueImages:
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid18_front
+    lines: 1
   - sprite_path: CharacterSprites/BackgroundCharacters/Kid12_front
-    lines: 8
+    lines: 1
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid18_front
+    lines: 1
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid12_front
+    lines: 1
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid18_front
+    lines: 1
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid12_front
+    lines: 1
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid18_front
+    lines: 1
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid12_front
+    lines: 1
   player: {fileID: 0}
 --- !u!1001 &800717503
 PrefabInstance:
