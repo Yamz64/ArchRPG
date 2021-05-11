@@ -10921,7 +10921,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mark_interactable: 0
   spawn_position: {x: -9, y: -7}
-  scene: FinalArea
+  scene: MonolithAscent3
 --- !u!61 &1878741494
 BoxCollider2D:
   m_ObjectHideFlags: 0
