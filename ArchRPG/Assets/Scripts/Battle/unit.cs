@@ -996,6 +996,17 @@ public class unit
                     }
                 }
 
+                for (int x = 0; x < target.statuses.Count; x++)
+                {
+                    if (target.statuses[x] != -1)
+                    {
+                        if (target.statusIndex[x].Equals(ata.bigStatus))
+                        {
+
+                        }
+                    }
+                }
+
                 takeDamage(val2);
                 int critBuff = ata.alteredCrit;
 
@@ -2257,11 +2268,11 @@ public class PlayerUnit : unit
         }
         if (level >= 11)
         {
-            abilities.Add(new PlayerAbilities.ManicRant());
+            abilities.Add(new PlayerAbilities.IncoherentRamblings());
         }
         if (level >= 15)
         {
-            abilities.Add(new PlayerAbilities.IncoherentRamblings());
+            abilities.Add(new PlayerAbilities.ManicRant());
         }
         if (level >= 20)
         {

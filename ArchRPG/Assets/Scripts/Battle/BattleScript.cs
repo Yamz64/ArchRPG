@@ -98,6 +98,8 @@ public class BattleScript : MonoBehaviour
     private bool unit_select_menu;
     //Bool to check whether the player has the item menu open
     private bool item_select_menu;
+    //Bool to check whether the player is selecting a unit to revive
+    private bool revive_select_menu;
 
     unit pc;    //Use as basis for levelling the party
 
@@ -2068,7 +2070,7 @@ public class BattleScript : MonoBehaviour
     public void ItemMenuRoutine()
     {
         //change position of cursor in the menu if in item select mode
-        if (item_select_menu == false && state == battleState.PLAYER && !writing)
+        if (item_select_menu == false && revive_select_menu == false && state == battleState.PLAYER && !writing)
         {
             //If input is up and not at top of menu
             if (InputManager.GetAxisRaw("Vertical") > 0.0f && cursor_position > 0)
@@ -2145,7 +2147,7 @@ public class BattleScript : MonoBehaviour
                 menu_input = false;
             }
         }
-        else if (state == battleState.PLAYER && !writing)
+        else if (state == battleState.PLAYER && revive_select_menu == false && !writing)
         {
             if (InputManager.GetAxisRaw("Vertical") > 0.0f && cursor_position > 9)
             {
@@ -2193,7 +2195,7 @@ public class BattleScript : MonoBehaviour
                             highlighted_item = 0;
                             inventory_offset = 0;
                         }
-                        else
+                        else if (data.GetItem(highlighted_item).name != "Flesh Heart")
                         {
                             useSound(1);
                             int speed = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI();
@@ -2242,6 +2244,28 @@ public class BattleScript : MonoBehaviour
                                 }
                             }
                         }
+                        else
+                        {
+                            useSound(1);
+                            //Make item menu invisible
+                            Image[] opts = transform.GetChild(1).Find("ItemMenu").GetComponentsInChildren<Image>();
+                            foreach (Image child in opts)
+                            {
+                                Color temp = child.color;
+                                temp.a = 0.0f;
+                                child.color = temp;
+                            }
+
+                            Text[] ts = transform.GetChild(1).Find("ItemMenu").GetComponentsInChildren<Text>();
+                            foreach (Text child in ts)
+                            {
+                                Color temp = child.color;
+                                temp.a = 0.0f;
+                                child.color = temp;
+                            }
+                            OpenSelectUnitMenu();
+                            revive_select_menu = true;
+                        }
                         break;
                     /*
                 case 10:
@@ -2265,6 +2289,194 @@ public class BattleScript : MonoBehaviour
             {
                 useSound(0);
                 CloseUseItemMenu();
+            }
+            else
+            {
+                menu_input = false;
+            }
+        }
+        else if (state == battleState.PLAYER && !writing)
+        {
+            //If input is down and the cursor is not at the bottom yet
+            if (InputManager.GetAxisRaw("Vertical") < 0.0f && currentAlly < 2)
+            {
+                if (!menu_input)
+                {
+                    useSound(0);
+                    currentAlly += 2;
+                    unitSelect(currentAlly);
+                }
+                menu_input = true;
+            }
+            //If input is up and the cursor is not at the top yet
+            else if (InputManager.GetAxisRaw("Vertical") > 0.0f && currentAlly > 1 && currentAlly < 4)
+            {
+                if (!menu_input)
+                {
+                    useSound(0);
+                    currentAlly -= 2;
+                    unitSelect(currentAlly);
+                }
+                menu_input = true;
+            }
+            //If input is right and the cursor is not at the right side yet
+            else if (InputManager.GetAxisRaw("Horizontal") > 0.0f && currentAlly >= 0 && currentAlly != 1 && currentAlly < 3)
+            {
+                if (!menu_input)
+                {
+                    useSound(0);
+                    currentAlly += 1;
+                    unitSelect(currentAlly);
+                }
+                menu_input = true;
+            }
+            //If input is left and the cursor is not at the left side yet
+            else if (InputManager.GetAxisRaw("Horizontal") < 0.0f && currentAlly > 0 && currentAlly != 2 && currentAlly <= 3)
+            {
+                if (!menu_input)
+                {
+                    useSound(0);
+                    currentAlly -= 1;
+                    unitSelect(currentAlly);
+                }
+                menu_input = true;
+            }
+            else if (InputManager.GetButtonDown("Interact"))
+            {
+                if (partyUnits[currentAlly] != null)
+                {
+                    if (partyUnits[currentAlly].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
+                    {
+                        useSound(1);
+                        int speed = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI();
+                        if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[5] != -1)
+                        {
+                            speed = (int)(speed * 1.25f);
+                        }
+                        if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.statuses[22] != -1)
+                        {
+                            speed = (int)(speed * 0.75f);
+                        }
+                        actions.Add(new action(currentUnit, "revive", highlighted_item, currentAlly, speed));
+                        //data.UseItem(highlighted_item);
+                        UpdateInventoryItems();
+                        UpdateInventoryImageandDesc();
+                        CloseUseItemMenu();
+                        CloseMenu(2);
+                        highlighted_item = 0;
+                        inventory_offset = 0;
+                        currentAlly = 0;
+                        currentUnit += 1;
+                        Vector3 here = partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.view.transform.position;
+                        here.y = partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.backupView.transform.position.y;
+                        partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.view.transform.position = here;
+                        moves += 1;
+
+                        if (moves >= activeUnits || currentUnit == 4)
+                        {
+                            moves = 0;
+                            currentUnit = 0;
+                            state = battleState.ATTACK;
+                            StartCoroutine(performActions());
+                        }
+                        else
+                        {
+                            while (partyUnits[currentUnit] == null && currentUnit < partyUnits.Count) currentUnit++;
+                            if (currentUnit >= partyUnits.Count)
+                            {
+                                moves = 0;
+                                currentUnit = 0;
+                                state = battleState.ATTACK;
+                                StartCoroutine(performActions());
+                            }
+                            else
+                            {
+                                playerTurn();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        useSound(0);
+                        StartCoroutine(textDisplay("Can't use this item on the living"));
+                        Image[] opts = transform.GetChild(1).Find("ItemMenu").GetComponentsInChildren<Image>();
+                        foreach (Image child in opts)
+                        {
+                            Color temp = child.color;
+                            temp.a = 1.0f;
+                            child.color = temp;
+                        }
+                        Text[] ts = transform.GetChild(1).Find("ItemMenu").GetComponentsInChildren<Text>();
+                        foreach (Text child in ts)
+                        {
+                            Color temp = child.color;
+                            temp.a = 1.0f;
+                            child.color = temp;
+                        }
+                        currentAlly = 0;
+                        highlighted_item = 0;
+                        inventory_offset = 0;
+                        cursor.SetActive(true);
+                        CloseSelectUnitMenu();
+                        CloseUseItemMenu();
+                        CloseMenu(1);
+                        revive_select_menu = false;
+                        unit_select_menu = false;
+                        menu_input = true;
+                    }
+                }
+                else
+                {
+                    useSound(0);
+                    StartCoroutine(textDisplay("Can't use this item on empty space"));
+                    Image[] opts = transform.GetChild(1).Find("ItemMenu").GetComponentsInChildren<Image>();
+                    foreach (Image child in opts)
+                    {
+                        Color temp = child.color;
+                        temp.a = 1.0f;
+                        child.color = temp;
+                    }
+                    Text[] ts = transform.GetChild(1).Find("ItemMenu").GetComponentsInChildren<Text>();
+                    foreach (Text child in ts)
+                    {
+                        Color temp = child.color;
+                        temp.a = 1.0f;
+                        child.color = temp;
+                    }
+                    currentAlly = 0;
+                    highlighted_item = 0;
+                    inventory_offset = 0;
+                    cursor.SetActive(true);
+                    CloseSelectUnitMenu();
+                    CloseUseItemMenu();
+                    CloseMenu(1);
+                    revive_select_menu = false;
+                    unit_select_menu = false;
+                    menu_input = true;
+                }
+            }
+            else if (InputManager.GetButtonDown("Cancel") || (InputManager.GetButtonDown("Menu")))
+            {
+                useSound(0);
+                Image[] opts = transform.GetChild(1).Find("AbilityMenu").GetComponentsInChildren<Image>();
+                foreach (Image child in opts)
+                {
+                    Color temp = child.color;
+                    temp.a = 1.0f;
+                    child.color = temp;
+                }
+                Text[] ts = transform.GetChild(1).Find("AbilityMenu").GetComponentsInChildren<Text>();
+                foreach (Text child in ts)
+                {
+                    Color temp = child.color;
+                    temp.a = 1.0f;
+                    child.color = temp;
+                }
+
+                CloseSelectUnitMenu();
+                CloseUseItemMenu();
+                cursor_position = highlighted_item - inventory_offset;
+                menu_input = true;
             }
             else
             {
@@ -2931,7 +3143,7 @@ public class BattleScript : MonoBehaviour
 
                 //Check if player should take damage from a status effect
                 if (sc == "attack" || sc == "ability" || sc == "ability1" || sc == "item" || sc == "swap" || sc == "basic attack"
-                    || sc == "Flee")
+                    || sc == "Flee" || sc == "revive")
                 {
                     if (temp[ind].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
                     {
@@ -3207,7 +3419,7 @@ public class BattleScript : MonoBehaviour
 
                 //Check if the player is stopped by a status
                 if (sc == "attack" || sc == "ability" || sc == "ability1" || sc == "item" || sc == "swap" || sc == "basic attack"
-                    || sc == "Flee")
+                    || sc == "Flee" || sc == "revive")
                 { 
                     if ((temp[ind].GetComponent<UnitMono>().mainUnit.statuses[8] != -1
                     || temp[ind].GetComponent<UnitMono>().mainUnit.statuses[9] != -1))
@@ -3445,6 +3657,16 @@ public class BattleScript : MonoBehaviour
                     UpdateInventoryItems();
                     UpdateInventoryImageandDesc();
 
+                }
+                //Used revive item
+                else if (actions[z].getType() == "revive" && state == battleState.ATTACK)
+                {
+                    yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " revived " +
+                        temp[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName, true);
+                    data.UseItem(actions[z].getIndex(), temp[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit);
+                    StartCoroutine(unitLife(temp[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit));
+                    UpdateInventoryItems();
+                    UpdateInventoryImageandDesc();
                 }
                 //Swap unit locations
                 else if (actions[z].getType() == "swap" && state == battleState.ATTACK)
@@ -4601,6 +4823,38 @@ public class BattleScript : MonoBehaviour
         }
 
         yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+    }
+
+    IEnumerator unitLife (unit bot)
+    {
+        bot.view.CrossFadeAlpha(1, 2f, false);
+        bot.nameText.CrossFadeAlpha(1, 2f, false);
+        bot.BBackground.CrossFadeAlpha(1, 2f, false);
+        bot.WBackground.CrossFadeAlpha(1, 2f, false);
+        bot.levelText.CrossFadeAlpha(1, 2f, false);
+        bot.hpBar.CrossFadeAlpha(1, 2f, false);
+        bot.hpSideText.CrossFadeAlpha(1, 2f, false);
+        bot.hpReadOut.CrossFadeAlpha(1, 2f, false);
+        bot.statusBackW.CrossFadeAlpha(1, 2f, false);
+        bot.statusBackColor.CrossFadeAlpha(1, 2f, false);
+        bot.statusText.CrossFadeAlpha(1, 2f, false);
+        for (int i = 0; i < bot.statusIcons.Count; i++)
+        {
+            bot.statusIcons[i].CrossFadeAlpha(1, 2f, false);
+            bot.statusIcons[i].transform.GetChild(0).GetChild(0).GetComponent<Image>().CrossFadeAlpha(1, 2f, false);
+            bot.statusIcons[i].transform.GetChild(0).GetChild(1).GetComponent<Image>().CrossFadeAlpha(1, 2f, false);
+            bot.statusIcons[i].transform.GetChild(0).GetChild(2).GetComponent<Text>().CrossFadeAlpha(1, 2f, false);
+        }
+        if (bot.spBar != null)
+        {
+            bot.spBar.CrossFadeAlpha(1, 2f, false);
+            bot.spSideText.CrossFadeAlpha(1, 2f, false);
+            bot.spReadOut.CrossFadeAlpha(1, 2f, false);
+            bot.sanBar.CrossFadeAlpha(1, 2f, false);
+            bot.sanSideText.CrossFadeAlpha(1, 2f, false);
+            bot.sanReadOut.CrossFadeAlpha(1, 2f, false);
+        }
+        yield return new WaitForSeconds(0.2f);
     }
 
     //Player turn, display relevant text
@@ -6057,7 +6311,7 @@ public class BattleScript : MonoBehaviour
 
         for (int g = 0; g < looper && !dead; g++)
         {
-            if (uni.abilities[ata].target == 0)
+            if (uni.abilities[ata].target >= 0)
             {
                 dead = uni.useAbility(ata, target);
 

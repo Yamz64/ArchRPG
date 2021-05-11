@@ -741,9 +741,22 @@ public static class EldritchAbilities
                                 targets[i].giveStatus("Blunt_Trauma");
                                 targets[i].giveStatus("Lethargic");
                                 targets[i].giveStatus("Spasms");
-                                int dam = user.takeDamageCalc(targets[i], 30, 4, true);
+                                int dam = user.takeDamageCalc(targets[i], 35, 4, true);
                                 targets[i].takeDamage(dam);
                             }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < targets.Count; i++)
+                {
+                    if (targets[i] != null)
+                    {
+                        if (targets[i].currentHP > 0)
+                        {
+
                         }
                     }
                 }
@@ -2140,36 +2153,7 @@ namespace PlayerAbilities
             name = "Incoherent Ramblings";
             desc1 = "Minor group sanity heal";
             desc2 = "You try to make sense of what’s happening around you. It’s comforting that one of us understands what’s going on.";
-            cost = 6;
-            position = 2;
-            type = 1;
-            target = 3;
-        }
-
-        public override void UseAttack(unit user, List<unit> targets)
-        {
-            for (int i = 0; i < targets.Count; i++)
-            {
-                if (targets[i] != null)
-                {
-                    if (targets[i].currentHP > 0)
-                    {
-                        targets[i].setSAN(targets[i].sanity + 5);
-                        targets[i].setHUD();
-                    }
-                }
-            }
-        }
-    }
-
-    public class CharismaticFervor : Ability
-    {
-        public CharismaticFervor()
-        {
-            name = "Charismatic Fervor";
-            desc1 = "Moderate group sanity heal. Buff everyone with inspired";
-            desc2 = "You start getting caught up in the passion of strategy, and your energy seems to leak into your comrades";
-            cost = 16;
+            cost = 10;
             position = 2;
             type = 1;
             target = 3;
@@ -2184,6 +2168,35 @@ namespace PlayerAbilities
                     if (targets[i].currentHP > 0)
                     {
                         targets[i].setSAN(targets[i].sanity + 10);
+                        targets[i].setHUD();
+                    }
+                }
+            }
+        }
+    }
+
+    public class CharismaticFervor : Ability
+    {
+        public CharismaticFervor()
+        {
+            name = "Charismatic Fervor";
+            desc1 = "Moderate group sanity heal. Buff everyone with inspired";
+            desc2 = "You start getting caught up in the passion of strategy, and your energy seems to leak into your comrades";
+            cost = 20;
+            position = 2;
+            type = 1;
+            target = 3;
+        }
+
+        public override void UseAttack(unit user, List<unit> targets)
+        {
+            for (int i = 0; i < targets.Count; i++)
+            {
+                if (targets[i] != null)
+                {
+                    if (targets[i].currentHP > 0)
+                    {
+                        targets[i].setSAN(targets[i].sanity + 20);
                         targets[i].giveStatus("Inspired");
                     }
                 }
@@ -2475,8 +2488,7 @@ namespace JimAbilities
         public MagicalInspiration()
         {
             name = "Magical Inspiration";
-            desc1 = "Gives one random ally hyperactive, one random ally inspired, and one random ally confident. Also heals." +
-                "Can only be used once per combat";
+            desc1 = "Gives one random ally hyperactive, one random ally inspired, and one random ally confident. Also heals.";
             desc2 = "Ok Jim definitely has magic powers and they are so cool like holy shit.";
             cost = 50;
             position = 2;
@@ -2608,12 +2620,12 @@ namespace NormAbilities
         public ChimpChop()
         {
             name = "CHIMP CHOP";
-            desc1 = "Deals moderate physical ATK hits 4-8 times each hit may cause Blunt Trauma or Zonked";
+            desc1 = "Deals moderate physical ATK hits 4-8 times each hit may cause Blunt Trauma or Zonked. Cost per hit.";
             desc2 = "Norm spins his arms without restraint, brutally beating in the skull of his poor unfortunate victim.";
-            cost = 16;
+            cost = 4;
             target = 0;
             position = 1;
-            damage = 12;
+            damage = 8;
             statusEffect = "Blunt_Trauma Zonked";
             multiHitMin = 4;
             multiHitMax = 9;
@@ -2687,7 +2699,7 @@ namespace ShirleyAbilities
         public BugleCall()
         {
             name = "Bugle Call";
-            desc1 = "Give Inspired to target";
+            desc1 = "Give Confident to targets";
             desc2 = "You’re not sure where Shirley got a bugle from, " +
                 "in fact it might just be a car funnel taped to a kazoo, " +
                 "all you know is that you’re real confident you’re gonna win this!";
@@ -2739,7 +2751,6 @@ namespace ShirleyAbilities
             desc2 = "You’re not sure if they used shotguns in the civil war but Shirley sure as hell seems like she knows how to use one.";
             cost = 11;
             position = 2;
-            use_pow = true;
             target = 2;
             damage = 15;
             damageType = 1;
@@ -2988,11 +2999,11 @@ namespace LucyAbilities
 
         public override void UseAttack(unit user, List<unit> targets)
         {
-            int rani = Random.Range(multiHitMin, multiHitMax + 1);
+            int rani = Random.Range(multiHitMin, multiHitMax);
             for (int i = 0; i < rani; i++)
             {
                 int togo = Random.Range(0, targets.Count);
-                while (targets[i] == null || !targets[i].enemy || targets[i].currentHP <= 0)
+                while (targets[i].currentHP <= 0)
                 {
                     togo = Random.Range(0, targets.Count);
                 }
@@ -3462,6 +3473,7 @@ namespace OliverSproutAbilities
         public WarAndPeace()
         {
             name = "War and Peace";
+            desc1 = "War - Ups ATK & POW. Peace - Ups DEF & WILL. Shifts positions.";
             desc2 = "Oliver has two modes, an angered mode that ups ATK and a peaceful mode that ups DEF. " +
                 "When you use this ability he swaps between modes. Swapping to War moves him to the frontline " +
                 "and swapping to Peace moves him to the backline. His mode also dictates which abilities he can use.";
@@ -3531,7 +3543,7 @@ namespace OliverSproutAbilities
             desc2 = "When someone talks shit about Oliver’s favorite bands, he makes sure that they won’t be able to speak ever again.";
             cost = 16;
             damage = 17;
-            sanity_damage = 10;
+            sanity_damage = 5;
             position = 1;
             statusEffect = "Restrained";
         }
@@ -3547,7 +3559,7 @@ namespace OliverSproutAbilities
                 "use a guitar pick, now you know what that’s for.";
             cost = 8;
             damage = 11;
-            sanity_damage = 15;
+            sanity_damage = 3;
             statusEffect = "Eye_Bleeding";
             swapper = 1;
             selfSwapper = 1;
@@ -3594,7 +3606,7 @@ namespace OliverSproutAbilities
             desc2 = "Oliver shows the enemy what true carnage is. It’s moments like these where you forget this guy’s human.";
             cost = 20;
             damage = 30;
-            sanity_damage = 8;
+            sanity_damage = 17;
             target = 3;
             position = 1;
         }
