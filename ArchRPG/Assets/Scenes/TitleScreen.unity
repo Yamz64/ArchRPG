@@ -3351,7 +3351,6 @@ MonoBehaviour:
     - {fileID: 1797062102}
     - {fileID: 1671340585}
     - {fileID: 1717386804}
-    - {fileID: 1796270895}
   - positions:
     - {fileID: 555018877}
     - {fileID: 50281365}
@@ -5042,7 +5041,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1190351915
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6703,7 +6702,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1796270895
 RectTransform:
   m_ObjectHideFlags: 0
