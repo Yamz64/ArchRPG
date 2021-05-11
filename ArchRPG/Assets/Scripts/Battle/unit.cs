@@ -1002,7 +1002,7 @@ public class unit
                     {
                         if (target.statusIndex[x].Equals(ata.bigStatus))
                         {
-
+                            val = (int)(val * 1.2f);
                         }
                     }
                 }

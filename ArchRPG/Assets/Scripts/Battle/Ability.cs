@@ -2620,7 +2620,7 @@ namespace NormAbilities
         public ChimpChop()
         {
             name = "CHIMP CHOP";
-            desc1 = "Deals moderate physical ATK hits 4-8 times each hit may cause Blunt Trauma or Zonked. Cost per hit.";
+            desc1 = "Deals moderate physical ATK hits 4-8 times each hit may cause Blunt Trauma or Zonked. Cost is per hit.";
             desc2 = "Norm spins his arms without restraint, brutally beating in the skull of his poor unfortunate victim.";
             cost = 4;
             target = 0;
@@ -2890,7 +2890,7 @@ namespace RalphAbilities
             desc2 = "For his final ability, he wields a gun (Authorized for use this time, I swear!)";
             cost = 17;
             position = 2;
-            damage = 30;
+            damage = 33;
         }
     }
 
@@ -3059,6 +3059,7 @@ namespace LucyAbilities
             cost = 5;
             type = 2;
             swapper = 1;
+            selfSwapper = 1;
             selfStatus = "Zealous Neurotic";
             madness = true;
         }
@@ -3180,7 +3181,7 @@ namespace TimAbilities
             damage = 5;
             damageType = 2;
             type = 1;
-
+            customAbility = 2;
         }
 
         public override void UseAttack(unit user, List<unit> targets)
@@ -3571,7 +3572,7 @@ namespace OliverSproutAbilities
         public ChillaxDude()
         {
             name = "Chillax, Dude";
-            desc1 = "Group inspired buff, minor HP heal";
+            desc1 = "Group confident buff, minor HP heal";
             desc2 = "You’re having trouble seeing through all this smoke, but that good feeling is telling you it’ll be all fine.";
             cost = 16;
             type = 1;
@@ -3617,7 +3618,7 @@ namespace OliverSproutAbilities
         public Imagine()
         {
             name = "Imagine";
-            desc1 = "High Power serenading buff, gives weeping to all enemies, heals own sanity moderately, and buffing allies with confident.";
+            desc1 = "High Power serenading buff, gives weeping to all enemies, heals own sanity moderately, and buffing allies with inspired.";
             desc2 = "Oliver shows you all the true power of John Lennon. Even the monsters are brought to tears by the wonder of music.";
             cost = 20;
             target = 3;
@@ -3632,7 +3633,7 @@ namespace OliverSproutAbilities
                 {
                     if (targets[i].currentHP > 0 && !targets[i].enemy)
                     {
-                        targets[i].giveStatus("Confident");
+                        targets[i].giveStatus("Inspired");
                         if (targets[i].unitName == user.unitName)
                         {
                             targets[i].setSAN(targets[i].sanity + 20);

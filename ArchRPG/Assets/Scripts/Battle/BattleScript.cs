@@ -3251,6 +3251,7 @@ public class BattleScript : MonoBehaviour
                         yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " must boogie against their will.", true);
                         //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
 
+                        if (ind + 1 < 4)
                         if (temp[ind + 1] != null)
                         {
                             if (temp[ind + 1].GetComponent<UnitMono>().mainUnit.currentHP > 0 &&
@@ -3261,13 +3262,13 @@ public class BattleScript : MonoBehaviour
                                 {
                                     temp[ind + 1].GetComponent<UnitMono>().mainUnit.giveStatus(temp[ind].GetComponent<UnitMono>().mainUnit.statusIndex[26]);
                                     StartCoroutine(flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit));
-                                    yield return textDisplay(temp[ind + 1].GetComponent<UnitMono>().mainUnit.unitName + " was inflicted with " +
-                                        temp[ind + 1].GetComponent<UnitMono>().mainUnit.statusIndex[26] + " from " +
+                                    yield return textDisplay(temp[ind + 1].GetComponent<UnitMono>().mainUnit.unitName + " caught Disco Fever from " +
                                         temp[ind].GetComponent<UnitMono>().mainUnit.unitName, true);
                                     //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                                 }
                             }
                         }
+                        if (ind - 1 >= 0)
                         if (temp[ind - 1] != null)
                         {
                             if (temp[ind - 1].GetComponent<UnitMono>().mainUnit.currentHP > 0 &&
@@ -3278,12 +3279,12 @@ public class BattleScript : MonoBehaviour
                                 {
                                     temp[ind - 1].GetComponent<UnitMono>().mainUnit.giveStatus(temp[ind].GetComponent<UnitMono>().mainUnit.statusIndex[26]);
                                     StartCoroutine(flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit));
-                                    yield return textDisplay(temp[ind - 1].GetComponent<UnitMono>().mainUnit.unitName + " was inflicted with " +
-                                        temp[ind - 1].GetComponent<UnitMono>().mainUnit.statusIndex[26] + " from " +
+                                    yield return textDisplay(temp[ind - 1].GetComponent<UnitMono>().mainUnit.unitName + " caught Disco Fever from " +
                                         temp[ind].GetComponent<UnitMono>().mainUnit.unitName, true);
                                 }
                             }
                         }
+                        if (ind + 2 < 4)
                         if (temp[ind + 2] != null)
                         {
                             if (temp[ind + 2].GetComponent<UnitMono>().mainUnit.currentHP > 0 &&
@@ -3294,12 +3295,12 @@ public class BattleScript : MonoBehaviour
                                 {
                                     temp[ind + 2].GetComponent<UnitMono>().mainUnit.giveStatus(temp[ind].GetComponent<UnitMono>().mainUnit.statusIndex[26]);
                                     StartCoroutine(flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit));
-                                    yield return textDisplay(temp[ind + 2].GetComponent<UnitMono>().mainUnit.unitName + " was inflicted with " +
-                                        temp[ind + 2].GetComponent<UnitMono>().mainUnit.statusIndex[26] + " from " +
+                                    yield return textDisplay(temp[ind + 2].GetComponent<UnitMono>().mainUnit.unitName + " caught Disco Fever from " +
                                         temp[ind].GetComponent<UnitMono>().mainUnit.unitName, true);
                                 }
                             }
                         }
+                        if (ind - 2 >= 0)
                         if (temp[ind - 2] != null)
                         {
                             if (temp[ind - 2].GetComponent<UnitMono>().mainUnit.currentHP > 0 &&
@@ -3310,8 +3311,7 @@ public class BattleScript : MonoBehaviour
                                 {
                                     temp[ind - 2].GetComponent<UnitMono>().mainUnit.giveStatus(temp[ind].GetComponent<UnitMono>().mainUnit.statusIndex[26]);
                                     StartCoroutine(flashDamage(temp[ind].GetComponent<UnitMono>().mainUnit));
-                                    yield return textDisplay(temp[ind - 2].GetComponent<UnitMono>().mainUnit.unitName + " was inflicted with " +
-                                        temp[ind - 2].GetComponent<UnitMono>().mainUnit.statusIndex[26] + " from " +
+                                    yield return textDisplay(temp[ind - 2].GetComponent<UnitMono>().mainUnit.unitName + " caught Disco Fever from " +
                                         temp[ind].GetComponent<UnitMono>().mainUnit.unitName, true);
                                 }
                             }
