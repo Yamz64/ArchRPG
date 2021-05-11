@@ -940,7 +940,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: anim_sprites.Array.size
@@ -978,6 +978,38 @@ PrefabInstance:
       propertyPath: anim_sprites.Array.data[1]
       value: 
       objectReference: {fileID: 5764564284667220976, guid: 1c3bb3205cde4984e99a71236b3253e2, type: 3}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[0].enemy_name
+      value: Construction Creeper
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[0].encounter_priority
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: maximum_enemies.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: maximum_enemies.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[1].enemy_name
+      value: Conniving Cone
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[1].encounter_priority
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[2].enemy_name
+      value: Disposal Demon
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[2].encounter_priority
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
 --- !u!1 &222599239
@@ -2888,7 +2920,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: anim_sprites.Array.size
@@ -2926,6 +2958,38 @@ PrefabInstance:
       propertyPath: anim_sprites.Array.data[1]
       value: 
       objectReference: {fileID: 5764564284667220976, guid: 1c3bb3205cde4984e99a71236b3253e2, type: 3}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[0].enemy_name
+      value: Construction Creeper
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[0].encounter_priority
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: maximum_enemies.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: maximum_enemies.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[1].enemy_name
+      value: Conniving Cone
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[1].encounter_priority
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[2].enemy_name
+      value: Disposal Demon
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[2].encounter_priority
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
 --- !u!1 &618182854
@@ -5693,7 +5757,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: anim_sprites.Array.size
@@ -5731,6 +5795,38 @@ PrefabInstance:
       propertyPath: anim_sprites.Array.data[1]
       value: 
       objectReference: {fileID: 5764564284667220976, guid: 1c3bb3205cde4984e99a71236b3253e2, type: 3}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[0].enemy_name
+      value: Construction Creeper
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[0].encounter_priority
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: maximum_enemies.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: maximum_enemies.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[1].enemy_name
+      value: Conniving Cone
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[1].encounter_priority
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[2].enemy_name
+      value: Disposal Demon
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[2].encounter_priority
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
 --- !u!1 &958714828
@@ -17493,7 +17589,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: anim_sprites.Array.size
@@ -17531,6 +17627,38 @@ PrefabInstance:
       propertyPath: anim_sprites.Array.data[1]
       value: 
       objectReference: {fileID: 5764564284667220976, guid: 1c3bb3205cde4984e99a71236b3253e2, type: 3}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[0].enemy_name
+      value: Construction Creeper
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[0].encounter_priority
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: maximum_enemies.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: maximum_enemies.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[1].enemy_name
+      value: Conniving Cone
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[1].encounter_priority
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[2].enemy_name
+      value: Disposal Demon
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[2].encounter_priority
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
 --- !u!1001 &1758076500
