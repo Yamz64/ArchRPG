@@ -54,6 +54,11 @@ public class CharacterStats
         }
     }
     public void SetHPMax(int h) { HP_max = h; }
+    public void Revive()
+    {
+        dead = false;
+        HP = HP_max;
+    }
     public void SetSAN(int s) {
         if (GetStatus(25) < 0)
         {

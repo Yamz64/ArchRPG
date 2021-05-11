@@ -1171,6 +1171,31 @@ public static class Consumables
             Remove();
         }
     }
+
+    public class FleshHeart : Item
+    {
+        public FleshHeart()
+        {
+            name = "Flesh Heart";
+            id = "consumables:fleshheart";
+            description = "A hunk meat not of this material plane, it's still beating. Resurrects 1 dead party member.";
+            image_file_path = "ItemSprites/ConsumableIcon3";
+            amount = 1;
+            limit = 1;
+            cost = 100;
+        }
+
+        public override void Use()
+        {
+            character.Revive();
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDataMono>().data.UpdatePartyDeath();
+        }
+
+        public override void Use(unit user)
+        {
+            
+        }
+    }
 }
 
 public static class Weapons
