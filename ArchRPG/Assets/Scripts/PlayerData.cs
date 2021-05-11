@@ -1076,6 +1076,13 @@ public class PlayerData : CharacterStats
                 break;
         }
 
+        //add max hp to the player based on sacrifice count
+        for(int i=0; i<sacrifice_count; i++)
+        {
+            if (i < 5) SetHPMax(GetHPMAX() + 10);
+            else SetHPMax(GetHPMAX() + 20);
+        }
+
         //reapply weapon armor and trinket
         if(temp_weapon != null) SetWeapon(temp_weapon);
         if(temp_armor != null) SetArmor(temp_armor);
