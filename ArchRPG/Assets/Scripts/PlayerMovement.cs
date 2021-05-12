@@ -42,8 +42,9 @@ public class PlayerMovement : CharacterAnimationHandler
 
         //see if the player just fleed, and if they did, put them in i_frames
         CharacterStatJsonConverter data = new CharacterStatJsonConverter(PlayerPrefs.GetInt("_active_save_file_"));
-        if (data.flee)
+        if (data.enemy_names != null)
         {
+            if(data.enemy_names.Length > 0)
             StartCoroutine(i_frame_sequence());
         }
 
