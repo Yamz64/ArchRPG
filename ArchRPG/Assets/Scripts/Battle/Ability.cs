@@ -2715,6 +2715,11 @@ namespace ShirleyAbilities
             statusEffect = "Confident";
         }
 
+        public override void UseAttack(unit user, unit target)
+        {
+            target.giveStatus(statusEffect);
+        }
+
         public override void UseAttack(unit user, List<unit> targets)
         {
             for (int i = 0; i < targets.Count; i++)
@@ -2723,6 +2728,7 @@ namespace ShirleyAbilities
                 {
                     if (targets[i].currentHP > 0)
                     {
+                        Debug.Log("Giving status");
                         targets[i].giveStatus(statusEffect);
                     }
                 }
