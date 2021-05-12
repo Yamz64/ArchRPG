@@ -1765,8 +1765,8 @@ MonoBehaviour:
   - name: Pizza Slice
     cost: 15
     type: 0
-  - name: Soda
-    cost: 12
+  - name: Piss Cola
+    cost: 8
     type: 0
   - name: Commemorative T-Shirt
     cost: 20
