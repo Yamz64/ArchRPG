@@ -44,7 +44,7 @@ public class ClassAAnimationHelper : MonoBehaviour
 
         temp.name = "Wave";
         temp.color = Color.white;
-        temp.lower = 27;
+        temp.lower = 28;
         temp.upper = 40;
         line_effects.effects.Add(new TextEffectClass(temp));
         effects.Add(new EffectContainer(line_effects));
@@ -114,7 +114,7 @@ public class ClassAAnimationHelper : MonoBehaviour
         dialogue.Add("but immediately after there was also the bizarre situation with the alleged demons at the bakery---");
         dialogue.Add("Hey! The gym doesn't have anything to do with the bakery!");
         dialogue.Add("Shut up, sulfur-brain, I'm getting to that.");
-        dialogue.Add("There’s been a whole slew of these unnatural, maybe even supernatural phenomena---");
+        dialogue.Add("There's been a whole slew of these unnatural, maybe even supernatural phenomena---");
         dialogue.Add("Supernatural phenomena? What do you think this is pal, clown school???");
         dialogue.Add("That stuff happened last week! That's not current!");
         dialogue.Add("All of this stuff happening in the same place at the same time? It's obviously suspicious!");
@@ -310,12 +310,12 @@ public class ClassAAnimationHelper : MonoBehaviour
         dialogue.Add("so we didn't summon that math demon, however we did summon what you might call God.");
         dialogue.Add("God? Real?");
         dialogue.Add("Man, if anyone could do that, it would totally be you Danny.");
-        dialogue.Add("Surely this accomplishment excuses Danny of any and all wrongdoings.");
         dialogue.Add("SCORE!");
+        dialogue.Add("Surely this accomplishment excuses Danny of any and all wrongdoings.");
         dialogue.Add("Well it's kind of like God in that it's all powerful and indifferent to our existence.");
         dialogue.Add("The entity that I have summoned is to us as we are to ants, and, from what I can tell, it's about to step on us.");
         dialogue.Add("Personally, I don't really like the idea of being an ant, so I'm gonna try and merge with this thing.");
-        dialogue.Add("I have realized that morality, society, hygeine, wearing pants... none of this stuff matters.");
+        dialogue.Add("I have realized that morality, society, hygiene, wearing pants... none of this stuff matters.");
         dialogue.Add("But I want to matter, so I should become God.");
         dialogue.Add("(So it seems my deduction was correct. The end of the world really is coming...)");
         dialogue.Add("Yeah Danny that's epic!");
@@ -327,7 +327,7 @@ public class ClassAAnimationHelper : MonoBehaviour
         dialogue.Add("Danny, you do realize your monumentally idiotic, and selfish actions have brought the apocalypse upon us?");
         dialogue.Add("Yes.");
         dialogue.Add("Hey, and he talked about the same event that I did! How was mine fake news?");
-        dialogue.Add("Your analysis of the situation was shallow, and I found that the analytical framework");
+        dialogue.Add("Your exploration of the situation was shallow, and I found that the analytical framework");
         dialogue.Add("from which Danny formulated his thesis was much more academically rigorous and mentally stimulating.");
         dialogue.Add("Yeah, I'm stimulated!");
         dialogue.Add("...");
@@ -348,8 +348,8 @@ public class ClassAAnimationHelper : MonoBehaviour
         images.Add("CharacterSprites/Danny2");
         images.Add("CharacterSprites/BackgroundCharacters/Kid16_front");
         images.Add("CharacterSprites/BackgroundCharacters/Kid23_front");
-        images.Add("CharacterSprites/Background Kid");
         images.Add("CharacterSprites/BackgroundCharacters/Kid7_front");
+        images.Add("CharacterSprites/Background Kid");
         images.Add("CharacterSprites/Danny2");
         images.Add("CharacterSprites/Danny2");
         images.Add("CharacterSprites/Danny2");
