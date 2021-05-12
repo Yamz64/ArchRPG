@@ -45710,7 +45710,7 @@ MonoBehaviour:
       lower: 18
       upper: 20
   dialogueImages:
-  - sprite_path: CharacterSprites/obliviousManGoodmeat
+  - sprite_path: CharacterSprites/BackgroundCharacters/obliviousManGoodmeat
     lines: 1
   - sprite_path: CharacterSprites/PC
     lines: 1
@@ -45726,7 +45726,7 @@ MonoBehaviour:
       lower: 0
       upper: 27
   alt_dialogueImages:
-  - sprite_path: CharacterSprites/obliviousManGoodmeat
+  - sprite_path: CharacterSprites/BackgroundCharacters/obliviousManGoodmeat
     lines: 1
   no_text:
   - text: I'm not really into large gatherings of people, I get a little nervous.
@@ -45737,11 +45737,11 @@ MonoBehaviour:
   - effects: []
   - effects: []
   no_dialogueImages:
-  - sprite_path: CharacterSprites/obliviousManGoodmeat
+  - sprite_path: CharacterSprites/BackgroundCharacters/obliviousManGoodmeat
     lines: 1
   - sprite_path: CharacterSprites/PC
     lines: 1
-  - sprite_path: CharacterSprites/obliviousManGoodmeat
+  - sprite_path: CharacterSprites/BackgroundCharacters/obliviousManGoodmeat
     lines: 1
 --- !u!1001 &1090956416
 PrefabInstance:
