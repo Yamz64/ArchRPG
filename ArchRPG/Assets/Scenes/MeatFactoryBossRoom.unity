@@ -4809,6 +4809,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3212104164044203891, guid: 69283d65531311c4b8d15bafa571c9c5, type: 3}
+      propertyPath: items.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3212104164044203891, guid: 69283d65531311c4b8d15bafa571c9c5, type: 3}
       propertyPath: items.Array.data[0].name
       value: Chili Dog
       objectReference: {fileID: 0}
@@ -4823,6 +4827,38 @@ PrefabInstance:
     - target: {fileID: 3212104164044203891, guid: 69283d65531311c4b8d15bafa571c9c5, type: 3}
       propertyPath: items.Array.data[1].cost
       value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 3212104164044203891, guid: 69283d65531311c4b8d15bafa571c9c5, type: 3}
+      propertyPath: items.Array.data[2].name
+      value: Bacon Lollipop
+      objectReference: {fileID: 0}
+    - target: {fileID: 3212104164044203891, guid: 69283d65531311c4b8d15bafa571c9c5, type: 3}
+      propertyPath: items.Array.data[2].cost
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 3212104164044203891, guid: 69283d65531311c4b8d15bafa571c9c5, type: 3}
+      propertyPath: items.Array.data[3].name
+      value: Piss Cola
+      objectReference: {fileID: 0}
+    - target: {fileID: 3212104164044203891, guid: 69283d65531311c4b8d15bafa571c9c5, type: 3}
+      propertyPath: items.Array.data[3].cost
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3212104164044203891, guid: 69283d65531311c4b8d15bafa571c9c5, type: 3}
+      propertyPath: items.Array.data[4].name
+      value: Meat Dog
+      objectReference: {fileID: 0}
+    - target: {fileID: 3212104164044203891, guid: 69283d65531311c4b8d15bafa571c9c5, type: 3}
+      propertyPath: items.Array.data[4].cost
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3212104164044203891, guid: 69283d65531311c4b8d15bafa571c9c5, type: 3}
+      propertyPath: items.Array.data[5].name
+      value: Doctor PP
+      objectReference: {fileID: 0}
+    - target: {fileID: 3212104164044203891, guid: 69283d65531311c4b8d15bafa571c9c5, type: 3}
+      propertyPath: items.Array.data[5].cost
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69283d65531311c4b8d15bafa571c9c5, type: 3}
