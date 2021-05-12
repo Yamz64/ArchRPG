@@ -41,7 +41,7 @@ public class SlotMachine : InteractableBaseClass
         List<string> image_queue = new List<string>();
 
         //first dialogue
-        dialogue_queue.Add("Do you want to have a go at the slot machine?");
+        dialogue_queue.Add("Do you want to have a go at the slot machine for $20?");
         
         temp.name = "_NO_EFFECT_";
         temp_effect.effects.Add(new TextEffectClass(temp));
