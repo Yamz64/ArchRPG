@@ -3723,7 +3723,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6035087276220563050, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
       propertyPath: valid_scenes.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6035087276220563050, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
       propertyPath: track_name
@@ -3752,6 +3752,10 @@ PrefabInstance:
     - target: {fileID: 6035087276220563050, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
       propertyPath: valid_scenes.Array.data[5]
       value: MonolithAscent3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6035087276220563050, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
+      propertyPath: valid_scenes.Array.data[6]
+      value: FinalArea
       objectReference: {fileID: 0}
     - target: {fileID: 7527172466602869493, guid: 75c6ec940af7f4c4281acae3e17d8705, type: 3}
       propertyPath: m_LocalPosition.x
