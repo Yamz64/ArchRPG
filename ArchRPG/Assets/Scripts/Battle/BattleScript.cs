@@ -3880,13 +3880,13 @@ public class BattleScript : MonoBehaviour
                                             else
                                             {
                                                 yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
-                                                    (actions[z].getTarget() + 1) + ", but nobody was there");
+                                                    (actions[z].getTarget()) + ", but nobody was there");
                                             }
                                         }
                                         else
                                         {
                                             yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
-                                                (actions[z].getTarget() + 1) + ", but nobody was there");
+                                                (actions[z].getTarget()) + ", but nobody was there");
                                         }
                                     }
                                     else if (actions[z].getTarget() == 1)
@@ -3904,13 +3904,13 @@ public class BattleScript : MonoBehaviour
                                             else
                                             {
                                                 yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
-                                                    (actions[z].getTarget() + 1) + ", but nobody was there");
+                                                    (actions[z].getTarget()) + ", but nobody was there");
                                             }
                                         }
                                         else
                                         {
                                             yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
-                                                (actions[z].getTarget() + 1) + ", but nobody was there");
+                                                (actions[z].getTarget()) + ", but nobody was there");
                                         }
                                     }
                                 }
@@ -3932,13 +3932,13 @@ public class BattleScript : MonoBehaviour
                                             else
                                             {
                                                 yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
-                                                    (actions[z].getTarget() + 1) + ", but nobody was there");
+                                                    (actions[z].getTarget()) + ", but nobody was there");
                                             }
                                         }
                                         else
                                         {
                                             yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
-                                                (actions[z].getTarget() + 1) + ", but nobody was there");
+                                                (actions[z].getTarget()) + ", but nobody was there");
                                         }
                                     }
                                     else if (actions[z].getTarget() == 3)
@@ -3956,28 +3956,36 @@ public class BattleScript : MonoBehaviour
                                             else
                                             {
                                                 yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
-                                                    (actions[z].getTarget() + 1) + ", but nobody was there");
+                                                    (actions[z].getTarget()) + ", but nobody was there");
                                             }
                                         }
                                         else
                                         {
                                             yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
-                                                (actions[z].getTarget() + 1) + ", but nobody was there");
+                                                (actions[z].getTarget()) + ", but nobody was there");
                                         }
                                     }
                                 }
                                 //If any target is valid
                                 else
                                 {
-                                    int baseNum = toget;
-                                    while (partyUnits[toget] == null || partyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0 || toget == baseNum)
+                                    if (partyDeaths < activeUnits)
                                     {
-                                        toget = Random.Range(0, partyUnits.Count);
+                                        int baseNum = toget;
+                                        while (partyUnits[toget] == null || partyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0 || toget == baseNum)
+                                        {
+                                            toget = Random.Range(0, partyUnits.Count);
+                                        }
+                                        yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                                        enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name);
+                                        yield return enemyAttack(actions[z].getIndex(), toget,
+                                            enemyUnits[ind].GetComponent<UnitMono>().mainUnit, partyUnits[toget].GetComponent<UnitMono>().mainUnit);
                                     }
-                                    yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
-                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name);
-                                    yield return enemyAttack(actions[z].getIndex(), toget,
-                                        enemyUnits[ind].GetComponent<UnitMono>().mainUnit, partyUnits[toget].GetComponent<UnitMono>().mainUnit);
+                                    else
+                                    {
+                                        state = battleState.WIN;
+                                        yield return battleEnd();
+                                    }
                                 }
                             }
                         }
@@ -4001,13 +4009,13 @@ public class BattleScript : MonoBehaviour
                                         else
                                         {
                                             yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
-                                                (actions[z].getTarget() + 1) + ", but nobody was there");
+                                                (actions[z].getTarget()) + ", but nobody was there");
                                         }
                                     }
                                     else
                                     {
                                         yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
-                                            (actions[z].getTarget() + 1) + ", but nobody was there");
+                                            (actions[z].getTarget()) + ", but nobody was there");
                                     }
                                 }
                                 else if (actions[z].getTarget() == 1)
@@ -4025,13 +4033,13 @@ public class BattleScript : MonoBehaviour
                                         else
                                         {
                                             yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
-                                                (actions[z].getTarget() + 1) + ", but nobody was there", true);
+                                                (actions[z].getTarget()) + ", but nobody was there", true);
                                         }
                                     }
                                     else
                                     {
                                         yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
-                                            (actions[z].getTarget() + 1) + ", but nobody was there");
+                                            (actions[z].getTarget()) + ", but nobody was there");
                                     }
                                 }
                             }
@@ -4053,13 +4061,13 @@ public class BattleScript : MonoBehaviour
                                         else
                                         {
                                             yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
-                                                (actions[z].getTarget() + 1) + ", but nobody was there");
+                                                (actions[z].getTarget()) + ", but nobody was there");
                                         }
                                     }
                                     else
                                     {
                                         yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
-                                            (actions[z].getTarget() + 1) + ", but nobody was there");
+                                            (actions[z].getTarget()) + ", but nobody was there");
                                     }
                                 }
                                 else if (actions[z].getTarget() == 3)
@@ -4077,28 +4085,36 @@ public class BattleScript : MonoBehaviour
                                         else
                                         {
                                             yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
-                                                (actions[z].getTarget() + 1) + ", but nobody was there");
+                                                (actions[z].getTarget()) + ", but nobody was there");
                                         }
                                     }
                                     else
                                     {
                                         yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " attacked position " +
-                                            (actions[z].getTarget() + 1) + ", but nobody was there");
+                                            (actions[z].getTarget()) + ", but nobody was there");
                                     }
                                 }
                             }
                             //If any target is valid
                             else
                             {
-                                int baseNum = toget;
-                                while (partyUnits[toget] == null || partyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0 || toget == baseNum)
+                                if (partyDeaths < activeUnits)
                                 {
-                                    toget = Random.Range(0, partyUnits.Count);
+                                    int baseNum = toget;
+                                    while (partyUnits[toget] == null || partyUnits[toget].GetComponent<UnitMono>().mainUnit.currentHP <= 0 || toget == baseNum)
+                                    {
+                                        toget = Random.Range(0, partyUnits.Count);
+                                    }
+                                    yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
+                                        enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name);
+                                    yield return enemyAttack(actions[z].getIndex(), toget,
+                                        enemyUnits[ind].GetComponent<UnitMono>().mainUnit, partyUnits[toget].GetComponent<UnitMono>().mainUnit);
                                 }
-                                yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " used " +
-                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit.abilities[actions[z].getIndex()].name);
-                                yield return enemyAttack(actions[z].getIndex(), toget,
-                                    enemyUnits[ind].GetComponent<UnitMono>().mainUnit, partyUnits[toget].GetComponent<UnitMono>().mainUnit);
+                                else
+                                {
+                                    state = battleState.WIN;
+                                    yield return battleEnd();
+                                }
                             }
                         }
                     }
