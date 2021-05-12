@@ -656,8 +656,21 @@ public class BattleScript : MonoBehaviour
                 transform.GetChild(1).Find("AbilityMenu").GetChild(2).GetChild(3).GetComponent<Image>().sprite = Resources.Load<Sprite>(ability.image_file_path);
             }
             //update ability description
+            string line = "";
+            if (ability.position == 1)
+            {
+                line = "Front";
+            }
+            else if (ability.position == 2)
+            {
+                line = "Back";
+            }
+            else
+            {
+                line = "Any";
+            }
             transform.GetChild(1).Find("AbilityMenu").GetChild(2).GetChild(4).GetComponent<Text>().text = ability.desc1;
-            transform.GetChild(1).Find("AbilityMenu").GetChild(2).GetChild(7).GetComponent<Text>().text = "Cost: " + ability.cost;
+            transform.GetChild(1).Find("AbilityMenu").GetChild(2).GetChild(7).GetComponent<Text>().text = "Cost: " + ability.cost + "\t\tLine: " + line;
             transform.GetChild(1).Find("AbilityMenu").GetChild(2).GetChild(5).GetComponent<Text>().text = ability.desc2;
 
             //Update ability line icon
