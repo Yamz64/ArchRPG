@@ -40,6 +40,7 @@ public class UnitMono : MonoBehaviour
         mainUnit.statusBackW = statusBackW;
         mainUnit.statusBackColor = statusBackColor;
         mainUnit.statusText = statusText;
+        mainUnit.deadIcon = deadIcon;
     }
 
     public unit mainUnit;
@@ -81,4 +82,5 @@ public class UnitMono : MonoBehaviour
     public Image statusBackW;   //White background of the status bar
     public Image statusBackColor;   //Colored background of the status bar
     public Text statusText;     //Text to say what status effect the unit has   
+    public Image deadIcon;
 }

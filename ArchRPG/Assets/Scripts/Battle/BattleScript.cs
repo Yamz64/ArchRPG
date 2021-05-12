@@ -4842,6 +4842,8 @@ public class BattleScript : MonoBehaviour
         }
         else
         {
+            Color dede = bot.deadIcon.color;
+            dede.a = 1.0f;
             bot.view.CrossFadeAlpha(0.1f, 2f, false);
             bot.nameText.CrossFadeAlpha(0.1f, 2f, false);
             bot.BBackground.CrossFadeAlpha(0.1f, 2f, false);
@@ -4890,6 +4892,7 @@ public class BattleScript : MonoBehaviour
                     bot.unitTrinket.updateStats(bot.unitTrinket.level + 1);
                 }
             }
+            bot.deadIcon.color = dede;
         }
 
         yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
@@ -4924,7 +4927,10 @@ public class BattleScript : MonoBehaviour
             bot.sanSideText.CrossFadeAlpha(1, 2f, false);
             bot.sanReadOut.CrossFadeAlpha(1, 2f, false);
         }
+        bot.deadIcon.CrossFadeAlpha(0, 2f, false);
+
         yield return new WaitForSeconds(0.2f);
+        yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
     }
 
     //Player turn, display relevant text
@@ -4977,6 +4983,7 @@ public class BattleScript : MonoBehaviour
         writing = false;
         if (write_queue.Count >= 1)
         {
+            Debug.Log("write queue count == " + write_queue.Count);
             write_queue.RemoveAt(0);
         }
         dialogue.text = tt;
@@ -6307,7 +6314,7 @@ public class BattleScript : MonoBehaviour
         }
         if (doer.OutputText(uni, target) != null)
         {
-            yield return (textDisplay(doer.OutputText(uni, target)));
+            yield return (textDisplay(doer.OutputText(uni, target), true));
             yield return new WaitForSeconds(0.5f);
             //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
         }

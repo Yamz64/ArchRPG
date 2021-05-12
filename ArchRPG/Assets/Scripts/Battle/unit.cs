@@ -277,6 +277,8 @@ public class unit
     public Image statusBackColor;   //Colored background of the status bar
     public Text statusText;         //Text to say what status effect the unit has
 
+    public Image deadIcon;
+
     //Load the sprites for the unit
     public void loadSprites()
     {
