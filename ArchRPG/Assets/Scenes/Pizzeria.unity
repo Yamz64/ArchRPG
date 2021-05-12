@@ -1773,7 +1773,7 @@ MonoBehaviour:
     type: 2
   sm_id:
     name: Senior Meat Salesman ID
-    cost: 100
+    cost: 1000
     type: 0
   boxed_pizza:
     useable: 0

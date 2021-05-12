@@ -656,7 +656,7 @@ public static class Consumables
             image_file_path = "ItemSprites/ConsumableIcon4";
             amount = 1;
             limit = 1;
-            cost = 50;
+            cost = 1000;
 
             useable = false;
         }
