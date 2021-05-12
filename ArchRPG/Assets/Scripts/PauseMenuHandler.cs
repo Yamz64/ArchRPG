@@ -182,6 +182,16 @@ public class PauseMenuHandler : MonoBehaviour
                 GetComponent<PlayerMovement>().interaction_protection = true;
                 break;
             case 9:
+                if (trans_menu)
+                {
+                    trans_menu = false;
+                    trans_amount = 1;
+                    menus[9].transform.GetChild(6).gameObject.SetActive(false);
+                    cursor_position = 0;
+                    UpdateStoreMenu();
+                    audio_handler.PlaySound("Sound/SFX/cursor");
+                    break;
+                }
                 if (!store_select)
                 {
                     CloseAllMenus();
