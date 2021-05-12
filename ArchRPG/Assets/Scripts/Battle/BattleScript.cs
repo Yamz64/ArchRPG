@@ -2796,7 +2796,8 @@ public class BattleScript : MonoBehaviour
                 }
             }
         }
-        if (allyStations[indi1].GetSiblingIndex() > allyStations[indi2].GetSiblingIndex())
+        
+        if (indi1 < indi2)
         {
             allyStations[indi2].SetSiblingIndex(allyStations[indi1].GetSiblingIndex());     //Swap in hierarchy to have front/back appearance
         }
@@ -2804,6 +2805,7 @@ public class BattleScript : MonoBehaviour
         {
             allyStations[indi1].SetSiblingIndex(allyStations[indi2].GetSiblingIndex());
         }
+        
 
         Transform tempi1;
         tempi1 = allyStations[indi1];
@@ -2850,15 +2852,17 @@ public class BattleScript : MonoBehaviour
         {
             if (partyUnits[i] != null)
             {
+                /*
                 for (int x = 0; x < 4; x++)
                 {
-                    Debug.Log("x == " + x + ", i == " + i);
+                    Debug.Log("i == " + i + ", x == " + x);
                     if (partyUnits[i].transform.position == allyStations[x].position)
                     {
                         allyStations[x].SetSiblingIndex(i);
                         break;
                     }
                 }
+                */
             }
             if (partyUnits[i] != null)
             {
