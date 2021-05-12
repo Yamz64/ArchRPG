@@ -1013,16 +1013,16 @@ public class CharacterStatJsonConverter
             temp.SetName(names[i]);
             temp.SetLVL(levels[i]);
             temp.SetPos(positions[i]);
+            for(int j=0; j<statuses[i].status_effects.Count; j++)
+            {
+                temp.SetStatus(j, statuses[i].status_effects[j]);
+            }
+
             temp.UpdateStats();
             
             temp.SetHP(HPs[i]);
             temp.SetSP(SPs[i]);
             temp.SetSAN(SANs[i]);
-
-            for(int j=0; j<statuses[i].status_effects.Count; j++)
-            {
-                temp.SetStatus(j, statuses[i].status_effects[j]);
-            }
 
             temp.SetDead(dead[i]);
             p.AddPartyMember(temp, false, false, false);
@@ -1482,6 +1482,10 @@ class Clyve : CharacterStats
             default:
                 break;
         }
+        
+        //scale max hp by hp lowering status effects
+        if (GetStatus(10) > 0) SetHPMax(GetHPMAX() - ((GetHPMAX() / 4) + 5));
+        if (GetStatus(15) > 0) SetHPMax(GetHPMAX() - (int)(.7f * (float)GetHPMAX()));
 
         //reapply weapon armor and trinket
         if (temp_weapon != null) SetWeapon(temp_weapon);
@@ -1804,6 +1808,10 @@ class Jim : CharacterStats
             default:
                 break;
         }
+
+        //scale max hp by hp lowering status effects
+        if (GetStatus(10) > 0) SetHPMax(GetHPMAX() - ((GetHPMAX() / 4) + 5));
+        if (GetStatus(15) > 0) SetHPMax(GetHPMAX() - (int)(.7f * (float)GetHPMAX()));
 
         //use mp past level 6
         if (GetLVL() >= 6) SetUseMP(true);
@@ -2130,6 +2138,10 @@ class Norm : CharacterStats
                 break;
         }
 
+        //scale max hp by hp lowering status effects
+        if (GetStatus(10) > 0) SetHPMax(GetHPMAX() - ((GetHPMAX() / 4) + 5));
+        if (GetStatus(15) > 0) SetHPMax(GetHPMAX() - (int)(.7f * (float)GetHPMAX()));
+
         //reapply weapon armor and trinket
         if (temp_weapon != null) SetWeapon(temp_weapon);
         if (temp_armor != null) SetArmor(temp_armor);
@@ -2449,6 +2461,10 @@ class Shirley : CharacterStats
             default:
                 break;
         }
+
+        //scale max hp by hp lowering status effects
+        if (GetStatus(10) > 0) SetHPMax(GetHPMAX() - ((GetHPMAX() / 4) + 5));
+        if (GetStatus(15) > 0) SetHPMax(GetHPMAX() - (int)(.7f * (float)GetHPMAX()));
 
         //reapply weapon armor and trinket
         if (temp_weapon != null) SetWeapon(temp_weapon);
@@ -2770,6 +2786,10 @@ class Ralph : CharacterStats
                 break;
         }
 
+        //scale max hp by hp lowering status effects
+        if (GetStatus(10) > 0) SetHPMax(GetHPMAX() - ((GetHPMAX() / 4) + 5));
+        if (GetStatus(15) > 0) SetHPMax(GetHPMAX() - (int)(.7f * (float)GetHPMAX()));
+
         //reapply weapon armor and trinket
         if (temp_weapon != null) SetWeapon(temp_weapon);
         if (temp_armor != null) SetArmor(temp_armor);
@@ -3089,6 +3109,10 @@ class Lucy : CharacterStats
             default:
                 break;
         }
+
+        //scale max hp by hp lowering status effects
+        if (GetStatus(10) > 0) SetHPMax(GetHPMAX() - ((GetHPMAX() / 4) + 5));
+        if (GetStatus(15) > 0) SetHPMax(GetHPMAX() - (int)(.7f * (float)GetHPMAX()));
 
         //reapply weapon armor and trinket
         if (temp_weapon != null) SetWeapon(temp_weapon);
@@ -3410,6 +3434,10 @@ class Tim : CharacterStats
                 break;
         }
 
+        //scale max hp by hp lowering status effects
+        if (GetStatus(10) > 0) SetHPMax(GetHPMAX() - ((GetHPMAX() / 4) + 5));
+        if (GetStatus(15) > 0) SetHPMax(GetHPMAX() - (int)(.7f * (float)GetHPMAX()));
+
         //reapply weapon armor and trinket
         if (temp_weapon != null) SetWeapon(temp_weapon);
         if (temp_armor != null) SetArmor(temp_armor);
@@ -3729,6 +3757,10 @@ class WhiteKnight : CharacterStats
             default:
                 break;
         }
+
+        //scale max hp by hp lowering status effects
+        if (GetStatus(10) > 0) SetHPMax(GetHPMAX() - ((GetHPMAX() / 4) + 5));
+        if (GetStatus(15) > 0) SetHPMax(GetHPMAX() - (int)(.7f * (float)GetHPMAX()));
 
         //use mp past level 6
         if (GetLVL() >= 6) SetUseMP(true);
@@ -4053,6 +4085,10 @@ class OliverSprout : CharacterStats
                 break;
         }
 
+        //scale max hp by hp lowering status effects
+        if (GetStatus(10) > 0) SetHPMax(GetHPMAX() - ((GetHPMAX() / 4) + 5));
+        if (GetStatus(15) > 0) SetHPMax(GetHPMAX() - (int)(.7f * (float)GetHPMAX()));
+
         //reapply weapon armor and trinket
         if (temp_weapon != null) SetWeapon(temp_weapon);
         if (temp_armor != null) SetArmor(temp_armor);
@@ -4373,6 +4409,10 @@ class EmberMoon : CharacterStats
             default:
                 break;
         }
+
+        //scale max hp by hp lowering status effects
+        if (GetStatus(10) > 0) SetHPMax(GetHPMAX() - ((GetHPMAX() / 4) + 5));
+        if (GetStatus(15) > 0) SetHPMax(GetHPMAX() - (int)(.7f * (float)GetHPMAX()));
 
         //use mp past level 6
         if (GetLVL() >= 6) SetUseMP(true);
@@ -4696,6 +4736,10 @@ class Eldritch : CharacterStats
             default:
                 break;
         }
+
+        //scale max hp by hp lowering status effects
+        if (GetStatus(10) > 0) SetHPMax(GetHPMAX() - ((GetHPMAX() / 4) + 5));
+        if (GetStatus(15) > 0) SetHPMax(GetHPMAX() - (int)(.7f * (float)GetHPMAX()));
 
         //reapply weapon armor and trinket
         if (temp_weapon != null) SetWeapon(temp_weapon);

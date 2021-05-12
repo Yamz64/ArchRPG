@@ -35,16 +35,16 @@ public class PlayerData : CharacterStats
             {
                 AddItem(temp.GetItem(i));
             }
+            for(int i=0; i<temp.GetStatusCount(); i++)
+            {
+                SetStatus(i, temp.GetStatus(i));
+            }
+
             UpdateStats();
             SetHP(temp.GetHP());
             SetSP(temp.GetSP());
             SetSAN(temp.GetSAN());
             SetExperience(temp.GetExperience());
-
-            for(int i=0; i<temp.GetStatusCount(); i++)
-            {
-                SetStatus(i, temp.GetStatus(i));
-            }
 
             //see if the player's sanity is below 50 if so give them maddened
             if (GetSAN() < 50) SetStatus(24, int.MaxValue);
@@ -1082,6 +1082,10 @@ public class PlayerData : CharacterStats
             if (i < 5) SetHPMax(GetHPMAX() + 10);
             else SetHPMax(GetHPMAX() + 20);
         }
+
+        //scale max hp by hp lowering status effects
+        if (GetStatus(10) > 0) { SetHPMax(GetHPMAX() - ((GetHPMAX() / 4) + 5)); Debug.Log("occurring"); }
+        if (GetStatus(15) > 0) SetHPMax(GetHPMAX() - (int)(.7f * (float)GetHPMAX()));
 
         //reapply weapon armor and trinket
         if(temp_weapon != null) SetWeapon(temp_weapon);
