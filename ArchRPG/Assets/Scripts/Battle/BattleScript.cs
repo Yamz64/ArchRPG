@@ -6500,21 +6500,23 @@ public class BattleScript : MonoBehaviour
 
         if (uni.abilities[ata].customAbility == 1)
         {
+            int hp0 = target.currentHP;
             uni.abilities[ata].UseAttack(uni, target);
+            hp0 -= target.currentHP;
             dead = (target.currentHP <= 0);
             if (target.weaknesses[uni.abilities[ata].damageType]) good = true;
             if (target.resistances[uni.abilities[ata].damageType]) bad = true;
 
             StartCoroutine(flashDamage(target));
             yield return flashDealDamage(uni);
-            if (target.critted)
+            if (target.critted && hp0 > 0)
             {
                 yield return textDisplay("The attack hit a weak spot!", true);
                 //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                 skipper = true;
                 target.critted = false;
             }
-            if (good)
+            if (good && hp0 > 0)
             {
                 //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                 yield return textDisplay("It did a lot of damage!", true);
@@ -6522,7 +6524,7 @@ public class BattleScript : MonoBehaviour
                 skipper = true;
                 good = false;
             }
-            else if (bad)
+            else if (bad && hp0 > 0)
             {
                 yield return textDisplay("It didn't do too much damage.", true);
                 //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
@@ -6581,14 +6583,14 @@ public class BattleScript : MonoBehaviour
                     if (partyUnits[i].GetComponent<UnitMono>().mainUnit.weaknesses[uni.abilities[ata].damageType]) good = true;
                     if (partyUnits[i].GetComponent<UnitMono>().mainUnit.resistances[uni.abilities[ata].damageType]) bad = true;
 
-                    if (partyUnits[i].GetComponent<UnitMono>().mainUnit.critted)
+                    if (partyUnits[i].GetComponent<UnitMono>().mainUnit.critted && partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP < dams[i])
                     {
                         yield return textDisplay("The attack hit a weak spot!", true);
                         //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         skipper = true;
                         partyUnits[i].GetComponent<UnitMono>().mainUnit.critted = false;
                     }
-                    if (good)
+                    if (good && partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP < dams[i])
                     {
                         //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         dialogue.text = "It did a lot of damage!";
@@ -6596,7 +6598,7 @@ public class BattleScript : MonoBehaviour
                         skipper = true;
                         good = false;
                     }
-                    else if (bad)
+                    else if (bad && partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP < dams[i])
                     {
                         dialogue.text = "It didn't do too much damage.";
                         yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
@@ -6630,14 +6632,16 @@ public class BattleScript : MonoBehaviour
         {
             if (uni.abilities[ata].target >= 0)
             {
+                int hp1 = target.currentHP;
                 dead = uni.useAbility(ata, target);
+                hp1 -= target.currentHP;
 
                 if (target.weaknesses[uni.abilities[ata].damageType]) good = true;
                 if (target.resistances[uni.abilities[ata].damageType]) bad = true;
 
                 StartCoroutine(flashDamage(target));
                 yield return flashDealDamage(uni);
-                if (target.critted)
+                if (target.critted && hp1 > 0)
                 {
                     yield return textDisplay("The attack hit a weak spot!", true);
                     yield return new WaitForSeconds(0.5f);
@@ -6645,7 +6649,7 @@ public class BattleScript : MonoBehaviour
                     skipper = true;
                     target.critted = false;
                 }
-                if (good)
+                if (good && hp1 > 0)
                 {
                     //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                     yield return textDisplay("It did a lot of damage!", true);
@@ -6654,7 +6658,7 @@ public class BattleScript : MonoBehaviour
                     skipper = true;
                     good = false;
                 }
-                else if (bad)
+                else if (bad && hp1 > 0)
                 {
                     yield return textDisplay("It didn't do too much damage.", true);
                     yield return new WaitForSeconds(0.5f);
@@ -6770,14 +6774,16 @@ public class BattleScript : MonoBehaviour
                 if ((val == 1 || val == 3) && partyUnits[val - 1] != null &&
                     partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                 {
+                    int hp2 = partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.currentHP;
                     dead2 = uni.useAbility(ata, partyUnits[val - 1].GetComponent<UnitMono>().mainUnit);
+                    hp2 -= partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.currentHP;
 
                     if (partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.weaknesses[uni.abilities[ata].damageType]) good = true;
                     if (partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.resistances[uni.abilities[ata].damageType]) bad = true;
 
                     StartCoroutine(flashDamage(partyUnits[val - 1].GetComponent<UnitMono>().mainUnit));
                     yield return flashDealDamage(uni);
-                    if (partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.critted)
+                    if (partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.critted && hp2 > 0)
                     {
                         yield return textDisplay("The attack hit a weak spot!", true);
                         yield return new WaitForSeconds(0.5f);
@@ -6785,7 +6791,7 @@ public class BattleScript : MonoBehaviour
                         skipper = true;
                         partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.critted = false;
                     }
-                    if (good)
+                    if (good && hp2 > 0)
                     {
                         //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         yield return textDisplay("It did a lot of damage!", true);
@@ -6794,7 +6800,7 @@ public class BattleScript : MonoBehaviour
                         skipper = true;
                         good = false;
                     }
-                    else if (bad)
+                    else if (bad && hp2 > 0)
                     {
                         yield return textDisplay("It didn't do too much damage.", true);
                         yield return new WaitForSeconds(0.5f);
@@ -6816,14 +6822,16 @@ public class BattleScript : MonoBehaviour
                 else if ((val == 0 || val == 2) && partyUnits[val + 1] != null &&
                     partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                 {
+                    int hp2 = partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.currentHP;
                     dead2 = uni.useAbility(ata, partyUnits[val + 1].GetComponent<UnitMono>().mainUnit);
+                    hp2 -= partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.currentHP;
 
                     if (partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.weaknesses[uni.abilities[ata].damageType]) good = true;
                     if (partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.resistances[uni.abilities[ata].damageType]) bad = true;
 
                     StartCoroutine(flashDamage(partyUnits[val + 1].GetComponent<UnitMono>().mainUnit));
                     yield return flashDealDamage(uni);
-                    if (partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.critted)
+                    if (partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.critted && hp2 > 0)
                     {
                         yield return textDisplay("The attack hit a weak spot!", true);
                         yield return new WaitForSeconds(0.5f);
@@ -6831,7 +6839,7 @@ public class BattleScript : MonoBehaviour
                         skipper = true;
                         partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.critted = false;
                     }
-                    if (good)
+                    if (good && hp2 > 0)
                     {
                         //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         yield return textDisplay("It did a lot of damage!", true);
@@ -6840,7 +6848,7 @@ public class BattleScript : MonoBehaviour
                         skipper = true;
                         good = false;
                     }
-                    else if (bad)
+                    else if (bad && hp2 > 0)
                     {
                         yield return textDisplay("It didn't do too much damage.", true);
                         yield return new WaitForSeconds(0.5f);
@@ -6888,14 +6896,16 @@ public class BattleScript : MonoBehaviour
                     if (i != val && partyUnits[i] != null &&
                     partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                     {
+                        int hp2 = partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP;
                         bool now = uni.useAbility(ata, partyUnits[i].GetComponent<UnitMono>().mainUnit);
+                        hp2 -= partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP;
 
                         if (partyUnits[i].GetComponent<UnitMono>().mainUnit.weaknesses[uni.abilities[ata].damageType]) good = true;
                         if (partyUnits[i].GetComponent<UnitMono>().mainUnit.resistances[uni.abilities[ata].damageType]) bad = true;
 
                         StartCoroutine(flashDamage(partyUnits[i].GetComponent<UnitMono>().mainUnit));
                         yield return flashDealDamage(uni);
-                        if (partyUnits[i].GetComponent<UnitMono>().mainUnit.critted)
+                        if (partyUnits[i].GetComponent<UnitMono>().mainUnit.critted && hp2 > 0)
                         {
                             yield return textDisplay("The attack hit a weak spot!", true);
                             yield return new WaitForSeconds(0.5f);
@@ -6903,7 +6913,7 @@ public class BattleScript : MonoBehaviour
                             skipper = true;
                             partyUnits[i].GetComponent<UnitMono>().mainUnit.critted = false;
                         }
-                        if (good)
+                        if (good && hp2 > 0)
                         {
                             //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                             yield return textDisplay("It did a lot of damage!", true);
@@ -6912,7 +6922,7 @@ public class BattleScript : MonoBehaviour
                             skipper = true;
                             good = false;
                         }
-                        else if (bad)
+                        else if (bad && hp2 > 0)
                         {
                             yield return textDisplay("It didn't do too much damage.", true);
                             yield return new WaitForSeconds(0.5f);
@@ -6959,7 +6969,7 @@ public class BattleScript : MonoBehaviour
                 {
                     partyDeaths++;
                     yield return unitDeath(partyUnits[r2].GetComponent<UnitMono>().mainUnit);
-                    if (partyDeaths == partyUnits.Count)
+                    if (partyDeaths >= activeUnits)
                     {
                         state = battleState.LOSE;
                         yield return battleEnd();
@@ -6970,7 +6980,7 @@ public class BattleScript : MonoBehaviour
                     partyDeaths += 2;
                     yield return unitDeath(partyUnits[val].GetComponent<UnitMono>().mainUnit);
                     yield return unitDeath(partyUnits[r2].GetComponent<UnitMono>().mainUnit);
-                    if (partyDeaths == partyUnits.Count)
+                    if (partyDeaths >= activeUnits)
                     {
                         state = battleState.LOSE;
                         yield return battleEnd();
@@ -6987,7 +6997,7 @@ public class BattleScript : MonoBehaviour
                         yield return unitDeath(partyUnits[rs[i]].GetComponent<UnitMono>().mainUnit);
                     }
                 }
-                if (partyDeaths == partyUnits.Count)
+                if (partyDeaths >= activeUnits)
                 {
                     state = battleState.LOSE;
                     yield return battleEnd();
@@ -7006,7 +7016,12 @@ public class BattleScript : MonoBehaviour
             if (target.currentHP > tempi)
             {
                 StartCoroutine(flashHeal(target));
-                StartCoroutine(showDamage(target.currentHP - tempi, val));
+                StartCoroutine(showDamage(tempi - target.currentHP, val));
+            }
+            else if (target.currentHP < tempi)
+            {
+                StartCoroutine(flashDamage(target));
+                StartCoroutine(showDamage(tempi - target.currentHP, val));
             }
             else
             {
@@ -7016,6 +7031,16 @@ public class BattleScript : MonoBehaviour
             {
                 yield return textDisplay(uni.abilities[ata].OutputText(uni, target), true);
                 //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
+            }
+            if (target.currentHP <= 0)
+            {
+                enemyDeaths++;
+                yield return unitDeath(target);
+                if (enemyDeaths >= enemyUnits.Count)
+                {
+                    state = battleState.WIN;
+                    yield return battleEnd();
+                }
             }
         }
         else if (uni.abilities[ata].target == 3)
@@ -7030,15 +7055,22 @@ public class BattleScript : MonoBehaviour
             uni.abilities[ata].UseAttack(uni, buds);
             for (int i = 0; i < buds.Count; i++)
             {
-                if (buds[i].currentHP > 0)
+                if (buds[i].currentHP < hps[i])
                 {
-                    if (buds[i].currentHP > hps[i])
+                    StartCoroutine(showDamage(hps[i] - buds[i].currentHP, i));
+                }
+                else
+                {
+                    StartCoroutine(flashBuff(buds[i]));
+                }
+                if (buds[i].currentHP <= 0)
+                {
+                    enemyDeaths++;
+                    yield return unitDeath(buds[i]);
+                    if (enemyDeaths >= enemyUnits.Count)
                     {
-                        StartCoroutine(showDamage(buds[i].currentHP - hps[i], i));
-                    }
-                    else
-                    {
-                        StartCoroutine(flashBuff(buds[i]));
+                        state = battleState.WIN;
+                        yield return battleEnd();
                     }
                 }
             }
