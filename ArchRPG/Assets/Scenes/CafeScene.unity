@@ -533,7 +533,7 @@ MonoBehaviour:
   container:
   - effects: []
   dialogueImages:
-  - sprite_path: CharacterSprites/BackgroundCharacters/Background Kid
+  - sprite_path: CharacterSprites/BackgroundCharacters/Kid22_front
     lines: 1
   player: {fileID: 0}
 --- !u!1 &861899659 stripped

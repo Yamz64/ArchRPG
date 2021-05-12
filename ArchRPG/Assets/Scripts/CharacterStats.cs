@@ -1563,7 +1563,7 @@ class Jim : CharacterStats
         {
             case 1:
                 //apply the base stats per level
-                SetHPMax(19);
+                SetHPMax(29);
                 SetSPMax(18);
                 SetATK(3);
                 SetPOW(9);
@@ -1575,7 +1575,7 @@ class Jim : CharacterStats
                 break;
             case 2:
                 //apply the base stats per level
-                SetHPMax(21);
+                SetHPMax(31);
                 SetSPMax(26);
                 SetATK(6);
                 SetPOW(18);
@@ -1587,7 +1587,7 @@ class Jim : CharacterStats
                 break;
             case 3:
                 //apply the base stats per level
-                SetHPMax(25);
+                SetHPMax(35);
                 SetSPMax(34);
                 SetATK(8);
                 SetPOW(26);
@@ -1599,7 +1599,7 @@ class Jim : CharacterStats
                 break;
             case 4:
                 //apply the base stats per level
-                SetHPMax(30);
+                SetHPMax(40);
                 SetSPMax(43);
                 SetATK(11);
                 SetPOW(35);
@@ -1611,7 +1611,7 @@ class Jim : CharacterStats
                 break;
             case 5:
                 //apply the base stats per level
-                SetHPMax(36);
+                SetHPMax(46);
                 SetSPMax(51);
                 SetATK(13);
                 SetPOW(43);
@@ -1623,7 +1623,7 @@ class Jim : CharacterStats
                 break;
             case 6:
                 //apply the base stats per level
-                SetHPMax(44);
+                SetHPMax(54);
                 SetSPMax(59);
                 SetATK(16);
                 SetPOW(52);
@@ -1635,7 +1635,7 @@ class Jim : CharacterStats
                 break;
             case 7:
                 //apply the base stats per level
-                SetHPMax(53);
+                SetHPMax(63);
                 SetSPMax(67);
                 SetATK(18);
                 SetPOW(60);
@@ -1647,7 +1647,7 @@ class Jim : CharacterStats
                 break;
             case 8:
                 //apply the base stats per level
-                SetHPMax(63);
+                SetHPMax(73);
                 SetSPMax(76);
                 SetATK(21);
                 SetPOW(69);
@@ -1659,7 +1659,7 @@ class Jim : CharacterStats
                 break;
             case 9:
                 //apply the base stats per level
-                SetHPMax(75);
+                SetHPMax(85);
                 SetSPMax(84);
                 SetATK(23);
                 SetPOW(77);
@@ -1671,7 +1671,7 @@ class Jim : CharacterStats
                 break;
             case 10:
                 //apply the base stats per level
-                SetHPMax(89);
+                SetHPMax(99);
                 SetSPMax(92);
                 SetATK(26);
                 SetPOW(86);
@@ -1683,7 +1683,7 @@ class Jim : CharacterStats
                 break;
             case 11:
                 //apply the base stats per level
-                SetHPMax(103);
+                SetHPMax(113);
                 SetSPMax(100);
                 SetATK(28);
                 SetPOW(94);
@@ -1695,7 +1695,7 @@ class Jim : CharacterStats
                 break;
             case 12:
                 //apply the base stats per level
-                SetHPMax(119);
+                SetHPMax(129);
                 SetSPMax(109);
                 SetATK(31);
                 SetPOW(103);
@@ -1707,7 +1707,7 @@ class Jim : CharacterStats
                 break;
             case 13:
                 //apply the base stats per level
-                SetHPMax(137);
+                SetHPMax(147);
                 SetSPMax(117);
                 SetATK(33);
                 SetPOW(111);
@@ -1719,7 +1719,7 @@ class Jim : CharacterStats
                 break;
             case 14:
                 //apply the base stats per level
-                SetHPMax(156);
+                SetHPMax(166);
                 SetSPMax(125);
                 SetATK(36);
                 SetPOW(120);
@@ -1731,7 +1731,7 @@ class Jim : CharacterStats
                 break;
             case 15:
                 //apply the base stats per level
-                SetHPMax(176);
+                SetHPMax(186);
                 SetSPMax(133);
                 SetATK(38);
                 SetPOW(128);
@@ -1743,7 +1743,7 @@ class Jim : CharacterStats
                 break;
             case 16:
                 //apply the base stats per level
-                SetHPMax(198);
+                SetHPMax(208);
                 SetSPMax(142);
                 SetATK(41);
                 SetPOW(137);
@@ -1755,7 +1755,7 @@ class Jim : CharacterStats
                 break;
             case 17:
                 //apply the base stats per level
-                SetHPMax(221);
+                SetHPMax(231);
                 SetSPMax(150);
                 SetATK(43);
                 SetPOW(145);
@@ -1767,7 +1767,7 @@ class Jim : CharacterStats
                 break;
             case 18:
                 //apply the base stats per level
-                SetHPMax(245);
+                SetHPMax(255);
                 SetSPMax(158);
                 SetATK(46);
                 SetPOW(154);
@@ -1779,7 +1779,7 @@ class Jim : CharacterStats
                 break;
             case 19:
                 //apply the base stats per level
-                SetHPMax(271);
+                SetHPMax(281);
                 SetSPMax(166);
                 SetATK(48);
                 SetPOW(162);
@@ -1791,7 +1791,7 @@ class Jim : CharacterStats
                 break;
             case 20:
                 //apply the base stats per level
-                SetHPMax(299);
+                SetHPMax(309);
                 SetSPMax(175);
                 SetATK(51);
                 SetPOW(171);
@@ -2205,7 +2205,7 @@ class Shirley : CharacterStats
         {
             case 1:
                 //apply the base stats per level
-                SetHPMax(19);
+                SetHPMax(29);
                 SetSPMax(16);
                 SetATK(9);
                 SetPOW(7);
@@ -2217,7 +2217,7 @@ class Shirley : CharacterStats
                 break;
             case 2:
                 //apply the base stats per level
-                SetHPMax(21);
+                SetHPMax(31);
                 SetSPMax(24);
                 SetATK(17);
                 SetPOW(12);
@@ -2229,7 +2229,7 @@ class Shirley : CharacterStats
                 break;
             case 3:
                 //apply the base stats per level
-                SetHPMax(25);
+                SetHPMax(35);
                 SetSPMax(32);
                 SetATK(25);
                 SetPOW(17);
@@ -2241,7 +2241,7 @@ class Shirley : CharacterStats
                 break;
             case 4:
                 //apply the base stats per level
-                SetHPMax(29);
+                SetHPMax(39);
                 SetSPMax(40);
                 SetATK(33);
                 SetPOW(23);
@@ -2253,7 +2253,7 @@ class Shirley : CharacterStats
                 break;
             case 5:
                 //apply the base stats per level
-                SetHPMax(36);
+                SetHPMax(46);
                 SetSPMax(48);
                 SetATK(41);
                 SetPOW(28);
@@ -2265,7 +2265,7 @@ class Shirley : CharacterStats
                 break;
             case 6:
                 //apply the base stats per level
-                SetHPMax(43);
+                SetHPMax(53);
                 SetSPMax(55);
                 SetATK(49);
                 SetPOW(33);
@@ -2277,7 +2277,7 @@ class Shirley : CharacterStats
                 break;
             case 7:
                 //apply the base stats per level
-                SetHPMax(52);
+                SetHPMax(62);
                 SetSPMax(63);
                 SetATK(57);
                 SetPOW(38);
@@ -2289,7 +2289,7 @@ class Shirley : CharacterStats
                 break;
             case 8:
                 //apply the base stats per level
-                SetHPMax(62);
+                SetHPMax(72);
                 SetSPMax(71);
                 SetATK(65);
                 SetPOW(44);
@@ -2301,7 +2301,7 @@ class Shirley : CharacterStats
                 break;
             case 9:
                 //apply the base stats per level
-                SetHPMax(74);
+                SetHPMax(84);
                 SetSPMax(79);
                 SetATK(73);
                 SetPOW(49);
@@ -2313,7 +2313,7 @@ class Shirley : CharacterStats
                 break;
             case 10:
                 //apply the base stats per level
-                SetHPMax(87);
+                SetHPMax(97);
                 SetSPMax(87);
                 SetATK(81);
                 SetPOW(54);
@@ -2325,7 +2325,7 @@ class Shirley : CharacterStats
                 break;
             case 11:
                 //apply the base stats per level
-                SetHPMax(101);
+                SetHPMax(111);
                 SetSPMax(94);
                 SetATK(89);
                 SetPOW(59);
@@ -2337,7 +2337,7 @@ class Shirley : CharacterStats
                 break;
             case 12:
                 //apply the base stats per level
-                SetHPMax(116);
+                SetHPMax(126);
                 SetSPMax(102);
                 SetATK(97);
                 SetPOW(65);
@@ -2349,7 +2349,7 @@ class Shirley : CharacterStats
                 break;
             case 13:
                 //apply the base stats per level
-                SetHPMax(133);
+                SetHPMax(143);
                 SetSPMax(110);
                 SetATK(105);
                 SetPOW(70);
@@ -2361,7 +2361,7 @@ class Shirley : CharacterStats
                 break;
             case 14:
                 //apply the base stats per level
-                SetHPMax(152);
+                SetHPMax(162);
                 SetSPMax(118);
                 SetATK(113);
                 SetPOW(75);
@@ -2373,7 +2373,7 @@ class Shirley : CharacterStats
                 break;
             case 15:
                 //apply the base stats per level
-                SetHPMax(172);
+                SetHPMax(182);
                 SetSPMax(126);
                 SetATK(121);
                 SetPOW(80);
@@ -2385,7 +2385,7 @@ class Shirley : CharacterStats
                 break;
             case 16:
                 //apply the base stats per level
-                SetHPMax(193);
+                SetHPMax(203);
                 SetSPMax(133);
                 SetATK(129);
                 SetPOW(86);
@@ -2397,7 +2397,7 @@ class Shirley : CharacterStats
                 break;
             case 17:
                 //apply the base stats per level
-                SetHPMax(215);
+                SetHPMax(225);
                 SetSPMax(141);
                 SetATK(137);
                 SetPOW(91);
@@ -2409,7 +2409,7 @@ class Shirley : CharacterStats
                 break;
             case 18:
                 //apply the base stats per level
-                SetHPMax(239);
+                SetHPMax(249);
                 SetSPMax(149);
                 SetATK(145);
                 SetPOW(96);
@@ -2421,7 +2421,7 @@ class Shirley : CharacterStats
                 break;
             case 19:
                 //apply the base stats per level
-                SetHPMax(264);
+                SetHPMax(274);
                 SetSPMax(157);
                 SetATK(153);
                 SetPOW(101);
@@ -2433,7 +2433,7 @@ class Shirley : CharacterStats
                 break;
             case 20:
                 //apply the base stats per level
-                SetHPMax(291);
+                SetHPMax(301);
                 SetSPMax(165);
                 SetATK(161);
                 SetPOW(107);
