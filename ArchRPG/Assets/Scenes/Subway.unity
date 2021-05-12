@@ -723,7 +723,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[0].enemy_name
-      value: KIller Cone
+      value: Killer Cone
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[0].encounter_priority
@@ -913,7 +913,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[0].enemy_name
-      value: KIller Cone
+      value: Killer Cone
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[0].encounter_priority
@@ -1656,7 +1656,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[0].enemy_name
-      value: KIller Cone
+      value: Killer Cone
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[0].encounter_priority
@@ -7633,7 +7633,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[0].enemy_name
-      value: KIller Cone
+      value: Killer Cone
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[0].encounter_priority
@@ -19574,7 +19574,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[0].enemy_name
-      value: KIller Cone
+      value: Killer Cone
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[0].encounter_priority
@@ -23786,7 +23786,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[0].enemy_name
-      value: KIller Cone
+      value: Killer Cone
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[0].encounter_priority
@@ -23927,7 +23927,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[0].enemy_name
-      value: KIller Cone
+      value: Killer Cone
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[0].encounter_priority
@@ -25514,7 +25514,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[0].enemy_name
-      value: KIller Cone
+      value: Killer Cone
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[0].encounter_priority
