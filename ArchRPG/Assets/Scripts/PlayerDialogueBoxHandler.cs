@@ -222,6 +222,7 @@ public class PlayerDialogueBoxHandler : MonoBehaviour
                     }
                     effect_queue.RemoveAt(0);
                     WriteDriver();
+                    GetComponent<PlayerOverworldAudioHandler>().PlaySound("Sound/SFX/cursor");
                 }
                 else if (write_queue.Count == 0 && InputManager.GetButtonDown("Interact"))
                 {
@@ -230,6 +231,7 @@ public class PlayerDialogueBoxHandler : MonoBehaviour
                     image_queue.Clear();
                     effect_queue.Clear();
                     CloseTextBox();
+                    GetComponent<PlayerOverworldAudioHandler>().PlaySound("Sound/SFX/select");
                 }
                 if (write_queue.Count == 0 && !finished_dialogue_image.activeInHierarchy) finished_dialogue_image.SetActive(true);
                 else if(write_queue.Count > 0 && finished_dialogue_image.activeInHierarchy) finished_dialogue_image.SetActive(false);
