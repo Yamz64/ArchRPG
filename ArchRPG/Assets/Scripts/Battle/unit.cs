@@ -8866,7 +8866,7 @@ public class MeatGolem : unit
         weaknesses[3] = true;
 
         level = 18;
-        SetHPMax(400);
+        SetHPMax(325);
         expGain = 196830;
         enemy = true;
         capital = 8;
@@ -8898,7 +8898,7 @@ public class MrGoodMeat : unit
         weaknesses[4] = true;
 
         level = 6;
-        SetHPMax(100);
+        SetHPMax(175);
         expGain = 65610;
         enemy = true;
         capital = 8;

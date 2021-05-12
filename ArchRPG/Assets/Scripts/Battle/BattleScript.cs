@@ -4380,7 +4380,7 @@ public class BattleScript : MonoBehaviour
                 {
                     p = new WhiteKnightUnit(loader.levels[i]);
                 }
-                else if ((loader.names[i] == "Oliver Sprout" || loader.names[i] == "OliverSprout") && !loader.dead[i])
+                else if ((loader.names[i] == "Oliver Sprout" || loader.names[i] == "OliverSprout" || loader.names[i] == "Oliver") && !loader.dead[i])
                 {
                     p = new OliverSproutUnit(loader.levels[i]);
                     if (i < 2)
@@ -4392,11 +4392,11 @@ public class BattleScript : MonoBehaviour
                         p.mode = 1;
                     }
                 }
-                else if ((loader.names[i] == "Ember Moon" || loader.names[i] == "EmberMoon") && !loader.dead[i])
+                else if ((loader.names[i] == "Ember Moon" || loader.names[i] == "EmberMoon" || loader.names[i] == "Ember") && !loader.dead[i])
                 {
                     p = new EmberMoonUnit(loader.levels[i]);
                 }
-                else if (loader.names[i] == "Eldritch" || loader.dead[i])
+                else if (loader.dead[i])
                 {
                     p = new EldritchPartyUnit(loader.levels[i]);
                 }
@@ -4424,11 +4424,29 @@ public class BattleScript : MonoBehaviour
                     p.ImageFilePath = "CharacterSprites/pc_spritesheet_doomed";
                     p.loadSprites();
                 }
+                //Check status effects
                 for (int v = 0; v < loader.statuses[i].status_effects.Count; v++)
                 {
                     if (p.statuses[v] == -1)
                     {
                         p.statuses[v] = loader.statuses[i].status_effects[v];
+                        //Check for diseased
+                        if (v == 10 && loader.statuses[i].status_effects[v] != -1)
+                        {
+                            int bust = p.maxHP - ((p.maxHP / 4) + 5);
+                            if (bust > 0)
+                            {
+                                p.maxHP = bust;
+                                if (p.currentHP > p.maxHP) p.currentHP = p.maxHP;
+                            }
+                        }
+                        //Check for cancerous
+                        else if (v == 15 && loader.statuses[i].status_effects[v] != -1)
+                        {
+                            p.maxHP = p.maxHP - (int)(0.7f * p.maxHP);
+
+                            if (p.currentHP > p.maxHP) p.currentHP = p.maxHP;
+                        }
                     }
                 }
 
