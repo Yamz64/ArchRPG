@@ -5356,7 +5356,7 @@ public class PauseMenuHandler : MonoBehaviour
                         default:
                             break;
                     }
-                    //remove party member's equipment, remove party member from party and grant EP
+                    //remove party member's equipment, remove party member from party, increase sacrifice count, grant EP, increase max hp
                     data.RemovePartyWeapon(cursor_position);
                     data.RemovePartyArmor(cursor_position);
                     data.RemovePartyTrinket(cursor_position);
@@ -5365,7 +5365,8 @@ public class PauseMenuHandler : MonoBehaviour
                     if (data.GetSacrificeCount() < 6) ep_gain = 1;
                     else ep_gain = 2;
                     data.SetEP(data.GetEP() + ep_gain);
-
+                    data.SetSacrificeCount(data.GetSacrificeCount() + 1);
+                    data.UpdateStats();
                     //reset cursor position and play sound
                     cursor_position = 0;
                     UpdateSacrificeMenu();
