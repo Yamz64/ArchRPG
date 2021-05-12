@@ -133,6 +133,7 @@ public class SchoolyardAnimation : InteractableBaseClass
             StartCoroutine(WalkOff());
             if (char_info.progress == 0)
             {
+                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDataMono>().data.SetProgress(1);
                 char_info.progress = 1;
                 char_info.Save(PlayerPrefs.GetInt("_active_save_file_"));
             }
