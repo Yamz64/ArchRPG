@@ -328,10 +328,10 @@ public class FinalCutsceneLogic : NPCDialogue
         if (data.GetEP() <= 0 && !has_eldritch) ending = 0;
         //NORMAL
         else if (!has_eldritch) ending = 1;
-        //BAD
-        else if (has_eldritch) ending = 2;
         //DOOMED
         else if (has_eldritch && data.GetStatus(25) > 0) ending = 3;
+        //BAD
+        else if (has_eldritch) ending = 2;
 
         PlayerPrefs.SetInt("_ending_", ending);
 
