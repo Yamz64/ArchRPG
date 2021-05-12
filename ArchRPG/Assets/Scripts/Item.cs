@@ -377,7 +377,7 @@ public static class Consumables
             name = "Hot Dog";
             id = "consumables:hotdog";
             description = "A tube of unidentified, but delicious meat!  Heals 50 HP when eaten!";
-            image_file_path = "ItemSprites/HotDog";
+            image_file_path = "ItemSprites/ConsumableIcon1";
             amount = 1;
             limit = 30;
             cost = 2;
@@ -404,7 +404,7 @@ public static class Consumables
             name = "Meat Dog";
             id = "consumables:meatdog";
             description = "A tube of unidentified, but delicious meat! Heals 50 HP when eaten!";
-            image_file_path = "ItemSprites/HotDog";
+            image_file_path = "ItemSprites/ConsumableIcon1";
             amount = 1;
             limit = 5;
             cost = 10;
