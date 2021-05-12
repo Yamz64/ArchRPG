@@ -120,6 +120,7 @@ public class BattleScript : MonoBehaviour
     private bool active;
     private bool writing;
     private bool ender = false;
+    private bool mad = false;
 
     public Text damageText;
 
@@ -2782,7 +2783,7 @@ public class BattleScript : MonoBehaviour
                 }
             }
         }
-        if (indi1 > indi2)
+        if (allyStations[indi1].GetSiblingIndex() < allyStations[indi2].GetSiblingIndex())
         {
             allyStations[indi2].SetSiblingIndex(allyStations[indi1].GetSiblingIndex());     //Swap in hierarchy to have front/back appearance
         }
@@ -2793,10 +2794,10 @@ public class BattleScript : MonoBehaviour
 
         Transform tempi1;
         tempi1 = allyStations[indi1];
-        Transform tempi;
-        tempi = allyStations[indi2];
+        Transform tempi2;
+        tempi2 = allyStations[indi2];
 
-        partyUnits[indi1].transform.position = tempi.position;
+        partyUnits[indi1].transform.position = tempi2.position;
         if (partyUnits[indi2] != null)
         {
             partyUnits[indi2].transform.position = tempi1.position;
@@ -4419,10 +4420,12 @@ public class BattleScript : MonoBehaviour
                     p.maxSP = p.currentSP;
                 }
                 p.sanity = loader.SANs[i];
-                if (loader.names[i] == "Player" && p.sanity <= 0)
+                
+                if (loader.names[i] == "Albert" && p.sanity <= 0)
                 {
                     p.ImageFilePath = "CharacterSprites/pc_spritesheet_doomed";
                     p.loadSprites();
+                    mad = true;
                 }
                 //Check status effects
                 for (int v = 0; v < loader.statuses[i].status_effects.Count; v++)
@@ -7257,7 +7260,7 @@ public class BattleScript : MonoBehaviour
                     //If the unit is the player and they have gained madness
                     if (partyUnits[i].GetComponent<UnitMono>().mainUnit.player)
                     {
-                        if (partyUnits[i].GetComponent<UnitMono>().mainUnit.statuses[25] != -1 && pc.statuses[25] == -1)
+                        if (partyUnits[i].GetComponent<UnitMono>().mainUnit.statuses[25] != -1 && !mad)
                         {
                             data.SetEP(data.GetEP() + 6);
                             yield return textDisplay("Gained 6 Eldritch Points", true);
