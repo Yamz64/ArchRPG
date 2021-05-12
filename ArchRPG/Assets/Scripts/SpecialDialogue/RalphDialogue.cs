@@ -64,99 +64,130 @@ public class RalphDialogue : InteractableBaseClass
             else
             {
                 //--DIALOGUE--
-                dialogue_queue.Add("Hey! You're supposed to be in- I mean... Hey! any of you 'homies' know where I can purchase some drugs?");
-                dialogue_queue.Add("Inform Ralph of the Drug Store?");
-
-                //--EFFECTS--
-                temp.name = "Wave";
-                temp.lower = 45;
-                temp.upper = 52;
-                temp_effect.effects.Add(new TextEffectClass(temp));
-                temp.name = "Wave";
-                temp.lower = 78;
-                temp.upper = 83;
-                temp_effect.effects.Add(new TextEffectClass(temp));
-                effect_queue.Add(new EffectContainer(temp_effect));
-
-                //--IMAGES--
-                temp_effect.effects.Clear();
-                temp.name = "_NO_EFFECT_";
-                temp_effect.effects.Add(new TextEffectClass(temp));
-                effect_queue.Add(new EffectContainer(temp_effect));
-
-                //--SET QUEUES--
-                player.SetWriteQueue(dialogue_queue);
-                player.SetImageQueue(image_queue);
-                player.SetEffectQueue(effect_queue);
-                player.WriteDriver();
-                yield return new WaitForEndOfFrame();
-
-                //wait until question is asked before opening the choice menu
-                yield return new WaitUntil(() => player.GetWriteCount() == 0);
-                yield return new WaitUntil(() => player.GetWriting() == false);
-                pause.menu_mode = true;
-                pause.menu_input = true;
-                pause.pause_menu_protection = false;
-                pause.OpenMenu(7);
-                pause.ActivateCursor();
-                pause.UpdateSaveMenu();
-                pause.SetChoiceText("Yes", false);
-                pause.SetChoiceText("No", true);
-                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().interaction_protection = true;
-
-                //wait until the interact button is pressed close the menu and then write dialogue based on the selection
-                yield return new WaitUntil(() => pause.menu_input == false);
-                yield return new WaitUntil(() => Input.GetButtonDown("Interact"));
-                bool choice = pause.GetChoice();
-
-                pause.CloseAllMenus();
-                yield return new WaitForEndOfFrame();
-                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().interaction_protection = true;
-
-                //yes
-                if (choice == false)
+                if (!GameObject.FindGameObjectWithTag("MapManager").GetComponent<MapDataManager>().GetInteracted(gameObject.name))
                 {
-                    //--DIALOGUE--
-                    player.OpenTextBox();
-                    dialogue_queue.Clear();
-                    dialogue_queue.Add("Gee thanks kid- I mean, thank you fellow student! Now I can get my fix!");
+                    dialogue_queue.Add("Hey! You're supposed to be in- I mean... Hey! any of you 'homies' know where I can purchase some drugs?");
+                    dialogue_queue.Add("Inform Ralph of the Drug Store?");
 
                     //--EFFECTS--
-                    effect_queue.Clear();
+                    temp.name = "Wave";
+                    temp.lower = 45;
+                    temp.upper = 52;
+                    temp_effect.effects.Add(new TextEffectClass(temp));
+                    temp.name = "Wave";
+                    temp.lower = 78;
+                    temp.upper = 83;
+                    temp_effect.effects.Add(new TextEffectClass(temp));
+                    effect_queue.Add(new EffectContainer(temp_effect));
+
                     temp_effect.effects.Clear();
                     temp.name = "_NO_EFFECT_";
                     temp_effect.effects.Add(new TextEffectClass(temp));
                     effect_queue.Add(new EffectContainer(temp_effect));
 
                     //--IMAGES--
-                    image_queue.Clear();
                     image_queue.Add("CharacterSprites/Ralph");
+                    image_queue.Add(null);
 
                     //--SET QUEUES--
                     player.SetWriteQueue(dialogue_queue);
                     player.SetImageQueue(image_queue);
                     player.SetEffectQueue(effect_queue);
                     player.WriteDriver();
+                    yield return new WaitForEndOfFrame();
 
-                    //--MARK THIS OBJECT AS INTERACTED--
-                    MapDataManager map_manager = GameObject.FindGameObjectWithTag("MapManager").GetComponent<MapDataManager>();
-                    for (int i = 0; i < map_manager.current_map.objects.Count; i++)
+                    //wait until question is asked before opening the choice menu
+                    yield return new WaitUntil(() => player.GetWriteCount() == 0);
+                    yield return new WaitUntil(() => player.GetWriting() == false);
+                    pause.menu_mode = true;
+                    pause.menu_input = true;
+                    pause.pause_menu_protection = false;
+                    pause.OpenMenu(7);
+                    pause.ActivateCursor();
+                    pause.UpdateSaveMenu();
+                    pause.SetChoiceText("Yes", false);
+                    pause.SetChoiceText("No", true);
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().interaction_protection = true;
+
+                    //wait until the interact button is pressed close the menu and then write dialogue based on the selection
+                    yield return new WaitUntil(() => pause.menu_input == false);
+                    yield return new WaitUntil(() => Input.GetButtonDown("Interact"));
+                    bool choice = pause.GetChoice();
+
+                    pause.CloseAllMenus();
+                    yield return new WaitForEndOfFrame();
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().interaction_protection = true;
+
+                    //yes
+                    if (choice == false)
                     {
-                        if (map_manager.current_map.objects[i].o == gameObject.name)
+                        //--DIALOGUE--
+                        player.OpenTextBox();
+                        dialogue_queue.Clear();
+                        dialogue_queue.Add("Gee thanks kid- I mean, thank you fellow student! Now I can get my fix!");
+
+                        //--EFFECTS--
+                        effect_queue.Clear();
+                        temp_effect.effects.Clear();
+                        temp.name = "_NO_EFFECT_";
+                        temp_effect.effects.Add(new TextEffectClass(temp));
+                        effect_queue.Add(new EffectContainer(temp_effect));
+
+                        //--IMAGES--
+                        image_queue.Clear();
+                        image_queue.Add("CharacterSprites/Ralph");
+                        image_queue.Add(null);
+
+                        //--SET QUEUES--
+                        player.SetWriteQueue(dialogue_queue);
+                        player.SetImageQueue(image_queue);
+                        player.SetEffectQueue(effect_queue);
+                        player.WriteDriver();
+
+                        //--MARK THIS OBJECT AS INTERACTED--
+                        MapDataManager map_manager = GameObject.FindGameObjectWithTag("MapManager").GetComponent<MapDataManager>();
+                        for (int i = 0; i < map_manager.current_map.objects.Count; i++)
                         {
-                            map_manager.current_map.objects[i].interacted = true;
-                            map_manager.Save();
-                            break;
+                            if (map_manager.current_map.objects[i].o == gameObject.name)
+                            {
+                                map_manager.current_map.objects[i].interacted = true;
+                                map_manager.Save();
+                                break;
+                            }
                         }
                     }
+                    //no
+                    else
+                    {
+                        //--DIALOGUE--
+                        player.OpenTextBox();
+                        dialogue_queue.Clear();
+                        dialogue_queue.Add("Oh well then let me know if you find any!");
+
+                        //--EFFECTS--
+                        effect_queue.Clear();
+                        temp_effect.effects.Clear();
+                        temp.name = "_NO_EFFECT_";
+                        temp_effect.effects.Add(new TextEffectClass(temp));
+                        effect_queue.Add(new EffectContainer(temp_effect));
+
+                        //--IMAGES--
+                        image_queue.Clear();
+                        image_queue.Add("CharacterSprites/Ralph");
+
+                        //--SET QUEUES--
+                        player.SetWriteQueue(dialogue_queue);
+                        player.SetImageQueue(image_queue);
+                        player.SetEffectQueue(effect_queue);
+                        player.WriteDriver();
+                    }
                 }
-                //no
                 else
                 {
                     //--DIALOGUE--
                     player.OpenTextBox();
                     dialogue_queue.Clear();
-                    dialogue_queue.Add("Oh well then let me know if you find any!");
+                    dialogue_queue.Add("Gee thanks kid- I mean, thank you fellow student! Now I can get my fix!");
 
                     //--EFFECTS--
                     effect_queue.Clear();
