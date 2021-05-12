@@ -1010,6 +1010,7 @@ public class TitleScreen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
         InputManager.Load();
         transform.GetChild(1).Find("Controls").GetChild(1).GetChild(0).GetComponent<Text>().text = 
             InputManager.GetAction("Default Controls", "Vertical").Bindings[0].Positive.ToString();
