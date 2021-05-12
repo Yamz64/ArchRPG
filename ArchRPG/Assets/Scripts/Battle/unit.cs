@@ -8598,7 +8598,6 @@ public class Bouncer : unit
         unitName = "Bouncer";
         loadSprites();
 
-        resistances[0] = true;
         weaknesses[4] = true;
 
         level = 12;
