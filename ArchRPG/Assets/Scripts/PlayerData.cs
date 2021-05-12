@@ -29,7 +29,7 @@ public class PlayerData : CharacterStats
             SetEP(temp.GetEP());
             SetSacrificeCount(temp.GetSacrificeCount());
             SetSpentEP(temp.GetSpentEP());
-            data.saved = temp.GetSaved();
+            saved = temp.GetSaved();
             
             for(int i=0; i<temp.GetInventorySize(); i++)
             {
