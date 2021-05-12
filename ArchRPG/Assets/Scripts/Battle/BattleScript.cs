@@ -2783,7 +2783,7 @@ public class BattleScript : MonoBehaviour
                 }
             }
         }
-        if (allyStations[indi1].GetSiblingIndex() < allyStations[indi2].GetSiblingIndex())
+        if (allyStations[indi1].GetSiblingIndex() > allyStations[indi2].GetSiblingIndex())
         {
             allyStations[indi2].SetSiblingIndex(allyStations[indi1].GetSiblingIndex());     //Swap in hierarchy to have front/back appearance
         }
@@ -3179,8 +3179,8 @@ public class BattleScript : MonoBehaviour
                     }
                     if (newd)
                     {
-                        StartCoroutine(unitDeath(temp[ind].GetComponent<UnitMono>().mainUnit));
                         yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " threw up too much.", true);
+                        StartCoroutine(unitDeath(temp[ind].GetComponent<UnitMono>().mainUnit));
                         partyDeaths++;
                         //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         if (partyDeaths == activeUnits)
@@ -3202,8 +3202,8 @@ public class BattleScript : MonoBehaviour
                                             }
                     if (newd)
                     {
-                        StartCoroutine(unitDeath(temp[ind].GetComponent<UnitMono>().mainUnit));
                         yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " threw up too much blood.", true);
+                        StartCoroutine(unitDeath(temp[ind].GetComponent<UnitMono>().mainUnit));
                         partyDeaths++;
                         //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         if (partyDeaths == activeUnits)
@@ -3226,8 +3226,8 @@ public class BattleScript : MonoBehaviour
                     }
                     if (newd)
                     {
-                        StartCoroutine(unitDeath(temp[ind].GetComponent<UnitMono>().mainUnit));
                         yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " has been consumed", true);
+                        StartCoroutine(unitDeath(temp[ind].GetComponent<UnitMono>().mainUnit));
                         partyDeaths++;
                         //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         if (partyDeaths == activeUnits)
@@ -3353,8 +3353,8 @@ public class BattleScript : MonoBehaviour
                     }
                     if (newd)
                     {
-                        StartCoroutine(unitDeath(enemyUnits[ind].GetComponent<UnitMono>().mainUnit));
                         yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " threw up too much.", true);
+                        StartCoroutine(unitDeath(enemyUnits[ind].GetComponent<UnitMono>().mainUnit));
                         enemyDeaths++;
                         //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         if (enemyDeaths == enemyUnits.Count)
@@ -3376,13 +3376,13 @@ public class BattleScript : MonoBehaviour
                     }
                     if (newd)
                     {
-                        StartCoroutine(unitDeath(enemyUnits[ind].GetComponent<UnitMono>().mainUnit));
                         yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " threw up too much blood.", true);
-                        partyDeaths++;
+                        StartCoroutine(unitDeath(enemyUnits[ind].GetComponent<UnitMono>().mainUnit));
+                        enemyDeaths++;
                         //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
-                        if (partyDeaths == activeUnits)
+                        if (enemyDeaths >= enemyUnits.Count)
                         {
-                            state = battleState.LOSE;
+                            state = battleState.WIN;
                             yield return battleEnd();
                         }
                         continue;
@@ -3399,13 +3399,13 @@ public class BattleScript : MonoBehaviour
                     }
                     if (newd)
                     {
-                        StartCoroutine(unitDeath(enemyUnits[ind].GetComponent<UnitMono>().mainUnit));
                         yield return textDisplay(enemyUnits[ind].GetComponent<UnitMono>().mainUnit.unitName + " has been consumed", true);
-                        partyDeaths++;
+                        StartCoroutine(unitDeath(enemyUnits[ind].GetComponent<UnitMono>().mainUnit));
+                        enemyDeaths++;
                         //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
-                        if (partyDeaths == activeUnits)
+                        if (enemyDeaths >= enemyUnits.Count)
                         {
-                            state = battleState.LOSE;
+                            state = battleState.WIN;
                             yield return battleEnd();
                         }
                         continue;
@@ -7341,6 +7341,16 @@ public class BattleScript : MonoBehaviour
                     }
                 }
             }
+        }
+        List<Item> replacer = new List<Item>();
+        for (int x = 0; x < data.GetInventorySize(); x++)
+        {
+            replacer.Add(data.GetItem(x));
+        }
+        loader.inventory = new Item[replacer.Count];
+        for (int x = 0; x < replacer.Count; x++)
+        {
+            loader.inventory[x] = replacer[x];
         }
         loader.money = data.GetMoney();
         loader.Save(PlayerPrefs.GetInt("_active_save_file_"));
