@@ -1805,6 +1805,9 @@ class Jim : CharacterStats
                 break;
         }
 
+        //use mp past level 6
+        if (GetLVL() >= 6) SetUseMP(true);
+
         //reapply weapon armor and trinket
         if (temp_weapon != null) SetWeapon(temp_weapon);
         if (temp_armor != null) SetArmor(temp_armor);
@@ -3727,6 +3730,9 @@ class WhiteKnight : CharacterStats
                 break;
         }
 
+        //use mp past level 6
+        if (GetLVL() >= 6) SetUseMP(true);
+
         //reapply weapon armor and trinket
         if (temp_weapon != null) SetWeapon(temp_weapon);
         if (temp_armor != null) SetArmor(temp_armor);
@@ -4367,6 +4373,9 @@ class EmberMoon : CharacterStats
             default:
                 break;
         }
+
+        //use mp past level 6
+        if (GetLVL() >= 6) SetUseMP(true);
 
         //reapply weapon armor and trinket
         if (temp_weapon != null) SetWeapon(temp_weapon);

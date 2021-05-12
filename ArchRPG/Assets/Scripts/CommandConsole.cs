@@ -267,18 +267,22 @@ public class CommandConsole : MonoBehaviour
         SETLEVEL = new Command<int>("set_level", "Set the player and party's level.", "set_level <int>", (x) =>
         {
             GetComponent<PlayerDataMono>().data.SetLVL(x);
+            GetComponent<PlayerDataMono>().data.UpdateStats();
             for(int i=0; i<GetComponent<PlayerDataMono>().data.GetPartySize(); i++)
             {
                 GetComponent<PlayerDataMono>().data.GetPartyMember(i).SetLVL(x);
+                GetComponent<PlayerDataMono>().data.GetPartyMember(i).UpdateStats();
             }
         });
 
         HEALALL = new Command("heal_all", "Heal the player and everyone in the party to full. And set their HP to full.", "heal_all", () =>
         {
             GetComponent<PlayerDataMono>().data.SetHP(GetComponent<PlayerDataMono>().data.GetHPMAX());
+            GetComponent<PlayerDataMono>().data.SetSP(GetComponent<PlayerDataMono>().data.GetSPMax());
             for(int i=0; i<GetComponent<PlayerDataMono>().data.GetPartySize(); i++)
             {
                 GetComponent<PlayerDataMono>().data.GetPartyMember(i).SetHP(GetComponent<PlayerDataMono>().data.GetPartyMember(i).GetHPMAX());
+                GetComponent<PlayerDataMono>().data.GetPartyMember(i).SetSP(GetComponent<PlayerDataMono>().data.GetPartyMember(i).GetSPMax());
             }
         });
 

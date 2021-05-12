@@ -402,22 +402,16 @@ public class SlotMachine : InteractableBaseClass
         {
             case "000":
                 return 1;
-                break;
             case "111":
                 return 2;
-                break;
             case "010":
                 return 3;
-                break;
             case "101":
                 return 4;
-                break;
             case "222":
                 return 5;
-                break;
             case "333":
                 return 6;
-                break;
             default:
                 break;
         }
