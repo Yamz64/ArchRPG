@@ -51,9 +51,9 @@
     "EP": 0,
     "sacrifice_count": 0,
     "HPs": [
-        100,
-        100,
-        100
+        67,
+        57,
+        25
     ],
     "SPs": [
         22,
@@ -71,9 +71,9 @@
         98
     ],
     "levels": [
-        15,
-        15,
-        15
+        3,
+        3,
+        3
     ],
     "positions": [
         0,
@@ -386,9 +386,9 @@
     "active_scene": "",
     "names": [
         "Albert",
-        "Shirley",
-        "Clyve"
+        "Clyve",
+        "Jim"
     ],
     "e_abilities": [],
-    "enemy_names": ["Killer Cone", "Killer Cone", "Killer Cone"]
+    "enemy_names": []
 }
