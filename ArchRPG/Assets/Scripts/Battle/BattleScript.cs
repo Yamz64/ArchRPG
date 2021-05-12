@@ -4789,52 +4789,106 @@ public class BattleScript : MonoBehaviour
     {
         StartCoroutine(textDisplay(bot.unitName + " has been defeated"));
         yield return new WaitForSeconds(1f);
-        bot.view.CrossFadeAlpha(0, 2f, false);
-        bot.nameText.CrossFadeAlpha(0, 2f, false);
-        bot.BBackground.CrossFadeAlpha(0, 2f, false);
-        bot.WBackground.CrossFadeAlpha(0, 2f, false);
-        bot.levelText.CrossFadeAlpha(0, 2f, false);
-        bot.hpBar.CrossFadeAlpha(0, 2f, false);
-        bot.hpSideText.CrossFadeAlpha(0, 2f, false);
-        bot.hpReadOut.CrossFadeAlpha(0, 2f, false);
-        bot.statusBackW.CrossFadeAlpha(0, 2f, false);
-        bot.statusBackColor.CrossFadeAlpha(0, 2f, false);
-        bot.statusText.CrossFadeAlpha(0, 2f, false);
-        for (int i = 0; i < bot.statusIcons.Count; i++)
+        if (bot.enemy)
         {
-            bot.statusIcons[i].CrossFadeAlpha(0, 2f, false);
-            bot.statusIcons[i].transform.GetChild(0).GetChild(0).GetComponent<Image>().CrossFadeAlpha(0, 2f, false);
-            bot.statusIcons[i].transform.GetChild(0).GetChild(1).GetComponent<Image>().CrossFadeAlpha(0, 2f, false);
-            bot.statusIcons[i].transform.GetChild(0).GetChild(2).GetComponent<Text>().CrossFadeAlpha(0, 2f, false);
-        }
-        if (bot.spBar != null)
-        {
-            bot.spBar.CrossFadeAlpha(0, 2f, false);
-            bot.spSideText.CrossFadeAlpha(0, 2f, false);
-            bot.spReadOut.CrossFadeAlpha(0, 2f, false);
-            bot.sanBar.CrossFadeAlpha(0, 2f, false);
-            bot.sanSideText.CrossFadeAlpha(0, 2f, false);
-            bot.sanReadOut.CrossFadeAlpha(0, 2f, false);
-        }
-        if (bot.unitWeapon != null)
-        {
-            if (bot.unitWeapon.eldritch)
+            bot.view.CrossFadeAlpha(0, 2f, false);
+            bot.nameText.CrossFadeAlpha(0, 2f, false);
+            bot.BBackground.CrossFadeAlpha(0, 2f, false);
+            bot.WBackground.CrossFadeAlpha(0, 2f, false);
+            bot.levelText.CrossFadeAlpha(0, 2f, false);
+            bot.hpBar.CrossFadeAlpha(0, 2f, false);
+            bot.hpSideText.CrossFadeAlpha(0, 2f, false);
+            bot.hpReadOut.CrossFadeAlpha(0, 2f, false);
+            bot.statusBackW.CrossFadeAlpha(0, 2f, false);
+            bot.statusBackColor.CrossFadeAlpha(0, 2f, false);
+            bot.statusText.CrossFadeAlpha(0, 2f, false);
+            for (int i = 0; i < bot.statusIcons.Count; i++)
             {
-                bot.unitWeapon.updateStats(bot.unitWeapon.level + 1);
+                bot.statusIcons[i].CrossFadeAlpha(0, 2f, false);
+                bot.statusIcons[i].transform.GetChild(0).GetChild(0).GetComponent<Image>().CrossFadeAlpha(0, 2f, false);
+                bot.statusIcons[i].transform.GetChild(0).GetChild(1).GetComponent<Image>().CrossFadeAlpha(0, 2f, false);
+                bot.statusIcons[i].transform.GetChild(0).GetChild(2).GetComponent<Text>().CrossFadeAlpha(0, 2f, false);
+            }
+            if (bot.spBar != null)
+            {
+                bot.spBar.CrossFadeAlpha(0, 2f, false);
+                bot.spSideText.CrossFadeAlpha(0, 2f, false);
+                bot.spReadOut.CrossFadeAlpha(0, 2f, false);
+                bot.sanBar.CrossFadeAlpha(0, 2f, false);
+                bot.sanSideText.CrossFadeAlpha(0, 2f, false);
+                bot.sanReadOut.CrossFadeAlpha(0, 2f, false);
+            }
+            if (bot.unitWeapon != null)
+            {
+                if (bot.unitWeapon.eldritch)
+                {
+                    bot.unitWeapon.updateStats(bot.unitWeapon.level + 1);
+                }
+            }
+            if (bot.unitArmor != null)
+            {
+                if (bot.unitArmor.eldritch)
+                {
+                    bot.unitArmor.updateStats(bot.unitArmor.level + 1);
+                }
+            }
+            if (bot.unitTrinket != null)
+            {
+                if (bot.unitTrinket.eldritch)
+                {
+                    bot.unitTrinket.updateStats(bot.unitTrinket.level + 1);
+                }
             }
         }
-        if (bot.unitArmor != null)
+        else
         {
-            if (bot.unitArmor.eldritch)
+            bot.view.CrossFadeAlpha(0.1f, 2f, false);
+            bot.nameText.CrossFadeAlpha(0.1f, 2f, false);
+            bot.BBackground.CrossFadeAlpha(0.1f, 2f, false);
+            bot.WBackground.CrossFadeAlpha(0.1f, 2f, false);
+            bot.levelText.CrossFadeAlpha(0.1f, 2f, false);
+            bot.hpBar.CrossFadeAlpha(0.1f, 2f, false);
+            bot.hpSideText.CrossFadeAlpha(0.1f, 2f, false);
+            bot.hpReadOut.CrossFadeAlpha(0.1f, 2f, false);
+            bot.statusBackW.CrossFadeAlpha(0f, 2f, false);
+            bot.statusBackColor.CrossFadeAlpha(0f, 2f, false);
+            bot.statusText.CrossFadeAlpha(0f, 2f, false);
+            for (int i = 0; i < bot.statusIcons.Count; i++)
             {
-                bot.unitArmor.updateStats(bot.unitArmor.level + 1);
+                bot.statusIcons[i].CrossFadeAlpha(0, 2f, false);
+                bot.statusIcons[i].transform.GetChild(0).GetChild(0).GetComponent<Image>().CrossFadeAlpha(0, 2f, false);
+                bot.statusIcons[i].transform.GetChild(0).GetChild(1).GetComponent<Image>().CrossFadeAlpha(0, 2f, false);
+                bot.statusIcons[i].transform.GetChild(0).GetChild(2).GetComponent<Text>().CrossFadeAlpha(0, 2f, false);
             }
-        }
-        if (bot.unitTrinket != null)
-        {
-            if (bot.unitTrinket.eldritch)
+            if (bot.spBar != null)
             {
-                bot.unitTrinket.updateStats(bot.unitTrinket.level + 1);
+                bot.spBar.CrossFadeAlpha(0.1f, 2f, false);
+                bot.spSideText.CrossFadeAlpha(0.1f, 2f, false);
+                bot.spReadOut.CrossFadeAlpha(0.1f, 2f, false);
+                bot.sanBar.CrossFadeAlpha(0.1f, 2f, false);
+                bot.sanSideText.CrossFadeAlpha(0.1f, 2f, false);
+                bot.sanReadOut.CrossFadeAlpha(0.1f, 2f, false);
+            }
+            if (bot.unitWeapon != null)
+            {
+                if (bot.unitWeapon.eldritch)
+                {
+                    bot.unitWeapon.updateStats(bot.unitWeapon.level + 1);
+                }
+            }
+            if (bot.unitArmor != null)
+            {
+                if (bot.unitArmor.eldritch)
+                {
+                    bot.unitArmor.updateStats(bot.unitArmor.level + 1);
+                }
+            }
+            if (bot.unitTrinket != null)
+            {
+                if (bot.unitTrinket.eldritch)
+                {
+                    bot.unitTrinket.updateStats(bot.unitTrinket.level + 1);
+                }
             }
         }
 
@@ -4976,7 +5030,7 @@ public class BattleScript : MonoBehaviour
             {
                 if (partyUnits[h] != null)
                 {
-                    if (partyUnits[h].GetComponent<UnitMono>().mainUnit.unitName == uni.unitName)
+                    if (partyUnits[h].GetComponent<UnitMono>().mainUnit.unitName.Equals(uni.unitName))
                     {
                         indi = h;
                     }
@@ -5096,14 +5150,14 @@ public class BattleScript : MonoBehaviour
                     if (target.resistances[uni.abilities[ata].damageType]) bad = true;
                     StartCoroutine(flashDamage(target));
                     yield return flashDealDamage(uni);
-                    if (target.critted)
+                    if (target.critted && dif > 0)
                     {
                         yield return textDisplay("The attack hit a weak spot!", true);
                         //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         skipper = true;
                         target.critted = false;
                     }
-                    if (good)
+                    if (good && dif > 0)
                     {
                         //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         yield return textDisplay("It did a lot of damage!", true);
@@ -5111,7 +5165,7 @@ public class BattleScript : MonoBehaviour
                         skipper = true;
                         good = false;
                     }
-                    else if (bad || uni.reduced)
+                    else if ((bad || uni.reduced) && dif > 0)
                     {
                         yield return textDisplay("It didn't do too much damage.", true);
                         //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
@@ -5136,14 +5190,14 @@ public class BattleScript : MonoBehaviour
 
                                 StartCoroutine(flashDamage(enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit));
                                 yield return flashDealDamage(uni);
-                                if (enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.critted)
+                                if (enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.critted && dif > 0)
                                 {
                                     yield return textDisplay("The attack hit a weak spot!", true);
                                     //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                                     skipper = true;
                                     enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.critted = false;
                                 }
-                                if (good)
+                                if (good && dif > 0)
                                 {
                                     //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                                     yield return textDisplay("It did a lot of damage!", true);
@@ -5151,7 +5205,7 @@ public class BattleScript : MonoBehaviour
                                     skipper = true;
                                     good = false;
                                 }
-                                else if (bad || uni.reduced)
+                                else if ((bad || uni.reduced) && dif > 0)
                                 {
                                     yield return textDisplay("It didn't do too much damage.", true);
                                     //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
@@ -5221,14 +5275,14 @@ public class BattleScript : MonoBehaviour
 
                                 StartCoroutine(flashDamage(enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit));
                                 yield return flashDealDamage(uni);
-                                if (enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.critted)
+                                if (enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.critted && dif > 0)
                                 {
                                     yield return textDisplay("The attack hit a weak spot!", true);
                                     //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                                     skipper = true;
                                     enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.critted = false;
                                 }
-                                if (good)
+                                if (good && dif > 0)
                                 {
                                     //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                                     yield return textDisplay("It did a lot of damage!", true);
@@ -5236,7 +5290,7 @@ public class BattleScript : MonoBehaviour
                                     skipper = true;
                                     good = false;
                                 }
-                                else if (bad || uni.reduced)
+                                else if ((bad || uni.reduced) && dif > 0)
                                 {
                                     yield return textDisplay("It didn't do too much damage.", true);
                                     //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
@@ -5308,14 +5362,14 @@ public class BattleScript : MonoBehaviour
 
                                 StartCoroutine(flashDamage(enemyUnits[b].GetComponent<UnitMono>().mainUnit));
                                 yield return flashDealDamage(uni);
-                                if (enemyUnits[b].GetComponent<UnitMono>().mainUnit.critted)
+                                if (enemyUnits[b].GetComponent<UnitMono>().mainUnit.critted && dif > 0)
                                 {
                                     yield return textDisplay("The attack hit a weak spot!", true);
                                     //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                                     skipper = true;
                                     enemyUnits[b].GetComponent<UnitMono>().mainUnit.critted = false;
                                 }
-                                if (good)
+                                if (good && dif > 0)
                                 {
                                     //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                                     yield return textDisplay("It did a lot of damage!", true);
@@ -5323,7 +5377,7 @@ public class BattleScript : MonoBehaviour
                                     skipper = true;
                                     good = false;
                                 }
-                                else if (bad || uni.reduced)
+                                else if ((bad || uni.reduced) && dif > 0)
                                 {
                                     yield return textDisplay("It didn't do too much damage.", true);
                                     //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
@@ -5581,7 +5635,7 @@ public class BattleScript : MonoBehaviour
             {
                 if (partyUnits[x] != null)
                 {
-                    if (partyUnits[x].GetComponent<UnitMono>().mainUnit.unitName == uni.unitName)
+                    if (partyUnits[x].GetComponent<UnitMono>().mainUnit.unitName.Equals(uni.unitName))
                     {
                         hereVal = x;
                     }
@@ -5697,28 +5751,40 @@ public class BattleScript : MonoBehaviour
                 }
             }
             //Pull target forward
-            if (doer.swapper == 1 && uni.position != 0)
+            if (doer.swapper == 1 && target.position != 0)
             {
+                int other = 0;
+                for (int x = 0; x < 4; x++)
+                {
+                    if (partyUnits[x] != null)
+                    {
+                        if (partyUnits[x].GetComponent<UnitMono>().mainUnit.unitName.Equals(target.unitName))
+                        {
+                            other = x;
+                        }
+                    }
+                }
+
                 Transform pp1 = new GameObject().transform;
                 Transform pp2 = new GameObject().transform;
 
                 GameObject po1 = new GameObject();
                 GameObject po2 = new GameObject();
                 //pp1 == target to pull forward
-                pp1.position = allyStations[val].position;
-                po1 = partyUnits[val];
+                pp1.position = allyStations[other].position;
+                po1 = partyUnits[other];
                 //Confirm in the right spot
-                if (val == 2 || val == 3)
+                if (other == 2 || other == 3)
                 {
                     //change position value
-                    if (val - 2 == 0 || val - 2 == 1) po1.GetComponent<UnitMono>().mainUnit.position = 0;
+                    if (other - 2 == 0 || other - 2 == 1) po1.GetComponent<UnitMono>().mainUnit.position = 0;
                     else po1.GetComponent<UnitMono>().mainUnit.position = 1;
 
-                    pp2.position = allyStations[val - 2].position;
-                    po2 = partyUnits[val - 2];
+                    pp2.position = allyStations[other - 2].position;
+                    po2 = partyUnits[other - 2];
                     if (po2 != null)
                     {
-                        if (val == 0 || val == 1) po2.GetComponent<UnitMono>().mainUnit.position = 0;
+                        if (other == 0 || other == 1) po2.GetComponent<UnitMono>().mainUnit.position = 0;
                         else po2.GetComponent<UnitMono>().mainUnit.position = 1;
                     }
                     pSpots.Add(pp1);
@@ -5726,43 +5792,55 @@ public class BattleScript : MonoBehaviour
                     ppgs.Add(po1);
                     ppgs.Add(po2);
 
-                    swaps.Add(partyUnits[val].gameObject);
+                    swaps.Add(partyUnits[other].gameObject);
 
-                    if (partyUnits[val - 2] != null)
+                    if (partyUnits[other - 2] != null)
                     {
-                        swaps.Add(partyUnits[val - 2].gameObject);
+                        swaps.Add(partyUnits[other - 2].gameObject);
                     }
                     else
                     {
                         swaps.Add(null);
                     }
 
-                    swapInds.Add(val);
-                    swapInds.Add(val - 2);
+                    swapInds.Add(other);
+                    swapInds.Add(other - 2);
                     //PerformSwaps(swapInds.Count - 2);
-                    Swap2(val, val - 2, target.unitName);
+                    Swap2(other, other - 2, target.unitName);
                 }
             }
             //Push target backwards
-            else if (doer.swapper == 2 && uni.position != 1)
+            else if (doer.swapper == 2 && target.position != 1)
             {
+                int other = 0;
+                for (int x = 0; x < 4; x++)
+                {
+                    if (partyUnits[x] != null)
+                    {
+                        if (partyUnits[x].GetComponent<UnitMono>().mainUnit.unitName.Equals(target.unitName))
+                        {
+                            other = x;
+                        }
+                    }
+                }
+
                 Transform pp1 = new GameObject().transform;
                 Transform pp2 = new GameObject().transform;
 
                 GameObject po1 = new GameObject();
                 GameObject po2 = new GameObject();
 
-                pp1.position = allyStations[val].position;
-                po1 = partyUnits[val];
-                if (val == 0 || val == 1)
+                pp1.position = allyStations[other].position;
+                po1 = partyUnits[other];
+                if (other == 0 || other == 1)
                 {
-                    if (val + 2 == 0 || val + 2 == 1) po1.GetComponent<UnitMono>().mainUnit.position = 0;
+                    if (other + 2 == 0 || other + 2 == 1) po1.GetComponent<UnitMono>().mainUnit.position = 0;
                     else po1.GetComponent<UnitMono>().mainUnit.position = 1;
-                    pp2.position = allyStations[val + 2].position;
-                    po2 = partyUnits[val + 2];
+                    pp2.position = allyStations[other + 2].position;
+                    po2 = partyUnits[other + 2];
                     if (po2 != null)
                     {
-                        if (val == 0 || val == 1) po2.GetComponent<UnitMono>().mainUnit.position = 0;
+                        if (other == 0 || other == 1) po2.GetComponent<UnitMono>().mainUnit.position = 0;
                         else po2.GetComponent<UnitMono>().mainUnit.position = 1;
                     }
                     pSpots.Add(pp1);
@@ -5770,21 +5848,21 @@ public class BattleScript : MonoBehaviour
                     ppgs.Add(po1);
                     ppgs.Add(po2);
 
-                    swaps.Add(partyUnits[val].gameObject);
+                    swaps.Add(partyUnits[other].gameObject);
 
-                    if (partyUnits[val + 2] != null)
+                    if (partyUnits[other + 2] != null)
                     {
-                        swaps.Add(partyUnits[val + 2].gameObject);
+                        swaps.Add(partyUnits[other + 2].gameObject);
                     }
                     else
                     {
                         swaps.Add(null);
                     }
 
-                    swapInds.Add(val);
-                    swapInds.Add(val + 2);
+                    swapInds.Add(other);
+                    swapInds.Add(other + 2);
                     //PerformSwaps(swapInds.Count - 2);
-                    Swap2(val, val + 2, target.unitName);
+                    Swap2(other, other + 2, target.unitName);
                 }
             }
             Debug.Log("After swap now");
@@ -5809,6 +5887,101 @@ public class BattleScript : MonoBehaviour
                     {
                         uni.abilities[ata].UseAttack(uni, partyUnits[val-1].GetComponent<UnitMono>().mainUnit);
                         StartCoroutine(flashHeal(partyUnits[val - 1].GetComponent<UnitMono>().mainUnit));
+                        //Pull target forward
+                        if (doer.swapper == 1 && partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.position != 0)
+                        {
+                            int other = val-1;
+                            
+                            Transform pp1 = new GameObject().transform;
+                            Transform pp2 = new GameObject().transform;
+
+                            GameObject po1 = new GameObject();
+                            GameObject po2 = new GameObject();
+                            //pp1 == target to pull forward
+                            pp1.position = allyStations[other].position;
+                            po1 = partyUnits[other];
+                            //Confirm in the right spot
+                            if (other == 2 || other == 3)
+                            {
+                                //change position value
+                                if (other - 2 == 0 || other - 2 == 1) po1.GetComponent<UnitMono>().mainUnit.position = 0;
+                                else po1.GetComponent<UnitMono>().mainUnit.position = 1;
+
+                                pp2.position = allyStations[other - 2].position;
+                                po2 = partyUnits[other - 2];
+                                if (po2 != null)
+                                {
+                                    if (other == 0 || other == 1) po2.GetComponent<UnitMono>().mainUnit.position = 0;
+                                    else po2.GetComponent<UnitMono>().mainUnit.position = 1;
+                                }
+                                pSpots.Add(pp1);
+                                pSpots.Add(pp2);
+                                ppgs.Add(po1);
+                                ppgs.Add(po2);
+
+                                swaps.Add(partyUnits[other].gameObject);
+
+                                if (partyUnits[other - 2] != null)
+                                {
+                                    swaps.Add(partyUnits[other - 2].gameObject);
+                                }
+                                else
+                                {
+                                    swaps.Add(null);
+                                }
+
+                                swapInds.Add(other);
+                                swapInds.Add(other - 2);
+                                //PerformSwaps(swapInds.Count - 2);
+                                Swap2(other, other - 2, partyUnits[other].GetComponent<UnitMono>().mainUnit.unitName);
+                            }
+                        }
+                        //Push target backwards
+                        else if (doer.swapper == 2 && partyUnits[val - 1].GetComponent<UnitMono>().mainUnit.position != 1)
+                        {
+                            int other = val - 1;
+
+                            Transform pp1 = new GameObject().transform;
+                            Transform pp2 = new GameObject().transform;
+
+                            GameObject po1 = new GameObject();
+                            GameObject po2 = new GameObject();
+
+                            pp1.position = allyStations[other].position;
+                            po1 = partyUnits[other];
+                            if (other == 0 || other == 1)
+                            {
+                                if (other + 2 == 0 || other + 2 == 1) po1.GetComponent<UnitMono>().mainUnit.position = 0;
+                                else po1.GetComponent<UnitMono>().mainUnit.position = 1;
+                                pp2.position = allyStations[other + 2].position;
+                                po2 = partyUnits[other + 2];
+                                if (po2 != null)
+                                {
+                                    if (other == 0 || other == 1) po2.GetComponent<UnitMono>().mainUnit.position = 0;
+                                    else po2.GetComponent<UnitMono>().mainUnit.position = 1;
+                                }
+                                pSpots.Add(pp1);
+                                pSpots.Add(pp2);
+                                ppgs.Add(po1);
+                                ppgs.Add(po2);
+
+                                swaps.Add(partyUnits[other].gameObject);
+
+                                if (partyUnits[other + 2] != null)
+                                {
+                                    swaps.Add(partyUnits[other + 2].gameObject);
+                                }
+                                else
+                                {
+                                    swaps.Add(null);
+                                }
+
+                                swapInds.Add(other);
+                                swapInds.Add(other + 2);
+                                //PerformSwaps(swapInds.Count - 2);
+                                Swap2(other, other + 2, partyUnits[other-1].GetComponent<UnitMono>().mainUnit.unitName);
+                            }
+                        }
                     }
                 }
                 else if ((val == 0 || val == 2) && val + 1 >= 0 && val + 1 < 4 && partyUnits[val + 1] != null)
@@ -5818,6 +5991,101 @@ public class BattleScript : MonoBehaviour
                     {
                         uni.abilities[ata].UseAttack(uni, partyUnits[val + 1].GetComponent<UnitMono>().mainUnit);
                         StartCoroutine(flashHeal(partyUnits[val + 1].GetComponent<UnitMono>().mainUnit));
+                        //Pull target forward
+                        if (doer.swapper == 1 && partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.position != 0)
+                        {
+                            int other = val+1;
+
+                            Transform pp1 = new GameObject().transform;
+                            Transform pp2 = new GameObject().transform;
+
+                            GameObject po1 = new GameObject();
+                            GameObject po2 = new GameObject();
+                            //pp1 == target to pull forward
+                            pp1.position = allyStations[other].position;
+                            po1 = partyUnits[other];
+                            //Confirm in the right spot
+                            if (other == 2 || other == 3)
+                            {
+                                //change position value
+                                if (other - 2 == 0 || other - 2 == 1) po1.GetComponent<UnitMono>().mainUnit.position = 0;
+                                else po1.GetComponent<UnitMono>().mainUnit.position = 1;
+
+                                pp2.position = allyStations[other - 2].position;
+                                po2 = partyUnits[other - 2];
+                                if (po2 != null)
+                                {
+                                    if (other == 0 || other == 1) po2.GetComponent<UnitMono>().mainUnit.position = 0;
+                                    else po2.GetComponent<UnitMono>().mainUnit.position = 1;
+                                }
+                                pSpots.Add(pp1);
+                                pSpots.Add(pp2);
+                                ppgs.Add(po1);
+                                ppgs.Add(po2);
+
+                                swaps.Add(partyUnits[other].gameObject);
+
+                                if (partyUnits[other - 2] != null)
+                                {
+                                    swaps.Add(partyUnits[other - 2].gameObject);
+                                }
+                                else
+                                {
+                                    swaps.Add(null);
+                                }
+
+                                swapInds.Add(other);
+                                swapInds.Add(other - 2);
+                                //PerformSwaps(swapInds.Count - 2);
+                                Swap2(other, other - 2, partyUnits[other].GetComponent<UnitMono>().mainUnit.unitName);
+                            }
+                        }
+                        //Push target backwards
+                        else if (doer.swapper == 2 && partyUnits[val + 1].GetComponent<UnitMono>().mainUnit.position != 1)
+                        {
+                            int other = val + 1;
+
+                            Transform pp1 = new GameObject().transform;
+                            Transform pp2 = new GameObject().transform;
+
+                            GameObject po1 = new GameObject();
+                            GameObject po2 = new GameObject();
+
+                            pp1.position = allyStations[other].position;
+                            po1 = partyUnits[other];
+                            if (other == 0 || other == 1)
+                            {
+                                if (other + 2 == 0 || other + 2 == 1) po1.GetComponent<UnitMono>().mainUnit.position = 0;
+                                else po1.GetComponent<UnitMono>().mainUnit.position = 1;
+                                pp2.position = allyStations[other + 2].position;
+                                po2 = partyUnits[other + 2];
+                                if (po2 != null)
+                                {
+                                    if (other == 0 || other == 1) po2.GetComponent<UnitMono>().mainUnit.position = 0;
+                                    else po2.GetComponent<UnitMono>().mainUnit.position = 1;
+                                }
+                                pSpots.Add(pp1);
+                                pSpots.Add(pp2);
+                                ppgs.Add(po1);
+                                ppgs.Add(po2);
+
+                                swaps.Add(partyUnits[other].gameObject);
+
+                                if (partyUnits[other + 2] != null)
+                                {
+                                    swaps.Add(partyUnits[other + 2].gameObject);
+                                }
+                                else
+                                {
+                                    swaps.Add(null);
+                                }
+
+                                swapInds.Add(other);
+                                swapInds.Add(other + 2);
+                                //PerformSwaps(swapInds.Count - 2);
+                                Swap2(other, other + 2, partyUnits[other].GetComponent<UnitMono>().mainUnit.unitName);
+                            }
+                        }
                     }
                 }
             }
@@ -7117,8 +7385,8 @@ public class BattleScript : MonoBehaviour
         red.r = 1.0f;
         yield return new WaitForSeconds(0.5f);
         bot.BBackground.color = red;
-        bot.setHUD();
         yield return new WaitForSeconds(0.5f);
+        bot.setHUD();
         bot.BBackground.color = ori;
     }
 
@@ -7132,9 +7400,9 @@ public class BattleScript : MonoBehaviour
         now.r = 1.0f;
         yield return new WaitForSeconds(0.5f);
         bot.BBackground.color = now;
-        bot.setHUD();
         yield return new WaitForSeconds(0.5f);
         bot.BBackground.color = ori;
+        bot.setHUD();
     }
 
     //Flash green in response to healing damage
@@ -7147,9 +7415,9 @@ public class BattleScript : MonoBehaviour
         green.r = 0.0f;
         yield return new WaitForSeconds(0.5f);
         bot.BBackground.color = green;
-        bot.setHUD();
         yield return new WaitForSeconds(0.5f);
         bot.BBackground.color = ori;
+        bot.setHUD();
     }
 
     //Flash blue in response to leveling up
@@ -7162,9 +7430,9 @@ public class BattleScript : MonoBehaviour
         green.r = 0.0f;
         yield return new WaitForSeconds(0.5f);
         bot.BBackground.color = green;
-        bot.setHUD();
         yield return new WaitForSeconds(0.5f);
         bot.BBackground.color = ori;
+        bot.setHUD();
     }
 
     //Flash purple to show a buff (usually for enemy)
@@ -7177,9 +7445,9 @@ public class BattleScript : MonoBehaviour
         green.r = 0.5f;
         yield return new WaitForSeconds(0.5f);
         bot.BBackground.color = green;
-        bot.setHUD();
         yield return new WaitForSeconds(0.5f);
         bot.BBackground.color = ori;
+        bot.setHUD();
     }
 
     //Flash pink to show a buff (usually for party units)
@@ -7192,9 +7460,9 @@ public class BattleScript : MonoBehaviour
         green.r = 0.75f;
         yield return new WaitForSeconds(0.5f);
         bot.BBackground.color = green;
-        bot.setHUD();
         yield return new WaitForSeconds(0.5f);
         bot.BBackground.color = ori;
+        bot.setHUD();
     }
 
     //Player chooses to attack
