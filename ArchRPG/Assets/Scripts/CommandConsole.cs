@@ -291,7 +291,8 @@ public class CommandConsole : MonoBehaviour
             SETMONEY,
             ADDITEM,
             CLEARINVENTORY,
-            SETLEVEL
+            SETLEVEL,
+            HEALALL
         };
     }
 
