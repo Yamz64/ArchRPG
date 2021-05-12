@@ -313,6 +313,7 @@ public class unit
             {
                 view.sprite = sprites[0];
             }
+            /*
             if (aggro > 0)
             {
                 Color temp = view.color;
@@ -320,13 +321,15 @@ public class unit
                 temp.b = (float)(78 / 255);
                 view.color = temp;
             }
-            else
-            {
+            */
+            //else
+            //{
                 Color temp = view.color;
                 temp.g = (float)(255 / 255);
                 temp.b = (float)(255 / 255);
                 view.color = temp;
-            }
+            //}
+            
         }
 
         nameText.text = unitName;
