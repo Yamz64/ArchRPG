@@ -493,8 +493,8 @@ public class ClassAAnimationHelper : MonoBehaviour
         line_effects.effects.Add(new TextEffectClass(temp));
         effects.Add(new EffectContainer(line_effects));
         line_effects.effects.Clear();
-        temp.name = "Quake";
-        temp.lower = 27;
+        temp.name = "Wave";
+        temp.lower = 24;
         temp.upper = 32;
         line_effects.effects.Add(new TextEffectClass(temp));
         effects.Add(new EffectContainer(line_effects));
@@ -532,8 +532,8 @@ public class ClassAAnimationHelper : MonoBehaviour
         effects.Add(new EffectContainer(line_effects));
         line_effects.effects.Clear();
         temp.name = "Wave";
-        temp.lower = 28;
-        temp.upper = 40;
+        temp.lower = 27;
+        temp.upper = 43;
         line_effects.effects.Add(new TextEffectClass(temp));
         effects.Add(new EffectContainer(line_effects));
         line_effects.effects.Clear();
