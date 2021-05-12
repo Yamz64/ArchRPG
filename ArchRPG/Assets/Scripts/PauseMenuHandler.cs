@@ -684,9 +684,9 @@ public class PauseMenuHandler : MonoBehaviour
             if (equipment.power_buff == 0)
             {
                 if (highlighted_party_member == 0)
-                    menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPOW().ToString();
+                    menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t" + data.GetPOW().ToString();
                 else
-                    menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString();
+                    menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString();
             }
             else
             {
@@ -696,20 +696,20 @@ public class PauseMenuHandler : MonoBehaviour
                 if (bonus == 1)
                 {
                     if (highlighted_party_member == 0)
-                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPOW().ToString() + " + " + equipment.power_buff.ToString()
+                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t" + data.GetPOW().ToString() + " + " + equipment.power_buff.ToString()
                             + " -> " + (data.GetPOW() + equipment.power_buff).ToString();
                     else
-                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString()
+                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString()
                             + " + " + equipment.power_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetPOW() + equipment.power_buff).ToString();
                 }
                 //negative
                 else
                 {
                     if (highlighted_party_member == 0)
-                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPOW().ToString() + " - " + Mathf.Abs(equipment.power_buff).ToString()
+                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t" + data.GetPOW().ToString() + " - " + Mathf.Abs(equipment.power_buff).ToString()
                             + " -> " + (data.GetPOW() + equipment.power_buff).ToString();
                     else
-                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString()
+                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString()
                             + " - " + Mathf.Abs(equipment.power_buff).ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetPOW() + equipment.power_buff).ToString();
                 }
             }
@@ -1149,32 +1149,68 @@ public class PauseMenuHandler : MonoBehaviour
             //weapon
             if(cursor_position == 0)
             {
-                //no weapon equipped
-                if (data.GetWeapon() == null)
-                    menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
-                //weapon equipped
+                if (highlighted_party_member == 0)
+                {
+                    //no weapon equipped
+                    if (data.GetWeapon() == null)
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
+                    //weapon equipped
+                    else
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetWeapon().description;
+                }
                 else
-                    menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetWeapon().description;
+                {
+                    //no weapon equipped
+                    if (data.GetPartyMember(highlighted_party_member - 1).GetWeapon() == null)
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
+                    //weapon equipped
+                    else
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetWeapon().description;
+                }
             }
             //armor
             else if(cursor_position == 1)
             {
-                //no armor equipped
-                if (data.GetArmor() == null)
-                    menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
-                //armor equipped
+                if (highlighted_party_member == 0)
+                {
+                    //no armor equipped
+                    if (data.GetArmor() == null)
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
+                    //armor equipped
+                    else
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetArmor().description;
+                }
                 else
-                    menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetArmor().description;
+                {
+                    //no armor equipped
+                    if (data.GetPartyMember(highlighted_party_member - 1).GetArmor() == null)
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
+                    //armor equipped
+                    else
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetArmor().description;
+                }
             }
             //trinket
             else
             {
-                //no trinket equipped
-                if (data.GetTrinket() == null)
-                    menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
-                //trinket equipped
+                if (highlighted_party_member == 0)
+                {
+                    //no trinket equipped
+                    if (data.GetTrinket() == null)
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
+                    //trinket equipped
+                    else
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetTrinket().description;
+                }
                 else
-                    menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetTrinket().description;
+                {
+                    //no trinket equipped
+                    if (data.GetPartyMember(highlighted_party_member - 1).GetTrinket() == null)
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
+                    //trinket equipped
+                    else
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetTrinket().description;
+                }
             }
         }
         else
@@ -1430,9 +1466,9 @@ public class PauseMenuHandler : MonoBehaviour
             if (equipment.power_buff == 0)
             {
                 if (highlighted_party_member == 0)
-                    menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPOW().ToString();
+                    menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t" + data.GetPOW().ToString();
                 else
-                    menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString();
+                    menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString();
             }
             else
             {
@@ -1442,20 +1478,20 @@ public class PauseMenuHandler : MonoBehaviour
                 if (bonus == 1)
                 {
                     if (highlighted_party_member == 0)
-                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPOW().ToString() + " + " + equipment.power_buff.ToString()
+                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t" + data.GetPOW().ToString() + " + " + equipment.power_buff.ToString()
                             + " -> " + (data.GetPOW() + equipment.power_buff).ToString();
                     else
-                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString()
+                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString()
                             + " + " + equipment.power_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetPOW() + equipment.power_buff).ToString();
                 }
                 //negative
                 else
                 {
                     if (highlighted_party_member == 0)
-                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPOW().ToString() + " - " + Mathf.Abs(equipment.power_buff).ToString()
+                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t" + data.GetPOW().ToString() + " - " + Mathf.Abs(equipment.power_buff).ToString()
                             + " -> " + (data.GetPOW() + equipment.power_buff).ToString();
                     else
-                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString()
+                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString()
                             + " - " + Mathf.Abs(equipment.power_buff).ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetPOW() + equipment.power_buff).ToString();
                 }
             }
@@ -1895,32 +1931,68 @@ public class PauseMenuHandler : MonoBehaviour
             //weapon
             if (cursor_position == 0)
             {
-                //no weapon equipped
-                if (data.GetWeapon() == null)
-                    menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
-                //weapon equipped
+                if (highlighted_party_member == 0)
+                {
+                    //no weapon equipped
+                    if (data.GetWeapon() == null)
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
+                    //weapon equipped
+                    else
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetWeapon().description;
+                }
                 else
-                    menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetWeapon().description;
+                {
+                    //no weapon equipped
+                    if (data.GetPartyMember(highlighted_party_member - 1).GetWeapon() == null)
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
+                    //weapon equipped
+                    else
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetWeapon().description;
+                }
             }
             //armor
             else if (cursor_position == 1)
             {
-                //no armor equipped
-                if (data.GetWeapon() == null)
-                    menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
-                //armor equipped
+                if (highlighted_party_member == 0)
+                {
+                    //no armor equipped
+                    if (data.GetArmor() == null)
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
+                    //armor equipped
+                    else
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetArmor().description;
+                }
                 else
-                    menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetArmor().description;
+                {
+                    //no armor equipped
+                    if (data.GetPartyMember(highlighted_party_member - 1).GetArmor() == null)
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
+                    //armor equipped
+                    else
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetArmor().description;
+                }
             }
             //trinket
             else
             {
-                //no trinket equipped
-                if (data.GetWeapon() == null)
-                    menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
-                //trinket equipped
+                if (highlighted_party_member == 0)
+                {
+                    //no trinket equipped
+                    if (data.GetTrinket() == null)
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
+                    //trinket equipped
+                    else
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetTrinket().description;
+                }
                 else
-                    menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetTrinket().description;
+                {
+                    //no trinket equipped
+                    if (data.GetPartyMember(highlighted_party_member - 1).GetTrinket() == null)
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
+                    //trinket equipped
+                    else
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetTrinket().description;
+                }
             }
         }
         else
@@ -2176,9 +2248,9 @@ public class PauseMenuHandler : MonoBehaviour
             if (equipment.power_buff == 0)
             {
                 if (highlighted_party_member == 0)
-                    menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPOW().ToString();
+                    menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t" + data.GetPOW().ToString();
                 else
-                    menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString();
+                    menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString();
             }
             else
             {
@@ -2188,20 +2260,20 @@ public class PauseMenuHandler : MonoBehaviour
                 if (bonus == 1)
                 {
                     if (highlighted_party_member == 0)
-                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPOW().ToString() + " + " + equipment.power_buff.ToString()
+                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t" + data.GetPOW().ToString() + " + " + equipment.power_buff.ToString()
                             + " -> " + (data.GetPOW() + equipment.power_buff).ToString();
                     else
-                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString()
+                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString()
                             + " + " + equipment.power_buff.ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetPOW() + equipment.power_buff).ToString();
                 }
                 //negative
                 else
                 {
                     if (highlighted_party_member == 0)
-                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPOW().ToString() + " - " + Mathf.Abs(equipment.power_buff).ToString()
+                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t" + data.GetPOW().ToString() + " - " + Mathf.Abs(equipment.power_buff).ToString()
                             + " -> " + (data.GetPOW() + equipment.power_buff).ToString();
                     else
-                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString()
+                        menus[2].transform.GetChild(9).GetChild(1).GetComponent<Text>().text = "POW:\t" + data.GetPartyMember(highlighted_party_member - 1).GetPOW().ToString()
                             + " - " + Mathf.Abs(equipment.power_buff).ToString() + " -> " + (data.GetPartyMember(highlighted_party_member - 1).GetPOW() + equipment.power_buff).ToString();
                 }
             }
@@ -2641,32 +2713,68 @@ public class PauseMenuHandler : MonoBehaviour
             //weapon
             if (cursor_position == 0)
             {
-                //no weapon equipped
-                if (data.GetWeapon() == null)
-                    menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
-                //weapon equipped
+                if (highlighted_party_member == 0)
+                {
+                    //no weapon equipped
+                    if (data.GetWeapon() == null)
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
+                    //weapon equipped
+                    else
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetWeapon().description;
+                }
                 else
-                    menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetWeapon().description;
+                {
+                    //no weapon equipped
+                    if (data.GetPartyMember(highlighted_party_member - 1).GetWeapon() == null)
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
+                    //weapon equipped
+                    else
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetWeapon().description;
+                }
             }
             //armor
             else if (cursor_position == 1)
             {
-                //no armor equipped
-                if (data.GetWeapon() == null)
-                    menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
-                //armor equipped
+                if (highlighted_party_member == 0)
+                {
+                    //no armor equipped
+                    if (data.GetArmor() == null)
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
+                    //armor equipped
+                    else
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetArmor().description;
+                }
                 else
-                    menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetArmor().description;
+                {
+                    //no armor equipped
+                    if (data.GetPartyMember(highlighted_party_member - 1).GetArmor() == null)
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
+                    //armor equipped
+                    else
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetArmor().description;
+                }
             }
             //trinket
             else
             {
-                //no trinket equipped
-                if (data.GetWeapon() == null)
-                    menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
-                //trinket equipped
+                if (highlighted_party_member == 0)
+                {
+                    //no trinket equipped
+                    if (data.GetTrinket() == null)
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
+                    //trinket equipped
+                    else
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetTrinket().description;
+                }
                 else
-                    menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetTrinket().description;
+                {
+                    //no trinket equipped
+                    if (data.GetPartyMember(highlighted_party_member - 1).GetTrinket() == null)
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = "";
+                    //trinket equipped
+                    else
+                        menus[2].transform.GetChild(15).GetComponent<Text>().text = data.GetPartyMember(highlighted_party_member - 1).GetTrinket().description;
+                }
             }
         }
         else
