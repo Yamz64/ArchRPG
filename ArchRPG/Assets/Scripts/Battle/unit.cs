@@ -2257,6 +2257,14 @@ public class PlayerUnit : unit
                 break;
         }
 
+        //add max hp based on how many sacrifices the player has performed
+        CharacterStatJsonConverter save = new CharacterStatJsonConverter(PlayerPrefs.GetInt("_active_save_file_"));
+        for(int i=0; i<save.sacrifice_count; i++)
+        {
+            if (i < 5) SetHPMax(maxHP + 10);
+            else SetHPMax(maxHP + 20);
+        }
+
         if (level >= 1)
         {
             abilities.Add(new PlayerAbilities.Scrutinize());
@@ -2535,6 +2543,14 @@ public class PlayerUnit : unit
                 break;
             default:
                 break;
+        }
+
+        //add max hp based on how many sacrifices the player has performed
+        CharacterStatJsonConverter save = new CharacterStatJsonConverter(PlayerPrefs.GetInt("_active_save_file_"));
+        for (int i = 0; i < save.sacrifice_count; i++)
+        {
+            if (i < 5) SetHPMax(maxHP + 10);
+            else SetHPMax(maxHP + 20);
         }
 
         List<string> edi = new List<string>();
