@@ -789,6 +789,7 @@ public class TitleScreen : MonoBehaviour
                             for (int i = 0; i < 4; i++)
                             {
                                 CharacterStatJsonConverter copy = new CharacterStatJsonConverter();
+                                copy.money = 15;
                                 MapSaveData mapi = new MapSaveData();
                                 copy.Save(i, true);
                                 PlayerPrefs.SetInt("_active_save_file_", i);
