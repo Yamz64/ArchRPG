@@ -1346,7 +1346,7 @@ public class BattleScript : MonoBehaviour
                                         menu_input = false;
 
                                         //Perform player attacks
-                                        if (moves >= activeUnits || currentUnit == 4)
+                                        if (moves >= activeUnits-partyDeaths)
                                         {
                                             moves = 0;
                                             currentUnit = 0;
@@ -1375,7 +1375,7 @@ public class BattleScript : MonoBehaviour
                                     partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name == "SanityBeam" ||
                                     partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name == "UltimateSacrice")
                                 {
-                                    if ((activeUnits > 1 || partyUnits.Count - partyDeaths > 1)
+                                    if ((activeUnits - partyDeaths > 1)
                                         && partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].target != 3)
                                     {
                                         useSound(1);
@@ -1426,7 +1426,7 @@ public class BattleScript : MonoBehaviour
                                         menu_input = false;
 
                                         //Perform player attacks
-                                        if (moves >= activeUnits || currentUnit == 4)
+                                        if (moves >= activeUnits - partyDeaths)
                                         {
                                             moves = 0;
                                             currentUnit = 0;
@@ -1479,7 +1479,7 @@ public class BattleScript : MonoBehaviour
                                     menu_input = false;
 
                                     //Perform player attacks
-                                    if (moves >= activeUnits || currentUnit == 4)
+                                    if (moves >= activeUnits - partyDeaths)
                                     {
                                         moves = 0;
                                         currentUnit = 0;
@@ -1673,7 +1673,7 @@ public class BattleScript : MonoBehaviour
                 menu_input = true;
 
                 //If this unit is the last one in the party to move
-                if (moves >= activeUnits || currentUnit == 4)
+                if (moves >= activeUnits - partyDeaths)
                 {
                     moves = 0;
                     currentUnit = 0;
@@ -1925,7 +1925,7 @@ public class BattleScript : MonoBehaviour
                             menu_input = true;
 
                             //If this unit is the last one in the party to move
-                            if (moves >= activeUnits || currentUnit == 4)
+                            if (moves >= activeUnits - partyDeaths)
                             {
                                 moves = 0;
                                 currentUnit = 0;
@@ -1997,7 +1997,7 @@ public class BattleScript : MonoBehaviour
                                 menu_input = false;
 
                                 //Perform player attacks
-                                if (moves >= activeUnits || currentUnit == 4)
+                                if (moves >= activeUnits - partyDeaths)
                                 {
                                     moves = 0;
                                     currentUnit = 0;
@@ -2221,7 +2221,7 @@ public class BattleScript : MonoBehaviour
                             partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.view.transform.position = here;
                             moves += 1;
 
-                            if (moves >= activeUnits || currentUnit == 4)
+                            if (moves >= activeUnits - partyDeaths)
                             {
                                 moves = 0;
                                 currentUnit = 0;
@@ -2372,7 +2372,7 @@ public class BattleScript : MonoBehaviour
                         partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.view.transform.position = here;
                         moves += 1;
 
-                        if (moves >= activeUnits || currentUnit == 4)
+                        if (moves >= activeUnits - partyDeaths)
                         {
                             moves = 0;
                             currentUnit = 0;
@@ -2621,7 +2621,7 @@ public class BattleScript : MonoBehaviour
                     CloseMenu(3);
                     menu_input = false;
 
-                    if (moves >= activeUnits || currentUnit == 4)
+                    if (moves >= activeUnits - partyDeaths)
                     {
                         moves = 0;
                         currentUnit = 0;
@@ -4335,8 +4335,8 @@ public class BattleScript : MonoBehaviour
         for (int i = 0; i < loader.names.Length; i++)
         {
             partyNames[i] = loader.names[i];
-            if (loader.HPs[i] > 0)
-            {
+            //if (loader.HPs[i] > 0)
+            //{
                 unit p;
                 if (loader.names[i] == "Albert" && !loader.dead[i])
                 {
@@ -4477,12 +4477,12 @@ public class BattleScript : MonoBehaviour
 
                 //partyNames.Add(unitGo.GetComponent<UnitMono>().mainUnit.unitName);
                 activeUnits += 1;
-            }
-            else
-            {
-                //partyUnits.Add(null);
-                continue;
-            }
+            //}
+            //else
+            //{
+            //    //partyUnits.Add(null);
+             //   continue;
+            //}
         }
 
         //Find number of enemies, and choose correct spawn loadout
@@ -4777,6 +4777,7 @@ public class BattleScript : MonoBehaviour
             }
         }
         currentUnit = less;
+        Debug.Log("Active units == " + activeUnits);
 
         //Start player turn
         yield return new WaitForSeconds(1f);
@@ -6306,7 +6307,7 @@ public class BattleScript : MonoBehaviour
         {
             partyDeaths++;
             yield return unitDeath(uni);
-            if (partyDeaths == activeUnits)
+            if (partyDeaths >= activeUnits)
             {
                 state = battleState.LOSE;
                 yield return battleEnd();
@@ -6323,7 +6324,7 @@ public class BattleScript : MonoBehaviour
             state = battleState.WIN;
             yield return battleEnd();
         }
-        else if (partyDeaths == activeUnits)
+        else if (partyDeaths >= activeUnits)
         {
             state = battleState.LOSE;
             yield return battleEnd();
