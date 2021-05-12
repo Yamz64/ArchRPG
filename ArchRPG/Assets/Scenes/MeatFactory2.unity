@@ -8608,8 +8608,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mark_interactable: 0
-  spawn_position: {x: -9, y: -3}
-  scene: MeatFactory1
+  spawn_position: {x: -9, y: -2}
+  scene: MeatFactory3
 --- !u!61 &1990340640
 BoxCollider2D:
   m_ObjectHideFlags: 0
