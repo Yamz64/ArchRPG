@@ -460,7 +460,7 @@ public static class Consumables
             image_file_path = "ItemSprites/ConsumableIcon3";
             amount = 1;
             limit = 99;
-            cost = 10;
+            cost = 5;
         }
 
         public override void Use()
@@ -527,7 +527,7 @@ public static class Consumables
             image_file_path = "ItemSprites/ConsumableIcon3";
             amount = 1;
             limit = 99;
-            cost = 20;
+            cost = 10;
         }
 
         public override void Use()
@@ -553,7 +553,7 @@ public static class Consumables
             image_file_path = "ItemSprites/ConsumableIcon3";
             amount = 1;
             limit = 99;
-            cost = 15;
+            cost = 8;
         }
 
         public override void Use()
@@ -835,7 +835,7 @@ public static class Consumables
             image_file_path = "ItemSprites/ConsumableIcon2";
             amount = 1;
             limit = 99;
-            cost = 5;
+            cost = 2;
         }
 
         public override void Use()
@@ -862,7 +862,7 @@ public static class Consumables
             image_file_path = "ItemSprites/ConsumableIcon3";
             amount = 1;
             limit = 99;
-            cost = 10;
+            cost = 5;
         }
 
         public override void Use()
@@ -891,7 +891,7 @@ public static class Consumables
             image_file_path = "ItemSprites/ConsumableIcon3";
             amount = 1;
             limit = 99;
-            cost = 5;
+            cost = 2;
         }
 
         public override void Use()
@@ -917,7 +917,7 @@ public static class Consumables
             image_file_path = "ItemSprites/ConsumableIcon3";
             amount = 1;
             limit = 99;
-            cost = 10;
+            cost = 5;
         }
 
         public override void Use()
@@ -945,7 +945,7 @@ public static class Consumables
             image_file_path = "ItemSprites/ConsumableIcon3";
             amount = 1;
             limit = 99;
-            cost = 5;
+            cost = 2;
         }
 
         public override void Use()
@@ -971,7 +971,7 @@ public static class Consumables
             image_file_path = "ItemSprites/ConsumableIcon3";
             amount = 1;
             limit = 99;
-            cost = 5;
+            cost = 3;
         }
 
         public override void Use()
@@ -998,7 +998,7 @@ public static class Consumables
             image_file_path = "ItemSprites/ConsumableIcon2";
             amount = 1;
             limit = 99;
-            cost = 5;
+            cost = 3;
         }
 
         public override void Use()
@@ -1020,11 +1020,11 @@ public static class Consumables
         {
             name = "Tinfoil Hat";
             id = "consumables:tinfoilhat";
-            description = "Shroud yourself from those hidden gazes that would seek to encroach on your private thoughts with a state of the art tinfoil hat!";
+            description = "Shroud yourself from those hidden gazes that would seek to encroach on your private thoughts with a state of the art tinfoil hat! Removes Analyzed!";
             image_file_path = "ItemSprites/ConsumableIcon3";
             amount = 1;
             limit = 99;
-            cost = 5;
+            cost = 3;
         }
 
         public override void Use()
@@ -1050,7 +1050,7 @@ public static class Consumables
             image_file_path = "ItemSprites/ConsumableIcon3";
             amount = 1;
             limit = 99;
-            cost = 5;
+            cost = 3;
         }
 
         public override void Use()
@@ -1077,7 +1077,7 @@ public static class Consumables
             image_file_path = "ItemSprites/ConsumableIcon3";
             amount = 1;
             limit = 99;
-            cost = 5;
+            cost = 2;
         }
 
         public override void Use()
@@ -1104,7 +1104,7 @@ public static class Consumables
             image_file_path = "ItemSprites/ConsumableIcon3";
             amount = 1;
             limit = 99;
-            cost = 5;
+            cost = 2;
         }
 
         public override void Use()
@@ -1130,7 +1130,7 @@ public static class Consumables
             image_file_path = "ItemSprites/ConsumableIcon3";
             amount = 1;
             limit = 99;
-            cost = 5;
+            cost = 2;
         }
 
         public override void Use()

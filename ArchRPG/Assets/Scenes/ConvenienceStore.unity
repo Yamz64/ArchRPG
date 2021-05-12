@@ -4381,40 +4381,40 @@ MonoBehaviour:
   type: 0
   items:
   - name: Ginger Ale
-    cost: 7
+    cost: 5
     type: 0
   - name: Stomach Pump
-    cost: 15
+    cost: 10
     type: 0
   - name: Tissues
-    cost: 7
+    cost: 5
     type: 0
   - name: Eye Drops
-    cost: 15
+    cost: 10
     type: 0
   - name: Smelling Salts
-    cost: 7
+    cost: 5
     type: 0
   - name: Leeches
-    cost: 7
+    cost: 5
     type: 0
   - name: Mineral Water
-    cost: 7
+    cost: 5
     type: 0
   - name: Tinfoil Hat
-    cost: 7
+    cost: 5
     type: 0
   - name: Caffeine Gum
-    cost: 7
+    cost: 5
     type: 0
   - name: Lightning Rod
-    cost: 7
+    cost: 5
     type: 0
   - name: Litter
-    cost: 7
+    cost: 5
     type: 0
   - name: An Actual Pepper
-    cost: 7
+    cost: 5
     type: 0
   - name: '"Winning" Lottery Ticket!'
     cost: 30
@@ -4634,16 +4634,16 @@ MonoBehaviour:
   type: 0
   items:
   - name: Adderall
-    cost: 15
+    cost: 8
     type: 0
   - name: Beer
-    cost: 10
+    cost: 7
     type: 0
   - name: Cocaine
-    cost: 40
+    cost: 25
     type: 0
   - name: Xanax
-    cost: 30
+    cost: 15
     type: 0
 --- !u!1001 &2089990695
 PrefabInstance:
