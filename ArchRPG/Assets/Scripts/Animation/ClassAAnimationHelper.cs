@@ -112,7 +112,7 @@ public class ClassAAnimationHelper : MonoBehaviour
         dialogue.Add("While you were all preoccupied with your inane social lives, I was busy unraveling the complex mysteries within our town.");
         dialogue.Add("First, there was the recent gym slime incident, which piqued my interest,");
         dialogue.Add("but immediately after there was also the bizarre situation with the alleged demons at the bakery---");
-        dialogue.Add("Hey! The gym doesn’t have anything to do with the bakery!");
+        dialogue.Add("Hey! The gym doesn't have anything to do with the bakery!");
         dialogue.Add("Shut up, sulfur-brain, I'm getting to that.");
         dialogue.Add("There’s been a whole slew of these unnatural, maybe even supernatural phenomena---");
         dialogue.Add("Supernatural phenomena? What do you think this is pal, clown school???");
