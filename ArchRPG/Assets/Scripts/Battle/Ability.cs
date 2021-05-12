@@ -949,7 +949,7 @@ namespace EnemyAbilities
         {
             name = "Join the Crowd!";
             cost = 0;
-            target = 1;
+            target = 0;
             enemyTarget = 2;
             damage = 0;
             swapper = 1;
@@ -1616,8 +1616,7 @@ namespace EnemyAbilities
 
         public override void UseAttack(unit user, unit target)
         {
-            target = user;
-            user.giveStatus(statusEffect);
+            target.giveStatus(statusEffect);
         }
     }
 
