@@ -10215,26 +10215,26 @@ MonoBehaviour:
   idle_anim_delay: 0.1
   walk_anim_delay: 0.1
   idle_sprites_up:
-  - {fileID: -8033454810802506198, guid: 40fa4be8adfabd143985c5fe86a13a65, type: 3}
+  - {fileID: 4788528864718502321, guid: e9da5c7b9aef42346b834475a47ca9f3, type: 3}
   idle_sprites_side:
-  - {fileID: -4267551644433111294, guid: 40fa4be8adfabd143985c5fe86a13a65, type: 3}
+  - {fileID: 3522633315900727720, guid: e9da5c7b9aef42346b834475a47ca9f3, type: 3}
   idle_sprites_down:
-  - {fileID: 8589044547344555723, guid: 40fa4be8adfabd143985c5fe86a13a65, type: 3}
+  - {fileID: 2999103937103630911, guid: e9da5c7b9aef42346b834475a47ca9f3, type: 3}
   walk_sprites_up:
-  - {fileID: -2983644019558953661, guid: 40fa4be8adfabd143985c5fe86a13a65, type: 3}
-  - {fileID: 416978813623651840, guid: 40fa4be8adfabd143985c5fe86a13a65, type: 3}
-  - {fileID: 5851983208418317336, guid: 40fa4be8adfabd143985c5fe86a13a65, type: 3}
-  - {fileID: 416978813623651840, guid: 40fa4be8adfabd143985c5fe86a13a65, type: 3}
+  - {fileID: 670164330985460096, guid: e9da5c7b9aef42346b834475a47ca9f3, type: 3}
+  - {fileID: 8014844892240208260, guid: e9da5c7b9aef42346b834475a47ca9f3, type: 3}
+  - {fileID: 2143871316820742577, guid: e9da5c7b9aef42346b834475a47ca9f3, type: 3}
+  - {fileID: 8014844892240208260, guid: e9da5c7b9aef42346b834475a47ca9f3, type: 3}
   walk_sprites_side:
-  - {fileID: 7155085593993212256, guid: 40fa4be8adfabd143985c5fe86a13a65, type: 3}
-  - {fileID: -8321090616546934012, guid: 40fa4be8adfabd143985c5fe86a13a65, type: 3}
-  - {fileID: 3217985286818753080, guid: 40fa4be8adfabd143985c5fe86a13a65, type: 3}
-  - {fileID: -8321090616546934012, guid: 40fa4be8adfabd143985c5fe86a13a65, type: 3}
+  - {fileID: 589803062445011548, guid: e9da5c7b9aef42346b834475a47ca9f3, type: 3}
+  - {fileID: 7111067316001789027, guid: e9da5c7b9aef42346b834475a47ca9f3, type: 3}
+  - {fileID: 6942746347881642572, guid: e9da5c7b9aef42346b834475a47ca9f3, type: 3}
+  - {fileID: 7111067316001789027, guid: e9da5c7b9aef42346b834475a47ca9f3, type: 3}
   walk_sprites_down:
-  - {fileID: 1781321287241677023, guid: 40fa4be8adfabd143985c5fe86a13a65, type: 3}
-  - {fileID: -291799078283980262, guid: 40fa4be8adfabd143985c5fe86a13a65, type: 3}
-  - {fileID: -4569180058710301178, guid: 40fa4be8adfabd143985c5fe86a13a65, type: 3}
-  - {fileID: -291799078283980262, guid: 40fa4be8adfabd143985c5fe86a13a65, type: 3}
+  - {fileID: -3972286876005079056, guid: e9da5c7b9aef42346b834475a47ca9f3, type: 3}
+  - {fileID: -1844973160375061021, guid: e9da5c7b9aef42346b834475a47ca9f3, type: 3}
+  - {fileID: -8997473755138919938, guid: e9da5c7b9aef42346b834475a47ca9f3, type: 3}
+  - {fileID: -1844973160375061021, guid: e9da5c7b9aef42346b834475a47ca9f3, type: 3}
   i_frame_count: 1.5
   interaction_protection: 0
   intangible: 0
