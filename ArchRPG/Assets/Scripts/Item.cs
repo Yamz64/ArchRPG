@@ -1162,12 +1162,12 @@ public static class Consumables
 
         public override void Use()
         {
-            character.SetSAN(character.GetSAN() + Random.Range(1, 11));
+            character.SetSAN(character.GetSAN() + Random.Range(6, 22));
         }
 
         public override void Use(unit user)
         {
-            user.setSAN(user.getSAN() + Random.Range(1, 11));
+            user.setSAN(user.getSAN() + Random.Range(6, 22));
             Remove();
         }
     }
