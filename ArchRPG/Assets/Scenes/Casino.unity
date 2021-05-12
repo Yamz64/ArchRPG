@@ -3573,7 +3573,7 @@ MonoBehaviour:
   - text: Oh and you too, ugly.
   - text: Stay a bit and gamble! Don't be like this fuckin' loser that can't win
       a single slot!
-  - text: '*COUGH COUGH* Hey I''m no loser! I''ll show you I''ve still got my liver
+  - text: '*COUGH COUGH* Hey I''m no loser! I''ll show you. I''ve still got my liver
       and pancreas left!'
   - text: That's gotta be worth something!
   container:
@@ -3597,14 +3597,14 @@ MonoBehaviour:
     - name: Quake
       color: {r: 0, g: 0, b: 0, a: 0}
       lower: 0
-      upper: 11
+      upper: 10
   - effects: []
   - effects: []
   - effects:
     - name: Quake
       color: {r: 0, g: 0, b: 0, a: 0}
       lower: 0
-      upper: 12
+      upper: 11
   - effects: []
   dialogueImages:
   - sprite_path: CharacterSprites/BackgroundCharacters/Jerma
