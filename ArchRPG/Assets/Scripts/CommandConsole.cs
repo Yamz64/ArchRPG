@@ -22,6 +22,8 @@ public class CommandConsole : MonoBehaviour
     public static Command CLEARINVENTORY;
     public static Command<int> SETLEVEL;
     public static Command HEALALL;
+    public static Command<string> ADDPARTYMEMBER;
+    public static Command CLEARPARTY;
 
     public List<object> command_list;
     
@@ -286,6 +288,51 @@ public class CommandConsole : MonoBehaviour
             }
         });
 
+        ADDPARTYMEMBER = new Command<string>("add_party_member", "Adds a party member to the party if there is room.", "add_party_member <Name>", (x) =>
+        {
+            switch (x)
+            {
+                case "Clyve":
+                    GetComponent<PlayerDataMono>().data.AddPartyMember(new Clyve());
+                    break;
+                case "Jim":
+                    GetComponent<PlayerDataMono>().data.AddPartyMember(new Jim());
+                    break;
+                case "Norm":
+                    GetComponent<PlayerDataMono>().data.AddPartyMember(new Norm());
+                    break;
+                case "Shirley":
+                    GetComponent<PlayerDataMono>().data.AddPartyMember(new Shirley());
+                    break;
+                case "Ralph":
+                    GetComponent<PlayerDataMono>().data.AddPartyMember(new Ralph());
+                    break;
+                case "Lucy":
+                    GetComponent<PlayerDataMono>().data.AddPartyMember(new Lucy());
+                    break;
+                case "Tim":
+                    GetComponent<PlayerDataMono>().data.AddPartyMember(new Tim());
+                    break;
+                case "WhiteKnight":
+                    GetComponent<PlayerDataMono>().data.AddPartyMember(new WhiteKnight());
+                    break;
+                case "OliverSprout":
+                    GetComponent<PlayerDataMono>().data.AddPartyMember(new OliverSprout());
+                    break;
+                case "EmberMoon":
+                    GetComponent<PlayerDataMono>().data.AddPartyMember(new EmberMoon());
+                    break;
+                default:
+                    Debug.LogError($"No party member of name: '{x}!'");
+                    break;
+            }
+        });
+
+        CLEARPARTY = new Command("clear_party", "Clear the player's current party.", "clear_party", () =>
+        {
+            GetComponent<PlayerDataMono>().data.ClearParty();
+        });
+
         command_list = new List<object>
         {
             HELP,
@@ -296,7 +343,9 @@ public class CommandConsole : MonoBehaviour
             ADDITEM,
             CLEARINVENTORY,
             SETLEVEL,
-            HEALALL
+            HEALALL,
+            ADDPARTYMEMBER,
+            CLEARPARTY
         };
     }
 
