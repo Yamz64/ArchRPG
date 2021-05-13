@@ -3012,7 +3012,7 @@ namespace LucyAbilities
             for (int i = 0; i < rani; i++)
             {
                 int togo = Random.Range(0, targets.Count);
-                while (targets[i].currentHP <= 0)
+                while (targets[i].currentHP <= 0 || targets[i].enemy)
                 {
                     togo = Random.Range(0, targets.Count);
                 }
