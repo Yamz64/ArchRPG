@@ -2545,10 +2545,10 @@ namespace NormAbilities
             name = "Poop Throw";
             desc1 = "Backline Projectile Attack";
             desc2 = "Well of course we're going to Throw poo at them!  This attack may cause vomiting in addition to a small amount of chemical damage";
-            cost = 3;
+            cost = 4;
             damage = 8;
             damageType = 3;
-            position = 2;
+            position = 0;
             statusEffect = "Vomiting";
         }
     }

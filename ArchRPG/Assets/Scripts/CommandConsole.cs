@@ -322,6 +322,9 @@ public class CommandConsole : MonoBehaviour
                 case "EmberMoon":
                     GetComponent<PlayerDataMono>().data.AddPartyMember(new EmberMoon());
                     break;
+                case "Eldritch":
+                    GetComponent<PlayerDataMono>().data.AddPartyMember(new Eldritch());
+                    break;
                 default:
                     Debug.LogError($"No party member of name: '{x}!'");
                     break;
