@@ -718,7 +718,7 @@ public class CharacterStatJsonConverter
     }
 
     //full save means that the save is being archived to the actual save file as opposed to referencing changes between scenes
-    public void Save(int save_file, bool full_save = false)
+    public void Save(int save_file, bool full_save = false, float xp_factor = 1f)
     {
         if (!full_save)
         {
@@ -730,6 +730,7 @@ public class CharacterStatJsonConverter
             string data = JsonUtility.ToJson(this, true);
 
             File.WriteAllText(Application.streamingAssetsPath + "/Saves/" + (save_file + 1).ToString() + "/Save.json", data);
+            PlayerPrefs.SetFloat("_xp_factor_", xp_factor);
             Debug.Log("saved");
         }
         else

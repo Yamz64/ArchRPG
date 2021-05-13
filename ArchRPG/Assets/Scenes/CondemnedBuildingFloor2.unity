@@ -2494,10 +2494,13 @@ MonoBehaviour:
   enemy_names:
   - enemy_name: Vermin
     encounter_priority: 5
+    xp_factor: 1
   - enemy_name: Conniving Cone
     encounter_priority: 3
+    xp_factor: 1
   - enemy_name: Disposal Demon
     encounter_priority: 3
+    xp_factor: 1
   maximum_enemies: {x: 1, y: 4}
   roll_delay: 2
   roll_min: 1
@@ -3450,6 +3453,18 @@ PrefabInstance:
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[2].encounter_priority
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[0].xp_factor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[1].xp_factor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[2].xp_factor
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
@@ -5812,5 +5827,5 @@ Transform:
   - {fileID: 1721963105}
   - {fileID: 462477914}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

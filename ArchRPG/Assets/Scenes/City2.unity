@@ -3149,6 +3149,18 @@ PrefabInstance:
       propertyPath: maximum_enemies.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[0].xp_factor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[1].xp_factor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[2].xp_factor
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
 --- !u!1 &409500298
@@ -14644,6 +14656,18 @@ PrefabInstance:
       propertyPath: maximum_enemies.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[0].xp_factor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[1].xp_factor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[2].xp_factor
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
 --- !u!1001 &1209524827
@@ -14753,10 +14777,13 @@ MonoBehaviour:
   enemy_names:
   - enemy_name: Highway Horror
     encounter_priority: 2
+    xp_factor: 1
   - enemy_name: Conniving Cone
     encounter_priority: 3
+    xp_factor: 1
   - enemy_name: Disposal Demon
     encounter_priority: 2
+    xp_factor: 1
   maximum_enemies: {x: 1, y: 3}
   roll_delay: 2
   roll_min: 1

@@ -163,8 +163,7 @@ public class RNGEncounter : MonoBehaviour
                             //start battle transition and load into the battle
                             data.active_scene = SceneManager.GetActiveScene().name;
                             data.position = GameObject.FindGameObjectWithTag("Player").transform.position;
-                            data.Save(PlayerPrefs.GetInt("_active_save_file_"));
-                            PlayerPrefs.SetFloat("_xp_factor_", average_xp_factor);
+                            data.Save(PlayerPrefs.GetInt("_active_save_file_"), false, average_xp_factor);
                             StartCoroutine(Battle());
                         }
                     }

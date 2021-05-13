@@ -10,6 +10,7 @@ public class RoamingEnemySpawnerBehavior : MonoBehaviour
     {
         public string enemy_name;
         public int encounter_priority;
+        [Range(1.0f, Mathf.Infinity)]
         public float xp_factor;
     }
 

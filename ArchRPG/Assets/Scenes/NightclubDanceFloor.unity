@@ -3962,6 +3962,10 @@ PrefabInstance:
       propertyPath: maximum_enemies.y
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[0].xp_factor
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
 --- !u!1001 &482855453
@@ -11907,6 +11911,10 @@ PrefabInstance:
       propertyPath: maximum_enemies.y
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[0].xp_factor
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
 --- !u!1 &619200725
@@ -17145,6 +17153,10 @@ PrefabInstance:
       propertyPath: maximum_enemies.y
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[0].xp_factor
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
 --- !u!1001 &1195625100
@@ -22056,6 +22068,10 @@ PrefabInstance:
       propertyPath: maximum_enemies.y
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[0].xp_factor
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
 --- !u!1001 &1555687356
@@ -26866,6 +26882,10 @@ PrefabInstance:
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[0].encounter_priority
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[0].xp_factor
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}

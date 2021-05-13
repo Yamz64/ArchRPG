@@ -745,6 +745,18 @@ PrefabInstance:
       propertyPath: enemy_names.Array.data[2].enemy_name
       value: Vermin
       objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[0].xp_factor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[1].xp_factor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[2].xp_factor
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
 --- !u!1001 &286097457
@@ -942,6 +954,18 @@ PrefabInstance:
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: maximum_enemies.y
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[0].xp_factor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[1].xp_factor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[2].xp_factor
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
@@ -1686,6 +1710,18 @@ PrefabInstance:
       propertyPath: maximum_enemies.y
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[0].xp_factor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[1].xp_factor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[2].xp_factor
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
 --- !u!1 &568527059
@@ -2105,10 +2141,13 @@ MonoBehaviour:
   enemy_names:
   - enemy_name: Killer Cone
     encounter_priority: 3
+    xp_factor: 1
   - enemy_name: Thrash Can
     encounter_priority: 4
+    xp_factor: 1
   - enemy_name: Vermin
     encounter_priority: 4
+    xp_factor: 1
   maximum_enemies: {x: 2, y: 4}
   roll_delay: 2
   roll_min: 1
@@ -7662,6 +7701,18 @@ PrefabInstance:
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: maximum_enemies.y
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[0].xp_factor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[1].xp_factor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[2].xp_factor
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
@@ -19604,6 +19655,18 @@ PrefabInstance:
       propertyPath: maximum_enemies.y
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[0].xp_factor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[1].xp_factor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[2].xp_factor
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
 --- !u!1001 &1099625613
@@ -23816,6 +23879,18 @@ PrefabInstance:
       propertyPath: maximum_enemies.y
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[0].xp_factor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[1].xp_factor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[2].xp_factor
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
 --- !u!1 &1715888751 stripped
@@ -23956,6 +24031,18 @@ PrefabInstance:
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: maximum_enemies.y
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[0].xp_factor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[1].xp_factor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[2].xp_factor
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
@@ -25543,6 +25630,18 @@ PrefabInstance:
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: maximum_enemies.y
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[0].xp_factor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[1].xp_factor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
+      propertyPath: enemy_names.Array.data[2].xp_factor
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
