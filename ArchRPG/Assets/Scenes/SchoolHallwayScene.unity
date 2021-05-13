@@ -9427,10 +9427,13 @@ MonoBehaviour:
   enemy_names:
   - enemy_name: Killer Cone
     encounter_priority: 9
+    xp_factor: 1
   - enemy_name: Thrash Can
     encounter_priority: 5
+    xp_factor: 1
   - enemy_name: Locker Lurker
     encounter_priority: 2
+    xp_factor: 1
   maximum_enemies: {x: 2, y: 3}
   roll_delay: 2
   roll_min: 1

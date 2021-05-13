@@ -10,6 +10,7 @@ public class RoamingEnemySpawnerBehavior : MonoBehaviour
     {
         public string enemy_name;
         public int encounter_priority;
+        public float xp_factor;
     }
 
     public float move_speed;
@@ -56,6 +57,7 @@ public class RoamingEnemySpawnerBehavior : MonoBehaviour
                 OverworldEncounter.EncounterObject temp = new OverworldEncounter.EncounterObject();
                 temp.encounter_priority = enemy_names[i].encounter_priority;
                 temp.enemy_name = enemy_names[i].enemy_name;
+                temp.xp_factor = enemy_names[i].xp_factor;
                 enemy.GetComponent<OverworldEncounter>().enemy_names.Add(temp);
             }
             //determine the type of encounter
