@@ -7137,6 +7137,8 @@ public class BattleScript : MonoBehaviour
     //Use to give a unit experience and, if possible, level them up. Display text as well
     IEnumerator levelUp(int expGained)
     {
+        float factor = PlayerPrefs.GetFloat("_xp_factor_");
+        int buff = (int)(expGained * factor);
         //Make a list to check if any abilities are added
         List<int> abiSizes = new List<int>();
 
@@ -7149,7 +7151,7 @@ public class BattleScript : MonoBehaviour
                     !partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName.Equals("Player"))
                 {
                     abiSizes.Add(partyUnits[i].GetComponent<UnitMono>().mainUnit.abilities.Count);
-                    partyUnits[i].GetComponent<UnitMono>().mainUnit.gainEXP(expGained);
+                    partyUnits[i].GetComponent<UnitMono>().mainUnit.gainEXP(buff);
                     int levi = partyUnits[i].GetComponent<UnitMono>().mainUnit.level;
                     partyUnits[i].GetComponent<UnitMono>().mainUnit.updateUnit(partyUnits[i].GetComponent<UnitMono>().mainUnit.level);
                     if (partyUnits[i].GetComponent<UnitMono>().mainUnit.level > levi)
@@ -7187,8 +7189,8 @@ public class BattleScript : MonoBehaviour
                 abiSizes.Add(0);
             }
         }
-        bool boost = pc.gainEXP(expGained);
-        yield return textDisplay("Gained " + expGained + " exp", true);
+        bool boost = pc.gainEXP(buff);
+        yield return textDisplay("Gained " + buff + " exp", true);
         //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
         if (boost == true)
         {
