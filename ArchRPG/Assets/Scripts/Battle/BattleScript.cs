@@ -1887,35 +1887,7 @@ public class BattleScript : MonoBehaviour
                 {
                     if (partyUnits[currentAlly].GetComponent<UnitMono>().mainUnit.currentHP > 0)
                     {
-                        if (partyUnits[currentAlly].GetComponent<UnitMono>().mainUnit.unitName.Equals("Player") 
-                            && partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].name == "VampiricBetrayal")
-                        {
-                            StartCoroutine(textDisplay("Can't use this ability on yourself"));
-                            Image[] opts = transform.GetChild(1).Find("AbilityMenu").GetComponentsInChildren<Image>();
-                            foreach (Image child in opts)
-                            {
-                                Color temp = child.color;
-                                temp.a = 1.0f;
-                                child.color = temp;
-                            }
-                            Text[] ts = transform.GetChild(1).Find("AbilityMenu").GetComponentsInChildren<Text>();
-                            foreach (Text child in ts)
-                            {
-                                Color temp = child.color;
-                                temp.a = 1.0f;
-                                child.color = temp;
-                            }
-                            currentAlly = 0;
-                            highlighted_ability = 0;
-                            ability_offset = 0;
-                            cursor.SetActive(true);
-                            CloseSelectUnitMenu();
-                            CloseUseAbilityMenu();
-                            CloseMenu(1);
-                            unit_select_menu = false;
-                            menu_input = true;
-                        }
-                        else if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].enemyTarget != 0)
+                        if (partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.abilities[highlighted_ability].enemyTarget != 0)
                         {
                             useSound(1);
                             int speed = partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.getAGI();
