@@ -394,7 +394,7 @@ public class BattleScript : MonoBehaviour
         }
     }
 
-    //Open the enemy select menu
+    //Open the unit select menu
     public void OpenSelectUnitMenu()
     {
         int i = 0;
@@ -455,19 +455,26 @@ public class BattleScript : MonoBehaviour
         }
     }
 
-    //Close the enemy select menu
+    //Close the unit select menu
     public void CloseSelectUnitMenu()
     {
         for (int i = 0; i < partyUnits.Count; i++)
         {
             if (partyUnits[i] != null)
             {
-                if (partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP > 0)
-                {
+                //if (partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                //{
                     Color temp = partyUnits[i].GetComponent<UnitMono>().mainUnit.view.color;
                     temp.a = 1.0f;
+                    temp.r = 1.0f;
+                    temp.b = 1.0f;
                     partyUnits[i].GetComponent<UnitMono>().mainUnit.view.color = temp;
-                }
+
+                    temp = partyUnits[i].GetComponent<UnitMono>().mainUnit.deadIcon.color;
+                    temp.r = 1.0f;
+                    temp.b = 1.0f;
+                    partyUnits[i].GetComponent<UnitMono>().mainUnit.deadIcon.color = temp; 
+                //}
             }
         }
         unit_select_menu = false;
@@ -481,17 +488,31 @@ public class BattleScript : MonoBehaviour
         {
             if (partyUnits[i] != null)
             {
-                if (i != act && i != act2 && partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP > 0)
+                if (i != act && i != act2)
                 {
                     Color temp = partyUnits[i].GetComponent<UnitMono>().mainUnit.view.color;
                     temp.a = 0.6f;
+                    temp.r = 1.0f;
+                    temp.b = 1.0f;
                     partyUnits[i].GetComponent<UnitMono>().mainUnit.view.color = temp;
+
+                    temp = partyUnits[i].GetComponent<UnitMono>().mainUnit.deadIcon.color;
+                    temp.r = 1.0f;
+                    temp.b = 1.0f;
+                    partyUnits[i].GetComponent<UnitMono>().mainUnit.deadIcon.color = temp;
                 }
                 else if (i == act || i == act2)
                 {
                     Color temp = partyUnits[i].GetComponent<UnitMono>().mainUnit.view.color;
                     temp.a = 1.0f;
+                    temp.r = 0.8f;
+                    temp.b = 0.8f;
                     partyUnits[i].GetComponent<UnitMono>().mainUnit.view.color = temp;
+
+                    temp = partyUnits[i].GetComponent<UnitMono>().mainUnit.deadIcon.color;
+                    temp.r = 0.8f;
+                    temp.b = 0.8f;
+                    partyUnits[i].GetComponent<UnitMono>().mainUnit.deadIcon.color = temp;
                 }
             }
         }
@@ -1915,6 +1936,7 @@ public class BattleScript : MonoBehaviour
                             here.y = partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.backupView.transform.position.y;
                             partyUnits[currentUnit - 1].GetComponent<UnitMono>().mainUnit.view.transform.position = here;
                             moves += 1;
+                            Debug.Log("Step 1 done");
 
                             Image[] opts = transform.GetChild(1).Find("AbilityMenu").GetComponentsInChildren<Image>();
                             foreach (Image child in opts)
@@ -1933,10 +1955,13 @@ public class BattleScript : MonoBehaviour
 
                             cursor.SetActive(true);
                             CloseSelectUnitMenu();
+                            Debug.Log("Step 1.5 done");
                             CloseUseAbilityMenu();
+                            Debug.Log("Step 2 done");
                             CloseMenu(1);
                             unit_select_menu = false;
                             menu_input = true;
+                            Debug.Log("Step 3 done");
 
                             //If this unit is the last one in the party to move
                             if (moves >= activeUnits - partyDeaths)
@@ -1944,7 +1969,9 @@ public class BattleScript : MonoBehaviour
                                 moves = 0;
                                 currentUnit = 0;
                                 state = battleState.ATTACK;
+                                Debug.Log("Step 4 done");
                                 StartCoroutine(performActions());
+                                Debug.Log("Step 5 done");
                             }
                             else
                             {
@@ -2244,7 +2271,8 @@ public class BattleScript : MonoBehaviour
                             }
                             else
                             {
-                                while (partyUnits[currentUnit] == null && currentUnit < partyUnits.Count) currentUnit++;
+                                while ((partyUnits[currentUnit] == null || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
+                                    && currentUnit < partyUnits.Count) currentUnit++;
                                 if (currentUnit >= partyUnits.Count)
                                 {
                                     moves = 0;
@@ -2375,6 +2403,7 @@ public class BattleScript : MonoBehaviour
                         //data.UseItem(highlighted_item);
                         UpdateInventoryItems();
                         UpdateInventoryImageandDesc();
+                        CloseSelectUnitMenu();
                         CloseUseItemMenu();
                         CloseMenu(2);
                         highlighted_item = 0;
@@ -2395,7 +2424,8 @@ public class BattleScript : MonoBehaviour
                         }
                         else
                         {
-                            while (partyUnits[currentUnit] == null && currentUnit < partyUnits.Count) currentUnit++;
+                            while ((partyUnits[currentUnit] == null || partyUnits[currentUnit].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
+                                    && currentUnit < partyUnits.Count) currentUnit++;
                             if (currentUnit >= partyUnits.Count)
                             {
                                 moves = 0;
@@ -2413,30 +2443,6 @@ public class BattleScript : MonoBehaviour
                     {
                         useSound(0);
                         StartCoroutine(textDisplay("Can't use this item on the living"));
-                        Image[] opts = transform.GetChild(1).Find("ItemMenu").GetComponentsInChildren<Image>();
-                        foreach (Image child in opts)
-                        {
-                            Color temp = child.color;
-                            temp.a = 1.0f;
-                            child.color = temp;
-                        }
-                        Text[] ts = transform.GetChild(1).Find("ItemMenu").GetComponentsInChildren<Text>();
-                        foreach (Text child in ts)
-                        {
-                            Color temp = child.color;
-                            temp.a = 1.0f;
-                            child.color = temp;
-                        }
-                        currentAlly = 0;
-                        highlighted_item = 0;
-                        inventory_offset = 0;
-                        cursor.SetActive(true);
-                        CloseSelectUnitMenu();
-                        CloseUseItemMenu();
-                        CloseMenu(1);
-                        revive_select_menu = false;
-                        unit_select_menu = false;
-                        menu_input = true;
                     }
                 }
                 else
@@ -2472,14 +2478,14 @@ public class BattleScript : MonoBehaviour
             else if (InputManager.GetButtonDown("Cancel") || (InputManager.GetButtonDown("Menu")))
             {
                 useSound(0);
-                Image[] opts = transform.GetChild(1).Find("AbilityMenu").GetComponentsInChildren<Image>();
+                Image[] opts = transform.GetChild(1).Find("ItemMenu").GetComponentsInChildren<Image>();
                 foreach (Image child in opts)
                 {
                     Color temp = child.color;
                     temp.a = 1.0f;
                     child.color = temp;
                 }
-                Text[] ts = transform.GetChild(1).Find("AbilityMenu").GetComponentsInChildren<Text>();
+                Text[] ts = transform.GetChild(1).Find("ItemMenu").GetComponentsInChildren<Text>();
                 foreach (Text child in ts)
                 {
                     Color temp = child.color;
@@ -3691,6 +3697,7 @@ public class BattleScript : MonoBehaviour
                     yield return textDisplay(temp[ind].GetComponent<UnitMono>().mainUnit.unitName + " revived " +
                         temp[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit.unitName, true);
                     data.UseItem(actions[z].getIndex(), temp[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit);
+                    partyDeaths--;
                     StartCoroutine(unitLife(temp[actions[z].getTarget()].GetComponent<UnitMono>().mainUnit));
                     UpdateInventoryItems();
                     UpdateInventoryImageandDesc();
@@ -4525,6 +4532,7 @@ public class BattleScript : MonoBehaviour
             }
             if (unitGo.GetComponent<UnitMono>().mainUnit.currentHP <= 0)
             {
+                partyDeaths += 1;
                 Color dede = unitGo.GetComponent<UnitMono>().mainUnit.deadIcon.color;
                 dede.a = 1.0f;
                 unitGo.GetComponent<UnitMono>().mainUnit.view.CrossFadeAlpha(0.4f, 0f, false);
@@ -4790,6 +4798,7 @@ public class BattleScript : MonoBehaviour
         //data.AddItem(new Consumables.HotDog());
         //data.AddItem(new Consumables.BaconLollipop());
         //data.AddItem(new Consumables.HotDog());
+        data.AddItem(new Consumables.FleshHeart());
 
         //Define actions list
         actions = new List<action>();
@@ -4927,6 +4936,11 @@ public class BattleScript : MonoBehaviour
         }
         else
         {
+            for (int x = 0; x < bot.statuses.Count; x++)
+            {
+                bot.statuses[x] = -1;
+            }
+            bot.setHUD();
             Color dede = bot.deadIcon.color;
             dede.a = 1.0f;
             bot.view.CrossFadeAlpha(0.4f, 2f, false);
@@ -5499,14 +5513,14 @@ public class BattleScript : MonoBehaviour
                 if (dead && target.currentHP <= 0 && target.enemy)
                 {
                     enemyDeaths++;
-                    StartCoroutine(unitDeath(target));
+                    yield return unitDeath(target);
                     expHere += target.expGain;
                     //yield return levelUp(target.giveEXP());
                 }
                 else if (dead && target.currentHP <= 0 && !target.enemy)
                 {
                     partyDeaths++;
-                    StartCoroutine(unitDeath(target));
+                    yield return unitDeath(target);
                     expHere += target.expGain;
                     //yield return levelUp(target.giveEXP());
                 }
@@ -5518,14 +5532,14 @@ public class BattleScript : MonoBehaviour
                 if (deadL && enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
                 {
                     enemyDeaths++;
-                    StartCoroutine(unitDeath(enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit));
+                    yield return unitDeath(enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit);
                     expHere += enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.expGain;
                     //yield return levelUp(enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.giveEXP());
                 }
                 if (deadR && enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
                 {
                     enemyDeaths++;
-                    StartCoroutine(unitDeath(enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit));
+                    yield return unitDeath(enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit);
                     expHere += enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.expGain;
                     //yield return levelUp(enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.giveEXP());
                 }

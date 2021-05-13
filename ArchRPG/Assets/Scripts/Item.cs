@@ -1193,7 +1193,10 @@ public static class Consumables
 
         public override void Use(unit user)
         {
-            
+            user.setHP(user.defMaxHP);
+            user.setSP(user.maxSP);
+            user.setSAN(100);
+            Remove();
         }
     }
 }
