@@ -5738,11 +5738,11 @@ public class LucyUnit : unit
         }
         if (level >= 8)
         {
-            abilities.Add(new LucyAbilities.FrenziedInvasion());
+            abilities.Add(new LucyAbilities.PropellorRat());
         }
         if (level >= 12)
         {
-            abilities.Add(new LucyAbilities.PropellorRat());
+            abilities.Add(new LucyAbilities.FrenziedInvasion());
         }
         if (level >= 17)
         {
@@ -6016,11 +6016,11 @@ public class LucyUnit : unit
         }
         if (level >= 8)
         {
-            abilities.Add(new LucyAbilities.FrenziedInvasion());
+            abilities.Add(new LucyAbilities.PropellorRat());
         }
         if (level >= 12)
         {
-            abilities.Add(new LucyAbilities.PropellorRat());
+            abilities.Add(new LucyAbilities.FrenziedInvasion());
         }
         if (level >= 17)
         {
