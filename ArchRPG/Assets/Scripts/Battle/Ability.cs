@@ -3381,7 +3381,7 @@ namespace WhiteKnightAbilities
             position = 2;
             damage = 18;
             damageType = 1;
-            target = 3;
+            target = 0;
             statusEffect = "Conductive";
             use_pow = true;
             customAbility = 3;
@@ -3393,15 +3393,18 @@ namespace WhiteKnightAbilities
             {
                 if (targets[i] != null)
                 {
-                    if (i == 0 || i == 2)
+                    if (targets[i].currentHP > 0)
                     {
-                        int val = user.takeDamageCalc(targets[i], damage / 2, damageType, true);
-                        targets[i].takeDamage(val);
-                    }
-                    else
-                    {
-                        int val = user.takeDamageCalc(targets[i], damage, damageType, true);
-                        targets[i].takeDamage(val);
+                        if (i == 0 || i == 2)
+                        {
+                            int val = user.takeDamageCalc(targets[i], damage / 2, damageType, true);
+                            targets[i].takeDamage(val);
+                        }
+                        else
+                        {
+                            int val = user.takeDamageCalc(targets[i], damage, damageType, true);
+                            targets[i].takeDamage(val);
+                        }
                     }
                 }
             }

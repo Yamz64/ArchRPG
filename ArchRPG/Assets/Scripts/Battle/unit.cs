@@ -92,7 +92,7 @@ public class unit
         statBlurbIndex.Add("Unit's DEFENCE reduced by 25%");                                        //4
         statBlurbIndex.Add("Unit's AGILITY increased by 25%");                                      //5
         statBlurbIndex.Add("Unit's ATTACK increased by 33%");                                       //6
-        statBlurbIndex.Add("Unit's DEFENCE reduced by 50%, WILLPOWER reduced by 25%");              //7
+        statBlurbIndex.Add("Unit's DEFENCE increased by 50%, WILLPOWER reduced by 25%");            //7
         statBlurbIndex.Add("Unit is unable to perform actions while restrained");                   //8
         statBlurbIndex.Add("Unit is unable to act and is damaged in the process of consumption");   //9
         statBlurbIndex.Add("Unit's Maximum HP is reduced by 25% while diseased");                   //10

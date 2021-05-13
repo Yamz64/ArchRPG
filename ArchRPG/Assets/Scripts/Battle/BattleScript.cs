@@ -4371,166 +4371,196 @@ public class BattleScript : MonoBehaviour
             partyNames[i] = loader.names[i];
             //if (loader.HPs[i] > 0)
             //{
-                unit p;
-                if (loader.names[i] == "Albert" && !loader.dead[i])
+            unit p;
+            if (loader.names[i] == "Albert")
+            {
+                p = new PlayerUnit(loader.levels[i]);
+                pc = p;
+            }
+            else if (loader.names[i] == "Jim")
+            {
+                p = new JimUnit(loader.levels[i]);
+            }
+            else if (loader.names[i] == "Clyve")
+            {
+                p = new ClyveUnit(loader.levels[i]);
+            }
+            else if (loader.names[i] == "Norm")
+            {
+                p = new NormUnit(loader.levels[i]);
+            }
+            else if (loader.names[i] == "Shirley")
+            {
+                p = new ShirleyUnit(loader.levels[i]);
+            }
+            else if (loader.names[i] == "Ralph")
+            {
+                p = new RalphUnit(loader.levels[i]);
+            }
+            else if (loader.names[i] == "Lucy")
+            {
+                p = new LucyUnit(loader.levels[i]);
+            }
+            else if (loader.names[i] == "Tim")
+            {
+                p = new TimUnit(loader.levels[i]);
+            }
+            else if ((loader.names[i] == "White Knight" || loader.names[i] == "WhiteKnight" ))
+            {
+                p = new WhiteKnightUnit(loader.levels[i]);
+            }
+            else if ((loader.names[i] == "Oliver Sprout" || loader.names[i] == "OliverSprout" || loader.names[i] == "Oliver"))
+            {
+                p = new OliverSproutUnit(loader.levels[i]);
+                if (i < 2)
                 {
-                    p = new PlayerUnit(loader.levels[i]);
-                    pc = p;
-                }
-                else if (loader.names[i] == "Albert" && loader.dead[i])
-                {
-                    p = new EldritchPartyUnit(loader.levels[i]);
-                    pc = p;
-                }
-                else if (loader.names[i] == "Jim" && !loader.dead[i])
-                {
-                    p = new JimUnit(loader.levels[i]);
-                }
-                else if (loader.names[i] == "Clyve" && !loader.dead[i])
-                {
-                    p = new ClyveUnit(loader.levels[i]);
-                }
-                else if (loader.names[i] == "Norm" && !loader.dead[i])
-                {
-                    p = new NormUnit(loader.levels[i]);
-                }
-                else if (loader.names[i] == "Shirley" && !loader.dead[i])
-                {
-                    p = new ShirleyUnit(loader.levels[i]);
-                }
-                else if (loader.names[i] == "Ralph" && !loader.dead[i])
-                {
-                    p = new RalphUnit(loader.levels[i]);
-                }
-                else if (loader.names[i] == "Lucy" && !loader.dead[i])
-                {
-                    p = new LucyUnit(loader.levels[i]);
-                }
-                else if (loader.names[i] == "Tim" && !loader.dead[i])
-                {
-                    p = new TimUnit(loader.levels[i]);
-                }
-                else if ((loader.names[i] == "White Knight" || loader.names[i] == "WhiteKnight" ) && !loader.dead[i])
-                {
-                    p = new WhiteKnightUnit(loader.levels[i]);
-                }
-                else if ((loader.names[i] == "Oliver Sprout" || loader.names[i] == "OliverSprout" || loader.names[i] == "Oliver") && !loader.dead[i])
-                {
-                    p = new OliverSproutUnit(loader.levels[i]);
-                    if (i < 2)
-                    {
-                        p.mode = 0;
-                    }
-                    else
-                    {
-                        p.mode = 1;
-                    }
-                }
-                else if ((loader.names[i] == "Ember Moon" || loader.names[i] == "EmberMoon" || loader.names[i] == "Ember") && !loader.dead[i])
-                {
-                    p = new EmberMoonUnit(loader.levels[i]);
-                }
-                else if (loader.dead[i])
-                {
-                    p = new EldritchPartyUnit(loader.levels[i]);
+                    p.mode = 0;
                 }
                 else
                 {
-                    //partyUnits.Add(null);
-                    continue;
+                    p.mode = 1;
                 }
-                if (i < currentUnit) currentUnit = i;
+            }
+            else if ((loader.names[i] == "Ember Moon" || loader.names[i] == "EmberMoon" || loader.names[i] == "Ember"))
+            {
+                p = new EmberMoonUnit(loader.levels[i]);
+            }
+            else if (loader.names[i] == "Eldritch")
+            {
+                p = new EldritchPartyUnit(loader.levels[i]);
+            }
+            else
+            {
+                //partyUnits.Add(null);
+                continue;
+            }
+            if (i < currentUnit) currentUnit = i;
 
-                //Account for possible HP differences
-                p.currentHP = loader.HPs[i];
-                if (p.currentHP > p.maxHP)
-                {
-                    p.maxHP = p.currentHP;
-                }
-                p.currentSP = loader.SPs[i];
-                if (p.currentSP > p.maxSP)
-                {
-                    p.maxSP = p.currentSP;
-                }
-                p.sanity = loader.SANs[i];
+            //Account for possible HP differences
+            p.currentHP = loader.HPs[i];
+            if (p.currentHP > p.maxHP)
+            {
+                p.maxHP = p.currentHP;
+            }
+            
+            p.currentSP = loader.SPs[i];
+            if (p.currentSP > p.maxSP)
+            {
+                p.maxSP = p.currentSP;
+            }
+            p.sanity = loader.SANs[i];
                 
-                if (loader.names[i] == "Albert" && p.sanity <= 0)
+            if (loader.names[i] == "Albert" && p.sanity <= 0)
+            {
+                p.ImageFilePath = "CharacterSprites/pc_spritesheet_doomed";
+                p.loadSprites();
+                mad = true;
+            }
+            //Check status effects
+            for (int v = 0; v < loader.statuses[i].status_effects.Count; v++)
+            {
+                if (p.statuses[v] == -1)
                 {
-                    p.ImageFilePath = "CharacterSprites/pc_spritesheet_doomed";
-                    p.loadSprites();
-                    mad = true;
-                }
-                //Check status effects
-                for (int v = 0; v < loader.statuses[i].status_effects.Count; v++)
-                {
-                    if (p.statuses[v] == -1)
+                    p.statuses[v] = loader.statuses[i].status_effects[v];
+                    //Check for diseased
+                    if (v == 10 && loader.statuses[i].status_effects[v] != -1)
                     {
-                        p.statuses[v] = loader.statuses[i].status_effects[v];
-                        //Check for diseased
-                        if (v == 10 && loader.statuses[i].status_effects[v] != -1)
+                        int bust = p.maxHP - ((p.maxHP / 4) + 5);
+                        if (bust > 0)
                         {
-                            int bust = p.maxHP - ((p.maxHP / 4) + 5);
-                            if (bust > 0)
-                            {
-                                p.maxHP = bust;
-                                if (p.currentHP > p.maxHP) p.currentHP = p.maxHP;
-                            }
-                        }
-                        //Check for cancerous
-                        else if (v == 15 && loader.statuses[i].status_effects[v] != -1)
-                        {
-                            p.maxHP = p.maxHP - (int)(0.7f * p.maxHP);
-
+                            p.maxHP = bust;
                             if (p.currentHP > p.maxHP) p.currentHP = p.maxHP;
                         }
                     }
-                }
-
-                //Combine/customize prefabs (UI base and unit base)
-                GameObject unitGo = Instantiate(partyPrefabs[loader.positions[i]], allyStations[loader.positions[i]]);
-                unitGo = loader.updateUnit(unitGo, i);
-
-                p.copyUnitUI(unitGo.GetComponent<UnitMono>().mainUnit);
-                unitGo.GetComponent<UnitMono>().mainUnit.copyUnitStats(p);
-                p.updateUnit(p.level);
-                if (i == 2 || i == 3)
-                {
-                    unitGo.GetComponent<UnitMono>().mainUnit.position = 1;
-                    if (unitGo.GetComponent<UnitMono>().mainUnit.unitName == "Oliver")
+                    //Check for cancerous
+                    else if (v == 15 && loader.statuses[i].status_effects[v] != -1)
                     {
-                        unitGo.GetComponent<UnitMono>().mainUnit.mode = 0;
+                        p.maxHP = p.maxHP - (int)(0.7f * p.maxHP);
+
+                        if (p.currentHP > p.maxHP) p.currentHP = p.maxHP;
                     }
                 }
-                else
-                {
-                    if (unitGo.GetComponent<UnitMono>().mainUnit.unitName == "Oliver")
-                    {
-                        unitGo.GetComponent<UnitMono>().mainUnit.mode = 1;
-                    }
-                }
-                Debug.Log("Unit == " + unitGo.GetComponent<UnitMono>().mainUnit.unitName + ", mode == " + unitGo.GetComponent<UnitMono>().mainUnit.mode);
-                p.setHUD();
+            }
 
-                if (loader.names[i] == "Player")
+            //Combine/customize prefabs (UI base and unit base)
+            GameObject unitGo = Instantiate(partyPrefabs[loader.positions[i]], allyStations[loader.positions[i]]);
+            unitGo = loader.updateUnit(unitGo, i);
+
+            p.copyUnitUI(unitGo.GetComponent<UnitMono>().mainUnit);
+            unitGo.GetComponent<UnitMono>().mainUnit.copyUnitStats(p);
+            p.updateUnit(p.level);
+            if (i == 2 || i == 3)
+            {
+                unitGo.GetComponent<UnitMono>().mainUnit.position = 1;
+                if (unitGo.GetComponent<UnitMono>().mainUnit.unitName == "Oliver")
                 {
-                    pc = unitGo.gameObject.GetComponent<UnitMono>().mainUnit;
-                    List<Ability> ebi = EldritchAbilities.GetEldritchAbilities();
-                    for (int h = 0; h < loader.e_abilities.Length; h++)
+                    unitGo.GetComponent<UnitMono>().mainUnit.mode = 0;
+                }
+            }
+            else
+            {
+                if (unitGo.GetComponent<UnitMono>().mainUnit.unitName == "Oliver")
+                {
+                    unitGo.GetComponent<UnitMono>().mainUnit.mode = 1;
+                }
+            }
+            Debug.Log("Unit == " + unitGo.GetComponent<UnitMono>().mainUnit.unitName + ", mode == " + unitGo.GetComponent<UnitMono>().mainUnit.mode);
+            p.setHUD();
+
+            if (loader.names[i] == "Albert")
+            {
+                pc = unitGo.gameObject.GetComponent<UnitMono>().mainUnit;
+                List<Ability> ebi = EldritchAbilities.GetEldritchAbilities();
+                for (int h = 0; h < loader.e_abilities.Length; h++)
+                {
+                    for (int v = 0; v < ebi.Count; v++)
                     {
-                        for (int v = 0; v < ebi.Count; v++)
+                        if (loader.e_abilities[h] == ebi[v].name)
                         {
-                            if (loader.e_abilities[h] == ebi[v].name)
-                            {
-                                unitGo.gameObject.GetComponent<UnitMono>().mainUnit.addEldritch(loader.e_abilities[h]);
-                                break;
-                            }
+                            unitGo.gameObject.GetComponent<UnitMono>().mainUnit.addEldritch(loader.e_abilities[h]);
+                            break;
                         }
                     }
                 }
-                partyUnits[loader.positions[i]] = unitGo;
+            }
+            if (unitGo.GetComponent<UnitMono>().mainUnit.currentHP <= 0)
+            {
+                Color dede = unitGo.GetComponent<UnitMono>().mainUnit.deadIcon.color;
+                dede.a = 1.0f;
+                unitGo.GetComponent<UnitMono>().mainUnit.view.CrossFadeAlpha(0.4f, 0f, false);
+                unitGo.GetComponent<UnitMono>().mainUnit.nameText.CrossFadeAlpha(0.4f, 0f, false);
+                unitGo.GetComponent<UnitMono>().mainUnit.BBackground.CrossFadeAlpha(0.4f, 0f, false);
+                unitGo.GetComponent<UnitMono>().mainUnit.WBackground.CrossFadeAlpha(0.4f, 0f, false);
+                unitGo.GetComponent<UnitMono>().mainUnit.levelText.CrossFadeAlpha(0.4f, 0f, false);
+                unitGo.GetComponent<UnitMono>().mainUnit.hpBar.CrossFadeAlpha(0.4f, 0f, false);
+                unitGo.GetComponent<UnitMono>().mainUnit.hpSideText.CrossFadeAlpha(0.4f, 0f, false);
+                unitGo.GetComponent<UnitMono>().mainUnit.hpReadOut.CrossFadeAlpha(0.4f, 0f, false);
+                unitGo.GetComponent<UnitMono>().mainUnit.statusBackW.CrossFadeAlpha(0f, 0f, false);
+                unitGo.GetComponent<UnitMono>().mainUnit.statusBackColor.CrossFadeAlpha(0f, 0f, false);
+                unitGo.GetComponent<UnitMono>().mainUnit.statusText.CrossFadeAlpha(0f, 0f, false);
+                for (int v = 0; v < unitGo.GetComponent<UnitMono>().mainUnit.statusIcons.Count; v++)
+                {
+                    unitGo.GetComponent<UnitMono>().mainUnit.statusIcons[v].CrossFadeAlpha(0, 0f, false);
+                    unitGo.GetComponent<UnitMono>().mainUnit.statusIcons[v].transform.GetChild(0).GetChild(0).GetComponent<Image>().CrossFadeAlpha(0, 0f, false);
+                    unitGo.GetComponent<UnitMono>().mainUnit.statusIcons[v].transform.GetChild(0).GetChild(1).GetComponent<Image>().CrossFadeAlpha(0, 0f, false);
+                    unitGo.GetComponent<UnitMono>().mainUnit.statusIcons[v].transform.GetChild(0).GetChild(2).GetComponent<Text>().CrossFadeAlpha(0, 0f, false);
+                }
+                if (p.spBar != null)
+                {
+                    unitGo.GetComponent<UnitMono>().mainUnit.spBar.CrossFadeAlpha(0.4f, 0f, false);
+                    unitGo.GetComponent<UnitMono>().mainUnit.spSideText.CrossFadeAlpha(0.4f, 0f, false);
+                    unitGo.GetComponent<UnitMono>().mainUnit.spReadOut.CrossFadeAlpha(0.4f, 0f, false);
+                    unitGo.GetComponent<UnitMono>().mainUnit.sanBar.CrossFadeAlpha(0.4f, 0f, false);
+                    unitGo.GetComponent<UnitMono>().mainUnit.sanSideText.CrossFadeAlpha(0.4f, 0f, false);
+                    unitGo.GetComponent<UnitMono>().mainUnit.sanReadOut.CrossFadeAlpha(0.4f, 0f, false);
+                }
 
-                //partyNames.Add(unitGo.GetComponent<UnitMono>().mainUnit.unitName);
-                activeUnits += 1;
+                unitGo.GetComponent<UnitMono>().mainUnit.deadIcon.color = dede;
+            }
+            partyUnits[loader.positions[i]] = unitGo;
+
+            //partyNames.Add(unitGo.GetComponent<UnitMono>().mainUnit.unitName);
+            activeUnits += 1;
             //}
             //else
             //{
@@ -4832,7 +4862,7 @@ public class BattleScript : MonoBehaviour
         }
         currentUnit = less;
         Debug.Log("Active units == " + activeUnits);
-
+        Debug.Log("Current unit == " + currentUnit);
         //Start player turn
         yield return new WaitForSeconds(1f);
         state = battleState.PLAYER;
@@ -4899,14 +4929,14 @@ public class BattleScript : MonoBehaviour
         {
             Color dede = bot.deadIcon.color;
             dede.a = 1.0f;
-            bot.view.CrossFadeAlpha(0.1f, 2f, false);
-            bot.nameText.CrossFadeAlpha(0.1f, 2f, false);
-            bot.BBackground.CrossFadeAlpha(0.1f, 2f, false);
-            bot.WBackground.CrossFadeAlpha(0.1f, 2f, false);
-            bot.levelText.CrossFadeAlpha(0.1f, 2f, false);
-            bot.hpBar.CrossFadeAlpha(0.1f, 2f, false);
-            bot.hpSideText.CrossFadeAlpha(0.1f, 2f, false);
-            bot.hpReadOut.CrossFadeAlpha(0.1f, 2f, false);
+            bot.view.CrossFadeAlpha(0.4f, 2f, false);
+            bot.nameText.CrossFadeAlpha(0.4f, 2f, false);
+            bot.BBackground.CrossFadeAlpha(0.4f, 2f, false);
+            bot.WBackground.CrossFadeAlpha(0.4f, 2f, false);
+            bot.levelText.CrossFadeAlpha(0.4f, 2f, false);
+            bot.hpBar.CrossFadeAlpha(0.4f, 2f, false);
+            bot.hpSideText.CrossFadeAlpha(0.4f, 2f, false);
+            bot.hpReadOut.CrossFadeAlpha(0.4f, 2f, false);
             bot.statusBackW.CrossFadeAlpha(0f, 2f, false);
             bot.statusBackColor.CrossFadeAlpha(0f, 2f, false);
             bot.statusText.CrossFadeAlpha(0f, 2f, false);
@@ -4919,12 +4949,12 @@ public class BattleScript : MonoBehaviour
             }
             if (bot.spBar != null)
             {
-                bot.spBar.CrossFadeAlpha(0.1f, 2f, false);
-                bot.spSideText.CrossFadeAlpha(0.1f, 2f, false);
-                bot.spReadOut.CrossFadeAlpha(0.1f, 2f, false);
-                bot.sanBar.CrossFadeAlpha(0.1f, 2f, false);
-                bot.sanSideText.CrossFadeAlpha(0.1f, 2f, false);
-                bot.sanReadOut.CrossFadeAlpha(0.1f, 2f, false);
+                bot.spBar.CrossFadeAlpha(0.4f, 2f, false);
+                bot.spSideText.CrossFadeAlpha(0.4f, 2f, false);
+                bot.spReadOut.CrossFadeAlpha(0.4f, 2f, false);
+                bot.sanBar.CrossFadeAlpha(0.4f, 2f, false);
+                bot.sanSideText.CrossFadeAlpha(0.4f, 2f, false);
+                bot.sanReadOut.CrossFadeAlpha(0.4f, 2f, false);
             }
             if (bot.unitWeapon != null)
             {
@@ -5639,6 +5669,7 @@ public class BattleScript : MonoBehaviour
                     dams.Add(0);
                 }
                 bots.Add(target);
+                dams.Add(target.currentHP);
                 if (val + 1 < enemyUnits.Count)
                 {
                     if (enemyUnits[val + 1] != null)
@@ -5672,7 +5703,7 @@ public class BattleScript : MonoBehaviour
                             int bb = val;
                             if (b == 0) bb = val - 1;
                             if (b == 2) bb = val + 1;
-                            StartCoroutine(showDamage(dams[b] - bots[b].currentHP, bb));
+                            StartCoroutine(showDamage(dams[b] - bots[b].currentHP, bb, uni.abilities[ata].damageType));
                         }
                         if (bots[b].currentHP <= 0)
                         {
@@ -5682,7 +5713,7 @@ public class BattleScript : MonoBehaviour
                     }
                 }
                 uni.setSP(uni.currentSP - uni.abilities[ata].cost);
-                if (enemyDeaths == activeEnemies)
+                if (enemyDeaths >= enemyUnits.Count)
                 {
                     state = battleState.WIN;
                     yield return battleEnd();
@@ -7333,7 +7364,8 @@ public class BattleScript : MonoBehaviour
                             //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
                         }
                     }
-                    if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName == partyNames[x])
+                    if (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName == partyNames[x] || 
+                        (partyUnits[i].GetComponent<UnitMono>().mainUnit.unitName == "White Knight" && partyNames[x] == "WhiteKnight"))
                     {
                         //If unit survived, check if promising equipment should be updated
                         if (partyUnits[i].GetComponent<UnitMono>().mainUnit.currentHP > 0 && state == battleState.WIN)
