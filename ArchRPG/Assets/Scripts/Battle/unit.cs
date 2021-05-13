@@ -8314,8 +8314,9 @@ public class EldritchPartyUnit : unit
 {
     public EldritchPartyUnit(int lev = 1)
     {
-        unitName = "Eldritch Abomination";
+        unitName = "Eldritch Thing";
         ImageFilePath = "CharacterSprites/Corrupted PC";
+        loadSprites();
         level = lev;
         currentLevelTop = (int)(2.5 * Mathf.Pow(lev, 4));
         maxHP = currentHP = (14 * lev) + 2;

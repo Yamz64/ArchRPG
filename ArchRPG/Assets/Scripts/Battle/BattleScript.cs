@@ -696,6 +696,7 @@ public class BattleScript : MonoBehaviour
 
             //Update ability line icon
             Sprite[] icons = Resources.LoadAll<Sprite>("UISprites/PositionIcons 1");
+            transform.GetChild(1).Find("AbilityMenu").GetChild(2).GetChild(6).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
             if (ability.position == 1)
             {
                 transform.GetChild(1).Find("AbilityMenu").GetChild(2).GetChild(6).GetComponent<Image>().sprite = icons[0];
@@ -715,7 +716,8 @@ public class BattleScript : MonoBehaviour
             transform.GetChild(1).Find("AbilityMenu").GetChild(2).GetChild(3).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
             transform.GetChild(1).Find("AbilityMenu").GetChild(2).GetChild(4).GetComponent<Text>().text = "";
             transform.GetChild(1).Find("AbilityMenu").GetChild(2).GetChild(5).GetComponent<Text>().text = "";
-            transform.GetChild(1).Find("AbilityMenu").GetChild(2).GetChild(6).GetComponent<Image>().sprite = null;
+            transform.GetChild(1).Find("AbilityMenu").GetChild(2).GetChild(6).GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+            transform.GetChild(1).Find("AbilityMenu").GetChild(2).GetChild(7).GetComponent<Text>().text = "";
         }
     }
 

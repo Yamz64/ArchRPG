@@ -1771,7 +1771,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!222 &407197168
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2226,7 +2226,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!222 &474200095
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6674,7 +6674,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Cost: XX'
+  m_Text: 
 --- !u!222 &1431681190
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6753,10 +6753,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Use to take apart enemies. Deals physical damage.
-
-    Works both FL and
-    BL'
+  m_Text: 
 --- !u!222 &1463500016
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7542,7 +7539,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!222 &1612572949
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8124,7 +8121,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!222 &1691826139
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9184,10 +9181,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Tear and Rip
-
-
-    Cost:'
+  m_Text: 
 --- !u!222 &2036332838
 CanvasRenderer:
   m_ObjectHideFlags: 0
