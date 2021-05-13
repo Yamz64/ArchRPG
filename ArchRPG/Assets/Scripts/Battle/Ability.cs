@@ -506,7 +506,7 @@ public static class EldritchAbilities
         {
             name = "OtherworldlyGaze";
             desc1 = "Buffs self with zealous and inspired, inflicts weeping on a random party member";
-            desc2 = "You stare into the great beyond and uncover truths unbeknownst to that of your underlings...";
+            desc2 = "You stare into the great beyond and uncover truths unbeknownst to that of your underlings... Buffs self with zealous and inspired, inflicts weeping on a random party member.";
             cost = 5;
             level_cost = 1;
             position = 0;
@@ -552,7 +552,8 @@ public static class EldritchAbilities
         public RuinousWave()
         {
             name = "RuinousWave";
-            desc2 = "You manifest the darkest dregs of your psyche and let out a destructive wave to damage those of inferior understanding.";
+            desc1 = "Damages all enemies and allies with moderate weird POW.";
+            desc2 = "You manifest the darkest dregs of your psyche and let out a destructive wave to damage those of inferior understanding. Damages all enemies and allies with moderate weird POW.";
             cost = 10;
             level_cost = 2;
             position = 1;
@@ -594,7 +595,9 @@ public static class EldritchAbilities
         public VampiricBetrayal()
         {
             name = "VampiricBetrayal";
-            desc1 = "Inflicts high weird POW to an ally and you gain that much life, also grants you Chutzpah and Confident";
+            desc1 = "Inflicts high damage to an ally healing you in turn, also grants you Chutzpah.";
+            desc2 = "With a deep breath, you sap the hidden lifeforce of your ally until they become pale with weakness. " +
+                "Inflicts high damage to an ally healing you in turn, also grants you Chutzpah.";
             cost = 12;
             level_cost = 3;
             type = 1;
@@ -623,7 +626,8 @@ public static class EldritchAbilities
         public BeseechTheAbyss()
         {
             name = "BeseechTheAbyss";
-            desc2 = "You clasp your hands together and invoke the dark names of higher poewrs to provie assistance, who knows they might deem you and your followers worthy of aid.";
+            desc1 = "Heals you to full, and inflicts everyone with a random status effect.";
+            desc2 = "You clasp your hands together and invoke the dark names of higher powers to provide assistance, who knows they might deem you and your followers worthy of aid. Heals you to full, and inflicts everyone with a random status effect.";
             cost = 15;
             level_cost = 4;
             position = 0;
@@ -661,6 +665,7 @@ public static class EldritchAbilities
         {
             name = "SanityBeam";
             desc1 = "Inflicts moderate sanity damage on an ally and does high weird POW to an enemy.";
+            desc2 = "Feed off the doubts and worries of your allies to charge a powerful attack against your enemies! Inflicts moderate sanity damage on an ally and does high weird POW to an enemy.";
             cost = 16;
             level_cost = 5;
             damage = 30;
@@ -695,7 +700,7 @@ public static class EldritchAbilities
         {
             name = "UltimateSacrifice";
             desc1 = "Kills a random party member. Inflicts a shit ton of status effects on an enemy and does moderate weird POW.";
-            desc2 = "Takes one to Kill one";
+            desc2 = "Takes one to Kill one. Kills a random party member. Inflicts a shit ton of status effects on an enemy and does moderate weird POW.";
             level_cost = 6;
             target = 0;
             enemyTarget = 0;
@@ -1957,9 +1962,9 @@ namespace PlayerAbilities
         public Scrutinize()
         {
             name = "Scrutinize";
-            desc1 = "Checks on enemy health and weaknesses";
-            desc2 = "You remove your glasses so that you can closely inspect your enemies with your near-sightedness - reveals an enemy's weakness and general health";
-            cost = 2;
+            desc1 = "Checks on enemy health and weaknesses.";
+            desc2 = "You remove your glasses so that you can closely inspect your enemies with your near-sightedness - reveals an enemy's weakness and general health.";
+            cost = 1;
             position = 0;
             type = 0;
             target = 0;
@@ -2059,8 +2064,8 @@ namespace PlayerAbilities
         public RudeReassurance()
         {
             name = "Rude Reassurance";
-            desc1 = "Weak group heal, gives all other party members weeping";
-            desc2 = "You try to tell your allies that things will be fine, but maybe using words like 'Shut Up you Insolent Whelps' didn't have the right effect";
+            desc1 = "Inflicts all partymembers with weeping. Heals all party members moderately.";
+            desc2 = "You try to tell your allies that things will be fine, but maybe using words like 'Shut Up you Insolent Whelps' didn't have the right effect. Inflicts all partymembers with weeping. Heals all party members moderately.";
             cost = 6;
             position = 0;
             type = 1;
@@ -2128,8 +2133,8 @@ namespace PlayerAbilities
         public Analysis()
         {
             name = "Analysis";
-            desc1 = "Opens the enemy up to more critical hits";
-            desc2 = "After putting aside your clear superiority, you come up with an unbiased view of the enemies weakness and how to exploit it.";
+            desc1 = "Inflicts analyzed on an enemy.";
+            desc2 = "After putting aside your clear superiority, you come up with an unbiased view of the enemies weakness and how to exploit it. Inflicts analyzed on an enemy.";
             cost = 4;
             position = 1;
             statusEffect = "Analyzed";
@@ -2141,8 +2146,8 @@ namespace PlayerAbilities
         public ManicRant()
         {
             name = "Manic Rant";
-            desc1 = "Inflicts weeping and restrained on an enemy";
-            desc2 = "You drop a massive truth bomb on an enemy, making them question everything they’ve ever known.";
+            desc1 = "Inflicts weeping and restrained on an enemy.";
+            desc2 = "You drop a massive truth bomb on an enemy, making them question everything they’ve ever known. Inflicts weeping and restrained on an enemy.";
             cost = 13;
             position = 1;
             statusEffect = "Weeping Restrained";
@@ -2154,8 +2159,8 @@ namespace PlayerAbilities
         public IncoherentRamblings()
         {
             name = "Incoherent Ramblings";
-            desc1 = "Minor group sanity heal";
-            desc2 = "You try to make sense of what’s happening around you. It’s comforting that one of us understands what’s going on.";
+            desc1 = "Heals all partymembers' sanity slightly.";
+            desc2 = "You try to make sense of what’s happening around you. It’s comforting that one of us understands what’s going on. Heals all partymembers' sanity slightly.";
             cost = 10;
             position = 2;
             type = 1;
@@ -2183,8 +2188,8 @@ namespace PlayerAbilities
         public CharismaticFervor()
         {
             name = "Charismatic Fervor";
-            desc1 = "Moderate group sanity heal. Buff everyone with inspired";
-            desc2 = "You start getting caught up in the passion of strategy, and your energy seems to leak into your comrades";
+            desc1 = "Buff all partymembers with inspired. Heals all partymembers' sanity moderately.";
+            desc2 = "You start getting caught up in the passion of strategy, and your energy seems to leak into your comrades. Buff all partymembers with inspired. Heals all partymembers' sanity moderately.";
             cost = 20;
             position = 2;
             type = 1;
@@ -2212,8 +2217,8 @@ namespace PlayerAbilities
         public Narcissism()
         {
             name = "Narcissism";
-            desc1 = "Buffs self with confident, neurotic, and inflicts hysteria on self";
-            desc2 = "After all of these battles, it might be better not to have these nimrods dragging you down so much.";
+            desc1 = "Buffs self with confident and neurotic. Inflicts hysteria on self.";
+            desc2 = "After all of these battles, it might be better not to have these nimrods dragging you down so much. Buffs self with confident and neurotic. Inflicts hysteria on self.";
             cost = 3;
             position = 2;
             type = 2;
@@ -2236,8 +2241,8 @@ namespace ClyveAbilities
         public NoShower()
         {
             name = "I Didn't Shower Today";
-            desc1 = "Induce vomiting";
-            desc2 = "Clyve reminds everyone that he didn't take a shower today, you aren't surprised, but this may cause the enemy to vomit a bit.";
+            desc1 = "Inflicts an enemy with vomiting. Deals low chemical ATK damage.";
+            desc2 = "Clyve reminds everyone that he didn't take a shower today, you aren't surprised, but this may cause the enemy to vomit a bit. Inflicts an enemy with vomiting. Deals low chemical ATK damage.";
             cost = 3;
             target = 0;
             type = 0;
@@ -2253,8 +2258,8 @@ namespace ClyveAbilities
         public ShoeRemoval()
         {
             name = "Shoe Removal";
-            desc1 = "Induce weeping";
-            desc2 = "Clyve removes his shoe, you don't want to describe the smell in too much detail, but it may cause the enemy to tear up a bit.";
+            desc1 = "Inflicts an enemy with weeping. Deals low chemical ATK damage.";
+            desc2 = "Clyve removes his shoe, you don't want to describe the smell in too much detail, but it may cause the enemy to tear up a bit. Inflicts an enemy with vomiting. Deals low chemical ATK damage.";
             cost = 4;
             target = 0;
             type = 0;
@@ -2270,8 +2275,8 @@ namespace ClyveAbilities
         public Halitosis()
         {
             name = "Halitosis";
-            desc1 = "AOE status effect attack";
-            desc2 = "It is quite clear the Clyve hasn’t brushed his teeth… like ever, it’s remarkable he still has his teeth.";
+            desc1 = "Inflicts all enemies with vomiting. Deals low chemical ATK damage.";
+            desc2 = "It is quite clear the Clyve hasn’t brushed his teeth… like ever, it’s remarkable he still has his teeth. Inflicts all enemies with vomiting. Deals low chemical ATK damage.";
             cost = 8;
             position = 1;
             damage = 5;
@@ -2286,7 +2291,7 @@ namespace ClyveAbilities
         public FootFungus()
         {
             name = "Foot Fungus";
-            desc1 = "Inflicts aspirating on two adjacent enemies and does a little chemical ATK";
+            desc1 = "Inflicts adjacent enemies with aspirating. Deals low chemical ATK damage.";
             desc2 = "It seems that whatever was the cause of Clyve’s horrible foot stench has gotten far worse.";
             cost = 8;
             position = 1;
@@ -2302,8 +2307,9 @@ namespace ClyveAbilities
         public SmellOfDeath()
         {
             name = "Smell of Death";
-            desc1 = "Has a very low random chance to instantly kill all non-boss enemies that increases based on each target’s remaining health.";
-            desc2 = "Clyve realized he’d been carrying his dead hamster in his pocket. Anyone that smells it will surely meet the same fate as that rodent.";
+            desc1 = "Deals potentially lethal damage to all enemies that becomes more likely the lower the target's health. Inflicts reactive on all enemies.";
+            desc2 = "Clyve realized he’s been carrying his dead hamster in his pocket. Anyone that smells it will surely meet the same fate as that rodent. Deals potentially lethal damage to all enemies that becomes more likely the lower the target's health. " +
+                "Inflicts reactive on all enemies.";
             cost = 15;
             damage = 2;
             position = 1;
@@ -2318,9 +2324,10 @@ namespace ClyveAbilities
         public InfernalShower()
         {
             name = "Infernal Shower";
-            desc1 = "Buffs everyone with confident and does low fire ATK to all enemies and Clyve.";
+            desc1 = "Buffs all party members with confident. Deals low fire ATK to all enemies and Clyve.";
             desc2 = "After a lot of convincing, Clyve takes a searing hot shower to cleanse himself of " +
-                "years of filth and grime. Everyone feels a lot better afterward, and Clyve makes sure to shower the enemy as well.";
+                "years of filth and grime. Everyone feels a lot better afterward, and Clyve makes sure to shower the enemy as well. " +
+                "Buffs all party members with confident. Deals low fire ATK to all enemies and Clyve.";
             cost = 12;
             damage = 13;
             damageType = 1;
@@ -2364,7 +2371,7 @@ namespace ClyveAbilities
         {
             name = "Dysentery";
             desc1 = "Inflicts diseased on Clyve and on all enemies.";
-            desc2 = "Clyve's lack of hygeine has become too much for even him to handle. At least he isn't some 19th century homesteader on the trail.";
+            desc2 = "Clyve's lack of hygeine has become too much for even him to handle. At least he isn't some 19th century homesteader on the trail. Inflicts diseased on Clyve and on all enemies.";
             cost = 10;
             target = 3;
             statusEffect = "Diseased";
@@ -2381,9 +2388,9 @@ namespace JimAbilities
         public Antacid()
         {
             name = "Antacid";
-            desc1 = "Cure vomiting and weeping";
+            desc1 = "Cures a partymember of vomiting and weeping.";
             desc2 = "Jim has always been a sickly child, so his mom has sent him to school with these miracle tablets for as long as you can remember." +
-                "They cure vomiting and other such stomach ailments.";
+                "They cure vomiting and other such stomach ailments. Cures a partymember of vomiting and weeping.";
             cost = 4;
             target = 0;
             type = 1;
@@ -2405,8 +2412,8 @@ namespace JimAbilities
         public Bandaid()
         {
             name = "Bandaid";
-            desc1 = "Heal a friend by 15+ HP";
-            desc2 = "Jim produces a small adhesive bandage from his belongings to ease the pain of others.";
+            desc1 = "Heals a partymember slightly";
+            desc2 = "Jim produces a small adhesive bandage from his belongings to ease the pain of others. Heals a partymember slightly.";
             cost = 4;
             target = 0;
             type = 1;
@@ -2427,8 +2434,8 @@ namespace JimAbilities
         public UncannyRemedy()
         {
             name = "Uncanny Remedy";
-            desc1 = "Full party weak heal (scales with POW)";
-            desc2 = "The pain is suddenly, gone? It seems Jim’s concussed brain has tapped into some strange curative magic.";
+            desc1 = "Heals all partymembers moderately.";
+            desc2 = "The pain is suddenly, gone? It seems Jim’s concussed brain has tapped into some strange curative magic. Heals all partymembers moderately.";
             cost = 13;
             position = 2;
             type = 1;
@@ -2455,9 +2462,9 @@ namespace JimAbilities
         public TelekineticProwess()
         {
             name = "Telekinetic Prowess";
-            desc1 = "Inflicts spasms and zonked on 2 adjacent enemies and zonked on himself";
+            desc1 = "Inflicts spasms and zonked on 2 adjacent enemies. Inflicts zonked on Jim.";
             desc2 = "Jim does some crazy shit and totally flips out and I guess maybe " +
-                "it affects the baddies too? Honestly it’s really hard to tell if he’s doing anything";
+                "it affects the baddies too? Honestly it’s really hard to tell if he’s doing anything. Inflicts spasms and zonked on 2 adjacent enemies. Inflicts zonked on Jim.";
             cost = 7;
             damage = 2;
             target = 2;
@@ -2471,10 +2478,10 @@ namespace JimAbilities
         public MagicAttunement()
         {
             name = "Magic Attunement";
-            desc1 = "Gives 10 SP/MP to any other character";
+            desc1 = "Restores a partymember's SP slightly.";
             desc2 = "Jim puts on a funny hat, pulls out some tarot cards, and " +
                 "does an elaborate dance. Not sure if it does anything magic but seeing him try " +
-                "so hard really fills you with the desire to do the same";
+                "so hard really fills you with the desire to do the same. Restores a partymember's SP slightly..";
             cost = 12;
             type = 1;
         }
@@ -2491,7 +2498,7 @@ namespace JimAbilities
         public MagicalInspiration()
         {
             name = "Magical Inspiration";
-            desc1 = "Gives one random ally hyperactive, one random ally inspired, and one random ally confident. Also heals.";
+            desc1 = "Buffs a random ally with with hyperactive, inspired, and chutzpah. Heals said random ally moderately.";
             desc2 = "Ok Jim definitely has magic powers and they are so cool like holy shit.";
             cost = 50;
             position = 2;
@@ -2523,14 +2530,15 @@ namespace JimAbilities
         public MalevolentSlapstick()
         {
             name = "Malevolent Slapstick";
-            desc1 = "Strikes one enemy with incredibly high Weird damage and inflicts vomiting, aspirating, and weeping upon self.";
-            desc2 = "Honestly I don’t wanna tell you what he does because just talking about it makes me want to puke.";
+            desc1 = "Inflicts self with vomiting, aspirating, and weeping. Deals high weird pow to an enemy.";
+            desc2 = "Honestly I don’t wanna tell you what he does because just talking about it makes me want to puke. Inflicts self with vomiting, aspirating, and weeping. Deals high weird pow to an enemy.";
             cost = 14;
             type = 0;
             damage = 25;
             damageType = 4;
             selfStatus = "Vomiting Aspirating Weeping";
             madness = true;
+            use_pow = true;
         }
     }
 }
