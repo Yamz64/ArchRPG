@@ -1212,7 +1212,6 @@ namespace EnemyAbilities
             name = "Stun Gun";
             damage = 12;
             damageType = 2;
-            swapper = 2;
             priority = defaultPriority = 2;
             nextPriority = 0;
             statusEffect = "Restrained";

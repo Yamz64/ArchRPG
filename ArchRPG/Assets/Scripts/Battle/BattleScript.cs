@@ -2229,7 +2229,7 @@ public class BattleScript : MonoBehaviour
                                 off += 1;
                             }
                         }
-                        if (off == data.GetItem(highlighted_item).amount)
+                        if (off == data.GetItem(highlighted_item).amount || !data.GetItem(highlighted_item).useable)
                         {
                             StartCoroutine(textDisplay("Can't use current item"));
                             useSound(0);
