@@ -19094,8 +19094,8 @@ MonoBehaviour:
   item:
     useable: 1
     name: Brown Rat
-    description: Rattus Norvegicus, the common brown rat. You should bring this to
-      Lucy.
+    description: Rattus Norvegicus, the common brown rat. You feel like someone might
+      want this...
     image_file_path: 
     amount: 1
     limit: 1

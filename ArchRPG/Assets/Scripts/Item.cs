@@ -482,22 +482,24 @@ public static class Consumables
         {
             name = "Beer";
             id = "consumables:beer";
-            description = "A medication for curing sadness. Drink responsibly! Causes vomiting and Zealous!";
+            description = "A medication for curing sadness. Drink responsibly! Causes vomiting, removes weeping, and heals a small amount of sanity!";
             image_file_path = "ItemSprites/ConsumableIcon2";
             amount = 1;
             limit = 99;
-            cost = 5;
+            cost = 10;
         }
 
         public override void Use()
         {
             character.SetStatus(0, Random.Range(5, 8));
             character.SetStatus(14, Random.Range(5, 8));
+            character.SetSAN(character.GetSAN() + 12);
         }
 
         public override void Use(unit user)
         {
             user.giveStatus("Vomiting Zealous");
+            user.sanity += 12;
             Remove();
         }
     }
@@ -509,11 +511,26 @@ public static class Consumables
         {
             name = "Reeb";
             id = "consumables:reeb";
-            description = "A very potent alcoholic beverage, known to cause drunkenness by just looking at it.";
+            description = "A very potent alcoholic beverage, known to cause drunkenness by just looking at it. Causes Aspirating and removes weeping.";
             image_file_path = "ItemSprites/ConsumableIcon2";
             amount = 1;
             limit = 99;
             cost = 10;
+        }
+
+        public override void Use()
+        {
+            character.SetStatus(1, Random.Range(5, 8));
+            character.SetStatus(2, -1);
+            character.SetSAN(character.GetSAN() + 25);
+        }
+
+        public override void Use(unit user)
+        {
+            user.giveStatus("Aspirating");
+            user.statuses[2] = -1;
+            user.sanity += 25;
+            Remove();
         }
     }
 
@@ -523,7 +540,7 @@ public static class Consumables
         {
             name = "Cocaine";
             id = "consumables:cocaine";
-            description = "Very dangerous, very addictive, and very illegal!  Inflicts hyperactive and hysteria!";
+            description = "Very dangerous, very addictive, and very illegal! Inflicts hyperactive and hysteria!";
             image_file_path = "ItemSprites/ConsumableIcon3";
             amount = 1;
             limit = 99;
@@ -652,7 +669,7 @@ public static class Consumables
         {
             name = "Senior Meat Salesman ID";
             id = "consumables:seniormeatsalesmanid";
-            description = "A high quality replica of a Senior Meat Salesman ID.  It reads \"Rusty Shackleford.\"";
+            description = "A high quality replica of a Senior Meat Salesman ID. It reads \"Rusty Shackleford.\"";
             image_file_path = "ItemSprites/ConsumableIcon4";
             amount = 1;
             limit = 1;
@@ -669,7 +686,7 @@ public static class Consumables
         {
             name = "Gluten Free Crackers";
             id = "consumables:crackers";
-            description = "We got crackers, no gluten... Heals 50 HP when consumed";
+            description = "We got crackers, no gluten... Heals 50 HP when consumed.";
             image_file_path = "ItemSprites/ConsumableIcon1";
             amount = 1;
             limit = 99;
@@ -723,7 +740,7 @@ public static class Consumables
         {
             name = "Gluten Free Brioche";
             id = "consumables:brioche";
-            description = "Listen, I just need a baguette and a brioche. Heals 200 HP when cosumed";
+            description = "Listen, I just need a baguette and a brioche. Heals 200 HP when cosumed.";
             image_file_path = "ItemSprites/ConsumableIcon1";
             amount = 1;
             limit = 99;
@@ -750,7 +767,7 @@ public static class Consumables
         {
             name = "Poot Beer";
             id = "consumables:pootbeer";
-            description = "A smooth yet strong tasting soda. Restores 115 SP when consumed";
+            description = "A smooth yet strong tasting soda. Restores 115 SP when consumed.";
             image_file_path = "ItemSprites/ConsumableIcon2";
             amount = 1;
             limit = 99;
@@ -802,7 +819,7 @@ public static class Consumables
         {
             name = "Chili Dog";
             id = "consumables:chilidog";
-            description = "In a stroke of incredible genius Mr. Goodmeat combined a traditional American cuisine with acquired Texan cuisine, creating the worlds first chilidog!" +
+            description = "In a stroke of incredible genius Mr. Goodmeat combined traditional American cuisine with acquired Texan cuisine, creating the worlds first chilidog!" +
                 "Heals 150 HP when eaten!";
             image_file_path = "ItemSprites/ConsumableIcon1";
             amount = 1;
@@ -831,7 +848,7 @@ public static class Consumables
             name = "Ginger Ale";
             id = "consumables:gingerale";
             description = "While ginger is known to settle the stomach, you're seriously going to use that sugary soda to cure your serious case of gastroenteritis?" +
-                " Cures Vomiting";
+                " Cures Vomiting.";
             image_file_path = "ItemSprites/ConsumableIcon2";
             amount = 1;
             limit = 99;
@@ -858,7 +875,7 @@ public static class Consumables
             name = "Stomach Pump";
             id = "consumables:stomachpump";
             description = "You'd tell the cashier that this is clearly a bicycle pump with the word 'stomach pump' crudely written on the side," +
-                "but you don't think he'd believe you. Cures vomiting and aspirating";
+                " but you don't think he'd believe you. Cures vomiting and aspirating.";
             image_file_path = "ItemSprites/ConsumableIcon3";
             amount = 1;
             limit = 99;
@@ -886,7 +903,7 @@ public static class Consumables
         {
             name = "Tissues";
             id = "consumables:tissues";
-            description = "With the brilliant idea of putting lotion into these cottony pieces of paper took off, they thought, \"Why stop there\" and decided to put " +
+            description = "When the brilliant idea of putting lotion into these cottony pieces of paper took off, they thought, \"Why stop there\" and decided to put " +
                 "insecticides in their new product. Cures weeping.";
             image_file_path = "ItemSprites/ConsumableIcon3";
             amount = 1;
@@ -913,7 +930,7 @@ public static class Consumables
         {
             name = "Eye Drops";
             id = "consumables:eyedrops";
-            description = "Ok, so everything else in this store has been of questionable quality, so you expect me to put that in my eye!??! Cures weeping and aspirating";
+            description = "Ok, so everything else in this store has been of questionable quality, so you expect me to put that in my eye?! Cures weeping and aspirating.";
             image_file_path = "ItemSprites/ConsumableIcon3";
             amount = 1;
             limit = 99;
@@ -941,7 +958,7 @@ public static class Consumables
         {
             name = "Smelling Salts";
             id = "consumables:smellingsalts";
-            description = "Ah yes please bring me to my senses by stimulating my respiratory tract with a corrosive material! Cures Blunt Trauma";
+            description = "Ah yes please bring me to my senses by stimulating my respiratory tract with a corrosive material! Cures blunt trauma.";
             image_file_path = "ItemSprites/ConsumableIcon3";
             amount = 1;
             limit = 99;
@@ -967,7 +984,7 @@ public static class Consumables
         {
             name = "Leeches";
             id = "consumables:leeches";
-            description = "A jar of highly trained leeches that only feed on bad blood and pathogens! Cures Diseased!";
+            description = "A jar of highly trained leeches that only feed on bad blood and pathogens! Cures diseased.";
             image_file_path = "ItemSprites/ConsumableIcon3";
             amount = 1;
             limit = 99;
@@ -994,7 +1011,7 @@ public static class Consumables
             name = "Mineral Water";
             id = "consumables:mineralwater";
             description = "Why not douse yourself with plain water? It's simply not the same as showering yourself with this particular brand of liquid pretension!" +
-                " Cures Flammable!";
+                " Cures flammable!";
             image_file_path = "ItemSprites/ConsumableIcon2";
             amount = 1;
             limit = 99;
@@ -1020,7 +1037,7 @@ public static class Consumables
         {
             name = "Tinfoil Hat";
             id = "consumables:tinfoilhat";
-            description = "Shroud yourself from those hidden gazes that would seek to encroach on your private thoughts with a state of the art tinfoil hat! Removes Analyzed!";
+            description = "Shroud yourself from those hidden gazes that would seek to encroach on your private thoughts with a state of the art tinfoil hat! Removes analyzed.";
             image_file_path = "ItemSprites/ConsumableIcon3";
             amount = 1;
             limit = 99;
@@ -1046,7 +1063,7 @@ public static class Consumables
         {
             name = "Caffeine Gum";
             id = "consumables:gum";
-            description = "Unleash your inner college student and put aside your bodily needs to stay awake for another hour! Cures Lethargic!";
+            description = "Unleash your inner college student and put aside your bodily needs to stay awake for another hour! Cures lethargic.";
             image_file_path = "ItemSprites/ConsumableIcon3";
             amount = 1;
             limit = 99;
@@ -1073,7 +1090,7 @@ public static class Consumables
             name = "Lightning Rod";
             id = "consumables:lightningrod";
             description = "A misunderstood device, although most people think it attracts electricity it's actually " +
-                "designed to provide a path of little resistance for strong amounts of electricity to discharge safely! Cures Conductive!";
+                "designed to provide a path of little resistance for strong amounts of electricity to discharge safely! Cures conductive.";
             image_file_path = "ItemSprites/ConsumableIcon3";
             amount = 1;
             limit = 99;
@@ -1100,7 +1117,7 @@ public static class Consumables
             name = "Litter";
             id = "consumables:litter";
             description = "Chemists will sometimes cover weak acid spills with sand to neutralize them. The closest thing this store had to sand was cat litter..." +
-                " Cures Reactive!";
+                " cures reactive.";
             image_file_path = "ItemSprites/ConsumableIcon3";
             amount = 1;
             limit = 99;
@@ -1126,7 +1143,7 @@ public static class Consumables
         {
             name = "An Actual Pepper";
             id = "consumables:pepper";
-            description = "It's just a regular pepper. Cures Zonked";
+            description = "It's just a regular pepper. Cures zonked.";
             image_file_path = "ItemSprites/ConsumableIcon3";
             amount = 1;
             limit = 99;
@@ -1153,7 +1170,7 @@ public static class Consumables
             name = "\"Winning\" Lottery Ticket!";
             id = "consumables:lotteryticket";
             description = "The lottery has been indefinitely suspended, but when it does return you'll surely cash this in and not feel guilty about buying a " +
-                "lottery ticket in the first place! Heals a small amount of sanity on use!";
+                "lottery ticket in the first place! Heals a random amount of sanity on use.";
             image_file_path = "ItemSprites/ConsumableIcon3";
             amount = 1;
             limit = 99;
@@ -1162,12 +1179,12 @@ public static class Consumables
 
         public override void Use()
         {
-            character.SetSAN(character.GetSAN() + Random.Range(6, 22));
+            character.SetSAN(character.GetSAN() + Random.Range(6, 30));
         }
 
         public override void Use(unit user)
         {
-            user.setSAN(user.getSAN() + Random.Range(6, 22));
+            user.setSAN(user.getSAN() + Random.Range(6, 30));
             Remove();
         }
     }
@@ -1178,7 +1195,7 @@ public static class Consumables
         {
             name = "Flesh Heart";
             id = "consumables:fleshheart";
-            description = "A hunk meat not of this material plane, it's still beating. Resurrects 1 dead party member.";
+            description = "A hunk of meat not of this material plane, it's still beating. Resurrects 1 dead party member.";
             image_file_path = "ItemSprites/ConsumableIcon3";
             amount = 1;
             limit = 1;
@@ -1241,7 +1258,7 @@ public static class Weapons
             name = "TestWeapon";
             id = "weapons:testweapon";
             image_file_path = "ItemSprites/Weapon_1";
-            description = "A weapon of code!  Made for debugging so it's not really good...";
+            description = "A weapon of code! Made for debugging so it's not really good...";
             limit = 1;
             amount = 1;
             type = 1;
@@ -1263,7 +1280,7 @@ public static class Weapons
             name = "Protractor";
             id = "weapons:protractor";
             image_file_path = "ItemSprites/Weapon_0";
-            description = "This plastic graded semicircle is a monument to mathematical precision... some of the numbers are worn off.";
+            description = "This plastic graded semicircle is a monument to mathematical precision... some of the numbers are worn off. POW + 1.";
             limit = 10;
             amount = 1;
             type = 1;
@@ -1279,7 +1296,7 @@ public static class Weapons
             name = "Gnome Shard";
             id = "weapons:gnomeshard";
             image_file_path = "ItemSprites/Weapon_0";
-            description = "The remains of a garden gnome homicide, you feel like you’re tampering with evidence here. It stares at you blankly.";
+            description = "The remains of a garden gnome homicide, you feel like you’re tampering with evidence here. It stares at you blankly. ATK + 3.";
             limit = 10;
             amount = 1;
             type = 1;
@@ -1295,7 +1312,7 @@ public static class Weapons
             name = "Rat Bomb";
             id = "weapons:ratbomb";
             image_file_path = "ItemSprites/Weapon_0";
-            description = "This isn’t actually a rat bomb, this is more like a bomb that a rat left behind...";
+            description = "This isn’t actually a rat bomb, this is more like a bomb that a rat left behind... ATK + 5, deals chemical damage.";
             limit = 10;
             amount = 1;
             type = 1;
@@ -1313,7 +1330,7 @@ public static class Weapons
             name = "Replica Flintlock";
             id = "weapons:replicaflintlock";
             image_file_path = "ItemSprites/Weapon_0";
-            description = "A nearly 1 to 1 replica of a Stocking Model 1850 Shirley made in art class out of popsicle sticks, a lighter, and a toy car!";
+            description = "A nearly 1 to 1 replica of a Stocking Model 1850 Shirley made in art class out of popsicle sticks, a lighter, and a toy car! ATK + 2, AGI + 1, deals fire damage.";
             limit = 10;
             amount = 1;
             type = 1;
@@ -1330,7 +1347,7 @@ public static class Weapons
             name = "Night Stick";
             id = "weapons:nightstick";
             image_file_path = "ItemSprites/Weapon_0";
-            description = "Kind of bizarre how the modern police man's weapon of choice is basically the same as that of 5th century barbarian: a stick.";
+            description = "Kind of bizarre how the modern police man's weapon of choice is basically the same as that of 5th century barbarian: a stick. ATK + 6, LCK + 4.";
             limit = 10;
             amount = 1;
             type = 1;
@@ -1349,7 +1366,7 @@ public static class Weapons
             id = "weapons:bokken";
             image_file_path = "ItemSprites/Weapon_1";
             description = "The training weapon of an honorable samurai! It's also legal to carry around, because it cannot be classified as a bladed weapon " +
-                "under Chapter 46 of the Brown Trout City Penal Code!";
+                "under Chapter 46 of the Brown Trout City Penal Code! ATK + 6, POW + 20.";
             limit = 10;
             amount = 1;
             type = 1;
@@ -1367,7 +1384,7 @@ public static class Weapons
             name = "Occult Text";
             id = "weapons:book";
             image_file_path = "ItemSprites/Weapon_1";
-            description = "A book of unspeakable truths bound in the flesh of a 10th century heretic. Consequently it has a good heft to it!";
+            description = "A book of unspeakable truths bound in the flesh of a 10th century heretic. Consequently it has a good heft to it! ATK + 8, POW + 22, deals weird damage.";
             limit = 10;
             amount = 1;
             type = 1;
@@ -1387,7 +1404,7 @@ public static class Weapons
             name = "Explicit Magazine";
             id = "weapons:magazine";
             image_file_path = "ItemSprites/Weapon_1";
-            description = "A magazine full of smut. You noticed after rolling it up to hide the unspeakable cover art, it makes a very good club!";
+            description = "A magazine full of smut. You noticed after rolling it up to hide the unspeakable cover art, it makes a very good club! ATK + 12, RES + 7, LCK + 8.";
             limit = 10;
             amount = 1;
             type = 1;
@@ -1407,7 +1424,7 @@ public static class Weapons
             id = "weapons:beangun";
             image_file_path = "Itemsprites/Weapon_2";
             description = "Who knew that a children's toy launched at 300 feet per second could be so deadly. The police certainly did, and that's why" +
-                " this weapon was invented for riots!";
+                " this weapon was invented for riots! ATK + 30.";
             limit = 10;
             amount = 1;
             type = 1;
@@ -1423,7 +1440,7 @@ public static class Weapons
             name = "Taser";
             id = "weapons:taser";
             image_file_path = "ItemSprites/Weapon_2";
-            description = "Everyone confuses tasers for stun guns, that is until you've tased them. Then they'll never have trouble telling the difference again.";
+            description = "Everyone confuses tasers for stun guns, that is until you've tased them. Then they'll never have trouble telling the difference again. ATK + 20, deals electric damage.";
             limit = 10;
             amount = 1;
             type = 1;
@@ -1442,7 +1459,7 @@ public static class Weapons
             id = "weapons:pepperspray";
             image_file_path = "ItemSprites/Weapon_1";
             description = "There's nothing cowardly or unmanly about spraying capsaicin into an assailants eyes! You just had something in your eye and wanted to " +
-                "even the playing field!";
+                "even the playing field! ATK + 15, deals fire damage.";
             limit = 10;
             amount = 1;
             type = 1;
@@ -1494,7 +1511,7 @@ public static class Armors
             name = "TestArmor";
             id = "armors:testarmor";
             image_file_path = "ItemSprites/Armor_1";
-            description = "A suit of armor made of code!  Awkward and clunky, just like a programmer's first draft...";
+            description = "A suit of armor made of code! Awkward and clunky, just like a programmer's first draft...";
             limit = 10;
             amount = 1;
             type = 2;
@@ -1516,7 +1533,7 @@ public static class Armors
             name = "Rad Flat Cap";
             id = "armors:radflatcap";
             image_file_path = "ItemSprites/Armor_0";
-            description = "This hat bears the insignia of a radical, the mathematical one of course… you feel real cool in this hat.";
+            description = "This hat bears the insignia of a radical, the mathematical one of course… you feel real cool in this hat. DEF + 2, WIL + 2.";
             limit = 10;
             amount = 1;
             type = 2;
@@ -1533,7 +1550,7 @@ public static class Armors
             id = "armors:strrestrashbag";
             image_file_path = "ItemSprites/Armor_0";
             description = "You figure by fitting your arms and legs through 4 conveniently ripped holes in this trash bag and donning it, " +
-                "this would make good protection against any attack that might stretch you out...";
+                "this would make good protection against any attack that might stretch you out... DEF + 4, AGI - 2.";
             limit = 10;
             amount = 1;
             type = 2;
@@ -1550,7 +1567,7 @@ public static class Armors
             name = "Commemorative T-Shirt";
             id = "armors:commemorativetshirt";
             image_file_path = "ItemSprites/Armor_0";
-            description = "Armor that smells like feet-I mean... cheese... yeah cheese...";
+            description = "Armor that smells like feet-I mean... cheese... yeah cheese... DEF + 4, WIL + 6.";
             limit = 10;
             amount = 1;
             type = 2;
@@ -1568,7 +1585,7 @@ public static class Armors
             name = "Bullet Proof Socks";
             id = "armors:socks";
             image_file_path = "ItemSprites/Armor_1";
-            description = "Armor for not... getting your feet shot off? I don't really think the weapons engineers thought this one through.";
+            description = "Armor for not... getting your feet shot off? I don't really think the weapons engineers thought this one through. DEF + 10.";
             limit = 10;
             amount = 1;
             type = 2;
@@ -1586,7 +1603,7 @@ public static class Armors
             id = "armors:woodplanks";
             image_file_path = "ItemSprites/Armor_1";
             description = "Those school mandatory shop classes are finally paying off! After many attempts and splinters, you managed to make some rudimentary" +
-                " armor out of wood!";
+                " armor out of wood! DEF + 8, AGI - 3.";
             limit = 10;
             amount = 1;
             type = 2;
@@ -1604,7 +1621,7 @@ public static class Armors
             name = "Unwrapped Expired Rubber";
             id = "armors:rubber";
             image_file_path = "ItemSprites/Armor_1";
-            description = "To be clear, this was NOT used. However, it's still expired and somehow hardened, you're not planning on using that... right?";
+            description = "To be clear, this was NOT used. However, it's still expired and somehow hardened, you're not planning on using that... right? DEF + 10, RES + 4.";
             limit = 10;
             amount = 1;
             type = 2;
@@ -1621,7 +1638,7 @@ public static class Armors
             name = "Bulletproof Pants";
             id = "armors:pants";
             image_file_path = "ItemSprites/Armor_2";
-            description = "Well at least people will think twice about attacking you below the waist.";
+            description = "Well at least people will think twice about attacking you below the waist. DEF + 15, AGI + 10.";
             limit = 10;
             amount = 1;
             type = 2;
@@ -1638,7 +1655,7 @@ public static class Armors
             name = "Riot Shield";
             id = "armors:riotshield";
             image_file_path = "ItemSprites/Armor_2";
-            description = "This is actually an antique 9th century targe shield, with the words, 'Riot Shield,' spray painted on the front of it";
+            description = "This is actually an antique 9th century targe shield, with the words, 'Riot Shield,' spray painted on the front of it. DEF + 12, ATK + 10, AGI + 8.";
             limit = 10;
             amount = 1;
             type = 2;
@@ -1690,7 +1707,7 @@ public static class Trinkets
             name = "TestTrinket";
             id = "trinkets:testtrinket";
             image_file_path = "ItemSprites/Trinket_1";
-            description = "The jewel on the ring is valued at 1 bit!  Not one bitcoin, like an actual bit of memory...";
+            description = "The jewel on the ring is valued at 1 bit! Not one bitcoin, like an actual bit of memory...";
             limit = 10;
             amount = 1;
             type = 3;
@@ -1712,7 +1729,7 @@ public static class Trinkets
             id = "trinkets:mrwhiskers";
             image_file_path = "ItemSprites/Trinket_0";
             description = "You figure if you don’t return your neighbor’s cat, it can never escape again, and thus your fish " +
-                "will always be safe from his nemesis.";
+                "will always be safe from his nemesis. LCK + 5, AGI + 5.";
             limit = 10;
             amount = 1;
             type = 3;
@@ -1730,7 +1747,7 @@ public static class Trinkets
             id = "trinkets:clayamulet";
             image_file_path = "ItemSprites/Trinket_1";
             description = "They say the humanities are what keeps us human, but the arts and crafts class is what keeps some " +
-                "students sane.  Clearly, some student rejected their humanity by throwing this project away...";
+                "students sane. Clearly, some student rejected their humanity by throwing this project away... WIL + 3.";
             limit = 10;
             amount = 1;
             type = 3;
@@ -1748,7 +1765,7 @@ public static class Trinkets
             id = "trinkets:petrock";
             image_file_path = "ItemSprites/Trinket_1";
             description = "It's entirely self sufficient, it doesn't talk back, and it always listens: the perfect companion for the likes of you! Shhhh... " +
-                "don't tell fish!";
+                "don't tell fish! WIL + 6.";
             limit = 10;
             amount = 1;
             type = 3;
@@ -1764,7 +1781,7 @@ public static class Trinkets
             name = "Galaxy Guy Action Figure";
             id = "trinkets:actionfigure";
             image_file_path = "ItemSprites/Trinket_1";
-            description = "The most powerful action figure, you know the guy? That's right it's Galaxy Guy! Wielding the all powerful indivisible particle smasher!";
+            description = "The most powerful action figure. You know the guy? That's right it's Galaxy Guy! Wielding the all powerful indivisible particle smasher! POW + 5, AGI + 5.";
             limit = 10;
             amount = 1;
             type = 3;
@@ -1782,7 +1799,7 @@ public static class Trinkets
             name = "Adult Video";
             id = "trinkets:adultvideo";
             image_file_path = "ItemSprites/Trinket_2";
-            description = "It's in Spanish";
+            description = "It's in Spanish. WIL - 2, RES + 7, POW + 8.";
             limit = 10;
             amount = 1;
             type = 3;
@@ -1800,7 +1817,7 @@ public static class Trinkets
             name = "BrokenGlassSphere";
             id = "trinkets:brokenglasssphere";
             image_file_path = "ItemSprites/Trinket_2";
-            description = "When they call it a crystal ball it sounds a whole lot more believable, but it's actually made of glass.";
+            description = "When they call it a crystal ball it sounds a whole lot more believable, but it's actually just made of glass. ATK + 10, POW + 10, WIL + 5, LCK + 15.";
             limit = 10;
             amount = 1;
             type = 3;
@@ -1819,7 +1836,7 @@ public static class Trinkets
             name = "Adrenaline Syringe";
             id = "trinkets:adrenalinesyringe";
             image_file_path = "ItemSprites/Trinket_2";
-            description = "You don't think you're supposed to leave that in, but whatever, you feel hyped so you couldn't care less";
+            description = "You don't think you're supposed to leave that in, but whatever, you feel hyped so you couldn't care less. ATK + 8, POW + 8, WIL + 10, LCK + 10, SPD + 10, RES - 2.";
             limit = 10;
             amount = 1;
             type = 3;

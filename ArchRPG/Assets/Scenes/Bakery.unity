@@ -1663,7 +1663,7 @@ MonoBehaviour:
     cost: 15
     type: 0
   - name: Gluten Free Brioche
-    cost: 22
+    cost: 30
     type: 0
   text:
   - text: Welcome to Buttz Bakery, where we really squeeze out the dough...
@@ -3660,7 +3660,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1974932773
 PrefabInstance:
@@ -3809,7 +3809,7 @@ Transform:
   - {fileID: 1424291010}
   - {fileID: 450543984}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2133763963
 PrefabInstance:
