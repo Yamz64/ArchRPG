@@ -645,12 +645,33 @@ public static class EldritchAbilities
                 {
                     if (targets[i].enemy == false && targets[i].currentHP > 0 && targets[i].unitName != user.unitName)
                     {
-                        int ran = Random.Range(0, statIndex.Count);
-                        while(targets[i].statuses[ran] != -1 || ran == 24 || ran == 25 || ran == 26)
+                        List<string> stat1 = new List<string>();
+                        List<string> stat2 = new List<string>();
+
+                        stat1.Add("Aspirating");
+                        stat1.Add("Eye_Bleeding");
+                        stat1.Add("Lethargic");
+                        stat1.Add("Spasms");
+                        stat1.Add("Blunt_Trauma");
+                        stat1.Add("Consumed");
+                        stat1.Add("Diseased");
+
+                        stat2.Add("Flammable");
+                        stat2.Add("Conductive");
+                        stat2.Add("Reactive");
+                        stat2.Add("Zonked");
+                        int ran = Random.Range(0, stat1.Count);
+                        while(targets[i].statuses[targets[i].statusIndex.IndexOf(stat1[ran])] != -1)
                         {
-                            ran = Random.Range(0, statIndex.Count);
+                            ran = Random.Range(0, stat1.Count);
                         }
-                        targets[i].giveStatus(statIndex[ran]);
+                        targets[i].giveStatus(stat1[ran]);
+                        ran = Random.Range(0, stat2.Count);
+                        while (targets[i].statuses[targets[i].statusIndex.IndexOf(stat2[ran])] != -1)
+                        {
+                            ran = Random.Range(0, stat2.Count);
+                        }
+                        targets[i].giveStatus(stat2[ran]);
                     }
                 }
             }
@@ -709,7 +730,7 @@ public static class EldritchAbilities
         public override void UseAttack(unit user, List<unit> targets)
         {
             int ps = 0;
-            int indi = 0;
+            int indi = -1;
             for (int i = 0; i < targets.Count; i++)
             {
                 if (targets[i] != null && !targets[i].enemy && targets[indi].currentHP > 0 && targets[i] != user)
@@ -765,7 +786,10 @@ public static class EldritchAbilities
                     {
                         if (targets[i].currentHP > 0)
                         {
-
+                            targets[i].giveStatus("Vomiting");
+                            targets[i].giveStatus("Weeping");
+                            int dam = user.takeDamageCalc(targets[i], 15, 4, true);
+                            targets[i].takeDamage(dam);
                         }
                     }
                 }
