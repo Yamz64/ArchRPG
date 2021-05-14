@@ -3124,9 +3124,9 @@ class Lucy : CharacterStats
         ClearAbilities();
         if (GetLVL() >= 1) AddAbility(new LucyAbilities.FungalRat());
         if (GetLVL() >= 5) AddAbility(new LucyAbilities.RodentialKindling());
-        if (GetLVL() >= 8) AddAbility(new LucyAbilities.FeedTheMasses());
+        if (GetLVL() >= 8) AddAbility(new LucyAbilities.PropellorRat());
         if (GetLVL() >= 12) AddAbility(new LucyAbilities.FrenziedInvasion());
-        if (GetLVL() >= 17) AddAbility(new LucyAbilities.PropellorRat());
+        if (GetLVL() >= 17) AddAbility(new LucyAbilities.FeedTheMasses());
         if (GetLVL() >= 20) AddAbility(new LucyAbilities.VirumRodentia());
 
         //see if the player's sanity is below 50 if so give them maddened
