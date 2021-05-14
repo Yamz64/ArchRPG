@@ -2831,7 +2831,7 @@ public class PauseMenuHandler : MonoBehaviour
         cards[data.GetPos()].transform.GetChild(5).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetSP() / data.GetSPMax();
 
         //san
-        cards[data.GetPos()].transform.GetChild(6).GetComponent<Text>().text = "SAN: (" + data.GetSP() + "/" + data.GetSPMax() + ")";
+        cards[data.GetPos()].transform.GetChild(6).GetComponent<Text>().text = "SAN: (" + data.GetSAN() + "/" + data.GetSANMax() + ")";
         cards[data.GetPos()].transform.GetChild(6).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetSAN() / data.GetSANMax();
 
         //now do this for the rest of the party members
@@ -2870,7 +2870,7 @@ public class PauseMenuHandler : MonoBehaviour
             cards[data.GetPartyMember(i).GetPos()].transform.GetChild(5).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetPartyMember(i).GetSP() / data.GetPartyMember(i).GetSPMax();
 
             //san
-            cards[data.GetPartyMember(i).GetPos()].transform.GetChild(6).GetComponent<Text>().text = "SAN: (" + data.GetPartyMember(i).GetSP() + "/" + data.GetPartyMember(i).GetSPMax() + ")";
+            cards[data.GetPartyMember(i).GetPos()].transform.GetChild(6).GetComponent<Text>().text = "SAN: (" + data.GetPartyMember(i).GetSAN() + "/" + data.GetPartyMember(i).GetSANMax() + ")";
             cards[data.GetPartyMember(i).GetPos()].transform.GetChild(6).GetChild(0).GetComponent<Image>().fillAmount = (float)data.GetPartyMember(i).GetSAN() / data.GetPartyMember(i).GetSANMax();
         }
 
