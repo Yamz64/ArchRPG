@@ -16,6 +16,8 @@ public class RoamingEnemySpawnerBehavior : MonoBehaviour
 
     public float move_speed;
     public float aggro_range;
+    [Range(0, 1)]
+    public float spawn_range = 1;
     public float attack_delay;
 
     [Tooltip("Should this spawner's enemy be a hoard type encounter?")]
@@ -38,14 +40,17 @@ public class RoamingEnemySpawnerBehavior : MonoBehaviour
         //determine if conditions to spawn the enemy in are favorable (must be outside of the camera's viewport)
         bool favorable = false;
         Vector3 screen_position = Camera.main.WorldToScreenPoint(transform.position);
+        spawn_range += 1f;
+        spawn_range /= 2f;
+        float alt_spawn_range = Mathf.Abs(spawn_range - 1.0f);
         //outside right bounds
-        if (screen_position.x > Screen.width) favorable = true;
+        if (screen_position.x > Screen.width * spawn_range) favorable = true;
         //outside left bounds
-        if (screen_position.x < 0.0f) favorable = true;
+        if (screen_position.x < 0.0f + Screen.width * alt_spawn_range) favorable = true;
         //outside top bounds
-        if (screen_position.y > Screen.height) favorable = true;
+        if (screen_position.y > Screen.height * spawn_range) favorable = true;
         //outside bottom bounds
-        if (screen_position.y < 0.0f) favorable = true;
+        if (screen_position.y < 0.0f + Screen.height * alt_spawn_range) favorable = true;
 
         if (favorable)
         {
@@ -78,5 +83,21 @@ public class RoamingEnemySpawnerBehavior : MonoBehaviour
     {
         Gizmos.color = Color.white;
         Gizmos.DrawIcon(transform.position, "e_mobile_sprout.png", true);
+
+        //get the width and height of the aggro range
+        Vector2 reference_point = new Vector2(Camera.main.orthographicSize * Camera.main.aspect, Camera.main.orthographicSize);
+        reference_point *= spawn_range;
+
+        //draw the bounds of the aggro range
+        Gizmos.color = Color.green;
+        //top border
+        Gizmos.DrawLine(new Vector3(-reference_point.x, reference_point.y) + transform.position, new Vector3(reference_point.x, reference_point.y) + transform.position);
+        //right border
+        Gizmos.DrawLine(new Vector3(reference_point.x, reference_point.y) + transform.position, new Vector3(reference_point.x, -reference_point.y) + transform.position);
+        //bottom border
+        Gizmos.DrawLine(new Vector3(reference_point.x, -reference_point.y) + transform.position, new Vector3(-reference_point.x, -reference_point.y) + transform.position);
+        //left border
+        Gizmos.DrawLine(new Vector3(-reference_point.x, -reference_point.y) + transform.position, new Vector3(-reference_point.x, reference_point.y) + transform.position);
+
     }
 }
