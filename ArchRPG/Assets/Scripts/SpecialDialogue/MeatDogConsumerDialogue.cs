@@ -62,9 +62,29 @@ public class MeatDogConsumerDialogue : NPCDialogue
     new void Start()
     {
         PlayerData data = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDataMono>().data;
+        //find if the recruiter has been interacted
+        bool met_recruiter = false;
+        MapSaveData map_save_data = new MapSaveData();
+        map_save_data.Load();
+        for(int i=0; i<map_save_data.map_data.Count; i++)
+        {
+            if(map_save_data.map_data[i].name == "City2")
+            {
+                for(int j=0; j<map_save_data.map_data[i].objects.Count; j++)
+                {
+                    if(map_save_data.map_data[i].objects[j].o == "Recruiter" && map_save_data.map_data[i].objects[j].interacted)
+                    {
+                        met_recruiter = true;
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+
         for(int i=0; i<data.GetInventorySize(); i++)
         {
-            if(data.GetItem(i).name == "Meat Dog")
+            if(data.GetItem(i).name == "Meat Dog" && met_recruiter)
             {
                 has_dogs = true;
                 break;
