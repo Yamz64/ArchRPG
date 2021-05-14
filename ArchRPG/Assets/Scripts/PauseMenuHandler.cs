@@ -4903,6 +4903,62 @@ public class PauseMenuHandler : MonoBehaviour
                     swap = true;
                     audio_handler.PlaySound("Sound/SFX/select");
                 }
+                menu_input = true;
+            }
+            else if (InputManager.GetButtonDown("Remove"))
+            {
+                if (!menu_input)
+                {
+                    //determine which party member is being swapped and update stats accordingly
+                    if (cursor_position >= data.GetPartySize()) return;
+                    switch (data.GetPartyMember(cursor_position).GetName())
+                    {
+                        case "Clyve":
+                            data.SetUnlockedDead(0, data.GetPartyMember(cursor_position).GetDead());
+                            data.SetUnlockedSAN(0, data.GetPartyMember(cursor_position).GetSAN());
+                            break;
+                        case "Jim":
+                            data.SetUnlockedDead(1, data.GetPartyMember(cursor_position).GetDead());
+                            data.SetUnlockedSAN(1, data.GetPartyMember(cursor_position).GetSAN());
+                            break;
+                        case "Norm":
+                            data.SetUnlockedDead(2, data.GetPartyMember(cursor_position).GetDead());
+                            data.SetUnlockedSAN(2, data.GetPartyMember(cursor_position).GetSAN());
+                            break;
+                        case "Shirley":
+                            data.SetUnlockedDead(3, data.GetPartyMember(cursor_position).GetDead());
+                            data.SetUnlockedSAN(3, data.GetPartyMember(cursor_position).GetSAN());
+                            break;
+                        case "Ralph":
+                            data.SetUnlockedDead(4, data.GetPartyMember(cursor_position).GetDead());
+                            data.SetUnlockedSAN(4, data.GetPartyMember(cursor_position).GetSAN());
+                            break;
+                        case "Lucy":
+                            data.SetUnlockedDead(5, data.GetPartyMember(cursor_position).GetDead());
+                            data.SetUnlockedSAN(5, data.GetPartyMember(cursor_position).GetSAN());
+                            break;
+                        case "Tim":
+                            data.SetUnlockedDead(6, data.GetPartyMember(cursor_position).GetDead());
+                            data.SetUnlockedSAN(6, data.GetPartyMember(cursor_position).GetSAN());
+                            break;
+                        case "WhiteKnight":
+                            data.SetUnlockedDead(7, data.GetPartyMember(cursor_position).GetDead());
+                            data.SetUnlockedSAN(7, data.GetPartyMember(cursor_position).GetSAN());
+                            break;
+                        case "OliverSprout":
+                            data.SetUnlockedDead(8, data.GetPartyMember(cursor_position).GetDead());
+                            data.SetUnlockedSAN(8, data.GetPartyMember(cursor_position).GetSAN());
+                            break;
+                        case "EmberMoon":
+                            data.SetUnlockedDead(9, data.GetPartyMember(cursor_position).GetDead());
+                            data.SetUnlockedSAN(9, data.GetPartyMember(cursor_position).GetSAN());
+                            break;
+                    }
+                    data.RemovePartyMember(cursor_position);
+                    UpdatePartySwap();
+                    audio_handler.PlaySound("Sound/SFX/select");
+                }
+                menu_input = true;
             }
             else
             {
@@ -5019,6 +5075,13 @@ public class PauseMenuHandler : MonoBehaviour
                     //check to see if adding a party member instead of swapping
                     if(highlighted_party_member >= data.GetPartySize())
                     {
+                        //check to see if the selected member is in the party- if so then do nothing
+                        for (int i = 0; i < data.GetPartySize(); i++)
+                        {
+                            if (i == highlighted_party_member) continue;
+                            if (data.GetPartyMember(i).GetName() == temp.GetName()) return;
+                        }
+
                         temp.SetSAN(data.GetUnlockedSAN(selected));
                         //find the first available spot to put the new party member in
                         List<int> party_locations = new List<int>();
