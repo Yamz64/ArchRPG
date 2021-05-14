@@ -8545,7 +8545,7 @@ public class Hound : unit
         level = 6;
         SetHPMax(95);
         maxHP = currentHP = 95;
-        expGain = 3500;
+        expGain = 5280;
         enemy = true;
         capital = 8;
 
@@ -8805,7 +8805,7 @@ public class TheSquatter : unit
 
         level = 13;
         SetHPMax(350);
-        expGain = 71402;
+        expGain = 96040;
         enemy = true;
         capital = 75;
         
@@ -9003,7 +9003,7 @@ public class GodsHand : unit
 
         level = 19;
         SetHPMax(230);
-        expGain = 15746;
+        expGain = 100000;
         enemy = true;
         capital = 8;
         

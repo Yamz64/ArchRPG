@@ -21,6 +21,8 @@ public class RoamingEnemySpawnerBehavior : MonoBehaviour
     [Tooltip("Should this spawner's enemy be a hoard type encounter?")]
     public bool hoard;
 
+    public bool intangible;
+
     [SerializeField]
     public Sprite[] anim_sprites;
     [SerializeField]
@@ -68,6 +70,7 @@ public class RoamingEnemySpawnerBehavior : MonoBehaviour
             enemy.GetComponent<OverworldEncounter>().aggro_range = aggro_range;
             enemy.GetComponent<OverworldEncounter>().attack_delay = attack_delay;
             enemy.GetComponent<OverworldEncounter>().maximum_enemies = maximum_enemies;
+            if (intangible) enemy.GetComponent<Collider2D>().enabled = false;
         }
     }
 
