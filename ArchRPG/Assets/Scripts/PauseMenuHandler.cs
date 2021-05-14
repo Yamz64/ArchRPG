@@ -138,6 +138,7 @@ public class PauseMenuHandler : MonoBehaviour
                 else
                 {
                     equipping = false;
+                    equip_type = 0;
                     UpdateEquipMenuInfo();
                 }
                 audio_handler.PlaySound("Sound/SFX/select");
