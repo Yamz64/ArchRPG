@@ -3498,7 +3498,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2517797632045173605, guid: 418d9150908dd624ab1dd027018b591d, type: 3}
       propertyPath: itemDesc
-      value: You can feel the Mathemtical power flowing through you.
+      value: You can feel the Mathematical power flowing through you.
       objectReference: {fileID: 0}
     - target: {fileID: 5582148413103992204, guid: 418d9150908dd624ab1dd027018b591d, type: 3}
       propertyPath: m_Name
