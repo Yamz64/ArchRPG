@@ -4772,7 +4772,7 @@ public class BattleScript : MonoBehaviour
         //data.AddItem(new Consumables.HotDog());
         //data.AddItem(new Consumables.BaconLollipop());
         //data.AddItem(new Consumables.HotDog());
-        data.AddItem(new Consumables.FleshHeart());
+        //data.AddItem(new Consumables.FleshHeart());
 
         //Define actions list
         actions = new List<action>();
