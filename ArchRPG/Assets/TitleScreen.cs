@@ -650,6 +650,8 @@ public class TitleScreen : MonoBehaviour
                                             {
                                                 save1 = new CharacterStatJsonConverter(0, true);
                                                 mapio.Load(true);
+                                                save1.Save(0);
+                                                mapio.Save();
                                                 SceneManager.LoadScene(save1.active_scene);
                                             }
                                             else
@@ -664,6 +666,8 @@ public class TitleScreen : MonoBehaviour
                                             {
                                                 save2 = new CharacterStatJsonConverter(1, true);
                                                 mapio.Load(true);
+                                                save1.Save(1);
+                                                mapio.Save();
                                                 SceneManager.LoadScene(save2.active_scene);
                                             }
                                             else
@@ -678,6 +682,8 @@ public class TitleScreen : MonoBehaviour
                                             {
                                                 save3 = new CharacterStatJsonConverter(2, true);
                                                 mapio.Load(true);
+                                                save1.Save(2);
+                                                mapio.Save();
                                                 SceneManager.LoadScene(save3.active_scene);
                                             }
                                             else
@@ -692,6 +698,8 @@ public class TitleScreen : MonoBehaviour
                                             {
                                                 save4 = new CharacterStatJsonConverter(3, true);
                                                 mapio.Load(true);
+                                                save1.Save(3);
+                                                mapio.Save();
                                                 SceneManager.LoadScene(save4.active_scene);
                                             }
                                             else
