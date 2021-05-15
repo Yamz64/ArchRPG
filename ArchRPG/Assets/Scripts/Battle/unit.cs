@@ -3455,7 +3455,7 @@ public class JimUnit : unit
                 break;
         }
 
-        if (level >= 7)
+        if (level >= 6)
         {
             hasMP = true;
         }
@@ -3736,7 +3736,7 @@ public class JimUnit : unit
                 break;
         }
 
-        if (level >= 7)
+        if (level >= 6)
         {
             hasMP = true;
         }
