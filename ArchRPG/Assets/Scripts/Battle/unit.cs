@@ -3455,6 +3455,11 @@ public class JimUnit : unit
                 break;
         }
 
+        if (level >= 7)
+        {
+            hasMP = true;
+        }
+
         if (level >= 2)
         {
             abilities.Add(new JimAbilities.Antacid());
@@ -3729,6 +3734,11 @@ public class JimUnit : unit
                 break;
             default:
                 break;
+        }
+
+        if (level >= 7)
+        {
+            hasMP = true;
         }
 
         abilities.Clear();
