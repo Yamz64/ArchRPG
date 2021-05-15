@@ -71,7 +71,7 @@ public class SchoolyardAnimation : InteractableBaseClass
         }
 
         //check to see if the player's progress has advanced past this state, and if so then destroy this gameObject
-        CharacterStatJsonConverter char_info = new CharacterStatJsonConverter(player.GetComponent<PlayerDataMono>().data);
+        CharacterStatJsonConverter char_info = new CharacterStatJsonConverter(PlayerPrefs.GetInt("_active_save_file_"));
         if (char_info.progress > 0) Destroy(gameObject);
 
         //see if Danny has been interacted with and the player has not fleed from combat (this means the player has beat the boss)
