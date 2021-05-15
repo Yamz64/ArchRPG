@@ -300,6 +300,7 @@ public class PlayerData : CharacterStats
     public Item GetItem(int i) { return inventory[i]; }
     public void UseItem(int index)
     {
+        if (index > inventory.Count || index < 0) return;
         inventory[index].Use();
         if (inventory[index].amount <= 1) inventory.RemoveAt(index);
     }
@@ -307,7 +308,7 @@ public class PlayerData : CharacterStats
     public void UseItem(int index, unit user)
     {
         Consumables.InstanceSubclass(inventory[index].id).Use(user);
-        if (inventory[index].amount <= 1) inventory.RemoveAt(index);
+        UseItem(index);
     }
     public void AddItem(Item item)
     {
