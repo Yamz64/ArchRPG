@@ -282,6 +282,13 @@ public class BattleScript : MonoBehaviour
             else
                 audio_handler.PlaySoundLoop("Sound/Music/God2", i);
         }
+        else if (num == 12)
+        {
+            if (!lop)
+                audio_handler.PlaySound("Sound/Music/WindAmbience", i);
+            else
+                audio_handler.PlaySoundLoop("Sound/Music/WindAmbience", i);
+        }
         else
         {
             Debug.Log("Invalid sound");
@@ -4759,7 +4766,7 @@ public class BattleScript : MonoBehaviour
         //If God's Hand
         else if (hand)
         {
-            useSound(3, true, 1);
+            useSound(12, true, 1);
             background.GetComponent<VideoPlayer>().clip = Resources.Load<VideoClip>("Backgrounds/Background3Edited");
         }
         //If normal enemy
