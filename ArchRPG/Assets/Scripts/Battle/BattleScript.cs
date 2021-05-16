@@ -3053,14 +3053,14 @@ public class BattleScript : MonoBehaviour
 
                         int r = Random.Range(0, enemyUnits.Count);
                         bool selfie = true;
-                        if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.unitName.Equals(enemyUnits[r].GetComponent<UnitMono>().mainUnit.unitName))
+                        if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.unitName.Equals(enemyUnits[r].GetComponent<UnitMono>().mainUnit.unitName) && i == r)
                         {
                             selfie = false;
                         }
                         while (enemyUnits[r].GetComponent<UnitMono>().mainUnit.currentHP <= 0 || !selfie)
                         {
                             r = Random.Range(0, enemyUnits.Count);
-                            if (!enemyUnits[i].GetComponent<UnitMono>().mainUnit.unitName.Equals(enemyUnits[r].GetComponent<UnitMono>().mainUnit.unitName))
+                            if (!enemyUnits[i].GetComponent<UnitMono>().mainUnit.unitName.Equals(enemyUnits[r].GetComponent<UnitMono>().mainUnit.unitName) && i != r)
                             {
                                 selfie = true;
                             }
