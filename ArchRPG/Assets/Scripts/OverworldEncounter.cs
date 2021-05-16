@@ -31,6 +31,9 @@ public class OverworldEncounter : MonoBehaviour
 
     private float stored_delay;
 
+    public bool one_time_encounter;
+    public string spawner_name;
+
     [HideInInspector]
     public bool initiated_combat;
 
@@ -45,6 +48,12 @@ public class OverworldEncounter : MonoBehaviour
 
     IEnumerator CombatSequence()
     {
+        if (one_time_encounter)
+        {
+            MapDataManager map_data = GameObject.FindGameObjectWithTag("MapManager").GetComponent<MapDataManager>();
+            map_data.SetInteracted(spawner_name, true);
+            map_data.Save();
+        }
         TransitionHandler handler = GameObject.FindGameObjectWithTag("Player").GetComponent<TransitionHandler>();
         handler.BattleTransitionDriver();
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().interaction_protection = true;

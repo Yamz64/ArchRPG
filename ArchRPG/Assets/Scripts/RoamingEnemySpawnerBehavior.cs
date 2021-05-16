@@ -20,6 +20,8 @@ public class RoamingEnemySpawnerBehavior : MonoBehaviour
     public float spawn_range = 1;
     public float attack_delay;
 
+    public bool interact_with_map_manager;
+
     [Tooltip("Should this spawner's enemy be a hoard type encounter?")]
     public bool hoard;
 
@@ -39,6 +41,14 @@ public class RoamingEnemySpawnerBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //if interact with map manager is flagged, destroy the spawner if it's been marked as interacted by the map manager
+        bool destruction_flag = false;
+        if (interact_with_map_manager)
+        {
+            if (GameObject.FindGameObjectWithTag("MapManager").GetComponent<MapDataManager>().GetInteracted(gameObject.name)) destruction_flag = true;
+        }
+        if (destruction_flag) Destroy(gameObject);
+
         //determine if conditions to spawn the enemy in are favorable (must be outside of the camera's viewport)
         bool favorable = false;
         Vector3 screen_position = Camera.main.WorldToScreenPoint(transform.position);
@@ -54,7 +64,7 @@ public class RoamingEnemySpawnerBehavior : MonoBehaviour
         //outside bottom bounds
         if (screen_position.y < 0.0f + Screen.height * alt_spawn_range) favorable = true;
 
-        if (favorable)
+        if (favorable && !destruction_flag)
         {
             //spawn the prefab and set it's values to what it should be 
             GameObject enemy = (GameObject)Instantiate(enemy_prefab, transform.position, transform.rotation);
@@ -79,6 +89,11 @@ public class RoamingEnemySpawnerBehavior : MonoBehaviour
             enemy.GetComponent<OverworldEncounter>().maximum_enemies = maximum_enemies;
             if (intangible) enemy.GetComponent<Collider2D>().enabled = false;
             if (high_layer) enemy.GetComponent<SpriteRenderer>().sortingOrder = 4;
+            if (interact_with_map_manager)
+            {
+                enemy.GetComponent<OverworldEncounter>().one_time_encounter = true;
+                enemy.GetComponent<OverworldEncounter>().spawner_name = gameObject.name;
+            }
         }
     }
 
