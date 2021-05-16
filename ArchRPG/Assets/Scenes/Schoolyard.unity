@@ -2171,10 +2171,14 @@ MonoBehaviour:
   interacted: 0
   text:
   - text: I'm leaving the school cuz there's nothing left for them to teach me.
-  - text: I'm off to go construct my merging monolith.  It's used for merging.
+  - text: I'm off to go construct my merging monolith. It's used for merging.
   - text: In the meanwhile, you can deal with these other dudes who have merged with
       each other.
-  - text: And by the way, you ARE ugly.
+  - text: "You've seen some of the simple manifestations of the coming god's corruption,
+      but this amalgam of your former peers is another beast.\r"
+  - text: "Human minds have borders in place to keep us sane. When those boundaries
+      are erased, we become powerful instruments of god's will.\r"
+  - text: "Now, I'm out of here, loser, and by the way... you ARE ugly!\r"
   container:
   - effects: []
   - effects:
@@ -2184,14 +2188,16 @@ MonoBehaviour:
       upper: 56
   - effects:
     - name: Color
-      color: {r: 1, g: 0, b: 0, a: 0}
+      color: {r: 1, g: 0, b: 0, a: 1}
       lower: 51
       upper: 71
+  - effects: []
+  - effects: []
   - effects:
     - name: Quake
       color: {r: 0, g: 0, b: 0, a: 0}
-      lower: 15
-      upper: 17
+      lower: 40
+      upper: 42
 --- !u!61 &1443948487
 BoxCollider2D:
   m_ObjectHideFlags: 0
