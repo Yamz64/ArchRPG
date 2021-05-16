@@ -4802,11 +4802,18 @@ public class BattleScript : MonoBehaviour
         //Display text to player, showing an enemy/enemies have appeared
         else if (activeEnemies == 1)
         {
-            //If first part of unit name is already "The "
-            if (enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName[0] != 'T' && enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName[1] != 'e'
-                && enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName[2] != 'e' && enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName[3] != ' ')
+            if (enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName.Length >= 4)
             {
-                yield return textDisplay("The " + enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName + " appears.");
+                //If first part of unit name is already "The "
+                if (enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName[0] != 'T' && enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName[1] != 'e'
+                    && enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName[2] != 'e' && enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName[3] != ' ')
+                {
+                    yield return textDisplay("The " + enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName + " appears.");
+                }
+                else
+                {
+                    yield return textDisplay(enemyUnits[0].GetComponent<UnitMono>().mainUnit.unitName + " appears.");
+                }
             }
             else
             {
