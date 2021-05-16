@@ -8362,7 +8362,7 @@ public class NewKidUnit : unit
     {
         unitID = 5;
         unitName = "New Kid";
-        ImageFilePath = "EnemySprites/Student Body Sheet";
+        ImageFilePath = "EnemySprites/Student Body2";
 
         level = 5;
 
@@ -8391,7 +8391,7 @@ public class KillerCone : unit
 {
     public KillerCone()
     {
-        ImageFilePath = "EnemySprites/Killer Cone_sheet";
+        ImageFilePath = "EnemySprites/killer_cone_sheet2";
         unitName = "Killer Cone";
         loadSprites();
         level = 3;
@@ -8516,7 +8516,7 @@ public class Vermin : unit
 {
     public Vermin()
     {
-        ImageFilePath = "EnemySprites/Vermin 2";
+        ImageFilePath = "EnemySprites/Vermin 3";
         unitName = "Vermin";
         loadSprites();
         weaknesses[1] = true;
@@ -8546,7 +8546,7 @@ public class Hound : unit
 {
     public Hound()
     {
-        ImageFilePath = "EnemySprites/The Hound";
+        ImageFilePath = "EnemySprites/The Hound2";
         unitName = "The Hound";
         loadSprites();
 
