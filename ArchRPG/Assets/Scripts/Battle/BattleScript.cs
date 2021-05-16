@@ -3361,7 +3361,7 @@ public class BattleScript : MonoBehaviour
                         StartCoroutine(unitDeath(enemyUnits[ind].GetComponent<UnitMono>().mainUnit));
                         enemyDeaths++;
                         //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
-                        if (enemyDeaths == enemyUnits.Count)
+                        if (enemyDeaths >= enemyUnits.Count)
                         {
                             state = battleState.WIN;
                             yield return battleEnd();
@@ -4211,7 +4211,7 @@ public class BattleScript : MonoBehaviour
                     state = battleState.LOSE;
                     yield return battleEnd();
                 }
-                else if (enemyDeaths >= enemyUnits.Count || tempED == enemyUnits.Count)
+                else if (enemyDeaths >= enemyUnits.Count || tempED >= enemyUnits.Count)
                 {
                     state = battleState.WIN;
                     yield return battleEnd();
@@ -4789,7 +4789,7 @@ public class BattleScript : MonoBehaviour
             yield return textDisplay("But the party wasn't there...", true);
             //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
             state = battleState.HUH;
-            StartCoroutine(battleEnd());
+            yield return (battleEnd());
         }
 
         if (activeEnemies <= 0)
@@ -4797,7 +4797,7 @@ public class BattleScript : MonoBehaviour
             yield return textDisplay("But nobody was there...", true);
             //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
             state = battleState.HUH;
-            StartCoroutine( battleEnd() );
+            yield return ( battleEnd() );
         }
         //Display text to player, showing an enemy/enemies have appeared
         else if (activeEnemies == 1)
@@ -5233,8 +5233,15 @@ public class BattleScript : MonoBehaviour
             for (int g = 0; g < looper && !dead; g++)
             {
                 int dif = target.currentHP;
-                dead = uni.useAbility(ata, target, minus);
-                dif -= target.currentHP;
+                if (dif > 0)
+                {
+                    dead = uni.useAbility(ata, target, minus);
+                    dif -= target.currentHP;
+                }
+                else
+                {
+                    dead = true;
+                }
 
                 //If some effect from ability
                 if (preh != target.currentHP || precS != target.statuses)
@@ -5503,6 +5510,10 @@ public class BattleScript : MonoBehaviour
                     enemyDeaths++;
                     yield return unitDeath(target);
                     expHere += target.expGain;
+                    if (uni.abilities[ata].target == 0)
+                    {
+                        break;
+                    }
                     //yield return levelUp(target.giveEXP());
                 }
                 else if (dead && target.currentHP <= 0 && !target.enemy)
@@ -5510,6 +5521,10 @@ public class BattleScript : MonoBehaviour
                     partyDeaths++;
                     yield return unitDeath(target);
                     expHere += target.expGain;
+                    if (uni.abilities[ata].target == 0)
+                    {
+                        break;
+                    }
                     //yield return levelUp(target.giveEXP());
                 }
                 else if (dead && (preh == target.currentHP || precS == target.statuses))
@@ -5523,6 +5538,10 @@ public class BattleScript : MonoBehaviour
                     yield return unitDeath(enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit);
                     expHere += enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.expGain;
                     //yield return levelUp(enemyUnits[val - 1].GetComponent<UnitMono>().mainUnit.giveEXP());
+                    if (uni.abilities[ata].target == 1 && dead)
+                    {
+                        break;
+                    }
                 }
                 if (deadR && enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
                 {
@@ -5530,16 +5549,20 @@ public class BattleScript : MonoBehaviour
                     yield return unitDeath(enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit);
                     expHere += enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.expGain;
                     //yield return levelUp(enemyUnits[val + 1].GetComponent<UnitMono>().mainUnit.giveEXP());
+                    if (uni.abilities[ata].target == 1 && dead)
+                    {
+                        break;
+                    }
                 }
                 if (expHere > 0)
                 {
                     yield return levelUp(expHere);
                 }
 
-                if (enemyDeaths == enemyUnits.Count)
+                if (enemyDeaths >= enemyUnits.Count)
                 {
                     state = battleState.WIN;
-                    StartCoroutine(battleEnd());
+                    yield return (battleEnd());
                 }
                 if (minus)
                 {
@@ -5634,7 +5657,7 @@ public class BattleScript : MonoBehaviour
                             {
                                 enemyDeaths++;
                                 yield return unitDeath(enemyUnits[x-4].GetComponent<UnitMono>().mainUnit);
-                                if (enemyDeaths == activeEnemies)
+                                if (enemyDeaths >= enemyUnits.Count)
                                 {
                                     state = battleState.WIN;
                                     yield return battleEnd();
@@ -6406,7 +6429,7 @@ public class BattleScript : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             //yield return new WaitUntil(new System.Func<bool>(() => InputManager.GetButtonDown("Interact")));
         }
-        if (enemyDeaths == enemyUnits.Count)
+        if (enemyDeaths >= enemyUnits.Count)
         {
             state = battleState.WIN;
             yield return battleEnd();
@@ -6511,7 +6534,7 @@ public class BattleScript : MonoBehaviour
             enemyDeaths++;
             yield return unitDeath(target);
             yield return levelUp(target.giveEXP());
-            if (enemyDeaths == enemyUnits.Count)
+            if (enemyDeaths >= enemyUnits.Count)
             {
                 state = battleState.WIN;
                 yield return battleEnd();

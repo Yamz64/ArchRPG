@@ -1054,21 +1054,20 @@ public class unit
                     bool d = target.takeDamage(val);
                     target.setHP(target.currentHP);
 
-                    if (valS > 0 && enemy)
-                    {
-                        target.takeSanityDamage(valS);
-                        //target.setSAN(target.sanity);
-                    }
-                    else if (valS > 0 && !enemy)
+                    if (valS > 0 && !enemy)
                     {
                         takeSanityDamage(valS);
+                        //target.setSAN(target.sanity);
+                    }
+                    else if (valS > 0 && !target.enemy)
+                    {
+                        target.takeSanityDamage(valS);
                         //setSAN(sanity);
                     }
 
                     //There is a status effect for the user to get
                     if (!ata.selfStatus.Equals(""))
                     {
-                        
                         //Roll numbers to check if status effect is given
                         int ran = UnityEngine.Random.Range(1, 101);
                         int statBuff = ata.alteredStatus;
@@ -1482,8 +1481,11 @@ public class unit
             {
                 end = false;
             }
-            sanBar.GetComponent<Image>().fillAmount = (float)sanity / 100;
-            sanReadOut.text = sanity + " / 100";
+            if (!enemy)
+            {
+                sanBar.GetComponent<Image>().fillAmount = (float)sanity / 100;
+                sanReadOut.text = sanity + " / 100";
+            }
             setHUD();
             return end;
         }
