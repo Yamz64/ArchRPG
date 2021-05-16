@@ -896,11 +896,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4574606666197765128, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11
+      value: -5.9
       objectReference: {fileID: 0}
     - target: {fileID: 4574606666197765128, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 15.5
+      value: 15.77
       objectReference: {fileID: 0}
     - target: {fileID: 4574606666197765128, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -964,11 +964,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: move_speed
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: aggro_range
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: anim_sprites.Array.data[0]
@@ -2888,7 +2888,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4574606666197765128, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4
+      value: 4.46
       objectReference: {fileID: 0}
     - target: {fileID: 4574606666197765128, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2956,11 +2956,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: move_speed
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: aggro_range
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: anim_sprites.Array.data[0]
@@ -5741,11 +5741,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4574606666197765128, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.5
+      value: 4.92
       objectReference: {fileID: 0}
     - target: {fileID: 4574606666197765128, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 15.5
+      value: 15.74
       objectReference: {fileID: 0}
     - target: {fileID: 4574606666197765128, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5809,11 +5809,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: move_speed
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: aggro_range
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: anim_sprites.Array.data[0]
@@ -17589,7 +17589,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4574606666197765128, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5
+      value: -5.37
       objectReference: {fileID: 0}
     - target: {fileID: 4574606666197765128, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -17657,11 +17657,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: move_speed
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: aggro_range
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: anim_sprites.Array.data[0]

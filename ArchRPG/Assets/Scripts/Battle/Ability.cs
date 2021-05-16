@@ -3024,9 +3024,9 @@ namespace LucyAbilities
         public FrenziedInvasion()
         {
             name = "Frenzied Invasion";
-            desc1 = "Deals moderate physical damage to an enemy. Hits 2-5 times. Inflicts reactive.";
+            desc1 = "Deals moderate physical damage to an enemy. Hits 2-5 times. Inflicts reactive. Expends SP per hit.";
             desc2 = "With sheer numbers, it should be no issue to simply overrun your opponents. Good practice for the eventual rodent uprising.";
-            cost = 15;
+            cost = 4;
             damage = 12;
             target = 3;
             statusEffect = "Reactive";
@@ -3056,9 +3056,9 @@ namespace LucyAbilities
         public PropellorRat()
         {
             name = "Propellor Rat";
-            desc1 = "Deals low electric damage. Hits 2-4 times. Inflicts eye bleed.";
+            desc1 = "Deals low electric damage. Hits 2-4 times. Inflicts eye bleed. Expends SP per hit.";
             desc2 = "Don't worry this is a highly trained rat. Totally a professional. Don't question why it's crashing into its target.";
-            cost = 12;
+            cost = 3;
             damage = 8;
             damageType = 2;
             position = 2;
