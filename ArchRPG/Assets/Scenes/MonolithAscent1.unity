@@ -4032,9 +4032,9 @@ MonoBehaviour:
   encounter_type: 1
   enemy_names:
   - enemy_name: God's Hand
-    encounter_priority: 3
-    xp_factor: 1
-  maximum_enemies: {x: 1, y: 3}
+    encounter_priority: 2
+    xp_factor: 1.5
+  maximum_enemies: {x: 1, y: 2}
   roll_delay: 10
   roll_min: 7
   enemy_encounter_chance: 30
@@ -7361,15 +7361,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[0].encounter_priority
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[0].xp_factor
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: maximum_enemies.y
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: maximum_enemies.x
