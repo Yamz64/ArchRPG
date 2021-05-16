@@ -1463,7 +1463,7 @@ public static class Weapons
             limit = 10;
             amount = 1;
             type = 1;
-            damageType = 15;
+            damage_buff = 15;
             cost = 30;
             damageType = 1;
             //needsd to do fire damage

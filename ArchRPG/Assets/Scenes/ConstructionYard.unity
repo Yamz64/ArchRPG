@@ -984,7 +984,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[0].encounter_priority
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: maximum_enemies.y
@@ -1012,15 +1012,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[0].xp_factor
-      value: 5.5
+      value: 4.2
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[1].xp_factor
-      value: 4.5
+      value: 12.2
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[2].xp_factor
-      value: 5
+      value: 20.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
@@ -2976,7 +2976,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[0].encounter_priority
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: maximum_enemies.y
@@ -3004,15 +3004,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[0].xp_factor
-      value: 5.5
+      value: 4.2
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[1].xp_factor
-      value: 4.5
+      value: 12.2
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[2].xp_factor
-      value: 5
+      value: 20.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
@@ -5829,7 +5829,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[0].encounter_priority
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: maximum_enemies.y
@@ -5857,15 +5857,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[0].xp_factor
-      value: 5.5
+      value: 4.2
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[1].xp_factor
-      value: 4.5
+      value: 12.2
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[2].xp_factor
-      value: 5
+      value: 20.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
@@ -17677,7 +17677,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[0].encounter_priority
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: maximum_enemies.y
@@ -17705,15 +17705,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[0].xp_factor
-      value: 5.5
+      value: 4.2
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[1].xp_factor
-      value: 4.5
+      value: 12.2
       objectReference: {fileID: 0}
     - target: {fileID: 8162655377501367320, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
       propertyPath: enemy_names.Array.data[2].xp_factor
-      value: 5
+      value: 20.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea24cdfcdc2bc844aa133b2d4dec6ee8, type: 3}
