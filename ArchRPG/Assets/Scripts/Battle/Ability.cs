@@ -1955,7 +1955,7 @@ namespace EnemyAbilities
             for (int i = 0; i < ran && checker < targets.Count; i++)
             {
                 int alo = Random.Range(0, targets.Count);
-                while (targets[alo].currentHP <= 0)
+                while (targets[alo] == null || targets[alo].currentHP <= 0 || targets[alo].enemy)
                 {
                     alo = Random.Range(0, targets.Count);
                 }
