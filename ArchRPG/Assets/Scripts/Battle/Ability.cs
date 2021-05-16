@@ -3041,13 +3041,37 @@ namespace LucyAbilities
             int rani = Random.Range(multiHitMin, multiHitMax);
             for (int i = 0; i < rani; i++)
             {
-                int togo = Random.Range(0, targets.Count);
-                while (targets[i].currentHP <= 0 || targets[i].enemy)
+                Debug.Log("i == " + i);
+                int check = 0;
+                for (int x = 0; x < targets.Count; x++)
                 {
-                    togo = Random.Range(0, targets.Count);
+                    Debug.Log("x == " + x);
+                    if (targets[x] != null)
+                    {
+                        if (targets[x].enemy && targets[x].currentHP > 0)
+                        {
+                            check += 1;
+                        }
+                    }
                 }
-                int val = user.takeDamageCalc(targets[togo], damage, damageType);
-                targets[togo].takeDamage(val);
+                Debug.Log("Check == " + check);
+                if (check <= 0)
+                {
+                    break;
+                }
+                else
+                {
+                    int ene = 0;
+                    int togo = Random.Range(0, targets.Count);
+                    while (targets[togo] == null || (targets[togo].currentHP <= 0 || !targets[togo].enemy))
+                    {
+                        Debug.Log("loop# " + ene);
+                        ene++;
+                        togo = Random.Range(0, targets.Count);
+                    }
+                    int val = user.takeDamageCalc(targets[togo], damage, damageType);
+                    targets[togo].takeDamage(val);
+                }
             }
         }
     }
