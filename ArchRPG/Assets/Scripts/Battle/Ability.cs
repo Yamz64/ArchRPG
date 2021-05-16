@@ -2159,7 +2159,8 @@ namespace PlayerAbilities
             desc1 = "Inflicts analyzed on an enemy.";
             desc2 = "After putting aside your clear superiority, you come up with an unbiased view of an enemy's weakness and how to exploit it.";
             cost = 4;
-            position = 1;
+            position = 0;
+            swapper = 2;
             statusEffect = "Analyzed";
         }
     }
