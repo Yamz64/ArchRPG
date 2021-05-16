@@ -25,6 +25,8 @@ public class RoamingEnemySpawnerBehavior : MonoBehaviour
 
     public bool intangible;
 
+    public bool high_layer;
+
     [SerializeField]
     public Sprite[] anim_sprites;
     [SerializeField]
@@ -76,6 +78,7 @@ public class RoamingEnemySpawnerBehavior : MonoBehaviour
             enemy.GetComponent<OverworldEncounter>().attack_delay = attack_delay;
             enemy.GetComponent<OverworldEncounter>().maximum_enemies = maximum_enemies;
             if (intangible) enemy.GetComponent<Collider2D>().enabled = false;
+            if (high_layer) enemy.GetComponent<SpriteRenderer>().sortingOrder = 4;
         }
     }
 
