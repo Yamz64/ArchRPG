@@ -1955,7 +1955,7 @@ namespace EnemyAbilities
             for (int i = 0; i < ran && checker < targets.Count; i++)
             {
                 int alo = Random.Range(0, targets.Count);
-                while (targets[alo].currentHP <= 0)
+                while (targets[alo] == null || targets[alo].currentHP <= 0 || targets[alo].enemy)
                 {
                     alo = Random.Range(0, targets.Count);
                 }
@@ -2159,7 +2159,8 @@ namespace PlayerAbilities
             desc1 = "Inflicts analyzed on an enemy.";
             desc2 = "After putting aside your clear superiority, you come up with an unbiased view of an enemy's weakness and how to exploit it.";
             cost = 4;
-            position = 1;
+            position = 0;
+            swapper = 2;
             statusEffect = "Analyzed";
         }
     }
@@ -3040,13 +3041,37 @@ namespace LucyAbilities
             int rani = Random.Range(multiHitMin, multiHitMax);
             for (int i = 0; i < rani; i++)
             {
-                int togo = Random.Range(0, targets.Count);
-                while (targets[i].currentHP <= 0 || targets[i].enemy)
+                Debug.Log("i == " + i);
+                int check = 0;
+                for (int x = 0; x < targets.Count; x++)
                 {
-                    togo = Random.Range(0, targets.Count);
+                    Debug.Log("x == " + x);
+                    if (targets[x] != null)
+                    {
+                        if (targets[x].enemy && targets[x].currentHP > 0)
+                        {
+                            check += 1;
+                        }
+                    }
                 }
-                int val = user.takeDamageCalc(targets[togo], damage, damageType);
-                targets[togo].takeDamage(val);
+                Debug.Log("Check == " + check);
+                if (check <= 0)
+                {
+                    break;
+                }
+                else
+                {
+                    int ene = 0;
+                    int togo = Random.Range(0, targets.Count);
+                    while (targets[togo] == null || (targets[togo].currentHP <= 0 || !targets[togo].enemy))
+                    {
+                        Debug.Log("loop# " + ene);
+                        ene++;
+                        togo = Random.Range(0, targets.Count);
+                    }
+                    int val = user.takeDamageCalc(targets[togo], damage, damageType);
+                    targets[togo].takeDamage(val);
+                }
             }
         }
     }

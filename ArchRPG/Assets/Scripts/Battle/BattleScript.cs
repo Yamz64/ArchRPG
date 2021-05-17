@@ -3053,14 +3053,14 @@ public class BattleScript : MonoBehaviour
 
                         int r = Random.Range(0, enemyUnits.Count);
                         bool selfie = true;
-                        if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.unitName.Equals(enemyUnits[r].GetComponent<UnitMono>().mainUnit.unitName))
+                        if (enemyUnits[i].GetComponent<UnitMono>().mainUnit.unitName.Equals(enemyUnits[r].GetComponent<UnitMono>().mainUnit.unitName) && i == r)
                         {
                             selfie = false;
                         }
                         while (enemyUnits[r].GetComponent<UnitMono>().mainUnit.currentHP <= 0 || !selfie)
                         {
                             r = Random.Range(0, enemyUnits.Count);
-                            if (!enemyUnits[i].GetComponent<UnitMono>().mainUnit.unitName.Equals(enemyUnits[r].GetComponent<UnitMono>().mainUnit.unitName))
+                            if (!enemyUnits[i].GetComponent<UnitMono>().mainUnit.unitName.Equals(enemyUnits[r].GetComponent<UnitMono>().mainUnit.unitName) && i != r)
                             {
                                 selfie = true;
                             }
@@ -5493,6 +5493,20 @@ public class BattleScript : MonoBehaviour
                                 }
                             }
                         }
+                        int bb = 0;
+                        for (int b = 0; b < enemyUnits.Count; b++)
+                        { 
+                            if (enemyUnits[bb].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
+                            {
+                                bb++;
+                            }
+                        }
+                        enemyDeaths = bb;
+                        if (bb >= enemyUnits.Count)
+                        {
+                            state = battleState.WIN;
+                            yield return battleEnd();
+                        }
                     }
                 }
                 else if (dead == false && uni.abilities[ata].OutputText(uni, target) == null && precS != target.statuses)
@@ -5624,21 +5638,22 @@ public class BattleScript : MonoBehaviour
                     }
                 }
                 uni.abilities[ata].UseAttack(uni, actors);
+                int ex = 0;
                 yield return flashDealDamage(uni);
                 for (int x = 0; x < priors.Count; x++)
                 {
                     if (actors[x] != null)
                     {
-                        if (x < 4)
+                        if (!actors[x].enemy)
                         {
-                            if (dams[x] > partyUnits[x].GetComponent<UnitMono>().mainUnit.currentHP)
+                            if (dams[x] > actors[x].currentHP)
                             {
-                                StartCoroutine(flashDamage(partyUnits[x].GetComponent<UnitMono>().mainUnit));
+                                StartCoroutine(flashDamage(actors[x]));
                             }
-                            if (partyUnits[x].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && !priors[x])
+                            if (actors[x].currentHP <= 0 && !priors[x])
                             {
                                 partyDeaths++;
-                                yield return unitDeath(partyUnits[x].GetComponent<UnitMono>().mainUnit);
+                                yield return unitDeath(actors[x]);
                                 if (partyDeaths == partyUnits.Count)
                                 {
                                     state = battleState.LOSE;
@@ -5648,21 +5663,22 @@ public class BattleScript : MonoBehaviour
                         }
                         else
                         {
-                            if (dams[x] > enemyUnits[x-4].GetComponent<UnitMono>().mainUnit.currentHP)
+                            if (dams[x] > actors[x].currentHP)
                             {
-                                StartCoroutine(flashDamage(partyUnits[x-4].GetComponent<UnitMono>().mainUnit));
-                                StartCoroutine(showDamage(dams[x] - enemyUnits[x - 4].GetComponent<UnitMono>().mainUnit.currentHP, x-4, uni.abilities[ata].damageType));
+                                StartCoroutine(flashDamage(actors[x]));
+                                StartCoroutine(showDamage(dams[x] - actors[x].currentHP, ex, uni.abilities[ata].damageType));
                             }
-                            if (enemyUnits[x-4].GetComponent<UnitMono>().mainUnit.currentHP <= 0 && !priors[x])
+                            if (actors[x].currentHP <= 0 && !priors[x])
                             {
                                 enemyDeaths++;
-                                yield return unitDeath(enemyUnits[x-4].GetComponent<UnitMono>().mainUnit);
+                                yield return unitDeath(actors[x]);
                                 if (enemyDeaths >= enemyUnits.Count)
                                 {
                                     state = battleState.WIN;
                                     yield return battleEnd();
                                 }
                             }
+                            ex += 1;
                         }
                     }
                 }
