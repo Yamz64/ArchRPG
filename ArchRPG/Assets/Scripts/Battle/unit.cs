@@ -9045,7 +9045,7 @@ public class God : unit
         resistances[0] = true;
 
         level = 20;
-        SetHPMax(400);
+        SetHPMax(300);
         expGain = 228061;
         enemy = true;
         capital = 8;
@@ -9079,7 +9079,7 @@ public class God2 : unit
         weaknesses[2] = true;
 
         level = 20;
-        SetHPMax(400);
+        SetHPMax(300);
         expGain = 0;
         enemy = true;
         capital = 8;
