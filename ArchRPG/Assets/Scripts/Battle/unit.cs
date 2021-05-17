@@ -8518,7 +8518,7 @@ public class Vermin : unit
 {
     public Vermin()
     {
-        ImageFilePath = "EnemySprites/Vermin 3";
+        ImageFilePath = "EnemySprites/Vermin3";
         unitName = "Vermin";
         loadSprites();
         weaknesses[1] = true;
