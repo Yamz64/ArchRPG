@@ -5493,6 +5493,20 @@ public class BattleScript : MonoBehaviour
                                 }
                             }
                         }
+                        int bb = 0;
+                        for (int b = 0; b < enemyUnits.Count; b++)
+                        { 
+                            if (enemyUnits[bb].GetComponent<UnitMono>().mainUnit.currentHP <= 0)
+                            {
+                                bb++;
+                            }
+                        }
+                        enemyDeaths = bb;
+                        if (bb >= enemyUnits.Count)
+                        {
+                            state = battleState.WIN;
+                            yield return battleEnd();
+                        }
                     }
                 }
                 else if (dead == false && uni.abilities[ata].OutputText(uni, target) == null && precS != target.statuses)
