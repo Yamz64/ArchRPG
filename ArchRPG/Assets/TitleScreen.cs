@@ -446,7 +446,8 @@ public class TitleScreen : MonoBehaviour
                         bool cori = true;
                         for (int i = 0; i < opti.Count; i++)
                         {
-                            if (opti[i].Bindings[0].Positive == result.Key || opti[i].Bindings[0].Negative == result.Key)
+                            if (opti[i].Bindings[0].Positive == result.Key || opti[i].Bindings[0].Negative == result.Key
+                            || result.Key == KeyCode.UpArrow || result.Key == KeyCode.DownArrow || result.Key == KeyCode.LeftArrow || result.Key == KeyCode.RightArrow)
                             {
                                 cori = false;
                             }
