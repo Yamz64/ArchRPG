@@ -411,12 +411,12 @@ public class TitleScreen : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (InputManager.GetButtonDown("Interact") && !selector)
+            else if (InputManager.GetButtonDown("Interact") && !selector && cursor_position != 6)
             {
                 if (!menu_input)
                 {
-                    prev = transform.GetChild(1).Find("Controls").GetChild(cursor_position+1).GetChild(0).GetComponent<Text>().text;
-                    transform.GetChild(1).Find("Controls").GetChild(cursor_position+1).GetChild(0).GetComponent<Text>().text = "";
+                    prev = transform.GetChild(1).Find("Controls").GetChild(cursor_position + 1).GetChild(0).GetComponent<Text>().text;
+                    transform.GetChild(1).Find("Controls").GetChild(cursor_position + 1).GetChild(0).GetComponent<Text>().text = "";
                     selector = true;
                     InputManager.StartInputScan(settings, result =>
                     {
@@ -462,16 +462,16 @@ public class TitleScreen : MonoBehaviour
                             {
                                 inputAction.Bindings[0].Negative = result.Key;
                             }
-                            transform.GetChild(1).Find("Controls").GetChild(cursor_position+1).GetChild(0).GetComponent<Text>().text = result.Key.ToString();
+                            transform.GetChild(1).Find("Controls").GetChild(cursor_position + 1).GetChild(0).GetComponent<Text>().text = result.Key.ToString();
                             if (bases == "Interact")
                             {
-                                CloseControlMenu();
+                                //CloseControlMenu();
                             }
                             InputManager.Save();
                         }
                         else
                         {
-                            transform.GetChild(1).Find("Controls").GetChild(cursor_position+1).GetChild(0).GetComponent<Text>().text = prev;
+                            transform.GetChild(1).Find("Controls").GetChild(cursor_position + 1).GetChild(0).GetComponent<Text>().text = prev;
                         }
                         return true;
                     });
@@ -479,7 +479,7 @@ public class TitleScreen : MonoBehaviour
                 }
                 menu_input = true;
             }
-            else if (InputManager.GetButtonDown("Menu") && !selector)
+            else if (InputManager.GetButtonDown("Interact") && !selector && cursor_position == 6)
             {
                 useSound(0);
                 CloseControlMenu();
