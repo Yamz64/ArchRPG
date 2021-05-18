@@ -3604,6 +3604,7 @@ public class PauseMenuHandler : MonoBehaviour
                 switch (cursor_position)
                 {
                     case 0:
+                        Time.timeScale = 1;
                         GetComponent<PlayerMovement>().interaction_protection = false;
                         cursor.SetActive(false);
                         CloseMenu(0);
